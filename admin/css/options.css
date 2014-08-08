@@ -1,0 +1,94 @@
+/* Coupon Creator Options CSS
+------------------------------------------------------------ */
+.cctor-tabs-nav {
+	height: 27px;
+	margin: 20px 0 0;
+	padding: 0;
+}
+
+.cctor-tabs-nav li {
+	display: block;
+	float: left;
+	margin: 0;
+}
+
+.cctor-tabs-nav li a {
+	padding: 4px 20px 6px;
+	font-weight: bold;
+}
+
+.cctor-tabs-nav li a {
+	border-color: #fff;
+	border-style: solid;
+	border-width: 1px 1px 0;
+	color: #5C5C5C;
+	text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
+	display: inline-block;
+	padding: 4px 14px 6px;
+	text-decoration: none;
+	margin: 0 6px -1px 0;
+	border-radius: 8px 8px 0 0
+}
+
+.cctor-tabs-nav li.ui-tabs-selected a,
+.cctor-tabs-nav li.ui-state-active a {
+	border-width: 1px 1px 0;
+	color: #2A5A8A;
+	background: #fff;
+}
+
+.cctor-tabs-panel {
+	clear: both;
+	background: #fff;
+	padding: 2%;
+	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
+}
+
+.cctor-tabs-panel h3 {
+	font: italic normal normal 24px/29px Georgia,Times,serif;
+	color: #2A5A8A;
+	margin: 0;
+	padding: 0 0 5px;
+	line-height: 35px;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.cctor-tabs-panel h4 {
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0 0 0 -10px;
+	color: #048C7F;	
+}
+.cctor-tabs-panel h4:after {
+    content: "";
+    height: 1px;
+	display: block;
+    margin-top: 10px;
+	background: rgb(0,0,0);
+	background: rgb(0,0,0);
+	background: -moz-linear-gradient(left,  rgba(0,0,0,1) 1%, rgba(155,155,155,1) 28%, rgba(255,255,255,1) 85%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(1%,rgba(0,0,0,1)), color-stop(28%,rgba(155,155,155,1)), color-stop(85%,rgba(255,255,255,1)));
+	background: -webkit-linear-gradient(left,  rgba(0,0,0,1) 1%,rgba(155,155,155,1) 28%,rgba(255,255,255,1) 85%);
+	background: -o-linear-gradient(left,  rgba(0,0,0,1) 1%,rgba(155,155,155,1) 28%,rgba(255,255,255,1) 85%);
+	background: -ms-linear-gradient(left,  rgba(0,0,0,1) 1%,rgba(155,155,155,1) 28%,rgba(255,255,255,1) 85%);
+	background: linear-gradient(to right,  rgba(0,0,0,1) 1%,rgba(155,155,155,1) 28%,rgba(255,255,255,1) 85%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff',GradientType=1 );
+}
+.wrap h3, .wrap table {
+	display: none;
+}
+
+.cctor_coupon_page_coupon-options input.regular-text {
+	width: auto;
+}
+
+/*hides empty row*/
+.form-table tr > *:empty {
+    display: none;
+}
+
+div.alert {
+    border-left: 4px solid #dd3d36;
+    padding: 1px 12px;
+	color: #dd3d36;
+}

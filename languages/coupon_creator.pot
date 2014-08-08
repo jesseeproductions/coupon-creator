@@ -1,0 +1,186 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Coupon Creator\n"
+"POT-Creation-Date: 2014-03-28 10:24-0500\n"
+"PO-Revision-Date: 2014-03-28 10:25-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/settings.php:17 classes/cctor-admin-class.php:416
+msgid "Coupon Creator Settings"
+msgstr ""
+
+#: classes/cctor-admin-class.php:49
+msgid "Permalinks"
+msgstr ""
+
+#: classes/cctor-admin-class.php:56
+msgid "Coupon Creator Base"
+msgstr ""
+
+#: classes/cctor-admin-class.php:65
+msgid "Coupon Creator Category Base"
+msgstr ""
+
+#: classes/cctor-admin-class.php:107
+msgid "Coupon Settings"
+msgstr ""
+
+#: classes/cctor-admin-class.php:373
+msgid "Coupon Title"
+msgstr ""
+
+#: classes/cctor-admin-class.php:380
+msgid "Expiration Date"
+msgstr ""
+
+#: classes/cctor-admin-class.php:382
+msgid "Ignore Expiration"
+msgstr ""
+
+#: classes/cctor-admin-class.php:417
+msgid "Settings"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:60
+msgctxt "slug"
+msgid "cctor_coupon"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:65
+msgctxt "coupon_creator"
+msgid "Coupons"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:66
+msgctxt "coupon_creator"
+msgid "Coupon"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:67
+msgctxt "coupon_creator"
+msgid "Add New"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:68
+msgid "Add New Coupon"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:69
+msgid "Edit Coupon"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:70
+msgid "New Coupon"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:71
+msgid "View Coupon"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:72
+msgid "Search Coupons"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:73
+msgid "No coupons found"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:74
+msgid "No coupons found in Trash"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:75
+msgid "Parent Coupon:"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:76
+msgid "Coupons"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:222 templates/single-coupon.php:71
+msgid "Expires on:"
+msgstr ""
+
+#: classes/cctor-coupon-class.php:227
+msgid "Click to Open in Print View"
+msgstr ""
+
+#: coupon_creator.php:60
+msgid "Coupon Creator Requires PHP version: "
+msgstr ""
+
+#: coupon_creator.php:64
+msgid "Coupon Creator Requires WordPress version: "
+msgstr ""
+
+#: inc/taxonomy.php:16
+msgctxt "slug"
+msgid "cctor_coupon_category"
+msgstr ""
+
+#: inc/taxonomy.php:23 inc/taxonomy.php:33
+msgctxt "coupon_creator"
+msgid "Coupon Category"
+msgstr ""
+
+#: inc/taxonomy.php:24
+msgctxt "coupon_creator"
+msgid "Coupon Categories"
+msgstr ""
+
+#: inc/taxonomy.php:25
+msgctxt "coupon_creator"
+msgid "Search Coupon Categories"
+msgstr ""
+
+#: inc/taxonomy.php:26
+msgctxt "coupon_creator"
+msgid "All Coupon Categories"
+msgstr ""
+
+#: inc/taxonomy.php:27
+msgctxt "coupon_creator"
+msgid "Parent Coupon Categories"
+msgstr ""
+
+#: inc/taxonomy.php:28
+msgctxt "coupon_creator"
+msgid "Parent Coupon Categories:"
+msgstr ""
+
+#: inc/taxonomy.php:29
+msgctxt "coupon_creator"
+msgid "Edit Coupon Categories"
+msgstr ""
+
+#: inc/taxonomy.php:30
+msgctxt "coupon_creator"
+msgid "Update Coupon Categories"
+msgstr ""
+
+#: inc/taxonomy.php:31
+msgctxt "coupon_creator"
+msgid "Add New Coupon Category"
+msgstr ""
+
+#: inc/taxonomy.php:32
+msgctxt "coupon_creator"
+msgid "New Coupon Categories Name"
+msgstr ""
+
+#: templates/single-coupon.php:81
+msgid "Click to Print"
+msgstr ""
