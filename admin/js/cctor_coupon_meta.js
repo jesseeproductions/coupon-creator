@@ -40,7 +40,7 @@ jQuery(document).ready(function($){
 		//Setup the Variables based on the Button Clicked to enable multiple
 		var coupon_img_input_id = '#'+this.id+'.upload_coupon_image';
 		var coupon_img_src = 'img#'+this.id+'.cctor_coupon_image';
-		
+		var coupon_default_msg = 'div#'+this.id+'.cctor_coupon_default_image';
 
         //If the uploader object has already been created, reopen the dialog
        if (coupon_uploader) {
@@ -64,7 +64,10 @@ jQuery(document).ready(function($){
             $(coupon_img_input_id).val(attachment.id);
 			//Set the Sample Image with the URL
 			$(coupon_img_src).attr('src', attachment.url);
-
+			//Show Image
+			$(coupon_img_src).show();
+			//Hide Message
+			$(coupon_default_msg).hide();
         });
  
         //Open the uploader dialog
@@ -83,10 +86,14 @@ jQuery(document).ready(function($){
         e.preventDefault();
 		var coupon_remove_input_id = 'input#'+this.id+'.upload_coupon_image';
 		var coupon_img_src = 'img#'+this.id+'.cctor_coupon_image';
-		var coupon_default_img_src = $('img#'+this.id+'.cctor_coupon_default_image').attr("src");
+		//var coupon_default_img_src = $('img#'+this.id+'.cctor_coupon_default_image').attr("src");
+		console.log(coupon_remove_input_id);
+		console.log(coupon_img_src);
+		//console.log(coupon_default_img_src);
 		
 		$(coupon_remove_input_id).val('');
-		$(coupon_img_src).attr('src', coupon_default_img_src);
+		$(coupon_img_src).hide();
+		$('div#'+this.id+'.cctor_coupon_default_image').show();
     });
  
 });

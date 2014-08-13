@@ -16,7 +16,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		*/
 		public function __construct() {
 			//Setup Coupon Meta Boxes
-			add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );
+			add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );	
 			//Save Meta Boxes Data
 			add_action( 'save_post', array( __CLASS__, 'save_coupon_creator_meta' ),50, 2 );
 		}
@@ -32,6 +32,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$post = get_post($_GET['post']);
 			$typenow = $post->post_type;
 		}
+		
 		if (is_admin() && $pagenow=='post-new.php' OR $pagenow=='post.php' && $typenow=='cctor_coupon') {
 					add_meta_box(
 						'coupon_creator_meta_box', // id
@@ -41,13 +42,25 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 						'normal', // context
 						'high' // priority
 					);
+								
+					if($pagenow !='post-new.php'){
+						add_meta_box(
+							'coupon_creator_shortcode', // id
+							__( 'Coupon Shortcode', 'coupon_creator' ), // title
+							array( __CLASS__, 'show_coupon_shortcode' ), // callback
+							'cctor_coupon', // post_type
+							'side' // context
+						);			
+					}
+					
+					remove_meta_box( 'wpseo_meta', 'cctor_coupon', 'normal' );
 					
 					//Hook for More Meta Boxes
 					do_action( 'cctor_add_meta_box');
 			
 			}
 		}
-
+		
 		/***************************************************************************/
 		
 		/*
@@ -69,11 +82,20 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					if ($field['section'] == $metabox['id']) :
 					// get value of this field if it exists for this post
 					$meta = get_post_meta($post->ID, $field['id'], true); ?>
-
+						
+						<?php if (isset($field['label'])) { ?>
 						<tr>
 							<th><label for="<?php echo $field['id']; ?>"><?php echo $field['label']; ?></label></th>
 							<td>
+						<?php } ?>	
 							<?php switch($field['type']) { 
+							
+								case 'heading':?>
+								
+									<tr valign="top"><td colspan="2"><h4><?php echo $field['desc']; ?></h4>
+									
+								<?php break;		
+									
 								// text
 								case 'text':?>
 								
@@ -96,22 +118,52 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 										
 								<?php break;								
 								// checkbox 
-								case 'checkbox': ?>
+								case 'checkbox': ?>						
 								
 									<input type="checkbox" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" <?php echo checked( $meta, 1, false ); ?>/><label for="<?php echo $field['id']; ?>"><?php echo $field['desc']; ?></label>
 									
 								<?php break;
-								// image using Media Manager from WP 3.5 and greater
-								case 'image': 
 								
-									$image = plugins_url('/images/optional_coupon.png' , __FILE__ ); ?>
-									<img id="<?php echo $field['id']; ?>" class="cctor_coupon_default_image" style="display:none" src="<?php echo $image; ?>">
+								case 'select': 
+								
+								/*echo $meta ."<br>";
+								echo $field['value'] ."<br>";
+								$selected = ""; */
+								
+								//Find Current Selected Value or use Default
+								if ($meta) {
+									$selected = $meta;
+								} else {
+									$selected = $field['value'];
+								}
+								
+								?>
+									<select class="select <?php echo $field['id']; ?>" name="<?php echo $field['id']; ?>">
+									
+									<?php foreach ( $field['choices'] as $value => $label ) { 
+									
+										echo '<option value="'. $value.'"'.selected( $value , $selected ).'>'. $label .'</option>';
+									
+									}?>								
+									</select>
+									<span class="description"><?php echo $field['desc']; ?></span>
+									
+								<?php	break;								
+								// image using Media Manager from WP 3.5 and greater
+								case 'image': ?>
+								
 									<?php //Check existing field and if numeric
+										$image = "";
+										
 									if (is_numeric($meta)) { 
 										$image = wp_get_attachment_image_src($meta, 'medium'); 
 										$image = $image[0];
-									} ?>
-											<img src="<?php echo $image; ?>" id="<?php echo $field['id']; ?>" class="cctor_coupon_image" /><br />
+										$image = '<div style="display:none" id="'.$field['id'].'" class="cctor_coupon_default_image cctor_coupon_box">'.$field['image'].'</div> <img src="'. $image .'" id="'. $field['id'] .'" class="cctor_coupon_image cctor_coupon_box_img" />';
+									} else {
+										$image = '<div style="display:block" id="'.$field['id'].'" class="cctor_coupon_default_image cctor_coupon_box">'.$field['image'].'</div> <img style="display:none" src="'. $image .'" id="'. $field['id'] .'" class="cctor_coupon_image cctor_coupon_box_img" />';
+									}?>
+									
+											<?php echo $image; ?><br />
 											<input name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" type="hidden" class="upload_coupon_image" type="text" size="36" name="ad_image" value="<?php echo $meta; ?>" /> 
 											<input id="<?php echo $field['id']; ?>" class="coupon_image_button" type="button" value="Upload Image" />
 											<small> <a href="#" id="<?php echo $field['id']; ?>" class="cctor_coupon_clear_image_button">Remove Image</a></small>
@@ -180,87 +232,147 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		
 		/*
 		* Load Meta Box Functions
+		* @version 1.90
+		* @param stdClass $post
+		*/
+		public static function show_coupon_shortcode( $post, $metabox  ) {
+			?><p class="shortcode">
+			<?php  _e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon_creator' ); ?> 
+			<code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
+			</p><?php 
+		
+		}
+		/***************************************************************************/
+		
+		/*
+		* Load Meta Box Functions
 		* @version 1.80  
 		*/
 		public static function metabox_options() {
 		
 			// Field Array  cctor_
 			$prefix = 'cctor_';
-			$coupon_creator_meta_fields = array(
-				array(
-					'label' => 'Discount',
-					'desc' => 'Enter the discount amount  - 30%, Buy One Get One Free, etc...',
+				$coupon_creator_meta_fields[$prefix . 'heading_coupon'] = array(
+					'id' => $prefix . 'heading_coupon',
+					'title'   => '',
+					'desc'    =>  __( 'Coupon Heading','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box'
+				);				
+				$coupon_creator_meta_fields[$prefix . 'amount'] =	array(
+					'label' => __('Discount', 'coupon_creator' ),
+					'desc' => __('Enter the discount amount  - 30%, Buy One Get One Free, etc...', 'coupon_creator' ),
 					'id' => $prefix . 'amount',
 					'type'  => 'text',
 					'section' => 'coupon_creator_meta_box'
-				),
-				array(
-					'label' => 'Discount Background Color' ,
-					'desc'  => 'Choose background color',
+				);				
+				$coupon_creator_meta_fields[$prefix . 'heading_color'] = array(
+					'id' => $prefix . 'heading_color',
+					'title'   => '',
+					'desc'    =>  __( 'Coupon Colors','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box'
+				);						
+				$coupon_creator_meta_fields[$prefix . 'colordiscount'] =	array(
+					'label' => __('Discount Background Color', 'coupon_creator' ),
+					'desc'  => __('Choose background color', 'coupon_creator' ),
 					'id' => $prefix . 'colordiscount',
 					'type' => 'color', // color
-					'value' => coupon_options('cctor_discount_bg_color'),
+					'value' => coupon_options($prefix . 'discount_bg_color'),
 					'section' => 'coupon_creator_meta_box'
-				),
-				array(
-					'label' => 'Discount Text Color',
-					'desc'  => 'Choose color for discount text',
+				);
+				$coupon_creator_meta_fields[$prefix . 'colorheader'] =	array(
+					'label' => __('Discount Text Color', 'coupon_creator' ),
+					'desc'  => __('Choose color for discount text', 'coupon_creator' ),
 					'id' => $prefix . 'colorheader',
 					'type' => 'color', // color
-					'value' => coupon_options('cctor_discount_text_color'),
+					'value' => coupon_options($prefix . 'discount_text_color'),
 					'section' => 'coupon_creator_meta_box'
-				),
-				array(
-					'label' => 'Border Color',
-					'desc'  => 'Choose inside solid border color',
+				);
+				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
+					'label' => __('Inside Border Color', 'coupon_creator' ),
+					'desc'  => __('Choose inside border color', 'coupon_creator' ),
 					'id' => $prefix . 'bordercolor',
 					'type' => 'color', // color
-					'value' => coupon_options('cctor_border_color'),
+					'value' => coupon_options($prefix . 'border_color'),
 					'section' => 'coupon_creator_meta_box'
-				),
-				array(
-					'label' => 'Terms:',
-					'desc' => 'Enter the terms of the discount',
+				);
+				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
+					'id' => $prefix . 'heading_deal',
+					'title'   => '',
+					'desc'    =>  __( 'Coupon Terms','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box'
+				);					
+				$coupon_creator_meta_fields[$prefix . 'description'] =	array(
+					'label' => __('Terms:', 'coupon_creator' ),
+					'desc' => __('Enter the terms of the discount', 'coupon_creator' ),
 					'id' => $prefix . 'description',
 					'type'  => 'textarea_w_tags',
 					'section' => 'coupon_creator_meta_box'
-				),
-				array(
-					'label' => 'Expiration Date:',
+				);
+				$coupon_creator_meta_fields[$prefix . 'heading_expiration'] = array(
+					'id' => $prefix . 'heading_expiration',
+					'title'   => '',
+					'desc'    =>  __( 'Coupon Expiration','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box'
+				);					
+				$coupon_creator_meta_fields[$prefix . 'expiration'] =	array(
+					'label' => __('Expiration Date:', 'coupon_creator' ),
 					'id' => $prefix . 'expiration',
-					'desc' => 'The coupon will not display without the date and will not display on your site after the date',
+					'desc' => __('The coupon will not display without the date and will not display on your site after the date', 'coupon_creator' ),
 					'type'  => 'date',
 					'section' => 'coupon_creator_meta_box'
-				),
-				array(
-					'label'=> 'Date Format',
-					'desc'  => 'Check this to change date format to Day / Month / Year (default is Month / Day / Year)',
+				);
+				$coupon_creator_meta_fields[$prefix . 'date_format'] =	array(
+					'label'=> __('Date Format', 'coupon_creator' ),
+					'desc'  => __('Choose the date format', 'coupon_creator' ),
 					'id'    => $prefix . 'date_format',
-					'type'  => 'checkbox',
-					'section' => 'coupon_creator_meta_box'
-				),
-				 array(
-					'label'=> 'Ignore Expiration Date',
-					'desc'  => 'Check this to ignore the expiration date',
+					'section' => 'coupon_creator_meta_box',
+					'value' => coupon_options($prefix . 'default_date_format'),
+					'type'    => 'select',
+					'choices' => array(
+						'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),
+						'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )				
+					)
+				);				
+				$coupon_creator_meta_fields[$prefix . 'ignore_expiration'] =	array(
+					'label'=> __('Ignore Expiration Date', 'coupon_creator' ),
+					'desc'  => __('Check this to ignore the expiration date', 'coupon_creator' ),
 					'id'    => $prefix . 'ignore_expiration',
 					'type'  => 'checkbox',
 					'section' => 'coupon_creator_meta_box'
-				),
-				array(
-					'label'  => 'Image',
-					'desc'  => 'Upload and insert an image as a coupon - Image Size 400 pixels by 200 pixels',
+				);
+				$coupon_creator_meta_fields[$prefix . 'heading_image'] = array(
+					'id' => $prefix . 'heading_image',
+					'title'   => '',
+					'desc'    =>  __( 'Image Coupon','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box'
+				);						
+				$coupon_creator_meta_fields[$prefix . 'image'] =	array(
+					'label'  => __('Image', 'coupon_creator' ),
+					'desc'  => __('Upload and insert an image as a coupon - Image Size 400 pixels by 200 pixels', 'coupon_creator' ),
 					'id'    => $prefix . 'image',
 					'type'  => 'image',
+					'section' => 'coupon_creator_meta_box',
+					'image'  => 'Optional Coupon Image'
+				);
+				$coupon_creator_meta_fields[$prefix . 'heading_support'] = array(
+					'id' => $prefix . 'heading_support',
+					'title'   => '',
+					'desc'    =>  __( 'How to Videos','coupon_creator' ),
+					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box'
-				),			
-				array(
-					'label'  => 'Coupon Creator How to Videos:',
-					'id'    => $prefix . 'cctor_videos',
+				);					
+				$coupon_creator_meta_fields[$prefix . 'videos'] =	array(
+					'label'  => __( 'Coupon Creator How to Videos:', 'coupon_creator' ),
+					'id'    => $prefix . 'videos',
 					'type'  => 'cctor_videos',
 					'section' => 'coupon_creator_meta_box'
-				)
-			);
-
+				);
+	
 			if(has_filter('cctor_meta_fields')) {
 				//Add Fields to the Coupon Creator Meta Box
 				$coupon_creator_meta_fields = apply_filters('cctor_meta_fields', $coupon_creator_meta_fields);
@@ -305,25 +417,37 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 						}	
 						
 					} 
-					
+
 					// Sanitization Filter for each Meta Field Type
 					if(isset($_POST[$option['id']])){
 						if ( has_filter( 'cctor_sanitize_' . $option['type'] ) ) {
 							$clean[$option['id']] = apply_filters( 'cctor_sanitize_' . $option['type'], $_POST[$option['id']], $option );
 						}	
 					}
-						
+
 				}				
 				
 				//Loop Through Sanitized Data and Save to MetaBox if different from existing
 				foreach ($clean as $key => $value ) {
+
 						$old = get_post_meta($post_id, $key, true);
 						$new = $value;
-						if ($new && $new != $old) {
+						
+						/*if ( $key == "cctor_date_format") {
+							echo $old ." old<br>";
+							echo $new ." new<br>";
+							if ( !is_null($new)  && $new != $old) {
+								echo $new ." new2<br>";
+							}
+						}*/
+						
+						
+						
+						if ( !is_null($new) && $new != $old) {
 							update_post_meta($post_id, $key, $new);
 						} elseif ('' == $new && $old) {
 							delete_post_meta($post_id, $key, $old);
-						}
+						} 
 				} 
 			
 			

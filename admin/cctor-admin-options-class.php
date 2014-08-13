@@ -9,9 +9,20 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 	* @version 1.80
 	*/
 	class Coupon_Creator_Plugin_Admin_Options {
-	
+		/*
+		* Tab Sections
+		* @version 1.80
+		*/
 		private $sections;
+		/* Checkbox Fields
+		* Construct
+		* @version 1.80
+		*/
 		private $checkboxes;
+		/*
+		* Option Fields
+		* @version 1.80
+		*/
 		public $options;
 		
 		/*
@@ -24,7 +35,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->checkboxes = array();
 			$this->options = array();
 			$this->get_options();
-			$this->get_sections();
 				
 			add_action( 'admin_menu', array( &$this, 'coupon_options_page' ) );
 			add_action( 'admin_init', array( &$this, 'register_options' ) );
@@ -155,6 +165,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* @version 1.80
 		*/
 		public function display_page() {
+			
+			//Get Tab Sections to Show
+			$this->get_sections();
 			
 			echo '<div class="wrap">
 				<div class="icon32" id="icon-options-general"></div>
@@ -359,14 +372,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					echo '<textarea class="' . $field_class . '" id="' . $id . '" name="coupon_creator_options[' . $id . ']" placeholder="' . $std . '" rows="12" cols="50">' . wp_htmledit_pre( $options[$id] ) . '</textarea>';
 					
 					if ( $desc != '' )
-						echo '<br /><span class="description">' . $desc . '</span>';
-					
+						echo '<br /><span class="description">' . $desc . '</span><br />';
+						echo coupon_options('cctor_custom_css');
 					break;
 			}
 				
 			if(has_filter('cctor_option_cases')) {
 				// this adds any addon fields (from plugins) to the array
-				echo apply_filters('cctor_option_cases', $options, $type , $id, $desc, $field_class, $size);
+				echo apply_filters('cctor_option_cases', $options, $type , $id, $desc, $field_class, $size, $std);
 			} 			
 		}
 	/***************************************************************************/
@@ -379,6 +392,17 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			
 			/* Coupon Creator Options
 			===========================================*/		
+			$this->options['cctor_default_date_format'] = array(
+				'section' => 'defaults',
+				'title'   => __( 'Expiration Date Format', 'coupon_creator' ),
+				'desc'    => __( 'Select the Date Format to show for all Coupons', 'coupon_creator' ),
+				'type'    => 'select',
+				'std'     => 'month_first',
+				'choices' => array(
+					'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),
+					'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
+				)
+			);
 			$this->options['cctor_discount_bg_color'] = array(
 				'title' =>  __( 'Discount Background Color','coupon_creator' ),
 				'desc'  =>  __( 'Choose default background color','coupon_creator' ),
@@ -394,8 +418,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => 'defaults'
 			);
 			$this->options['cctor_border_color'] = array(
-				'title' =>  __( 'Border Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default border color','coupon_creator' ),
+				'title' =>  __( 'Inside Border Color','coupon_creator' ),
+				'desc'  =>  __( 'Choose default inside border color','coupon_creator' ),
 				'std'     => '#81d742',
 				'type' => 'color', // color
 				'section' => 'defaults'
@@ -444,7 +468,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->options['cctor_custom_css'] = array(
 				'title'   => __( 'Custom Coupon Styles', 'coupon_creator' ),
 				'desc'    => __( 'Enter any custom CSS here to apply to the coupons for the shortcode and the print template.(without &#60;style&#62; tags)', 'coupon_creator' ),
-				'std'     => '',
+				'std'     => 'e.g. .cctor_coupon_container { width: 350px; }',
 				'type'    => 'textarea',
 				'section' => 'display',
 				'class'   => 'code'
@@ -495,6 +519,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/		
 		public function register_options() {
 			
+			//Get Tab Sections to Register
+			$this->get_sections();
+			
 			register_setting( 'coupon_creator_options', 'coupon_creator_options', array ( &$this, 'validate_options' ) );
 			
 			foreach ( $this->sections as $slug => $title ) {
@@ -536,8 +563,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					
 					if(isset($option['class'])){
 						// Change Permalink Class Options to Lowercase
-						if ( $option['class'] == 'permalink' ) {
-							$input[$id] = strtolower($input[$id]);
+						if ( $option['class'] == 'permalink' ) {						
+							$input[$id] = str_replace(" ", "-",  strtolower($input[$id]));
 							//if option is new then set to flush permalinks
 							if($options[$id] != $input[$id] ) {
 								$permalink_change = $id . "_change";
@@ -545,6 +572,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 							}
 						}	
 					}	
+					//Prevent Placeholder From Saving in Option for Text Areas
+					if($option['type'] == "textarea"){
+						if ($input[$id] == $option['std']) {
+							$input[$id] = false;
+						}
+					}
 					// Sanitization Filter for each Option Type
 					if(isset($input[$id])){
 						if ( has_filter( 'cctor_sanitize_' . $option['type'] ) ) {

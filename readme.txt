@@ -3,9 +3,10 @@ Contributors: brianjessee
 Plugin Name: Coupon Creator
 Plugin URI: http://jesseeproductions.com/coupon-creator/
 Tags: custom post type, coupon, shortcode
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.81
+Stable tag: 1.90 Beta
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 

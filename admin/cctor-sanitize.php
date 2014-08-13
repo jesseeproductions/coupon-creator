@@ -154,7 +154,6 @@ add_filter( 'cctor_sanitize_date', 'sanitize_text_field' );
 */	
 add_filter( 'cctor_sanitize_dimensions', 'sanitize_dimension_field' );
 function sanitize_dimension_field( $input, $default = "") {
-	//If Number and Positive
 	if (is_numeric($input) && $input >= 0 ) {
 		return $input;
 	} else {
