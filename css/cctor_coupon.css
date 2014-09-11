@@ -8,7 +8,7 @@
 ------------------------------------------------------------ */
 .cctor_coupon_container {
 	width: 317px;
-	margin: 0 10px;
+	margin: 10px 10px 15px;
 	overflow:hidden;
 	text-align: center;
 	max-width:100%;
@@ -68,7 +68,7 @@
 .cctor_opencoupon  {
 	width:100%;
 	height:20px;
-	margin-top: 10px;
+	margin-top: 2px;
 	font-size:14px;
 	line-height: 20px;
 }
@@ -95,7 +95,7 @@
 }
 /* Print View CSS
 ------------------------------------------------------------ */
-.cctor_coupon_container.print_coupon {
+.print_coupon .cctor_coupon_container {
 	width: 420px;
 	margin: 10px auto;
 }
