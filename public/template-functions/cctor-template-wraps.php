@@ -7,11 +7,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 * Coupon Creator Outer Wrap
 * @version 1.90
 */
-function cctor_return_outer_coupon_wrap($coupon_id) { 
+function cctor_return_outer_coupon_wrap($coupon_id, $coupon_align) { 
 	
 	$outer_coupon_wrap = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon-creator-'. $coupon_id.'" class="cctor_coupon_container">';
+		<div id="coupon-creator-'. $coupon_id.'" class="cctor_coupon_container '.$coupon_align.'">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							

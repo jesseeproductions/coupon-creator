@@ -33,7 +33,7 @@ function cctor_show_link($coupon_id) {
 		if (coupon_options('cctor_nofollow_print_link') == 1) {
 			$nofollow = "rel='nofollow'";
 		} 
-		?><div class='cctor_opencoupon'><a <?php echo $nofollow; ?> href='<?php echo get_permalink($coupon_id); ?> 'onclick='window.open(this.href);return false;'><?php _e('Click to Open in Print View','coupon_creator'); ?></a></div><!--end .opencoupon --><?php
+		?><div class='cctor_opencoupon'><a class="print-link"<?php echo $nofollow; ?> href='<?php echo get_permalink($coupon_id); ?>' onclick='window.open(this.href);return false;'><?php _e('Click to Open in Print View','coupon_creator'); ?></a></div><!--end .opencoupon --><?php
 		
 	 } else {
 		?><div class='cctor_opencoupon'></div><?php
@@ -46,7 +46,7 @@ function cctor_show_link($coupon_id) {
 function cctor_show_print_click($coupon_id) {
 	?>
 		<div class="cctor_opencoupon"> <!-- We Need a Click to Print Button -->
-			<a href="javascript:window.print();" rel="nofollow"><?php _e('Click to Print', 'coupon_creator'); ?></a>
+			<a class="print-link" href="javascript:window.print();" rel="nofollow"><?php _e('Click to Print', 'coupon_creator'); ?></a>
 
 		</div> <!--end .opencoupon -->
 		<?php

@@ -70,7 +70,7 @@ class Coupon_Creator_Shortcode {
 				
 				if ($expiration || $ignore_expiration == 1 ) {
 				
-					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id  ); 
+					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align  ); 
 							
 					echo $outer_coupon_wrap['start_wrap'];	
 				
@@ -129,7 +129,7 @@ class Coupon_Creator_Shortcode {
 
 		add_filter('cctor_image_url', 'cctor_return_image_url', 10 , 1);
 
-		add_filter('cctor_outer_content_wrap', 'cctor_return_outer_coupon_wrap', 10 , 1);
+		add_filter('cctor_outer_content_wrap', 'cctor_return_outer_coupon_wrap', 10 , 2);
 
 		add_action('cctor_img_coupon', 'cctor_show_img_coupon', 10, 2 ); 
 

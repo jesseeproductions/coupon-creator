@@ -86,7 +86,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
 			
 			//Register Coupon Shortcode
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-coupon-shortcode.php' );
+			Coupon_Creator_Plugin::include_file( 'classes/cctor-coupon-shortcode.php' );
 			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
 			
 			//Add Shortcode Functions
@@ -96,7 +96,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_filter( 'template_include', array(  __CLASS__, 'get_coupon_post_type_template') );
 			
 			//Include Print Template Hook Build
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-single-build.php' );	
+			Coupon_Creator_Plugin::include_file( 'public/template-build/single-build.php' );	
 			//Add Print Template Functions
 			add_action( 'coupon_print_template', 'coupon_print_template', 100);			
 			

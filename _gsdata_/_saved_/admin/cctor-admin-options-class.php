@@ -56,7 +56,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->sections['permalinks']   = __( 'Link Attributes / Permalinks', 'coupon_creator' );
 			$this->sections['display'] 		= __( 'Display', 'coupon_creator' );
 			$this->sections['reset']        = __( 'Reset', 'coupon_creator' );
-			$this->sections['pro']        = __( 'Pro', 'coupon_creator' );
+			//$this->sections['pro']        = __( 'Pro', 'coupon_creator' );
 
 			//Filter Option Tabs
 			if(has_filter('cctor_option_sections')) {
@@ -257,9 +257,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/
 		public function display_section() {
 
-
+		
 		}
-
+	
 		/*
 		* Coupon Creator About Section
 		* @version 1.80
@@ -308,11 +308,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			switch ( $type ) {
 				
 				case 'heading':
-					if ( $alert ) {
-						echo '</td></tr><tr valign="top"><td colspan="2"><span class="description">' . $alert . '</span>';
-					} else {
-						echo '</td></tr><tr valign="top"><td colspan="2"><h4>' . $desc . '</h4>';
-					}
+					echo '</td></tr><tr valign="top"><td colspan="2"><h4>' . $desc . '</h4>';
 					break;
 					
 				case 'text':
@@ -396,16 +392,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			
 			/* Coupon Creator Options
 			===========================================*/		
-			$this->options['header_defaults'] = array(
-				'section' => 'defaults',
-				'title'   => '', // Not used for headings.
-				'alert'    =>  __( '*These are defaults for new coupons only and do not change existing coupons.','coupon_creator' ),
-				'type'    => 'heading'
-			);				
 			$this->options['cctor_default_date_format'] = array(
 				'section' => 'defaults',
 				'title'   => __( 'Expiration Date Format', 'coupon_creator' ),
-				'desc'    => __( 'Select the Date Format to show for all Coupons*', 'coupon_creator' ),
+				'desc'    => __( 'Select the Date Format to show for all Coupons', 'coupon_creator' ),
 				'type'    => 'select',
 				'std'     => 'month_first',
 				'choices' => array(
@@ -415,21 +405,21 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			);
 			$this->options['cctor_discount_bg_color'] = array(
 				'title' =>  __( 'Discount Background Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default background color*','coupon_creator' ),
+				'desc'  =>  __( 'Choose default background color','coupon_creator' ),
 				'std'     => '#4377df',
 				'type' => 'color', // color
 				'section' => 'defaults'
 			);
 			$this->options['cctor_discount_text_color'] = array(
 				'title' =>  __( 'Discount Text Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default text color*','coupon_creator' ),
+				'desc'  =>  __( 'Choose default text color','coupon_creator' ),
 				'std'     => '#000000',
 				'type' => 'color', // color
 				'section' => 'defaults'
 			);
 			$this->options['cctor_border_color'] = array(
 				'title' =>  __( 'Inside Border Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
+				'desc'  =>  __( 'Choose default inside border color','coupon_creator' ),
 				'std'     => '#81d742',
 				'type' => 'color', // color
 				'section' => 'defaults'
