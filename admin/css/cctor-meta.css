@@ -59,6 +59,28 @@
 	display:none;
 }
 
+.cctor-meta-bg {
+    background-color: #fff;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    padding: 8px 12px;
+	margin: 5px 0 15px;
+	overflow:hidden;
+}
+
+.cctor-message  {
+    border-left: 4px solid #048c7f;
+	font-weight: bold;	
+}
+.cctor-message  div {
+	width: 33%;
+	float:left;
+}
+.cctor-error {
+    border-left: 4px solid #dd3d36;
+    color: red;
+    font-weight: bold;	
+}
+
 /* Coupon Creator Meta Tab
 ------------------------------------------------------------ */
 

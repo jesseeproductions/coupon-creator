@@ -86,7 +86,6 @@
     background: none;
     border: none;
 }
-
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li a {
 	border-color: #fff;
 	border-style: solid;
@@ -100,6 +99,7 @@
 	border-radius: 8px 8px 0 0;
 	font-weight: bold;
 	font-size: 13px;
+	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
 }
 
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-tabs-selected a,
@@ -107,8 +107,12 @@
 	border-width: 1px 1px 0;
 	color: #2A5A8A;
 	background: #fff;
+	box-shadow: 0 0 5px 0 rgba(18, 68, 107, 1.0);
 }
 
+.coupon-section-fields {
+	margin: 3px 0 0;
+}
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content{
 	clear: both;
 	background: #fff;

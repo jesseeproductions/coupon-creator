@@ -390,7 +390,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$coupon_creator_meta_fields[$prefix . 'heading_expiration'] = array(
 					'id' => $prefix . 'heading_expiration',
 					'title'   => '',
-					'desc'    =>  __( 'Coupon Expiration','coupon_creator' ),
+					'desc'    =>  __( 'Expiration','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'expiration'
@@ -424,16 +424,16 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'expiration'
 				);	
-				$coupon_creator_meta_fields[$prefix . 'heading_image'] = array(
+				/*$coupon_creator_meta_fields[$prefix . 'heading_image'] = array(
 					'id' => $prefix . 'heading_image',
 					'title'   => '',
 					'desc'    =>  __( 'Image Coupon','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'image_coupon'
-				);				
+				);*/				
 				$coupon_creator_meta_fields[$prefix . 'image'] =	array(
-					'label'  => __('Image Coupon', 'coupon_creator' ),
+					'label'  => '',
 					'desc'  => __('Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon_creator' ),
 					'id'    => $prefix . 'image',
 					'type'  => 'image',

@@ -19,6 +19,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );	
 			//Save Meta Boxes Data
 			add_action( 'save_post', array( __CLASS__, 'save_coupon_creator_meta' ),50, 2 );
+			
+			add_action( 'cctor_add_meta_box',  array( __CLASS__, 'cctor_information_action' ) , 10 );
 		}
 	/***************************************************************************/
 
@@ -46,7 +48,75 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		}		
 		
 	/***************************************************************************/
+		/*
+		* Add Hook for Live Preview Below Title
+		* @version 1.00  
+		*/		
+		public static function cctor_information_action() {
+		
+			add_action( 'edit_form_after_title',  array( __CLASS__, 'cctor_information_box' ) , 10 );
+			
+		}
 
+		/*
+		* Live Preview Below Title
+		* @version 1.00  
+		*/
+		public static function cctor_information_box() {
+			
+			global $post;
+			
+			//Check for Ignore Expiration 
+			$ignore_expiration = get_post_meta($post->ID, 'cctor_ignore_expiration', true);
+			
+			if($ignore_expiration) {
+				$ignore_expiration_msg = __('Ignore Coupon Expiration is On', 'coupon_creator' );
+			} else {
+				$ignore_expiration_msg = __('Ignore Coupon Expiration is Off', 'coupon_creator' );				
+			}
+			
+			//Check for Expiration
+			$expirationco = get_post_meta($post->ID, 'cctor_expiration', true);
+			$expiration['expiration'] = strtotime($expirationco);
+
+			//Date Format
+			if ($expirationco) { // Only Display Expiration if Date
+				$daymonth_date_format = get_post_meta($post->ID, 'cctor_date_format', true); //Date Format
+				
+				if ($daymonth_date_format == 1 ) { //Change to Day - Month Style
+				$expirationco = date("d/m/Y", $expiration['expiration']);
+				}
+			}
+			
+			//Blog Time According to WordPress
+			$cc_blogtime = current_time('mysql');
+			list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $cc_blogtime ); 
+			$expiration['today'] = strtotime($today_month."/".$today_day."/". $today_year);	
+						
+			if ($expiration['expiration'] >= $expiration['today']) {
+				if (!$ignore_expiration) {
+					$expired_msg = __('This Coupon Expires On ', 'coupon_creator' ) .$expirationco;
+				}
+				$expiration = true;
+			} else {
+				$expired_msg = '';
+				
+				$expiration = false;
+			}
+
+			
+			if ($expiration || $ignore_expiration == 1 ) {
+			
+				echo '<div class="cctor-meta-bg cctor-message"><div>'.__('This Coupon is Showing', 'coupon_creator' ) .'</div><div>'. $ignore_expiration_msg .'</div><div>'. $expired_msg.'</div></div>';
+				
+			} else {
+			
+				echo '<div class="cctor-meta-bg cctor-error"><p>'.__('This Coupon has Expired', 'coupon_creator' ).'</p></div>';
+			}
+		}
+
+	/***************************************************************************/
+	
 		/*
 		* Add Meta Boxes
 		* @version 1.80

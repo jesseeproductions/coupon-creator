@@ -33,8 +33,6 @@ function cctor_show_expiration($coupon_id) {
 	//Coupon Expiration Date
 	$expirationco = get_post_meta($coupon_id, 'cctor_expiration', true);
 	
-	$cc_expiration_date = strtotime($expirationco);
-	
 	if ($expirationco) { // Only Display Expiration if Date
 		$daymonth_date_format = get_post_meta($coupon_id, 'cctor_date_format', true); //Date Format
 		

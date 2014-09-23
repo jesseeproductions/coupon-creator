@@ -51,21 +51,6 @@ function cctor_return_inner_coupon_wrap($coupon_id) {
 }	
 
 /*
-* Coupon Creator Print Outer Wrap
-* @version 1.90
-*/
-function cctor_return_print_outer_coupon_wrap($coupon_id) { 
-	
-	$outer_coupon_wrap = array();
-	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon-creator-'. $coupon_id.'" class="cctor_coupon_container">';
-	
-	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
-							
-	return $outer_coupon_wrap;
-}	
-
-/*
 *  Coupon Creator Print Inner Wrap
 *  @version 1.90
 */
