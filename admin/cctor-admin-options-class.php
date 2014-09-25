@@ -413,6 +413,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
 				)
 			);
+			$this->options['header_discount'] = array(
+				'section' => 'defaults',
+				'title'   => '', // Not used for headings.
+				'desc'    =>  __( 'Discount Field Colors','coupon_creator' ),
+				'type'    => 'heading'
+			);				
 			$this->options['cctor_discount_bg_color'] = array(
 				'title' =>  __( 'Discount Background Color','coupon_creator' ),
 				'desc'  =>  __( 'Choose default background color*','coupon_creator' ),
@@ -427,6 +433,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type' => 'color', // color
 				'section' => 'defaults'
 			);
+			$this->options['header_inner_border'] = array(
+				'section' => 'defaults',
+				'title'   => '', // Not used for headings.
+				'desc'    =>  __( 'Inner Border','coupon_creator' ),
+				'type'    => 'heading'
+			);						
 			$this->options['cctor_border_color'] = array(
 				'title' =>  __( 'Inside Border Color','coupon_creator' ),
 				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
