@@ -26,9 +26,9 @@ function cctor_return_inner_coupon_wrap($coupon_id) {
 	$coupon_inner_content_wrap = array();
 	
 	//Build Click to Print Link For Coupon - First Check if Option to Hide is Checked
-	if (coupon_options('cctor_hide_print_link') == 0) {
+	if (cctor_options('cctor_hide_print_link') == 0) {
 		
-		if (coupon_options('cctor_nofollow_print_link') == 1) {
+		if (cctor_options('cctor_nofollow_print_link') == 1) {
 			$nofollow = "rel='nofollow'";
 		} 
 			

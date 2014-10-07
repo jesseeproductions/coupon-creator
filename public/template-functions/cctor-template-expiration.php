@@ -3,6 +3,31 @@
 if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	die( 'Access denied.' );
 
+	/*
+* Coupon Creator Check if Coupon Should Show
+* @version 1.90
+*/
+function cctor_expiration_check($coupon_id) {
+		
+		//Ignore Expiration Value
+		$ignore_expiration = get_post_meta($coupon_id, 'cctor_ignore_expiration', true);
+		
+		//Return If Not Passed Expiration Date
+		$expiration = cctor_expiration_and_current_date($coupon_id);
+		
+		if ($expiration || $ignore_expiration == 1) {
+		
+			return true;
+			
+		}	else {
+		
+			return false;
+			
+		}
+		
+		
+}	
+
 /*
 * Coupon Creator Return Expiration Date and Current Date
 * @version 1.90

@@ -24,15 +24,10 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 	
 	$coupon_id = get_the_ID();
 
-	do_action( 'cctor_print_before_coupon' ); 
+	do_action( 'cctor_print_before_coupon', $coupon_id );
 
-		//Ignore Expiration Value
-		$ignore_expiration = get_post_meta($coupon_id, 'cctor_ignore_expiration', true);
-		
-		//Return If Not Passed Expiration Date
-		$expiration = apply_filters( 'cctor_print_expiration_check' , $coupon_id  );
-		
-		if ($expiration || $ignore_expiration == 1 ) {
+		//Check to show the Coupon
+		if (cctor_expiration_check($coupon_id)) {
 		
 			$outer_print_coupon_wrap  = apply_filters( 'cctor_print_outer_content_wrap' , $coupon_id  ); 
 					
@@ -70,7 +65,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 			do_action( 'cctor_print_no_show_coupon' , $coupon_id );
 		}
 	
-	do_action( 'cctor_print_after_coupon' ); 
+	do_action( 'cctor_print_after_coupon' , $coupon_id );
 	
 endwhile; // end the coupon creator loop 
 

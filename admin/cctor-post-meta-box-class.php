@@ -422,7 +422,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'  => __('Choose background color', 'coupon_creator' ),
 					'id' => $prefix . 'colordiscount',
 					'type' => 'color', // color
-					'value' => coupon_options($prefix . 'discount_bg_color'),
+					'value' => cctor_options($prefix . 'discount_bg_color'),
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);	
@@ -431,7 +431,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'  => __('Choose color for discount text', 'coupon_creator' ),
 					'id' => $prefix . 'colorheader',
 					'type' => 'color', // color
-					'value' => coupon_options($prefix . 'discount_text_color'),
+					'value' => cctor_options($prefix . 'discount_text_color'),
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);	
@@ -448,7 +448,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'  => __('Choose inside border color', 'coupon_creator' ),
 					'id' => $prefix . 'bordercolor',
 					'type' => 'color', // color
-					'value' => coupon_options($prefix . 'border_color'),
+					'value' => cctor_options($prefix . 'border_color'),
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);	
@@ -488,7 +488,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'label'=> __('Date Format', 'coupon_creator' ),
 					'desc'  => __('Choose the date format', 'coupon_creator' ),
 					'id'    => $prefix . 'date_format',
-					'value' => coupon_options($prefix . 'default_date_format'),
+					'value' => cctor_options($prefix . 'default_date_format'),
 					'type'    => 'select',
 					'choices' => array(
 						'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),

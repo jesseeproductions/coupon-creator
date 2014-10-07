@@ -11,7 +11,7 @@ function cctor_print_head_and_meta() { ?>
 	<meta name="viewport" content="width=device-width">
 	<?php
 		//Add nofollow and noindex if option checked
-		if (coupon_options('cctor_nofollow_print_template') == 1) { ?>
+		if (cctor_options('cctor_nofollow_print_template') == 1) { ?>
 		<meta name="robots" content="noindex,nofollow"/>
 	<?php }?>
 	<title><?php echo get_the_title(); ?></title>

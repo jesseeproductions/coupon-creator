@@ -70,8 +70,8 @@ function cctor_error_requirements() {
 // Check requirements and load files if met
 if	( cctor_requirements() ) {
 
-		//Coupon Options echo coupon_options('cctor_coupon_base');
-		function coupon_options( $option ) {
+		//Coupon Options echo cctor_options('cctor_coupon_base');
+		function cctor_options( $option ) {
 			$options = get_option( 'coupon_creator_options' );
 
 			if ( isset( $options[$option] ) )

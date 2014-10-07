@@ -61,15 +61,10 @@ class Coupon_Creator_Shortcode {
 			$coupons->the_post();
 						
 			$coupon_id = $coupons->post->ID;
-			
-				//Ignore Expiration Value
-				$ignore_expiration = get_post_meta($coupon_id, 'cctor_ignore_expiration', true);
-				
-				//Return If Not Passed Expiration Date
-				$expiration = apply_filters( 'cctor_expiration_check' , $coupon_id  );
-				
-				if ($expiration || $ignore_expiration == 1 ) {
-				
+	
+				//Check to show the Coupon
+				if (cctor_expiration_check($coupon_id)) {
+					
 					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align  ); 
 							
 					echo $outer_coupon_wrap['start_wrap'];	

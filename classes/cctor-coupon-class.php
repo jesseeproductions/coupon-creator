@@ -135,7 +135,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			require_once CCTOR_PATH. 'inc/taxonomy.php';
 
 			// if no custom slug use this base slug
-			$slug = coupon_options('cctor_coupon_base');
+			$slug = cctor_options('cctor_coupon_base');
 			$slug = empty( $slug ) ? _x( 'cctor_coupon', 'slug', 'coupon_creator' ) : $slug;
 
 			//Coupon Creator Custom Post Type
@@ -310,9 +310,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
 			} 
 			//Add Custom CSS from Options				
-			if (coupon_options('cctor_custom_css')) {
+			if (cctor_options('cctor_custom_css')) {
 					
-				$cctor_option_css .= coupon_options('cctor_custom_css');				
+				$cctor_option_css .= cctor_options('cctor_custom_css');				
 			}
 			
 			wp_add_inline_style( 'coupon_creator_css', $cctor_option_css );
@@ -357,11 +357,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public static function print_css(  ) {
 		
-			if (coupon_options('cctor_custom_css')) {
+			if (cctor_options('cctor_custom_css')) {
 				ob_start(); ?>
 				<!-- User Coupon Style from the options Page -->
 					<style type='text/css'>
-						<?php echo coupon_options('cctor_custom_css'); ?>
+						<?php echo cctor_options('cctor_custom_css'); ?>
 					</style>
 				<?php echo ob_get_clean();
 			}

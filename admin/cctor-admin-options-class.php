@@ -316,7 +316,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					break;
 					
 				case 'text':
-					if ( $alert != '' && coupon_options($condition) == 1 )	
+					if ( $alert != '' && cctor_options($condition) == 1 )	
 						echo '<div class="alert">' . $alert . '</div>';
 					
 					echo '<input class="regular-text' . $field_class . '" type="text" id="' . $id . '" name="coupon_creator_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $options[$id] ) . '" size="' . $size . '" />';
@@ -377,7 +377,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					
 					if ( $desc != '' )
 						echo '<br /><span class="description">' . $desc . '</span><br />';
-						echo coupon_options('cctor_custom_css');
+						echo cctor_options('cctor_custom_css');
 					break;
 			}
 				

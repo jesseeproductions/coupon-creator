@@ -9,9 +9,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 */
 function cctor_show_img_coupon($coupon_id, $couponimage) {
 	//Build Click to Print Link for the Image - First Check if Option to Hide is Checked
-	if (coupon_options('cctor_hide_print_link') == 0) {
+	if (cctor_options('cctor_hide_print_link') == 0) {
 
-		if (coupon_options('cctor_nofollow_print_link') == 1) {
+		if (cctor_options('cctor_nofollow_print_link') == 1) {
 			$nofollow = "rel='nofollow'";
 		}
 		//Set Image Link
@@ -28,9 +28,9 @@ function cctor_show_img_coupon($coupon_id, $couponimage) {
 */
 function cctor_show_link($coupon_id) {
 	//Build Click to Print Link For Coupon - First Check if Option to Hide is Checked
-	if (coupon_options('cctor_hide_print_link') == 0) {
+	if (cctor_options('cctor_hide_print_link') == 0) {
 
-		if (coupon_options('cctor_nofollow_print_link') == 1) {
+		if (cctor_options('cctor_nofollow_print_link') == 1) {
 			$nofollow = "rel='nofollow'";
 		} 
 		?><div class='cctor_opencoupon'><a class="print-link"<?php echo $nofollow; ?> href='<?php echo get_permalink($coupon_id); ?>' onclick='window.open(this.href);return false;'><?php _e('Click to Open in Print View','coupon_creator'); ?></a></div><!--end .opencoupon --><?php
