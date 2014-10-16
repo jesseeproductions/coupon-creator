@@ -81,7 +81,9 @@ function cctor_show_expiration($coupon_id) {
 * @version 1.90
 */
 function cctor_show_no_coupon_comment($coupon_id) {
-
-	?><!-- Coupon "<?php echo get_the_title($coupon_id);?>" Has Expired --><?php
+	//Coupon Expiration Date
+	$expirationco = get_post_meta($coupon_id, 'cctor_expiration', true);
+	
+	?><!-- Coupon "<?php echo get_the_title($coupon_id);?>" Has Expired on <?php echo $expirationco; ?>--><?php
 
 }	
