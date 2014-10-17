@@ -12,7 +12,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 * Add Content to Print Template
 * @version 1.90
 */
-function coupon_print_template() {	 
+function cctor_print_template() {	 
 
 	add_action('coupon_print_meta', 'cctor_print_head_and_meta', 5, 1 ); 
 

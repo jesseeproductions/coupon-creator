@@ -45,11 +45,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		public function __construct() {
 
 			//Register Post Type			
-			add_action( 'init', array( __CLASS__, 'register_post_types' ) );
+			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) );
 			
 			//Setup Capabilities
 			if ( is_admin() ) {
-				$this->add_cctor_capabilities();
+				$this->cctor_add_capabilities();
 			}
 			
 			add_action( 'init',   array( __CLASS__, 'init' ) );
@@ -61,7 +61,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
 			
 			//Load Template Functions
-			$this->loadCCTorTemplateFunctions();
+			$this->cctor_Load_Template_Functions();
 						
 			//Load Admin Class if in Admin Section
 			if ( is_admin() )
@@ -90,25 +90,26 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
 			
 			//Add Shortcode Functions
-			add_action( 'cctor_before_coupon', array( 'Coupon_Creator_Shortcode', 'coupon_shortcode_functions' ), 100);	
+			add_action( 'cctor_before_coupon', array( 'Coupon_Creator_Shortcode', 'cctor_shortcode_functions' ), 100);	
 			
 			//Load Single Coupon Template
-			add_filter( 'template_include', array(  __CLASS__, 'get_coupon_post_type_template') );
+			add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );
 			
 			//Include Print Template Hook Build
 			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-single-build.php' );	
+			
 			//Add Print Template Functions
-			add_action( 'coupon_print_template', 'coupon_print_template', 100);			
+			add_action( 'cctor_action_print_template', 'cctor_print_template', 100);			
 			
 			//Print Template Inline Custom CSS from Option
-			add_action('coupon_print_head', array( __CLASS__, 'print_css' ), 100);				
+			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 100);				
 		}
 
 	/***************************************************************************/		
 		/**
 		 * Load all the required library files.
 		 */
-		protected function loadCCTorTemplateFunctions() {
+		protected function cctor_Load_Template_Functions() {
 			//Load Template Functions
 			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-meta.php' );
 			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-expiration.php' );
@@ -129,10 +130,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	}
 	/***************************************************************************/
 	
-	public static function register_post_types() {
+	public static function cctor_register_post_types() {
 
 		//Load Files
-			require_once CCTOR_PATH. 'inc/taxonomy.php';
+			require_once CCTOR_PATH. 'inc/cctor-taxonomy.php';
 
 			// if no custom slug use this base slug
 			$slug = cctor_options('cctor_coupon_base');
@@ -184,7 +185,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public static function activate() {	
 			// Flush rewrite rules so that users can access custom post types on the
-			self::register_post_types();
+			self::cctor_register_post_types();
 			flush_rewrite_rules();
 		}
 
@@ -202,7 +203,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Setup Capabilities
 		* @version 1.00
 		*/
-		public function add_cctor_capabilities() {
+		public function cctor_add_capabilities() {
 		
 			//Administrator
 			$caps['administrator'] = array(
@@ -340,7 +341,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Use Single Coupon Template from Plugin when creating the print version
 		* @version 1.00
 		*/
-		public static function get_coupon_post_type_template($print_template) {
+		public static function cctor_get_coupon_post_type_template($print_template) {
 			 global $post;
 			 if ($post->post_type == 'cctor_coupon') {
 				  $print_template = CCTOR_PATH. 'public/templates/single-coupon.php';
@@ -355,7 +356,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.80
 		* 
 		*/
-		public static function print_css(  ) {
+		public static function cctor_print_css(  ) {
 		
 			if (cctor_options('cctor_custom_css')) {
 				ob_start(); ?>

@@ -118,7 +118,7 @@ class Coupon_Creator_Shortcode {
 	* Add Content to Shortcode
 	* @version 1.90
 	*/
-	public static function coupon_shortcode_functions() {	 
+	public static function cctor_shortcode_functions() {	 
 	
 		add_filter('cctor_expiration_check', 'cctor_expiration_and_current_date', 10 , 1);
 

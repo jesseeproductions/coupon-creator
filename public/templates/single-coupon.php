@@ -3,7 +3,7 @@
 * Single Template For Custom Post Type Coupon
 * Custom Template with WordPress loaded no header, footer, or theme styling
 */
-	do_action( 'coupon_print_template' );
+	do_action( 'cctor_action_print_template' );
 ?>
 <!DOCTYPE html>
 <html>
