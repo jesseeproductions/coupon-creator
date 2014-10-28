@@ -19,8 +19,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );	
 			//Save Meta Boxes Data
 			add_action( 'save_post', array( __CLASS__, 'save_coupon_creator_meta' ),50, 2 );
-			
-			add_action( 'cctor_add_meta_box',  array( __CLASS__, 'cctor_information_action' ) , 10 );
+			//Coupon Expiration Information
+			add_action( 'edit_form_after_title',  array( __CLASS__, 'cctor_information_box' ) , 10 );
 		}
 	/***************************************************************************/
 
@@ -28,7 +28,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* Coupon Creator Meta Sections
 		* @version 1.90
 		*/
-		public function get_tabs() {
+		public static function get_tabs() {
 			
 			$meta_tabs = array();
 			
@@ -46,17 +46,36 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			
 			return $meta_tabs;
 		}		
-		
 	/***************************************************************************/
+
 		/*
-		* Add Hook for Live Preview Below Title
+		* Live Preview Below Title
 		* @version 1.00  
-		*/		
-		public static function cctor_information_action() {
-		
-			add_action( 'edit_form_after_title',  array( __CLASS__, 'cctor_information_box' ) , 10 );
+		*/
+		public static function cctor_meta_expiration_check($coupon_id) {
 			
-		}
+			//Ignore Expiration Value
+			$ignore_expiration = get_post_meta($coupon_id, 'cctor_ignore_expiration', true);
+			
+			//Return If Not Passed Expiration Date
+			$expiration = cctor_expiration_and_current_date($coupon_id);
+			
+			//Enable Filter to stop coupon from showing
+			$show_coupon_check = false;
+			
+			$show_coupon_check = apply_filters('cctor_meta_show_coupon_check', $show_coupon_check, $coupon_id);
+			
+			if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
+			
+				return true;
+				
+			}	else {
+			
+				return false;
+				
+			}
+		}	
+	/***************************************************************************/
 
 		/*
 		* Live Preview Below Title
@@ -68,6 +87,20 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			
 			//Do Not Display on 
 			if($pagenow !='post-new.php'){
+				
+				$coupon_id = $post->ID;
+				
+				if(Coupon_Creator_Meta_Box::cctor_meta_expiration_check($coupon_id)) {
+				
+					echo '<div class="cctor-meta-bg cctor-message"><div>'.__('This Coupon is Showing', 'coupon_creator' ) .'</div></div>';
+				
+				
+				} else {
+				
+					echo '<div class="cctor-meta-bg cctor-error"><p>'.__('This Coupon is not Showing', 'coupon_creator' ).'</p></div>';
+					
+				}
+
 				//Check for Ignore Expiration 
 				$ignore_expiration = get_post_meta($post->ID, 'cctor_ignore_expiration', true);
 				
@@ -78,12 +111,12 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				}
 				
 				//Check for Expiration
-				$expirationco = get_post_meta($post->ID, 'cctor_expiration', true);
+				$expirationco = get_post_meta($coupon_id, 'cctor_expiration', true);
 				$expiration['expiration'] = strtotime($expirationco);
 
 				//Date Format
 				if ($expirationco) { // Only Display Expiration if Date
-					$daymonth_date_format = get_post_meta($post->ID, 'cctor_date_format', true); //Date Format
+					$daymonth_date_format = get_post_meta($coupon_id, 'cctor_date_format', true); //Date Format
 					
 					if ($daymonth_date_format == 1 ) { //Change to Day - Month Style
 					$expirationco = date("d/m/Y", $expiration['expiration']);
@@ -94,27 +127,28 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$cc_blogtime = current_time('mysql');
 				list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $cc_blogtime ); 
 				$expiration['today'] = strtotime($today_month."/".$today_day."/". $today_year);	
-							
-				if ($expiration['expiration'] >= $expiration['today']) {
-					if (!$ignore_expiration) {
-						$expired_msg = __('This Coupon Expires On ', 'coupon_creator' ) .$expirationco;
+				
+				$expired_msg = "";
+				
+				if (!$ignore_expiration) {
+					if ($expiration['expiration'] >= $expiration['today']) {
+						$expired_msg = '<div>'. __('This Coupon Expires On ', 'coupon_creator' ) .$expirationco.'</div>';
+					} else {
+						$expired_msg = '<div>'. __('This Coupon Expired On ', 'coupon_creator' ) .$expirationco.'</div>';
 					}
-					$expiration = true;
-				} else {
-					$expired_msg = '';
-					
-					$expiration = false;
 				}
-
+				echo '<div class="cctor-meta-bg cctor-message">';
 				
-				if ($expiration || $ignore_expiration == 1 ) {
-				
-					echo '<div class="cctor-meta-bg cctor-message"><div>'.__('This Coupon is Showing', 'coupon_creator' ) .'</div><div>'. $ignore_expiration_msg .'</div><div>'. $expired_msg.'</div></div>';
+				echo '<div>'. $ignore_expiration_msg .'</div>';
+								
+	
+				echo  $expired_msg;
 					
-				} else {
+				//Hook Meta Box Message
+				do_action( 'cctor_meta_message', $coupon_id);
 				
-					echo '<div class="cctor-meta-bg cctor-error"><p>'.__('This Coupon has Expired', 'coupon_creator' ).'</p></div>';
-				}
+				echo '</div>';
+				
 			}	
 		}
 
@@ -297,7 +331,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 										$image = $image[0];
 										$image = '<div style="display:none" id="'.$field['id'].'" class="cctor_coupon_default_image cctor_coupon_box">'.$field['image'].'</div> <img src="'. $image .'" id="'. $field['id'] .'" class="cctor_coupon_image cctor_coupon_box_img" />';
 									} else {
-										$image = '<div style="display:block" id="'.$field['id'].'" class="cctor_coupon_default_image cctor_coupon_box">'.$field['image'].'</div> <img style="display:none" src="'. $image .'" id="'. $field['id'] .'" class="cctor_coupon_image cctor_coupon_box_img" />';
+										$image = '<div style="display:block" id="'.$field['id'].'" class="cctor_coupon_default_image cctor_coupon_box">'.$field['image'].'</div> <img style="display:none" src="" id="'. $field['id'] .'" class="cctor_coupon_image cctor_coupon_box_img" />';
 									}?>
 									
 											<?php echo $image; ?><br />
@@ -572,6 +606,9 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				//For Each Field Sanitize the Post Data
 				foreach ( $coupon_creator_meta_fields as $option ) {
 
+					//Hook Meta Box Save
+					do_action( 'cctor_save_meta_fields',$post_id, $option);
+					
 					//If No CheckBox Sent, then delete meta
 					if ($option['type'] == 'checkbox' ) {
 						
@@ -605,8 +642,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								echo $new ." new2<br>";
 							}
 						}*/
-						
-						
 						
 						if ( !is_null($new) && $new != $old) {
 							update_post_meta($post_id, $key, $new);

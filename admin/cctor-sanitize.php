@@ -48,7 +48,7 @@ add_filter( 'cctor_sanitize_radio', 'cctor_sanitize_enum', 10, 2 );
 * @version 1.80
 */	
 add_filter( 'cctor_sanitize_image', 'sanitize_text_field' );
-
+add_filter( 'cctor_sanitize_proimage', 'sanitize_text_field' );
 /*
 * Checkbox Sanitize
 * @version 1.80

@@ -97,10 +97,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			//Script for WP Color Picker
 			wp_enqueue_script( 'wp-color-picker' );
 			$cctor_coupon_meta_js = CCTOR_PATH.'admin/js/cctor_coupon_options.js';
-			wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . '/admin/js/cctor_coupon_options.js', array('jquery', 'media-upload','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);	
+			wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . '/admin/js/cctor_coupon_options.js', array('jquery','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);	
 			
-			//Style or WP Color Picker
-			wp_enqueue_style( 'wp-color-picker' ); 
+			//Hook to Load New Scripts
+			do_action('cctor_opitons_scripts');
 		}
 		
 		/*
@@ -114,6 +114,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			
 			//Style or WP Color Picker
 			wp_enqueue_style( 'wp-color-picker' );  
+			
+			//Hook to Load New Styles
+			do_action('cctor_opitons_styles');
 	
 		}
 	/***************************************************************************/
@@ -134,6 +137,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => 'general',
 				'choices' => array(),
 				'class'   => '',
+				'imagemsg'   => '',
 				'size'	=> 35
 			);
 				
@@ -149,6 +153,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'choices'   => $choices,
 				'label_for' => $id,
 				'class'     => $class,
+				'imagemsg'	=> $imagemsg,
 				'size'		=> $size
 			);
 			
@@ -383,7 +388,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				
 			if(has_filter('cctor_option_cases')) {
 				// this adds any addon fields (from plugins) to the array
-				echo apply_filters('cctor_option_cases', $options, $type , $id, $desc, $field_class, $size, $std);
+				echo apply_filters('cctor_option_cases', $options, $type, $id, $desc, $alert, $condition, $field_class, $size, $std, $choices, $class , $imagemsg);
 			} 			
 		}
 	/***************************************************************************/
