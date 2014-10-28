@@ -427,6 +427,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		
 			// Field Array  cctor_
 			$prefix = 'cctor_';
+			
+				//Content
 				$coupon_creator_meta_fields[$prefix . 'heading_coupon'] = array(
 					'id' => $prefix . 'heading_coupon',
 					'title'   => '',
@@ -443,6 +445,41 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content'
 				);		
+				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
+					'id' => $prefix . 'heading_deal',
+					'title'   => '',
+					'desc'    =>  __( 'Coupon Terms','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'content'
+				);			
+				$coupon_creator_meta_fields[$prefix . 'description'] =	array(
+					'label' => __('Terms:', 'coupon_creator' ),
+					'desc' => __('Enter the terms of the discount', 'coupon_creator' ),
+					'id' => $prefix . 'description',
+					'type'  => 'textarea_w_tags',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'content'
+				);				
+				
+				//Style
+				$coupon_creator_meta_fields[$prefix . 'heading_inside_color'] = array(
+					'id' => $prefix . 'heading_inside_color',
+					'title'   => '',
+					'desc'    =>  __( 'Inner Border','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);						
+				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
+					'label' => __('Inside Border Color', 'coupon_creator' ),
+					'desc'  => __('Choose inside border color', 'coupon_creator' ),
+					'id' => $prefix . 'bordercolor',
+					'type' => 'color', // color
+					'value' => cctor_options($prefix . 'border_color'),
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);					
 				$coupon_creator_meta_fields[$prefix . 'heading_color'] = array(
 					'id' => $prefix . 'heading_color',
 					'title'   => '',
@@ -469,39 +506,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);	
-				$coupon_creator_meta_fields[$prefix . 'heading_inside_color'] = array(
-					'id' => $prefix . 'heading_inside_color',
-					'title'   => '',
-					'desc'    =>  __( 'Inner Border','coupon_creator' ),
-					'type'    => 'heading',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
-				);						
-				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
-					'label' => __('Inside Border Color', 'coupon_creator' ),
-					'desc'  => __('Choose inside border color', 'coupon_creator' ),
-					'id' => $prefix . 'bordercolor',
-					'type' => 'color', // color
-					'value' => cctor_options($prefix . 'border_color'),
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
-				);	
-				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
-					'id' => $prefix . 'heading_deal',
-					'title'   => '',
-					'desc'    =>  __( 'Coupon Terms','coupon_creator' ),
-					'type'    => 'heading',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
-				);			
-				$coupon_creator_meta_fields[$prefix . 'description'] =	array(
-					'label' => __('Terms:', 'coupon_creator' ),
-					'desc' => __('Enter the terms of the discount', 'coupon_creator' ),
-					'id' => $prefix . 'description',
-					'type'  => 'textarea_w_tags',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
-				);	
+				
+				//Expiration
 				$coupon_creator_meta_fields[$prefix . 'heading_expiration'] = array(
 					'id' => $prefix . 'heading_expiration',
 					'title'   => '',
@@ -539,14 +545,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'expiration'
 				);	
-				/*$coupon_creator_meta_fields[$prefix . 'heading_image'] = array(
-					'id' => $prefix . 'heading_image',
-					'title'   => '',
-					'desc'    =>  __( 'Image Coupon','coupon_creator' ),
-					'type'    => 'heading',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'image_coupon'
-				);*/				
+
+				//Image Coupon
 				$coupon_creator_meta_fields[$prefix . 'image'] =	array(
 					'label'  => '',
 					'desc'  => __('Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon_creator' ),
@@ -556,6 +556,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'image_coupon'
 				);	
+				
+				//Help
 				$coupon_creator_meta_fields[$prefix . 'heading_support'] = array(
 					'id' => $prefix . 'heading_support',
 					'title'   => '',

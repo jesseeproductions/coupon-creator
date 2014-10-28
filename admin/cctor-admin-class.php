@@ -173,14 +173,20 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			}
 			
 			$cctor_columns['cctor_coupon_shortcode'] = __( 'Shortcode', 'coupon_creator' );
+		
+			$cctor_columns['cctor_coupon_ignore_expiration'] = __( 'Ignore Expiration', 'coupon_creator' );
 			
 			$cctor_columns['cctor_coupon_expiration'] = __( 'Expiration Date', 'coupon_creator' );
 		
-			$cctor_columns['cctor_coupon_ignore_expiration'] = __( 'Ignore Expiration', 'coupon_creator' );
 		
 			if( isset( $columns['date'] ) ) {
 				$cctor_columns['date'] = $columns['date'];
 			}
+			
+			//Filter Columns
+			if(has_filter('cctor_coupon_list_columns')) {
+				$cctor_columns = apply_filters('cctor_coupon_list_columns', $cctor_columns,  $columns);
+			} 
 			
 			return $cctor_columns;
 		}
@@ -198,10 +204,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					break;
 				case 'cctor_coupon_ignore_expiration':
 					if (get_post_meta( $post_id, 'cctor_ignore_expiration', true ) == 1) {
-						echo "Yes";
+						echo "<p style='padding-left:40px;'>Yes</p>";
 					}
 					break;
 			}
+			
+			if(has_filter('cctor_coupon_list_column_cases')) {
+				echo apply_filters('cctor_coupon_list_column_cases', $column, $post_id);
+			} 	
 		}
 		
 		/***************************************************************************/

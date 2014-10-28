@@ -399,8 +399,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/
 		public function get_options() {
 			
-			/* Coupon Creator Options
-			===========================================*/		
+			//defaults
 			$this->options['header_defaults'] = array(
 				'section' => 'defaults',
 				'title'   => '', // Not used for headings.
@@ -418,6 +417,24 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
 				)
 			);
+			
+			
+			//Inner Border
+			$this->options['header_inner_border'] = array(
+				'section' => 'defaults',
+				'title'   => '', // Not used for headings.
+				'desc'    =>  __( 'Inner Border','coupon_creator' ),
+				'type'    => 'heading'
+			);						
+			$this->options['cctor_border_color'] = array(
+				'title' =>  __( 'Inside Border Color','coupon_creator' ),
+				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
+				'std'     => '#81d742',
+				'type' => 'color', // color
+				'section' => 'defaults'
+			);	
+			
+			//Discount Field Colors
 			$this->options['header_discount'] = array(
 				'section' => 'defaults',
 				'title'   => '', // Not used for headings.
@@ -438,19 +455,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type' => 'color', // color
 				'section' => 'defaults'
 			);
-			$this->options['header_inner_border'] = array(
-				'section' => 'defaults',
-				'title'   => '', // Not used for headings.
-				'desc'    =>  __( 'Inner Border','coupon_creator' ),
-				'type'    => 'heading'
-			);						
-			$this->options['cctor_border_color'] = array(
-				'title' =>  __( 'Inside Border Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
-				'std'     => '#81d742',
-				'type' => 'color', // color
-				'section' => 'defaults'
-			);						
+			
+			//LinkAttributes - Permalinks		
 			$this->options['no_follow_heading'] = array(
 				'section' => 'permalinks',
 				'title'   => '', // Not used for headings.
@@ -491,7 +497,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type'    => 'text',
 				'section' => 'permalinks',
 				'class'   => 'permalink' //format text to lowercase before sanitizing
-			);				
+			);	
+
+			//Custom CSS		
 			$this->options['cctor_custom_css'] = array(
 				'title'   => __( 'Custom Coupon Styles', 'coupon_creator' ),
 				'desc'    => __( 'Enter any custom CSS here to apply to the coupons for the shortcode and the print template.(without &#60;style&#62; tags)', 'coupon_creator' ),
@@ -506,6 +514,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'desc'    =>  __( 'Coupon Creator Option Reset','coupon_creator' ),
 				'type'    => 'heading'
 			);
+			
+			//Reset
 			$this->options['reset_theme'] = array(
 				'section' => 'reset',
 				'title'   => __( 'Reset', 'coupon_creator' ),
