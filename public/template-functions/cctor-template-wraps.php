@@ -4,14 +4,37 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	die( 'Access denied.' );
 
 /*
+* Return Coupon Categories for Class
+* @version 1.90
+*/
+function cctor_return_coupon_categories($coupon_id) {
+ 	
+	$coupon_terms = get_the_terms( $coupon_id, 'cctor_coupon_category' );
+	
+	if ( $coupon_terms && ! is_wp_error( $coupon_terms ) ) { 
+
+		$cctor_coupon_category_terms = array();
+
+		foreach ( $coupon_terms as $coupon_term ) {
+			$cctor_coupon_category_terms[] = $coupon_term->slug;
+		}
+						
+		$coupon_cat_class = join( " ", $cctor_coupon_category_terms );
+		
+		return $coupon_cat_class;
+	}
+}
+/*
 * Coupon Creator Outer Wrap
 * @version 1.90
 */
 function cctor_return_outer_coupon_wrap($coupon_id, $coupon_align) { 
 	
+	$coupon_cat_class = cctor_return_coupon_categories($coupon_id);
+	
 	$outer_coupon_wrap = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon-creator-'. $coupon_id.'" class="cctor_coupon_container '.$coupon_align.'">';
+		<div id="coupon-creator-'. $coupon_id.'" class="type-cctor_coupon cctor_coupon_container '.$coupon_cat_class.' '.$coupon_align.'">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							
@@ -56,9 +79,11 @@ function cctor_return_inner_coupon_wrap($coupon_id) {
 */
 function cctor_return_print_outer_coupon_wrap($coupon_id) { 
 	
+	$coupon_cat_class = cctor_return_coupon_categories($coupon_id);
+	
 	$outer_coupon_wrap = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon-creator-'. $coupon_id.'" class="cctor_coupon_container">';
+		<div id="coupon-creator-'. $coupon_id.'" class="cctor_coupon_container '.$coupon_cat_class.'">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							

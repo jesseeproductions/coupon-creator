@@ -109,6 +109,10 @@ function cctor_sanitize_textarea_w_tags( $input ) {
 				'ol' => array(),
 				'li' => array()		
 			);
+			
+			if(has_filter('cctor_filter_allowed_tags')) {
+				echo apply_filters('cctor_filter_allowed_tags', $cctor_allowedtags);
+			} 	
 
 		$output = wp_kses( $input, $cctor_allowedtags);
 	}

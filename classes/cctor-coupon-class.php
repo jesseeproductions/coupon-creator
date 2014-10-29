@@ -47,6 +47,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Register Post Type			
 			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) );
 			
+			//Register Custom Taxonomy
+			Coupon_Creator_Plugin::include_file( 'classes/cctor-taxonomy.php' );
+			new Coupon_Creator_Taxonomy_Class();
+			
 			//Setup Capabilities
 			if ( is_admin() ) {
 				$this->cctor_add_capabilities();
@@ -132,9 +136,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	
 	public static function cctor_register_post_types() {
 
-		//Load Files
-			require_once CCTOR_PATH. 'inc/cctor-taxonomy.php';
-
 			// if no custom slug use this base slug
 			$slug = cctor_options('cctor_coupon_base');
 			$slug = empty( $slug ) ? _x( 'cctor_coupon', 'slug', 'coupon_creator' ) : $slug;
@@ -173,9 +174,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				'supports'           => array( 'title', 'coupon_creator_meta_box','custom-fields' ),
 			) );
 						
-			//Load Coupon Creator Custom Taxonomy
-			coupon_creator_create_taxonomies();
-			
 	}	
 	
 	/***************************************************************************/
@@ -301,7 +299,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/		
 		public static function cctor_inline_style() {
 			
-			//$cctor_option_css = "";
+			$cctor_option_css = "";
 			/* 
 			*  Filter the Dimensions and Min Height
 			*/

@@ -16,9 +16,9 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		*/
 		public function __construct() {
 			//Setup Coupon Meta Boxes
-			add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );	
+			add_action( 'add_meta_boxes', array( __CLASS__, 'cctor_add_meta_boxes' ) );	
 			//Save Meta Boxes Data
-			add_action( 'save_post', array( __CLASS__, 'save_coupon_creator_meta' ),50, 2 );
+			add_action( 'save_post', array( __CLASS__, 'cctor_save_coupon_creator_meta' ),50, 2 );
 			//Coupon Expiration Information
 			add_action( 'edit_form_after_title',  array( __CLASS__, 'cctor_information_box' ) , 10 );
 		}
@@ -28,7 +28,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* Coupon Creator Meta Sections
 		* @version 1.90
 		*/
-		public static function get_tabs() {
+		public static function get_cctor_tabs() {
 			
 			$meta_tabs = array();
 			
@@ -40,8 +40,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$meta_tabs['help'] 	= __( 'Help', 'coupon_creator' );
 
 			//Filter Option Tabs
-			if(has_filter('cctor_meta_tabs')) {
-				$meta_tabs = apply_filters('cctor_meta_tabs', $meta_tabs);
+			if(has_filter('cctor_filter_meta_tabs')) {
+				$meta_tabs = apply_filters('cctor_filter_meta_tabs', $meta_tabs);
 			} 
 			
 			return $meta_tabs;
@@ -63,7 +63,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			//Enable Filter to stop coupon from showing
 			$show_coupon_check = false;
 			
-			$show_coupon_check = apply_filters('cctor_meta_show_coupon_check', $show_coupon_check, $coupon_id);
+			$show_coupon_check = apply_filters('cctor_filter_meta_show_coupon_check', $show_coupon_check, $coupon_id);
 			
 			if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
 			
@@ -83,10 +83,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		*/
 		public static function cctor_information_box() {
 			
-			global $pagenow, $post;
+			global $pagenow, $post, $typenow;
 			
-			//Do Not Display on 
-			if($pagenow !='post-new.php'){
+		if (empty($typenow) && !empty($_GET['post'])) {
+			$post = get_post($_GET['post']);
+			$typenow = $post->post_type;
+		}
+				
+			//Display Message on Coupon Edit Screen, but not on a new coupon until saved
+			if($pagenow !='post-new.php' && $typenow=='cctor_coupon'){
 				
 				$coupon_id = $post->ID;
 				
@@ -158,7 +163,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* Add Meta Boxes
 		* @version 1.80
 		*/
-		public static function add_meta_boxes() {
+		public static function cctor_add_meta_boxes() {
 			global $pagenow, $typenow;
 		if (empty($typenow) && !empty($_GET['post'])) {
 			$post = get_post($_GET['post']);
@@ -169,7 +174,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					add_meta_box(
 						'coupon_creator_meta_box', // id
 						__( 'Coupon Fields', 'coupon_creator' ), // title
-						array( __CLASS__, 'show_coupon_creator_meta_box' ), // callback
+						array( __CLASS__, 'cctor_show_meta_box' ), // callback
 						'cctor_coupon', // post_type
 						'normal', // context
 						'default' // priority
@@ -179,7 +184,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 						add_meta_box(
 							'coupon_creator_shortcode', // id
 							__( 'Coupon Shortcode', 'coupon_creator' ), // title
-							array( __CLASS__, 'show_coupon_shortcode' ), // callback
+							array( __CLASS__, 'cctor_show_coupon_shortcode' ), // callback
 							'cctor_coupon', // post_type
 							'side' // context
 						);			
@@ -198,15 +203,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* @version 1.80
 		* @param stdClass $post
 		*/
-		public static function show_coupon_creator_meta_box( $post, $metabox  ) {
+		public static function cctor_show_meta_box( $post, $metabox  ) {
 		
 				wp_nonce_field( 'coupon_creator_save_post', 'coupon_creator_nonce' );
 								
 				//Get Tab Sections
-				$meta_tabs = self::get_tabs();
+				$meta_tabs = self::get_cctor_tabs();
 				
 				//Get Meta Boxes
-				$coupon_creator_meta_fields = self::metabox_options();
+				$coupon_creator_meta_fields = self::cctor_metabox_options();
 				
 				//Create Array of Tabs and Localize to Meta Script
 				$tabs_array = array();
@@ -379,9 +384,9 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 							//print_r($metabox);
 							//echo $metabox['id'];
 						}	
-						if(has_filter('cctor_meta_field_cases')) {
+						if(has_filter('cctor_filter_meta_cases')) {
 							// this adds any addon fields (from plugins) to the array
-							echo apply_filters('cctor_meta_field_cases', $field, $meta);
+							echo apply_filters('cctor_filter_meta_cases', $field, $meta);
 						} ?>
 						
 					</div> <!-- end .cctor-meta-field.field-<?php echo $field['type']; ?>.field-<?php echo $field['id']; ?> -->
@@ -410,7 +415,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* @version 1.90
 		* @param stdClass $post
 		*/
-		public static function show_coupon_shortcode( $post, $metabox  ) {
+		public static function cctor_show_coupon_shortcode( $post, $metabox  ) {
 			?><p class="shortcode">
 			<?php  _e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon_creator' ); ?> 
 			<code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
@@ -423,7 +428,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* Load Meta Box Functions
 		* @version 1.80  
 		*/
-		public static function metabox_options() {
+		public static function cctor_metabox_options() {
 		
 			// Field Array  cctor_
 			$prefix = 'cctor_';
@@ -462,24 +467,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'tab' => 'content'
 				);				
 				
-				//Style
-				$coupon_creator_meta_fields[$prefix . 'heading_inside_color'] = array(
-					'id' => $prefix . 'heading_inside_color',
-					'title'   => '',
-					'desc'    =>  __( 'Inner Border','coupon_creator' ),
-					'type'    => 'heading',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
-				);						
-				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
-					'label' => __('Inside Border Color', 'coupon_creator' ),
-					'desc'  => __('Choose inside border color', 'coupon_creator' ),
-					'id' => $prefix . 'bordercolor',
-					'type' => 'color', // color
-					'value' => cctor_options($prefix . 'border_color'),
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
-				);					
+				//Style			
 				$coupon_creator_meta_fields[$prefix . 'heading_color'] = array(
 					'id' => $prefix . 'heading_color',
 					'title'   => '',
@@ -493,7 +481,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'  => __('Choose background color', 'coupon_creator' ),
 					'id' => $prefix . 'colordiscount',
 					'type' => 'color', // color
-					'value' => cctor_options($prefix . 'discount_bg_color'),
+					'value' => cctor_options('cctor_discount_bg_color'),
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);	
@@ -502,11 +490,29 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'  => __('Choose color for discount text', 'coupon_creator' ),
 					'id' => $prefix . 'colorheader',
 					'type' => 'color', // color
-					'value' => cctor_options($prefix . 'discount_text_color'),
+					'value' => cctor_options('cctor_discount_text_color'),
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);	
 				
+				//Inside Border
+				$coupon_creator_meta_fields[$prefix . 'heading_inside_color'] = array(
+					'id' => $prefix . 'heading_inside_color',
+					'title'   => '',
+					'desc'    =>  __( 'Inner Border','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);						
+				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
+					'label' => __('Inside Border Color', 'coupon_creator' ),
+					'desc'  => __('Choose inside border color', 'coupon_creator' ),
+					'id' => $prefix . 'bordercolor',
+					'type' => 'color', // color
+					'value' => cctor_options('cctor_border_color'),
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);				
 				//Expiration
 				$coupon_creator_meta_fields[$prefix . 'heading_expiration'] = array(
 					'id' => $prefix . 'heading_expiration',
@@ -528,7 +534,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'label'=> __('Date Format', 'coupon_creator' ),
 					'desc'  => __('Choose the date format', 'coupon_creator' ),
 					'id'    => $prefix . 'date_format',
-					'value' => cctor_options($prefix . 'default_date_format'),
+					'value' => cctor_options('cctor_default_date_format'),
 					'type'    => 'select',
 					'choices' => array(
 						'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),
@@ -574,9 +580,9 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'tab' => 'help'
 				);		
 	
-			if(has_filter('cctor_meta_fields')) {
+			if(has_filter('cctor_filter_meta_fields')) {
 				//Add Fields to the Coupon Creator Meta Box
-				$coupon_creator_meta_fields = apply_filters('cctor_meta_fields', $coupon_creator_meta_fields);
+				$coupon_creator_meta_fields = apply_filters('cctor_filter_meta_fields', $coupon_creator_meta_fields);
 			} 
 			
 			return $coupon_creator_meta_fields;
@@ -587,7 +593,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* Save Meta Boxes
 		* @version 1.80
 		*/
-		public static function save_coupon_creator_meta( $post_id, $post ) {
+		public static function cctor_save_coupon_creator_meta( $post_id, $post ) {
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 				return;
 
@@ -603,7 +609,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			
 				// Save data
 				//Get Meta Fields
-				$coupon_creator_meta_fields = self::metabox_options();
+				$coupon_creator_meta_fields = self::cctor_metabox_options();
 				
 				//For Each Field Sanitize the Post Data
 				foreach ( $coupon_creator_meta_fields as $option ) {

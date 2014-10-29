@@ -33,7 +33,7 @@ function cctor_show_print_img_url($coupon_id) {
 * Coupon Creator Print Template Image Coupon
 * @version 1.90
 */
-function cctor_show_print_img($couponimage) {
+function cctor_show_print_img( $coupon_id, $couponimage) {
 
 	?><img class='cctor_coupon_image' src='<?php echo $couponimage; ?>' alt='' title=''><?php
 	

@@ -417,23 +417,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
 				)
 			);
-			
-			
-			//Inner Border
-			$this->options['header_inner_border'] = array(
-				'section' => 'defaults',
-				'title'   => '', // Not used for headings.
-				'desc'    =>  __( 'Inner Border','coupon_creator' ),
-				'type'    => 'heading'
-			);						
-			$this->options['cctor_border_color'] = array(
-				'title' =>  __( 'Inside Border Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
-				'std'     => '#81d742',
-				'type' => 'color', // color
-				'section' => 'defaults'
-			);	
-			
+						
 			//Discount Field Colors
 			$this->options['header_discount'] = array(
 				'section' => 'defaults',
@@ -455,6 +439,21 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type' => 'color', // color
 				'section' => 'defaults'
 			);
+			
+			//Inner Border
+			$this->options['header_inner_border'] = array(
+				'section' => 'defaults',
+				'title'   => '', // Not used for headings.
+				'desc'    =>  __( 'Inner Border','coupon_creator' ),
+				'type'    => 'heading'
+			);						
+			$this->options['cctor_border_color'] = array(
+				'title' =>  __( 'Inside Border Color','coupon_creator' ),
+				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
+				'std'     => '#81d742',
+				'type' => 'color', // color
+				'section' => 'defaults'
+			);				
 			
 			//LinkAttributes - Permalinks		
 			$this->options['no_follow_heading'] = array(
@@ -541,6 +540,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		public function initialize_options() {
 			
 			$default_options = array();
+			
 			foreach ( $this->options as $id => $option ) {
 				if ( $option['type'] != 'heading' )
 					$default_options[$id] = $option['std'];

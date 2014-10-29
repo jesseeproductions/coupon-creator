@@ -38,7 +38,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 				
 				if ($couponimage) {
 				
-					do_action( 'cctor_print_image_coupon' , $couponimage ); 
+					do_action( 'cctor_print_image_coupon' ,  $coupon_id, $couponimage ); 
 				
 				} else { 
 				

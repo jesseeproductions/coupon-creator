@@ -22,7 +22,7 @@ function cctor_print_template() {
 
 	add_filter('cctor_print_outer_content_wrap', 'cctor_return_print_outer_coupon_wrap', 10 , 1);
 
-	add_action('cctor_print_image_coupon', 'cctor_show_print_img', 10, 1 ); 
+	add_action('cctor_print_image_coupon', 'cctor_show_print_img', 10, 2 ); 
 
 	add_filter('cctor_print_inner_content_wrap', 'cctor_return_print_inner_coupon_wrap', 10 , 1);
 

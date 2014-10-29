@@ -14,19 +14,25 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		* @version 1.90
 		*/
 		public function __construct() {
-			add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
-			add_action( 'admin_init', array( __CLASS__, 'admin_upgrade' ) );
+			
+			//Setup Admin
+			add_action( 'admin_init', array( __CLASS__, 'cctor_admin_init' ) );
+			
+			//Update Version Number
+			add_action( 'admin_init', array( __CLASS__, 'cctor_admin_upgrade' ) );
+			
+			//Flush Permalinks on Permalink Option Change
 			add_action('admin_init', array( __CLASS__, 'cctor_flush_permalinks'));
 			
 			//Load Sanitize Functions
 			Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize.php' );
 			
 			//Load Coupon Options Class
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-admin-options-class.php' );
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-options-class.php' );
 			new Coupon_Creator_Plugin_Admin_Options();
 			
 			//Load Coupon Meta Box Class
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-post-meta-box-class.php' );
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-meta-box-class.php' );
 			new Coupon_Creator_Meta_Box();
 		}
 		
@@ -35,21 +41,23 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		* Admin Initialize Coupon Creator
 		* @version 1.70
 		*/
-		public static function admin_init() {
-			//Load Admin Coupon Scripts
-			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_style_scripts' ) );
-			//Add Column Headers
-			add_action( 'manage_posts_custom_column', array( __CLASS__, 'coupon_custom_column' ), 10, 2 );
-			// Filter Columns
-			add_filter( 'manage_edit-cctor_coupon_columns' ,  array( __CLASS__, 'coupon_columns' ) );
-
+		public static function cctor_admin_init() {
+		
 			//Add Button for Coupons in Editor
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-admin-inserter-class.php' );
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-inserter-class.php' );
 			new Coupon_Creator_Inserter();
 			
 			//Add Options Link on Plugin Activation Page
-			add_action('plugin_action_links', array( __CLASS__, 'plugin_setting_link' ) , 10, 2);			
-	
+			add_action('plugin_action_links', array( __CLASS__, 'plugin_setting_link' ) , 10, 2);	
+			
+			//Load Admin Coupon Scripts
+			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'cctor_edit_enqueue_style_scripts' ) );
+
+			// Add Columns
+			add_filter( 'manage_edit-cctor_coupon_columns' ,  array( __CLASS__, 'cctor_list_columns' ) );
+			
+			//Custom Column Cases
+			add_action( 'manage_posts_custom_column', array( __CLASS__, 'cctor_column_cases' ), 10, 2 );
 
 		} //end admin_init
 	/***************************************************************************/
@@ -58,7 +66,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 	* Update Version Number Check
 	* @version 1.70
 	*/
-	public static function admin_upgrade() {
+	public static function cctor_admin_upgrade() {
 		//Update Version Number
 		if (get_option(CCTOR_VERSION_KEY) != CCTOR_VERSION_NUM) {
 			// Then update the version value
@@ -108,7 +116,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		* Register and Enqueue Style and Scripts
 		* @version 1.80
 		*/
-		public static function enqueue_style_scripts( ) {
+		public static function cctor_edit_enqueue_style_scripts( ) {
 				
 			$screen = get_current_screen();
 						
@@ -157,7 +165,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		* @version 1.70
 		* @param array $columns
 		*/
-		public static function coupon_columns( $columns ) {
+		public static function cctor_list_columns( $columns ) {
 			$cctor_columns = array();
 		
 			if( isset( $columns['cb'] ) ) {
@@ -184,8 +192,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			}
 			
 			//Filter Columns
-			if(has_filter('cctor_coupon_list_columns')) {
-				$cctor_columns = apply_filters('cctor_coupon_list_columns', $cctor_columns,  $columns);
+			if(has_filter('cctor_filter_coupon_list_columns')) {
+				$cctor_columns = apply_filters('cctor_filter_coupon_list_columns', $cctor_columns,  $columns);
 			} 
 			
 			return $cctor_columns;
@@ -194,13 +202,26 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		* Add Custom Meta Data to Columns
 		* @version 1.70
 		*/
-		public static function coupon_custom_column( $column, $post_id ) {
+		public static function cctor_column_cases( $column, $post_id ) {
 			switch( $column ) {
 				case 'cctor_coupon_shortcode':
 					echo "<code>[coupon couponid='". $post_id ."' name='". get_the_title($post_id) ."']</code>";
 					break;			
 				case 'cctor_coupon_expiration':
-					echo get_post_meta( $post_id, 'cctor_expiration', true );
+					//Coupon Expiration Date
+					$expirationco = get_post_meta($post_id, 'cctor_expiration', true);
+					
+					$cc_expiration_date = strtotime($expirationco);
+					
+					if ($expirationco) { // Only Display Expiration if Date
+						$daymonth_date_format = get_post_meta($post_id, 'cctor_date_format', true); //Date Format
+						
+						if ($daymonth_date_format == 1 ) { //Change to Day - Month Style
+						$expirationco = date("d/m/Y", $cc_expiration_date);
+						}
+						echo $expirationco;
+					}
+					
 					break;
 				case 'cctor_coupon_ignore_expiration':
 					if (get_post_meta( $post_id, 'cctor_ignore_expiration', true ) == 1) {
@@ -209,8 +230,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					break;
 			}
 			
-			if(has_filter('cctor_coupon_list_column_cases')) {
-				echo apply_filters('cctor_coupon_list_column_cases', $column, $post_id);
+			if(has_filter('cctor_filter_column_cases')) {
+				echo apply_filters('cctor_filter_column_cases', $column, $post_id);
 			} 	
 		}
 		

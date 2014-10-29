@@ -72,7 +72,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 								float:right;
 							}
 						 </style>
-							<a class='thickbox button cctor_insert_link' id='add_cctor_shortcode'  title='{$title}' href='#TB_inline?width=640&height=200&inlineId={$container_id}'><span class='cctor_insert_icon'></span>Add Coupon</a>";
+							<a class='thickbox button cctor_insert_link' id='add_cctor_shortcode'  title='{$title}' href='#TB_inline?width=783&height=400&inlineId={$container_id}'><span class='cctor_insert_icon'></span>Add Coupon</a>";
 			 }
 			 
 			  return $context;
