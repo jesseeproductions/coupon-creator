@@ -56,9 +56,6 @@
 	font-weight:bold;
 	color: #000;
 }
-.cctor_deal p {
-	margin: 0;
-}
 .cctor_expiration  {
 	width:100%;
 	min-height: 15px;
@@ -71,6 +68,19 @@
 	margin-top: 2px;
 	font-size:14px;
 	line-height: 20px;
+}
+
+/* Coupon CSS Adjustments
+------------------------------------------------------------ */
+.cctor_coupon_container a:hover {
+	text-decoration: none;
+	opacity: .8;
+}
+a .cctor_expiration {
+	color: #000;
+}
+.cctor_deal p {
+	margin: 0;
 }
 
 /* Coupon Align

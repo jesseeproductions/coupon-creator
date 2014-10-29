@@ -94,11 +94,13 @@ function cctor_sanitize_textarea_w_tags( $input ) {
 		$cctor_allowedtags = array(
 				'a' => array(
 					'href' => array(),
-					'alt' => array(),					
+					'alt' => array(),
+					'class' => array(),					
 					'title' => array()
 				),
 				'img' => array(
 					'src' => array(),
+					'class' => array(),		
 					'title' => array()
 				),				
 				'br' => array(),

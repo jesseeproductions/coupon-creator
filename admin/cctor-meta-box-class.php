@@ -177,7 +177,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 						array( __CLASS__, 'cctor_show_meta_box' ), // callback
 						'cctor_coupon', // post_type
 						'normal', // context
-						'default' // priority
+						'high' // priority
 					);
 								
 					if($pagenow !='post-new.php'){
