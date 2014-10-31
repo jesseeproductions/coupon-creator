@@ -84,7 +84,7 @@ if	( cctor_requirements() ) {
 		require_once( dirname( __FILE__ ) . '/classes/cctor-coupon-class.php' );
 		//Admin Class
 		require_once( dirname( __FILE__ ) . '/admin/cctor-admin-class.php' );
-
+		
 		//Coupon Creator Start!
 		return Coupon_Creator_Plugin::instance();
 		

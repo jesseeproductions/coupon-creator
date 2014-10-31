@@ -382,7 +382,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					
 					if ( $desc != '' )
 						echo '<br /><span class="description">' . $desc . '</span><br />';
-						echo cctor_options('cctor_custom_css');
 					break;
 			}
 				
@@ -601,7 +600,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					if(isset($option['class'])){
 						// Change Permalink Class Options to Lowercase
 						if ( $option['class'] == 'permalink' ) {						
-							$input[$id] = str_replace(" ", "-",  strtolower($input[$id]));
+							$input[$id] = str_replace(" ", "-",  strtolower(trim($input[$id])));
 							//if option is new then set to flush permalinks
 							if($options[$id] != $input[$id] ) {
 								$permalink_change = $id . "_change";

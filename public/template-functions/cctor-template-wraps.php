@@ -48,6 +48,8 @@ function cctor_return_inner_coupon_wrap($coupon_id) {
 
 	$coupon_inner_content_wrap = array();
 	
+	$endlink = '';
+	
 	//Build Click to Print Link For Coupon - First Check if Option to Hide is Checked
 	if (cctor_options('cctor_hide_print_link') == 0) {
 		
@@ -59,16 +61,16 @@ function cctor_return_inner_coupon_wrap($coupon_id) {
 			<div class="cctor_coupon">
 			<div class="cctor_coupon_content" style="border-color:'. get_post_meta($coupon_id, 'cctor_bordercolor', true).'">';
 	
-		$coupon_inner_content_wrap['end_wrap'] = '</div> <!--end .cctor_coupon_content -->
-												</div> <!--end .cctor_coupon --></a>';
+		$endlink = '</a>';
 
 	 } else {
 			$coupon_inner_content_wrap['start_wrap'] = '<div class="cctor_coupon">
 			<div class="cctor_coupon_content" style="border-color:'. get_post_meta($coupon_id, 'cctor_bordercolor', true).'">';
 	
-			$coupon_inner_content_wrap['end_wrap'] = '</div> <!--end .cctor_coupon_content -->
-												</div> <!--end .cctor_coupon -->';
 	 }
+
+	$coupon_inner_content_wrap['end_wrap'] = '</div> <!--end .cctor_coupon_content -->
+												</div> <!--end .cctor_coupon -->'. $endlink;
 	 
 	return $coupon_inner_content_wrap;
 }	

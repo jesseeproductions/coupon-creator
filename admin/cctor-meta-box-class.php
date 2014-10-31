@@ -275,21 +275,21 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								// text
 								case 'text':?>
 								
-									<input type="text" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" value="<?php echo $meta; ?>" size="30" />
+									<input type="text" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" value="<?php echo esc_attr($meta); ?>" size="30" />
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
 										
 								<?php break;
 								// textarea
 								case 'textarea': ?>
 								
-									<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo $meta; ?></textarea>
+									<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo wp_htmledit_pre($meta); ?></textarea>
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
 										
 								<?php break;
 								// textarea
 								case 'textarea_w_tags': ?>
 								
-									<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo $meta; ?></textarea>
+									<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo wp_htmledit_pre( $meta ); ?></textarea>
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
 										
 								<?php break;								
@@ -318,7 +318,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 									
 									<?php foreach ( $field['choices'] as $value => $label ) { 
 									
-										echo '<option value="'. $value.'"'.selected( $value , $selected ).'>'. $label .'</option>';
+										echo '<option value="'. esc_attr( $value ).'"'.selected( $value , $selected ).'>'. $label .'</option>';
 									
 									}?>								
 									</select>
@@ -340,7 +340,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 									}?>
 									
 											<?php echo $image; ?><br />
-											<input name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" type="hidden" class="upload_coupon_image" type="text" size="36" name="ad_image" value="<?php echo $meta; ?>" /> 
+											<input name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" type="hidden" class="upload_coupon_image" type="text" size="36" name="ad_image" value="<?php echo esc_attr( $meta ); ?>" /> 
 											<input id="<?php echo $field['id']; ?>" class="coupon_image_button" type="button" value="Upload Image" />
 											<small> <a href="#" id="<?php echo $field['id']; ?>" class="cctor_coupon_clear_image_button">Remove Image</a></small>
 											<br /><span class="description"><?php echo $field['desc']; ?></span>
@@ -353,14 +353,14 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 											$meta = $field['value'];
 										}
 									?>
-									<input class="color-picker" type="text" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" value="<?php echo $meta; ?>" data-default-color="<?php echo $field['value']; ?>"/>
+									<input class="color-picker" type="text" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" value="<?php echo esc_attr( $meta ); ?>" data-default-color="<?php echo $field['value']; ?>"/>
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
 										
 								<?php break;
 								 // date
 								 case 'date': ?>
 								 
-									<input type="text" class="datepicker" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" value="<?php echo $meta; ?>" size="10" />
+									<input type="text" class="datepicker" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" value="<?php echo esc_attr( $meta ); ?>" size="10" />
 									<br /><span class="description"><?php echo $field['desc']; ?></span>
 											
 								<?php break;
@@ -628,17 +628,30 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 						
 					} 
 
-					// Sanitization Filter for each Meta Field Type
+					// Final Check if value should be saved then sanitize and save
 					if(isset($_POST[$option['id']])){
 						if ( has_filter( 'cctor_sanitize_' . $option['type'] ) ) {
-							$clean[$option['id']] = apply_filters( 'cctor_sanitize_' . $option['type'], $_POST[$option['id']], $option );
+							
+							$old = get_post_meta($post_id, $option['id'], true);
+							
+							$new = $_POST[$option['id']];
+							
+							if ( !is_null($new) && $new != $old) {
+								update_post_meta($post_id, $option['id'], apply_filters( 'cctor_sanitize_' . $option['type'], $new, $option ));
+							} elseif ('' == $new && $old) {
+								delete_post_meta($post_id, $option['id'], $old);
+							}
+						
+							//$clean[$option['id']] = apply_filters( 'cctor_sanitize_' . $option['type'], $_POST[$option['id']], $option );
+							
+							
 						}	
 					}
 
 				}				
 				
 				//Loop Through Sanitized Data and Save to MetaBox if different from existing
-				foreach ($clean as $key => $value ) {
+				/*foreach ($clean as $key => $value ) {
 
 						$old = get_post_meta($post_id, $key, true);
 						$new = $value;
@@ -649,14 +662,14 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 							if ( !is_null($new)  && $new != $old) {
 								echo $new ." new2<br>";
 							}
-						}*/
+						}*//*
 						
 						if ( !is_null($new) && $new != $old) {
 							update_post_meta($post_id, $key, $new);
 						} elseif ('' == $new && $old) {
 							delete_post_meta($post_id, $key, $old);
 						} 
-				} 
+				} */
 			
 			
 		}

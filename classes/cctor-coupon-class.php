@@ -79,7 +79,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.70
 		*/
 		public static function init() {
-					
+			
+			//Load Sanitize Functions
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize.php' );
+			
 			//Register Coupon Style
 			add_action('wp_enqueue_scripts',  array( __CLASS__, 'cctor_register_style' ));
 			

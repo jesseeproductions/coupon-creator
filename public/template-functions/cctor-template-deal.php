@@ -8,6 +8,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 * @version 1.90
 */
 function cctor_show_deal($coupon_id) {
-	?><div class="cctor_deal"><?php echo get_post_meta($coupon_id, 'cctor_description', true);  ?></div><?php
+	?><div class="cctor_deal"><?php echo cctor_sanitize_textarea_w_tags(get_post_meta($coupon_id, 'cctor_description', true));  ?></div><?php
 
 }

@@ -23,10 +23,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			
 			//Flush Permalinks on Permalink Option Change
 			add_action('admin_init', array( __CLASS__, 'cctor_flush_permalinks'));
-			
-			//Load Sanitize Functions
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize.php' );
-			
+						
+			// Remove Coupon Row Actions
+			add_filter( 'post_row_actions',  array( __CLASS__, 'cctor_remove_coupon_row_actions'), 10, 2 );
+		
 			//Load Coupon Options Class
 			Coupon_Creator_Plugin::include_file( 'admin/cctor-options-class.php' );
 			new Coupon_Creator_Plugin_Admin_Options();
@@ -158,6 +158,31 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			}
 		}	
 		
+		/***************************************************************************/
+		
+		/*
+		* Remove Coupon Row Actions if user does not have permision to manage
+		* @version 1.90
+		* @param array $actions, $post
+		*/
+		public static function cctor_remove_coupon_row_actions( $actions, $post ) {
+		  global $current_screen, $current_user;
+		  
+			if( $current_screen->post_type != 'cctor_coupon' ) return $actions;
+			
+			get_currentuserinfo();
+
+			if(!current_user_can( 'edit_others_cctor_coupons', $post->ID ) && ($post->post_author != $current_user->ID))  {
+				unset( $actions['edit'] );
+				unset( $actions['view'] );
+				unset( $actions['trash'] );
+				unset( $actions['inline hide-if-no-js'] );
+			}
+			
+			return $actions;
+		}
+
+
 		/***************************************************************************/
 
 		/*

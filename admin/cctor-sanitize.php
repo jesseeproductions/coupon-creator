@@ -85,39 +85,8 @@ add_filter( 'cctor_sanitize_wysiwyg', 'cctor_sanitize_wysiwyg' );
 */	
 function cctor_sanitize_textarea_w_tags( $input ) {
 
-	if ( current_user_can( 'unfiltered_html' ) ) {
-		
-		$output = stripslashes($input);
-	}
-	else {
-		//Tags for textarea code
-		$cctor_allowedtags = array(
-				'a' => array(
-					'href' => array(),
-					'alt' => array(),
-					'class' => array(),					
-					'title' => array()
-				),
-				'img' => array(
-					'src' => array(),
-					'class' => array(),		
-					'title' => array()
-				),				
-				'br' => array(),
-				'em' => array(),
-				'strong' => array(),
-				'p' => array(),
-				'ul' => array(),
-				'ol' => array(),
-				'li' => array()		
-			);
-			
-			if(has_filter('cctor_filter_allowed_tags')) {
-				echo apply_filters('cctor_filter_allowed_tags', $cctor_allowedtags);
-			} 	
+		$output = wp_kses_post( $input );
 
-		$output = wp_kses( $input, $cctor_allowedtags);
-	}
 	return $output;
 }
 add_filter( 'cctor_sanitize_textarea_w_tags', 'cctor_sanitize_textarea_w_tags' );
