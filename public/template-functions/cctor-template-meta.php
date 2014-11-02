@@ -39,6 +39,6 @@ function cctor_print_head_and_meta() { ?>
 			$cctor_style = @filemtime(utf8_decode($cctor_file));
 
 	?>
-	<link rel='stylesheet' id='coupon-style-css'  href='<?php echo $coupon_url_dir; ?>/coupon-creator/css/cctor_coupon.css?<?php echo $cctor_style; ?>' type='text/css' media='all' />
+	<link rel='stylesheet' id='coupon-style-css'  href='<?php echo esc_url($coupon_url_dir); ?>/coupon-creator/css/cctor_coupon.css?<?php echo esc_attr($cctor_style); ?>' type='text/css' media='all' />
 <?php 
 }

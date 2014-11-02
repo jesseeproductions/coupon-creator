@@ -33,8 +33,8 @@ function cctor_return_outer_coupon_wrap($coupon_id, $coupon_align) {
 	$coupon_cat_class = cctor_return_coupon_categories($coupon_id);
 	
 	$outer_coupon_wrap = array();
-	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon-creator-'. $coupon_id.'" class="type-cctor_coupon cctor_coupon_container '.$coupon_cat_class.' '.$coupon_align.'">';
+	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container here -->
+		<div id="coupon-creator-'. esc_attr($coupon_id).'" class="type-cctor_coupon cctor_coupon_container '.esc_attr($coupon_cat_class).' '.esc_attr($coupon_align).'">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							
@@ -57,15 +57,15 @@ function cctor_return_inner_coupon_wrap($coupon_id) {
 			$nofollow = "rel='nofollow'";
 		} 
 			
-		$coupon_inner_content_wrap['start_wrap'] = '<a '.$nofollow.' href="'. get_permalink($coupon_id).'" onclick="window.open(this.href);return false;">
+		$coupon_inner_content_wrap['start_wrap'] = '<a '.$nofollow.' href="'. esc_url(get_permalink($coupon_id)).'" onclick="window.open(this.href);return false;">
 			<div class="cctor_coupon">
-			<div class="cctor_coupon_content" style="border-color:'. get_post_meta($coupon_id, 'cctor_bordercolor', true).'">';
+			<div class="cctor_coupon_content" style="border-color:'. esc_attr(get_post_meta($coupon_id, 'cctor_bordercolor', true)).'">';
 	
 		$endlink = '</a>';
 
 	 } else {
 			$coupon_inner_content_wrap['start_wrap'] = '<div class="cctor_coupon">
-			<div class="cctor_coupon_content" style="border-color:'. get_post_meta($coupon_id, 'cctor_bordercolor', true).'">';
+			<div class="cctor_coupon_content" style="border-color:'. esc_attr(get_post_meta($coupon_id, 'cctor_bordercolor', true)).'">';
 	
 	 }
 
@@ -85,7 +85,7 @@ function cctor_return_print_outer_coupon_wrap($coupon_id) {
 	
 	$outer_coupon_wrap = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon-creator-'. $coupon_id.'" class="cctor_coupon_container '.$coupon_cat_class.'">';
+		<div id="coupon-creator-'. esc_attr($coupon_id).'" class="cctor_coupon_container '.esc_attr($coupon_cat_class).'">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							
@@ -100,7 +100,7 @@ function cctor_return_print_inner_coupon_wrap($coupon_id) {
 	
 	$coupon_inner_content_wrap = array();
 	$coupon_inner_content_wrap['start_wrap'] = '<div class="cctor_coupon">
-	<div class="cctor_coupon_content" style="border-color:'. get_post_meta($coupon_id, 'cctor_bordercolor', true).'">';
+	<div class="cctor_coupon_content" style="border-color:'. esc_attr(get_post_meta($coupon_id, 'cctor_bordercolor', true)).'">';
 	
 	$coupon_inner_content_wrap['end_wrap'] = '</div> <!--end .cctor_coupon_content -->
 							</div> <!--end .cctor_coupon -->';

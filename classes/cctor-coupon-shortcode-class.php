@@ -38,23 +38,7 @@ class Coupon_Creator_Shortcode {
 			'post_status' => 'publish',
 			'orderby' => $couponorderby
 		);
-		$attr = array(
-			'a' => array(
-				'href' => array(),
-				'title' => array()
-			),
-			'div' => array()
-		);
-		
-		$allowed_html = array(
-			'a' => array(
-				'href' => array(),
-				'title' => array()
-			),
-			'div' => array()
-		);
-		
-		
+				
 		//Filter for all Shortcodes
 		if(has_filter('cctor_shortcode_query_args')) {
 			$couponargs = apply_filters( 'cctor_shortcode_query_args', $couponargs );
@@ -70,7 +54,7 @@ class Coupon_Creator_Shortcode {
 		ob_start();
 		
 		do_action( 'cctor_before_coupon' ); 
-		
+			
 		// The Coupon Loop
 		while ($coupons->have_posts()) {
 
@@ -83,8 +67,7 @@ class Coupon_Creator_Shortcode {
 					
 					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align  ); 
 							
-					//echo wp_kses_post( $outer_coupon_wrap['start_wrap'] );
-					echo  $outer_coupon_wrap['start_wrap'] ;					
+					echo $outer_coupon_wrap['start_wrap'];					
 				
 						//Return If Not Passed Expiration Date
 						$couponimage = apply_filters( 'cctor_image_url' , $coupon_id  );
@@ -96,23 +79,22 @@ class Coupon_Creator_Shortcode {
 						} else { 
 						
 							$inner_coupon_wrap  = apply_filters( 'cctor_inner_content_wrap' , $coupon_id  ); 
-							
-							//echo wp_kses_attr( $inner_coupon_wrap['start_wrap'] , $attr , $allowed_html = null, $allowed_protocols= null);
-							echo $inner_coupon_wrap['start_wrap'];
 
+							echo  $inner_coupon_wrap['start_wrap'];
+							
 								do_action( 'cctor_title_coupon' , $coupon_id ); 
 								
 								do_action( 'cctor_deal_coupon' , $coupon_id ); 
 								
 								do_action( 'cctor_expiration_coupon' , $coupon_id ); 
 							
-							echo wp_kses_post( $inner_coupon_wrap['end_wrap'] );
+							echo $inner_coupon_wrap['end_wrap'];
 						
 						}
 					
 						do_action( 'cctor_coupon_link' , $coupon_id ); 
 					
-					echo wp_kses_post( $outer_coupon_wrap['end_wrap'] );	
+					echo $outer_coupon_wrap['end_wrap'];	
 					
 				} else {
 					//No Coupon Will Show So Print HTML Comment

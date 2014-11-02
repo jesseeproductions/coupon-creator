@@ -3,7 +3,7 @@
 if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	die( 'Access denied.' );
 
-	/*
+/*
 * Coupon Creator Check if Coupon Should Show
 * @version 1.90
 */
@@ -29,8 +29,6 @@ function cctor_expiration_check($coupon_id) {
 			return false;
 			
 		}
-		
-		
 }	
 
 /*
@@ -72,7 +70,7 @@ function cctor_show_expiration($coupon_id) {
 		$expirationco = date("d/m/Y", $cc_expiration_date);
 		}	?>
 	
-	<div class="cctor_expiration"><?php _e('Expires on:', 'coupon_creator'); ?>&nbsp;<?php echo $expirationco; ?></div>
+	<div class="cctor_expiration"><?php echo __('Expires on:', 'coupon_creator'); ?>&nbsp;<?php echo esc_html($expirationco); ?></div>
 	
 	<?php }
 }	
@@ -84,6 +82,6 @@ function cctor_show_no_coupon_comment($coupon_id) {
 	//Coupon Expiration Date
 	$expirationco = get_post_meta($coupon_id, 'cctor_expiration', true);
 	
-	?><!-- Coupon "<?php echo get_the_title($coupon_id);?>" Has Expired on <?php echo $expirationco; ?>--><?php
+	?><!-- Coupon "<?php echo get_the_title($coupon_id);?>" Has Expired on <?php echo esc_html($expirationco); ?>--><?php
 
 }	

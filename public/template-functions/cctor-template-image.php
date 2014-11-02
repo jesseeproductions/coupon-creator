@@ -35,6 +35,6 @@ function cctor_show_print_img_url($coupon_id) {
 */
 function cctor_show_print_img( $coupon_id, $couponimage) {
 
-	?><img class='cctor_coupon_image' src='<?php echo $couponimage; ?>' alt='' title=''><?php
+	?><img class='cctor_coupon_image' src='<?php echo esc_url($couponimage); ?>' alt='' title=''><?php
 	
 }

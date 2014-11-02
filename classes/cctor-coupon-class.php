@@ -48,7 +48,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) );
 			
 			//Register Custom Taxonomy
-			Coupon_Creator_Plugin::include_file( 'classes/cctor-taxonomy.php' );
+			Coupon_Creator_Plugin::include_file( 'classes/cctor-taxonomy-class.php' );
 			new Coupon_Creator_Taxonomy_Class();
 			
 			//Setup Capabilities
@@ -93,11 +93,12 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
 			
 			//Register Coupon Shortcode
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-coupon-shortcode.php' );
+			Coupon_Creator_Plugin::include_file( 'classes/cctor-coupon-shortcode-class.php' );
 			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
-			
-			//Add Shortcode Functions
-			add_action( 'cctor_before_coupon', array( 'Coupon_Creator_Shortcode', 'cctor_shortcode_functions' ), 100);	
+				
+			//Build Shortcode
+			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-build-shortcode.php' );
+			add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 100);	
 			
 			//Load Single Coupon Template
 			add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );

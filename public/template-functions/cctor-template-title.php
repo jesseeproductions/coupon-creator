@@ -8,7 +8,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 * @version 1.90
 */
 function cctor_show_title($coupon_id) {
-	?><h3 style="background-color:<?php echo get_post_meta($coupon_id, 'cctor_colordiscount', true);  ?>; color:<?php echo get_post_meta($coupon_id, 'cctor_colorheader', true); ?>!important;"> <!--style bg of discount -->
-	<?php echo get_post_meta($coupon_id, 'cctor_amount', true);  ?></h3><?php
+	?><h3 style="background-color:<?php echo esc_attr(get_post_meta($coupon_id, 'cctor_colordiscount', true));  ?>; color:<?php echo esc_attr(get_post_meta($coupon_id, 'cctor_colorheader', true)); ?>!important;">
+	<?php echo esc_html(get_post_meta($coupon_id, 'cctor_amount', true));  ?></h3><?php
 
 }
