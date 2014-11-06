@@ -302,10 +302,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								
 								case 'select': 
 								
-								/*echo $meta ."<br>";
-								echo $field['value'] ."<br>";
-								$selected = ""; */
-								
 								//Find Current Selected Value or use Default
 								if ($meta) {
 									$selected = $meta;
@@ -378,12 +374,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		
 							} //end switch
 
-						if ($field['type'] =="wysiwyg") {	
-							//print_r($field);	
-							//echo $field['section'];
-							//print_r($metabox);
-							//echo $metabox['id'];
-						}	
 						if(has_filter('cctor_filter_meta_cases')) {
 							// this adds any addon fields (from plugins) to the array
 							echo apply_filters('cctor_filter_meta_cases', $field, $meta);
@@ -459,7 +449,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'tab' => 'content'
 				);			
 				$coupon_creator_meta_fields[$prefix . 'description'] =	array(
-					'label' => __('Terms:', 'coupon_creator' ),
+					'label' => __('Terms', 'coupon_creator' ),
 					'desc' => __('Enter the terms of the discount', 'coupon_creator' ),
 					'id' => $prefix . 'description',
 					'type'  => 'textarea_w_tags',
@@ -523,7 +513,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'tab' => 'expiration'
 				);	
 				$coupon_creator_meta_fields[$prefix . 'expiration'] =	array(
-					'label' => __('Expiration Date:', 'coupon_creator' ),
+					'label' => __('Expiration Date', 'coupon_creator' ),
 					'id' => $prefix . 'expiration',
 					'desc' => __('The coupon will not display without the date and will not display on your site after the date', 'coupon_creator' ),
 					'type'  => 'date',
@@ -558,7 +548,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'  => __('Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon_creator' ),
 					'id'    => $prefix . 'image',
 					'type'  => 'image',
-					'image'  => 'Optional Coupon Image',
+					'image'  => 'Image Coupon',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'image_coupon'
 				);	
@@ -573,7 +563,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'tab' => 'help'
 				);		
 				$coupon_creator_meta_fields[$prefix . 'videos'] =	array(
-					'label'  => __( 'Coupon Creator How to Videos:', 'coupon_creator' ),
+					'label'  => __( 'Coupon Creator How to Videos', 'coupon_creator' ),
 					'id'    => $prefix . 'videos',
 					'type'  => 'cctor_videos',
 					'section' => 'coupon_creator_meta_box',
@@ -642,36 +632,10 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								delete_post_meta($post_id, $option['id'], $old);
 							}
 						
-							//$clean[$option['id']] = apply_filters( 'cctor_sanitize_' . $option['type'], $_POST[$option['id']], $option );
-							
-							
 						}	
 					}
 
-				}				
-				
-				//Loop Through Sanitized Data and Save to MetaBox if different from existing
-				/*foreach ($clean as $key => $value ) {
-
-						$old = get_post_meta($post_id, $key, true);
-						$new = $value;
-						
-						/*if ( $key == "cctor_date_format") {
-							echo $old ." old<br>";
-							echo $new ." new<br>";
-							if ( !is_null($new)  && $new != $old) {
-								echo $new ." new2<br>";
-							}
-						}*//*
-						
-						if ( !is_null($new) && $new != $old) {
-							update_post_meta($post_id, $key, $new);
-						} elseif ('' == $new && $old) {
-							delete_post_meta($post_id, $key, $old);
-						} 
-				} */
-			
-			
+				}					
 		}
 		
 			/***************************************************************************/	

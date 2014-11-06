@@ -55,6 +55,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->sections['defaults']     = __( 'Defaults', 'coupon_creator' );
 			$this->sections['permalinks']   = __( 'Link Attributes / Permalinks', 'coupon_creator' );
 			$this->sections['display'] 		= __( 'Display', 'coupon_creator' );
+			$this->sections['help']        = __( 'Help', 'coupon_creator' );
 			$this->sections['reset']        = __( 'Reset', 'coupon_creator' );
 			$this->sections['pro']        = __( 'Pro', 'coupon_creator' );
 
@@ -181,6 +182,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				
 					if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true )
 						echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.' ) . '</p></div>';
+										
 					
 					echo '<form action="options.php" method="post">';
 				
@@ -247,7 +249,34 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					/*Hide Row if Label is Empty*/
 					jQuery(".form-table label:empty").parent().hide();
 
-				</script>
+				</script>';
+				
+				echo '<!-- Begin MailChimp Signup Form -->
+					<div id="mc_embed_signup">
+						<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+						
+							<div id="mc_embed_signup_scroll">
+							
+							<h3>Sign Up for Coupon Creator Updates, Tips, and More</h3>
+						<div class="mc-field-group">
+							<input type="email" value="" placeholder="email address" name="EMAIL" class="required email" id="mce-EMAIL">
+						</div>
+						
+							<div id="mce-responses">
+								<div class="response" id="mce-error-response" style="display:none"></div>
+								<div class="response" id="mce-success-response" style="display:none"></div>
+							</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+							
+							<div style="position: absolute; left: -5000px;"><input type="text" name="b_f2b881e89d24e6f424aa25aa5_2b82660ba0" tabindex="-1" value=""></div>
+							
+
+							<input type="submit" value="Sign Me Up" name="subscribe" id="mc-embedded-subscribe" class="button">
+					
+							</div>
+						</form>
+					</div>
+
+						<!--End mc_embed_signup-->
 							
 				<p style="text-align:right;">&copy; '.date("Y").' Jessee Productions, LLC</p>
 			
@@ -269,33 +298,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* Coupon Creator About Section
 		* @version 1.80
 		*/
-		public function display_about_section() {
+		public function display_help_section() {
 			
-			echo '<p>Copyright '.date("Y").' Jessee Productions, LLC</p>';
-			
-			echo '<!-- Begin MailChimp Signup Form -->
-					<div id="mc_embed_signup">
-					<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-						<div id="mc_embed_signup_scroll">
+			echo '';
 						
-					<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
-					<div class="mc-field-group">
-						<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
-					</label>
-						<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-					</div>
-						<div id="mce-responses" class="clear">
-							<div class="response" id="mce-error-response" style="display:none"></div>
-							<div class="response" id="mce-success-response" style="display:none"></div>
-						</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-						<div style="position: absolute; left: -5000px;"><input type="text" name="b_f2b881e89d24e6f424aa25aa5_2b82660ba0" tabindex="-1" value=""></div>
-						<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-						</div>
-					</form>
-					</div>
-
-					<!--End mc_embed_signup-->';
-			
 		}
 		
 		/*
@@ -512,7 +518,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type'    => 'heading'
 			);			
 			$this->options['cctor_coupon_base'] = array(
-				'title'   => __( 'Coupon Creator Base', 'coupon_creator' ),
+				'title'   => __( 'Coupon Print Template Slug', 'coupon_creator' ),
 				'desc'    => __( 'default: cctor_coupon', 'coupon_creator' ),
 				'std'     => '',
 				'type'    => 'text',
@@ -584,8 +590,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			register_setting( 'coupon_creator_options', 'coupon_creator_options', array ( &$this, 'validate_options' ) );
 			
 			foreach ( $this->sections as $slug => $title ) {
-				if ( $slug == 'about' )
-					add_settings_section( $slug, $title, array( &$this, 'display_about_section' ), 'coupon-options' );
+				if ( $slug == 'help' )
+					add_settings_section( $slug, $title, array( &$this, 'display_help_section' ), 'coupon-options' );
 				elseif ( $slug == 'pro' )
 					add_settings_section( $slug, $title, array( &$this, 'display_pro_section' ), 'coupon-options' );	
 				else

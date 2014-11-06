@@ -15,7 +15,7 @@ function cctor_show_img_coupon($coupon_id, $couponimage) {
 			$nofollow = "rel='nofollow'";
 		}
 		//Set Image Link
-		?><a target='_blank' <?php echo esc_attr($nofollow); ?> href='<?php echo esc_url(get_permalink($coupon_id)); ?>' title='Click to Open in Print View'><img class='cctor_coupon_image' src='<?php echo  esc_url($couponimage); ?>' alt='<?php echo get_the_title($coupon_id); ?>' title='Coupon <?php echo get_the_title($coupon_id); ?>'></a><?php
+		?><a class="coupon_link" target='_blank' <?php echo esc_attr($nofollow); ?> href='<?php echo esc_url(get_permalink($coupon_id)); ?>' title='Click to Open in Print View'><img class='cctor_coupon_image' src='<?php echo  esc_url($couponimage); ?>' alt='<?php echo get_the_title($coupon_id); ?>' title='Coupon <?php echo get_the_title($coupon_id); ?>'></a><?php
 	} else {
 		//No Links for Image Coupon or Click to Print
 		?><img class='cctor_coupon_image' src='<?php echo esc_url($couponimage); ?>' alt='<?php echo get_the_title($coupon_id); ?>' title='Coupon <?php echo get_the_title($coupon_id); ?>'><?php

@@ -1,10 +1,10 @@
 === Coupon Creator ===
 Contributors: brianjessee
 Plugin Name: Coupon Creator
-Plugin URI: http://jesseeproductions.com/coupon-creator/
+Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Requires at least: 3.6
+Requires at least: 3.8
 Tested up to: 4.0
 Stable tag: 1.90 Beta
 License: GPLv2
@@ -13,6 +13,10 @@ License URI: http://www.opensource.org/licenses/GPL-2.0
 Create coupons to display on your site by using a shortcode.
 
 == Description ==
+
+> <strong>Support on WordPress.org</strong> is for troubleshooting bugs and related issues. The forums are monitored and replied to within a weeks time. 
+>
+> If you are looking for more in-depth and responsive support please check out <a href="http://couponcreatorplugin.com/" target="_blank" title="[new window]">Coupon Creator Pro</a>.
 
 Create your own coupon with the Coupon Creator for WordPress or upload an image of a coupon instead.
 
@@ -90,7 +94,7 @@ New Features in the works include a visual editor to make coupons, background co
 
 == Installation ==
 
-1. Upload '/coupon_creator/' to the '/wp-content/plugins/' directory
+1. Upload '/coupon-creator/' to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Create a coupon under the coupon custom post type and insert shortcode into content using shortcode
 	[coupon couponid="xx" coupon_align="cctor_aligncenter" name="Coupon Name"]
@@ -105,6 +109,9 @@ New Features in the works include a visual editor to make coupons, background co
 6. Shortcode in WordPress Editor
 
 == Changelog ==
+= 1.90 =
+
+
 = 1.80 =
 * Added Expiration Date and If Ignore Expiration is on to the Coupon Listing
 * Added class for Options including, Custom CSS, Default, Colors, nofollow on print link, hide print link, improved permalink 
@@ -185,25 +192,16 @@ New Features in the works include a visual editor to make coupons, background co
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 1.81 =
+= 1.90 =
 New options added including custom css on the Options Panel, plus bug fixes and improved coding.
 If you set a custom permalink, go to the options page and add it back to the options page and resave for it to work. 
 
 == Frequently Asked Questions ==
-<h4>How big of an image is the coupon?</h4>
-There are two sizes, but the image uploaded should be 400 pixels by 200 pixels to display correctly.
-
 <h4>What if I have support questions?</h4>
-Please use the [Coupon Creator Support Forum](http://wordpress.org/support/plugin/coupon-creator) on WordPress.
+Please ask on the [Coupon Creator Support Forum](http://wordpress.org/support/plugin/coupon-creator) on WordPress. For Pro users please visit [Coupon Creator Pro](http://couponcreatorplugin.com). On CouponCreatorPlugin.com there are documentation on the css and hooks of the coupon creator as well as more answers to questions and premium tutorials as well. 
 
-<h4>How do I customize the coupon (make bigger, change layout, etc...)?</h4>
-There is no direct way to customize the look of the coupon in the WordPress dashboard. All customizations would involve modifying the css, the shortcode file, and the single template file. If you are interested in a custom design please contact [Brian](http://jesseeproductions.com/contact/) about a price.
-
-<h4>Can I have both an image and text in the coupon? </h4>
-You can add html coding to the discount box, but there is no visual editor to do it.
-
-<h4>My coupon was working and now it does not display, how can I fix it? </h4>
-Please check if the expiration date has passed and whether or not the ignore expiration is checked. If it is checked or the date is still in the future, please post on the Support Forum in WordPress about the issue and include a link to the page so I can check for errors.
+<h4>The Coupon Inserter, Image Uploader, the Expiration Date Picker, or the Color Pickers are not working, what is wrong?</h4>
+Most likely this is a JavaScript error and could be caused by another plugin or your theme. Please check the Developer Console for your browser and see if there is an error. If you post the error on the support forum I maybe able to help. Otherwise try disabling plugins and changing themes to try and find the sources as well.
 
 <h4>How do I fix 404 Errors on the Print View of the Coupons? </h4>
 The cause of the conflict can be hosting, plugin, or theme related.
@@ -211,17 +209,8 @@ Try first to resave your permalinks and then check the Print View.
 If that does not work, try disabling plugins and/or changing the themes and check again.
 If none of that works, it could be a conflict with the hosting setup.
 
-<h4>How to do I translate the Coupon Creator? (1.50) </h4>
-To add a translation, please reply to the Translation Post with the language and country. The post is in the Support Forum and it will be added to the next version of the Coupon Creator.
-
-= Please translate the following phrases: =
-*   Click to Print
-*   Click to Open in Print View
-*   Expires On:
-
-= Current Translations included: =
-*   English (Default)
-*   Spanish (Thanks to Carmen in Miami)
+<h4>My coupon was working and now it does not display, how can I fix it? </h4>
+Please check if the expiration date has passed and whether or not the ignore expiration is checked. If it is checked or the date is still in the future, please post on the Support Forum in WordPress about the issue and include a link to the page so I can check for errors.
 
 <h4>Where does the shortcode go? </h4>
 Insert the shortcode in the content editor of a post, page, or custom post type.
@@ -234,15 +223,22 @@ add_filter('widget_text', 'do_shortcode');
 <h4>How can I prevent coupons from appearing in a site search? </h4>
 By default the coupons are excluded from search. However, if you add coding to show custom post types in the search, you would have to exclude the custom post type, cctor_coupon.
 
-<h4>How can I remove the Click to Open in Print View or Click to Print Text? </h4>
-You either modify the shortcode and the template file or use CSS to hide the display of either.
+<h4>How big of an image is the coupon?</h4>
+There are two sizes, but the image uploaded should be 400 pixels by 200 pixels to display correctly.
 
-<h4>Does the Coupon Creator have custom capabilities for WordPress users? </h4>
-No, there are no custom capabilities for users. The plugin is designed to work on single sites and not directory sites.
+Does the Coupon Creator have custom capabilities for WordPress users?
+Yes, with version 1.90 custom capabilities have been added. See Documentation at CouponCreatorPlugin.com for more information. 
 
 <h4>Can I change cctor_coupon in the print view permalink? </h4>
-With version 1.70 you can change the slug of the permalink in the settings section of the plugin. Found under the Coupon Creator Heading.
+With version 1.70 you can change the slug of the permalink in the Options section of the plugin. Coupon > Options > Permalink Tab
 
-<h4>The Coupon Inserter, Image Uploader, the Expiration Date Picker, or the Color Pickers are not working, what is wrong?</h4>
-Most likely this is a JavaScript error and could be caused by another plugin or your theme. Please check the Developer Console for your browser and see if there is an error. If you post the error on the support forum I maybe able to help. Otherwise try disabling plugins and changing themes to try and find the sources as well.
+<h4>Can I have both an image and text in the coupon? </h4>
+You can add html coding to the discount box, but there is no visual editor to do it.
 
+<h4>How do I customize the coupon (make bigger, change layout, etc...)?</h4>
+There is no direct way to customize the look of the coupon in the WordPress dashboard beyond the change of colors without doing custom coding. In Coupon Creator Pro, there are more options to modify the look of the coupons including background images, the visual editor for terms, set default sizes for coupons andimage coupons as well, and many more options. 
+
+How can I remove the Click to Open in Print View or Click to Print Text?
+With version 1.90 on this tab Coupons > Options > Link Attributes/Permalinks Tab you can choose to hide the Click to Open in Print View Link for all Coupons. 
+
+For more answers as well as documentation please visit [Coupon Creator Pro](http://couponcreatorplugin.com)

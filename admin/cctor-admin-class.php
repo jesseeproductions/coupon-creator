@@ -239,11 +239,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					$cc_expiration_date = strtotime($expirationco);
 					
 					if ($expirationco) { // Only Display Expiration if Date
-						$daymonth_date_format = get_post_meta($post_id, 'cctor_date_format', true); //Date Format
+						$daymonth_date_format = cctor_options('cctor_default_date_format'); //Date Format
 						
 						if ($daymonth_date_format == 1 ) { //Change to Day - Month Style
 						$expirationco = date("d/m/Y", $cc_expiration_date);
 						}
+						
 						echo $expirationco;
 					}
 					

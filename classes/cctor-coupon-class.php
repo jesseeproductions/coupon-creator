@@ -97,14 +97,14 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
 				
 			//Build Shortcode
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-build-shortcode.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-shortcode-build.php' );
 			add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 100);	
 			
 			//Load Single Coupon Template
 			add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );
 			
 			//Include Print Template Hook Build
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-single-build.php' );	
+			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-print-build.php' );	
 			
 			//Add Print Template Functions
 			add_action( 'cctor_action_print_template', 'cctor_print_template', 100);			
@@ -119,13 +119,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		 */
 		protected function cctor_Load_Template_Functions() {
 			//Load Template Functions
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-meta.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-expiration.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-wraps.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-image.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-title.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-deal.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-template-links.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-meta.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-expiration.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-wraps.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-image.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-title.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-deal.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-links.php' );
 		}
 		
 	/***************************************************************************/
@@ -305,7 +305,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			
 			$cctor_option_css = "";
 			/* 
-			*  Filter the Dimensions and Min Height
+			*  Filter to Add More Custom CSS
 			*/
 			if(has_filter('cctor_filter_inline_css')) {
 				$coupon_css = "";
@@ -318,7 +318,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				$cctor_option_css .= cctor_options('cctor_custom_css');				
 			}
 			
-			wp_add_inline_style( 'coupon_creator_css', $cctor_option_css );
+			wp_add_inline_style( 'coupon_creator_css', wp_kses_post($cctor_option_css) );
 		}
 		/*
 		* Register Coupon Creator Image Sizes
@@ -346,7 +346,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		public static function cctor_get_coupon_post_type_template($print_template) {
 			 global $post;
 			 if ($post->post_type == 'cctor_coupon') {
-				  $print_template = CCTOR_PATH. 'public/templates/single-coupon.php';
+				  $print_template = CCTOR_PATH. 'public/templates/print-coupon.php';
 			 }
 			 return $print_template;
 		}
@@ -359,12 +359,27 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* 
 		*/
 		public static function cctor_print_css(  ) {
-		
+			
+			$cctor_option_css = "";
+			/* 
+			*  Filter to Add More Custom CSS
+			*/
+			if(has_filter('cctor_filter_inline_css')) {
+				$coupon_css = "";
+				
+				$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
+			} 
+			//Add Custom CSS from Options				
 			if (cctor_options('cctor_custom_css')) {
+					
+				$cctor_option_css .= cctor_options('cctor_custom_css');				
+			}
+			
+			if ($cctor_option_css) {
 				ob_start(); ?>
-				<!-- User Coupon Style from the options Page -->
+				<!--  Coupon Style from the Options Page and Filter -->
 					<style type='text/css'>
-						<?php echo cctor_options('cctor_custom_css'); ?>
+						<?php echo wp_kses_post($cctor_option_css); ?>
 					</style>
 				<?php echo ob_get_clean();
 			}
