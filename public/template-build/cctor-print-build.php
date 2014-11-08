@@ -26,11 +26,11 @@ function cctor_print_template() {
 
 	add_filter('cctor_print_inner_content_wrap', 'cctor_return_print_inner_coupon_wrap', 10 , 1);
 
-	add_action('cctor_print_title_coupon', 'cctor_show_title', 10, 1 ); 
+	add_action('cctor_print_coupon_deal', 'cctor_show_deal', 10, 1 ); 
 
-	add_action('cctor_print_deal_coupon', 'cctor_show_deal', 10, 1 ); 
+	add_action('cctor_print_coupon_terms', 'cctor_show_terms', 10, 1 ); 
 
-	add_action('cctor_print_expiration_coupon', 'cctor_show_expiration', 10, 1 ); 
+	add_action('cctor_print_coupon_expiration', 'cctor_show_expiration', 10, 1 ); 
 
 	add_action('cctor_click_to_print_coupon', 'cctor_show_print_click', 10, 1 ); 
 

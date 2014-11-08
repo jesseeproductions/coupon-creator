@@ -4,10 +4,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	die( 'Access denied.' );
 
 /*
-* Coupon Creator Print Template Deal
+* Coupon Creator Print Template Title
 * @version 1.90
 */
 function cctor_show_deal($coupon_id) {
-	?><div class="cctor_deal"><?php echo cctor_sanitize_textarea_w_tags(get_post_meta($coupon_id, 'cctor_description', true));  ?></div><?php
+	?><h3 style="background-color:<?php echo esc_attr(get_post_meta($coupon_id, 'cctor_colordiscount', true));  ?>; color:<?php echo esc_attr(get_post_meta($coupon_id, 'cctor_colorheader', true)); ?>;">
+	<?php echo esc_html(get_post_meta($coupon_id, 'cctor_amount', true));  ?></h3><?php
 
 }

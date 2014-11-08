@@ -40,9 +40,46 @@ jQuery(document).ready(function($) {
 			if (index > 0)
 				$(this).addClass("cctor-tabs-hide");
 		});
-		$(".cctor-tabs").tabs({
-			fx: { opacity: "toggle", duration: "fast" }
-		});
+		
+		$(function() {
+			//  http://stackoverflow.com/questions/4299435/remember-which-tab-was-active-after-refresh
+			//	jQueryUI 1.10 and HTML5 ready
+			//      http://jqueryui.com/upgrade-guide/1.10/#removed-cookie-option 
+			//  Documentation
+			//      http://api.jqueryui.com/tabs/#option-active
+			//      http://api.jqueryui.com/tabs/#event-activate
+			//      http://balaarjunan.wordpress.com/2010/11/10/html5-session-storage-key-things-to-consider/
+			//
+			//  Define friendly index name
+			var values = getQueryParams();
+			
+			var index = "cctor-meta-tab" + values['post'];
+			
+			//  Define friendly data store name
+			var dataStore = window.sessionStorage;
+			//  Start magic!
+			try {
+				// getter: Fetch previous value
+				var oldIndex = dataStore.getItem(index);
+			} catch(e) {
+				// getter: Always default to first tab in error state
+				var oldIndex = 0;
+			}
+
+			// Tab initialization
+			$(".cctor-tabs").tabs({
+			   // The zero-based index of the panel that is active (open)
+				active : oldIndex,
+				// Triggered after a tab has been activated
+				activate : function( event, ui ){
+					//  Get future value
+					var newIndex = ui.newTab.parent().children().index(ui.newTab);
+					//  Set future value
+					dataStore.setItem( index, newIndex ) 
+				},
+				fx: { opacity: "toggle", duration: "fast" },
+			});
+		}); 
 		
 		$("input[type=text], textarea").each(function() {
 			if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "")
@@ -75,47 +112,8 @@ jQuery(document).ready(function($) {
 */
 jQuery(document).ready(function ($) {    
 
-	var myOptions = {
-    defaultColor: false,
-    // a callback to fire whenever the color changes to a valid color
-    change: function(event, ui){cctor_color_preview();},
-    // a callback to fire when the input is emptied or an invalid color
-    clear: function() {},
-    // hide the color picker controls on load
-    hide: true,
-    // show a group of common colors beneath the square
-    // or, supply an array of colors to customize further
-    palettes: true
-};
-
-
-    $('.color-picker').wpColorPicker(myOptions);
+    $('.color-picker').wpColorPicker();
 	
-	function cctor_color_preview() {
-	console.log(this);
-	
-	var hexcolor = $('input.color-picker').val();
-	
-	console.log(hexcolor);
-	$('.cctor_colordiscount').css('background', hexcolor);
-}
-
-//Discount Background Color
-/*jQuery('#cctor_colordiscount').change(function(){
-	
-	console.log('change');
-	
-   var $this = jQuery(this);
-   
-   var color = jQuery(this).val();
-   
-   console.log($this.attr('id'));
-   console.log(color);
-	
-   jQuery('.'+$this.attr('id')+'').css('background', color);
-   
-}); */
-
 });
 
 
@@ -181,14 +179,26 @@ jQuery(document).ready(function($){
         e.preventDefault();
 		var coupon_remove_input_id = 'input#'+this.id+'.upload_coupon_image';
 		var coupon_img_src = 'img#'+this.id+'.cctor_coupon_image';
-		//var coupon_default_img_src = $('img#'+this.id+'.cctor_coupon_default_image').attr("src");
-		console.log(coupon_remove_input_id);
-		console.log(coupon_img_src);
-		//console.log(coupon_default_img_src);
-		
+
 		$(coupon_remove_input_id).val('');
 		$(coupon_img_src).hide();
 		$('div#'+this.id+'.cctor_coupon_default_image').show();
     });
  
 });
+
+
+function getQueryParams( val ) {
+	//Use the window.location.search if we don't have a val.
+	var query = val || window.location.search;
+	query = query.split('?')[1]
+	var pairs = query.split('&');
+	var retval = {};
+	var check = [];
+	for( var i = 0; i < pairs.length; i++ ) {
+		check = pairs[i].split('=');
+		retval[decodeURIComponent(check[0])] = decodeURIComponent(check[1]);
+	}
+
+	return retval;
+}

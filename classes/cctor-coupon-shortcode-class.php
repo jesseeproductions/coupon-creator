@@ -20,36 +20,44 @@ class Coupon_Creator_Shortcode {
 	   }	 
 	   
 	   //Coupon ID is the Custom Post ID
-	   extract(shortcode_atts(array(
+	   $cctor_atts = shortcode_atts(array(
 		"totalcoupons" => '-1',
 		"couponid" => '',
 		"coupon_align" => 'cctor_alignnone',
 		"couponorderby" => 'date',
 		"category" => '',
 		"filterid" => ''
-		), $atts ) );
-
+		), $atts, 'coupon' );
+		
+		$filterid = '';
+		$coupon_align = '';
+		
+		$filterid = esc_attr($cctor_atts['filterid']);		
+		$coupon_align = esc_attr($cctor_atts['coupon_align']);
+		
 		// Setup Query for Either Single Coupon or a Loop
-			$couponargs = array(
-			'p' => $couponid,
-			'posts_per_page' => $totalcoupons,
-			'cctor_coupon_category' => $category,
+		$cctor_args = array(
+			'p' => esc_attr($cctor_atts['couponid']),
+			'posts_per_page' =>  esc_attr($cctor_atts['totalcoupons']),
+			'cctor_coupon_category' =>  esc_attr($cctor_atts['category']),
 			'post_type' => 'cctor_coupon',
 			'post_status' => 'publish',
-			'orderby' => $couponorderby
+			'orderby' =>  esc_attr($cctor_atts['couponorderby'])
 		);
 				
 		//Filter for all Shortcodes
 		if(has_filter('cctor_shortcode_query_args')) {
-			$couponargs = apply_filters( 'cctor_shortcode_query_args', $couponargs );
+			$cctor_args = apply_filters( 'cctor_shortcode_query_args', $cctor_args );
 		}
 		
 		//Custom Filter ID Set in Shortcode
-		if(has_filter('cctor_shortcode_query_args_'.$filterid)) {
-			$couponargs = apply_filters( 'cctor_shortcode_query_args_'.$filterid, $couponargs );
-		}		
+		if ($filterid) {
+			if(has_filter('cctor_shortcode_query_args_'.$filterid)) {
+				$cctor_args = apply_filters( 'cctor_shortcode_query_args_'.$filterid, $cctor_args );
+			}		
+		}
 		
-		$coupons = new WP_Query($couponargs);
+		$coupons = new WP_Query($cctor_args);
 		
 		ob_start();
 		
@@ -82,11 +90,11 @@ class Coupon_Creator_Shortcode {
 
 							echo  $inner_coupon_wrap['start_wrap'];
 							
-								do_action( 'cctor_title_coupon' , $coupon_id ); 
+								do_action( 'cctor_coupon_deal' , $coupon_id ); 
 								
-								do_action( 'cctor_deal_coupon' , $coupon_id ); 
+								do_action( 'cctor_coupon_terms' , $coupon_id ); 
 								
-								do_action( 'cctor_expiration_coupon' , $coupon_id ); 
+								do_action( 'cctor_coupon_expiration' , $coupon_id ); 
 							
 							echo $inner_coupon_wrap['end_wrap'];
 						

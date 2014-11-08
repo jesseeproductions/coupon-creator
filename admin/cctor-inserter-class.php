@@ -93,14 +93,18 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 								var coupon_shortcode = "coupon";
 								var coupon_category = jQuery("#coupon_category_select").val();
 								var coupon_category = " category=\""+ coupon_category + "\" ";
+								
+								var coupon_orderby = jQuery("#coupon_orderby").val();
+								var coupon_orderby = " couponorderby=\""+ coupon_orderby + "\" ";								
 							} else {
 								var coupon_shortcode = "coupon";
 								var coupon_category = "";
+								var coupon_orderby = "";
 							}
 						var coupon_name = jQuery("#coupon_select option[value='" + coupon_id + "']").text().replace(/[\[\]]/g, '');
 						var cctor_align = jQuery("#coupon_align").val();
 						var coupon_align = jQuery("#coupon_align option[value='" + cctor_align + "']").text().replace(/[\[\]]/g, '');
-						window.send_to_editor("[" + coupon_shortcode + " couponid=\"" + coupon_id + "\"" + coupon_category + " coupon_align=\"" + cctor_align + "\" name=\"" + coupon_name + "\"]");
+						window.send_to_editor("[" + coupon_shortcode + " couponid=\"" + coupon_id + "\"" + coupon_category + coupon_orderby +" coupon_align=\"" + cctor_align + "\" name=\"" + coupon_name + "\"]");
 					}
 
 					//Toggle Category Input when Loop Selected
@@ -109,19 +113,24 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 						var coupon_selection = coupon_select.options[coupon_select.selectedIndex].value;
 
 						var category_select = document.getElementById("coupon_category_select_container");
+						var orderby_select = document.getElementById("coupon_orderby_select_container");
 
 						if (coupon_selection == "loop") {
 							category_select.style.visibility = "visible";
+							orderby_select.style.visibility = "visible";
 						}
 						else {
 							category_select.style.visibility = "hidden";
+							orderby_select.style.visibility = "hidden";
 						}
 					}
 				</script>
 
 				<style>
+					#coupon_orderby_select_container,
 					#coupon_category_select_container {
 						visibility: hidden;
+						margin-top: 15px;
 					}
 				</style>
 
@@ -148,7 +157,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 						</select><br> <!--End Select Box Coupons-->
 
 					<!--Create a Select Box for Categories -->
-					<div id="coupon_category_select_container"><br>
+					<div id="coupon_category_select_container">
 						<label for="coupon-categories">Select a Coupon Category to use in the Loop</label>
 							<select id="coupon_category_select" name="coupon_category_select">
 							<option value="#" ></option>
@@ -181,6 +190,21 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 							 <option value="cctor_alignright">Align Right</option>
 							 <option value="cctor_aligncenter">Align Center</option>
 						</select><br> <!--End Select Box Align -->
+						
+					<!--Create a Select Box for Orderby -->
+					<div id="coupon_orderby_select_container">
+						<label for="coupon_orberby_select_box">Select a Coupon Category to use in the Loop</label>
+							<select id="coupon_orderby" name="coupon_orberby_select_box">
+							 <option value="date">Date (default)</option>
+							 <option value="none">None</option>
+							 <option value="ID">ID</option>
+							 <option value="author">Author</option>
+							 <option value="title">Coupon Post Title</option>
+							 <option value="name">Slug Name</option>
+							 <option value="modified">Last Modified</option>
+							 <option value="rand">Random</option>								 
+						</select><br> <!--End Select Box Align -->	
+					</div>	
 				</div> <!--End Div -->
 				
 				<br/>

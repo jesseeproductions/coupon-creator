@@ -123,8 +123,8 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-expiration.php' );
 			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-wraps.php' );
 			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-image.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-title.php' );
 			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-deal.php' );
+			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-terms.php' );
 			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-links.php' );
 		}
 		

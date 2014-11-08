@@ -19,11 +19,11 @@ function cctor_shortcode_functions() {
 
 	add_filter('cctor_inner_content_wrap', 'cctor_return_inner_coupon_wrap', 10 , 1);
 
-	add_action('cctor_title_coupon', 'cctor_show_title', 10, 1 ); 
+	add_action('cctor_coupon_deal', 'cctor_show_deal', 10, 1 ); 
 
-	add_action('cctor_deal_coupon', 'cctor_show_deal', 10, 1 ); 
+	add_action('cctor_coupon_terms', 'cctor_show_terms', 10, 1 ); 
 
-	add_action('cctor_expiration_coupon', 'cctor_show_expiration', 10, 1 ); 
+	add_action('cctor_coupon_expiration', 'cctor_show_expiration', 10, 1 ); 
 
 	add_action('cctor_coupon_link', 'cctor_show_link', 10, 1 ); 
 

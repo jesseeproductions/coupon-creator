@@ -98,7 +98,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			//Script for WP Color Picker
 			wp_enqueue_script( 'wp-color-picker' );
 			$cctor_coupon_meta_js = CCTOR_PATH.'admin/js/cctor_coupon_options.js';
-			wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . '/admin/js/cctor_coupon_options.js', array('jquery','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);	
+			wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . 'admin/js/cctor_coupon_options.js', array('jquery','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);	
 			
 			//Hook to Load New Scripts
 			do_action('cctor_opitons_scripts');
@@ -217,9 +217,43 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 							if (index > 0)
 								$(this).addClass("cctor-tabs-hide");
 						});
-						$(".cctor-tabs").tabs({
-							fx: { opacity: "toggle", duration: "fast" }
-						});
+						
+						$(function() {
+							//  http://stackoverflow.com/questions/4299435/remember-which-tab-was-active-after-refresh
+							//	jQueryUI 1.10 and HTML5 ready
+							//      http://jqueryui.com/upgrade-guide/1.10/#removed-cookie-option 
+							//  Documentation
+							//      http://api.jqueryui.com/tabs/#option-active
+							//      http://api.jqueryui.com/tabs/#event-activate
+							//      http://balaarjunan.wordpress.com/2010/11/10/html5-session-storage-key-things-to-consider/
+							//
+							//  Define friendly index name
+							var index = "cctor-option-tab";
+							//  Define friendly data store name
+							var dataStore = window.sessionStorage;
+							//  Start magic!
+							try {
+								// getter: Fetch previous value
+								var oldIndex = dataStore.getItem(index);
+							} catch(e) {
+								// getter: Always default to first tab in error state
+								var oldIndex = 0;
+							}
+							
+							// Tab initialization
+							$(".cctor-tabs").tabs({
+							   // The zero-based index of the panel that is active (open)
+								active : oldIndex,
+								// Triggered after a tab has been activated
+								activate : function( event, ui ){
+									//  Get future value
+									var newIndex = ui.newTab.parent().children().index(ui.newTab);
+									//  Set future value
+									dataStore.setItem( index, newIndex ) 
+								},
+								fx: { opacity: "toggle", duration: "fast" },
+							});
+						}); 
 						
 						$("input[type=text], textarea").each(function() {
 							if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "")
@@ -412,6 +446,46 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					if ( $desc != '' )
 						echo '<br /><span class="description">' . $desc . '</span><br />';
 					break;
+					
+				case 'license':
+					$cctor_license = "cctor_" . $class . "_key";
+					$cctor_license_status = "cctor_" . $class . "_status";
+					
+					$license 	= get_option( $cctor_license );
+					$status 	= get_option( $cctor_license_status );
+										
+					echo '<input class="regular-text' . $field_class . '" type="text" id="' . $id . '" name="coupon_creator_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $license ) . '" size="' . $size . '" />';
+					
+					if ( $desc != '' )
+						echo '<br /><span class="description">' . $desc . '</span>';			
+					break;	
+					
+				case 'license_status':
+					$cctor_license = "cctor_" . $class . "_key";
+					$cctor_license_status = "cctor_" . $class . "_status";
+					
+					$license 	= get_option( $cctor_license );
+					$status 	= get_option( $cctor_license_status );
+					
+					if( false !== $license ) {
+					
+						if( $status !== false && $status == 'valid' ) {
+						
+							echo '<span style="color:green;">'. __('active').'</span>';
+							
+								wp_nonce_field( 'cctor_license_nonce', 'cctor_license_nonce' );
+								
+							echo '<input type="submit" class="button-secondary" name="cctor_license_deactivate" value="'. _('Deactivate License') .'"/>';
+							
+						 } else {
+						 
+								wp_nonce_field( 'cctor_license_nonce', 'cctor_license_nonce' );
+								
+							echo '<input type="submit" class="button-secondary" name="cctor_license_activate" value="'. __('Activate License') .'"/>';
+							
+						 }
+					}
+				break;						
 			}
 				
 			if(has_filter('cctor_option_cases')) {
@@ -643,6 +717,35 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 							$input[$id] = false;
 						}
 					}
+					
+					// Create Separate License Option and Status
+					if ( $option['type'] == 'license' ) {	
+						//License Option Name
+						$cctor_license = "cctor_" . $option['class'] . "_key";
+						
+						//License Station Option Name
+						$cctor_license_status = "cctor_" . $option['class'] . "_status";
+						
+						//Get Existing Option
+						$existing_license = get_option( $cctor_license );
+
+						if ( !$existing_license ) {
+							update_option( $cctor_license, esc_attr($input[$id]) );
+						} elseif( $existing_license && $existing_license != $input[$id] ) {
+							update_option( $cctor_license, esc_attr($input[$id]) );
+							delete_option( $cctor_license_status );
+						}
+						
+						// Remove to not save with Coupon Option Array
+						$input[$id] = "";
+					}
+					
+					// Handle License Status
+					if ( $option['type'] == 'license_status' ) {	
+						// Remove to not save with Coupon Option Array
+						$input[$id] = "";
+					}		
+					
 					// Sanitization Filter for each Option Type
 					if(isset($input[$id])){
 						if ( has_filter( 'cctor_sanitize_' . $option['type'] ) ) {

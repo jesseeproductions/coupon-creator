@@ -46,11 +46,11 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 					
 					echo  $inner_print_coupon_wrap['start_wrap'];
 
-						do_action( 'cctor_print_title_coupon' , $coupon_id ); 
+						do_action( 'cctor_print_coupon_deal' , $coupon_id ); 
 						
-						do_action( 'cctor_print_deal_coupon' , $coupon_id ); 
+						do_action( 'cctor_print_coupon_terms' , $coupon_id ); 
 						
-						do_action( 'cctor_print_expiration_coupon' , $coupon_id ); 
+						do_action( 'cctor_print_coupon_expiration' , $coupon_id ); 
 					
 					echo $inner_print_coupon_wrap['end_wrap'];
 				

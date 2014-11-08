@@ -424,24 +424,24 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$prefix = 'cctor_';
 			
 				//Content
-				$coupon_creator_meta_fields[$prefix . 'heading_coupon'] = array(
-					'id' => $prefix . 'heading_coupon',
+				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
+					'id' => $prefix . 'heading_deal',
 					'title'   => '',
-					'desc'    =>  __( 'Coupon Heading','coupon_creator' ),
+					'desc'    =>  __( 'Coupon Deal','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content'
 				);				
 				$coupon_creator_meta_fields[$prefix . 'amount'] =	array(
-					'label' => __('Discount', 'coupon_creator' ),
-					'desc' => __('Enter the discount amount  - 30%, Buy One Get One Free, etc...', 'coupon_creator' ),
+					'label' => __('Deal', 'coupon_creator' ),
+					'desc' => __('Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon_creator' ),
 					'id' => $prefix . 'amount',
 					'type'  => 'text',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content'
 				);		
-				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
-					'id' => $prefix . 'heading_deal',
+				$coupon_creator_meta_fields[$prefix . 'heading_terms'] = array(
+					'id' => $prefix . 'heading_terms',
 					'title'   => '',
 					'desc'    =>  __( 'Coupon Terms','coupon_creator' ),
 					'type'    => 'heading',
