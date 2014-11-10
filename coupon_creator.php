@@ -31,6 +31,12 @@ if (!defined('CCTOR_VERSION_KEY')) 		define( 'CCTOR_VERSION_KEY', 	'cctor_coupon
 if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'1.81');
 
 /*
+* Coupon Creator License
+* since 1.90
+*/
+if (!defined('COUPON_CREATOR_STORE_URL')) 		define( 'COUPON_CREATOR_STORE_URL', 	'http://couponcreatorplugin.com');
+
+/*
 * Check Requirements for WordPress and PHP
 * @version 1.70
 */

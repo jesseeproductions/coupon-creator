@@ -34,6 +34,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			//Load Coupon Meta Box Class
 			Coupon_Creator_Plugin::include_file( 'admin/cctor-meta-box-class.php' );
 			new Coupon_Creator_Meta_Box();
+			
+			//Init Pro Updater Class			
+			add_action('admin_init',  array(__CLASS__, 'cctor_activate_license'));
+			
+			add_action('admin_init',  array(__CLASS__, 'cctor_deactivate_license'));			
 		}
 		
 	/***************************************************************************/			
@@ -262,7 +267,129 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		}
 		
 		/***************************************************************************/
+		
+		/*
+		* Register and Enqueue Style and Scripts on Coupon Edit Screens
+		* since 1.90
+		*/
+		public static function cctor_activate_license() {
 
+			// listen for our activate button to be clicked
+			if( isset( $_POST['cctor_license_activate'] ) ) {
+							
+				// run a quick security check 
+				if( ! check_admin_referer( 'cctor_license_nonce', 'cctor_license_nonce' ) ) 	
+					return; // get out if we didn't click the Activate button
+				
+				$cctor_license_info = array();	
+				
+				//Set WordPress Option Name
+				$license_option_name = esc_attr($_POST['cctor_license_key']);
+				
+				// retrieve the license from the database
+				$cctor_license_info = get_option( $license_option_name );
+				
+				//Check if the License has changed and deactivate
+				if ($cctor_license_info['key'] != "" && $_POST['coupon_creator_options'][$license_option_name] != $cctor_license_info['key']) {
+				
+					$cctor_license_info['key'] = esc_attr(trim($_POST['coupon_creator_options'][$license_option_name]));
+					
+					delete_option( $license_option_name );
+							
+					update_option( $license_option_name, $cctor_license_info);
+							
+				}
+									
+				// data to send in our API request
+				$api_params = array( 
+					'edd_action'=> 'activate_license', 
+					'license' 	=> esc_attr(trim($cctor_license_info['key'])), 
+					'item_name' => urlencode( esc_attr($_POST['cctor_license_name']) ), // the name of our product in EDD
+					'url'       => home_url()
+				);
+				
+				// Call the custom API.
+				$response = wp_remote_get( add_query_arg( $api_params, COUPON_CREATOR_STORE_URL ), array( 'timeout' => 15, 'sslverify' => false ) );
+								
+				// make sure the response came back okay
+				if ( is_wp_error( $response ) )
+					return false;
+
+				// decode the license data
+				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+				
+				//Get Status of Key		
+				$cctor_license_info['status']  = esc_attr($license_data->license);
+				
+				//Remove Current Expiration 
+				unset($cctor_license_info['expires']);
+				
+				//Set Expiration Date  for This License
+				$cctor_license_info['expires'] = esc_attr($license_data->expires);
+				
+				//if Expired Add that to the option. 
+				if ($license_data->error == "expired") {
+					$cctor_license_info['expired'] = esc_attr($license_data->error);
+				}
+				
+				//Update License Object
+				update_option( $license_option_name, $cctor_license_info );
+
+			}
+		}
+
+		/***************************************************************************/
+		
+		/*
+		* Deactivate a license key.
+		* since 1.90
+		*/
+		public static function cctor_deactivate_license() {
+
+			// listen for our activate button to be clicked
+			if( isset( $_POST['cctor_license_deactivate'] ) ) {
+							
+				// run a quick security check 
+				if( ! check_admin_referer( 'cctor_license_nonce', 'cctor_license_nonce' ) ) 	
+					return; // get out if we didn't click the Activate button
+
+				$license_option_name = esc_attr($_POST['cctor_license_key']);
+				
+				// retrieve the license from the database
+				$cctor_license_info = get_option( $license_option_name );
+									
+				// data to send in our API request
+				$api_params = array( 
+					'edd_action'=> 'deactivate_license', 
+					'license' 	=> esc_attr(trim($cctor_license_info['key'])), 
+					'item_name' => urlencode( esc_attr($_POST['cctor_license_name']) ), // the name of our product in EDD
+					'url'       => home_url()
+				);
+				
+				// Call the custom API.
+				$response = wp_remote_get( add_query_arg( $api_params, COUPON_CREATOR_STORE_URL ), array( 'timeout' => 15, 'sslverify' => false ) );
+				
+				// make sure the response came back okay
+				if ( is_wp_error( $response ) )
+					return false;
+					
+				// decode the license data
+				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+							
+				// $license_data->license will be either "deactivated" or "failed"
+								
+				if( $license_data->license == 'deactivated' ) {		
+				
+					unset($cctor_license_info['status']);
+					unset($cctor_license_info['expires']);
+					
+					//Update License Object
+					update_option( $license_option_name, $cctor_license_info );
+				}
+
+			}
+		}
+		
 	} //end Coupon_Creator_Plugin_Admin Class
 	
 } // class_exists( 'Coupon_Creator_Plugin_Admin' )

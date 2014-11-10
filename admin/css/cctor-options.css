@@ -112,6 +112,29 @@ div.alert {
     padding: 1px 12px;
 	color: #dd3d36;
 }
+
+.cctor-license-button-act {
+	background: #2a5a8a;
+	border:1px solid #2a5a8a;
+	color: #fff;
+}
+
+.cctor-license-button-act:hover {
+	background: #1e4164;
+	cursor: pointer;
+}
+
+.cctor-license-button-det {
+	background: #048c7f;
+	border:1px solid #048c7f;
+	color: #fff;
+}
+
+.cctor-license-button-det:hover {
+	background: #03544c;
+	cursor: pointer;
+}
+
 /* Coupon Creator Options Sign Up Form
 ------------------------------------------------------------ */
 #mc_embed_signup{

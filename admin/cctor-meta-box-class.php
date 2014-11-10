@@ -6,13 +6,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {	
 	/*
 	* Coupon_Creator_Meta_Box
-	* @version 1.80
+	* since 1.80
 	*/
 	class Coupon_Creator_Meta_Box {
 
 		/*
 		* Construct
-		* @version 1.80
+		* since 1.80
 		*/
 		public function __construct() {
 			//Setup Coupon Meta Boxes
@@ -26,7 +26,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 		/*
 		* Coupon Creator Meta Sections
-		* @version 1.90
+		* since 1.90
 		*/
 		public static function get_cctor_tabs() {
 			
@@ -50,7 +50,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 		/*
 		* Live Preview Below Title
-		* @version 1.00  
+		* since 1.00  
 		*/
 		public static function cctor_meta_expiration_check($coupon_id) {
 			
@@ -79,7 +79,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 		/*
 		* Live Preview Below Title
-		* @version 1.00  
+		* since 1.00  
 		*/
 		public static function cctor_information_box() {
 			
@@ -161,7 +161,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 	
 		/*
 		* Add Meta Boxes
-		* @version 1.80
+		* since 1.80
 		*/
 		public static function cctor_add_meta_boxes() {
 			global $pagenow, $typenow;
@@ -200,7 +200,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		
 		/*
 		* Load Meta Box Functions
-		* @version 1.80
+		* since 1.80
 		* @param stdClass $post
 		*/
 		public static function cctor_show_meta_box( $post, $metabox  ) {
@@ -402,7 +402,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		
 		/*
 		* Load Meta Box Functions
-		* @version 1.90
+		* since 1.90
 		* @param stdClass $post
 		*/
 		public static function cctor_show_coupon_shortcode( $post, $metabox  ) {
@@ -416,7 +416,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		
 		/*
 		* Load Meta Box Functions
-		* @version 1.80  
+		* since 1.80  
 		*/
 		public static function cctor_metabox_options() {
 		
@@ -581,7 +581,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		/***************************************************************************/
 		/*
 		* Save Meta Boxes
-		* @version 1.80
+		* since 1.80
 		*/
 		public static function cctor_save_coupon_creator_meta( $post_id, $post ) {
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )

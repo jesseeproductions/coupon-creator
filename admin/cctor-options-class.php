@@ -6,28 +6,28 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {	
 	/*
 	* Coupon_Creator_Plugin_Admin_Options
-	* @version 1.80
+	* since 1.80
 	*/
 	class Coupon_Creator_Plugin_Admin_Options {
 		/*
 		* Tab Sections
-		* @version 1.80
+		* since 1.80
 		*/
 		private $sections;
 		/* Checkbox Fields
 		* Construct
-		* @version 1.80
+		* since 1.80
 		*/
 		private $checkboxes;
 		/*
 		* Option Fields
-		* @version 1.80
+		* since 1.80
 		*/
 		public $options;
 		
 		/*
 		* Construct
-		* @version 1.80
+		* since 1.80
 		*/
 		public function __construct() {
 			
@@ -47,7 +47,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 		/*
 		* Coupon Creator Option Sections
-		* @version 1.80
+		* since 1.80
 		*/
 		public function get_sections() {
 			
@@ -70,7 +70,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		
 		/*
 		* Coupon Creator Admin Options Page
-		* @version 1.80
+		* since 1.80
 		*/
 		public function coupon_options_page() {
 			$admin_page = add_submenu_page( 
@@ -88,7 +88,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		}
 		/*
 		* Coupon Creator Options Page Scripts
-		* @version 1.80
+		* since 1.80
 		*/
 		public function coupon_option_scripts() {
 			wp_enqueue_script('jquery');
@@ -97,8 +97,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			 
 			//Script for WP Color Picker
 			wp_enqueue_script( 'wp-color-picker' );
-			$cctor_coupon_meta_js = CCTOR_PATH.'admin/js/cctor_coupon_options.js';
-			wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . 'admin/js/cctor_coupon_options.js', array('jquery','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);	
+			$cctor_coupon_option_js = CCTOR_PATH.'admin/js/cctor_coupon_options.js';
+			wp_enqueue_script('cctor_coupon_option_js',  CCTOR_URL . 'admin/js/cctor_coupon_options.js', array('jquery','thickbox','farbtastic'), filemtime($cctor_coupon_option_js), true);	
 			
 			//Hook to Load New Scripts
 			do_action('cctor_opitons_scripts');
@@ -106,7 +106,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		
 		/*
 		* Coupon Creator Options Page Styles
-		* @version 1.80
+		* since 1.80
 		*/
 		public function coupon_option_styles() {
 			
@@ -123,7 +123,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 	/***************************************************************************/
 		/*
 		* Coupon Creator Options
-		* @version 1.80
+		* since 1.80
 		*/
 		public function create_option( $args = array() ) {
 			
@@ -168,13 +168,28 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 	
 		/*
 		* Coupon Creator Admin Settings Options Page
-		* @version 1.80
+		* since 1.80
 		*/
 		public function display_page() {
 			
 			//Get Tab Sections to Show
 			$this->get_sections();
 			
+			//Create Array of Tabs and Localize to Meta Script
+			$tabs_array = array();
+			
+			foreach ( $this->sections as $section_slug => $section ) {
+				$tabs_array[$section] = $section_slug;
+			}
+				
+			$tabs_json_array = json_encode($tabs_array); 
+			
+			$tabs_params = array(
+				'tabs_arr' => $tabs_json_array,
+			);
+			
+			wp_localize_script('cctor_coupon_option_js', 'cctor_coupon_option_js_vars', $tabs_params);		
+				
 			echo '<div class="wrap">
 				<div class="icon32" id="icon-options-general"></div>
 				<h2><img src="'. CCTOR_URL . 'admin/images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options' ) . '</h2>
@@ -200,91 +215,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					<p class="submit"><input name="Submit" type="submit" class="button-primary" value="' . __( 'Save Changes' ) . '" /></p>
 					
 				</form>';
-				
-				echo '<script type="text/javascript">
-					jQuery(document).ready(function($) {
-						var sections = [];';
-						
-						foreach ( $this->sections as $section_slug => $section )
-							echo "sections['$section'] = '$section_slug';";
-						
-						echo 'var wrapped = $(".wrap h3").wrap("<div class=\"cctor-tabs-panel\">");
-						wrapped.each(function() {
-							$(this).parent().append($(this).parent().nextUntil("div.cctor-tabs-panel"));
-						});
-						$(".cctor-tabs-panel").each(function(index) {
-							$(this).attr("id", sections[$(this).children("h3").text()]);
-							if (index > 0)
-								$(this).addClass("cctor-tabs-hide");
-						});
-						
-						$(function() {
-							//  http://stackoverflow.com/questions/4299435/remember-which-tab-was-active-after-refresh
-							//	jQueryUI 1.10 and HTML5 ready
-							//      http://jqueryui.com/upgrade-guide/1.10/#removed-cookie-option 
-							//  Documentation
-							//      http://api.jqueryui.com/tabs/#option-active
-							//      http://api.jqueryui.com/tabs/#event-activate
-							//      http://balaarjunan.wordpress.com/2010/11/10/html5-session-storage-key-things-to-consider/
-							//
-							//  Define friendly index name
-							var index = "cctor-option-tab";
-							//  Define friendly data store name
-							var dataStore = window.sessionStorage;
-							//  Start magic!
-							try {
-								// getter: Fetch previous value
-								var oldIndex = dataStore.getItem(index);
-							} catch(e) {
-								// getter: Always default to first tab in error state
-								var oldIndex = 0;
-							}
-							
-							// Tab initialization
-							$(".cctor-tabs").tabs({
-							   // The zero-based index of the panel that is active (open)
-								active : oldIndex,
-								// Triggered after a tab has been activated
-								activate : function( event, ui ){
-									//  Get future value
-									var newIndex = ui.newTab.parent().children().index(ui.newTab);
-									//  Set future value
-									dataStore.setItem( index, newIndex ) 
-								},
-								fx: { opacity: "toggle", duration: "fast" },
-							});
-						}); 
-						
-						$("input[type=text], textarea").each(function() {
-							if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "")
-								$(this).css("color", "#999");
-						});
-						
-						$("input[type=text], textarea").focus(function() {
-							if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "") {
-								$(this).val("");
-								$(this).css("color", "#000");
-							}
-						}).blur(function() {
-							if ($(this).val() == "" || $(this).val() == $(this).attr("placeholder")) {
-								$(this).val($(this).attr("placeholder"));
-								$(this).css("color", "#999");
-							}
-						});
-						
-						
-						$(".wrap h3, .wrap table").show();
-						
-						// Browser compatibility
-						if ($.browser.mozilla) 
-							$("form").attr("autocomplete", "off");
-					});
-					
-					/*Hide Row if Label is Empty*/
-					jQuery(".form-table label:empty").parent().hide();
-
-				</script>';
-				
+								
 				echo '<!-- Begin MailChimp Signup Form -->
 					<div id="mc_embed_signup">
 						<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -321,7 +252,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 	
 		/*
 		* Display Section
-		* @version 1.80
+		* since 1.80
 		*/
 		public function display_section() {
 
@@ -330,7 +261,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 		/*
 		* Coupon Creator About Section
-		* @version 1.80
+		* since 1.80
 		*/
 		public function display_help_section() {
 			
@@ -340,7 +271,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		
 		/*
 		* Coupon Creator Pro Section
-		* @version 1.80
+		* since 1.80
 		*/
 		public function display_pro_section() {
 			ob_start(); ?>	
@@ -356,7 +287,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		
 		/*
 		* Coupon Creator Display Options
-		* @version 1.80
+		* since 1.80
 		*/
 		public function display_setting( $args = array() ) {
 			
@@ -448,42 +379,82 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					break;
 					
 				case 'license':
-					$cctor_license = "cctor_" . $class . "_key";
-					$cctor_license_status = "cctor_" . $class . "_status";
+				
+					$cctor_license_info = array();		
+					$cctor_license = "cctor_" . $class;
+					$cctor_license_read = "";
 					
-					$license 	= get_option( $cctor_license );
-					$status 	= get_option( $cctor_license_status );
-										
-					echo '<input class="regular-text' . $field_class . '" type="text" id="' . $id . '" name="coupon_creator_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $license ) . '" size="' . $size . '" />';
+					$cctor_license_info	= get_option( $cctor_license );
+					
+					//If License is Valid then read only the field
+					if( $cctor_license_info['status'] !== false && $cctor_license_info['status'] == 'valid' ) {
+						$cctor_license_read = "readonly";
+					}	
+					
+					echo '<input class="regular-text' . $field_class . '" type="text" id="' . $id . '" name="coupon_creator_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $cctor_license_info['key'] ) . '" size="' . $size . '" ' . $cctor_license_read . ' />';
 					
 					if ( $desc != '' )
 						echo '<br /><span class="description">' . $desc . '</span>';			
 					break;	
 					
 				case 'license_status':
-					$cctor_license = "cctor_" . $class . "_key";
-					$cctor_license_status = "cctor_" . $class . "_status";
 					
-					$license 	= get_option( $cctor_license );
-					$status 	= get_option( $cctor_license_status );
+					$cctor_license_info = array();		
+					$cctor_license = "cctor_" . $class;
 					
-					if( false !== $license ) {
+					$cctor_license_info	= get_option( $cctor_license );
 					
-						if( $status !== false && $status == 'valid' ) {
+					//Coupon Expiration Date
+					$expirationco =  $cctor_license_info['expires'];
+					
+					$cc_expiration_date = strtotime($expirationco);
+					
+					if ($expirationco) { // Only Display Expiration if Date
+						$daymonth_date_format = cctor_options('cctor_default_date_format'); //Date Format
 						
-							echo '<span style="color:green;">'. __('active').'</span>';
+						if ($daymonth_date_format == 1 ) { //Change to Day - Month Style
+							$expirationco = date("d/m/Y", $cc_expiration_date);
+						} else {
+							$expirationco = date("m/d/Y", $cc_expiration_date);
+						}
+												
+						$expiration_date = sprintf(__(' and Expires on %s', 'coupon_creator' ), esc_attr($expirationco));
+					}
+					
+					if( $cctor_license_info['key'] != '' ) {
+					
+						if( $cctor_license_info['status'] !== false && $cctor_license_info['status'] == 'valid' ) {
+						
+							echo '<span style="color:green;">'. __( 'License is Active','coupon_creator' ). $expiration_date.'</span><br><br>';
 							
 								wp_nonce_field( 'cctor_license_nonce', 'cctor_license_nonce' );
-								
-							echo '<input type="submit" class="button-secondary" name="cctor_license_deactivate" value="'. _('Deactivate License') .'"/>';
+							
+							echo '<input type="hidden" class="cctor_license_key" name="cctor_license_key" value="cctor_'. $class .'"/>';	
+							echo '<input type="hidden" class="cctor_license_name" name="cctor_license_name" value="'. $condition .'"/>';	
+							echo '<input type="submit" class="cctor-license-button-act" name="cctor_license_deactivate" value="'. _('Deactivate License') .'"/>';
 							
 						 } else {
-						 
+								$cctor_license_info_valid = "";
+							if ($cctor_license_info['status'] == 'invalid' && !$cctor_license_info['expired']) {
+								$cctor_license_info_valid = __('License is Invalid', 'coupon_creator' );
+							} elseif ($cctor_license_info['expired'] == "expired") {
+								$cctor_license_info_valid =  sprintf(__('License Expired on %s', 'coupon_creator' ), esc_attr($expirationco));
+							}
+							else {
+								$cctor_license_info_valid = __( 'License is Not Active','coupon_creator' );
+							}
+							
+							echo '<span style="color:red;">'.$cctor_license_info_valid.'</span><br><br>';
+							
 								wp_nonce_field( 'cctor_license_nonce', 'cctor_license_nonce' );
-								
-							echo '<input type="submit" class="button-secondary" name="cctor_license_activate" value="'. __('Activate License') .'"/>';
+							
+							echo '<input type="hidden" class="cctor_license_key" name="cctor_license_key" value="cctor_'. $class .'"/>';	
+							echo '<input type="hidden" class="cctor_license_name" name="cctor_license_name" value="'. $condition .'"/>';	
+							echo '<input type="submit" class="cctor-license-button-det" name="cctor_license_activate" value="'. __('Activate License') .'"/>';
 							
 						 }
+					} else {
+							echo __( 'Please enter your license key and click save changes before you can activate it.','coupon_creator' );
 					}
 				break;						
 			}
@@ -497,7 +468,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 		/*
 		* Coupon Creator Options
-		* @version 1.80
+		* since 1.80
 		*/
 		public function get_options() {
 			
@@ -637,7 +608,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 		/*
 		* Coupon Creator Initialize Options and Default Values
-		* @version 1.80
+		* since 1.80
 		*/		 
 		public function initialize_options() {
 			
@@ -654,7 +625,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		
 		/*
 		* Coupon Creator Register Options
-		* @version 1.80
+		* since 1.80
 		*/		
 		public function register_options() {
 			
@@ -681,10 +652,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		}
 		/*
 		* Coupon Creator Admin Validate Options
-		* @version 1.80
+		* since 1.80
 		*/		
 		public function validate_options( $input ) {
 			
+		
 			//if Reset is Checked then delete all options
 			if ( ! isset( $input['reset_theme'] ) ) {
 				
@@ -720,20 +692,28 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					
 					// Create Separate License Option and Status
 					if ( $option['type'] == 'license' ) {	
-						//License Option Name
-						$cctor_license = "cctor_" . $option['class'] . "_key";
 						
-						//License Station Option Name
-						$cctor_license_status = "cctor_" . $option['class'] . "_status";
+						$cctor_license_info = array();
 						
+						//License WP Option Name
+						$cctor_license = "cctor_" . $option['class'];
+						
+						//License Key
+						$cctor_license_info['key'] = esc_attr(trim($input[$id]));
+												
 						//Get Existing Option
 						$existing_license = get_option( $cctor_license );
 
-						if ( !$existing_license ) {
-							update_option( $cctor_license, esc_attr($input[$id]) );
-						} elseif( $existing_license && $existing_license != $input[$id] ) {
-							update_option( $cctor_license, esc_attr($input[$id]) );
-							delete_option( $cctor_license_status );
+						if ( !$existing_license['key'] ) {
+														
+							update_option( $cctor_license, $cctor_license_info);
+							
+						} elseif( $existing_license['key'] && $existing_license['key'] != $cctor_license_info['key'] ) {
+							
+							delete_option( $cctor_license );
+							
+							update_option( $cctor_license, $cctor_license_info);
+							
 						}
 						
 						// Remove to not save with Coupon Option Array
