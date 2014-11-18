@@ -281,6 +281,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				if( ! check_admin_referer( 'cctor_license_nonce', 'cctor_license_nonce' ) ) 	
 					return; // get out if we didn't click the Activate button
 				
+				
 				$cctor_license_info = array();	
 				
 				//Set WordPress Option Name
@@ -290,8 +291,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				$cctor_license_info = get_option( $license_option_name );
 				
 				//Check if the License has changed and deactivate
-				if ($cctor_license_info['key'] != "" && $_POST['coupon_creator_options'][$license_option_name] != $cctor_license_info['key']) {
-				
+				if ($_POST['coupon_creator_options'][$license_option_name] != $cctor_license_info['key']) {
+									
 					$cctor_license_info['key'] = esc_attr(trim($_POST['coupon_creator_options'][$license_option_name]));
 					
 					delete_option( $license_option_name );
@@ -317,7 +318,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				// decode the license data
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-				
+								
 				//Get Status of Key		
 				$cctor_license_info['status']  = esc_attr($license_data->license);
 				
@@ -330,6 +331,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				//if Expired Add that to the option. 
 				if ($license_data->error == "expired") {
 					$cctor_license_info['expired'] = esc_attr($license_data->error);
+				}
+				
+				//if Expired Add that to the option. 
+				if ($license_data->error == "missing") {
+					unset($cctor_license_info['expires']);
+					unset($cctor_license_info['expired']);
+					$cctor_license_info['status']  = esc_attr($license_data->error);
 				}
 				
 				//Update License Object
@@ -375,10 +383,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					
 				// decode the license data
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-							
+								
 				// $license_data->license will be either "deactivated" or "failed"
 								
-				if( $license_data->license == 'deactivated' ) {		
+				if( $license_data->license == 'deactivated' || $license_data->license == 'failed' ) {		
 				
 					unset($cctor_license_info['status']);
 					unset($cctor_license_info['expires']);

@@ -175,7 +175,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				'rewrite'            => array( 'slug' => $slug ),
 				'menu_icon'          => CCTOR_URL . 'admin/images/coupon_creator.png',
 				//Supported Meta Boxes
-				'supports'           => array( 'title', 'coupon_creator_meta_box','custom-fields' ),
+				'supports'           => array( 'title', 'coupon_creator_meta_box' ),
 			) );
 						
 	}	

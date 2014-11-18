@@ -6,6 +6,14 @@ jQuery(document).ready(function ($) {
     $('.color-picker').wpColorPicker();
 });
 
+/*
+* Color Box Init for Help Videos
+* since 1.00
+*/								
+jQuery(document).ready(function ($) {  
+	$(".youtube_colorbox").colorbox({rel: "how_to_videos", current: "video {current} of {total}", iframe:true, width:"90%", height:"90%"});
+	//var my_json_str = cctor_coupon_meta_js_vars.tabs_arr.replace(/&quot;/g, '"');
+});
 
 /*
 * jQuery UI Tabs for Meta Box

@@ -56,6 +56,9 @@
 	font-weight:bold;
 	color: #000;
 }
+.cctor_deal img {
+	max-width:100%;
+}
 .cctor_expiration  {
 	width:100%;
 	min-height: 15px;

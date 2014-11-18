@@ -15,7 +15,6 @@
 		//Coupon Creator Print Template Head Hook-->
 		do_action( 'coupon_print_head' ); 
 		
-		do_action( 'wp_head' ); 
 		?>
 	</head>
 <body class="print_coupon">
@@ -69,7 +68,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 	
 endwhile; // end the coupon creator loop 
 
-do_action( 'wp_footer' ); 
+do_action( 'coupon_footer' ); 
 ?>
 
 </body>

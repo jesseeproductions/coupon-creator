@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
         coupon_uploader = wp.media.frames.file_frame = wp.media({
 			title: 'Choose Coupon Image',
             button: {
-                text: 'Choose Coupon'
+                text: 'Use Image'
             },
             multiple: false
         });
