@@ -12,6 +12,9 @@
 	text-align: center;
 	max-width:100%;
 }
+.cctor_coupon_container.cctor-image {
+	width: auto;
+}
 .cctor_coupon_container, .cctor_coupon_container * {
    -moz-box-sizing:    border-box;   /* Firefox 1 */
    -webkit-box-sizing: border-box;   /* Safari 3-4 */
@@ -111,6 +114,9 @@ a .cctor_expiration {
 .print_coupon .cctor_coupon_container {
 	width: 420px;
 	margin: 10px auto;
+}
+.print_coupon .cctor_coupon_container.cctor-image {
+	width: auto;
 }
 .print_coupon .cctor_coupon_content h3 {
 	font-size:30px;

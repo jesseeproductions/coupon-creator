@@ -107,7 +107,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			wp_enqueue_script('cctor_coupon_option_js',  CCTOR_URL . 'admin/js/cctor_coupon_options.js', array('jquery','thickbox','farbtastic'), filemtime($cctor_coupon_option_js), true);
 
 			$cctor_colorbox_js = CCTOR_PATH.'admin/colorbox/jquery.colorbox-min.js';
-			wp_enqueue_script('cctor_colorbox_js',  CCTOR_URL . '/admin/colorbox/jquery.colorbox-min.js' ,array('jquery'), filemtime($cctor_colorbox_js), true);
+			wp_enqueue_script('cctor_colorbox_js',  CCTOR_URL . 'admin/colorbox/jquery.colorbox-min.js' ,array('jquery'), filemtime($cctor_colorbox_js), true);
 
 			//Hook to Load New Scripts
 			do_action('cctor_opitons_scripts');
@@ -127,7 +127,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			//Color Box For How to Videos
 			$cctor_colorbox_css = CCTOR_PATH.'admin/colorbox/colorbox.css';
-			wp_enqueue_style('cctor_colorbox_css', CCTOR_URL . '/admin/colorbox/colorbox.css', false, filemtime($cctor_colorbox_css));
+			wp_enqueue_style('cctor_colorbox_css', CCTOR_URL . 'admin/colorbox/colorbox.css', false, filemtime($cctor_colorbox_css));
 
 			//Hook to Load New Styles
 			do_action('cctor_opitons_styles');
@@ -235,6 +235,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				echo '<p style="text-align:right;">&copy; '.date("Y").' Jessee Productions, LLC</p>
 
 			</div>';
+				
 		}
 
 	/***************************************************************************/
@@ -390,21 +391,22 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					echo '
 					<h4>Video Guides</h4>
 					<ul>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Creating a Coupon</a></li>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Creating an Image Coupon</a></li>
-						<li><a  class="cctor-support"href="#" class="youtube_colorbox" rel="how_to_videos">Inserter and Aligning Coupons</a></li>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Using the Coupon Creator Options</a></li>
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/tIau3ZNjoeI?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Coupon</a></li>
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/A1mULc_MyHs?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating an Image Coupon</a></li>
+						<li><a  class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/sozW-J-g3Ts?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Inserter and Aligning Coupons</a></li>
+						<li><a class="cctor-support youtube_colorbox" href="http://www.youtube.com/embed/h3Zg8rxIDdc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Coupon Creator Options</a></li>
 					</ul>
 
 					<h4>Pro Video Guides</h4>
 					<ul>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">How to setup your License</a></li>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Creating a Pro Coupon</a></li>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Creating a Pro Image Coupon</a></li>								
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Using the Pro Counter</a></li>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Using the Pro Background Image</a></li>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Using the Pro Dimension Options</a></li>
-						<li><a class="cctor-support" href="#" class="youtube_colorbox" rel="how_to_videos">Using the Pro Text Overrides</a></li>
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/BqCApkymbJI?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to setup your License</a></li>
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/FI218DxXnrY?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Coupon</a></li>
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/SqAG3s1FniA?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Image Coupon</a></li>			
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/8L0JmSB_V-E?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Options</a></li>					
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/aVkwq8cIgB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Counter</a></li>
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/vmViVkoQB0M?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Background Image</a></li>
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/b3cV8gVf4lU?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Dimension Options</a></li>
+						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/pFnp5VsfwUE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Text Overrides</a></li>
 					</ul>
 					
 					<h4>Resources</h4>
@@ -439,8 +441,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					$cctor_license_info	= get_option( $cctor_license );
 
 					//If License is Valid then read only the field
-					if( $cctor_license_info['status'] !== false && $cctor_license_info['status'] == 'valid' ) {
-						$cctor_license_read = "readonly";
+					if(isset($cctor_license_info['status']) && $cctor_license_info['status'] !== false && $cctor_license_info['status'] == 'valid' ) {
+						//$cctor_license_read = "readonly";
 					}
 
 					echo '<input class="regular-text' . $field_class . '" type="text" id="' . $id . '" name="coupon_creator_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $cctor_license_info['key'] ) . '" size="' . $size . '" ' . $cctor_license_read . ' />';
@@ -457,8 +459,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					$cctor_license_info	= get_option( $cctor_license );
 
 					//Coupon Expiration Date
-					$expirationco =  $cctor_license_info['expires'];
-
+					if (isset($cctor_license_info['expires'])) {
+						$expirationco =  $cctor_license_info['expires'];
+					} else {
+						$expirationco =  '';;
+					}
+					
 					$cc_expiration_date = strtotime($expirationco);
 
 					if ($expirationco) { // Only Display Expiration if Date
@@ -473,9 +479,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 						$expiration_date = sprintf(__(' and Expires on %s', 'coupon_creator' ), esc_attr($expirationco));
 					}
 
-					//if( $cctor_license_info['key'] != '' ) {
-
-						if( $cctor_license_info['status'] !== false && $cctor_license_info['status'] == 'valid' ) {
+						if( isset($cctor_license_info['status']) && $cctor_license_info['status'] !== false && $cctor_license_info['status'] == 'valid' ) {
 
 							echo '<span style="color:green;">'. __( 'License is Active','coupon_creator' ). $expiration_date.'</span><br><br>';
 
@@ -487,9 +491,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 						 } else {
 								$cctor_license_info_valid = "";
-							if ($cctor_license_info['status'] == 'invalid' || $cctor_license_info['status'] == 'missing' && !$cctor_license_info['expired']) {
+							if(isset($cctor_license_info['status']) && ( $cctor_license_info['status'] == 'invalid' || $cctor_license_info['status'] == 'missing' ) && !$cctor_license_info['expired']) {
 								$cctor_license_info_valid = __('License is Invalid', 'coupon_creator' );
-							} elseif ($cctor_license_info['expired'] == "expired") {
+							} elseif (isset($cctor_license_info['expired']) && $cctor_license_info['expired'] == "expired") {
 								$cctor_license_info_valid =  sprintf(__('License Expired on %s', 'coupon_creator' ), esc_attr($expirationco));
 							}
 							else {
@@ -596,8 +600,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			);
 			$this->options['cctor_hide_print_link'] = array(
 				'section' => 'permalinks',
-				'title'   => __( 'Hide Click to Print Link', 'coupon_creator' ),
-				'desc'    => __( 'This will hide the "Click to Print" links under the coupon' , 'coupon_creator'),
+				'title'   => __( 'Hide Print View Link', 'coupon_creator' ),
+				'desc'    => __( 'This will hide the "Click to Open in Print View" links under the coupon' , 'coupon_creator'),
 				'type'    => 'checkbox',
 				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);

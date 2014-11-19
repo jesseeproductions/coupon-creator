@@ -12,7 +12,6 @@ jQuery(document).ready(function ($) {
 */								
 jQuery(document).ready(function ($) {  
 	$(".youtube_colorbox").colorbox({rel: "how_to_videos", current: "video {current} of {total}", iframe:true, width:"90%", height:"90%"});
-	//var my_json_str = cctor_coupon_meta_js_vars.tabs_arr.replace(/&quot;/g, '"');
 });
 
 /*

@@ -20,8 +20,12 @@ Create coupons to display on your site by using a shortcode.
 
 Create your own coupon with the Coupon Creator for WordPress or upload an image of a coupon instead.
 
+Watch this quick video to see the Coupon Creator in Action:
+
+https://www.youtube.com/watch?v=oTa7puu7t24
+
 <h4>Coupon Creator Pro Now Available!</h4>
-[Get Pro](http://couponcreatorplugin.com) with a visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+[Get a Pro License](http://couponcreatorplugin.com) with a visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
 
 <h4>How to Create a Coupon</h4>
 Create a coupon by going to the coupon custom post type and filling in all the settings in the custom meta box.
@@ -109,7 +113,16 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 = 1.90 =
-
+* Major update to all coding
+* Added a hook templating system to modify the shortcode and print templates
+* Added coding for licenses
+* Added hooks for Option and Meta additions from add ons
+* Update Coupon List and Individual Coupon Information to make it easier to see the expiration
+* Added more translation fields
+* Added tab system for both Options and Meta fields to make it easier to edit
+* Added coupon capabilities
+* Added shortcode to the coupon editor page and to the coupon admin list
+* Made entire coupon a link
 
 = 1.80 =
 * Added Expiration Date and If Ignore Expiration is on to the Coupon Listing
@@ -192,7 +205,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Upgrade Notice ==
 = 1.90 =
-
+A major update to the Coupon Creator including adding a hook templating system to prepare for Coupon Creator Pro!
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>

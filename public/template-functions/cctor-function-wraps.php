@@ -30,11 +30,18 @@ function cctor_return_coupon_categories($coupon_id) {
 */
 function cctor_return_outer_coupon_wrap($coupon_id, $coupon_align) { 
 	
+	
+	if(cctor_return_image_url($coupon_id)) {
+		$coupon_img_class = 'cctor-image';
+	} else {
+		$coupon_img_class = '';
+	}
+	
 	$coupon_cat_class = cctor_return_coupon_categories($coupon_id);
 	
 	$outer_coupon_wrap = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container here -->
-		<div id="coupon_creator_'. esc_attr($coupon_id).'" class="type-cctor_coupon cctor_coupon_container '.esc_attr($coupon_cat_class).' '.esc_attr($coupon_align).'">';
+		<div id="coupon_creator_'. esc_attr($coupon_id).'" class="type-cctor_coupon cctor_coupon_container '.esc_attr($coupon_cat_class).' '.esc_attr($coupon_align).' '.esc_attr($coupon_img_class).'">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							
@@ -80,12 +87,17 @@ function cctor_return_inner_coupon_wrap($coupon_id) {
 * @version 1.90
 */
 function cctor_return_print_outer_coupon_wrap($coupon_id) { 
-	
+
+	if(cctor_return_image_url($coupon_id)) {
+		$coupon_img_class = ' cctor-image ';
+	} else {
+		$coupon_img_class = '';
+	}
 	$coupon_cat_class = cctor_return_coupon_categories($coupon_id);
 	
 	$outer_coupon_wrap = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon_creator_'. esc_attr($coupon_id).'" class="cctor_coupon_container '.esc_attr($coupon_cat_class).'">';
+		<div id="coupon_creator_'. esc_attr($coupon_id).'" class="cctor_coupon_container '.esc_attr($coupon_cat_class).' '.esc_attr($coupon_img_class).'">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							
@@ -107,4 +119,5 @@ function cctor_return_print_inner_coupon_wrap($coupon_id) {
 							
 	return $coupon_inner_content_wrap;
 }	
+
 
