@@ -162,8 +162,7 @@ div.alert {
        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
-.cctor-pro-img :before, .cctor-pro-img :after
-{
+.cctor-pro-img:before, .cctor-pro-img:after {
 	content:"";
     position:absolute; 
     z-index:-1;
@@ -177,8 +176,7 @@ div.alert {
     -moz-border-radius:100px / 10px;
     border-radius:100px / 10px;
 } 
-.cctor-pro-img :after
-{
+.cctor-pro-img:after {
 	right:10px; 
     left:auto;
     -webkit-transform:skew(8deg) rotate(3deg); 

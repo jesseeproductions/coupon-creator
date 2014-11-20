@@ -82,6 +82,9 @@
 	text-decoration: none;
 	opacity: .8;
 }
+.print_coupon .cctor_coupon_container a:hover {
+	opacity: 1;
+}
 a .cctor_expiration {
 	color: #000;
 }

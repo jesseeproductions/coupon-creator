@@ -399,7 +399,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 					<h4>Pro Video Guides</h4>
 					<ul>
-						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/BqCApkymbJI?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to setup your License</a></li>
+						
 						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/FI218DxXnrY?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Coupon</a></li>
 						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/SqAG3s1FniA?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Image Coupon</a></li>			
 						<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/8L0JmSB_V-E?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Options</a></li>					
@@ -485,8 +485,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 								wp_nonce_field( 'cctor_license_nonce', 'cctor_license_nonce' );
 
-							echo '<input type="hidden" class="cctor_license_key" name="cctor_license_key" value="cctor_'. $class .'"/>';
-							echo '<input type="hidden" class="cctor_license_name" name="cctor_license_name" value="'. $condition .'"/>';
+							echo '<input type="hidden" class="cctor_license_key" name="cctor_license_key" value="cctor_'. esc_attr($class) .'"/>';
+							echo '<input type="hidden" class="cctor_license_name" name="cctor_license_name" value="'. esc_attr($condition) .'"/>';
 							echo '<input type="submit" class="cctor-license-button-act" name="cctor_license_deactivate" value="'. _('Deactivate License') .'"/>';
 
 						 } else {
@@ -504,8 +504,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 								wp_nonce_field( 'cctor_license_nonce', 'cctor_license_nonce' );
 
-							echo '<input type="hidden" class="cctor_license_key" name="cctor_license_key" value="cctor_'. $class .'"/>';
-							echo '<input type="hidden" class="cctor_license_name" name="cctor_license_name" value="'. $condition .'"/>';
+							echo '<input type="hidden" class="cctor_license_key" name="cctor_license_key" value="cctor_'. esc_attr($class) .'"/>';
+							echo '<input type="hidden" class="cctor_license_name" name="cctor_license_name" value="'. esc_attr($condition) .'"/>';
 							echo '<input type="submit" class="cctor-license-button-det" name="cctor_license_activate" value="'. __('Activate License') .'"/>';
 
 						 }
