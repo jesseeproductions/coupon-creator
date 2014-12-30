@@ -19,6 +19,8 @@
    -moz-box-sizing:    border-box;   /* Firefox 1 */
    -webkit-box-sizing: border-box;   /* Safari 3-4 */
     box-sizing:        border-box;   /* Everything else */
+	-webkit-print-color-adjust: exact; 
+	print-color-adjust: exact;
 }
 
 /* Coupon Contents
