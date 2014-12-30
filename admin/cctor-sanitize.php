@@ -45,10 +45,19 @@ add_filter( 'cctor_sanitize_radio', 'cctor_sanitize_enum', 10, 2 );
 
 /*
 * Image Field Sanitize
-* @version 1.80
+* @version 2.00
 */	
-add_filter( 'cctor_sanitize_image', 'sanitize_text_field' );
-add_filter( 'cctor_sanitize_proimage', 'sanitize_text_field' );
+add_filter( 'cctor_sanitize_image', 'cctor_sanitize_image_num' );
+add_filter( 'cctor_sanitize_proimage', 'cctor_sanitize_image_num' );
+function cctor_sanitize_image_num( $input ) {
+
+	if ( is_numeric($input) ) {
+		return $input;
+	}
+	
+	return false;
+}
+
 /*
 * Checkbox Sanitize
 * @version 1.80

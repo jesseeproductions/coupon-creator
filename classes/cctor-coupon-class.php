@@ -171,6 +171,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				'query_var'          => true,
 				'can_export'		 => true,
 				'capability_type'	 => array("cctor_coupon", "cctor_coupons"),
+				'map_meta_cap'		 => true,
 				'has_archive'        => false,
 				'rewrite'            => array( 'slug' => $slug ),
 				'menu_icon'          => CCTOR_URL . 'admin/images/coupon_creator.png',

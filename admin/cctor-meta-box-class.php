@@ -18,7 +18,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			//Setup Coupon Meta Boxes
 			add_action( 'add_meta_boxes', array( __CLASS__, 'cctor_add_meta_boxes' ) );
 			//Save Meta Boxes Data
-			add_action( 'save_post', array( __CLASS__, 'cctor_save_coupon_creator_meta' ),50, 2 );
+			add_action( 'save_post', array( __CLASS__, 'cctor_save_coupon_creator_meta' ), 10, 2 );
 			//Coupon Expiration Information
 			add_action( 'edit_form_after_title',  array( __CLASS__, 'cctor_information_box' ) , 10 );
 		}
@@ -94,7 +94,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			if($pagenow !='post-new.php' && $typenow=='cctor_coupon'){
 
 				$coupon_id = $post->ID;
-
+							
 				if(Coupon_Creator_Meta_Box::cctor_meta_expiration_check($coupon_id)) {
 
 					echo '<div class="cctor-meta-bg cctor-message"><div>'.__('This Coupon is Showing', 'coupon_creator' ) .'</div></div>';
@@ -356,11 +356,32 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 								<?php break;
 								 // date
-								 case 'date': ?>
-
+								 case 'date': 
+								 
+								//Blog Time According to WordPress
+								$cctor_todays_date = "";
+								if ($field['id'] == "cctor_expiration" ) {
+									$cc_blogtime = current_time('mysql');
+								
+									list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $cc_blogtime 
+									);
+								
+									if ( cctor_options('cctor_default_date_format') == 1 || $meta == 1 ) {
+										$today_first = $today_day;
+										$today_second = $today_month;
+									} else {
+										$today_first = $today_month;
+										$today_second = $today_day;									
+									}
+			
+									$cctor_todays_date = '<span class="description">'. __( 'Today\'s Date is ','coupon_creator' ) . $today_first.'/'.$today_second.'/'. $today_year . '</span>';
+								}
+								?>
+	
 									<input type="text" class="datepicker" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" value="<?php echo esc_attr( $meta ); ?>" size="10" />
 									<br /><span class="description"><?php echo $field['desc']; ?></span>
-
+									<?php echo $cctor_todays_date; ?>
+									
 								<?php break;
 									// Videos
 								 case 'cctor_support':?>
