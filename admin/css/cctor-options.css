@@ -102,7 +102,8 @@
     float: right;
 }
 
-/*hides empty row*/
+/*hides empty row and support label*/
+#help .form-table th,
 .form-table tr > *:empty {
     display: none;
 }

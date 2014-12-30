@@ -59,6 +59,10 @@
 .cctor-meta-field {
 	width:70%;
 }
+.field-wrap-cctor_videos .cctor-meta-label,
+.field-wrap-cctor_videos .cctor-meta-field {
+	width:100%;
+}
 #wp-cctor_description-media-buttons a:not(:first-child){
 	display:none;
 }

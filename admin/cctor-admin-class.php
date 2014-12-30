@@ -397,6 +397,74 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			}
 		}
+
+		/***************************************************************************/
+		
+		/*
+		* Get Support Information for Options and Meta Field 
+		* @version 2.00
+		*/
+		public static function get_cctor_support_core_infomation() {
+
+			$support_html = '
+			
+				<h4 class="coupon-heading">Video Guides</h4>
+				<ul>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/tIau3ZNjoeI?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Coupon</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/A1mULc_MyHs?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating an Image Coupon</a></li>
+					<li><a  class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/sozW-J-g3Ts?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Inserter and Aligning Coupons</a></li>
+					<li><a class="cctor-support youtube_colorbox" href="http://www.youtube.com/embed/h3Zg8rxIDdc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Coupon Creator Options</a></li>
+				</ul>
+
+				<h4 class="coupon-heading">Pro Video Guides</h4>
+				<ul>
+					
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/FI218DxXnrY?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Coupon</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/SqAG3s1FniA?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Image Coupon</a></li>			
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/8L0JmSB_V-E?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Options</a></li>					
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/aVkwq8cIgB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Counter</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/vmViVkoQB0M?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Background Image</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/b3cV8gVf4lU?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Dimension Options</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/pFnp5VsfwUE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Text Overrides</a></li>
+				</ul>
+				
+				<h4 class="coupon-heading">Resources</h4>
+				<ul>
+					<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/support/documentation/">Documentation</a> - Overview of CSS Selectors, Actions, Filters, Capabilities, and Post Types</li>
+					<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/support/frequently-asked-question/">Frequently Asked Question</a> - Pre Sales, License, Requirements, and Setup Information</li>
+					<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/support/guides/">Guides</a> - User Guides and Troubleshooting Guides</li>
+					<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/support/tutorials/">Tutorials</a> - Customization Tutorials and More</li>
+				</ul>';	
+				
+			return	$support_html;
+		}
+
+		/***************************************************************************/
+		
+		/*
+		* Get Support Information for Options and Meta Field 
+		* @version 2.00
+		*/
+		public static function get_cctor_support_core_contact() {
+
+			$support_html = '
+				<h4 class="coupon-heading">How to Contact Support</h4>
+				<ul>
+					<li>Please use the <a class="cctor-support" href="https://wordpress.org/support/plugin/coupon-creator/">WordPress.org Support Forum for the Coupon Creator</a>.</li>
+					<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:
+						<ul>
+						<li><br><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/knowledgebase/troubleshooting-404-errors/">Troubleshooting 404 Errors</a></li>
+						<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/knowledgebase/troubleshooting-conflicts/">Troubleshooting Conflicts</a></li>
+						<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/knowledgebase/troubleshooting-javascript-errors/">Troubleshooting Javascript Errors</a></li>
+						</ul>
+					</li>
+
+				</ul>';	
+				
+			return	$support_html;
+		}
+
+		/***************************************************************************/
 		
 	} //end Coupon_Creator_Plugin_Admin Class
 	
