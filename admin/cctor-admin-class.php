@@ -158,7 +158,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				wp_enqueue_script('cctor_colorbox_js',  CCTOR_URL . 'admin/colorbox/jquery.colorbox-min.js' ,array('jquery'), filemtime($cctor_colorbox_js), true);
 				
 				//Hook to Load New Styles and Scripts
-				do_action('cctor_edit_scripts_styles');
+				do_action('cctor_meta_scripts_styles');
 			
 			}
 		}	

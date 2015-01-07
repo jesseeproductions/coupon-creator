@@ -398,7 +398,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 						if(has_filter('cctor_filter_meta_cases')) {
 							// this adds any addon fields (from plugins) to the array
-							echo apply_filters('cctor_filter_meta_cases', $field, $meta);
+							echo apply_filters('cctor_filter_meta_cases', $field, $meta, $post);
 						} ?>
 
 					</div> <!-- end .cctor-meta-field.field-<?php echo $field['type']; ?>.field-<?php echo $field['id']; ?> -->
