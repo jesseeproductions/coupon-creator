@@ -131,6 +131,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				//Date Picker CSS
 				$cctor_meta_css = CCTOR_PATH.'admin/css/cctor-meta.css';
 				wp_enqueue_style( 'cctor_meta_css', CCTOR_URL . 'admin/css/cctor-meta.css', false, filemtime($cctor_meta_css));
+				//Custom jQuery UI
+				$cctor_jquery_ui_css = CCTOR_PATH.'admin/css/cctor-jquery-ui.css';
+				wp_enqueue_style( 'cctor_jquery_ui_css', CCTOR_URL . 'admin/css/cctor-jquery-ui.css', false, filemtime($cctor_jquery_ui_css));				
 				//Style or WP Color Picker
 				wp_enqueue_style( 'wp-color-picker' );  
 				//Image Upload CSS
@@ -148,7 +151,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				//Script for Datepicker
 				wp_enqueue_script('jquery-ui-datepicker');
 				
+				//Tabs
 				wp_enqueue_script( 'jquery-ui-tabs' );
+				
+				//Dialogs
+				wp_enqueue_script( 'jquery-ui-dialog' );
 				
 				//Color Box For How to Videos
 				$cctor_colorbox_css = CCTOR_PATH.'admin/colorbox/colorbox.css';
