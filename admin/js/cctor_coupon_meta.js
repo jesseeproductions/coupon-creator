@@ -8,8 +8,10 @@
 * WP Date Picker
 * since 1.70
 */
-jQuery(document).ready(function ($) {
-	$(".datepicker").datepicker({}, jQuery("#ui-datepicker-div").addClass("cctor-ui"));
+jQuery(document).ready(function($) {
+	$(".datepicker").datepicker({
+		
+	}, $("#ui-datepicker-div").addClass("cctor-ui"));
 });
 
 /*

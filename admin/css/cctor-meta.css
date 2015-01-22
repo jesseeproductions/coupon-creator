@@ -97,15 +97,16 @@
 	color:#9DD3DF;
 }
 
-/* Coupon Creator Meta Tab
+/* Coupon Creator jQuery Tabs
 ------------------------------------------------------------ */
-
+.cctor-woo-tabs.ui-tabs.ui-widget-content,
 .cctor-tabs.ui-tabs.ui-widget-content {
     background: none;
     border: none;
 	font-family: "Open Sans",sans-serif;
 }
 
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav {
 	height: 27px;
 	margin: 20px 0 0;
@@ -113,17 +114,20 @@
 	background: none;
 	border: none;
 }
-
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li {
 	display: block;
 	float: left;
 	margin: 0;
 }
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-default,
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-active,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-default,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active  {
     background: none;
     border: none;
 }
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li a,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li a {
 	border-color: #fff;
 	border-style: solid;
@@ -139,7 +143,8 @@
 	font-size: 13px;
 	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
 }
-
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-tabs-selected a,
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-active a,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-tabs-selected a,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active a {
 	border-width: 1px 1px 0;
@@ -151,12 +156,82 @@
 .coupon-section-fields {
 	margin: 3px 0 0;
 }
+.cctor-woo-tabs-panel.ui-tabs-panel.ui-widget-content,
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content{
 	clear: both;
 	background: #fff;
 	padding: 2%;
 	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
 	overflow:hidden;
+}
+
+/* Coupon Creator jQuery UI Changes
+------------------------------------------------------------ */
+.ui-datepicker.cctor-ui,
+.ui-dialog.cctor-ui {
+    background: #fefefe;
+    border: 1px solid #ccc;
+	padding: 10px;
+    height: 250px;
+	z-index:101;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+	box-shadow:
+        0 1px 1px rgba(0,0,0,0.15), /* The top layer shadow */
+        0 8px 0 -5px #eee, /* The second layer */
+        0 8px 1px -4px rgba(0,0,0,0.15), /* The second layer shadow */
+        0 14px 0 -8px #eee, /* The third layer */
+        0 14px 1px -9px rgba(0,0,0,0.15); /* The third layer shadow */
+}
+.ui-datepicker.cctor-ui {
+	height: auto;
+}
+.ui-datepicker.cctor-ui:after,
+.ui-datepicker.cctor-ui:before,
+.ui-dialog.cctor-ui:after,
+.ui-dialog.cctor-ui:before {
+    bottom: 0;
+	top: 0;
+	right: 0;
+	left: 0;
+    content: '';
+    position: absolute;
+	z-index: -10;
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
+            box-shadow: 0 0 3px rgba(0,0,0,.2);
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.cctor-ui .ui-widget-header .ui-state-default.ui-dialog-titlebar-close,
+.cctor-ui .ui-widget-header {
+    background: none;
+    border: none;
+    color: #000;
+    font-weight: bold;
+} 
+.cctor-ui .ui-widget-header .ui-icon {
+	background-image: url("../images/ui-icons_2e83ff_256x240.png");
+}	
+.ui-dialog.cctor-ui .ui-dialog-titlebar-close span.ui-icon-closethick {
+    margin-left: -3px;
+    margin-top: -14px;
+    background-image: url("../images/ui-icons_2e83ff_256x240.png");
+}
+
+.cctor-ui .ui-state-default, .cctor-ui.ui-widget-content .ui-state-default, .cctor-ui .ui-widget-header .ui-state-default {
+    background: url("../images/ui-bg_flat_65_2a5a8a_40x100.png") repeat-x scroll 50% 50% #e6e6e6;
+    border: 1px solid #d3d3d3;
+    color: #fff;
+    font-weight: normal;
+}
+.cctor-ui  .ui-state-hover, .cctor-ui.ui-widget-content .ui-state-hover, .cctor-ui  .ui-widget-header .ui-state-hover, .cctor-ui  .ui-state-focus, .cctor-ui.ui-widget-content .ui-state-focus, .cctor-ui .ui-widget-header .ui-state-focus {
+	opacity: 0.7;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=70)"; /* for IE8 in IE7 mode; must be before filter below */
+	filter: alpha(opacity=70); /* IE6-IE8 */
 }
 
 /* Coupon Creator Loading
