@@ -462,7 +462,16 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'alert' => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content'
-				);
+				);		
+				$coupon_creator_meta_fields[$prefix . 'deal_display'] =	array(
+					'label' => '',
+					'desc' => '',
+					'id' => $prefix . 'deal_display',
+					'type'  => '',
+					'alert' => '',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'content'
+				);				
 				$coupon_creator_meta_fields[$prefix . 'heading_terms'] = array(
 					'id' => $prefix . 'heading_terms',
 					'title'   => '',
