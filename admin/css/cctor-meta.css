@@ -59,6 +59,11 @@
 .cctor-meta-field {
 	width:70%;
 }
+.cctor-meta-field textarea,
+.cctor-meta-field.field-wysiwyg {
+    width: 100%;
+}
+
 .field-wrap-cctor_videos .cctor-meta-label,
 .field-wrap-cctor_videos .cctor-meta-field {
 	width:100%;
@@ -212,10 +217,10 @@
     border: none;
     color: #000;
     font-weight: bold;
-} 
+}
 .cctor-ui .ui-widget-header .ui-icon {
 	background-image: url("../images/ui-icons_2e83ff_256x240.png");
-}	
+}
 .ui-dialog.cctor-ui .ui-dialog-titlebar-close span.ui-icon-closethick {
     margin-left: -3px;
     margin-top: -14px;
