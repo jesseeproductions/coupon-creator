@@ -44,6 +44,8 @@ function cctor_print_head_and_meta() { ?>
 	
 	<!--Load jQuery for Counter from WordPress Install -->
 	<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.11.1'></script>
+	<link rel='stylesheet' id='cctor_colorbox_css-css'  href='http://coupon.jesseeproductions.com/wp-content/plugins/coupon-creator/admin/colorbox/colorbox.css?ver=1422280407' type='text/css' media='all' />
+	<script type='text/javascript' src='http://coupon.jesseeproductions.com/wp-content/plugins/coupon-creator/admin/colorbox/jquery.colorbox-min.js?ver=1422280277'></script>
 	
 <?php 
 }

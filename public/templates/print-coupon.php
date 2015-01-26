@@ -70,6 +70,16 @@ endwhile; // end the coupon creator loop
 
 do_action( 'coupon_footer' ); 
 ?>
-
+<script>
+jQuery(document).ready(function() {
+    parent.jQuery.fn.colorbox.resize({
+        innerWidth: 420,
+        innerHeight: jQuery('.cctor_coupon_container').height()
+    });
+	
+	console.log(jQuery('.cctor_coupon_container').width());
+	console.log(jQuery('.cctor_coupon_container').height());
+});
+</script>
 </body>
 </html>
