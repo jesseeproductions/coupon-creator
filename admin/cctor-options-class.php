@@ -106,8 +106,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$cctor_coupon_option_js = CCTOR_PATH.'admin/js/cctor_coupon_options.js';
 			wp_enqueue_script('cctor_coupon_option_js',  CCTOR_URL . 'admin/js/cctor_coupon_options.js', array('jquery','thickbox','farbtastic'), filemtime($cctor_coupon_option_js), true);
 
-			$cctor_colorbox_js = CCTOR_PATH.'admin/colorbox/jquery.colorbox-min.js';
-			wp_enqueue_script('cctor_colorbox_js',  CCTOR_URL . 'admin/colorbox/jquery.colorbox-min.js' ,array('jquery'), filemtime($cctor_colorbox_js), true);
+			$cctor_colorbox_js = CCTOR_PATH.'vendor/colorbox/jquery.colorbox-min.js';
+			wp_enqueue_script('cctor_colorbox_js',  CCTOR_URL . 'vendor/colorbox/jquery.colorbox-min.js' ,array('jquery'), filemtime($cctor_colorbox_js), true);
 
 			//Hook to Load New Scripts
 			do_action('cctor_opitons_scripts');
@@ -126,8 +126,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			wp_enqueue_style( 'wp-color-picker' );
 
 			//Color Box For How to Videos
-			$cctor_colorbox_css = CCTOR_PATH.'admin/colorbox/colorbox.css';
-			wp_enqueue_style('cctor_colorbox_css', CCTOR_URL . 'admin/colorbox/colorbox.css', false, filemtime($cctor_colorbox_css));
+			$cctor_colorbox_css = CCTOR_PATH.'vendor/colorbox/colorbox.css';
+			wp_enqueue_style('cctor_colorbox_css', CCTOR_URL . 'vendor/colorbox/colorbox.css', false, filemtime($cctor_colorbox_css));
 
 			//Hook to Load New Styles
 			do_action('cctor_opitons_styles');

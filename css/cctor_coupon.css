@@ -146,3 +146,19 @@ a .cctor_expiration {
 .cctor_expiration {
 	*width: 96%;
 }
+
+/* Colorbox CSS
+------------------------------------------------------------ */
+
+.cctor-overlay #cboxPrevious, 
+.cctor-overlay #cboxNext,
+.cctor-overlay #cboxClose {
+	font-size:22px;
+	line-height: 25px;
+}
+.cctor-overlay #cboxNext {
+    left: 16px;
+}
+.cctor-overlay  #cboxCurrent {
+    left: 35px;
+}

@@ -9,6 +9,9 @@
 <html>
 	<head>
 		<?php 
+		
+		do_action( 'wp_head' ); 
+		
 		//Coupon Creator Print Template Meta Hook
 		do_action( 'coupon_print_meta' );
 		
@@ -69,17 +72,8 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 endwhile; // end the coupon creator loop 
 
 do_action( 'coupon_footer' ); 
+
+do_action( 'wp_footer' ); 
 ?>
-<script>
-jQuery(document).ready(function() {
-    parent.jQuery.fn.colorbox.resize({
-        innerWidth: 420,
-        innerHeight: jQuery('.cctor_coupon_container').height()
-    });
-	
-	console.log(jQuery('.cctor_coupon_container').width());
-	console.log(jQuery('.cctor_coupon_container').height());
-});
-</script>
 </body>
 </html>

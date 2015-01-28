@@ -701,7 +701,16 @@
 			step: modalDimensions
 		});
 	};
-
+	publicMethod.myResize = function (iW, iH) {   
+		 if (!open) { return; }  
+		 if (settings.scrolling) { return; }  
+		 var speed = settings.transition === "none" ? 0 : settings.speed;  
+		 $window.unbind('resize.' + prefix);  
+		 settings.w = iW;  
+		 settings.h = iH;  
+		 $loaded.css({ width: settings.w, height: settings.h });  
+		 publicMethod.position(speed);  
+	};   
 	publicMethod.resize = function (options) {
 		var scrolltop;
 

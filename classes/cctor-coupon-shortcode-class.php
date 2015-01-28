@@ -61,7 +61,7 @@ class Coupon_Creator_Shortcode {
 		
 		ob_start();
 		
-		do_action( 'cctor_before_coupon' ); 
+		do_action( 'cctor_before_coupon_wrap' ); 
 			
 		// The Coupon Loop
 		while ($coupons->have_posts()) {
@@ -69,7 +69,8 @@ class Coupon_Creator_Shortcode {
 			$coupons->the_post();
 						
 			$coupon_id = $coupons->post->ID;
-	
+			
+			do_action( 'cctor_before_coupon' , $coupon_id ); 
 				//Check to show the Coupon
 				if (cctor_expiration_check($coupon_id)) {
 					
@@ -108,9 +109,12 @@ class Coupon_Creator_Shortcode {
 					//No Coupon Will Show So Print HTML Comment
 					do_action( 'cctor_no_show_coupon' , $coupon_id );
 				}
+				
+				do_action( 'cctor_after_coupon' , $coupon_id );
+				
 			} //End While
 			
-			do_action( 'cctor_after_coupon' ); 
+			do_action( 'cctor_after_coupon_wrap' );
 			
 			/* Restore original Post Data */
 			wp_reset_postdata();

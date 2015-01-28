@@ -22,6 +22,7 @@ function cctor_print_head_and_meta() { ?>
 		body {
 			background-color: #fff;
 			background-image: none;
+			margin: 0;
 		}
 	</style>
 	
