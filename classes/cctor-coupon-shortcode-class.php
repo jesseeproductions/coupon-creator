@@ -14,10 +14,14 @@ class Coupon_Creator_Shortcode {
 	* @version 1.90
 	*/
 	public static function cctor_allcoupons_shortcode($atts) {
+		
 	   //Load Stylesheet for Coupon Creator when Shortcode Called
 	   if( !wp_style_is( 'coupon_creator_css' ) ) {
 		 wp_enqueue_style('coupon_creator_css');
+		 		 		
 	   }	 
+	   
+		do_action( 'cctor_shortcode_start' ); 
 	   
 	   //Coupon ID is the Custom Post ID
 	   $cctor_atts = shortcode_atts(array(
