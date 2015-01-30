@@ -9,10 +9,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	*/
 	class Coupon_Creator_Plugin {
 
-	/**
-	 * @var Coupon Creator Pro
-	 * @since 1.90
-	 */
+
 	private static $instance;
 
 	/**
@@ -70,6 +67,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Load Admin Class if in Admin Section
 			if ( is_admin() )
 			new Coupon_Creator_Plugin_Admin();
+					
 		}
 
 	/***************************************************************************/
@@ -110,7 +108,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'cctor_action_print_template', 'cctor_print_template', 100);			
 			
 			//Print Template Inline Custom CSS from Option
-			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 100);				
+			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 100);		
+
+			//Load Pro Meta Box Cases
+			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );			
 		}
 
 	/***************************************************************************/		
@@ -386,7 +387,15 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				<?php echo ob_get_clean();
 			}
 		}
-		
+	/***************************************************************************/
+
+		public static function cctor_terms_allowed_tags( $cctor_terms_tags ) {
+
+		    $cctor_terms_tags = '<p><div><span><ul><li><ol><b><strong><blockquote><em><img><code><del><ins>';
+			
+			return $cctor_terms_tags;
+			
+		}	
 	/***************************************************************************/
 
 		/*
