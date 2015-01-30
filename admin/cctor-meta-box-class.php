@@ -305,11 +305,10 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								case 'select':
 								
 								//Find Current Selected Value or use Default
-								if ($meta == 0 || $meta) {
+								if ( $meta ) {
 									$selected = $meta;
 								} else {
 									$selected = $field['value'];
-
 								}
 
 								?>
