@@ -296,18 +296,31 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 								<?php break;
 								// checkbox
-								case 'checkbox': ?>
+								case 'checkbox': 
+									
+									//Check for Default
+									global $pagenow;
+									$selected = '';
+									if ( $meta ) {
+										$selected = $meta;
+									} elseif ( $pagenow =='post-new.php' ) {
+										$selected = $field['value'];
+									}
+								
+								?>
 
-									<input type="checkbox" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" <?php echo checked( $meta, 1, false ); ?>/><label for="<?php echo $field['id']; ?>"><?php echo $field['desc']; ?></label>
+									<input type="checkbox" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" <?php echo checked( $selected, 1, false ); ?>/><label for="<?php echo $field['id']; ?>"><?php echo $field['desc']; ?></label>
 
 								<?php break;
 
 								case 'select':
 								
-								//Find Current Selected Value or use Default
+								//Check for Default
+								global $pagenow;
+								$selected = '';
 								if ( $meta ) {
 									$selected = $meta;
-								} else {
+								} elseif ( $pagenow =='post-new.php' ) {
 									$selected = $field['value'];
 								}
 

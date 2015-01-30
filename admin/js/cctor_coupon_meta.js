@@ -4,31 +4,31 @@
 
  * http://stackoverflow.com/questions/19682706/how-do-you-close-the-iris-colour-picker-when-you-click-away-from-it
  */
- /*
-* WP Date Picker
-* since 1.70
-*/
 jQuery(document).ready(function($) {
-	$(".datepicker").datepicker({
-		
-	}, $("#ui-datepicker-div").addClass("cctor-ui"));
-});
+	/*
+	* WP Date Picker
+	* since 1.70
+	*/	
+	$('#cctor_expiration').datepicker({
+		beforeShow: function(input, inst) {
+			 $("#ui-datepicker-div").addClass("cctor-ui")
+		}
+	});
 
-/*
-* WP Color Picker
-* since 1.70
-*/
-jQuery(document).ready(function ($) {
-    $('.color-picker').wpColorPicker();
-});
 
-/*
-* Color Box Init for Help Videos
-* since 1.00
-*/
-jQuery(document).ready(function ($) {
+	/*
+	* WP Color Picker
+	* since 1.70
+	*/
+	$('.color-picker').wpColorPicker();
+
+
+	/*
+	* Color Box Init for Help Videos
+	* since 1.00
+	*/
 	$(".youtube_colorbox").colorbox({rel: "how_to_videos", current: "video {current} of {total}", iframe:true, width:"90%", height:"90%"});
-	//var my_json_str = cctor_coupon_meta_js_vars.tabs_arr.replace(/&quot;/g, '"');
+	
 });
 
 /*

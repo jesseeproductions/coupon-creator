@@ -2,6 +2,9 @@
 	Colorbox 1.5.14
 	license: MIT
 	http://www.jacklmoore.com/colorbox
+	Coding added to resizing iFrame from Ed Pitt
+	http://dot-net-web-developer-bristol.blogspot.com/2011/02/jquery-colorbox-resizing-iframe-to.html
+	Coding Added a Line 706
 */
 (function ($, document, window) {
 	var

@@ -11,9 +11,9 @@ function cctor_show_terms($coupon_id) {
 	
 	$cctor_terms_tags = '';	
 	
-	$terms = strip_tags( apply_filters( 'the_content',get_post_meta( $coupon_id, 'cctor_description', true ) ), 
-	apply_filters( 'cctor_filter_terms_tags', $cctor_terms_tags ) );
+	$terms = apply_filters( 'the_content',get_post_meta( $coupon_id, 'cctor_description', true ) );
 	
-	?><div class="cctor_deal"><?php echo cctor_sanitize_textarea_w_tags( $terms );  ?></div><?php
+	?><div class="cctor_deal"><?php echo strip_tags( $terms, 
+	apply_filters( 'cctor_filter_terms_tags', $cctor_terms_tags ) );  ?></div><?php
 
 }
