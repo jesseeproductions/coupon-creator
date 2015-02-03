@@ -4,8 +4,8 @@ Plugin Name: Coupon Creator
 Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Requires at least: 3.8
-Tested up to: 4.0
+Requires at least: 3.9
+Tested up to: 4.1
 Stable tag: 1.90.5
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
@@ -112,7 +112,21 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
-= 1.90 =
+= 2.00 February 9th, 2015 =
+* Added Column in Coupon List to Mention if Coupon is Showing of Not Showing based on Expiration Date
+* Added current date from this function current_time('mysql') under the Expiration Date for Refrence, date formats to the default format chosen in the options
+* Added numeric check for image uploads instead of using text sanitize
+* Added -webkit-print-color-adjust: exact;  to the css to help print background colors in Webkit Browsers, does not work in FireFox or IE the user has to choose to print background images and colors in the browser
+* Changed Support Fields in Option and Meta Sections to use same information instead of 4 different ones
+* Added New Styling to the Support Links
+* Updated Colorbox to 1.5.14
+* Fixed Undefined property: stdClass::$delete_posts in Coupon List
+* Fixed save_post hook priority as some plugins caused the custom fields to not save
+* Fixed bug where Date Format does not save to Month First if Day First is the Default
+* Fixed textarea width
+* Removed extract function from the WordPress Settings API functions and replaced with arrays instead, that removes the last use of extract from the Coupon Creator
+	
+= 1.90 November 20th, 2014 =
 * Major update to all coding
 * Added a hook templating system to modify the shortcode and print templates
 * Added coding for licenses
@@ -124,7 +138,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Added shortcode to the coupon editor page and to the coupon admin list
 * Made entire coupon a link
 
-= 1.80 =
+= 1.80 July 7th, 2014 =
 * Added Expiration Date and If Ignore Expiration is on to the Coupon Listing
 * Added class for Options including, Custom CSS, Default, Colors, nofollow on print link, hide print link, improved permalink
 * Added new options for all coupons including adding custom CSS.
@@ -136,7 +150,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Fixed Permalink Flush on Activation of Plugin
 * Fixed filemtime error on Windows Servers for the Print Template
 
-= 1.70 =
+= 1.70 April 4th, 2014 =
 * Rewrite of entire plugin to Object-oriented programming
 * Update Color Picker to lastest version
 * Change Image Uploader to the latest version of WordPress Media Uploader
@@ -145,7 +159,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Added localization for admin and frontend
 * Replaced deprecated php split function
 
-= 1.60 =
+= 1.60 March, 5th 2015 =
 * Updated Styling to make the coupons more flexible in size
 * Updated and Added Responsive Styling with basic support still for IE7
 * Added a html comment that shows when a coupon is expired
@@ -154,28 +168,28 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Updated Colorbox to 1.4.37
 * Changed the single_template filter to template_include that was causing 404 errors in some themes
 
-= 1.50 =
+= 1.50 February 13th, 2014 =
 * Added Translation using the standard WordPress method
 * Added Spanish Translation thanks to Carmen in Miami
 * Cleaned up coding to prepare for a rewrite
 
-= 1.45 =
+= 1.45 October 23rd, 2013 =
 * Fixes issue where check box uncheck does not save.
 
-= 1.41 =
+= 1.41 August, 20th 2013 =
 * Added Post Reset Function to the shortcode to fix an issue preventing comments from showing
 
-= 1.40 =
+= 1.40 August 14th, 2013 =
 * Added a loop option to the shortcode to display more then one coupon
 * Added coupon categories to use with the loop option of the shortcode
 * Fixed css for box-sizing: content-box for the coupons or in themes like Twenty Thirteen the styling broke
 * Added plugin version into WordPress Database options for future updates
 * Updated Colobox script and fixed background images
 
-= 1.37 =
+= 1.37 January 6th, 2013 =
 * Fixed SVN to latest version
 
-= 1.35 =
+= 1.35 January 6th, 2013 =
 * Changed Insert Coupon Icon on Editor for WordPress 3.5
 * Added CSS for inside .widget-wrap to fit 100% into space
 * Coupon Images are now links to larger view. Thanks to the coding from Darin of VzPro
@@ -185,13 +199,13 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Modifed Click to Open in New Window Coding so it will open new window without javascript.
 * Note this may not open a new window in all browsers.
 
-= 1.30 =
+= 1.30 July 21st, 2012 =
 * Added checkbox to ignore expiration date so coupon will always display one website
 * "Expire On" will not show if no expiration is added
 * Added some more comments to coding and fixed line spacing issue
 * Added donation link
 
-= 1.20 =
+= 1.20 July 16th, 2012 =
 * Bug fixes to remove php notices in shortcode and in meta box
 
 = 1.1.5 =
@@ -200,7 +214,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 = 1.1 =
 * Bug Fixes preventing images, js, and css from loading - Thanks for heads up from Tom Ewer of WPMU.org
 
-= 1.0 =
+= 1.0 July 8th, 2012 =
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
