@@ -219,3 +219,21 @@ function getQueryParams( val ) {
 
 	return retval;
 }
+
+/*
+* Hide or Display Help Images
+* 
+* since 2.00
+*/
+function showHelp(helpid){
+
+	var toggleImage = document.getElementById(helpid);
+
+	 if(toggleImage.style.display == "inline") {
+			 document.getElementById(helpid).style.display='none';
+	 }else{
+			document.getElementById(helpid).style.display='inline';
+	 }
+	 
+	 return false;
+}

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Coupon Creator
 Plugin URI: http://jesseeproductions.com/coupon_creator/
-Version: 1.90.5
+Version: 1.99
 
 Description: This plugin creates a custom post type for coupons with a shortcode to display it on website and a single view template for printing.
 
@@ -28,7 +28,7 @@ if (!defined('CCTOR_URL'))				define( 'CCTOR_URL',	plugin_dir_url( __FILE__ ));
 if (!defined('CCTOR_MIN_PHP_VERSION'))	define( 'CCTOR_MIN_PHP_VERSION',	'5.2');
 if (!defined('CCTOR_MIN_WP_VERSION'))	define( 'CCTOR_MIN_WP_VERSION',		'3.7');
 if (!defined('CCTOR_VERSION_KEY')) 		define( 'CCTOR_VERSION_KEY', 	'cctor_coupon_version');
-if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'1.90.5');
+if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'1.99');
 
 /*
 * Coupon Creator License
@@ -57,7 +57,7 @@ function cctor_requirements() {
 */
 function cctor_error_requirements() {
 	global $wp_version;
-	$class = 'error';
+
 	ob_start(); ?>
     <div class="error">
 

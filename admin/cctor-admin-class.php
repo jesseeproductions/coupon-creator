@@ -528,7 +528,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			$support_html = '
 				<h4 class="coupon-heading">How to Contact Support</h4>
 				<ul>
-					<li>Please use the <a class="cctor-support" href="https://wordpress.org/support/plugin/coupon-creator/">WordPress.org Support Forum for the Coupon Creator</a>.</li>
+					<li>Please use the <a target="_blank" class="cctor-support" href="https://wordpress.org/support/plugin/coupon-creator/">WordPress.org Support Forum for the Coupon Creator</a>.</li>
 					<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:
 						<ul>
 						<li><br><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/knowledgebase/troubleshooting-404-errors/">Troubleshooting 404 Errors</a></li>

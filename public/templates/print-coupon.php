@@ -10,7 +10,7 @@
 	<head>
 		<?php
 
-		//do_action( 'wp_head' );
+		do_action( 'wp_head' );
 
 		//Coupon Creator Print Template Meta Hook
 		do_action( 'coupon_print_meta' );
@@ -73,7 +73,7 @@ endwhile; // end the coupon creator loop
 
 do_action( 'coupon_footer' );
 
-//do_action( 'wp_footer' );
+do_action( 'wp_footer' );
 ?>
 </body>
 </html>

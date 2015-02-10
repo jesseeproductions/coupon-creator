@@ -244,7 +244,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			<div>
 				<h4><img alt="Get Coupon Creator Pro!" src="<?php echo CCTOR_URL; ?>admin/images/cctor-logo.png"/></h4>
 				<br>
-				<p><strong style="font-size:15px;"><a href="http://couponcreatorplugin.com">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
+				<p><strong style="font-size:15px;"><a target="_blank" href="http://couponcreatorplugin.com">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
 				<br>
 				<ul>
 				<h4>Coupon Creator Pro Features Include:</h4><br>
@@ -274,7 +274,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					<li>Direct Support through CouponCreatorPlugin.com</li>
 				</ul>
 				<br>
-				<strong style="font-size:15px;"><a href="http://couponcreatorplugin.com">Purchase Pro Now!</a></strong>
+				<strong style="font-size:15px;"><a target="_blank" href="http://couponcreatorplugin.com">Purchase Pro Now!</a></strong>
 			</div>
 			<?php echo ob_get_clean();
 		}
@@ -528,8 +528,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			);
 			$this->options['cctor_nofollow_print_link'] = array(
 				'section' => 'permalinks',
-				'title'   => __( 'Click to Print Links', 'coupon_creator' ),
-				'desc'    => __( 'Add nofollow to all the "Click to Print" links', 'coupon_creator' ),
+				'title'   => __( 'Print View Links', 'coupon_creator' ),
+				'desc'    => __( 'Add nofollow to all the "Click to Open in Print View" links', 'coupon_creator' ),
 				'type'    => 'checkbox',
 				'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);

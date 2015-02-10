@@ -303,7 +303,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 									$selected = '';
 									if ( $meta ) {
 										$selected = $meta;
-									} elseif ( $pagenow =='post-new.php' ) {
+									} elseif ( $pagenow =='post-new.php' && isset( $field['value'] ) ) {
 										$selected = $field['value'];
 									}
 								
@@ -599,7 +599,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 				//Help
 				$coupon_creator_meta_fields[$prefix . 'videos'] =	array(
-					'label'  => __( '', 'coupon_creator' ),
+					'label'  => '',
 					'id'    => $prefix . 'videos',
 					'type'  => 'cctor_support',
 					'section' => 'coupon_creator_meta_box',

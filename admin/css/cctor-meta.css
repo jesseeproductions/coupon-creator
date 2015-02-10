@@ -102,6 +102,14 @@
 	color:#9DD3DF;
 }
 
+.cctor-help-images {
+	max-width: 95%;
+	box-shadow: 0 1px 2px 0 rgba(21, 121, 111, 1);
+	margin: 10px;
+	display:none;
+}
+
+
 /* Coupon Creator jQuery Tabs
 ------------------------------------------------------------ */
 .cctor-woo-tabs.ui-tabs.ui-widget-content,
