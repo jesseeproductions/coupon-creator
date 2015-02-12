@@ -246,7 +246,9 @@
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=70)"; /* for IE8 in IE7 mode; must be before filter below */
 	filter: alpha(opacity=70); /* IE6-IE8 */
 }
-
+.ui-dialog.cctor-ui  .ui-dialog-content {
+	overflow: hidden;
+}
 /* Coupon Creator Loading
 ------------------------------------------------------------ */
 
