@@ -154,12 +154,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'imagemsg'   => '',
 				'size'	=> 35
 			);
-			
+
 			$option_args = wp_parse_args( $args, $defaults );
-						
+
 			if ( $option_args['type'] == 'checkbox' )
 				$this->checkboxes[] = $option_args['id'];
-				
+
 			add_settings_field( $option_args['id'], $option_args['title'], array( $this, 'display_setting' ) , 'coupon-options', $option_args['section'], $option_args );
 		}
 
@@ -221,7 +221,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				echo '<p style="text-align:right;">&copy; '.date("Y").' Jessee Productions, LLC</p>
 
 			</div>';
-				
+
 		}
 
 	/***************************************************************************/
@@ -284,7 +284,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* since 1.80
 		*/
 		public function display_setting( $option_args = array() ) {
-			
+
 			$options = get_option( 'coupon_creator_options' );
 
 			if ( ! isset( $options[$option_args['id']] ) && $option_args['type'] != 'checkbox' )
@@ -367,9 +367,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					break;
 
 				case 'cctor_support':
-					
+
 					echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation();
-					
+
 					echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_contact();
 
 				break;
@@ -399,7 +399,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					} else {
 						$expirationco =  '';;
 					}
-					
+
 					$cc_expiration_date = strtotime($expirationco);
 
 					if ($expirationco) { // Only Display Expiration if Date
@@ -615,6 +615,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 							echo '<!-- Begin MailChimp Signup Form -->
 					<div id="mc_embed_signup">
+
+					<h3>Keep Coupon Creator Going!</h3>
+					<p>Every time you rate <strong>5 stars</strong>, it helps the Coupon Creator by showing everyone the happy users who use this plugin.</p>
+					<p><a href="https://wordpress.org/support/view/plugin-reviews/coupon-creator?filter=5" target="_blank" class="button-primary">Rate It</a></p>
+
 						<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
 							<div id="mc_embed_signup_scroll">

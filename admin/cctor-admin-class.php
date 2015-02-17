@@ -148,13 +148,16 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				//Script for WP Color Picker
 				wp_enqueue_script( 'wp-color-picker' );
 				$cctor_coupon_meta_js = CCTOR_PATH.'admin/js/cctor_coupon_meta.js';
-				wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . 'admin/js/cctor_coupon_meta.js', array('jquery', 'media-upload','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);
+				wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . 'admin/js/cctor_coupon_meta.js', array('jquery', 'media-upload','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);	
 
 				//Script for Datepicker
 				wp_enqueue_script('jquery-ui-datepicker');
 
 				//Tabs
 				wp_enqueue_script( 'jquery-ui-tabs' );
+				
+				//Accordian
+				wp_enqueue_script( 'jquery-ui-accordion' );
 
 				//Dialogs
 				wp_enqueue_script( 'jquery-ui-dialog' );

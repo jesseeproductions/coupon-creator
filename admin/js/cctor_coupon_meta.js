@@ -4,6 +4,8 @@
 
  * http://stackoverflow.com/questions/19682706/how-do-you-close-the-iris-colour-picker-when-you-click-away-from-it
  */
+ var $ = jQuery.noConflict();
+ 
 jQuery(document).ready(function($) {
 	/*
 	* WP Date Picker
@@ -237,3 +239,79 @@ function showHelp(helpid){
 	 
 	 return false;
 }
+
+/*
+* Responsive Tabs
+* 
+* since 2.00
+*/
+// event handler for window resize
+function updateUI(){
+
+	if($(window).width() <= 600){
+
+		// mobile view instructions
+		tabsToAccordions();
+
+	} else {
+
+		// desktop view instructions
+		accordionsToTabs();
+	}
+
+}
+
+// changes tabs to accordions (jquery ui)
+function tabsToAccordions(){
+	$('.cctor-tabs').each(function(){
+		var a = $('<div class="accordion">');
+		var b = new Array();
+		$(this).find('>ul>li').each(function(){
+			b.push('<h3>'+$(this).html()+'</h3>');
+		});
+		var c = new Array();
+		$(this).find('>div').each(function(){
+			c.push('<div>'+$(this).html()+'</div>');
+		});
+		for(var i = 0; i < b.length; i++){
+			a.append(b[i]).append(c[i]);
+		}
+		$(this).before(a);
+		$(this).remove();
+	})
+	$('.accordion').accordion()
+}
+
+// changes accordions to tabs (jquery ui)
+function accordionsToTabs(){
+	$('.cctor-accordion').each(function(){
+		var a = $('<div class="tabs">');
+		var count = 0;
+		var b = $('<ul>');
+		$(this).find('>h3').each(function(){
+			count++;
+			b.append('<li><a href="#tabs-'+count+'">'+$(this).text()+'</a></li>');
+		});
+		var count = 0;
+		var c = $('');
+		$(this).find('>div').each(function(){
+			count++;
+			c=c.add('<div id="tabs-'+count+'">'+$(this).html()+'</div>');
+		});
+		a.append(b).append(c);
+		$(this).before(a);
+		$(this).remove();
+	});
+	$('.cctor-tabs').tabs();
+}
+
+jQuery(document).ready(function($){
+
+	// event handler for window resize
+	$(window).resize(function(e){
+		updateUI();
+	});
+	
+	updateUI();
+	
+});

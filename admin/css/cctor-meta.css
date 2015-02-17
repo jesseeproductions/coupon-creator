@@ -150,7 +150,7 @@
 	display: inline-block;
 	padding: 4px 14px 6px;
 	text-decoration: none;
-	margin: 0 6px -1px 0;
+	margin: 0 6px 1px 0;
 	border-radius: 8px 8px 0 0;
 	font-weight: bold;
 	font-size: 13px;
@@ -177,6 +177,12 @@
 	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
 	overflow:hidden;
 }
+
+/* Coupon Creator jQuery Responsive Tabs
+------------------------------------------------------------ */
+
+
+
 
 /* Coupon Creator jQuery UI Changes
 ------------------------------------------------------------ */
@@ -249,6 +255,10 @@
 .ui-dialog.cctor-ui  .ui-dialog-content {
 	overflow: hidden;
 }
+.post-type-cctor_coupon .ui-widget-overlay {
+    position: fixed;
+}
+
 /* Coupon Creator Loading
 ------------------------------------------------------------ */
 
