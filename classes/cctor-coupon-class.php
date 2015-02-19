@@ -111,7 +111,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 100);		
 
 			//Load Pro Meta Box Cases
-			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );			
+			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );		
+
+			add_filter( 'the_content', array( __CLASS__, 'wpc_remove_autop_for_posttype' ), 0 );  	
 		}
 
 	/***************************************************************************/		
@@ -391,11 +393,19 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 		public static function cctor_terms_allowed_tags( $cctor_terms_tags ) {
 
-		    $cctor_terms_tags = '<p><div><span><ul><li><ol><b><strong><blockquote><em><img><code><del><ins>';
+		    $cctor_terms_tags = '<p><div><span><br><ul><li><ol><b><strong><blockquote><em><img><code><del><ins>';
 			
 			return $cctor_terms_tags;
 			
-		}	
+		}
+
+	/***************************************************************************/
+			
+		 function wpc_remove_autop_for_posttype( $content )  {  
+			'cctor_coupon' === get_post_type() && remove_filter( 'the_content', 'wpautop' );  
+			return $content;  
+		} 
+		
 	/***************************************************************************/
 
 		/*

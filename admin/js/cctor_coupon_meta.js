@@ -241,77 +241,110 @@ function showHelp(helpid){
 }
 
 /*
+* WooCommerce Coupons Show X Items Field With Product Discount Types Selected
+* @version 2.00
+*/
+jQuery(function($) {
+	
+	$(window).on('resize load',function(e){
+				
+		//console.log( $('.cctor-tabs-nav').height() );
+		
+		if ( $('.cctor-tabs-nav').height() > 35 ) {
+			
+			console.log( 'addclass' );
+			
+			$('.cctor-tabs-nav').addClass( 'cctor_accordiantabs' );
+			
+		} else if ( $('.cctor-tabs-nav').height() <= 35 ) {
+		
+			console.log( 'removeclass' );
+			
+			$('.cctor-tabs-nav').removeClass( 'cctor_accordiantabs' );
+			
+		}
+	});
+	
+});
+
+/*
 * Responsive Tabs
 * 
 * since 2.00
 */
-// event handler for window resize
-function updateUI(){
+jQuery(document).ready(function($) {
+	
+	$('.cctor-tabs-nav').before( '<div class="cctor-tabs-nav-mobile">Menu</div>' );
+	
 
-	if($(window).width() <= 600){
+	  $(document).on('click', '.cctor-tabs-nav-mobile', function(event) {
+		var myClass = $(this).attr('class');
+		console.log(myClass); 
+		toggleMobileMenu(event, myClass);
+	  })
 
-		// mobile view instructions
-		tabsToAccordions();
+	  function toggleMobileMenu(event, myClass) {
 
-	} else {
+		myClass = myClass.slice(0, -7)
+		
+		console.log(myClass); 
+		
+		$('.'+myClass).toggleClass("open");
+		
+	  }
+	
+	/*var Tabs = {
 
-		// desktop view instructions
-		accordionsToTabs();
+	  init: function() {
+		this.bindUIfunctions();
+		this.pageLoadCorrectTab();
+	  },
+
+	  bindUIfunctions: function() {
+
+		// Delegation
+		$(document)
+		  .on("click", ".cctor-tabs a[href^='#']:not('.active')", function(event) {
+			Tabs.changeTab(this.hash);
+			event.preventDefault();
+		  })
+		  .on("click", ".cctor-tabs a.active", function(event) {
+			Tabs.toggleMobileMenu(event, this);
+			event.preventDefault();
+		  });
+
+	  },
+
+	  changeTab: function(hash) {
+
+		var anchor = $("[href='" + hash + "']");
+		var div = $(hash);
+
+		// activate correct anchor (visually)
+		anchor.addClass("active").parent().siblings().find("a").removeClass("active");
+
+		// activate correct div (visually)
+		div.addClass("active").siblings().removeClass("active");
+
+		// update URL, no history addition
+		// You'd have this active in a real situation, but it causes issues in an <iframe> (like here on CodePen) in Firefox. So commenting out.
+		window.history.replaceState("", "", hash);
+
+		// Close menu, in case mobile
+		anchor.closest("ul").removeClass("open");
+
+	  },
+
+	  // If the page has a hash on load, go to that tab
+	  pageLoadCorrectTab: function() {
+		this.changeTab(document.location.hash);
+	  },
+
+	  toggleMobileMenu: function(event, el) {
+		$(el).closest("ul").toggleClass("open");
+	  }
+
 	}
 
-}
-
-// changes tabs to accordions (jquery ui)
-function tabsToAccordions(){
-	$('.cctor-tabs').each(function(){
-		var a = $('<div class="accordion">');
-		var b = new Array();
-		$(this).find('>ul>li').each(function(){
-			b.push('<h3>'+$(this).html()+'</h3>');
-		});
-		var c = new Array();
-		$(this).find('>div').each(function(){
-			c.push('<div>'+$(this).html()+'</div>');
-		});
-		for(var i = 0; i < b.length; i++){
-			a.append(b[i]).append(c[i]);
-		}
-		$(this).before(a);
-		$(this).remove();
-	})
-	$('.accordion').accordion()
-}
-
-// changes accordions to tabs (jquery ui)
-function accordionsToTabs(){
-	$('.cctor-accordion').each(function(){
-		var a = $('<div class="tabs">');
-		var count = 0;
-		var b = $('<ul>');
-		$(this).find('>h3').each(function(){
-			count++;
-			b.append('<li><a href="#tabs-'+count+'">'+$(this).text()+'</a></li>');
-		});
-		var count = 0;
-		var c = $('');
-		$(this).find('>div').each(function(){
-			count++;
-			c=c.add('<div id="tabs-'+count+'">'+$(this).html()+'</div>');
-		});
-		a.append(b).append(c);
-		$(this).before(a);
-		$(this).remove();
-	});
-	$('.cctor-tabs').tabs();
-}
-
-jQuery(document).ready(function($){
-
-	// event handler for window resize
-	$(window).resize(function(e){
-		updateUI();
-	});
-	
-	updateUI();
-	
+	Tabs.init(); */
 });

@@ -121,11 +121,11 @@
 
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav {
-	height: 27px;
 	margin: 20px 0 0;
 	padding: 0;
 	background: none;
 	border: none;
+	height: 100%;
 }
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li {
@@ -290,3 +290,53 @@
 	-webkit-background-size: 32px 32px;
 			background-size: 32px 32px;
 }
+
+
+
+.ui-tabs .cctor-tabs-nav.cctor_accordiantabs {
+border-bottom: 0;
+height: auto;
+margin: 5px 0 0;
+display:none;
+}
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav.cctor_accordiantabs.open {
+display:block;
+} 
+.cctor-tabs .cctor-tabs-nav-mobile:after {
+content: "☰";
+position: absolute;
+top: 8px;
+right: 15px;
+z-index: 2;
+pointer-events: none;
+}
+.ui-tabs .cctor-tabs-nav.cctor_accordiantabs li a.ui-tabs-anchor {
+position: relative;
+display: block;
+margin:0;
+padding:5px;
+float:none;
+border-radius: 0;
+border: 1px solid #000;
+box-shadow: none;
+}
+.ui-tabs .cctor-tabs-nav.cctor_accordiantabs li.ui-state-default {
+display: block;
+float: none;
+}
+
+/*
+.cctor-tabs .open a.ui-tabs-anchor {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+} */
+/* .cctor-tabs a.ui-tabs-anchor.active {
+border: 0;
+z-index: 1;
+background: #666;
+/* fallback */ /*
+background: linear-gradient(#666, #222);
+} */
