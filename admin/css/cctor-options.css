@@ -6,48 +6,6 @@
     border: none;
 	font-family: "Open Sans",sans-serif;
 }
-
-.ui-tabs .cctor-tabs-nav.ui-tabs-nav {
-	height: 27px;
-	margin: 20px 0 0;
-	padding: 0;
-	background: none;
-	border: none;
-}
-
-.ui-tabs .cctor-tabs-nav.ui-tabs-nav li {
-	display: block;
-	float: left;
-	margin: 0;
-}
-.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-default,
-.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active  {
-    background: none;
-    border: none;
-}
-
-.ui-tabs .cctor-tabs-nav.ui-tabs-nav li a {
-	border-color: #fff;
-	border-style: solid;
-	border-width: 1px 1px 0;
-	color: #5C5C5C;
-	text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
-	display: inline-block;
-	padding: 4px 14px 6px;
-	text-decoration: none;
-	margin: 0 6px -1px 0;
-	border-radius: 8px 8px 0 0;
-	font-weight: bold;
-	font-size: 13px;
-}
-
-.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-tabs-selected a,
-.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active a {
-	border-width: 1px 1px 0;
-	color: #2A5A8A;
-	background: #fff;
-}
-
 #mc_embed_signup,
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content{
 	clear: both;
@@ -210,4 +168,136 @@ div.alert {
 }
 #mc-embedded-subscribe:hover {
 	background: #f32323;
+}
+
+@media only screen and (max-width: 640px) {
+
+.cctor_coupon_page_coupon-options #mc_embed_signup h3,
+.cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
+	margin: 0;
+}
+
+}
+/* Coupon Creator jQuery Tabs
+------------------------------------------------------------ */
+.cctor-woo-tabs.ui-tabs.ui-widget-content,
+.cctor-tabs.ui-tabs.ui-widget-content {
+    background: none;
+    border: none;
+	font-family: "Open Sans",sans-serif;
+}
+
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav,
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav {
+	margin: 20px 0 -2px;
+	padding: 0;
+	background: none;
+	border: none;
+	height: 100%;
+}
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li,
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav li {
+	display: block;
+	float: left;
+	margin: 0;
+}
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-default,
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-active,
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-default,
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active  {
+    background: none;
+    border: none;
+}
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li a,
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav li a {
+	border-color: #fff;
+	border-style: solid;
+	border-width: 1px 1px 0;
+	color: #5C5C5C;
+	text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
+	display: inline-block;
+	padding: 4px 14px 6px;
+	text-decoration: none;
+	margin: 0 6px 1px 0;
+	border-radius: 8px 8px 0 0;
+	font-weight: bold;
+	font-size: 13px;
+	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
+}
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-tabs-selected a,
+.ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-active a,
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-tabs-selected a,
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active a {
+	border-width: 1px 1px 0;
+	color: #2A5A8A;
+	background: #fff;
+	box-shadow: 0 0 5px 0 rgba(18, 68, 107, 1.0);
+}
+
+.coupon-section-fields {
+	margin: 3px 0 0;
+}
+.cctor-woo-tabs-panel.ui-tabs-panel.ui-widget-content,
+.cctor-tabs-panel.ui-tabs-panel.ui-widget-content{
+	clear: both;
+	background: #fff;
+	padding: 2%;
+	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
+	overflow:hidden;
+}
+
+/* Responsive Tab Mode
+------------------------------------------------------------ */
+.cctor-tabs-nav-mobile,
+.cctor-woo-tabs-nav-mobile {
+	display:none;
+	background: #fff;
+	border-color: #fff;
+	border-style: solid;
+	border-width: 1px 1px 0;
+    box-shadow: 0 0 5px 0 rgba(18, 68, 107, 1);
+    color: #2a5a8a;
+	border-radius: 8px 8px 0 0;
+	padding: 3px 10px 8px;
+	cursor: pointer;
+}
+
+.cctor-woo-tabs-nav-mobile.show,
+.cctor-tabs-nav-mobile.show {
+	display:block;
+}
+
+.cctor-woo-tabs-nav-mobile:after,
+.cctor-tabs-nav-mobile:after {
+content: "☰";
+position: absolute;
+top: 8px;
+right: 15px;
+z-index: 2;
+pointer-events: none;
+}
+
+.ui-tabs .cctor-woo-tabs-nav.cctor_accordiantabs,
+.ui-tabs .cctor-tabs-nav.cctor_accordiantabs {
+border-bottom: 0;
+height: auto;
+margin: 5px 0 15px;
+display:none;
+background:#fff;
+}
+
+.cctor-woo-tabs-nav.cctor_accordiantabs li a.ui-tabs-anchor,
+.cctor-tabs-nav.cctor_accordiantabs li a.ui-tabs-anchor {
+position: relative;
+display: block;
+margin:0;
+padding:5px;
+float:none;
+border-radius: 0;
+border: none;
+}
+.cctor-woo-tabs-nav.cctor_accordiantabs li.ui-state-default,
+.cctor-tabs-nav.cctor_accordiantabs li.ui-state-default {
+display: block;
+float: none;
 }

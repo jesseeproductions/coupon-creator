@@ -4,7 +4,7 @@
 
  * http://stackoverflow.com/questions/19682706/how-do-you-close-the-iris-colour-picker-when-you-click-away-from-it
  */
- var $ = jQuery.noConflict();
+var $ = jQuery.noConflict();
  
 jQuery(document).ready(function($) {
 	/*
@@ -103,7 +103,48 @@ jQuery(document).ready(function($){
 
 });
 
+/*
+* Retrieve Query String Parameter
+* http://stackoverflow.com/questions/1171713/how-to-retrieve-query-string-parameter-and-values-using-javascript-jquery
+* since 1.90
+*/
+function getQueryParams( val ) {
+	//Use the window.location.search if we don't have a val.
+	var query = val || window.location.search;
+	query = query.split('?')[1]
+	var pairs = query.split('&');
+	var retval = {};
+	var check = [];
+	for( var i = 0; i < pairs.length; i++ ) {
+		check = pairs[i].split('=');
+		retval[decodeURIComponent(check[0])] = decodeURIComponent(check[1]);
+	}
 
+	return retval;
+}
+
+/*
+*	Calculate Width of Text
+*	http://stackoverflow.com/questions/1582534/calculating-text-width-with-jquery
+* 	since 2.0
+*/
+$.fn.textWidth = function(text, font) {
+    if (!$.fn.textWidth.fakeEl) $.fn.textWidth.fakeEl = $('<span>').hide().appendTo(document.body);
+    $.fn.textWidth.fakeEl.text(text || this.val() || this.text()).css('font', font || this.css('font'));
+    return $.fn.textWidth.fakeEl.width();
+};
+
+/*
+* Toogle Slide Responsive Mode Tabs
+* since 2.0
+*/
+function toggleMobileMenu(event, tabClass) {
+
+	tabClass = tabClass.slice(0, -7)
+
+	$('.'+tabClass).slideToggle();
+
+}
 /*
 * jQuery UI Tabs for Meta Box
 *
@@ -165,16 +206,23 @@ jQuery(document).ready(function($) {
 
 			// Tab initialization
 			$(".cctor-tabs").tabs({
+				
 			   // The zero-based index of the panel that is active (open)
 				active : oldIndex,
 				// Triggered after a tab has been activated
 				activate : function( event, ui ){
+					
 					//  Get future value
 					var newIndex = ui.newTab.parent().children().index(ui.newTab);
 					//  Set future value
 					dataStore.setItem( index, newIndex )
+					
+					//Set Responsive Menu Text to Current Tab
+					var selectedTab = $('.cctor-tabs').tabs('option', 'active');					
+					$('.cctor-tabs-nav-mobile').text( $('.cctor-tabs ul li a').eq(selectedTab).text() );
 				},
-				fx: { opacity: "toggle", duration: "fast" },
+				fx: { opacity: "toggle", duration: "fast" },		
+
 			});
 		});
 
@@ -203,29 +251,77 @@ jQuery(document).ready(function($) {
 });
 
 /*
-* Retrieve Query String Parameter
-* http://stackoverflow.com/questions/1171713/how-to-retrieve-query-string-parameter-and-values-using-javascript-jquery
-* since 1.90
+* 	Responsive Tabs Find Breakpoint to Change or Accordion Layout or Back to Tabs
+* 	since 2.0
 */
-function getQueryParams( val ) {
-	//Use the window.location.search if we don't have a val.
-	var query = val || window.location.search;
-	query = query.split('?')[1]
-	var pairs = query.split('&');
-	var retval = {};
-	var check = [];
-	for( var i = 0; i < pairs.length; i++ ) {
-		check = pairs[i].split('=');
-		retval[decodeURIComponent(check[0])] = decodeURIComponent(check[1]);
-	}
+jQuery(function($) {
+	
+	//Calculate Total Tab Length to determine when to switch between Responsive and Regular Tabs
+	var tabText = 0;
+	var tabCount = 0;
+	
+	$(".cctor-tabs-nav li").each(function() {
+	
+		tabText = tabText + $(this).textWidth();
+		
+		tabCount = tabCount + 1;
+		
+	});
+	
+	//On Resize or Load check if Tabs will fit
+	$(window).on('resize load',function(e){
+				
+		// 38px per tab for padding	
+		var tabTotallength = tabText + ( tabCount * 38 );
+		
+		if ( tabTotallength > $('.cctor-tabs').width() ) {
+						
+			$('.cctor-tabs-nav').addClass( 'cctor_accordiantabs' );
+			$('.cctor-tabs-nav-mobile').addClass( 'show' );
+			
+		} else {
+			
+			$('.cctor-tabs-nav').fadeIn( 'fast', function() {
+				$(this).removeClass( 'cctor_accordiantabs' );
+			});
+			$('.cctor-tabs-nav-mobile').removeClass( 'show' );
+		}	
+	});
+	
+});
 
-	return retval;
-}
+/*
+* Tabs Responsive Mode
+* 
+* since 2.00
+*/
+jQuery(document).ready(function($) {
+	
+	$('.cctor-tabs-nav').before( '<div class="cctor-tabs-nav-mobile">Menu</div>' );
+	
+	//Change Menu Text on Creation of Tabs
+	$( ".cctor-tabs" ).on( "tabscreate", function( event, ui ) { 
+		
+		var selectedTab = $('.cctor-tabs').tabs('option', 'active');		
+		
+		$('.cctor-tabs-nav-mobile').text( $('.cctor-tabs ul li a').eq(selectedTab).text() );
+		
+	});
+	
+	//Open Tabs in Responsive Mode
+	$(document).on('click', '.cctor-tabs-nav-mobile', function(event) {
+
+		var tabClass = $(this).attr('class').split(" ")[0];
+
+		toggleMobileMenu(event, tabClass);
+	})
+
+});
 
 /*
 * Hide or Display Help Images
 * 
-* since 2.00
+* since 2.0
 */
 function showHelp(helpid){
 
@@ -239,112 +335,3 @@ function showHelp(helpid){
 	 
 	 return false;
 }
-
-/*
-* WooCommerce Coupons Show X Items Field With Product Discount Types Selected
-* @version 2.00
-*/
-jQuery(function($) {
-	
-	$(window).on('resize load',function(e){
-				
-		//console.log( $('.cctor-tabs-nav').height() );
-		
-		if ( $('.cctor-tabs-nav').height() > 35 ) {
-			
-			console.log( 'addclass' );
-			
-			$('.cctor-tabs-nav').addClass( 'cctor_accordiantabs' );
-			
-		} else if ( $('.cctor-tabs-nav').height() <= 35 ) {
-		
-			console.log( 'removeclass' );
-			
-			$('.cctor-tabs-nav').removeClass( 'cctor_accordiantabs' );
-			
-		}
-	});
-	
-});
-
-/*
-* Responsive Tabs
-* 
-* since 2.00
-*/
-jQuery(document).ready(function($) {
-	
-	$('.cctor-tabs-nav').before( '<div class="cctor-tabs-nav-mobile">Menu</div>' );
-	
-
-	  $(document).on('click', '.cctor-tabs-nav-mobile', function(event) {
-		var myClass = $(this).attr('class');
-		console.log(myClass); 
-		toggleMobileMenu(event, myClass);
-	  })
-
-	  function toggleMobileMenu(event, myClass) {
-
-		myClass = myClass.slice(0, -7)
-		
-		console.log(myClass); 
-		
-		$('.'+myClass).toggleClass("open");
-		
-	  }
-	
-	/*var Tabs = {
-
-	  init: function() {
-		this.bindUIfunctions();
-		this.pageLoadCorrectTab();
-	  },
-
-	  bindUIfunctions: function() {
-
-		// Delegation
-		$(document)
-		  .on("click", ".cctor-tabs a[href^='#']:not('.active')", function(event) {
-			Tabs.changeTab(this.hash);
-			event.preventDefault();
-		  })
-		  .on("click", ".cctor-tabs a.active", function(event) {
-			Tabs.toggleMobileMenu(event, this);
-			event.preventDefault();
-		  });
-
-	  },
-
-	  changeTab: function(hash) {
-
-		var anchor = $("[href='" + hash + "']");
-		var div = $(hash);
-
-		// activate correct anchor (visually)
-		anchor.addClass("active").parent().siblings().find("a").removeClass("active");
-
-		// activate correct div (visually)
-		div.addClass("active").siblings().removeClass("active");
-
-		// update URL, no history addition
-		// You'd have this active in a real situation, but it causes issues in an <iframe> (like here on CodePen) in Firefox. So commenting out.
-		window.history.replaceState("", "", hash);
-
-		// Close menu, in case mobile
-		anchor.closest("ul").removeClass("open");
-
-	  },
-
-	  // If the page has a hash on load, go to that tab
-	  pageLoadCorrectTab: function() {
-		this.changeTab(document.location.hash);
-	  },
-
-	  toggleMobileMenu: function(event, el) {
-		$(el).closest("ul").toggleClass("open");
-	  }
-
-	}
-
-	Tabs.init(); */
-});
