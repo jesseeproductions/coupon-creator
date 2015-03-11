@@ -571,7 +571,15 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => 'display',
 				'class'   => 'code'
 			);
-
+			//wpautop
+			$this->options['cctor_wpautop'] = array(
+				'section' => 'display',
+				'title'   => __( 'wpautop Control', 'coupon_creator' ),
+				'desc'    => __( 'Check to remove <a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop filter</a> from Coupon Terms', 'coupon_creator' ),
+				'type'    => 'checkbox',
+				'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
+			);
+			
 			//Help
 			$this->options['cctor_help'] = array(
 				'section' => 'help',
@@ -613,13 +621,15 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/
 		public static function cctor_newsletter_signup() {
 
-							echo '<!-- Begin MailChimp Signup Form -->
-					<div id="mc_embed_signup">
+			echo '<div class="cctor-promo-boxes">
 
-					<h3>Keep Coupon Creator Going!</h3>
+					<h3>Keep The Coupon Creator Going!</h3>
 					<p>Every time you rate <strong>5 stars</strong>, it helps the Coupon Creator by showing everyone the happy users who use this plugin.</p>
 					<p><a href="https://wordpress.org/support/view/plugin-reviews/coupon-creator?filter=5" target="_blank" class="button-primary">Rate It</a></p>
-
+				</div>';
+				
+			echo '<!-- Begin MailChimp Signup Form -->
+					<div id="mc_embed_signup" class="cctor-promo-boxes">
 						<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
 							<div id="mc_embed_signup_scroll">
@@ -641,10 +651,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 							</div>
 						</form>
-					</div>
-
-						<!--End mc_embed_signup-->';
-
+					</div><!--End mc_embed_signup-->';
 		}
 
 	/***************************************************************************/

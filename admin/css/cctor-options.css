@@ -6,7 +6,8 @@
     border: none;
 	font-family: "Open Sans",sans-serif;
 }
-#mc_embed_signup,
+
+.cctor-promo-boxes,
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content{
 	clear: both;
 	background: #fff;
@@ -22,14 +23,14 @@
 	line-height: 35px;
 	text-shadow: 0 1px 0 #fff;
 }
-.cctor_coupon_page_coupon-options #mc_embed_signup h3,
+.cctor-promo-boxes h3,
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
 	font-size: 15px;
 	font-weight: bold;
 	margin: 0 0 0 -10px;
 	color: #048C7F;
 }
-.cctor_coupon_page_coupon-options #mc_embed_signup h3:after,
+.cctor-promo-boxes h3:after,
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4:after {
     content: "";
     height: 1px;
@@ -145,10 +146,14 @@ div.alert {
             transform:skew(8deg) rotate(3deg);
 }
 
-/* Coupon Creator Options Sign Up Form
+/* Options Sign Up Form / Promo Boxes
 ------------------------------------------------------------ */
-#mc_embed_signup{
+.cctor-promo-boxes {
 	overflow:hidden;
+	width: 44%;
+	margin: 0 1%;
+	float: left;
+	clear: none;
 }
 .cctor_coupon_page_coupon-options #mc_embed_signup h3{
 	margin: 0 0 10px;
@@ -172,11 +177,15 @@ div.alert {
 
 @media only screen and (max-width: 640px) {
 
-.cctor_coupon_page_coupon-options #mc_embed_signup h3,
+.cctor-promo-boxes h3,
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
 	margin: 0;
 }
-
+.cctor-promo-boxes {
+	width: 94%;
+	float: none;
+	margin: 2% 1%;
+}
 }
 /* Coupon Creator jQuery Tabs
 ------------------------------------------------------------ */

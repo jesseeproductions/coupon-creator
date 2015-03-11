@@ -112,8 +112,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Load Pro Meta Box Cases
 			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );		
-
-			add_filter( 'the_content', array( __CLASS__, 'wpc_remove_autop_for_posttype' ), 0 );  	
+			
+			//Remove wpautop filter on terms fields
+			if ( cctor_options('cctor_wpautop') == 1 ) {
+				add_filter( 'the_content', array( __CLASS__, 'cctor_remove_autop_for_coupons' ), 0 );  	
+			}
 		}
 
 	/***************************************************************************/		
@@ -390,7 +393,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			}
 		}
 	/***************************************************************************/
-
+	
+		/*
+		* Allowed Tags for Terms Field
+		* @version 2.00
+		*/	
 		public static function cctor_terms_allowed_tags( $cctor_terms_tags ) {
 
 		    $cctor_terms_tags = '<p><div><span><br><ul><li><ol><b><strong><blockquote><em><img><code><del><ins>';
@@ -400,10 +407,17 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		}
 
 	/***************************************************************************/
-			
-		 function wpc_remove_autop_for_posttype( $content )  {  
+		/*
+		* Remove wpautop in Terms Field
+		* @version 2.00
+		* based of coding from http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
+		*/	
+		public static function cctor_remove_autop_for_coupons( $content )  {  
+
 			'cctor_coupon' === get_post_type() && remove_filter( 'the_content', 'wpautop' );  
+			
 			return $content;  
+			
 		} 
 		
 	/***************************************************************************/
