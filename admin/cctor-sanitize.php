@@ -144,3 +144,25 @@ function sanitize_dimension_field( $input, $default = "") {
 		return $default;
 	} 
 }
+/*
+* Sanitize Google Analytics
+* @version 2.0
+*/	
+add_filter( 'cctor_sanitize_ga_analytics', 'sanitize_ga_analytics_field' );
+function sanitize_ga_analytics_field( $input, $default = "" ) {
+	
+	$input = trim( $input );
+	// en dash to minus, prevents issue with code copied from web with "fancy" dash
+	$input = str_replace( '–', '-', $input );
+
+	if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $input ) ) {
+
+		return $default;
+		
+	} else {
+
+		return $input;
+		
+	}
+	
+}
