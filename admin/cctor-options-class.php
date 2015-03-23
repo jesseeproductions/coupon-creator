@@ -574,8 +574,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			//wpautop
 			$this->options['cctor_wpautop'] = array(
 				'section' => 'display',
-				'title'   => __( 'wpautop Control', 'coupon_creator' ),
-				'desc'    => __( 'Check to remove <a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop filter</a> from Coupon Terms', 'coupon_creator' ),
+				'title'   => __( 'Auto P Filter', 'coupon_creator' ),
+				'desc'    => __( 'Check to remove <a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop filter</a> from Coupon Terms Field', 'coupon_creator' ),
 				'type'    => 'checkbox',
 				'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);

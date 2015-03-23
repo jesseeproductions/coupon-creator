@@ -163,7 +163,6 @@ div.alert {
 	float:left;
 }
 #mc-embedded-subscribe {
-	width: 90px;
 	float:left;
 	background: #950402;
 	color: #fff;
@@ -269,6 +268,7 @@ div.alert {
 	border-radius: 8px 8px 0 0;
 	padding: 3px 10px 8px;
 	cursor: pointer;
+	margin-bottom: 2px;
 }
 
 .cctor-woo-tabs-nav-mobile.show,
