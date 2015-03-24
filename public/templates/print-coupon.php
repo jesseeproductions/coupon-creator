@@ -3,14 +3,19 @@
 * Single Template For Custom Post Type Coupon
 * Custom Template with WordPress loaded no header, footer, or theme styling
 */
+	//Do Not Cache Print Templates
+	if ( ! defined( 'DONOTCACHEPAGE' ) )
+        define( 'DONOTCACHEPAGE', true);
+	
 	do_action( 'cctor_action_print_template' );
+	
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<?php
 
-		do_action( 'wp_head' );
+		//do_action( 'wp_head' );
 
 		//Coupon Creator Print Template Meta Hook
 		do_action( 'coupon_print_meta' );
@@ -73,7 +78,7 @@ endwhile; // end the coupon creator loop
 
 do_action( 'coupon_footer' );
 
-do_action( 'wp_footer' );
+//do_action( 'wp_footer' );
 ?>
 </body>
 </html>

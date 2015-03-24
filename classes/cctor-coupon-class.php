@@ -400,7 +400,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/	
 		public static function cctor_terms_allowed_tags( $cctor_terms_tags ) {
 
-		    $cctor_terms_tags = '<p><div><span><br><ul><li><ol><b><strong><blockquote><em><img><code><del><ins>';
+		    $cctor_terms_tags = '<h1><h2><h3><h4><h5><h6><p><blockquote><div><pre><code><span><br><b><strong><em><img><del><ins><sub><sup><ul><ol><li><hr>';
 			
 			return $cctor_terms_tags;
 			
