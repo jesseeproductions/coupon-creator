@@ -117,8 +117,9 @@ class Coupon_Creator_Shortcode {
 				do_action( 'cctor_after_coupon' , $coupon_id );
 				
 			} //End While
+
 			
-			do_action( 'cctor_after_coupon_wrap' );
+			do_action( 'cctor_shortcode_end' ); 
 			
 			/* Restore original Post Data */
 			wp_reset_postdata();
