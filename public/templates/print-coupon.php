@@ -7,7 +7,9 @@
 	if ( ! defined( 'DONOTCACHEPAGE' ) )
         define( 'DONOTCACHEPAGE', true);
 	
-	do_action( 'cctor_action_print_template' );
+	$coupon_id = get_the_ID();
+	
+	do_action( 'cctor_action_print_template', $coupon_id );
 	
 ?>
 <!DOCTYPE html>
