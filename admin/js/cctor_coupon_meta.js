@@ -293,7 +293,7 @@ jQuery(function($) {
 /*
 * Tabs Responsive Mode
 * 
-* since 2.00
+* since 2.0
 */
 jQuery(document).ready(function($) {
 	

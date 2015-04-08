@@ -396,7 +396,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	
 		/*
 		* Allowed Tags for Terms Field
-		* @version 2.00
+		* @version 2.0
 		*/	
 		public static function cctor_terms_allowed_tags( $cctor_terms_tags ) {
 
@@ -409,7 +409,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	/***************************************************************************/
 		/*
 		* Remove wpautop in Terms Field
-		* @version 2.00
+		* @version 2.0
 		* based of coding from http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
 		*/	
 		public static function cctor_remove_autop_for_coupons( $content )  {  

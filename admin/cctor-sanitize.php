@@ -45,7 +45,7 @@ add_filter( 'cctor_sanitize_radio', 'cctor_sanitize_enum', 10, 2 );
 
 /*
 * Image Field Sanitize
-* @version 2.00
+* @version 2.0
 */	
 add_filter( 'cctor_sanitize_image', 'cctor_sanitize_image_num' );
 add_filter( 'cctor_sanitize_proimage', 'cctor_sanitize_image_num' );
@@ -151,7 +151,7 @@ function sanitize_dimension_field( $input, $default = "") {
 add_filter( 'cctor_sanitize_ga_analytics', 'sanitize_ga_analytics_field' );
 function sanitize_ga_analytics_field( $input, $default = "" ) {
 	
-	$input = trim( $input );
+	$input = trim( esc_html( $input ) );
 	// en dash to minus, prevents issue with code copied from web with "fancy" dash
 	$input = str_replace( '–', '-', $input );
 

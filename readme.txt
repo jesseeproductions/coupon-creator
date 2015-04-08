@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 3.9
 Tested up to: 4.1
-Stable tag: 1.99
+Stable tag: 2.0
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -20,12 +20,27 @@ Create coupons to display on your site by using a shortcode.
 
 Create your own coupon with the Coupon Creator for WordPress or upload an image of a coupon instead.
 
+[Check out a demo gallery of Coupon Creator Features!](https://couponcreatorplugin.com/feature-demos/)
+
 Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=oTa7puu7t24
 
-<h4>Coupon Creator Pro Now Available!</h4>
+<h4>Coupon Creator Pro 2.0 Now Available!</h4>
 [Get a Pro License](http://couponcreatorplugin.com) with a visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+
+<h4>Coupon Creator Pro 2.0 Features Include:</h4>
+* Visual editor to easily style the term's content on your site
+* Display the Print View in a Popup for any coupons and print directly from the Popup
+* Use the View Shortcodes to display content in the Shortcode View or the Print View only
+* Create and Display WooCommerce Coupons from the Coupon Creator Editor
+* Set a Counter per coupon to expire the coupon after a limit has been reached
+* Change “Expires on:”, “Click to Open in Print View”, and “Print the Coupon” for all coupons
+* Set coupon size for the Shortcode View and the Print View for all coupons including the Image Coupon.
+* Override “Click to Open in Print View” text and link per coupon
+* Override “Print the Coupon” text and link per coupon
+* Disable the Print View per coupon
+* Add your Google Analytics Code to the Print Template from the Coupon Options
 
 <h4>How to Create a Coupon</h4>
 Create a coupon by going to the coupon custom post type and filling in all the settings in the custom meta box.
@@ -112,20 +127,23 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
-= 2.00 February 9th, 2015 =
-* Added Column in Coupon List to Mention if Coupon is Showing of Not Showing based on Expiration Date
-* Added current date from this function current_time('mysql') under the Expiration Date for Refrence, date formats to the default format chosen in the options
+= 2.0 April 8th, 2015 =
+* Added column in coupon list to mention if the coupon is showing of not showing based on expiration date
+* Added current date from this function current_time('mysql') under the expiration date for reference and date formats to the default format chosen in the options
 * Added numeric check for image uploads instead of using text sanitize
-* Added -webkit-print-color-adjust: exact;  to the css to help print background colors in Webkit Browsers, does not work in FireFox or IE the user has to choose to print background images and colors in the browser
-* Changed Support Fields in Option and Meta Sections to use same information instead of 4 different ones
-* Added New Styling to the Support Links
+* Added -webkit-print-color-adjust: exact; to the CSS to help print background colors in Webkit Browsers, does not work in FireFox or IE. The user has to choose to print background images and colors in the browser
+* Changed support fields in option and meta sections to use same information instead of four (4) different ones
+* Added new styling to the support links
+* Added coding to change Admin Tabs to Accordion when the div width cannot fit the tabs
+* Added Option to remove wpautop from running on terms fields by default it is on thanks to this snippet - http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
+* Added DONOTCACHEPAGE Constant to Print Template
 * Updated Colorbox to 1.5.14
 * Fixed Undefined property: stdClass::$delete_posts in Coupon List
 * Fixed save_post hook priority as some plugins caused the custom fields to not save
 * Fixed bug where Date Format does not save to Month First if Day First is the Default
 * Fixed textarea width
-* Removed extract function from the WordPress Settings API functions and replaced with arrays instead, that removes the last use of extract from the Coupon Creator
-	
+* Removed extract function from the WordPress Settings API functions and replaced with arrays instead, this removes the last use of the extract function from the Coupon Creator
+
 = 1.90 November 20th, 2014 =
 * Major update to all coding
 * Added a hook templating system to modify the shortcode and print templates
@@ -218,8 +236,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 1.90 =
-A major update to the Coupon Creator including adding a hook templating system to prepare for Coupon Creator Pro!
+= 2.0 =
+A new update to fix numerous bugs, add a more responsive admin, and more.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>

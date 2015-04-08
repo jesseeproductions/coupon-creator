@@ -248,17 +248,32 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				<br>
 				<ul>
 				<h4>Coupon Creator Pro Features Include:</h4><br>
+                    <li>In Pro use the visual editor to easily style the term's content on your site:
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-visual-editor.gif"/>
+                    </li>
+                    <li>Popup the Print View of select or all coupons and print directly from the popup:
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-popup.gif"/>
+                    </li>
+                    <li>Use the view shortcodes to display content in the shortcode view or the print view only:
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-shortcodes.gif"/>
+                    </li>
+                    <li>Create and Display WooCommerce Coupons from the Coupon Creator Editor:
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/coupon-woocommerce.png"/>
+                    </li>
 					<li>Set a Counter per coupon to expire the coupon after a limit has been reached:
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-counter.png"/>
+					    <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-counter.png"/>
 					</li>
 					<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons:
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-text-overrides.png"/>
+					    <img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-text-overrides.png"/>
 					</li>
 					<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon as well:
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-dimensions.png"/>
+					    <img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-dimensions.png"/>
 					</li>
 					<li>Override "Click to Open in Print View" text and link per coupon</li>
 					<li>Override "Print the Coupon" text and link per coupon</li>
+                    <li>Select where you want to display the Coupon Deal per coupon</li>
+                    <li>Disable the Print View per Coupon</li>
+                    <li>Add your Google Analytics Code to the Print Template from the Coupon Options</li>
 				</ul>
 				<ul>
 				<h4>Coupon Creator Pro Style Features:</h4><br>
@@ -268,9 +283,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					<li>Set Outer Border Radius, works for the image coupon too</li>
 					<li>Select Coupon Terms Text Color</li>
 					<li>Select Coupon Background Color</li>
-					<li>Choose a Background Image with option to set Background Repeat, Background Position, and Background Size
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-styles.png"/>
-					</li>
+					<li>Choose a Background Image with option to set Background Repeat, Background Position, and Background Size</li>
 					<li>Direct Support through CouponCreatorPlugin.com</li>
 				</ul>
 				<br>
@@ -624,7 +637,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			echo '<div class="cctor-promo-boxes">
 
 					<h3>Keep The Coupon Creator Going!</h3>
-					<p>Every time you rate <strong>5 stars</strong>, it helps the Coupon Creator by showing everyone the happy users who use this plugin.</p>
+					<p>Every time you rate <strong>5 stars</strong>, it shows your support for the Coupon Creator and helps make it better!</p>
 					<p><a href="https://wordpress.org/support/view/plugin-reviews/coupon-creator?filter=5" target="_blank" class="button-primary">Rate It</a></p>
 				</div>';
 				

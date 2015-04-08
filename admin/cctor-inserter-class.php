@@ -174,8 +174,8 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 								 );
 							  $categories = get_categories($values);
 							  foreach ($categories as $category) {
-								$option = '<option value="'.$category->name.'">';
-								$option .= $category->cat_name;
+								$option = '<option value="'. esc_html( $category->name ) .'">';
+								$option .= esc_html( $category->cat_name );
 								$option .= '</option>';
 								echo $option;
 							  }

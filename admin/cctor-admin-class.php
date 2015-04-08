@@ -204,7 +204,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 		/*
 		* Setup Custom Columns
-		* @version 2.00
+		* @version 2.0
 		* @param array $columns
 		*/
 		public static function cctor_list_columns( $columns ) {
@@ -245,7 +245,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 		/*
 		* Add Custom Meta Data to Columns
-		* @version 2.00
+		* @version 2.0
 		*/
 		public static function cctor_column_cases( $column, $post_id ) {
 			switch( $column ) {
@@ -296,7 +296,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 		/*
 		* Admin Check if Coupon Shows on Front End
-		* @version 2.00
+		* @version 2.0
 		*/
 		public static function cctor_admin_check_expiration($coupon_id) {
 
@@ -327,7 +327,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 		/*
 		* Admin Check of Expiration Date
-		* @version 2.00
+		* @version 2.0
 		*/
 		public static function cctor_admin_expiration_and_current_date($coupon_id) {
 
@@ -483,7 +483,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 		/*
 		* Get Support Information for Options and Meta Field
-		* @version 2.00
+		* @version 2.0
 		*/
 		public static function get_cctor_support_core_infomation() {
 
@@ -499,7 +499,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				<h4 class="coupon-heading">Pro Video Guides</h4>
 				<ul>
-
+                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xH3GmKPzQKc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to Create a WooCommerce Coupon</a></li>
+                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/iThKkEgYBDE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Popup Print View Feature</a></li>
+                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/h0YVXi2vq3g?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the View Shortcodes and Deal Display Options</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/FI218DxXnrY?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Coupon</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/SqAG3s1FniA?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Image Coupon</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/8L0JmSB_V-E?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Options</a></li>
@@ -524,7 +526,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 		/*
 		* Get Support Information for Options and Meta Field
-		* @version 2.00
+		* @version 2.0
 		*/
 		public static function get_cctor_support_core_contact() {
 

@@ -60,6 +60,7 @@
 	font-size:14px;
 	font-weight:bold;
 	color: #000;
+    overflow:hidden;
 }
 .cctor_terms img {
 	max-width:100%;
