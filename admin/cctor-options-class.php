@@ -248,13 +248,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				<br>
 				<ul>
 				<h4>Coupon Creator Pro Features Include:</h4><br>
-                    <li>In Pro use the visual editor to easily style the term's content on your site:
+                    <li>In Pro use the Visual editor to easily style the term's content on your site:
                         <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-visual-editor.gif"/>
                     </li>
-                    <li>Popup the Print View of select or all coupons and print directly from the popup:
+                    <li>Display the Print View in a Popup for any coupons and print directly from the Popup:
                         <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-popup.gif"/>
                     </li>
-                    <li>Use the view shortcodes to display content in the shortcode view or the print view only:
+                    <li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:
                         <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-shortcodes.gif"/>
                     </li>
                     <li>Create and Display WooCommerce Coupons from the Coupon Creator Editor:
