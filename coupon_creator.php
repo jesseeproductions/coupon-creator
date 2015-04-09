@@ -2,7 +2,7 @@
 /*
 Plugin Name: Coupon Creator
 Plugin URI: http://jesseeproductions.com/coupon_creator/
-Version: 2.0
+Version: 2.0.1
 
 Description: This plugin creates a custom post type for coupons with a shortcode to display it on website and a single view template for printing.
 
@@ -28,7 +28,7 @@ if (!defined('CCTOR_URL'))				define( 'CCTOR_URL',	plugin_dir_url( __FILE__ ));
 if (!defined('CCTOR_MIN_PHP_VERSION'))	define( 'CCTOR_MIN_PHP_VERSION',	'5.2');
 if (!defined('CCTOR_MIN_WP_VERSION'))	define( 'CCTOR_MIN_WP_VERSION',		'3.7');
 if (!defined('CCTOR_VERSION_KEY')) 		define( 'CCTOR_VERSION_KEY', 	'cctor_coupon_version');
-if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.0');
+if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.0.1');
 
 /*
 * Coupon Creator License
@@ -85,21 +85,27 @@ if	( cctor_requirements() ) {
 			else
 				return false;
 		}
-		
+
 		// Main Class
 		require_once( dirname( __FILE__ ) . '/classes/cctor-coupon-class.php' );
 		//Admin Class
 		require_once( dirname( __FILE__ ) . '/admin/cctor-admin-class.php' );
-		
+
 		//Coupon Creator Start!
-		return Coupon_Creator_Plugin::instance();
-		
-		//Flush Permalinks on Activate
-		register_activation_hook( __FILE__, array('Coupon_Creator_Plugin', 'activate') );
-		register_deactivation_hook(  __FILE__, array( 'Coupon_Creator_Plugin', 'deactivate' ) );
+		Coupon_Creator_Plugin::instance();
+
+		//Flush Permalinks on Activate and Deactivate
+		register_activation_hook( __FILE__, 'Coupon_Creator_Plugin::activate' );
+
+		register_deactivation_hook(  __FILE__, 'Coupon_Creator_Plugin::deactivate' );
 
 } else {
 
 	add_action( 'admin_notices', 'cctor_error_requirements' );
 
+}
+
+
+function my_admin_footer_function() {
+	echo '<p>This will be inserted at the bottom of admin page</p>';
 }

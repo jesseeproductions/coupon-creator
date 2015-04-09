@@ -725,8 +725,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				$options = get_option( 'coupon_creator_options' );
 
 				foreach ( $this->checkboxes as $id ) {
-					if ( isset( $options[$option_args['id']] ) && ! isset( $input[$id] ) ) {
-						unset( $options[$option_args['id']] );
+					if ( isset( $options[$id] ) && ! isset( $input[$id] ) ) {
+						unset( $options[$id] );
 					}
 				}
 
@@ -738,7 +738,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 						if ( $option['class'] == 'permalink' ) {
 							$input[$id] = str_replace(" ", "-",  strtolower(trim($input[$id])));
 							//if option is new then set to flush permalinks
-							if($options[$option_args['id']] != $input[$id] ) {
+							if( $options[$id] != $input[$id] ) {
 								$permalink_change = $id . "_change";
 								update_option($permalink_change, true);
 							}
