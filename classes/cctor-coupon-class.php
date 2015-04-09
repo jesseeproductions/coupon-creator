@@ -192,7 +192,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Activate
 		* @version 1.80
 		*/
-		public static function activate() {	
+		public static function activate() {
 			// Flush rewrite rules so that users can access custom post types on the
 			self::cctor_register_post_types();
 			flush_rewrite_rules();
