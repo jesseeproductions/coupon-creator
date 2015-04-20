@@ -100,7 +100,7 @@ jQuery(document).ready(function($) {
 			var dataStore = window.sessionStorage;
 			
 			//If Saved then use tab index, otherwise default to first tab
-			if (cctor_query_values["settings-updated"]) {
+			if ( jQuery('.wrap .updated p').length ) {
 				//  Start magic!
 				try {
 					// getter: Fetch previous value
