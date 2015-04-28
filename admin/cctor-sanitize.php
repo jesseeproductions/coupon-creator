@@ -166,3 +166,11 @@ function sanitize_ga_analytics_field( $input, $default = "" ) {
 	}
 	
 }
+/*
+* Sanitize urls
+* @version 2.0
+*/
+add_filter( 'cctor_sanitize_url', 'sanitize_url_field' );
+function sanitize_url_field( $input ) {
+	return esc_url( $input );
+}
