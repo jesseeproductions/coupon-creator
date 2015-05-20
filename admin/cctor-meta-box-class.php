@@ -283,9 +283,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								<?php break;
 								// url
 								case 'url':?>
-									<?php if (  isset($field['alert']) && $field['alert'] != '' && cctor_options($field['condition']) == 1 )
-											echo '<div class="cctor-error">&nbsp;&nbsp;' . $field['alert'] . '</div>';
-									?>
 									<input type="text" name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" value="<?php echo esc_url($meta); ?>" size="30" />
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
 

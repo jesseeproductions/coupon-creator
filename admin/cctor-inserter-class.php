@@ -163,19 +163,17 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 							<option value="#" ></option>
 							 <option value=""><?php echo __( 'All Categories', 'coupon_creator' ); ?></option>
 							 <?php
-								$values = array(
+								$cctor_cat_args = array(
 								  'orderby' => 'name',
 								  'order' => 'ASC',
-								  'echo' => 1,
-								  'selected' => $kat = get_query_var( 'cat' ),
-								  'name' => 'cat',
-								  'id' => '',
 								  'taxonomy' => 'cctor_coupon_category'
 								 );
-							  $categories = get_categories($values);
+							  $categories = get_categories( $cctor_cat_args );
+
+
 							  foreach ($categories as $category) {
-								$option = '<option value="'. esc_html( $category->name ) .'">';
-								$option .= esc_html( $category->cat_name );
+								$option = '<option value="'.  esc_html( $category->name ) .'">';
+								$option .=  esc_html( $category->cat_name );
 								$option .= '</option>';
 								echo $option;
 							  }

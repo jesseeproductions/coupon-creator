@@ -21,8 +21,8 @@ class Coupon_Creator_Shortcode {
 		 		 		
 	   }	 
 	   
-		do_action( 'cctor_shortcode_start' ); 
-	   
+		do_action( 'cctor_shortcode_start' );
+
 	   //Coupon ID is the Custom Post ID
 	   $cctor_atts = shortcode_atts(array(
 		"totalcoupons" => '-1',
@@ -48,7 +48,7 @@ class Coupon_Creator_Shortcode {
 			'post_status' => 'publish',
 			'orderby' =>  esc_attr($cctor_atts['couponorderby'])
 		);
-				
+
 		//Filter for all Shortcodes
 		if(has_filter('cctor_shortcode_query_args')) {
 			$cctor_args = apply_filters( 'cctor_shortcode_query_args', $cctor_args );
@@ -60,20 +60,20 @@ class Coupon_Creator_Shortcode {
 				$cctor_args = apply_filters( 'cctor_shortcode_query_args_'.$filterid, $cctor_args );
 			}		
 		}
-		
+
 		$coupons = new WP_Query($cctor_args);
 		
 		ob_start();
 		
 		do_action( 'cctor_before_coupon_wrap' ); 
-			
+
 		// The Coupon Loop
 		while ($coupons->have_posts()) {
 
 			$coupons->the_post();
 						
 			$coupon_id = $coupons->post->ID;
-			
+
 			do_action( 'cctor_before_coupon' , $coupon_id ); 
 				//Check to show the Coupon
 				if (cctor_expiration_check($coupon_id)) {
@@ -81,52 +81,52 @@ class Coupon_Creator_Shortcode {
 					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align ); 
 							
 					echo $outer_coupon_wrap['start_wrap'];					
-				
+
 						//Return If Not Passed Expiration Date
 						$couponimage = apply_filters( 'cctor_image_url' , $coupon_id  );
-						
+
 						if ($couponimage) {
 						
 							do_action( 'cctor_img_coupon' , $coupon_id , $couponimage ); 
 						
 						} else { 
-						
+
 							$inner_coupon_wrap  = apply_filters( 'cctor_inner_content_wrap' , $coupon_id  ); 
 
 							echo  $inner_coupon_wrap['start_wrap'];
-							
+
 								do_action( 'cctor_coupon_deal' , $coupon_id ); 
-								
-								do_action( 'cctor_coupon_terms' , $coupon_id ); 
-								
+
+								do_action( 'cctor_coupon_terms' , $coupon_id );
+
 								do_action( 'cctor_coupon_expiration' , $coupon_id ); 
-							
+
 							echo $inner_coupon_wrap['end_wrap'];
-						
+
 						}
-					
+
 						do_action( 'cctor_coupon_link' , $coupon_id ); 
-					
+
 					echo $outer_coupon_wrap['end_wrap'];	
 					
 				} else {
 					//No Coupon Will Show So Print HTML Comment
 					do_action( 'cctor_no_show_coupon' , $coupon_id );
 				}
-				
+
 				do_action( 'cctor_after_coupon' , $coupon_id );
-				
+
 			} //End While
 
-			
+
 			do_action( 'cctor_shortcode_end' ); 
 			
 			/* Restore original Post Data */
 			wp_reset_postdata();
 
 			// Return Variables
-			return ob_get_clean();	 
+			return ob_get_clean();
 
-	} 
+	}
 	
 }

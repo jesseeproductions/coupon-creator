@@ -96,7 +96,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				
 			//Build Shortcode
 			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-shortcode-build.php' );
-			add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 100);	
+			add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 10);
 			
 			//Load Single Coupon Template
 			add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );
@@ -105,10 +105,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-print-build.php' );	
 			
 			//Add Print Template Functions
-			add_action( 'cctor_action_print_template', 'cctor_print_template', 100);			
+			add_action( 'cctor_action_print_template', 'cctor_print_template', 10);
 			
 			//Print Template Inline Custom CSS from Option
-			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 100);		
+			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 10);
 
 			//Load Pro Meta Box Cases
 			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );		

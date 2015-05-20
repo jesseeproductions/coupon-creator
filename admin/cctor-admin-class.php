@@ -400,6 +400,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				// decode the license data
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
+				//Remove Current Expiration
+				$cctor_license_info['status'] = "nostatus";
+
 				//Get Status of Key
 				$cctor_license_info['status']  = esc_attr($license_data->license);
 
@@ -466,7 +469,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 				// $license_data->license will be either "deactivated" or "failed"
-
 				if( $license_data->license == 'deactivated' || $license_data->license == 'failed' ) {
 
 					unset($cctor_license_info['status']);
