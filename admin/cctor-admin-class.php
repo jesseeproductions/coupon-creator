@@ -93,7 +93,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 	/***************************************************************************/
 	/*
 	* Add Options Link in Plugin entry of Plugins Menu
-	* @version 1.70
+	* @version 2.0.3
 	*/
 	public static function plugin_setting_link($links, $file) {
 		static $this_plugin;
@@ -104,7 +104,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 		// make sure this is the coupon creator
 		if ($file == $this_plugin) {
-			$plugin_links[] = '<a href="' . get_bloginfo('wpurl') .'/wp-admin/edit.php?post_type=cctor_coupon&page=coupon-options">Options</a>';
+
+			//Show Options Link
+			$plugin_links[] = '<a href="' . get_bloginfo( 'wpurl' ) . '/wp-admin/edit.php?post_type=cctor_coupon&page=coupon-options">Options</a>';
+
+			//Show Pro Link
+			if ( !defined( 'CCTOR_PRO_VERSION_NUM' ) ) {
+				$plugin_links[] = '<a href="https://couponcreatorplugin.com/products/coupon-creator-pro/">Go Pro!</a>';
+			}
 
 			// add the settings link to the links
 			foreach($plugin_links as $link) {

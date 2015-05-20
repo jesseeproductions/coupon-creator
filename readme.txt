@@ -127,6 +127,10 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+* Fixed Coupon Inserter so categories show in dropdown
+* Added default value to status variable to remove undefined notices
+* Removed the_content filter from terms and manually run each function now to remove conflicts with other plugins
+
 = 2.0.2 April 9th, 2015 =
 * Fixed tabs on reload of options or editor it returns you to the same tab
 * Secured wp_remote_get function with esc_url_raw on add_query_arg call
@@ -244,8 +248,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.0.2 =
-WordPress 4.2 and Security Update
+= 2.0.3 =
+Fixed coupon inserter categories dropdown, improves validation, adds a url meta field for Pro.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>
