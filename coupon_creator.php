@@ -2,7 +2,7 @@
 /*
 Plugin Name: Coupon Creator
 Plugin URI: http://jesseeproductions.com/coupon_creator/
-Version: 2.03
+Version: 2.0.3
 
 Description: This plugin creates a custom post type for coupons with a shortcode to display it on website and a single view template for printing.
 
