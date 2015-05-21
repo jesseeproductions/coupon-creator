@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 3.9
 Tested up to: 4.2
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -127,9 +127,10 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 2.0.3 May 21st, 2015 =
 * Fixed Coupon Inserter so categories show in dropdown
-* Added default value to status variable to remove undefined notices
-* Removed the_content filter from terms and manually run each function now to remove conflicts with other plugins
+* Fixed status variable undefined notices
+* Removed the_content filter from terms and manually run each function to remove conflicts with other plugins such as JetPack
 
 = 2.0.2 April 9th, 2015 =
 * Fixed tabs on reload of options or editor it returns you to the same tab
@@ -249,7 +250,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Upgrade Notice ==
 = 2.0.3 =
-Fixed coupon inserter categories dropdown, improves validation, adds a url meta field for Pro.
+Fixed Coupon Inserter categories dropdown, improves validation, adds a url meta field for Pro.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>
