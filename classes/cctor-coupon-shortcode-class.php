@@ -82,6 +82,8 @@ class Coupon_Creator_Shortcode {
 							
 					echo $outer_coupon_wrap['start_wrap'];					
 
+						do_action( 'cctor_before_coupon_inner_wrap' , $coupon_id );
+
 						//Return If Not Passed Expiration Date
 						$couponimage = apply_filters( 'cctor_image_url' , $coupon_id  );
 
