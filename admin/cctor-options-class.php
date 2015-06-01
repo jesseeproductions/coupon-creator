@@ -94,7 +94,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		}
 		/*
 		* Coupon Creator Options Page Scripts
-		* since 1.80
+		* since 2.1
 		*/
 		public function coupon_option_scripts() {
 			wp_enqueue_script('jquery');
@@ -110,7 +110,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			wp_enqueue_script('cctor_colorbox_js',  CCTOR_URL . 'vendor/colorbox/jquery.colorbox-min.js' ,array('jquery'), filemtime($cctor_colorbox_js), true);
 
 			//Hook to Load New Scripts
-			do_action('cctor_opitons_scripts');
+			do_action('cctor_options_scripts');
 		}
 
 		/*
@@ -130,7 +130,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			wp_enqueue_style('cctor_colorbox_css', CCTOR_URL . 'vendor/colorbox/colorbox.css', false, filemtime($cctor_colorbox_css));
 
 			//Hook to Load New Styles
-			do_action('cctor_opitons_styles');
+			do_action('cctor_options_styles');
 
 		}
 	/***************************************************************************/
@@ -183,11 +183,15 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			$tabs_json_array = json_encode($tabs_array);
 
-			$tabs_params = array(
+			//Detect if we saved or tried to save to set the current tab.
+			$cctor_options_updated = get_settings_errors();
+
+			$cctor_tabs_variables = array(
 				'tabs_arr' => $tabs_json_array,
+				'cctor_options_updated' => $cctor_options_updated,
 			);
 
-			wp_localize_script('cctor_coupon_option_js', 'cctor_coupon_option_js_vars', $tabs_params);
+			wp_localize_script('cctor_coupon_option_js', 'cctor_coupon_option_js_vars', $cctor_tabs_variables);
 
 			echo '<div class="wrap">
 				<div class="icon32" id="icon-options-general"></div>
@@ -221,7 +225,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				echo '<p style="text-align:right;">&copy; '.date("Y").' Jessee Productions, LLC</p>
 
 			</div>';
-
 		}
 
 	/***************************************************************************/

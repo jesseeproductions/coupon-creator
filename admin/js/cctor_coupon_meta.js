@@ -104,26 +104,6 @@ jQuery(document).ready(function($){
 });
 
 /*
-* Retrieve Query String Parameter
-* http://stackoverflow.com/questions/1171713/how-to-retrieve-query-string-parameter-and-values-using-javascript-jquery
-* since 1.90
-*/
-function getQueryParams( val ) {
-	//Use the window.location.search if we don't have a val.
-	var query = val || window.location.search;
-	query = query.split('?')[1]
-	var pairs = query.split('&');
-	var retval = {};
-	var check = [];
-	for( var i = 0; i < pairs.length; i++ ) {
-		check = pairs[i].split('=');
-		retval[decodeURIComponent(check[0])] = decodeURIComponent(check[1]);
-	}
-
-	return retval;
-}
-
-/*
 *	Calculate Width of Text
 *	http://stackoverflow.com/questions/1582534/calculating-text-width-with-jquery
 * 	since 2.0
@@ -178,17 +158,14 @@ jQuery(document).ready(function($) {
 			//      http://balaarjunan.wordpress.com/2010/11/10/html5-session-storage-key-things-to-consider/
 			//
 
-			//Get Query String Values
-			var cctor_query_values = getQueryParams();
-
 			//  Define friendly index name
-			var index = "cctor-meta-tab" + cctor_query_values['post'];
+			var index = "cctor-meta-tab" + cctor_coupon_meta_js_vars.cctor_coupon_id;
 
 			//  Define friendly data store name
 			var dataStore = window.sessionStorage;
 
 			//If Saved then use tab index, otherwise default to first tab
-			if ( jQuery('.wrap .updated p').length ) {
+			if ( cctor_coupon_meta_js_vars.cctor_coupon_updated ) {
 				//  Start magic!
 				try {
 					// getter: Fetch previous value

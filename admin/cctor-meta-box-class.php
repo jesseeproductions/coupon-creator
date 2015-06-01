@@ -222,11 +222,18 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 				$tabs_json_array = json_encode($tabs_array);
 
-				$tabs_params = array(
+				//Detect if we saved or tried to save to set the current tab.
+			    global $message;
+				$cctor_coupon_updated = $message;
+				$coupon_id = $_GET['post'];
+
+			    $cctor_tabs_variables = array(
 					'tabs_arr' => $tabs_json_array,
+					'cctor_coupon_updated' => $cctor_coupon_updated,
+					'cctor_coupon_id' => $coupon_id,
 				);
 
-				wp_localize_script('cctor_coupon_meta_js', 'cctor_coupon_meta_js_vars', $tabs_params);
+				wp_localize_script('cctor_coupon_meta_js', 'cctor_coupon_meta_js_vars', $cctor_tabs_variables);
 
 				ob_start(); ?>
 
