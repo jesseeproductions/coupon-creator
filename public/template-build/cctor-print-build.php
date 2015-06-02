@@ -14,7 +14,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 */
 function cctor_print_template() {	 
 
-	add_action('coupon_print_meta', 'cctor_print_head_and_meta', 5, 1 ); 
+	add_action('coupon_print_meta', 'cctor_print_head_and_meta', 5, 1 );
+
+	add_action('coupon_print_meta', 'cctor_print_base_css', 8, 1 );
+
+	add_action('coupon_print_meta', 'cctor_print_stylesheets_and_script', 10, 1 );
 
 	add_filter('cctor_print_expiration_check', 'cctor_expiration_and_current_date', 10 , 1);
 

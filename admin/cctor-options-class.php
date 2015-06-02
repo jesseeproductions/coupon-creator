@@ -595,7 +595,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type'    => 'checkbox',
 				'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
-			
+			//wpautop
+			$this->options['cctor_print_base_css'] = array(
+				'section' => 'display',
+				'title'   => __( 'Print View Base CSS', 'coupon_creator' ),
+				'desc'    => __( 'Check to disable the base CSS in Print View', 'coupon_creator' ),
+				'type'    => 'checkbox',
+				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
+			);
 			//Help
 			$this->options['cctor_help'] = array(
 				'section' => 'help',
