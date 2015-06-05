@@ -108,9 +108,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			//Show Options Link
 			$plugin_links[] = '<a href="' . get_bloginfo( 'wpurl' ) . '/wp-admin/edit.php?post_type=cctor_coupon&page=coupon-options">Options</a>';
 
-			//Show Pro Link
-			if ( !defined( 'CCTOR_PRO_VERSION_NUM' ) ) {
-				$plugin_links[] = '<a href="https://couponcreatorplugin.com/products/coupon-creator-pro/">Go Pro!</a>';
+			//Show Upgrade to Pro Link
+			if ( !defined( 'CCTOR_HIDE_UPGRADE' ) || !CCTOR_HIDE_UPGRADE )  {
+				$plugin_links[] = '<a href="https://couponcreatorplugin.com/products/coupon-creator-pro/">Upgrade to Pro!</a>';
 			}
 
 			// add the settings link to the links
@@ -145,6 +145,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				wp_enqueue_style('thickbox');
 
 				//jQuery UI
+				global $wp_scripts;
 				$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
 				wp_enqueue_style( 'jquery-ui-style', '//ajax.googleapis.com/ajax/libs/jqueryui/' . $jquery_version . '/themes/smoothness/jquery-ui.css' );
 

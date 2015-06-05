@@ -38,6 +38,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$meta_tabs['expiration'] 	= __( 'Expiration', 'coupon_creator' );
 			$meta_tabs['image_coupon'] 	= __( 'Image Coupon', 'coupon_creator' );
 			$meta_tabs['help'] 	= __( 'Help', 'coupon_creator' );
+			! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $meta_tabs['pro'] 	= __( 'Upgrade to Pro', 'coupon_creator' ) : '';
 
 			//Filter Option Tabs
 			if(has_filter('cctor_filter_meta_tabs')) {
@@ -409,7 +410,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 									<?php echo $cctor_todays_date; ?>
 									
 								<?php break;
-									// Videos
+								// Videos
 								 case 'cctor_support':?>
 
 									<?php echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation(); 
@@ -418,6 +419,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 									?>
 
 								<?php break;
+
+								// Videos
+								 case 'cctor_pro':
+
+									echo ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? Coupon_Creator_Plugin_Admin_Options::display_pro_section() : '';
+
+									break;
 
 							} //end switch
 
@@ -609,7 +617,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'image_coupon'
 				);
-
 				//Help
 				$coupon_creator_meta_fields[$prefix . 'videos'] =	array(
 					'label'  => '',
@@ -617,6 +624,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type'  => 'cctor_support',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'help'
+				);
+
+				//Upgreade to Pro
+				$coupon_creator_meta_fields[$prefix . 'upgrade_to_pro'] =	array(
+					'label'  => '',
+					'id'    => $prefix . 'upgrade_to_pro',
+					'type'  => 'cctor_pro',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'pro'
 				);
 
 			if(has_filter('cctor_filter_meta_fields')) {

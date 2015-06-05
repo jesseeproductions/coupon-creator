@@ -4,14 +4,112 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	die( 'Access denied.' );
 
 /*
-* Coupon Creator Sanitize Filters
-* @version 1.80
+* Coupon Creator Sanitize Class
+* @version 2.1
 */
+class Coupon_Creator_Plugin_Sanitize {
+
+	/**
+	 * the field's type
+	 * @var mixed
+	 */
+	public $type;
+
+	/**
+	 * the field's value
+	 * @var mixed
+	 */
+	public $input;
+
+	/**
+	 * field variables
+	 * @var array
+	 */
+	public $option;
+
+	/**
+	 * the result object of the validation
+	 * @var stdClass
+	 */
+	public $result;
+	/**
+	 * class constructer
+	 * init necessary functions
+	 *
+	 * @version 2.1
+	 */
+	function __construct( $type, $input, $option ) {
+
+		// prepare object properties
+		//$this->result          = new stdClass;
+		$this->type           = $type;
+		$this->input['id']    = $input;
+		$this->option         = $option;
+
+		//Return Sanitized Input only if a method exists to sanitize the field type
+		if ( method_exists( $this, 'cctor_sanitize_'.$option['type'] ) && is_callable(array( $this, 'cctor_sanitize_'.$option['type'] ) ) ) {
+
+			// set result
+			$this->result = $this->{'cctor_sanitize_'.$option['type']} ( $input, $option);
+
+		} else {
+
+			$this->result = '<br>it broke {cctor_sanitize_'.$option["type"].'}<br>';
+
+			//$this->result = false;
+		}
+
+		// return the result
+		return $this->result;
+	}
+
+
+	/**
+	* Sanitize Text
+	*
+	* @param  string $input A string
+	* @since  2.1
+	*
+	* @return string         Sanitized version of the the text
+	*/
+	public function cctor_sanitize_text( $input=null, $option=null  ){
+
+		return sanitize_text_field( $input );
+
+	}
+
+	/**
+	* A 32bit absolute integer method, returns as String
+	*
+	* @param  string $input A numeric Integer
+	* @since  2.1
+	*
+	* @return string         Sanitized version of the Absolute Integer
+	*/
+	public static function sanitize_absint( $input=null, $option=null  ){
+		// If it's not numeric we forget about it
+		if ( ! is_numeric( $input ) ){
+			return false;
+		}
+
+		$input = preg_replace( '/[^0-9]/', '', $input );
+
+		// After the Replace return false if Empty
+		if ( empty( $input ) ) {
+			return false;
+		}
+
+		// After that it should be good to ship!
+		return $input;
+	}
+
+
+} //end Coupon_Creator_Plugin_Sanitize Class
 
 /*
 * Sanitize Text
 * @version 1.80
-*/	
+*/
 add_filter( 'cctor_sanitize_text', 'sanitize_text_field' );
 
 /*

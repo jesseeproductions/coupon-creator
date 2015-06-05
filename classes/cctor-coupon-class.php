@@ -20,7 +20,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
      * @since 1.90
      * @static
      * @staticvar array $instance
-     * @return GEO_Job_Manager
+     * @return Coupon_Creator_Plugin
      */
     public static function instance() {
 
