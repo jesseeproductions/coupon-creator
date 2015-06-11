@@ -75,9 +75,47 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		//Update Version Number
 		if (get_option(CCTOR_VERSION_KEY) != CCTOR_VERSION_NUM) {
 			// Then update the version value
+
+			update_option( 'coupon_update_version', date('l jS \of F Y h:i:s A') );
+
+			self::cctor_update_ignore_expiration();
+
 			update_option(CCTOR_VERSION_KEY, CCTOR_VERSION_NUM);
 		}
 	}
+
+	/***************************************************************************/
+	/*
+	* On Update Query Coupons and Change cctor_ignore_expiration value from on to 1
+	* This if for Coupons made prior to 1.80
+	* @version 2.1
+	*/
+	public static function cctor_update_ignore_expiration() {
+
+		update_option( 'coupon_update_ignore_expiration', date( 'l jS \of F Y h:i:s A' ) );
+
+		$args = array(
+			'posts_per_page' => - 1,
+			'post_type'      => 'cctor_coupon',
+			'post_status'    => 'publish',
+			'meta_key'       => 'cctor_ignore_expiration',
+			'meta_value'     => 'on'
+		);
+
+		$cctor_ignore_exp = new WP_Query( $args );
+
+		if ( $cctor_ignore_exp ) {
+			while ( $cctor_ignore_exp->have_posts() ) : $cctor_ignore_exp->the_post();
+
+				update_post_meta( $cctor_ignore_exp->post->ID, 'cctor_ignore_expiration', 1 , 'on' );
+
+			endwhile;
+		}
+
+		wp_reset_postdata();
+
+	}
+
 	/***************************************************************************/
 	/*
 	* Flush Permalink on Coupon Option Change
@@ -85,8 +123,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 	*/
 	public static function cctor_flush_permalinks() {
 		if ( get_option('cctor_coupon_base_change') == true ) {
+
+			Coupon_Creator_Plugin::cctor_register_post_types();
 			flush_rewrite_rules();
-			update_option('cctor_coupon_base_change', false);
+			update_option( 'coupon_flush_perm_change', date('l jS \of F Y h:i:s A') );
+			update_option( 'cctor_coupon_base_change', false );
 		}
 	}
 
@@ -110,7 +151,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			//Show Upgrade to Pro Link
 			if ( !defined( 'CCTOR_HIDE_UPGRADE' ) || !CCTOR_HIDE_UPGRADE )  {
-				$plugin_links[] = '<a href="https://couponcreatorplugin.com/products/coupon-creator-pro/">Upgrade to Pro!</a>';
+				$plugin_links[] = '<a href="http://cctor.us/procoupon">Upgrade to Pro!</a>';
 			}
 
 			// add the settings link to the links
@@ -412,24 +453,24 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				$cctor_license_info['status'] = "nostatus";
 
 				//Get Status of Key
-				$cctor_license_info['status']  = esc_attr($license_data->license);
+				$cctor_license_info['status']  = esc_html($license_data->license);
 
 				//Remove Current Expiration
 				unset($cctor_license_info['expires']);
 
 				//Set Expiration Date  for This License
-				$cctor_license_info['expires'] = esc_attr($license_data->expires);
+				$cctor_license_info['expires'] = esc_html($license_data->expires);
 
 				//if Expired Add that to the option.
 				if ($license_data->error == "expired") {
-					$cctor_license_info['expired'] = esc_attr($license_data->error);
+					$cctor_license_info['expired'] = esc_html($license_data->error);
 				}
 
 				//if Expired Add that to the option.
 				if ($license_data->error == "missing") {
 					unset($cctor_license_info['expires']);
 					unset($cctor_license_info['expired']);
-					$cctor_license_info['status']  = esc_attr($license_data->error);
+					$cctor_license_info['status']  = esc_html($license_data->error);
 				}
 
 				//Update License Object
@@ -523,10 +564,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				<h4 class="coupon-heading">Resources</h4>
 				<ul>
-					<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/support/documentation/">Documentation</a> - Overview of CSS Selectors, Actions, Filters, Capabilities, and Post Types</li>
-					<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/support/frequently-asked-question/">Frequently Asked Question</a> - Pre Sales, License, Requirements, and Setup Information</li>
-					<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/support/guides/">Guides</a> - User Guides and Troubleshooting Guides</li>
-					<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/support/tutorials/">Tutorials</a> - Customization Tutorials and More</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1TaXXoc">Documentation</a> - Overview of CSS Selectors, Actions, Filters, Capabilities, and Post Types</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1KV92nK">Frequently Asked Question</a> - Pre Sales, License, Requirements, and Setup Information</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.us/cg12Qf5">Guides</a> - User Guides and Troubleshooting Guides</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1TaY1EH">Tutorials</a> - Customization Tutorials and More</li>
 				</ul>';
 
 			return	$support_html;
@@ -546,9 +587,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					<li>Please use the <a target="_blank" class="cctor-support" href="https://wordpress.org/support/plugin/coupon-creator/">WordPress.org Support Forum for the Coupon Creator</a>.</li>
 					<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:
 						<ul>
-						<li><br><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/knowledgebase/troubleshooting-404-errors/">Troubleshooting 404 Errors</a></li>
-						<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/knowledgebase/troubleshooting-conflicts/">Troubleshooting Conflicts</a></li>
-						<li><a class="cctor-support" target="_blank" href="http://couponcreatorplugin.com/knowledgebase/troubleshooting-javascript-errors/">Troubleshooting Javascript Errors</a></li>
+						<li><br><a class="cctor-support" target="_blank" href="http://cctor.us/1MnSYeM">Troubleshooting 404 Errors</a></li>
+						<li><a class="cctor-support" target="_blank" href="http://cctor.us/1e2LhQH">Troubleshooting Conflicts</a></li>
+						<li><a class="cctor-support" target="_blank" href="http://cctor.us/1B20bkq">Troubleshooting Javascript Errors</a></li>
 						</ul>
 					</li>
 

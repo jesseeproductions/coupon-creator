@@ -79,7 +79,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		public static function init() {
 			
 			//Load Sanitize Functions
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize.php' );
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize-class.php' );
 			
 			//Register Coupon Style
 			add_action('wp_enqueue_scripts',  array( __CLASS__, 'cctor_register_style' ));
@@ -196,6 +196,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			// Flush rewrite rules so that users can access custom post types on the
 			self::cctor_register_post_types();
 			flush_rewrite_rules();
+			update_option( 'coupon_flush_activate', date('l jS \of F Y h:i:s A') );
 		}
 
 		/*
@@ -204,6 +205,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public static function deactivate() {
 			flush_rewrite_rules();
+			update_option( 'coupon_flush_deactivate', date('l jS \of F Y h:i:s A') );
 		}
 
 	/***************************************************************************/

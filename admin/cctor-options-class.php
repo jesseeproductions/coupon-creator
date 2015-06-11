@@ -242,12 +242,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* Coupon Creator Pro Section
 		* since 1.80
 		*/
-		public function display_pro_section() {
+		public static function display_pro_section() {
 			ob_start(); ?>
 			<div>
 				<h4><img alt="Get Coupon Creator Pro!" src="<?php echo CCTOR_URL; ?>admin/images/cctor-logo.png"/></h4>
 				<br>
-				<p><strong style="font-size:15px;"><a target="_blank" href="http://couponcreatorplugin.com">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
+				<p><strong style="font-size:15px;"><a target="_blank" href="https://cctor.us/procoupon">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
 				<br>
 				<ul>
 				<h4>Coupon Creator Pro Features Include:</h4><br>
@@ -290,7 +290,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					<li>Direct Support through CouponCreatorPlugin.com</li>
 				</ul>
 				<br>
-				<strong style="font-size:15px;"><a target="_blank" href="http://couponcreatorplugin.com">Purchase Pro Now!</a></strong>
+				<strong style="font-size:15px;"><a target="_blank" href="https://cctor.us/procoupon">Purchase Pro Now!</a></strong>
 			</div>
 			<?php echo ob_get_clean();
 		}
@@ -485,15 +485,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'title'   => '', // Not used for headings.
 				'alert'    =>  __( '*These are defaults for new coupons only and do not change existing coupons.','coupon_creator' ),
 				'type'    => 'heading'
-			);
-			$this->options['sanitize-test'] = array(
-				'title'   => __( 'Sanitize Test' , 'coupon_creator_pro'),
-				'desc'    => '',
-				'std'     => '',
-				'type'    => 'text',
-				'section' => 'defaults',
-				'class'   => '',
-				'size'	  => 40
 			);
 			$this->options['cctor_default_date_format'] = array(
 				'section' => 'defaults',
@@ -773,13 +764,20 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					// Create Separate License Option and Status
 					if ( $option['type'] == 'license' ) {
 
+						//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
+						$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
+
+						//echo '<br>result ' . $option['type'] . '<br>';
+						//print_r( $cctor_sanitize->result );
+						//echo '<br>end<br>';
+
 						$cctor_license_info = array();
 
 						//License WP Option Name
 						$cctor_license = "cctor_" . $option['class'];
 
 						//License Key
-						$cctor_license_info['key'] = esc_attr(trim($input[$id]));
+						$cctor_license_info['key'] = $cctor_sanitize->result;
 
 						//Get Existing Option
 						$existing_license = get_option( $cctor_license );
@@ -807,34 +805,19 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					}
 
 					// Sanitization Filter for each Option Type
-					if(isset($input[$id])){
-						if ($option['type'] == "text" ) {
-							echo 'option type: ';
-							print_r( $option['type'] );
-							echo ' input value: ';
-							print_r( $input[ $id ] );
-							echo '<br>';
-							//echo '<br>option array <br>';
-							//print_r( $option );
+					if( isset($input[$id]) && $option['type'] != 'license' && $option['type'] != 'license_status' ){
 
-
+						//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
 						$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
 
-							echo '<br>result <br>';
+						//echo '<br>result ' . $option['type'] . '<br>';
 						//print_r( $cctor_sanitize );
-						print_r( $cctor_sanitize->result );
+						//print_r( $cctor_sanitize->result );
+						//echo '<br>end<br>';
 
-						echo '<br>end<br>';
-						exit();
-						}
+						//Set Sanitized Input in Array
+						$clean[$id] = $cctor_sanitize->result;
 
-						if ( has_filter( 'cctor_sanitize_' . $option['type'] ) ) {
-							$clean[$id] = apply_filters( 'cctor_sanitize_' . $option['type'], $input[$id], $option );
-
-							//$clean[$id] = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
-
-
-						}
 					}
 
 				}

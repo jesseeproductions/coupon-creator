@@ -226,7 +226,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				//Detect if we saved or tried to save to set the current tab.
 			    global $message;
 				$cctor_coupon_updated = $message;
-				$coupon_id = $_GET['post'];
+
+				$coupon_id = isset( $_GET['post'] ) ? $_GET['post'] : '';
 
 			    $cctor_tabs_variables = array(
 					'tabs_arr' => $tabs_json_array,
@@ -649,61 +650,63 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* since 1.80
 		*/
 		public static function cctor_save_coupon_creator_meta( $post_id, $post ) {
-			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-				return;
 
-			if ( !isset( $_POST['coupon_creator_nonce'] ) )
-				return;
+			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
 
-			if ( !wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) )
-				return;
+			if ( !isset( $_POST['coupon_creator_nonce'] ) ) { return; }
 
-			if ( !current_user_can( 'edit_post', $post->ID ) )
-				return;
+			if ( !wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) ) { return; }
 
+			if ( !current_user_can( 'edit_post', $post->ID ) ) { return; }
 
-				// Save data
-				//Get Meta Fields
-				$coupon_creator_meta_fields = self::cctor_metabox_options();
+			// Save data
+			//Get Meta Fields
+			$coupon_creator_meta_fields = self::cctor_metabox_options();
 
-				//For Each Field Sanitize the Post Data
-				foreach ( $coupon_creator_meta_fields as $option ) {
+			//For Each Field Sanitize the Post Data
+			foreach ( $coupon_creator_meta_fields as $option ) {
 
-					//Hook Meta Box Save
-					do_action( 'cctor_save_meta_fields',$post_id, $option);
+				//Hook Meta Box Save
+				do_action( 'cctor_save_meta_fields',$post_id, $option);
 
-					//If No CheckBox Sent, then delete meta
-					if ($option['type'] == 'checkbox' ) {
+				//If No CheckBox Sent, then delete meta
+				if ($option['type'] == 'checkbox' ) {
 
-						$coupon_meta_checkbox = get_post_meta($post_id, $option['id'], true);
+					$coupon_meta_checkbox = get_post_meta($post_id, $option['id'], true);
 
-						if ($coupon_meta_checkbox && ! isset( $_POST[$option['id']] ) ) {
-							delete_post_meta($post_id,  $option['id']);
-						}
-
-					}
-
-					// Final Check if value should be saved then sanitize and save
-					if(isset($_POST[$option['id']])){
-						if ( has_filter( 'cctor_sanitize_' . $option['type'] ) ) {
-
-							$old = get_post_meta($post_id, $option['id'], true);
-
-							$new = $_POST[$option['id']];
-
-							if ( !is_null($new) && $new != $old) {
-								update_post_meta($post_id, $option['id'], apply_filters( 'cctor_sanitize_' . $option['type'], $new, $option ));
-							} elseif ('' == $new && $old) {
-								delete_post_meta($post_id, $option['id'], $old);
-							}
-
-						}
+					if ($coupon_meta_checkbox && ! isset( $_POST[$option['id']] ) ) {
+						delete_post_meta($post_id,  $option['id']);
 					}
 
 				}
+
+				// Final Check if value should be saved then sanitize and save
+				if(isset($_POST[$option['id']])){
+
+					//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
+					$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $_POST[$option['id']], $option );
+
+					//echo '<br>result ' . $option['type'] . '<br>';
+					//print_r( $cctor_sanitize );
+					//print_r( $cctor_sanitize->result );
+					//echo '<br>end<br>';;
+
+					$old = get_post_meta($post_id, $option['id'], true);
+
+					$new = $_POST[$option['id']];
+
+					if ( !is_null($new) && $new != $old) {
+						update_post_meta($post_id, $option['id'], $cctor_sanitize->result );
+					} elseif ('' == $new && $old) {
+						delete_post_meta($post_id, $option['id'], $old);
+					}
+
+				}
+			}
+
 		}
 
-			/***************************************************************************/
+		/***************************************************************************/
 
 	} //end Coupon_Creator_Meta_Box Class
 
