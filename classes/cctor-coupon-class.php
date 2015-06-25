@@ -43,30 +43,34 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Register Post Type			
 			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) );
-			
+
 			//Register Custom Taxonomy
 			Coupon_Creator_Plugin::include_file( 'classes/cctor-taxonomy-class.php' );
 			new Coupon_Creator_Taxonomy_Class();
-			
+
 			//Setup Capabilities
 			if ( is_admin() ) {
 				$this->cctor_add_capabilities();
 			}
-			
-			add_action( 'init',   array( __CLASS__, 'init' ) );
+
+			add_action( 'init', array( __CLASS__, 'init' ) );
 
 			//Localization
-			add_action('plugins_loaded', array( __CLASS__, 'i18n' ));
-			
+			add_action( 'plugins_loaded', array( __CLASS__, 'i18n' ) );
+
 			//Setup Coupon Image Sizes
-			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
-			
+			add_action( 'init', array( __CLASS__, 'cctor_add_image_sizes' ) );
+
 			//Load Template Functions
 			$this->cctor_Load_Template_Functions();
-						
+
 			//Load Admin Class if in Admin Section
-			if ( is_admin() )
-			new Coupon_Creator_Plugin_Admin();
+			if ( is_admin() ) {
+				//Load Sanitize Functions
+				Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize-class.php' );
+
+				new Coupon_Creator_Plugin_Admin();
+			}
 					
 		}
 
@@ -77,10 +81,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.70
 		*/
 		public static function init() {
-			
-			//Load Sanitize Functions
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize-class.php' );
-			
+
 			//Register Coupon Style
 			add_action('wp_enqueue_scripts',  array( __CLASS__, 'cctor_register_style' ));
 			
@@ -108,7 +109,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'cctor_action_print_template', 'cctor_print_template', 10);
 			
 			//Print Template Inline Custom CSS from Option
-			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 10);
+			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 20);
 
 			//Load Pro Meta Box Cases
 			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );		

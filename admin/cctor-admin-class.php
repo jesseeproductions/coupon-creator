@@ -95,7 +95,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		update_option( 'coupon_update_ignore_expiration', date( 'l jS \of F Y h:i:s A' ) );
 
 		$args = array(
-			'posts_per_page' => - 1,
+			'posts_per_page' => 500,
 			'post_type'      => 'cctor_coupon',
 			'post_status'    => 'publish',
 			'meta_key'       => 'cctor_ignore_expiration',

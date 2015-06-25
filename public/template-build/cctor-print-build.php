@@ -22,7 +22,7 @@ function cctor_print_template() {
 
 	add_filter('cctor_print_expiration_check', 'cctor_expiration_and_current_date', 10 , 1);
 
-	add_filter('cctor_print_image_url', 'cctor_show_print_img_url', 10 , 1);
+	add_filter('cctor_print_image_url', 'cctor_get_image_url', 10 , 2);
 
 	add_filter('cctor_print_outer_content_wrap', 'cctor_return_print_outer_coupon_wrap', 10 , 1);
 

@@ -101,13 +101,19 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Sanitize Textarea
 	* @version 2.1
 	*/
-	public function cctor_sanitize_textarea( $input ) {
+	public function cctor_sanitize_textarea( $input , $option ) {
 
-		global $allowedtags;
+		if ( $option['class'] != "code" ) {
+			global $allowedtags;
 
-		$textarea = wp_kses( $input, $allowedtags);
+			$textarea = wp_kses( $input, $allowedtags );
 
-		return $textarea;
+			return $textarea;
+		} else {
+
+			return false;
+
+		}
 	}
 
 	/*

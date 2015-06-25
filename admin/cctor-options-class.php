@@ -37,14 +37,28 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->get_options();
 
 			add_action( 'admin_menu', array( &$this, 'coupon_options_page' ) );
-			add_action( 'admin_init', array( &$this, 'register_options' ) );
+			add_action( 'admin_init', array( &$this, 'register_options' ) , 15 );
 
 			//Add Coupon Newsletter Sign Up
 			add_action( 'cctor_after_option_form', array( __CLASS__, 'cctor_newsletter_signup' ) );
 
-			//Set Standard Options if None Found
-			if ( ! get_option( 'coupon_creator_options' ) )
-				$this->initialize_options();
+			if ( !get_option( 'coupon_creator_options' ) ) {
+
+				add_action( 'admin_init', array( &$this, 'set_defaults' ) , 10 );
+
+			}
+
+		}
+	/***************************************************************************/
+
+		/*
+		* Coupon Creator Set Default Options
+		* since 2.1
+		*/
+		public function set_defaults() {
+
+			$this->initialize_options();
+
 		}
 	/***************************************************************************/
 
@@ -349,10 +363,18 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					break;
 
 				case 'select':
-					echo '<select class="select' . $option_args['class'] . '" name="coupon_creator_options[' . $option_args['id'] . ']">';
 
-					foreach ( $option_args['choices'] as $value => $label )
-						echo '<option value="' . esc_attr( $value ) . '"' . selected( $options[$option_args['id']], $value, false ) . '>' . esc_attr( $label ) . '</option>';
+					$cctor_select_value = $options[ $option_args['id'] ] ? $options[ $option_args['id'] ] : $option_args['std'];
+
+					echo '<select class="select ' . $option_args['class'] . '" name="coupon_creator_options[' . $option_args['id'] . ']">';
+
+					foreach ( $option_args['choices'] as $value => $label ) {
+
+						$cctor_option_style = $option_args['class'] == 'css-select' ? 'style="' . esc_attr( $value ) . '"' : '';
+
+						echo '<option ' . $cctor_option_style . ' value="' . esc_attr( $value ) . '"' . selected( $cctor_select_value, $value, false ) . '>' . esc_attr( $label ) . '</option>';
+
+					}
 
 					echo '</select>';
 
@@ -491,7 +513,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'title'   => __( 'Expiration Date Format', 'coupon_creator' ),
 				'desc'    => __( 'Select the Date Format to show for all Coupons*', 'coupon_creator' ),
 				'type'    => 'select',
-				'std'     => 'month_first',
+				'std'     => '0',
 				'choices' => array(
 					'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),
 					'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
@@ -686,10 +708,19 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		public function initialize_options() {
 
 			$default_options = array();
+			$this->get_options();
 
 			foreach ( $this->options as $id => $option ) {
-				if ( $option['type'] != 'heading' )
-					$default_options[$id] = $option['std'];
+
+				if ( $option['type'] != 'heading' ) {
+
+					//Sanitize Default
+					$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $option['std'], $option );
+
+					//Set Sanitized Input in Array
+					$default_options[$id] = $cctor_sanitize->result;
+				}
+
 			}
 
 			update_option( 'coupon_creator_options', $default_options );
@@ -702,8 +733,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/
 		public function register_options() {
 
-			//Get Tab Sections to Register
+			//Get Tab Sections and Options
 			$this->get_sections();
+			$this->get_options();
 
 			register_setting( 'coupon_creator_options', 'coupon_creator_options', array ( &$this, 'validate_options' ) );
 
@@ -713,7 +745,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				else
 					add_settings_section( $slug, $title, array( &$this, 'display_section' ), 'coupon-options' );
 			}
-			$this->get_options();
+
 
 			foreach ( $this->options as $id => $option ) {
 				$option['id'] = $id;
@@ -726,7 +758,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* since 1.80
 		*/
 		public function validate_options( $input ) {
-
 
 			//if Reset is Checked then delete all options
 			if ( ! isset( $input['reset_theme'] ) ) {

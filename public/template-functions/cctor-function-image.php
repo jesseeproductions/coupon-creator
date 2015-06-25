@@ -7,23 +7,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 * Coupon Creator Return Image URL using Meta Field ID for Shortcode
 * @version 1.90
 */
-function cctor_return_image_url($coupon_id) { 
+function cctor_get_image_url( $coupon_id, $cctor_img_size='full' ) {
 	
 	$couponimage_id = get_post_meta($coupon_id, 'cctor_image', true);
-	$couponimage = wp_get_attachment_image_src($couponimage_id, 'single_coupon');
-	$couponimage = $couponimage[0];
-	
-	return $couponimage;
-}
-
-/*
-* Coupon Creator Return Image URL using Meta Field ID
-* @version 1.90
-*/
-function cctor_show_print_img_url($coupon_id) { 
-	
-	$couponimage_id = get_post_meta($coupon_id, 'cctor_image', true);
-	$couponimage = wp_get_attachment_image_src($couponimage_id, 'print_coupon');
+	$couponimage = wp_get_attachment_image_src($couponimage_id, $cctor_img_size);
 	$couponimage = $couponimage[0];
 	
 	return $couponimage;

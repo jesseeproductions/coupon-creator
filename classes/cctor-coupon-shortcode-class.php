@@ -76,7 +76,7 @@ class Coupon_Creator_Shortcode {
 
 			do_action( 'cctor_before_coupon' , $coupon_id ); 
 				//Check to show the Coupon
-				if (cctor_expiration_check($coupon_id)) {
+				if ( cctor_expiration_check( $coupon_id ) ) {
 					
 					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align ); 
 							
@@ -85,7 +85,7 @@ class Coupon_Creator_Shortcode {
 						do_action( 'cctor_before_coupon_inner_wrap' , $coupon_id );
 
 						//Return If Not Passed Expiration Date
-						$couponimage = apply_filters( 'cctor_image_url' , $coupon_id  );
+						$couponimage = apply_filters( 'cctor_image_url' , $coupon_id, 'single_coupon'  );
 
 						if ($couponimage) {
 						

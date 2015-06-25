@@ -43,7 +43,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 			echo $outer_print_coupon_wrap['start_wrap'];
 
 				//Return If Not Passed Expiration Date
-				$couponimage = apply_filters( 'cctor_print_image_url' , $coupon_id  );
+				$couponimage = apply_filters( 'cctor_print_image_url' , $coupon_id, 'print_coupon'  );
 
 				if ($couponimage) {
 

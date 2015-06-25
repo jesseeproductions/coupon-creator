@@ -19,13 +19,14 @@ function cctor_expiration_check($coupon_id) {
 		$show_coupon_check = false;
 		
 		$show_coupon_check = apply_filters('cctor_show_coupon_check', $show_coupon_check, $coupon_id);
-		
+
+
 		if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
-		
+
 			return true;
 			
 		}	else {
-		
+
 			return false;
 			
 		}

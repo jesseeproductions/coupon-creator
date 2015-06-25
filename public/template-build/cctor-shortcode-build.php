@@ -11,7 +11,7 @@ function cctor_shortcode_functions() {
 
 	add_filter('cctor_expiration_check', 'cctor_expiration_and_current_date', 10 , 1);
 
-	add_filter('cctor_image_url', 'cctor_return_image_url', 10 , 1);
+	add_filter('cctor_image_url', 'cctor_get_image_url', 10 , 2);
 
 	add_filter('cctor_outer_content_wrap', 'cctor_return_outer_coupon_wrap', 10 , 2);
 
