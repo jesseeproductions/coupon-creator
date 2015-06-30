@@ -252,7 +252,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 			<div class="coupon-section-fields form-table">
 
-				<h3><?php echo $tab; ?></h3>
+				<h3 class="cctor-tab-heading-<?php echo $tab_slug; ?>"><?php echo $tab; ?></h3>
 
 				<?php foreach ($coupon_creator_meta_fields as $field) {
 

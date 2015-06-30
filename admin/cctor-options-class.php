@@ -574,7 +574,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->options['cctor_hide_print_link'] = array(
 				'section' => 'permalinks',
 				'title'   => __( 'Disable Print View', 'coupon_creator' ),
-				'desc'    => __( 'This will disable the "Click to Open in Print View" links under the coupon and disable linking to the print view for all coupons' , 'coupon_creator'),
+				'desc'    => __( 'This will disable all custom links and the popup option in Pro as well as the "Click to Open in Print View" links under the coupon' , 'coupon_creator'),
 				'type'    => 'checkbox',
 				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
