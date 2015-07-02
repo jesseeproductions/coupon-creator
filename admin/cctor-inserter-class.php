@@ -4,7 +4,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	die( 'Access denied.' );
 
 	/*
-	* Coupon_Creator_Plugin_Admin_Options
+	* Coupon Creator Pro Inserter Class
 	* @version 1.90
 	*/
 	class Coupon_Creator_Inserter {

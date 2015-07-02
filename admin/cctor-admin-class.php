@@ -48,10 +48,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		*/
 		public static function cctor_admin_init() {
 
-			//Add Button for Coupons in Editor
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-inserter-class.php' );
-			new Coupon_Creator_Inserter();
-
+			if ( !class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
+				//Add Button for Coupons in Editor
+				Coupon_Creator_Plugin::include_file( 'admin/cctor-inserter-class.php' );
+				new Coupon_Creator_Inserter();
+			}
 			//Add Options Link on Plugin Activation Page
 			add_action('plugin_action_links', array( __CLASS__, 'plugin_setting_link' ) , 10, 2);
 
