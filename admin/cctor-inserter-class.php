@@ -58,18 +58,46 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 								margin: 0;
 								text-shadow: 0 1px 0 #fff;
 							}
+							.cctor-inserter-section-bt,
 							.cctor-inserter-section {
 								padding:15px;
 								overflow:hidden;
 							}
+							.cctor-inserter-section-row {
+								line-height: 28px;
+								margin: 0 0 10px;
+								overflow:hidden;
+							}
 							.cctor-inserter-section label{
 								font-weight: 700;
+								width: 50%;
+								float:left;
 							}
 							.cctor-inserter-section select{
-								min-width: 120px;
+								width: 48%;
+								float:right;
 							}
 							#coupon-submit {
 								float:right;
+							}
+							.cctor-inserter-upgrade-pro {
+								width: 48%;
+								float:left;
+							}
+							.cctor-inserter-upgrade-pro a {
+								color: #f32323;
+							}
+							@media only screen and (max-width: 500px) {
+								.cctor-inserter-upgrade-pro,
+								.cctor-inserter-section select,
+								.cctor-inserter-section label{
+									width: 100%;
+									float:none;
+									display:block;
+								}
+								.cctor-inserter-upgrade-pro {
+									margin: 0 0 10px;
+								}
 							}
 						 </style>
 							<a class='thickbox button cctor_insert_link' id='add_cctor_shortcode'  title='{$title}' href='#TB_inline?width=783&height=400&inlineId={$container_id}'><span class='cctor_insert_icon'></span>Add Coupon</a>";
@@ -107,23 +135,65 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 						window.send_to_editor("[" + coupon_shortcode + " couponid=\"" + coupon_id + "\"" + coupon_category + coupon_orderby +" coupon_align=\"" + cctor_align + "\" name=\"" + coupon_name + "\"]");
 					}
 
-					//Toggle Category Input when Loop Selected
-					function show_category() {
-						var coupon_select = document.getElementById("coupon_select");
-						var coupon_selection = coupon_select.options[coupon_select.selectedIndex].value;
+						//Resize Thickbox for Coupon Inserter
+						function cctor_resize_thickbox() {
+							jQuery(function($) {
+								if ( $( "#TB_window" ).find( ".cctor-inserter-section" ).length > 0 ) {
 
-						var category_select = document.getElementById("coupon_category_select_container");
-						var orderby_select = document.getElementById("coupon_orderby_select_container");
+									var coupon_thickbox_height = $( '.cctor-inserter-section' ).outerHeight() + $( '.cctor-inserter-section-bt' ).outerHeight() + $( '#TB_title' ).outerHeight()
 
-						if (coupon_selection == "loop") {
-							category_select.style.visibility = "visible";
-							orderby_select.style.visibility = "visible";
+									$( "#TB_window" ).height( ( coupon_thickbox_height + 10 ) );
+									$( "#TB_ajaxContent" ).height( ( coupon_thickbox_height  ) );
+									$( "#TB_ajaxContent" ).css( {
+										'width': '100%',
+										'padding': '0'
+									} );
+								}
+							});
 						}
-						else {
-							category_select.style.visibility = "hidden";
-							orderby_select.style.visibility = "hidden";
+
+						//Toggle Category Input when Loop Selected
+						function show_category() {
+							var coupon_select = document.getElementById("coupon_select");
+
+							//Do not set var if select cleared
+							if ( jQuery("#coupon_select").prop('selectedIndex') >= 0 ) {
+								var coupon_selection =  coupon_select.options[coupon_select.selectedIndex].value;
+							}
+							var category_select = document.getElementById("coupon_category_select_container");
+							var orderby_select = document.getElementById("coupon_orderby_select_container");
+
+							if (coupon_selection == "loop") {
+								category_select.style.visibility = "visible";
+								orderby_select.style.visibility = "visible";
+							}
+							else {
+								category_select.style.visibility = "hidden";
+								orderby_select.style.visibility = "hidden";
+							}
+							cctor_resize_thickbox();
 						}
-					}
+
+					jQuery(function($) {
+						//Run On Load to Show Correct Fields
+						show_category();
+
+						//On Open of Thickbox Resize
+						$( '#add_cctor_shortcode' ). on( 'click', function() {
+
+							setTimeout( function(){
+								cctor_resize_thickbox();
+							}, 200); // delay 500 ms
+
+						});
+
+						//On Page resize or Load with resize Thickbox
+						$(window).on('resize load',function(e){
+							cctor_resize_thickbox();
+						});
+
+					});
+
 				</script>
 
 				<style>
@@ -143,7 +213,8 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				?>
 				<div class="cctor-inserter-section">
 					<!--Create a Select Box with Coupon Titles -->
-					<label for="coupon_select"><?php echo __( 'Select Loop or an Individual Coupon', 'coupon_creator' ); ?></label>
+					<div class="cctor-inserter-section-row">
+						<label for="coupon_select"><?php echo __( 'Select Loop or an Individual Coupon', 'coupon_creator' ); ?></label>
 						<select name="coupon_select_box" id="coupon_select" onchange="show_category()">
 							<option value="#" ></option>
 							<option value="loop" ><?php echo __( 'Coupon Loop', 'coupon_creator' ); ?></option>
@@ -154,10 +225,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 								<option value="<?php the_ID(); ?>" ><?php the_title(); ?></option>
 
 							<?php } ?>
-						</select><br> <!--End Select Box Coupons-->
+						</select> <!--End Select Box Coupons-->
+					</div>
 
 					<!--Create a Select Box for Categories -->
-					<div id="coupon_category_select_container">
+					<div id="coupon_category_select_container" class="cctor-inserter-section-row">
 						<label for="coupon-categories"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon_creator' ); ?></label>
 							<select id="coupon_category_select" name="coupon_category_select">
 							<option value="#" ></option>
@@ -179,20 +251,22 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 							  }
 							 ?>
 							</select> <!--End Select Box Categories-->
-					</div><br>
+					</div>
 					<!--Create a Select Box for Align -->
-					<label for="coupon_align"><?php echo __( 'Select How to Align the Coupon(s)', 'coupon_creator' ); ?></label>
+					<div class="cctor-inserter-section-row">
+						<label for="coupon_align"><?php echo __( 'Select How to Align the Coupon(s)', 'coupon_creator' ); ?></label>
 						<select name="coupon_align_select_box" id="coupon_align">
 							 <option value="cctor_alignnone"><?php echo __( 'None', 'coupon_creator' ); ?></option>
 							 <option value="cctor_alignleft"><?php echo __( 'Align Left', 'coupon_creator' ); ?></option>
 							 <option value="cctor_alignright"><?php echo __( 'Align Right', 'coupon_creator' ); ?></option>
 							 <option value="cctor_aligncenter"><?php echo __( 'Align Center', 'coupon_creator' ); ?></option>
-						</select><br> <!--End Select Box Align -->
+						</select> <!--End Select Box Align -->
+					</div>
 
 					<!--Create a Select Box for Orderby -->
-					<div id="coupon_orderby_select_container">
+					<div id="coupon_orderby_select_container" class="cctor-inserter-section-row">
 						<label for="coupon_orberby_select_box"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon_creator' ); ?></label>
-							<select id="coupon_orderby" name="coupon_orberby_select_box">
+						<select id="coupon_orderby" name="coupon_orberby_select_box">
 							 <option value="date"><?php echo __( 'Date (default)', 'coupon_creator' ); ?></option>
 							 <option value="none"><?php echo __( 'None', 'coupon_creator' ); ?></option>
 							 <option value="ID"><?php echo __( 'ID', 'coupon_creator' ); ?></option>
@@ -201,13 +275,18 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 							 <option value="name"><?php echo __( 'Slug Name', 'coupon_creator' ); ?></option>
 							 <option value="modified"><?php echo __( 'Last Modified', 'coupon_creator' ); ?></option>
 							 <option value="rand"><?php echo __( 'Random', 'coupon_creator' ); ?></option>
-						</select><br> <!--End Select Box Align -->
+						</select> <!--End Select Box Align -->
 					</div>
+
 				</div> <!--End Div -->
 
-				<br/>
-
-				<div class="cctor-inserter-section">
+				<div class="cctor-inserter-section-bt">
+					<?php
+						//Show Upgrade to Pro Link
+						if ( !defined( 'CCTOR_HIDE_UPGRADE' ) || !CCTOR_HIDE_UPGRADE )  {
+							echo '<div class="cctor-inserter-upgrade-pro"><a href="http://cctor.us/procoupon" target="_blank">Upgrade to Pro</a> and search for Coupons in the Select Box to insert and many more features!</div>';
+						}
+					?>
 					<!--Insert into Editor Button that Calls Script-->
 					<input type="button" id="coupon-submit" onclick="InsertCoupon();" class="button-primary" value="Insert Coupon" name="submit" />
 				</div>
