@@ -28,6 +28,8 @@
 .cctor_coupon {
 	width:100%;
 	padding:5px;
+}
+.coupon-border .cctor_coupon {
 	border: 3px dashed black;
 }
 .cctor_coupon_image {

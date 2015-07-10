@@ -480,6 +480,25 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$prefix = 'cctor_';
 
 				//Content
+			//Theme
+			$coupon_creator_meta_fields[$prefix . 'heading_themes'] = array(
+				'id' => $prefix . 'heading_themes',
+				'title'   => '',
+				'desc'    =>  '',
+				'type'    => '',
+				'section' => 'coupon_creator_meta_box',
+				'tab' => 'content'
+			);
+			//Border Theme Options
+			$coupon_creator_meta_fields[$prefix . 'coupon_border_themes'] =	array(
+				'label'=> '',
+				'desc'  => '',
+				'id'    => $prefix . 'coupon_border_themes',
+				'value' => '',
+				'type'    => '',
+				'section' => 'coupon_creator_meta_box',
+				'tab' => 'content'
+			);
 				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
 					'id' => $prefix . 'heading_deal',
 					'title'   => '',

@@ -28,15 +28,15 @@ function cctor_return_coupon_categories( $coupon_id ) {
 * Coupon Creator Outer Wrap
 * @version 1.90
 */
-function cctor_return_outer_coupon_wrap( $coupon_id, $coupon_align ) {
-	
+function cctor_return_outer_coupon_wrap( $coupon_id, $coupon_align, $counpon_border_theme ) {
+
 	$coupon_img_class = cctor_get_image_url( $coupon_id ) ? 'cctor-image' : '';
 
 	$coupon_cat_class = cctor_return_coupon_categories( $coupon_id );
 	
 	$outer_coupon_wrap = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container here -->
-		<div id="coupon_creator_'. esc_html( $coupon_id ).'" class="type-cctor_coupon cctor_coupon_container '.esc_html ($coupon_cat_class ).' '.esc_html($coupon_align).' '.esc_html( $coupon_img_class ).'">';
+		<div id="coupon_creator_'. esc_html( $coupon_id ).'" class="type-cctor_coupon cctor_coupon_container '.esc_html ($coupon_cat_class ).' '.esc_html($coupon_align).' '.esc_html( $coupon_img_class ).' coupon-border">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							
@@ -86,7 +86,7 @@ function cctor_return_print_outer_coupon_wrap ($coupon_id ) {
 	
 	$outer_coupon_wrap = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon_creator_'. esc_html( $coupon_id ).'" class="cctor_coupon_container '.esc_html( $coupon_cat_class ).' '.esc_html( $coupon_img_class ).'">';
+		<div id="coupon_creator_'. esc_html( $coupon_id ).'" class="cctor_coupon_container '.esc_html( $coupon_cat_class ).' '.esc_html( $coupon_img_class ).' coupon-border">';
 	
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 							

@@ -30,6 +30,7 @@ class Coupon_Creator_Shortcode {
 		"coupon_align" => 'cctor_alignnone',
 		"couponorderby" => 'date',
 		"category" => '',
+		"border-theme" => '',
 		"filterid" => ''
 		), $atts, 'coupon' );
 		
@@ -64,7 +65,7 @@ class Coupon_Creator_Shortcode {
 		$coupons = new WP_Query($cctor_args);
 		
 		ob_start();
-		
+
 		do_action( 'cctor_before_coupon_wrap' ); 
 
 		// The Coupon Loop
@@ -74,11 +75,12 @@ class Coupon_Creator_Shortcode {
 						
 			$coupon_id = $coupons->post->ID;
 
+
 			do_action( 'cctor_before_coupon' , $coupon_id ); 
 				//Check to show the Coupon
 				if ( cctor_expiration_check( $coupon_id ) ) {
 					
-					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align ); 
+					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align, $cctor_atts['border-theme'] );
 							
 					echo $outer_coupon_wrap['start_wrap'];					
 
