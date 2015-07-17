@@ -17,7 +17,7 @@ function cctor_shortcode_functions() {
 
 	add_action('cctor_img_coupon', 'cctor_show_img_coupon', 10, 2 ); 
 
-	add_filter('cctor_inner_content_wrap', 'cctor_return_inner_coupon_wrap', 10 , 1);
+	add_filter('cctor_inner_content_wrap', 'cctor_return_inner_coupon_wrap', 10 , 2);
 
 	add_action('cctor_coupon_deal', 'cctor_show_deal', 10, 1 ); 
 

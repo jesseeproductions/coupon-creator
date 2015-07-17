@@ -95,7 +95,7 @@ class Coupon_Creator_Shortcode {
 						
 						} else { 
 
-							$inner_coupon_wrap  = apply_filters( 'cctor_inner_content_wrap' , $coupon_id  ); 
+							$inner_coupon_wrap  = apply_filters( 'cctor_inner_content_wrap' , $coupon_id, $cctor_atts['border-theme']  );
 
 							echo  $inner_coupon_wrap['start_wrap'];
 

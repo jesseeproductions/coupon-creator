@@ -546,13 +546,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$coupon_creator_meta_fields[$prefix . 'heading_color'] = array(
 					'id' => $prefix . 'heading_color',
 					'title'   => '',
-					'desc'    =>  __( 'Discount Field Colors','coupon_creator' ),
+					'desc'    =>  __( 'Deal Field Colors','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
 				$coupon_creator_meta_fields[$prefix . 'colordiscount'] =	array(
-					'label' => __('Discount Background Color', 'coupon_creator' ),
+					'label' => __('Deal Background Color', 'coupon_creator' ),
 					'desc'  => __('Choose background color', 'coupon_creator' ),
 					'id' => $prefix . 'colordiscount',
 					'type' => 'color', // color
@@ -561,7 +561,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'tab' => 'style'
 				);
 				$coupon_creator_meta_fields[$prefix . 'colorheader'] =	array(
-					'label' => __('Discount Text Color', 'coupon_creator' ),
+					'label' => __('Deal Text Color', 'coupon_creator' ),
 					'desc'  => __('Choose color for discount text', 'coupon_creator' ),
 					'id' => $prefix . 'colorheader',
 					'type' => 'color', // color
