@@ -91,7 +91,7 @@ class Coupon_Creator_Shortcode {
 
 						if ($couponimage) {
 						
-							do_action( 'cctor_img_coupon' , $coupon_id , $couponimage ); 
+							do_action( 'cctor_img_coupon' , $coupon_id , $couponimage, $cctor_atts['border-theme'] );
 						
 						} else { 
 

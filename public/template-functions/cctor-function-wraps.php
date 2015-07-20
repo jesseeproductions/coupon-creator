@@ -28,7 +28,7 @@ function cctor_return_coupon_categories( $coupon_id ) {
 * Coupon Creator Outer Wrap
 * @version 1.90
 */
-function cctor_return_outer_coupon_wrap( $coupon_id, $coupon_align, $counpon_border_theme ) {
+function cctor_return_outer_coupon_wrap( $coupon_id, $coupon_align, $coupon_border_theme ) {
 
 	$coupon_img_class = cctor_get_image_url( $coupon_id ) ? 'cctor-image' : '';
 

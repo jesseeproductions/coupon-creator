@@ -499,6 +499,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'section' => 'coupon_creator_meta_box',
 				'tab' => 'content'
 			);
+
 				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
 					'id' => $prefix . 'heading_deal',
 					'title'   => '',
