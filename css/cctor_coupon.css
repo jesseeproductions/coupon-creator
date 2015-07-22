@@ -66,6 +66,7 @@
 }
 .cctor_terms img {
 	max-width:100%;
+	height: auto;
 }
 .cctor_expiration  {
 	width:100%;
