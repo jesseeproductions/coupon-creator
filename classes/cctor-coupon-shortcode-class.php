@@ -30,15 +30,15 @@ class Coupon_Creator_Shortcode {
 		"coupon_align" => 'cctor_alignnone',
 		"couponorderby" => 'date',
 		"category" => '',
-		"border-theme" => '',
+		"bordertheme" => '',
 		"filterid" => ''
 		), $atts, 'coupon' );
 		
 		$filterid = '';
 		$coupon_align = '';
 		
-		$filterid = esc_attr($cctor_atts['filterid']);		
-		$coupon_align = esc_attr($cctor_atts['coupon_align']);
+		$filterid = $cctor_atts['filterid'];
+		$coupon_align = $cctor_atts['coupon_align'];
 		
 		// Setup Query for Either Single Coupon or a Loop
 		$cctor_args = array(
@@ -51,18 +51,18 @@ class Coupon_Creator_Shortcode {
 		);
 
 		//Filter for all Shortcodes
-		if(has_filter('cctor_shortcode_query_args')) {
+		if( has_filter('cctor_shortcode_query_args') ) {
 			$cctor_args = apply_filters( 'cctor_shortcode_query_args', $cctor_args );
 		}
 		
 		//Custom Filter ID Set in Shortcode
-		if ($filterid) {
+		if ( $filterid ) {
 			if(has_filter('cctor_shortcode_query_args_'.$filterid)) {
 				$cctor_args = apply_filters( 'cctor_shortcode_query_args_'.$filterid, $cctor_args );
 			}		
 		}
 
-		$coupons = new WP_Query($cctor_args);
+		$coupons = new WP_Query( $cctor_args );
 		
 		ob_start();
 
@@ -80,7 +80,7 @@ class Coupon_Creator_Shortcode {
 				//Check to show the Coupon
 				if ( cctor_expiration_check( $coupon_id ) ) {
 					
-					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align, $cctor_atts['border-theme'] );
+					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align, $cctor_atts['bordertheme'] );
 							
 					echo $outer_coupon_wrap['start_wrap'];					
 
@@ -91,11 +91,11 @@ class Coupon_Creator_Shortcode {
 
 						if ($couponimage) {
 						
-							do_action( 'cctor_img_coupon' , $coupon_id , $couponimage, $cctor_atts['border-theme'] );
+							do_action( 'cctor_img_coupon' , $coupon_id , $couponimage, $cctor_atts['bordertheme'] );
 						
 						} else { 
 
-							$inner_coupon_wrap  = apply_filters( 'cctor_inner_content_wrap' , $coupon_id, $cctor_atts['border-theme']  );
+							$inner_coupon_wrap  = apply_filters( 'cctor_inner_content_wrap' , $coupon_id, $cctor_atts['bordertheme']  );
 
 							echo  $inner_coupon_wrap['start_wrap'];
 

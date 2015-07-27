@@ -139,6 +139,6 @@ function cctor_print_stylesheets_and_script() { ?>
 	<link rel='stylesheet' id='coupon-style-css'  href='<?php echo esc_url($coupon_url_dir); ?>/coupon-creator/css/cctor_coupon.css?<?php echo esc_attr($cctor_style); ?>' type='text/css' media='all' />
 
 	<!--Load jQuery for Counter from WordPress Install -->
-	<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
+	<script type='text/javascript' src='<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
 <?php
 }

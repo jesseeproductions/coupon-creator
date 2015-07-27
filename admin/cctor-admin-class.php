@@ -81,6 +81,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			self::cctor_update_ignore_expiration();
 
+			self::cctor_update_image_fields();
+
 			update_option(CCTOR_VERSION_KEY, CCTOR_VERSION_NUM);
 		}
 	}
@@ -109,6 +111,40 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			while ( $cctor_ignore_exp->have_posts() ) : $cctor_ignore_exp->the_post();
 
 				update_post_meta( $cctor_ignore_exp->post->ID, 'cctor_ignore_expiration', 1 , 'on' );
+
+			endwhile;
+		}
+
+		wp_reset_postdata();
+
+	}
+
+
+	/***************************************************************************/
+	/*
+	* On Update Query Coupons and update cctor_outer_radius to cctor_img_outer_radius value and delete
+	* This if for Image Coupons made prior to 2.1
+	* @version 2.1
+	*/
+	public static function cctor_update_image_fields() {
+
+		update_option( 'coupon_update_image_border_meta', date( 'l jS \of F Y h:i:s A' ) );
+
+		$args = array(
+			'posts_per_page' => 500,
+			'post_type'      => 'cctor_coupon',
+			'post_status'    => 'publish',
+			'meta_key'       => 'cctor_img_outer_radius'
+		);
+
+		$cctor_ignore_exp = new WP_Query( $args );
+
+		if ( $cctor_ignore_exp ) {
+			while ( $cctor_ignore_exp->have_posts() ) : $cctor_ignore_exp->the_post();
+
+				update_post_meta( $cctor_ignore_exp->post->ID, 'cctor_outer_radius', get_post_meta( $cctor_ignore_exp->post->ID, 'cctor_img_outer_radius', true) );
+
+				delete_post_meta( $cctor_ignore_exp->post->ID, 'cctor_img_outer_radius' );
 
 			endwhile;
 		}

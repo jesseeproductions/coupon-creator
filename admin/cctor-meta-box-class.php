@@ -281,6 +281,12 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 								<?php break;
 
+								case 'message':?>
+
+									<span class="description"><?php echo $field['desc']; ?></span>
+
+								<?php break;
+
 								// text
 								case 'text':?>
 									<?php if (  isset($field['alert']) && $field['alert'] != '' && cctor_options($field['condition']) == 1 )
@@ -480,26 +486,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$prefix = 'cctor_';
 
 				//Content
-			//Theme
-			$coupon_creator_meta_fields[$prefix . 'heading_themes'] = array(
-				'id' => $prefix . 'heading_themes',
-				'title'   => '',
-				'desc'    =>  '',
-				'type'    => '',
-				'section' => 'coupon_creator_meta_box',
-				'tab' => 'content'
-			);
-			//Border Theme Options
-			$coupon_creator_meta_fields[$prefix . 'coupon_border_themes'] =	array(
-				'label'=> '',
-				'desc'  => '',
-				'id'    => $prefix . 'coupon_border_themes',
-				'value' => '',
-				'type'    => '',
-				'section' => 'coupon_creator_meta_box',
-				'tab' => 'content'
-			);
-
 				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
 					'id' => $prefix . 'heading_deal',
 					'title'   => '',
@@ -543,7 +529,87 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'tab' => 'content'
 				);
 
-				//Style
+				//Style Tab
+
+				//Border Styles
+				$coupon_creator_meta_fields[$prefix . 'heading_themes'] = array(
+					'id' => $prefix . 'heading_themes',
+					'title'   => '',
+					'desc'    =>  '',
+					'type'    => '',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);
+				$coupon_creator_meta_fields[$prefix . 'coupon_border_themes'] =	array(
+					'label'=> '',
+					'desc'  => '',
+					'id'    => $prefix . 'coupon_border_themes',
+					'value' => '',
+					'type'    => '',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);
+
+				//Outer Border Placeholders
+				$coupon_creator_meta_fields[$prefix . 'heading_pro_display'] = array(
+					'id' => $prefix . 'heading_pro_display',
+					'title'   => '',
+					'desc'    =>  '',
+					'type'    => '',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+					);
+
+				$coupon_creator_meta_fields[$prefix . 'outer_border_color'] =	array(
+					'label' => '',
+					'desc'  => '',
+					'id' => $prefix . 'outer_border_color',
+					'type' => '',
+					'value' => '',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);
+				$coupon_creator_meta_fields[$prefix . 'outer_radius'] =	array(
+					'id'		 => $prefix . 'outer_radius',
+					'label'   => '',
+					'desc'    => '',
+					'std'     => '',
+					'type'    => '',
+					'size'	  => '',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);
+
+				//Inside Border
+				$coupon_creator_meta_fields[$prefix . 'heading_inside_color'] = array(
+					'id' => $prefix . 'heading_inside_color',
+					'title'   => '',
+					'desc'    =>  __( 'Inner Border','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);
+				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
+					'label' => __('Inside Border Color', 'coupon_creator' ),
+					'desc'  => __('Choose inside border color', 'coupon_creator' ),
+					'id' => $prefix . 'bordercolor',
+					'type' => 'color', // color
+					'value' => cctor_options('cctor_border_color'),
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);
+				$coupon_creator_meta_fields[$prefix . 'inside_radius'] =	array(
+					'id'		 => $prefix . 'inside_radius',
+					'label'   => '',
+					'desc'    => '',
+					'std'     => '',
+					'type'    => '',
+					'size'	  => '',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);
+
+				//Discount
 				$coupon_creator_meta_fields[$prefix . 'heading_color'] = array(
 					'id' => $prefix . 'heading_color',
 					'title'   => '',
@@ -571,24 +637,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'tab' => 'style'
 				);
 
-				//Inside Border
-				$coupon_creator_meta_fields[$prefix . 'heading_inside_color'] = array(
-					'id' => $prefix . 'heading_inside_color',
-					'title'   => '',
-					'desc'    =>  __( 'Inner Border','coupon_creator' ),
-					'type'    => 'heading',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
-				);
-				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
-					'label' => __('Inside Border Color', 'coupon_creator' ),
-					'desc'  => __('Choose inside border color', 'coupon_creator' ),
-					'id' => $prefix . 'bordercolor',
-					'type' => 'color', // color
-					'value' => cctor_options('cctor_border_color'),
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
-				);
 				//Expiration
 				$coupon_creator_meta_fields[$prefix . 'heading_expiration'] = array(
 					'id' => $prefix . 'heading_expiration',
