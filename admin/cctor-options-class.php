@@ -520,6 +520,40 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				)
 			);
 
+			//Outer Border
+			$this->options['cctor_pro_heading_outer_border'] = array(
+				'title'   => '',
+				'desc'    =>  __( '','coupon_creator' ),
+				'section' => 'defaults'
+			);
+			$this->options['cctor_pro_default_border_style'] = array(
+				'section' => 'defaults'
+			);
+			$this->options['cctor_outer_border_color'] = array(
+				'section' => 'defaults'
+			);
+			$this->options['cctor_pro_outer_border_default'] = array(
+				'section' => 'defaults'
+			);
+
+			//Inner Border
+			$this->options['header_inner_border'] = array(
+				'section' => 'defaults',
+				'title'   => '', // Not used for headings.
+				'desc'    =>  __( 'Inner Border','coupon_creator' ),
+				'type'    => 'heading'
+			);
+			$this->options['cctor_border_color'] = array(
+				'title' =>  __( 'Inside Border Color','coupon_creator' ),
+				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
+				'std'     => '#81d742',
+				'type' => 'color', // color
+				'section' => 'defaults'
+			);
+			$this->options['cctor_pro_inner_border_default'] = array(
+				'section' => 'defaults'
+			);
+
 			//Discount Field Colors
 			$this->options['header_discount'] = array(
 				'section' => 'defaults',
@@ -538,21 +572,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'title' =>  __( 'Deal Text Color','coupon_creator' ),
 				'desc'  =>  __( 'Choose default text color*','coupon_creator' ),
 				'std'     => '#000000',
-				'type' => 'color', // color
-				'section' => 'defaults'
-			);
-
-			//Inner Border
-			$this->options['header_inner_border'] = array(
-				'section' => 'defaults',
-				'title'   => '', // Not used for headings.
-				'desc'    =>  __( 'Inner Border','coupon_creator' ),
-				'type'    => 'heading'
-			);
-			$this->options['cctor_border_color'] = array(
-				'title' =>  __( 'Inside Border Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
-				'std'     => '#81d742',
 				'type' => 'color', // color
 				'section' => 'defaults'
 			);

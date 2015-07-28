@@ -530,52 +530,24 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				);
 
 				//Style Tab
-
-				//Border Styles
-				$coupon_creator_meta_fields[$prefix . 'heading_themes'] = array(
-					'id' => $prefix . 'heading_themes',
-					'title'   => '',
-					'desc'    =>  '',
-					'type'    => '',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
-				);
-				$coupon_creator_meta_fields[$prefix . 'coupon_border_themes'] =	array(
-					'label'=> '',
-					'desc'  => '',
-					'id'    => $prefix . 'coupon_border_themes',
-					'value' => '',
-					'type'    => '',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
-				);
-
 				//Outer Border Placeholders
 				$coupon_creator_meta_fields[$prefix . 'heading_pro_display'] = array(
 					'id' => $prefix . 'heading_pro_display',
-					'title'   => '',
-					'desc'    =>  '',
-					'type'    => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 					);
-
+				$coupon_creator_meta_fields[$prefix . 'coupon_border_themes'] =	array(
+					'id'    => $prefix . 'coupon_border_themes',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+				);
 				$coupon_creator_meta_fields[$prefix . 'outer_border_color'] =	array(
-					'label' => '',
-					'desc'  => '',
 					'id' => $prefix . 'outer_border_color',
-					'type' => '',
-					'value' => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
 				$coupon_creator_meta_fields[$prefix . 'outer_radius'] =	array(
 					'id'		 => $prefix . 'outer_radius',
-					'label'   => '',
-					'desc'    => '',
-					'std'     => '',
-					'type'    => '',
-					'size'	  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
@@ -600,11 +572,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				);
 				$coupon_creator_meta_fields[$prefix . 'inside_radius'] =	array(
 					'id'		 => $prefix . 'inside_radius',
-					'label'   => '',
-					'desc'    => '',
-					'std'     => '',
-					'type'    => '',
-					'size'	  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
