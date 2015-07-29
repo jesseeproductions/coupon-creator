@@ -5,8 +5,8 @@
  * http://stackoverflow.com/questions/19682706/how-do-you-close-the-iris-colour-picker-when-you-click-away-from-it
  */
 var $ = jQuery.noConflict();
- 
-jQuery(document).ready(function($) {
+
+jQuery(function($) {
 	/*
 	* WP Date Picker
 	* since 1.70
@@ -31,14 +31,12 @@ jQuery(document).ready(function($) {
 	*/
 	$(".youtube_colorbox").colorbox({rel: "how_to_videos", current: "video {current} of {total}", iframe:true, width:"90%", height:"90%"});
 	
-});
 
-/*
-* Media Manager 3.5
-* since 1.70
-*/
-jQuery(document).ready(function($){
 
+	/*
+	* Media Manager 3.5
+	* since 1.70
+	*/
     $('.coupon_image_button').click(function(e) {
 
 		//Create Media Manager On Click to allow multiple on one Page
@@ -77,6 +75,8 @@ jQuery(document).ready(function($){
 			$(coupon_img_src).show();
 			//Hide Message
 			$(coupon_default_msg).hide();
+			//Trigger New Image Uploaded
+	        $( 'input#cctor_image' ).trigger( 'display');
         });
 
         //Open the uploader dialog
@@ -84,12 +84,10 @@ jQuery(document).ready(function($){
 
     });
 
-});
-/*
-* Remove Image
-* since 1.70
-*/
-jQuery(document).ready(function($){
+	/*
+	* Remove Image
+	* since 1.70
+	*/
 	//Remove Image and replace with default and Erase Image ID for Coupon
     $('.cctor_coupon_clear_image_button').click(function(e) {
         e.preventDefault();
@@ -99,6 +97,7 @@ jQuery(document).ready(function($){
 		$(coupon_remove_input_id).val('');
 		$(coupon_img_src).hide();
 		$('div#'+this.id+'.cctor_coupon_default_image').show();
+	    $( 'input#cctor_image' ).trigger( 'display');
     });
 
 });
@@ -130,7 +129,7 @@ function toggleMobileMenu(event, tabClass) {
 *
 * since 1.90
 */
-jQuery(document).ready(function($) {
+jQuery(function($) {
 
 		//Variable from Localize Script
 		var sections = cctor_coupon_meta_js_vars.tabs_arr.replace(/&quot;/g, '"');
@@ -225,14 +224,11 @@ jQuery(document).ready(function($) {
 		// Browser compatibility
 		if ($.browser.mozilla)
 			$("form").attr("autocomplete", "off");
-});
 
-/*
-* 	Responsive Tabs Find Breakpoint to Change or Accordion Layout or Back to Tabs
-* 	since 2.0
-*/
-jQuery(function($) {
-	
+	/*
+	* 	Responsive Tabs Find Breakpoint to Change or Accordion Layout or Back to Tabs
+	* 	since 2.0
+	*/
 	//Calculate Total Tab Length to determine when to switch between Responsive and Regular Tabs
 	var tabText = 0;
 	var tabCount = 0;
@@ -265,15 +261,12 @@ jQuery(function($) {
 		}	
 	});
 	
-});
 
-/*
-* Tabs Responsive Mode
-* 
-* since 2.0
-*/
-jQuery(document).ready(function($) {
-	
+	/*
+	* Tabs Responsive Mode
+	*
+	* since 2.0
+	*/
 	$('.cctor-tabs-nav').before( '<div class="cctor-tabs-nav-mobile">Menu</div>' );
 	
 	//Change Menu Text on Creation of Tabs

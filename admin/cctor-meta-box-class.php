@@ -259,9 +259,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					if ($field['section'] == $metabox['id'] && $field['tab'] == $tab_slug) :
 
 					// get value of this field if it exists for this post
-					$meta = get_post_meta($post->ID, $field['id'], true); ?>
+					$meta = get_post_meta($post->ID, $field['id'], true);
 
-					<div class="cctor-meta-field-wrap field-wrap-<?php echo $field['type']; ?> field-wrap-<?php echo $field['id']; ?>">
+					//Wrap Class for Conditionals
+					$wrapclass = isset( $field['wrapclass'] ) ? $field['wrapclass'] : '';
+					?>
+
+					<div class="cctor-meta-field-wrap field-wrap-<?php echo esc_html( $field['type'] ); ?> field-wrap-<?php echo esc_html( $field['id'] ); ?> <?php echo esc_html( $wrapclass ); ?>">
 
 						<?php if (isset($field['label'])) { ?>
 
@@ -492,7 +496,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'    =>  __( 'Coupon Deal','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cc-no-img'
 				);
 				$coupon_creator_meta_fields[$prefix . 'amount'] =	array(
 					'label' => __('Deal', 'coupon_creator' ),
@@ -501,7 +506,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type'  => 'text',
 					'alert' => '',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cc-no-img'
 				);		
 				$coupon_creator_meta_fields[$prefix . 'deal_display'] =	array(
 					'label' => '',
@@ -510,7 +516,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type'  => '',
 					'alert' => '',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cc-no-img'
 				);				
 				$coupon_creator_meta_fields[$prefix . 'heading_terms'] = array(
 					'id' => $prefix . 'heading_terms',
@@ -518,7 +525,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'    =>  __( 'Coupon Terms','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cc-no-img'
 				);
 				$coupon_creator_meta_fields[$prefix . 'description'] =	array(
 					'label' => __('Terms', 'coupon_creator' ),
@@ -526,7 +534,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'id' => $prefix . 'description',
 					'type'  => 'textarea_w_tags',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cc-no-img'
 				);
 
 				//Style Tab
@@ -559,7 +568,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'    =>  __( 'Inner Border','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
+					'tab' => 'style',
+					'wrapclass' => 'cc-no-img'
 				);
 				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
 					'label' => __('Inside Border Color', 'coupon_creator' ),
@@ -568,7 +578,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type' => 'color', // color
 					'value' => cctor_options('cctor_border_color'),
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
+					'tab' => 'style',
+					'wrapclass' => 'cc-no-img'
 				);
 				$coupon_creator_meta_fields[$prefix . 'inside_radius'] =	array(
 					'id'		 => $prefix . 'inside_radius',
@@ -583,7 +594,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'    =>  __( 'Deal Field Colors','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
+					'tab' => 'style',
+					'wrapclass' => 'cc-no-img'
 				);
 				$coupon_creator_meta_fields[$prefix . 'colordiscount'] =	array(
 					'label' => __('Deal Background Color', 'coupon_creator' ),
@@ -592,7 +604,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type' => 'color', // color
 					'value' => cctor_options('cctor_discount_bg_color'),
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
+					'tab' => 'style',
+					'wrapclass' => 'cc-no-img'
 				);
 				$coupon_creator_meta_fields[$prefix . 'colorheader'] =	array(
 					'label' => __('Deal Text Color', 'coupon_creator' ),
@@ -601,7 +614,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type' => 'color', // color
 					'value' => cctor_options('cctor_discount_text_color'),
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
+					'tab' => 'style',
+					'wrapclass' => 'cc-no-img'
 				);
 
 				//Expiration
