@@ -305,3 +305,94 @@ function showHelp(helpid){
 	 
 	 return false;
 }
+
+/*
+* Toogle Meta Field Display
+* @version 2.1
+*
+*/
+function cctor_prepare_toggle_fields( field_check ) {
+
+	//Prepare Fields
+	var show_fields;
+	var dissable_style_fields_arr = '';
+	var message_div = {
+		".cctor-tab-heading-content" : '',
+		".cctor-tab-heading-style" : ''
+	};
+
+	if ( field_check == 'input#cctor_image' ) {
+		show_fields = [".cctor-img-coupon"];
+		var cctor_img_id = $( field_check ).val();
+		if ( cctor_img_id != '' ) {
+			dissable_style_fields_arr = [".cctor-img-coupon"];
+			if ( !$('.cctor-tabs .cctor-tab-heading-links').length ) {
+				var message_div = {
+					".cctor-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+					".cctor-tab-heading-style": cctor_meta_js.cctor_disable_style_msg
+				};
+			} else {
+				var message_div = {
+					".cctor-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+					".cctor-tab-heading-style": ''
+				};
+			 }
+
+		}
+	}
+
+	cctor_toggle_fields( field_check, dissable_style_fields_arr, show_fields, message_div );
+}
+/*
+* Toggle Meta Field Display
+* @version 2.1
+*
+*/
+function cctor_toggle_fields( field_check, field_display, show_fields, message_div  ) {
+	if ( ( $( field_check ).prop('checked') ) || ( field_check == '' && cctor_meta_js.cctor_disable_print == 1 ) ) {
+		$.each( field_display, function( index, field_class ) {
+			$( field_class ).fadeOut();
+			$( field_class + " input:text" ).val('');
+			$( field_class + " input:checked").removeAttr('checked');
+		});
+	}  else if ( field_check && show_fields ) {
+		$.each( show_fields, function( index, field_class ) {
+			$( field_class ).fadeIn('fast');
+		});
+		$.each( field_display, function( index, field_class ) {
+			$( field_class ).fadeOut();
+			$( field_class + " input:text" ).val('');
+		});
+	} else if ( field_display ) {
+		$.each( field_display, function( index, field_class ) {
+			$( field_class ).fadeIn();
+		});
+	}
+	//Only Run if Variable is an Object
+	if( typeof message_div === 'object' ) {
+		//Remove Message
+		$.each( message_div, function ( key, value ) {
+			$( key ).next( 'div.cctor-error' ).remove();
+		} );
+		//Add Message
+		$.each( message_div, function ( key, value ) {
+			if ( key && value ) {
+				$( key ).after( '<div class="cctor-error">' + value + '</div>' );
+			}
+		} );
+	}
+
+}
+
+/*
+* Core Meta Field Logic
+* @version 2.1
+*
+*/
+jQuery(function($) {
+	//Run Function to hide Content and Style Fields if Image Selected
+	cctor_prepare_toggle_fields( 'input#cctor_image' );
+	$( "input#cctor_image" ).on( "display", function( ) {
+		cctor_prepare_toggle_fields( 'input#cctor_image' );
+	});
+});

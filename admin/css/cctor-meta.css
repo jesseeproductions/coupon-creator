@@ -89,9 +89,9 @@
 	float:left;
 }
 .cctor-error {
-    border-left: 4px solid #dd3d36;
-    color: red;
-    font-weight: bold;
+	border-left: 4px solid #dd3d36;
+    padding: 1px 12px;
+	color: #dd3d36;
 }
 .ui-widget-content a.cctor-support,
 .cctor-support {

@@ -234,7 +234,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				//Script for WP Color Picker
 				wp_enqueue_script( 'wp-color-picker' );
 				$cctor_coupon_meta_js = CCTOR_PATH.'admin/js/cctor_coupon_meta.js';
-				wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . 'admin/js/cctor_coupon_meta.js', array('jquery', 'media-upload','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);	
+				wp_enqueue_script('cctor_coupon_meta_js',  CCTOR_URL . 'admin/js/cctor_coupon_meta.js', array('jquery', 'media-upload','thickbox','farbtastic'), filemtime($cctor_coupon_meta_js), true);
+
+				//Localize Pro Meta Script
+				wp_localize_script( 'cctor_coupon_meta_js', 'cctor_meta_js', array(
+					'cctor_disable_content_msg' => __( ' Content Fields are disabled when using an Image Coupon' , 'coupon_creator_pro'),
+					'cctor_disable_style_msg' => __( ' Style Fields are disabled when using an Image Coupon' , 'coupon_creator_pro')
+					));
+
 
 				//Script for Datepicker
 				wp_enqueue_script('jquery-ui-datepicker');

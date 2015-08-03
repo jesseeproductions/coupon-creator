@@ -511,6 +511,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				);		
 				$coupon_creator_meta_fields[$prefix . 'deal_display'] =	array(
 					'id' => $prefix . 'deal_display',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content',
 					'wrapclass' => 'cctor-img-coupon'
@@ -538,21 +539,25 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				//Outer Border Placeholders
 				$coupon_creator_meta_fields[$prefix . 'heading_pro_display'] = array(
 					'id' => $prefix . 'heading_pro_display',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 					);
 				$coupon_creator_meta_fields[$prefix . 'coupon_border_themes'] =	array(
 					'id'    => $prefix . 'coupon_border_themes',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
 				$coupon_creator_meta_fields[$prefix . 'outer_border_color'] =	array(
 					'id' => $prefix . 'outer_border_color',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
 				$coupon_creator_meta_fields[$prefix . 'outer_radius'] =	array(
 					'id'		 => $prefix . 'outer_radius',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
@@ -579,6 +584,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				);
 				$coupon_creator_meta_fields[$prefix . 'inside_radius'] =	array(
 					'id'		 => $prefix . 'inside_radius',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);

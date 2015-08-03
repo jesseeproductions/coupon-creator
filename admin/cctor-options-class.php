@@ -522,18 +522,20 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			//Outer Border
 			$this->options['cctor_pro_heading_outer_border'] = array(
-				'title'   => '',
-				'desc'    =>  __( '','coupon_creator' ),
-				'section' => 'defaults'
+				'type'    => '',
+				'section' => ''
 			);
 			$this->options['cctor_pro_default_border_style'] = array(
-				'section' => 'defaults'
+				'type'    => '',
+				'section' => ''
 			);
 			$this->options['cctor_outer_border_color'] = array(
-				'section' => 'defaults'
+				'type'    => '',
+				'section' => ''
 			);
 			$this->options['cctor_pro_outer_border_default'] = array(
-				'section' => 'defaults'
+				'type'    => '',
+				'section' => ''
 			);
 
 			//Inner Border
@@ -551,7 +553,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => 'defaults'
 			);
 			$this->options['cctor_pro_inner_border_default'] = array(
-				'section' => 'defaults'
+				'type'    => '',
+				'section' => ''
 			);
 
 			//Discount Field Colors
