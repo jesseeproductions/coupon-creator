@@ -321,9 +321,14 @@ function cctor_prepare_toggle_fields( field_check ) {
 		".cctor-tab-heading-style" : ''
 	};
 
+	var border_disable = "sawtooth-border"
+
 	if ( field_check == 'input#cctor_image' ) {
 		show_fields = [".cctor-img-coupon"];
 		var cctor_img_id = $( field_check ).val();
+
+		$( "select#cctor_coupon_border_themes" ).children('option[value="' + border_disable + '"]').prop('disabled', false);
+
 		if ( cctor_img_id != '' ) {
 			dissable_style_fields_arr = [".cctor-img-coupon"];
 			if ( !$('.cctor-tabs .cctor-tab-heading-links').length ) {
@@ -336,6 +341,18 @@ function cctor_prepare_toggle_fields( field_check ) {
 					".cctor-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
 					".cctor-tab-heading-style": ''
 				};
+
+				//If Saw Tooth Border is Selected then change as it does not work with the Image Coupon
+				if ( $( "#cctor_coupon_border_themes option:selected" ).val() == border_disable ) {
+
+					$( "select#cctor_coupon_border_themes" ).prop( "selectedIndex",0 );
+
+					if (typeof cctor_pro_prepare_toggle_fields == 'function') {
+
+						cctor_pro_prepare_toggle_fields( '#cctor_coupon_border_themes' );
+					}
+				}
+				$( "select#cctor_coupon_border_themes" ).children('option[value="' + border_disable + '"]').prop('disabled', true);
 			 }
 
 		}
@@ -361,7 +378,6 @@ function cctor_toggle_fields( field_check, field_display, show_fields, message_d
 		});
 		$.each( field_display, function( index, field_class ) {
 			$( field_class ).fadeOut();
-			$( field_class + " input:text" ).val('');
 		});
 	} else if ( field_display ) {
 		$.each( field_display, function( index, field_class ) {

@@ -256,7 +256,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 				<?php foreach ($coupon_creator_meta_fields as $field) {
 
-					if ($field['section'] == $metabox['id'] && $field['tab'] == $tab_slug) :
+					if ( $field['type'] && $field['section'] == $metabox['id'] && $field['tab'] == $tab_slug) :
 
 					// get value of this field if it exists for this post
 					$meta = get_post_meta($post->ID, $field['id'], true);
