@@ -13,19 +13,19 @@ class Coupon_Creator_Plugin_Sanitize {
 	 * the field's type
 	 * @var mixed
 	 */
-	public $type;
+	private $type;
 
 	/**
 	 * the field's value
 	 * @var mixed
 	 */
-	public $input;
+	private $input;
 
 	/**
 	 * field variables
 	 * @var array
 	 */
-	public $option;
+	private $option;
 
 	/**
 	 * the result object of the validation
@@ -40,15 +40,19 @@ class Coupon_Creator_Plugin_Sanitize {
 	 */
 	function __construct( $type, $input, $option ) {
 
+		$this->type = $type;
+		$this->input = $input;
+		$this->option = $option;
+
 		//Return Sanitized Input only if a method exists to sanitize the field type
-		if ( method_exists( $this, 'cctor_sanitize_' . $type ) && is_callable(array( $this, 'cctor_sanitize_' . $type ) ) ) {
+		if ( method_exists( $this, 'cctor_sanitize_' . $this->type ) && is_callable(array( $this, 'cctor_sanitize_' . $this->type ) ) ) {
 
 			// set result
-			$this->result = $this->{'cctor_sanitize_' . $type }( $input, $option );
+			$this->result = $this->{'cctor_sanitize_' . $this->type }( );
 
 		} else {
 
-			$this->result = '<br>No Validation Method Found for {cctor_sanitize_' . $type .'}<br>';
+			$this->result = '<br>No Validation Method Found for {cctor_sanitize_' . $this->type .'}<br>';
 
 			//$this->result = false;
 		}
@@ -61,9 +65,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* License Key Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_license( $input ) {
+	private function cctor_sanitize_license( ) {
 
-		return $this->cctor_sanitize_text( trim( $input ) );
+		return $this->cctor_sanitize_text( trim( $this->input ) );
 
 	}
 
@@ -71,9 +75,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* License Status Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_license_status( $input ) {
+	private function cctor_sanitize_license_status( ) {
 
-		return $this->cctor_sanitize_text( trim( $input ) );
+		return $this->cctor_sanitize_text( trim( $this->input ) );
 
 	}
 
@@ -85,9 +89,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	*
 	* @return string         Sanitized version of the the text
 	*/
-	public function cctor_sanitize_text( $input=null ){
+	private function cctor_sanitize_text( ){
 
-		return sanitize_text_field( $input );
+		return sanitize_text_field( $this->input );
 
 	}
 
@@ -95,12 +99,12 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Sanitize Textarea
 	* @version 2.1
 	*/
-	public function cctor_sanitize_textarea( $input , $option ) {
+	private function cctor_sanitize_textarea( ) {
 
-		if ( $option['class'] != "code" ) {
+		if ( $this->option['class'] != "code" ) {
 			global $allowedtags;
 
-			$textarea = wp_kses( $input, $allowedtags );
+			$textarea = wp_kses( $this->input, $allowedtags );
 
 			return $textarea;
 		} else {
@@ -114,9 +118,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Textarea code Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_textarea_w_tags( $input ) {
+	private function cctor_sanitize_textarea_w_tags( ) {
 
-		$input = wp_kses_post( $input );
+		$input = wp_kses_post( $this->input );
 
 		return $input;
 	}
@@ -125,14 +129,14 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Wysiwyg Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_wysiwyg( $input ) {
+	private function cctor_sanitize_wysiwyg( ) {
 
 		if ( current_user_can( 'unfiltered_html' ) ) {
-			$input = $input;
+			$input = $this->input;
 		}
 		else {
 			global $allowedtags;
-			$input = wp_kses( $input, $allowedtags);
+			$input = wp_kses( $this->input, $allowedtags);
 		}
 		return $input;
 
@@ -142,9 +146,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Sanitize urls
 	* @version 2.1
 	*/
-	public function cctor_sanitize_url( $input ) {
+	private function cctor_sanitize_url( ) {
 
-		return esc_url( $input );
+		return esc_url( $this->input );
 
 	}
 
@@ -152,9 +156,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Select Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_select( $input, $option ) {
+	private function cctor_sanitize_select( ) {
 
-		return $this->cctor_sanitize_enum( $input , $option);
+		return $this->cctor_sanitize_enum( $this->input , $this->option);
 
 	}
 
@@ -162,9 +166,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Radio Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_radio( $input, $option ) {
+	private function cctor_sanitize_radio( ) {
 
-		return $this->cctor_sanitize_enum( $input, $option );
+		return $this->cctor_sanitize_enum( $this->input, $this->option );
 
 	}
 
@@ -172,12 +176,12 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Select and Radio Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_enum( $input, $option ) {
+	private function cctor_sanitize_enum( ) {
 
-		if ( array_key_exists( $input, $option['choices'] ) ) {
-			$input = sanitize_text_field( $input );
+		if ( array_key_exists( $this->input, $this->option['choices'] ) ) {
+			$this->input = sanitize_text_field( $this->input );
 		}
-		return $input;
+		return $this->input;
 	}
 
 
@@ -185,34 +189,34 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Checkbox Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_checkbox( $input ) {
-		if ( $input ) {
-			$input = '1';
+	private function cctor_sanitize_checkbox( ) {
+		if ( $this->input ) {
+			$this->input = '1';
 		} else {
-			$input = false;
+			$this->input = false;
 		}
-		return $input;
+		return $this->input;
 	}
 
 	/*
 	* Sanitize Date
 	* @version 2.1
 	*/
-	public function cctor_sanitize_date( $input ) {
+	private function cctor_sanitize_date( ) {
 
-		$input = preg_replace( "([^0-9/])", "", $input );
+		$this->input = preg_replace( "([^0-9/])", "", $this->input );
 
-		return $input;
+		return $this->input;
 	}
 
 	/*
 	* Color Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_color( $input ) {
+	private function cctor_sanitize_color( ) {
 
-		if ( $this->cctor_validate_hex( $input ) ) {
-			return $input;
+		if ( $this->cctor_validate_hex( $this->input ) ) {
+			return $this->input;
 		}
 	}
 
@@ -220,7 +224,7 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Hex Sanitize
 	* @version 2.1
 	*/
-	public function cctor_validate_hex( $hex ) {
+	private function cctor_validate_hex( $hex ) {
 		$hex = trim( $hex );
 		if ( 0 === strpos( $hex, '#' ) ) {
 			$hex = substr( $hex, 1 );
@@ -241,9 +245,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Image ID Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_image( $input ) {
+	private function cctor_sanitize_image( ) {
 
-		return $this->sanitize_absint( $input );
+		return $this->sanitize_absint( $this->input );
 
 	}
 
@@ -251,9 +255,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Pro Image ID Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_proimage( $input ) {
+	private function cctor_sanitize_proimage( ) {
 
-		return $this->sanitize_absint( $input );
+		return $this->sanitize_absint( $this->input );
 
 	}
 
@@ -261,9 +265,9 @@ class Coupon_Creator_Plugin_Sanitize {
 	* Dimensions ID Sanitize
 	* @version 2.1
 	*/
-	public function cctor_sanitize_dimensions( $input ) {
+	private function cctor_sanitize_dimensions( ) {
 
-		return $this->sanitize_absint( $input );
+		return $this->sanitize_absint( $this->input );
 
 	}
 
@@ -275,40 +279,40 @@ class Coupon_Creator_Plugin_Sanitize {
 	*
 	* @return string         Sanitized version of the Absolute Integer
 	*/
-	public function sanitize_absint( $input ){
+	private function sanitize_absint( ){
 		// If it's not numeric we forget about it
-		if ( ! is_numeric( $input ) ){
+		if ( ! is_numeric( $this->input ) ){
 			return false;
 		}
 
-		$input = preg_replace( '/[^0-9]/', '', $input );
+		$this->input = preg_replace( '/[^0-9]/', '', $this->input );
 
 		// After the Replace return false if Empty
-		if ( empty( $input ) ) {
+		if ( empty( $this->input ) ) {
 			return false;
 		}
 
 		// After that it should be good to ship!
-		return $input;
+		return $this->input;
 	}
 
 	/*
 	* Sanitize Google Analytics
 	* @version 2.1
 	*/
-	public function cctor_sanitize_ga_analytics( $input ) {
+	private function cctor_sanitize_ga_analytics( ) {
 
-		$input = trim( esc_html( $input ) );
+		$this->input = trim( esc_html( $this->input ) );
 		// en dash to minus, prevents issue with code copied from web with "fancy" dash
-		$input = str_replace( '–', '-', $input );
+		$this->input = str_replace( '–', '-', $this->input );
 
-		if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $input ) ) {
+		if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $this->input ) ) {
 
 			return false;
 
 		} else {
 
-			return $input;
+			return $this->input;
 
 		}
 
