@@ -45,7 +45,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) );
 
 			//Register Custom Taxonomy
-			Coupon_Creator_Plugin::include_file( 'classes/cctor-taxonomy-class.php' );
+			self::include_file( 'classes/cctor-taxonomy-class.php' );
 			new Coupon_Creator_Taxonomy_Class();
 
 			//Setup Capabilities
@@ -64,11 +64,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Load Template Functions
 			$this->cctor_Load_Template_Functions();
 
+			//Load Sanitize Functions
+			self::include_file( 'admin/cctor-sanitize-class.php' );
+
 			//Load Admin Class if in Admin Section
 			if ( is_admin() ) {
-				//Load Sanitize Functions
-				Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize-class.php' );
-
 				new Coupon_Creator_Plugin_Admin();
 			}
 					
@@ -92,18 +92,18 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
 			
 			//Register Coupon Shortcode
-			Coupon_Creator_Plugin::include_file( 'classes/cctor-coupon-shortcode-class.php' );
+			self::include_file( 'classes/cctor-coupon-shortcode-class.php' );
 			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
 				
 			//Build Shortcode
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-shortcode-build.php' );
+			self::include_file( 'public/template-build/cctor-shortcode-build.php' );
 			add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 10);
 			
 			//Load Single Coupon Template
 			add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );
 			
 			//Include Print Template Hook Build
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-print-build.php' );	
+			self::include_file( 'public/template-build/cctor-print-build.php' );
 			
 			//Add Print Template Functions
 			add_action( 'cctor_action_print_template', 'cctor_print_template', 10);
@@ -126,13 +126,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		 */
 		protected function cctor_Load_Template_Functions() {
 			//Load Template Functions
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-meta.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-expiration.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-wraps.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-image.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-deal.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-terms.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-links.php' );
+			self::include_file( 'public/template-functions/cctor-function-meta.php' );
+			self::include_file( 'public/template-functions/cctor-function-expiration.php' );
+			self::include_file( 'public/template-functions/cctor-function-wraps.php' );
+			self::include_file( 'public/template-functions/cctor-function-image.php' );
+			self::include_file( 'public/template-functions/cctor-function-deal.php' );
+			self::include_file( 'public/template-functions/cctor-function-terms.php' );
+			self::include_file( 'public/template-functions/cctor-function-links.php' );
 		}
 		
 	/***************************************************************************/
@@ -195,6 +195,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public static function activate() {
 			// Flush rewrite rules so that users can access custom post types on the
+			log_me( 'activate coupon creator' );
+
+			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
+
 			self::cctor_register_post_types();
 			flush_rewrite_rules();
 			update_option( 'coupon_flush_activate', date('l jS \of F Y h:i:s A') );
@@ -205,6 +209,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.80
 		*/
 		public static function deactivate() {
+			log_me( 'deactivate coupon creator' );
+
+			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
+
 			flush_rewrite_rules();
 			update_option( 'coupon_flush_deactivate', date('l jS \of F Y h:i:s A') );
 		}

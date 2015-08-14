@@ -40,21 +40,15 @@ class Coupon_Creator_Plugin_Sanitize {
 	 */
 	function __construct( $type, $input, $option ) {
 
-		// prepare object properties
-		//$this->result          = new stdClass;
-		$this->type           = $type;
-		$this->input['id']    = $input;
-		$this->option         = $option;
-
 		//Return Sanitized Input only if a method exists to sanitize the field type
-		if ( method_exists( $this, 'cctor_sanitize_'.$option['type'] ) && is_callable(array( $this, 'cctor_sanitize_'.$option['type'] ) ) ) {
+		if ( method_exists( $this, 'cctor_sanitize_' . $type ) && is_callable(array( $this, 'cctor_sanitize_' . $type ) ) ) {
 
 			// set result
-			$this->result = $this->{'cctor_sanitize_'.$option['type']}( $input, $option );
+			$this->result = $this->{'cctor_sanitize_' . $type }( $input, $option );
 
 		} else {
 
-			$this->result = '<br>No Validation Method Found for {cctor_sanitize_'.$option["type"].'}<br>';
+			$this->result = '<br>No Validation Method Found for {cctor_sanitize_' . $type .'}<br>';
 
 			//$this->result = false;
 		}

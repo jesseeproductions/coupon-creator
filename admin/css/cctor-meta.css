@@ -85,8 +85,9 @@
 	font-weight: bold;
 }
 .cctor-message  div {
-	width: 33%;
+	width: 48%;
 	float:left;
+	padding: 0 2% 5px 0;
 }
 .cctor-error {
 	border-left: 4px solid #dd3d36;

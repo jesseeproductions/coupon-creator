@@ -504,8 +504,15 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			//defaults
 			$this->options['header_defaults'] = array(
 				'section' => 'defaults',
-				'title'   => '', // Not used for headings.
+				'title'   => '',
 				'alert'    =>  __( '*These are defaults for new coupons only and do not change existing coupons.','coupon_creator' ),
+				'type'    => 'heading'
+			);
+			//Expiration
+			$this->options['header_expiration'] = array(
+				'section' => 'defaults',
+				'title'   => '',
+				'desc'    =>  __( 'Expiration','coupon_creator' ),
 				'type'    => 'heading'
 			);
 			$this->options['cctor_default_date_format'] = array(
@@ -518,6 +525,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),
 					'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
 				)
+			);
+			$this->options['cctor_pro_recurrence_pattern_default'] = array(
+				'type'    => '',
+				'section' => ''
+			);
+			$this->options['cctor_pro_recurrence_pattern_limit_default'] = array(
+				'type'    => '',
+				'section' => ''
 			);
 
 			//Outer Border
@@ -541,7 +556,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			//Inner Border
 			$this->options['header_inner_border'] = array(
 				'section' => 'defaults',
-				'title'   => '', // Not used for headings.
+				'title'   => '',
 				'desc'    =>  __( 'Inner Border','coupon_creator' ),
 				'type'    => 'heading'
 			);
