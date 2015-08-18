@@ -47,12 +47,10 @@ class Coupon_Creator_Plugin_Sanitize {
 		//Return Sanitized Input only if a method exists to sanitize the field type
 		if ( method_exists( $this, 'cctor_sanitize_' . $this->type ) && is_callable(array( $this, 'cctor_sanitize_' . $this->type ) ) ) {
 
-			// set result
+			//result
 			$this->result = $this->{'cctor_sanitize_' . $this->type }( );
 
 		} else {
-
-			//$this->result = '<br>No Validation Method Found for {cctor_sanitize_' . $this->type .'}<br>';
 
 			$this->result = false;
 		}
@@ -305,6 +303,5 @@ class Coupon_Creator_Plugin_Sanitize {
 		}
 
 	}
-
 
 } //end Coupon_Creator_Plugin_Sanitize Class

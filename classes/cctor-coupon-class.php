@@ -194,14 +194,12 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.80
 		*/
 		public static function activate() {
-			// Flush rewrite rules so that users can access custom post types on the
-			log_me( 'activate coupon creator' );
 
 			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
 
 			self::cctor_register_post_types();
 			flush_rewrite_rules();
-			update_option( 'coupon_flush_activate', date('l jS \of F Y h:i:s A') );
+			log_me( 'coupon_flush_activate ' . date('l jS \of F Y h:i:s A') );
 		}
 
 		/*
@@ -209,12 +207,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.80
 		*/
 		public static function deactivate() {
-			log_me( 'deactivate coupon creator' );
 
 			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
 
 			flush_rewrite_rules();
-			update_option( 'coupon_flush_deactivate', date('l jS \of F Y h:i:s A') );
+			log_me( 'coupon_flush_deactivate ' .  date('l jS \of F Y h:i:s A') );
 		}
 
 	/***************************************************************************/
@@ -364,7 +361,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public static function cctor_get_coupon_post_type_template($print_template) {
 			 global $post;
-			 if ($post->post_type == 'cctor_coupon') {
+			 if ( is_object( $post ) && $post->post_type == 'cctor_coupon') {
 				  $print_template = CCTOR_PATH. 'public/templates/print-coupon.php';
 			 }
 			 return $print_template;
