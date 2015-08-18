@@ -58,7 +58,7 @@
 	width:100%;
 	min-height: 90px;
 	padding: 2% 3%;
-	line-height:18px;
+	line-height: 1.2;
 	font-size:14px;
 	font-weight:bold;
 	color: #000;
@@ -132,7 +132,7 @@ a .cctor_expiration {
 }
 .print_coupon .cctor_terms {
 	font-size:  20px;
-	line-height: 22px;
+	line-height: 1.2;
 	min-height: 150px;
 }
 @media print {

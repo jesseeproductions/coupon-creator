@@ -315,6 +315,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/
 		public function display_setting( $option_args = array() ) {
 
+			//Set for WP 4.3 and replacing wp_htmledit_pre
+			global $wp_version; $cctor_required_wp_version = '4.3';
+
 			$options = get_option( 'coupon_creator_options' );
 
 			if ( ! isset( $options[$option_args['id']] ) && $option_args['type'] != 'checkbox' )
@@ -398,7 +401,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					break;
 
 				case 'textarea':
-					echo '<textarea class="' . $option_args['class'] . '" id="' . $option_args['id'] . '" name="coupon_creator_options[' . $option_args['id'] . ']" placeholder="' . $option_args['std']  . '" rows="12" cols="50">' . wp_htmledit_pre( $options[$option_args['id']] ) . '</textarea>';
+					global $wp_version;
+					if( version_compare( $wp_version, $cctor_required_wp_version, '<' ) ) {
+						echo '<textarea class="' . $option_args['class'] . '" id="' . $option_args['id'] . '" name="coupon_creator_options[' . $option_args['id'] . ']" placeholder="' . $option_args['std']  . '" rows="12" cols="50">' . wp_htmledit_pre( $options[$option_args['id']] ) . '</textarea>';
+					 } else {
+						echo '<textarea class="' . $option_args['class'] . '" id="' . $option_args['id'] . '" name="coupon_creator_options[' . $option_args['id'] . ']" placeholder="' . $option_args['std']  . '" rows="12" cols="50">' . format_for_editor( $options[$option_args['id']] ) . '</textarea>';
+					}
 
 					if ( $option_args['desc'] != '' )
 						echo '<br /><span class="description">' . $option_args['desc'] . '</span><br />';
@@ -407,7 +415,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				case 'cctor_support':
 
 					echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation();
-
 					echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_contact();
 
 				break;

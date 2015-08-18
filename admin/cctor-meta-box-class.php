@@ -208,6 +208,9 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 				wp_nonce_field( 'coupon_creator_save_post', 'coupon_creator_nonce' );
 
+				//Set for WP 4.3 and replacing wp_htmledit_pre
+				global $wp_version; $cctor_required_wp_version = '4.3';
+
 				//Get Tab Sections
 				$meta_tabs = self::get_cctor_tabs();
 
@@ -308,18 +311,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								<?php break;
 								// textarea
 								case 'textarea': ?>
-
-									<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo wp_htmledit_pre($meta); ?></textarea>
+									<?php if( version_compare( $wp_version, $cctor_required_wp_version, '<' ) ) { ?>
+										<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo wp_htmledit_pre($meta); ?></textarea>
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
-
-								<?php break;
-								// textarea
-								case 'textarea_w_tags': ?>
-
-									<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo wp_htmledit_pre( $meta ); ?></textarea>
+									<?php } else { ?>
+										<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo format_for_editor($meta); ?></textarea>
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
-
+									<?php } ?>
 								<?php break;
+
 								// checkbox
 								case 'checkbox': 
 									
@@ -424,8 +424,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								// Videos
 								 case 'cctor_support':?>
 
-									<?php echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation(); 
-										
+									<?php echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation();
 										  echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_contact();
 									?>
 
@@ -529,7 +528,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'label' => __('Terms', 'coupon_creator' ),
 					'desc' => __('Enter the terms of the discount', 'coupon_creator' ),
 					'id' => $prefix . 'description',
-					'type'  => 'textarea_w_tags',
+					'type'  => 'textarea',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content',
 					'wrapclass' => 'cctor-img-coupon'

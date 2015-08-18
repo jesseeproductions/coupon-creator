@@ -313,24 +313,27 @@ function showHelp(helpid){
 */
 function cctor_prepare_toggle_fields( field_check ) {
 
-	//Prepare Fields
-	var show_fields;
-	var dissable_style_fields_arr = '';
-	var message_div = {
-		".cctor-tab-heading-content" : '',
-		".cctor-tab-heading-style" : ''
-	};
-
-	var border_disable = "sawtooth-border"
-
 	if ( field_check == 'input#cctor_image' ) {
-		show_fields = [".cctor-img-coupon"];
+
 		var cctor_img_id = $( field_check ).val();
-
-		$( "select#cctor_coupon_border_themes" ).children('option[value="' + border_disable + '"]').prop('disabled', false);
-
+		//Continue if ID Found
 		if ( cctor_img_id != '' ) {
+			//Prepare Fields
+			var show_fields;
+			var dissable_style_fields_arr = '';
+			var message_div = {
+				".cctor-tab-heading-content" : '',
+				".cctor-tab-heading-style" : ''
+			};
+
+			var border_disable = "sawtooth-border";
+
+			show_fields = [".cctor-img-coupon"];
+
+			$( "select#cctor_coupon_border_themes" ).children('option[value="' + border_disable + '"]').prop('disabled', false);
+
 			dissable_style_fields_arr = [".cctor-img-coupon"];
+
 			if ( !$('.cctor-tabs .cctor-tab-heading-links').length ) {
 				var message_div = {
 					".cctor-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
@@ -407,8 +410,9 @@ function cctor_toggle_fields( field_check, field_display, show_fields, message_d
 */
 jQuery(function($) {
 	//Run Function to hide Content and Style Fields if Image Selected
-	cctor_prepare_toggle_fields( 'input#cctor_image' );
+	cctor_prepare_toggle_fields( 'input#cctor_image', 'initial' );
 	$( "input#cctor_image" ).on( "display", function( ) {
+		console.log()
 		cctor_prepare_toggle_fields( 'input#cctor_image' );
 	});
 });

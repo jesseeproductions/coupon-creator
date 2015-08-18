@@ -52,9 +52,9 @@ class Coupon_Creator_Plugin_Sanitize {
 
 		} else {
 
-			$this->result = '<br>No Validation Method Found for {cctor_sanitize_' . $this->type .'}<br>';
+			//$this->result = '<br>No Validation Method Found for {cctor_sanitize_' . $this->type .'}<br>';
 
-			//$this->result = false;
+			$this->result = false;
 		}
 
 		// return the result
@@ -102,25 +102,13 @@ class Coupon_Creator_Plugin_Sanitize {
 	private function cctor_sanitize_textarea( ) {
 
 		if ( $this->option['class'] != "code" ) {
+
 			global $allowedtags;
+			$input = wp_kses( $this->input, $allowedtags );
 
-			$textarea = wp_kses( $this->input, $allowedtags );
-
-			return $textarea;
 		} else {
-
-			return false;
-
+			$input = wp_kses_post( $this->input );
 		}
-	}
-
-	/*
-	* Textarea code Sanitize
-	* @version 2.1
-	*/
-	private function cctor_sanitize_textarea_w_tags( ) {
-
-		$input = wp_kses_post( $this->input );
 
 		return $input;
 	}
