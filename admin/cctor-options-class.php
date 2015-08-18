@@ -489,9 +489,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 							echo '<input type="submit" class="cctor-license-button-det" name="cctor_license_activate" value="'. __('Activate License') .'"/>';
 
 						 }
-					//} else {
-					//		echo __( 'Enter your license key and save changes, then Click Activate License.','coupon_creator' );
-					//}
+
 				break;
 			}
 
@@ -842,10 +840,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 						//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
 						$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
 
-						//echo '<br>result ' . $option['type'] . '<br>';
-						//print_r( $cctor_sanitize->result );
-						//echo '<br>end<br>';
-
 						$cctor_license_info = array();
 
 						//License WP Option Name
@@ -884,11 +878,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 						//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
 						$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
-
-						//echo '<br>result ' . $option['type'] . '<br>';
-						//print_r( $cctor_sanitize );
-						//print_r( $cctor_sanitize->result );
-						//echo '<br>end<br>';
 
 						//Set Sanitized Input in Array
 						$clean[$id] = $cctor_sanitize->result;
