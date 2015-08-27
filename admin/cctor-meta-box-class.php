@@ -529,6 +529,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc' => __('Enter the terms of the discount', 'coupon_creator' ),
 					'id' => $prefix . 'description',
 					'type'  => 'textarea',
+					'class' => 'code',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content',
 					'wrapclass' => 'cctor-img-coupon'

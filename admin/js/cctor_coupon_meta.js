@@ -311,53 +311,52 @@ function showHelp(helpid){
 * @version 2.1
 *
 */
-function cctor_prepare_toggle_fields( field_check ) {
+function cctor_prepare_toggle_fields( field_check, remove_img ) {
 
 	if ( field_check == 'input#cctor_image' ) {
 
 		var cctor_img_id = $( field_check ).val();
 		//Continue if ID Found
-		if ( cctor_img_id != '' ) {
-			//Prepare Fields
-			var show_fields;
+		if ( cctor_img_id != '' || remove_img == true ) {
+
+			var show_fields = [".cctor-img-coupon"];
 			var dissable_style_fields_arr = '';
 			var message_div = {
 				".cctor-tab-heading-content" : '',
 				".cctor-tab-heading-style" : ''
 			};
 
-			var border_disable = "sawtooth-border";
+			if ( cctor_img_id != '' ) {
 
-			show_fields = [".cctor-img-coupon"];
+				var border_disable = "sawtooth-border";
+				$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', false );
 
-			$( "select#cctor_coupon_border_themes" ).children('option[value="' + border_disable + '"]').prop('disabled', false);
+				dissable_style_fields_arr = [".cctor-img-coupon"];
 
-			dissable_style_fields_arr = [".cctor-img-coupon"];
+				if ( !$( '.cctor-tabs .cctor-tab-heading-links' ).length ) {
+					var message_div = {
+						".cctor-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+						".cctor-tab-heading-style": cctor_meta_js.cctor_disable_style_msg
+					};
+				} else {
+					var message_div = {
+						".cctor-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+						".cctor-tab-heading-style": ''
+					};
 
-			if ( !$('.cctor-tabs .cctor-tab-heading-links').length ) {
-				var message_div = {
-					".cctor-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
-					".cctor-tab-heading-style": cctor_meta_js.cctor_disable_style_msg
-				};
-			} else {
-				var message_div = {
-					".cctor-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
-					".cctor-tab-heading-style": ''
-				};
+					//If Saw Tooth Border is Selected then change as it does not work with the Image Coupon
+					if ( $( "#cctor_coupon_border_themes option:selected" ).val() == border_disable ) {
 
-				//If Saw Tooth Border is Selected then change as it does not work with the Image Coupon
-				if ( $( "#cctor_coupon_border_themes option:selected" ).val() == border_disable ) {
+						$( "select#cctor_coupon_border_themes" ).prop( "selectedIndex", 0 );
 
-					$( "select#cctor_coupon_border_themes" ).prop( "selectedIndex",0 );
+						if ( typeof cctor_pro_prepare_toggle_fields == 'function' ) {
 
-					if (typeof cctor_pro_prepare_toggle_fields == 'function') {
-
-						cctor_pro_prepare_toggle_fields( '#cctor_coupon_border_themes' );
+							cctor_pro_prepare_toggle_fields( '#cctor_coupon_border_themes' );
+						}
 					}
+					$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', true );
 				}
-				$( "select#cctor_coupon_border_themes" ).children('option[value="' + border_disable + '"]').prop('disabled', true);
-			 }
-
+			}
 		}
 	}
 
@@ -369,7 +368,7 @@ function cctor_prepare_toggle_fields( field_check ) {
 *
 */
 function cctor_toggle_fields( field_check, field_display, show_fields, message_div  ) {
-	if ( ( $( field_check ).prop('checked') ) || ( field_check == '' && cctor_meta_js.cctor_disable_print == 1 ) ) {
+	if ( ( $( field_check ).prop('checked') ) || ( field_check == '' && cctor_pro_meta_js.cctor_disable_print == 1 ) ) {
 		$.each( field_display, function( index, field_class ) {
 			$( field_class ).fadeOut();
 			$( field_class + " input:text" ).val('');
@@ -379,9 +378,11 @@ function cctor_toggle_fields( field_check, field_display, show_fields, message_d
 		$.each( show_fields, function( index, field_class ) {
 			$( field_class ).fadeIn('fast');
 		});
-		$.each( field_display, function( index, field_class ) {
-			$( field_class ).fadeOut();
-		});
+		if ( field_display )  {
+			$.each( field_display, function( index, field_class ) {
+				$( field_class ).fadeOut();
+			});
+		}
 	} else if ( field_display ) {
 		$.each( field_display, function( index, field_class ) {
 			$( field_class ).fadeIn();
@@ -412,7 +413,9 @@ jQuery(function($) {
 	//Run Function to hide Content and Style Fields if Image Selected
 	cctor_prepare_toggle_fields( 'input#cctor_image', 'initial' );
 	$( "input#cctor_image" ).on( "display", function( ) {
-		console.log()
 		cctor_prepare_toggle_fields( 'input#cctor_image' );
+	});
+	$( ".cctor_coupon_clear_image_button" ).on( "click", function( ) {
+		cctor_prepare_toggle_fields( 'input#cctor_image', true );
 	});
 });

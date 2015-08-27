@@ -278,7 +278,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		public static function cctor_remove_coupon_row_actions( $actions, $post ) {
 		  global $current_screen, $current_user;
 
-			if( $current_screen->post_type != 'cctor_coupon' ) return $actions;
+			if( is_object( $current_screen ) && $current_screen->post_type != 'cctor_coupon' ) return $actions;
 
 			get_currentuserinfo();
 
@@ -506,12 +506,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				$cctor_license_info['expires'] = esc_html($license_data->expires);
 
 				//if Expired Add that to the option.
-				if ($license_data->error == "expired") {
+				if ( isset( $license_data->error ) && $license_data->error == "expired" ) {
 					$cctor_license_info['expired'] = esc_html($license_data->error);
 				}
 
 				//if Expired Add that to the option.
-				if ($license_data->error == "missing") {
+				if ( isset( $license_data->error ) &&  $license_data->error == "missing" ) {
 					unset($cctor_license_info['expires']);
 					unset($cctor_license_info['expired']);
 					$cctor_license_info['status']  = esc_html($license_data->error);
@@ -594,7 +594,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				<h4 class="coupon-heading">Pro Video Guides</h4>
 				<ul>
-                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xH3GmKPzQKc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to Create a WooCommerce Coupon</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/EQRv8g2nmuE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Border Styles</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/JR4GA4lsOB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use Recurring Expiration</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/w67yqCZXF6I?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using Columns and Rows in the Visual Editor</a></li>
                     <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/iThKkEgYBDE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Popup Print View Feature</a></li>
                     <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/h0YVXi2vq3g?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the View Shortcodes and Deal Display Options</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/FI218DxXnrY?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Coupon</a></li>
@@ -604,6 +606,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/vmViVkoQB0M?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Background Image</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/b3cV8gVf4lU?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Dimension Options</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/pFnp5VsfwUE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Text Overrides</a></li>
+					 <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xH3GmKPzQKc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to Create a WooCommerce Coupon</a></li>
 				</ul>
 
 				<h4 class="coupon-heading">Resources</h4>

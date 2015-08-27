@@ -258,39 +258,39 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/
 		public static function display_pro_section() {
 			ob_start(); ?>
-			<div>
+			<div class='cctor-pro-upsell'>
 				<h4><img alt="Get Coupon Creator Pro!" src="<?php echo CCTOR_URL; ?>admin/images/cctor-logo.png"/></h4>
 				<br>
 				<p><strong style="font-size:15px;"><a target="_blank" href="https://cctor.us/procoupon">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
 				<br>
 				<ul>
 				<h4>Coupon Creator Pro Features Include:</h4><br>
-                    <li>In Pro use the Visual editor to easily style the term's content on your site:
-                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-visual-editor.gif"/>
+					<li>Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="<?php echo CCTOR_URL; ?>admin/images/cctor-border-examples.gif"/>
                     </li>
-                    <li>Display the Print View in a Popup for any coupons and print directly from the Popup:
-                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-popup.gif"/>
+					<li>Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3 Weeks:<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Recurring Expiration" src="<?php echo CCTOR_URL; ?>admin/images/cctor-recurring-expiration.gif"/>
                     </li>
-                    <li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:
-                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-shortcodes.gif"/>
+                    <li>In Pro use the Visual editor to easily style the term's content on your site:<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Visual Editor" src="<?php echo CCTOR_URL; ?>admin/images/cctor-visual-editor.gif"/>
                     </li>
-                    <li>Create and Display WooCommerce Coupons from the Coupon Creator Editor:
-                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/coupon-woocommerce.png"/>
+                    <li>Display the Print View in a Popup for any coupons and print directly from the Popup:<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Popup" src="<?php echo CCTOR_URL; ?>admin/images/cctor-popup.gif"/>
                     </li>
-					<li>Set a Counter per coupon to expire the coupon after a limit has been reached:
+                    <li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Shortcode for hooks and print views" src="<?php echo CCTOR_URL; ?>admin/images/cctor-shortcodes.gif"/>
+                    </li>
+					<li>Set a Counter per coupon to expire the coupon after a limit has been reached:<br>
 					    <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-counter.png"/>
 					</li>
-					<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons:
-					    <img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-text-overrides.png"/>
-					</li>
-					<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon as well:
-					    <img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-dimensions.png"/>
-					</li>
+					<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons</li>
+					<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon</li>
 					<li>Override "Click to Open in Print View" text and link per coupon</li>
 					<li>Override "Print the Coupon" text and link per coupon</li>
                     <li>Select where you want to display the Coupon Deal per coupon</li>
                     <li>Disable the Print View per Coupon</li>
                     <li>Add your Google Analytics Code to the Print Template from the Coupon Options</li>
+					<li>Create and Display WooCommerce Coupons from the Coupon Creator Editor</li>
 				</ul>
 				<ul>
 				<h4>Coupon Creator Pro Style Features:</h4><br>
@@ -754,7 +754,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			foreach ( $this->options as $id => $option ) {
 
-				if ( $option['type'] != 'heading' ) {
+				if ( $option['type'] != 'heading' && isset( $option['std'] ) ) {
 
 					//Sanitize Default
 					$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $option['std'], $option );

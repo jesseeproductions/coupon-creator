@@ -163,13 +163,14 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 							var category_select = document.getElementById("coupon_category_select_container");
 							var orderby_select = document.getElementById("coupon_orderby_select_container");
 
-							if (coupon_selection == "loop") {
-								category_select.style.visibility = "visible";
-								orderby_select.style.visibility = "visible";
-							}
-							else {
-								category_select.style.visibility = "hidden";
-								orderby_select.style.visibility = "hidden";
+							if ( category_select && orderby_select ) {
+								if ( coupon_selection == "loop" ) {
+									category_select.style.visibility = "visible";
+									orderby_select.style.visibility = "visible";
+								} else {
+									category_select.style.visibility = "hidden";
+									orderby_select.style.visibility = "hidden";
+								}
 							}
 							cctor_resize_thickbox();
 						}

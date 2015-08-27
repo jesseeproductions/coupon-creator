@@ -61,6 +61,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Setup Coupon Image Sizes
 			add_action( 'init', array( __CLASS__, 'cctor_add_image_sizes' ) );
 
+			//Cron Schedule
+			add_action( 'init', array( $this, 'filter_cron_schedules' ) );
+
 			//Load Template Functions
 			$this->cctor_Load_Template_Functions();
 
@@ -199,7 +202,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			self::cctor_register_post_types();
 			flush_rewrite_rules();
-			log_me( 'coupon_flush_activate ' . date('l jS \of F Y h:i:s A') );
+
 		}
 
 		/*
@@ -211,7 +214,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
 
 			flush_rewrite_rules();
-			log_me( 'coupon_flush_deactivate ' .  date('l jS \of F Y h:i:s A') );
+
 		}
 
 	/***************************************************************************/
@@ -427,7 +430,34 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			return $content;  
 			
 		} 
-		
+
+	/***************************************************************************/
+
+		/**
+		 * Add filters to register custom cron schedules
+		 *
+		 *
+		 * @return void
+		 */
+		public function filter_cron_schedules() {
+			add_filter( 'cron_schedules', array( $this, 'register_20min_interval' ) );
+		}
+
+		/**
+		 * Add a new scheduled task interval (of 20mins).
+		 *
+		 * @param  array $schedules
+		 * @return array
+		 */
+		public function register_20min_interval( $schedules ) {
+			$schedules['every_20mins'] = array(
+				'interval' => 20 * MINUTE_IN_SECONDS,
+				'display'  => __( 'Once Every 20 Mins', 'cctor_coupon' ),
+			);
+
+			return $schedules;
+		}
+
 	/***************************************************************************/
 
 		/*

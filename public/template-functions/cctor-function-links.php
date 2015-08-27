@@ -16,10 +16,10 @@ function cctor_show_img_coupon($coupon_id, $couponimage) {
 	if (cctor_options('cctor_hide_print_link') == 0) {
 
 		//Set Image Link
-		?><a class="coupon_link" onclick='<?php echo esc_js( $cctor_onclick ); ?>' <?php echo esc_html( $nofollow ); ?> href='<?php echo esc_url( get_permalink( $coupon_id )) ; ?>' title='<?php echo __( 'Click to Open in Print View', 'coupon_creator' ); ?>'><img class='cctor_coupon_image' src='<?php echo  esc_url( $couponimage ); ?>' alt='<?php echo get_the_title($coupon_id); ?>' title='<?php echo __( 'Coupon', 'coupon_creator' ); ?> <?php echo get_the_title( $coupon_id ); ?>'></a><?php
+		?><a class="coupon_link" onclick='<?php echo esc_js( $cctor_onclick ); ?>' <?php echo $nofollow; ?> href='<?php echo esc_url( get_permalink( $coupon_id )) ; ?>' title='<?php echo __( 'Click to Open in Print View', 'coupon_creator' ); ?>'><img class='cctor_coupon_image' src='<?php echo  esc_url( $couponimage ); ?>' alt='<?php echo get_the_title($coupon_id); ?>' title='<?php echo __( 'Coupon', 'coupon_creator' ); ?> <?php echo get_the_title( $coupon_id ); ?>'></a><?php
 	} else {
 		//No Links for Image Coupon or Click to Print
-		?><img class='cctor_coupon_image' src='<?php echo esc_url( $couponimage ); ?>' alt='<?php echo get_the_title( $coupon_id ); ?>' title='<?php echo __( 'Coupon', 'coupon_creator' ); ?> <?php echo get_the_title( $coupon_id ); ?>'><?php
+		?><img class='cctor_coupon_image' src='<?php echo $couponimage; ?>' alt='<?php echo get_the_title( $coupon_id ); ?>' title='<?php echo __( 'Coupon', 'coupon_creator' ); ?> <?php echo get_the_title( $coupon_id ); ?>'><?php
 	}
 
 }

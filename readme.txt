@@ -4,9 +4,9 @@ Plugin Name: Coupon Creator
 Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Requires at least: 3.9
-Tested up to: 4.2.2
-Stable tag: 2.0.3
+Requires at least: 4.0
+Tested up to: 4.3
+Stable tag: 2.1
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -26,10 +26,14 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=oTa7puu7t24
 
-<h4>Coupon Creator Pro 2.0 Now Available!</h4>
-[Get a Pro License](http://cctor.us/hpcctor) with a visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+<h4>Coupon Creator Pro 2.1 Now Available!</h4>
+[Get a Pro License](http://cctor.us/hpcctor) with a 5 border styles, recurring expirations, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
 
-<h4>Coupon Creator Pro 2.0 Features Include:</h4>
+<h4>Coupon Creator Pro 2.1 Features Include:</h4>
+* Border themes, Dotted Border, Stitched Border, Saw Tooth Border (modern browsers and IE 10+), and None Option
+* Recurring Expiration; set an expiration for the end of the month and have it automatically change to the end of the next month
+* Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows
+* Pro Inserter has the ability to search coupons and categories in the dropdown
 * Visual editor to easily style the term's content on your site
 * Display the Print View in a Popup for any coupons and print directly from the Popup
 * Use the View Shortcodes to display content in the Shortcode View or the Print View only
@@ -119,14 +123,32 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Screenshots ==
 
-1. Coupon Editor
+1. Coupon Examples
 2. Expiration Tab in Coupon Editor
-3. Image Coupon Tab in Coupon Editor
+3. Coupon Editor
 4. Coupon List
 5. Coupon Inserter
 6. Coupon Options
 
 == Changelog ==
+= 2.1 August 27th, 2015 =
+* Added base CSS to the print view to present a better layout of the text with more options in Pro to change font size, weight, and family.
+* Added option to disable the base CSS for the print view.
+* Added constant to prevent all coupons from opening in new windows or tabs - define( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB', true );
+* Added PHP Date Validation when saving.
+* Added define('CCTOR_HIDE_UPGRADE', true); to hide Pro Upgrade Notices.
+* Added do_action( 'cctor_before_coupon_inner_wrap' , $coupon_id ); hook into the shortcode coupon.
+* Added function to update old image border radius field to the outer border.
+* Added update function to change the cctor_ignore_expiration value from on to 1 for older version upgrades.
+* Updated deal CSS to this class cctor_deal instead of targeting a heading tag directly to enable use of h3 tags in content.
+* Update combined sanitize functions into a class to enable future validation messages.
+* Updated Coupon Options Tabs and Coupon Meta Tabs to detect if saved by php and use that to determine what tab to return to after a save attempt instead of detecting if message div exists with jQuery.
+* Updated the styling of the Coupon Inserter based off new coding in Pro and added script to resize the thickbox based on the Content.
+* Fixed an issue with default options not saving with Pro and added sanitization for defaults.
+* Fixed custom permalinks change to make sure permalinks are flushed and the new slug is being used.
+* Fixed select option defaults to work again.
+* Fixed spelling on cctor_options_styles and cctor_options_scripts hooks.
+
 = 2.0.3 May 21st, 2015 =
 * Fixed Coupon Inserter so categories show in dropdown
 * Fixed status variable undefined notices
@@ -249,8 +271,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.0.3 =
-Fixed Coupon Inserter categories dropdown, improves validation, adds a url meta field for Pro.
+= 2.1 =
+Adds Print View basic css, Improved Coupon Inserter, along with 15 other changes
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>
