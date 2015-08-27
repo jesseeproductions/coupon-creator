@@ -19,13 +19,14 @@ function cctor_expiration_check($coupon_id) {
 		$show_coupon_check = false;
 		
 		$show_coupon_check = apply_filters('cctor_show_coupon_check', $show_coupon_check, $coupon_id);
-		
+
+
 		if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
-		
+
 			return true;
 			
 		}	else {
-		
+
 			return false;
 			
 		}
@@ -70,7 +71,7 @@ function cctor_show_expiration($coupon_id) {
 		$expirationco = date("d/m/Y", $cc_expiration_date);
 		}	?>
 	
-	<div class="cctor_expiration"><?php echo __('Expires on:', 'coupon_creator'); ?>&nbsp;<?php echo esc_html($expirationco); ?></div>
+	<div class="cctor_expiration core"><?php echo __('Expires on:', 'coupon_creator'); ?>&nbsp;<?php echo esc_html($expirationco); ?></div>
 	
 	<?php }
 }	

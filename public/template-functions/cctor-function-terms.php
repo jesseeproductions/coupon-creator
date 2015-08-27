@@ -15,7 +15,7 @@ function cctor_show_terms($coupon_id) {
 	//Apply all the_content filters manually
 	$terms = wptexturize( $terms );
 	$terms = convert_smilies( $terms );
-	$terms = convert_chars( $terms );
+
 	//WPAutop
 	if ( cctor_options('cctor_wpautop') != 1 ) {
 		$terms = wpautop( $terms );

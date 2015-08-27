@@ -37,14 +37,28 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->get_options();
 
 			add_action( 'admin_menu', array( &$this, 'coupon_options_page' ) );
-			add_action( 'admin_init', array( &$this, 'register_options' ) );
+			add_action( 'admin_init', array( &$this, 'register_options' ) , 15 );
 
 			//Add Coupon Newsletter Sign Up
 			add_action( 'cctor_after_option_form', array( __CLASS__, 'cctor_newsletter_signup' ) );
 
-			//Set Standard Options if None Found
-			if ( ! get_option( 'coupon_creator_options' ) )
-				$this->initialize_options();
+			if ( !get_option( 'coupon_creator_options' ) ) {
+
+				add_action( 'admin_init', array( &$this, 'set_defaults' ) , 10 );
+
+			}
+
+		}
+	/***************************************************************************/
+
+		/*
+		* Coupon Creator Set Default Options
+		* since 2.1
+		*/
+		public function set_defaults() {
+
+			$this->initialize_options();
+
 		}
 	/***************************************************************************/
 
@@ -60,8 +74,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->sections['display'] 		= __( 'Display', 'coupon_creator' );
 			$this->sections['help']        = __( 'Help', 'coupon_creator' );
 			$this->sections['license']   	= __( 'Licenses', 'coupon_creator' );
-			$this->sections['pro']        = __( 'Pro', 'coupon_creator' );
 			$this->sections['reset']        = __( 'Reset', 'coupon_creator' );
+			! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $this->sections['pro']        = __( 'Upgrade to Pro', 'coupon_creator' ) : '';
 
 			unset($this->sections['license']);
 
@@ -94,7 +108,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		}
 		/*
 		* Coupon Creator Options Page Scripts
-		* since 1.80
+		* since 2.1
 		*/
 		public function coupon_option_scripts() {
 			wp_enqueue_script('jquery');
@@ -110,7 +124,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			wp_enqueue_script('cctor_colorbox_js',  CCTOR_URL . 'vendor/colorbox/jquery.colorbox-min.js' ,array('jquery'), filemtime($cctor_colorbox_js), true);
 
 			//Hook to Load New Scripts
-			do_action('cctor_opitons_scripts');
+			do_action('cctor_options_scripts');
 		}
 
 		/*
@@ -130,7 +144,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			wp_enqueue_style('cctor_colorbox_css', CCTOR_URL . 'vendor/colorbox/colorbox.css', false, filemtime($cctor_colorbox_css));
 
 			//Hook to Load New Styles
-			do_action('cctor_opitons_styles');
+			do_action('cctor_options_styles');
 
 		}
 	/***************************************************************************/
@@ -183,11 +197,15 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			$tabs_json_array = json_encode($tabs_array);
 
-			$tabs_params = array(
+			//Detect if we saved or tried to save to set the current tab.
+			$cctor_options_updated = get_settings_errors();
+
+			$cctor_tabs_variables = array(
 				'tabs_arr' => $tabs_json_array,
+				'cctor_options_updated' => $cctor_options_updated,
 			);
 
-			wp_localize_script('cctor_coupon_option_js', 'cctor_coupon_option_js_vars', $tabs_params);
+			wp_localize_script('cctor_coupon_option_js', 'cctor_coupon_option_js_vars', $cctor_tabs_variables);
 
 			echo '<div class="wrap">
 				<div class="icon32" id="icon-options-general"></div>
@@ -221,7 +239,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				echo '<p style="text-align:right;">&copy; '.date("Y").' Jessee Productions, LLC</p>
 
 			</div>';
-
 		}
 
 	/***************************************************************************/
@@ -239,41 +256,41 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* Coupon Creator Pro Section
 		* since 1.80
 		*/
-		public function display_pro_section() {
+		public static function display_pro_section() {
 			ob_start(); ?>
-			<div>
+			<div class='cctor-pro-upsell'>
 				<h4><img alt="Get Coupon Creator Pro!" src="<?php echo CCTOR_URL; ?>admin/images/cctor-logo.png"/></h4>
 				<br>
-				<p><strong style="font-size:15px;"><a target="_blank" href="http://couponcreatorplugin.com">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
+				<p><strong style="font-size:15px;"><a target="_blank" href="https://cctor.us/procoupon">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
 				<br>
 				<ul>
 				<h4>Coupon Creator Pro Features Include:</h4><br>
-                    <li>In Pro use the Visual editor to easily style the term's content on your site:
-                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-visual-editor.gif"/>
+					<li>Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="<?php echo CCTOR_URL; ?>admin/images/cctor-border-examples.gif"/>
                     </li>
-                    <li>Display the Print View in a Popup for any coupons and print directly from the Popup:
-                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-popup.gif"/>
+					<li>Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3 Weeks:<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Recurring Expiration" src="<?php echo CCTOR_URL; ?>admin/images/cctor-recurring-expiration.gif"/>
                     </li>
-                    <li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:
-                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-shortcodes.gif"/>
+                    <li>In Pro use the Visual editor to easily style the term's content on your site:<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Visual Editor" src="<?php echo CCTOR_URL; ?>admin/images/cctor-visual-editor.gif"/>
                     </li>
-                    <li>Create and Display WooCommerce Coupons from the Coupon Creator Editor:
-                        <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/coupon-woocommerce.png"/>
+                    <li>Display the Print View in a Popup for any coupons and print directly from the Popup:<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Popup" src="<?php echo CCTOR_URL; ?>admin/images/cctor-popup.gif"/>
                     </li>
-					<li>Set a Counter per coupon to expire the coupon after a limit has been reached:
+                    <li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:<br>
+                        <img class="cctor-pro-img" alt="Coupon Creator Pro Shortcode for hooks and print views" src="<?php echo CCTOR_URL; ?>admin/images/cctor-shortcodes.gif"/>
+                    </li>
+					<li>Set a Counter per coupon to expire the coupon after a limit has been reached:<br>
 					    <img class="cctor-pro-img" alt="Coupon Creator Pro Counter" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-counter.png"/>
 					</li>
-					<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons:
-					    <img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-text-overrides.png"/>
-					</li>
-					<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon as well:
-					    <img class="cctor-pro-img" alt="Coupon Creator Pro Change Text" src="<?php echo CCTOR_URL; ?>admin/images/cctor-pro-dimensions.png"/>
-					</li>
+					<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons</li>
+					<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon</li>
 					<li>Override "Click to Open in Print View" text and link per coupon</li>
 					<li>Override "Print the Coupon" text and link per coupon</li>
                     <li>Select where you want to display the Coupon Deal per coupon</li>
                     <li>Disable the Print View per Coupon</li>
                     <li>Add your Google Analytics Code to the Print Template from the Coupon Options</li>
+					<li>Create and Display WooCommerce Coupons from the Coupon Creator Editor</li>
 				</ul>
 				<ul>
 				<h4>Coupon Creator Pro Style Features:</h4><br>
@@ -287,7 +304,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					<li>Direct Support through CouponCreatorPlugin.com</li>
 				</ul>
 				<br>
-				<strong style="font-size:15px;"><a target="_blank" href="http://couponcreatorplugin.com">Purchase Pro Now!</a></strong>
+				<strong style="font-size:15px;"><a target="_blank" href="https://cctor.us/procoupon">Purchase Pro Now!</a></strong>
 			</div>
 			<?php echo ob_get_clean();
 		}
@@ -297,6 +314,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* since 1.80
 		*/
 		public function display_setting( $option_args = array() ) {
+
+			//Set for WP 4.3 and replacing wp_htmledit_pre
+			global $wp_version; $cctor_required_wp_version = '4.3';
 
 			$options = get_option( 'coupon_creator_options' );
 
@@ -346,10 +366,18 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					break;
 
 				case 'select':
-					echo '<select class="select' . $option_args['class'] . '" name="coupon_creator_options[' . $option_args['id'] . ']">';
 
-					foreach ( $option_args['choices'] as $value => $label )
-						echo '<option value="' . esc_attr( $value ) . '"' . selected( $options[$option_args['id']], $value, false ) . '>' . esc_attr( $label ) . '</option>';
+					$cctor_select_value = $options[ $option_args['id'] ] ? $options[ $option_args['id'] ] : $option_args['std'];
+
+					echo '<select class="select ' . $option_args['class'] . '" name="coupon_creator_options[' . $option_args['id'] . ']">';
+
+					foreach ( $option_args['choices'] as $value => $label ) {
+
+						$cctor_option_style = $option_args['class'] == 'css-select' ? 'style="' . esc_attr( $value ) . '"' : '';
+
+						echo '<option ' . $cctor_option_style . ' value="' . esc_attr( $value ) . '"' . selected( $cctor_select_value, $value, false ) . '>' . esc_attr( $label ) . '</option>';
+
+					}
 
 					echo '</select>';
 
@@ -373,7 +401,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					break;
 
 				case 'textarea':
-					echo '<textarea class="' . $option_args['class'] . '" id="' . $option_args['id'] . '" name="coupon_creator_options[' . $option_args['id'] . ']" placeholder="' . $option_args['std']  . '" rows="12" cols="50">' . wp_htmledit_pre( $options[$option_args['id']] ) . '</textarea>';
+					global $wp_version;
+					if( version_compare( $wp_version, $cctor_required_wp_version, '<' ) ) {
+						echo '<textarea class="' . $option_args['class'] . '" id="' . $option_args['id'] . '" name="coupon_creator_options[' . $option_args['id'] . ']" placeholder="' . $option_args['std']  . '" rows="12" cols="50">' . wp_htmledit_pre( $options[$option_args['id']] ) . '</textarea>';
+					 } else {
+						echo '<textarea class="' . $option_args['class'] . '" id="' . $option_args['id'] . '" name="coupon_creator_options[' . $option_args['id'] . ']" placeholder="' . $option_args['std']  . '" rows="12" cols="50">' . format_for_editor( $options[$option_args['id']] ) . '</textarea>';
+					}
 
 					if ( $option_args['desc'] != '' )
 						echo '<br /><span class="description">' . $option_args['desc'] . '</span><br />';
@@ -382,7 +415,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				case 'cctor_support':
 
 					echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation();
-
 					echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_contact();
 
 				break;
@@ -457,9 +489,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 							echo '<input type="submit" class="cctor-license-button-det" name="cctor_license_activate" value="'. __('Activate License') .'"/>';
 
 						 }
-					//} else {
-					//		echo __( 'Enter your license key and save changes, then Click Activate License.','coupon_creator' );
-					//}
+
 				break;
 			}
 
@@ -479,8 +509,15 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			//defaults
 			$this->options['header_defaults'] = array(
 				'section' => 'defaults',
-				'title'   => '', // Not used for headings.
+				'title'   => '',
 				'alert'    =>  __( '*These are defaults for new coupons only and do not change existing coupons.','coupon_creator' ),
+				'type'    => 'heading'
+			);
+			//Expiration
+			$this->options['header_expiration'] = array(
+				'section' => 'defaults',
+				'title'   => '',
+				'desc'    =>  __( 'Expiration','coupon_creator' ),
 				'type'    => 'heading'
 			);
 			$this->options['cctor_default_date_format'] = array(
@@ -488,11 +525,56 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'title'   => __( 'Expiration Date Format', 'coupon_creator' ),
 				'desc'    => __( 'Select the Date Format to show for all Coupons*', 'coupon_creator' ),
 				'type'    => 'select',
-				'std'     => 'month_first',
+				'std'     => '0',
 				'choices' => array(
 					'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),
 					'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
 				)
+			);
+			$this->options['cctor_pro_recurrence_pattern_default'] = array(
+				'type'    => '',
+				'section' => ''
+			);
+			$this->options['cctor_pro_recurrence_pattern_limit_default'] = array(
+				'type'    => '',
+				'section' => ''
+			);
+
+			//Outer Border
+			$this->options['cctor_pro_heading_outer_border'] = array(
+				'type'    => '',
+				'section' => ''
+			);
+			$this->options['cctor_pro_default_border_style'] = array(
+				'type'    => '',
+				'section' => ''
+			);
+			$this->options['cctor_outer_border_color'] = array(
+				'type'    => '',
+				'section' => ''
+			);
+			$this->options['cctor_pro_outer_border_default'] = array(
+				'type'    => '',
+				'section' => ''
+			);
+
+			//Inner Border
+			$this->options['header_inner_border'] = array(
+				'section' => 'defaults',
+				'title'   => '',
+				'desc'    =>  __( 'Inner Border','coupon_creator' ),
+				'type'    => 'heading'
+			);
+			$this->options['cctor_border_color'] = array(
+				'title' =>  __( 'Inside Border Color','coupon_creator' ),
+				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
+				'std'     => '#81d742',
+				'type' => 'color', // color
+				'section' => 'defaults'
+			);
+			$this->options['cctor_pro_inner_border_default'] = array(
+				'type'    => '',
+				'section' => ''
 			);
 
 			//Discount Field Colors
@@ -517,21 +599,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => 'defaults'
 			);
 
-			//Inner Border
-			$this->options['header_inner_border'] = array(
-				'section' => 'defaults',
-				'title'   => '', // Not used for headings.
-				'desc'    =>  __( 'Inner Border','coupon_creator' ),
-				'type'    => 'heading'
-			);
-			$this->options['cctor_border_color'] = array(
-				'title' =>  __( 'Inside Border Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
-				'std'     => '#81d742',
-				'type' => 'color', // color
-				'section' => 'defaults'
-			);
-
 			//LinkAttributes - Permalinks
 			$this->options['no_follow_heading'] = array(
 				'section' => 'permalinks',
@@ -548,8 +615,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			);
 			$this->options['cctor_hide_print_link'] = array(
 				'section' => 'permalinks',
-				'title'   => __( 'Hide Print View Link', 'coupon_creator' ),
-				'desc'    => __( 'This will hide the "Click to Open in Print View" links under the coupon' , 'coupon_creator'),
+				'title'   => __( 'Disable Print View', 'coupon_creator' ),
+				'desc'    => __( 'This will disable all custom links and the popup option in Pro as well as the "Click to Open in Print View" links under the coupon' , 'coupon_creator'),
 				'type'    => 'checkbox',
 				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
@@ -592,7 +659,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type'    => 'checkbox',
 				'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
-			
+			//wpautop
+			$this->options['cctor_print_base_css'] = array(
+				'section' => 'display',
+				'title'   => __( 'Print View Base CSS', 'coupon_creator' ),
+				'desc'    => __( 'Check to disable the base CSS in Print View', 'coupon_creator' ),
+				'type'    => 'checkbox',
+				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
+			);
 			//Help
 			$this->options['cctor_help'] = array(
 				'section' => 'help',
@@ -676,10 +750,19 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		public function initialize_options() {
 
 			$default_options = array();
+			$this->get_options();
 
 			foreach ( $this->options as $id => $option ) {
-				if ( $option['type'] != 'heading' )
-					$default_options[$id] = $option['std'];
+
+				if ( $option['type'] != 'heading' && isset( $option['std'] ) ) {
+
+					//Sanitize Default
+					$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $option['std'], $option );
+
+					//Set Sanitized Input in Array
+					$default_options[$id] = $cctor_sanitize->result;
+				}
+
 			}
 
 			update_option( 'coupon_creator_options', $default_options );
@@ -692,8 +775,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/
 		public function register_options() {
 
-			//Get Tab Sections to Register
+			//Get Tab Sections and Options
 			$this->get_sections();
+			$this->get_options();
 
 			register_setting( 'coupon_creator_options', 'coupon_creator_options', array ( &$this, 'validate_options' ) );
 
@@ -703,7 +787,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				else
 					add_settings_section( $slug, $title, array( &$this, 'display_section' ), 'coupon-options' );
 			}
-			$this->get_options();
+
 
 			foreach ( $this->options as $id => $option ) {
 				$option['id'] = $id;
@@ -716,7 +800,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* since 1.80
 		*/
 		public function validate_options( $input ) {
-
 
 			//if Reset is Checked then delete all options
 			if ( ! isset( $input['reset_theme'] ) ) {
@@ -754,13 +837,16 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					// Create Separate License Option and Status
 					if ( $option['type'] == 'license' ) {
 
+						//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
+						$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
+
 						$cctor_license_info = array();
 
 						//License WP Option Name
 						$cctor_license = "cctor_" . $option['class'];
 
 						//License Key
-						$cctor_license_info['key'] = esc_attr(trim($input[$id]));
+						$cctor_license_info['key'] = $cctor_sanitize->result;
 
 						//Get Existing Option
 						$existing_license = get_option( $cctor_license );
@@ -788,10 +874,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					}
 
 					// Sanitization Filter for each Option Type
-					if(isset($input[$id])){
-						if ( has_filter( 'cctor_sanitize_' . $option['type'] ) ) {
-							$clean[$id] = apply_filters( 'cctor_sanitize_' . $option['type'], $input[$id], $option );
-						}
+					if( isset($input[$id]) && $option['type'] != 'license' && $option['type'] != 'license_status' ){
+
+						//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
+						$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
+
+						//Set Sanitized Input in Array
+						$clean[$id] = $cctor_sanitize->result;
+
 					}
 
 				}

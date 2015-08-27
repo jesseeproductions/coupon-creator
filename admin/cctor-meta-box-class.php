@@ -38,6 +38,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$meta_tabs['expiration'] 	= __( 'Expiration', 'coupon_creator' );
 			$meta_tabs['image_coupon'] 	= __( 'Image Coupon', 'coupon_creator' );
 			$meta_tabs['help'] 	= __( 'Help', 'coupon_creator' );
+			! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $meta_tabs['pro'] 	= __( 'Upgrade to Pro', 'coupon_creator' ) : '';
 
 			//Filter Option Tabs
 			if(has_filter('cctor_filter_meta_tabs')) {
@@ -207,6 +208,9 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 				wp_nonce_field( 'coupon_creator_save_post', 'coupon_creator_nonce' );
 
+				//Set for WP 4.3 and replacing wp_htmledit_pre
+				global $wp_version; $cctor_required_wp_version = '4.3';
+
 				//Get Tab Sections
 				$meta_tabs = self::get_cctor_tabs();
 
@@ -222,11 +226,19 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 				$tabs_json_array = json_encode($tabs_array);
 
-				$tabs_params = array(
+				//Detect if we saved or tried to save to set the current tab.
+			    global $message;
+				$cctor_coupon_updated = $message;
+
+				$coupon_id = isset( $_GET['post'] ) ? $_GET['post'] : '';
+
+			    $cctor_tabs_variables = array(
 					'tabs_arr' => $tabs_json_array,
+					'cctor_coupon_updated' => $cctor_coupon_updated,
+					'cctor_coupon_id' => $coupon_id,
 				);
 
-				wp_localize_script('cctor_coupon_meta_js', 'cctor_coupon_meta_js_vars', $tabs_params);
+				wp_localize_script('cctor_coupon_meta_js', 'cctor_coupon_meta_js_vars', $cctor_tabs_variables);
 
 				ob_start(); ?>
 
@@ -243,16 +255,20 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 			<div class="coupon-section-fields form-table">
 
-				<h3><?php echo $tab; ?></h3>
+				<h3 class="cctor-tab-heading-<?php echo $tab_slug; ?>"><?php echo $tab; ?></h3>
 
 				<?php foreach ($coupon_creator_meta_fields as $field) {
 
-					if ($field['section'] == $metabox['id'] && $field['tab'] == $tab_slug) :
+					if ( $field['type'] && $field['section'] == $metabox['id'] && $field['tab'] == $tab_slug) :
 
 					// get value of this field if it exists for this post
-					$meta = get_post_meta($post->ID, $field['id'], true); ?>
+					$meta = get_post_meta($post->ID, $field['id'], true);
 
-					<div class="cctor-meta-field-wrap field-wrap-<?php echo $field['type']; ?> field-wrap-<?php echo $field['id']; ?>">
+					//Wrap Class for Conditionals
+					$wrapclass = isset( $field['wrapclass'] ) ? $field['wrapclass'] : '';
+					?>
+
+					<div class="cctor-meta-field-wrap field-wrap-<?php echo esc_html( $field['type'] ); ?> field-wrap-<?php echo esc_html( $field['id'] ); ?> <?php echo esc_html( $wrapclass ); ?>">
 
 						<?php if (isset($field['label'])) { ?>
 
@@ -269,6 +285,12 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								case 'heading':?>
 
 									<h4 class="coupon-heading"><?php echo $field['desc']; ?></h4>
+
+								<?php break;
+
+								case 'message':?>
+
+									<span class="description"><?php echo $field['desc']; ?></span>
 
 								<?php break;
 
@@ -289,18 +311,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								<?php break;
 								// textarea
 								case 'textarea': ?>
-
-									<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo wp_htmledit_pre($meta); ?></textarea>
+									<?php if( version_compare( $wp_version, $cctor_required_wp_version, '<' ) ) { ?>
+										<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo wp_htmledit_pre($meta); ?></textarea>
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
-
-								<?php break;
-								// textarea
-								case 'textarea_w_tags': ?>
-
-									<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo wp_htmledit_pre( $meta ); ?></textarea>
+									<?php } else { ?>
+										<textarea name="<?php echo $field['id']; ?>" id="<?php echo $field['id']; ?>" cols="60" rows="4"><?php echo format_for_editor($meta); ?></textarea>
 										<br /><span class="description"><?php echo $field['desc']; ?></span>
-
+									<?php } ?>
 								<?php break;
+
 								// checkbox
 								case 'checkbox': 
 									
@@ -402,15 +421,21 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 									<?php echo $cctor_todays_date; ?>
 									
 								<?php break;
-									// Videos
+								// Videos
 								 case 'cctor_support':?>
 
-									<?php echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation(); 
-										
+									<?php echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation();
 										  echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_contact();
 									?>
 
 								<?php break;
+
+								// Videos
+								 case 'cctor_pro':
+
+									echo ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? Coupon_Creator_Plugin_Admin_Options::display_pro_section() : '';
+
+									break;
 
 							} //end switch
 
@@ -470,7 +495,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'    =>  __( 'Coupon Deal','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cctor-img-coupon'
 				);
 				$coupon_creator_meta_fields[$prefix . 'amount'] =	array(
 					'label' => __('Deal', 'coupon_creator' ),
@@ -479,16 +505,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type'  => 'text',
 					'alert' => '',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cctor-img-coupon deal-display'
 				);		
 				$coupon_creator_meta_fields[$prefix . 'deal_display'] =	array(
-					'label' => '',
-					'desc' => '',
 					'id' => $prefix . 'deal_display',
 					'type'  => '',
-					'alert' => '',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cctor-img-coupon'
 				);				
 				$coupon_creator_meta_fields[$prefix . 'heading_terms'] = array(
 					'id' => $prefix . 'heading_terms',
@@ -496,41 +521,43 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'    =>  __( 'Coupon Terms','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cctor-img-coupon'
 				);
 				$coupon_creator_meta_fields[$prefix . 'description'] =	array(
 					'label' => __('Terms', 'coupon_creator' ),
 					'desc' => __('Enter the terms of the discount', 'coupon_creator' ),
 					'id' => $prefix . 'description',
-					'type'  => 'textarea_w_tags',
+					'type'  => 'textarea',
+					'class' => 'code',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'content'
+					'tab' => 'content',
+					'wrapclass' => 'cctor-img-coupon'
 				);
 
-				//Style
-				$coupon_creator_meta_fields[$prefix . 'heading_color'] = array(
-					'id' => $prefix . 'heading_color',
-					'title'   => '',
-					'desc'    =>  __( 'Discount Field Colors','coupon_creator' ),
-					'type'    => 'heading',
+				//Style Tab
+				//Outer Border Placeholders
+				$coupon_creator_meta_fields[$prefix . 'heading_pro_display'] = array(
+					'id' => $prefix . 'heading_pro_display',
+					'type'  => '',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style'
+					);
+				$coupon_creator_meta_fields[$prefix . 'coupon_border_themes'] =	array(
+					'id'    => $prefix . 'coupon_border_themes',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
-				$coupon_creator_meta_fields[$prefix . 'colordiscount'] =	array(
-					'label' => __('Discount Background Color', 'coupon_creator' ),
-					'desc'  => __('Choose background color', 'coupon_creator' ),
-					'id' => $prefix . 'colordiscount',
-					'type' => 'color', // color
-					'value' => cctor_options('cctor_discount_bg_color'),
+				$coupon_creator_meta_fields[$prefix . 'outer_border_color'] =	array(
+					'id' => $prefix . 'outer_border_color',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
-				$coupon_creator_meta_fields[$prefix . 'colorheader'] =	array(
-					'label' => __('Discount Text Color', 'coupon_creator' ),
-					'desc'  => __('Choose color for discount text', 'coupon_creator' ),
-					'id' => $prefix . 'colorheader',
-					'type' => 'color', // color
-					'value' => cctor_options('cctor_discount_text_color'),
+				$coupon_creator_meta_fields[$prefix . 'outer_radius'] =	array(
+					'id'		 => $prefix . 'outer_radius',
+					'type'  => '',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
@@ -542,7 +569,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'desc'    =>  __( 'Inner Border','coupon_creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'style'
+					'tab' => 'style',
+					'wrapclass' => 'cctor-img-coupon'
 				);
 				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
 					'label' => __('Inside Border Color', 'coupon_creator' ),
@@ -551,8 +579,47 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type' => 'color', // color
 					'value' => cctor_options('cctor_border_color'),
 					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style',
+					'wrapclass' => 'cctor-img-coupon'
+				);
+				$coupon_creator_meta_fields[$prefix . 'inside_radius'] =	array(
+					'id'		 => $prefix . 'inside_radius',
+					'type'  => '',
+					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style'
 				);
+
+				//Discount
+				$coupon_creator_meta_fields[$prefix . 'heading_color'] = array(
+					'id' => $prefix . 'heading_color',
+					'title'   => '',
+					'desc'    =>  __( 'Deal Field Colors','coupon_creator' ),
+					'type'    => 'heading',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style',
+					'wrapclass' => 'cctor-img-coupon deal-display'
+				);
+				$coupon_creator_meta_fields[$prefix . 'colordiscount'] =	array(
+					'label' => __('Deal Background Color', 'coupon_creator' ),
+					'desc'  => __('Choose background color', 'coupon_creator' ),
+					'id' => $prefix . 'colordiscount',
+					'type' => 'color', // color
+					'value' => cctor_options('cctor_discount_bg_color'),
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style',
+					'wrapclass' => 'cctor-img-coupon deal-display'
+				);
+				$coupon_creator_meta_fields[$prefix . 'colorheader'] =	array(
+					'label' => __('Deal Text Color', 'coupon_creator' ),
+					'desc'  => __('Choose color for discount text', 'coupon_creator' ),
+					'id' => $prefix . 'colorheader',
+					'type' => 'color', // color
+					'value' => cctor_options('cctor_discount_text_color'),
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'style',
+					'wrapclass' => 'cctor-img-coupon deal-display'
+				);
+
 				//Expiration
 				$coupon_creator_meta_fields[$prefix . 'heading_expiration'] = array(
 					'id' => $prefix . 'heading_expiration',
@@ -602,7 +669,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'image_coupon'
 				);
-
 				//Help
 				$coupon_creator_meta_fields[$prefix . 'videos'] =	array(
 					'label'  => '',
@@ -610,6 +676,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'type'  => 'cctor_support',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'help'
+				);
+
+				//Upgreade to Pro
+				$coupon_creator_meta_fields[$prefix . 'upgrade_to_pro'] =	array(
+					'label'  => '',
+					'id'    => $prefix . 'upgrade_to_pro',
+					'type'  => 'cctor_pro',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'pro'
 				);
 
 			if(has_filter('cctor_filter_meta_fields')) {
@@ -626,61 +701,58 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		* since 1.80
 		*/
 		public static function cctor_save_coupon_creator_meta( $post_id, $post ) {
-			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
-				return;
 
-			if ( !isset( $_POST['coupon_creator_nonce'] ) )
-				return;
+			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
 
-			if ( !wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) )
-				return;
+			if ( !isset( $_POST['coupon_creator_nonce'] ) ) { return; }
 
-			if ( !current_user_can( 'edit_post', $post->ID ) )
-				return;
+			if ( !wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) ) { return; }
 
+			if ( !current_user_can( 'edit_post', $post->ID ) ) { return; }
 
-				// Save data
-				//Get Meta Fields
-				$coupon_creator_meta_fields = self::cctor_metabox_options();
+			// Save data
+			//Get Meta Fields
+			$coupon_creator_meta_fields = self::cctor_metabox_options();
 
-				//For Each Field Sanitize the Post Data
-				foreach ( $coupon_creator_meta_fields as $option ) {
+			//For Each Field Sanitize the Post Data
+			foreach ( $coupon_creator_meta_fields as $option ) {
 
-					//Hook Meta Box Save
-					do_action( 'cctor_save_meta_fields',$post_id, $option);
+				//Hook Meta Box Save
+				do_action( 'cctor_save_meta_fields',$post_id, $option);
 
-					//If No CheckBox Sent, then delete meta
-					if ($option['type'] == 'checkbox' ) {
+				//If No CheckBox Sent, then delete meta
+				if ($option['type'] == 'checkbox' ) {
 
-						$coupon_meta_checkbox = get_post_meta($post_id, $option['id'], true);
+					$coupon_meta_checkbox = get_post_meta($post_id, $option['id'], true);
 
-						if ($coupon_meta_checkbox && ! isset( $_POST[$option['id']] ) ) {
-							delete_post_meta($post_id,  $option['id']);
-						}
-
-					}
-
-					// Final Check if value should be saved then sanitize and save
-					if(isset($_POST[$option['id']])){
-						if ( has_filter( 'cctor_sanitize_' . $option['type'] ) ) {
-
-							$old = get_post_meta($post_id, $option['id'], true);
-
-							$new = $_POST[$option['id']];
-
-							if ( !is_null($new) && $new != $old) {
-								update_post_meta($post_id, $option['id'], apply_filters( 'cctor_sanitize_' . $option['type'], $new, $option ));
-							} elseif ('' == $new && $old) {
-								delete_post_meta($post_id, $option['id'], $old);
-							}
-
-						}
+					if ($coupon_meta_checkbox && ! isset( $_POST[$option['id']] ) ) {
+						delete_post_meta($post_id,  $option['id']);
 					}
 
 				}
+
+				// Final Check if value should be saved then sanitize and save
+				if(isset($_POST[$option['id']])){
+
+					//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
+					$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $_POST[$option['id']], $option );
+
+					$old = get_post_meta($post_id, $option['id'], true);
+
+					$new = $_POST[$option['id']];
+
+					if ( !is_null($new) && $new != $old) {
+						update_post_meta($post_id, $option['id'], $cctor_sanitize->result );
+					} elseif ('' == $new && $old) {
+						delete_post_meta($post_id, $option['id'], $old);
+					}
+
+				}
+			}
+
 		}
 
-			/***************************************************************************/
+		/***************************************************************************/
 
 	} //end Coupon_Creator_Meta_Box Class
 

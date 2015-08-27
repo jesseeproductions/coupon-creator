@@ -20,7 +20,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
      * @since 1.90
      * @static
      * @staticvar array $instance
-     * @return GEO_Job_Manager
+     * @return Coupon_Creator_Plugin
      */
     public static function instance() {
 
@@ -43,30 +43,37 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Register Post Type			
 			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) );
-			
+
 			//Register Custom Taxonomy
-			Coupon_Creator_Plugin::include_file( 'classes/cctor-taxonomy-class.php' );
+			self::include_file( 'classes/cctor-taxonomy-class.php' );
 			new Coupon_Creator_Taxonomy_Class();
-			
+
 			//Setup Capabilities
 			if ( is_admin() ) {
 				$this->cctor_add_capabilities();
 			}
-			
-			add_action( 'init',   array( __CLASS__, 'init' ) );
+
+			add_action( 'init', array( __CLASS__, 'init' ) );
 
 			//Localization
-			add_action('plugins_loaded', array( __CLASS__, 'i18n' ));
-			
+			add_action( 'plugins_loaded', array( __CLASS__, 'i18n' ) );
+
 			//Setup Coupon Image Sizes
-			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
-			
+			add_action( 'init', array( __CLASS__, 'cctor_add_image_sizes' ) );
+
+			//Cron Schedule
+			add_action( 'init', array( $this, 'filter_cron_schedules' ) );
+
 			//Load Template Functions
 			$this->cctor_Load_Template_Functions();
-						
+
+			//Load Sanitize Functions
+			self::include_file( 'admin/cctor-sanitize-class.php' );
+
 			//Load Admin Class if in Admin Section
-			if ( is_admin() )
-			new Coupon_Creator_Plugin_Admin();
+			if ( is_admin() ) {
+				new Coupon_Creator_Plugin_Admin();
+			}
 					
 		}
 
@@ -77,10 +84,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.70
 		*/
 		public static function init() {
-			
-			//Load Sanitize Functions
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-sanitize.php' );
-			
+
 			//Register Coupon Style
 			add_action('wp_enqueue_scripts',  array( __CLASS__, 'cctor_register_style' ));
 			
@@ -91,24 +95,24 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
 			
 			//Register Coupon Shortcode
-			Coupon_Creator_Plugin::include_file( 'classes/cctor-coupon-shortcode-class.php' );
+			self::include_file( 'classes/cctor-coupon-shortcode-class.php' );
 			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
 				
 			//Build Shortcode
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-shortcode-build.php' );
+			self::include_file( 'public/template-build/cctor-shortcode-build.php' );
 			add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 10);
 			
 			//Load Single Coupon Template
 			add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );
 			
 			//Include Print Template Hook Build
-			Coupon_Creator_Plugin::include_file( 'public/template-build/cctor-print-build.php' );	
+			self::include_file( 'public/template-build/cctor-print-build.php' );
 			
 			//Add Print Template Functions
 			add_action( 'cctor_action_print_template', 'cctor_print_template', 10);
 			
 			//Print Template Inline Custom CSS from Option
-			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 10);
+			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 20);
 
 			//Load Pro Meta Box Cases
 			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );		
@@ -125,13 +129,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		 */
 		protected function cctor_Load_Template_Functions() {
 			//Load Template Functions
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-meta.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-expiration.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-wraps.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-image.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-deal.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-terms.php' );
-			Coupon_Creator_Plugin::include_file( 'public/template-functions/cctor-function-links.php' );
+			self::include_file( 'public/template-functions/cctor-function-meta.php' );
+			self::include_file( 'public/template-functions/cctor-function-expiration.php' );
+			self::include_file( 'public/template-functions/cctor-function-wraps.php' );
+			self::include_file( 'public/template-functions/cctor-function-image.php' );
+			self::include_file( 'public/template-functions/cctor-function-deal.php' );
+			self::include_file( 'public/template-functions/cctor-function-terms.php' );
+			self::include_file( 'public/template-functions/cctor-function-links.php' );
 		}
 		
 	/***************************************************************************/
@@ -193,9 +197,12 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.80
 		*/
 		public static function activate() {
-			// Flush rewrite rules so that users can access custom post types on the
+
+			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
+
 			self::cctor_register_post_types();
 			flush_rewrite_rules();
+
 		}
 
 		/*
@@ -203,7 +210,11 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.80
 		*/
 		public static function deactivate() {
+
+			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
+
 			flush_rewrite_rules();
+
 		}
 
 	/***************************************************************************/
@@ -353,7 +364,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public static function cctor_get_coupon_post_type_template($print_template) {
 			 global $post;
-			 if ($post->post_type == 'cctor_coupon') {
+			 if ( is_object( $post ) && $post->post_type == 'cctor_coupon') {
 				  $print_template = CCTOR_PATH. 'public/templates/print-coupon.php';
 			 }
 			 return $print_template;
@@ -419,7 +430,34 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			return $content;  
 			
 		} 
-		
+
+	/***************************************************************************/
+
+		/**
+		 * Add filters to register custom cron schedules
+		 *
+		 *
+		 * @return void
+		 */
+		public function filter_cron_schedules() {
+			add_filter( 'cron_schedules', array( $this, 'register_20min_interval' ) );
+		}
+
+		/**
+		 * Add a new scheduled task interval (of 20mins).
+		 *
+		 * @param  array $schedules
+		 * @return array
+		 */
+		public function register_20min_interval( $schedules ) {
+			$schedules['every_20mins'] = array(
+				'interval' => 20 * MINUTE_IN_SECONDS,
+				'display'  => __( 'Once Every 20 Mins', 'cctor_coupon' ),
+			);
+
+			return $schedules;
+		}
+
 	/***************************************************************************/
 
 		/*

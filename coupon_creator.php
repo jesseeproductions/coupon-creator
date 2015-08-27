@@ -2,7 +2,7 @@
 /*
 Plugin Name: Coupon Creator
 Plugin URI: http://jesseeproductions.com/coupon_creator/
-Version: 2.0.3
+Version: 2.1
 
 Description: This plugin creates a custom post type for coupons with a shortcode to display it on website and a single view template for printing.
 
@@ -26,15 +26,15 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 if (!defined('CCTOR_PATH'))				define( 'CCTOR_PATH',	plugin_dir_path( __FILE__ ));
 if (!defined('CCTOR_URL'))				define( 'CCTOR_URL',	plugin_dir_url( __FILE__ ));
 if (!defined('CCTOR_MIN_PHP_VERSION'))	define( 'CCTOR_MIN_PHP_VERSION',	'5.2');
-if (!defined('CCTOR_MIN_WP_VERSION'))	define( 'CCTOR_MIN_WP_VERSION',		'3.9');
+if (!defined('CCTOR_MIN_WP_VERSION'))	define( 'CCTOR_MIN_WP_VERSION',		'4.0');
 if (!defined('CCTOR_VERSION_KEY')) 		define( 'CCTOR_VERSION_KEY', 	'cctor_coupon_version');
-if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.0.3');
+if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.1');
 
 /*
 * Coupon Creator License
 * since 1.90
 */
-if (!defined('COUPON_CREATOR_STORE_URL')) define( 'COUPON_CREATOR_STORE_URL', 'http://couponcreatorplugin.com/edd-sl-api/');
+if (!defined('COUPON_CREATOR_STORE_URL')) define( 'COUPON_CREATOR_STORE_URL', 'https://couponcreatorplugin.com/edd-sl-api/');
 
 /*
 * Check Requirements for WordPress and PHP
@@ -103,9 +103,4 @@ if	( cctor_requirements() ) {
 
 	add_action( 'admin_notices', 'cctor_error_requirements' );
 
-}
-
-
-function my_admin_footer_function() {
-	echo '<p>This will be inserted at the bottom of admin page</p>';
 }
