@@ -143,7 +143,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	public static function i18n() {
 
 	   $cctor_local_path = CCTOR_URL . '/languages/';
-       load_plugin_textdomain('coupon_creator', false, $cctor_local_path );
+       load_plugin_textdomain('coupon-creator', false, $cctor_local_path );
 
 	}
 	/***************************************************************************/
@@ -152,23 +152,23 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			// if no custom slug use this base slug
 			$slug = cctor_options('cctor_coupon_base');
-			$slug = empty( $slug ) ? _x( 'cctor_coupon', 'slug', 'coupon_creator' ) : $slug;
+			$slug = empty( $slug ) ? _x( 'cctor_coupon', 'slug', 'coupon-creator' ) : $slug;
 
 			//Coupon Creator Custom Post Type
 			register_post_type( 'cctor_coupon', array(
 				'labels'             => array(
-					'name'               => _x( 'Coupons', 'coupon_creator' ),
-					'singular_name'      => _x( 'Coupon', 'coupon_creator' ),
-					'add_new'            => _x( 'Add New', 'coupon_creator' ),
-					'add_new_item'       => __( 'Add New Coupon', 'coupon_creator' ),
-					'edit_item'          => __( 'Edit Coupon', 'coupon_creator' ),
-					'new_item'           => __( 'New Coupon', 'coupon_creator' ),
-					'view_item'          => __( 'View Coupon', 'coupon_creator' ),
-					'search_items'       => __( 'Search Coupons', 'coupon_creator' ),
-					'not_found'          => __( 'No coupons found', 'coupon_creator' ),
-					'not_found_in_trash' => __( 'No coupons found in Trash', 'coupon_creator' ),
-					'parent_item_colon'  => __( 'Parent Coupon:', 'coupon_creator' ),
-					'menu_name'          => __( 'Coupons', 'coupon_creator' ),
+					'name'               => _x( 'Coupons', 'coupon-creator' ),
+					'singular_name'      => _x( 'Coupon', 'coupon-creator' ),
+					'add_new'            => _x( 'Add New', 'coupon-creator' ),
+					'add_new_item'       => __( 'Add New Coupon', 'coupon-creator' ),
+					'edit_item'          => __( 'Edit Coupon', 'coupon-creator' ),
+					'new_item'           => __( 'New Coupon', 'coupon-creator' ),
+					'view_item'          => __( 'View Coupon', 'coupon-creator' ),
+					'search_items'       => __( 'Search Coupons', 'coupon-creator' ),
+					'not_found'          => __( 'No coupons found', 'coupon-creator' ),
+					'not_found_in_trash' => __( 'No coupons found in Trash', 'coupon-creator' ),
+					'parent_item_colon'  => __( 'Parent Coupon:', 'coupon-creator' ),
+					'menu_name'          => __( 'Coupons', 'coupon-creator' ),
 				),
 				'hierarchical'		 => false,
 				'description' 		 => 'Creates a Coupon as a Custom Post Type',

@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.0
 Tested up to: 4.3
-Stable tag: 2.1
+Stable tag: 2.1.1
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -131,6 +131,10 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 2.1.1 September 13th, 2015 =
+* Changed Text Domain
+
+
 = 2.1 August 27th, 2015 =
 * Added base CSS to the print view to present a better layout of the text with more options in Pro to change font size, weight, and family.
 * Added option to disable the base CSS for the print view.

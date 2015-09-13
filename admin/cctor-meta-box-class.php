@@ -33,12 +33,12 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$meta_tabs = array();
 
 			//Coupon Creator Options Tabs
-			$meta_tabs['content']     	= __( 'Content', 'coupon_creator' );
-			$meta_tabs['style']   		= __( 'Style', 'coupon_creator' );
-			$meta_tabs['expiration'] 	= __( 'Expiration', 'coupon_creator' );
-			$meta_tabs['image_coupon'] 	= __( 'Image Coupon', 'coupon_creator' );
-			$meta_tabs['help'] 	= __( 'Help', 'coupon_creator' );
-			! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $meta_tabs['pro'] 	= __( 'Upgrade to Pro', 'coupon_creator' ) : '';
+			$meta_tabs['content']     	= __( 'Content', 'coupon-creator' );
+			$meta_tabs['style']   		= __( 'Style', 'coupon-creator' );
+			$meta_tabs['expiration'] 	= __( 'Expiration', 'coupon-creator' );
+			$meta_tabs['image_coupon'] 	= __( 'Image Coupon', 'coupon-creator' );
+			$meta_tabs['help'] 	= __( 'Help', 'coupon-creator' );
+			! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $meta_tabs['pro'] 	= __( 'Upgrade to Pro', 'coupon-creator' ) : '';
 
 			//Filter Option Tabs
 			if(has_filter('cctor_filter_meta_tabs')) {
@@ -98,12 +98,12 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 							
 				if(Coupon_Creator_Meta_Box::cctor_meta_expiration_check($coupon_id)) {
 
-					echo '<div class="cctor-meta-bg cctor-message"><div>'.__('This Coupon is Showing', 'coupon_creator' ) .'</div></div>';
+					echo '<div class="cctor-meta-bg cctor-message"><div>'.__('This Coupon is Showing', 'coupon-creator' ) .'</div></div>';
 
 
 				} else {
 
-					echo '<div class="cctor-meta-bg cctor-error"><p>'.__('This Coupon is not Showing', 'coupon_creator' ).'</p></div>';
+					echo '<div class="cctor-meta-bg cctor-error"><p>'.__('This Coupon is not Showing', 'coupon-creator' ).'</p></div>';
 
 				}
 
@@ -111,9 +111,9 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$ignore_expiration = get_post_meta($post->ID, 'cctor_ignore_expiration', true);
 
 				if($ignore_expiration) {
-					$ignore_expiration_msg = __('Ignore Coupon Expiration is On', 'coupon_creator' );
+					$ignore_expiration_msg = __('Ignore Coupon Expiration is On', 'coupon-creator' );
 				} else {
-					$ignore_expiration_msg = __('Ignore Coupon Expiration is Off', 'coupon_creator' );
+					$ignore_expiration_msg = __('Ignore Coupon Expiration is Off', 'coupon-creator' );
 				}
 
 				//Check for Expiration
@@ -138,9 +138,9 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 				if (!$ignore_expiration) {
 					if ($expiration['expiration'] >= $expiration['today']) {
-						$expired_msg = '<div>'. __('This Coupon Expires On ', 'coupon_creator' ) .$expirationco.'</div>';
+						$expired_msg = '<div>'. __('This Coupon Expires On ', 'coupon-creator' ) .$expirationco.'</div>';
 					} else {
-						$expired_msg = '<div>'. __('This Coupon Expired On ', 'coupon_creator' ) .$expirationco.'</div>';
+						$expired_msg = '<div>'. __('This Coupon Expired On ', 'coupon-creator' ) .$expirationco.'</div>';
 					}
 				}
 				echo '<div class="cctor-meta-bg cctor-message">';
@@ -174,7 +174,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		if (is_admin() && $pagenow=='post-new.php' OR $pagenow=='post.php' && $typenow=='cctor_coupon') {
 					add_meta_box(
 						'coupon_creator_meta_box', // id
-						__( 'Coupon Fields', 'coupon_creator' ), // title
+						__( 'Coupon Fields', 'coupon-creator' ), // title
 						array( __CLASS__, 'cctor_show_meta_box' ), // callback
 						'cctor_coupon', // post_type
 						'normal', // context
@@ -184,7 +184,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					if($pagenow !='post-new.php'){
 						add_meta_box(
 							'coupon_creator_shortcode', // id
-							__( 'Coupon Shortcode', 'coupon_creator' ), // title
+							__( 'Coupon Shortcode', 'coupon-creator' ), // title
 							array( __CLASS__, 'cctor_show_coupon_shortcode' ), // callback
 							'cctor_coupon', // post_type
 							'side' // context
@@ -412,7 +412,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 										$today_second = $today_day;									
 									}
 			
-									$cctor_todays_date = '<span class="description">'. __( 'Today\'s Date is ','coupon_creator' ) . $today_first.'/'.$today_second.'/'. $today_year . '</span>';
+									$cctor_todays_date = '<span class="description">'. __( 'Today\'s Date is ','coupon-creator' ) . $today_first.'/'.$today_second.'/'. $today_year . '</span>';
 								}
 								?>
 	
@@ -472,7 +472,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		*/
 		public static function cctor_show_coupon_shortcode( $post, $metabox  ) {
 			?><p class="shortcode">
-			<?php  _e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon_creator' ); ?>
+			<?php  _e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon-creator' ); ?>
 			<code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
 			</p><?php
 
@@ -492,15 +492,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$coupon_creator_meta_fields[$prefix . 'heading_deal'] = array(
 					'id' => $prefix . 'heading_deal',
 					'title'   => '',
-					'desc'    =>  __( 'Coupon Deal','coupon_creator' ),
+					'desc'    =>  __( 'Coupon Deal','coupon-creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content',
 					'wrapclass' => 'cctor-img-coupon'
 				);
 				$coupon_creator_meta_fields[$prefix . 'amount'] =	array(
-					'label' => __('Deal', 'coupon_creator' ),
-					'desc' => __('Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon_creator' ),
+					'label' => __('Deal', 'coupon-creator' ),
+					'desc' => __('Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon-creator' ),
 					'id' => $prefix . 'amount',
 					'type'  => 'text',
 					'alert' => '',
@@ -518,15 +518,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$coupon_creator_meta_fields[$prefix . 'heading_terms'] = array(
 					'id' => $prefix . 'heading_terms',
 					'title'   => '',
-					'desc'    =>  __( 'Coupon Terms','coupon_creator' ),
+					'desc'    =>  __( 'Coupon Terms','coupon-creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'content',
 					'wrapclass' => 'cctor-img-coupon'
 				);
 				$coupon_creator_meta_fields[$prefix . 'description'] =	array(
-					'label' => __('Terms', 'coupon_creator' ),
-					'desc' => __('Enter the terms of the discount', 'coupon_creator' ),
+					'label' => __('Terms', 'coupon-creator' ),
+					'desc' => __('Enter the terms of the discount', 'coupon-creator' ),
 					'id' => $prefix . 'description',
 					'type'  => 'textarea',
 					'class' => 'code',
@@ -566,15 +566,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$coupon_creator_meta_fields[$prefix . 'heading_inside_color'] = array(
 					'id' => $prefix . 'heading_inside_color',
 					'title'   => '',
-					'desc'    =>  __( 'Inner Border','coupon_creator' ),
+					'desc'    =>  __( 'Inner Border','coupon-creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style',
 					'wrapclass' => 'cctor-img-coupon'
 				);
 				$coupon_creator_meta_fields[$prefix . 'bordercolor'] =	array(
-					'label' => __('Inside Border Color', 'coupon_creator' ),
-					'desc'  => __('Choose inside border color', 'coupon_creator' ),
+					'label' => __('Inside Border Color', 'coupon-creator' ),
+					'desc'  => __('Choose inside border color', 'coupon-creator' ),
 					'id' => $prefix . 'bordercolor',
 					'type' => 'color', // color
 					'value' => cctor_options('cctor_border_color'),
@@ -593,15 +593,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$coupon_creator_meta_fields[$prefix . 'heading_color'] = array(
 					'id' => $prefix . 'heading_color',
 					'title'   => '',
-					'desc'    =>  __( 'Deal Field Colors','coupon_creator' ),
+					'desc'    =>  __( 'Deal Field Colors','coupon-creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'style',
 					'wrapclass' => 'cctor-img-coupon deal-display'
 				);
 				$coupon_creator_meta_fields[$prefix . 'colordiscount'] =	array(
-					'label' => __('Deal Background Color', 'coupon_creator' ),
-					'desc'  => __('Choose background color', 'coupon_creator' ),
+					'label' => __('Deal Background Color', 'coupon-creator' ),
+					'desc'  => __('Choose background color', 'coupon-creator' ),
 					'id' => $prefix . 'colordiscount',
 					'type' => 'color', // color
 					'value' => cctor_options('cctor_discount_bg_color'),
@@ -610,8 +610,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'wrapclass' => 'cctor-img-coupon deal-display'
 				);
 				$coupon_creator_meta_fields[$prefix . 'colorheader'] =	array(
-					'label' => __('Deal Text Color', 'coupon_creator' ),
-					'desc'  => __('Choose color for discount text', 'coupon_creator' ),
+					'label' => __('Deal Text Color', 'coupon-creator' ),
+					'desc'  => __('Choose color for discount text', 'coupon-creator' ),
 					'id' => $prefix . 'colorheader',
 					'type' => 'color', // color
 					'value' => cctor_options('cctor_discount_text_color'),
@@ -624,35 +624,35 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$coupon_creator_meta_fields[$prefix . 'heading_expiration'] = array(
 					'id' => $prefix . 'heading_expiration',
 					'title'   => '',
-					'desc'    =>  __( 'Expiration','coupon_creator' ),
+					'desc'    =>  __( 'Expiration','coupon-creator' ),
 					'type'    => 'heading',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'expiration'
 				);
 				$coupon_creator_meta_fields[$prefix . 'expiration'] =	array(
-					'label' => __('Expiration Date', 'coupon_creator' ),
+					'label' => __('Expiration Date', 'coupon-creator' ),
 					'id' => $prefix . 'expiration',
-					'desc' => __('The coupon will not display without the date and will not display on your site after the date', 'coupon_creator' ),
+					'desc' => __('The coupon will not display without the date and will not display on your site after the date', 'coupon-creator' ),
 					'type'  => 'date',
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'expiration'
 				);
 				$coupon_creator_meta_fields[$prefix . 'date_format'] =	array(
-					'label'=> __('Date Format', 'coupon_creator' ),
-					'desc'  => __('Choose the date format', 'coupon_creator' ),
+					'label'=> __('Date Format', 'coupon-creator' ),
+					'desc'  => __('Choose the date format', 'coupon-creator' ),
 					'id'    => $prefix . 'date_format',
 					'value' => cctor_options('cctor_default_date_format'),
 					'type'    => 'select',
 					'choices' => array(
-						'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),
-						'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
+						'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon-creator' ),
+						'1' => __( 'Day First - DD/MM/YYYY', 'coupon-creator' )
 					),
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'expiration'
 				);
 				$coupon_creator_meta_fields[$prefix . 'ignore_expiration'] =	array(
-					'label'=> __('Ignore Expiration Date', 'coupon_creator' ),
-					'desc'  => __('Check this to ignore the expiration date', 'coupon_creator' ),
+					'label'=> __('Ignore Expiration Date', 'coupon-creator' ),
+					'desc'  => __('Check this to ignore the expiration date', 'coupon-creator' ),
 					'id'    => $prefix . 'ignore_expiration',
 					'type'  => 'checkbox',
 					'section' => 'coupon_creator_meta_box',
@@ -662,7 +662,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				//Image Coupon
 				$coupon_creator_meta_fields[$prefix . 'image'] =	array(
 					'label'  => '',
-					'desc'  => __('Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon_creator' ),
+					'desc'  => __('Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
 					'id'    => $prefix . 'image',
 					'type'  => 'image',
 					'image'  => 'Image Coupon',

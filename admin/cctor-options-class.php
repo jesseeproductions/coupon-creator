@@ -69,13 +69,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		public function get_sections() {
 
 			//Coupon Creator Options Tabs
-			$this->sections['defaults']     = __( 'Defaults', 'coupon_creator' );
-			$this->sections['permalinks']   = __( 'Link Attributes / Permalinks', 'coupon_creator' );
-			$this->sections['display'] 		= __( 'Display', 'coupon_creator' );
-			$this->sections['help']        = __( 'Help', 'coupon_creator' );
-			$this->sections['license']   	= __( 'Licenses', 'coupon_creator' );
-			$this->sections['reset']        = __( 'Reset', 'coupon_creator' );
-			! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $this->sections['pro']        = __( 'Upgrade to Pro', 'coupon_creator' ) : '';
+			$this->sections['defaults']     = __( 'Defaults', 'coupon-creator' );
+			$this->sections['permalinks']   = __( 'Link Attributes / Permalinks', 'coupon-creator' );
+			$this->sections['display'] 		= __( 'Display', 'coupon-creator' );
+			$this->sections['help']        = __( 'Help', 'coupon-creator' );
+			$this->sections['license']   	= __( 'Licenses', 'coupon-creator' );
+			$this->sections['reset']        = __( 'Reset', 'coupon-creator' );
+			! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $this->sections['pro']        = __( 'Upgrade to Pro', 'coupon-creator' ) : '';
 
 			unset($this->sections['license']);
 
@@ -95,8 +95,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		public function coupon_options_page() {
 			$admin_page = add_submenu_page(
 				'edit.php?post_type=cctor_coupon', // parent_slug
-				__( 'Coupon Creator Options', 'coupon_creator' ), // page_title
-				__( 'Options', 'coupon_creator' ), // menu_title
+				__( 'Coupon Creator Options', 'coupon-creator' ), // page_title
+				__( 'Options', 'coupon-creator' ), // menu_title
 				'manage_options', // capability
 				'coupon-options', // menu_slug
 				array( &$this, 'display_page' ) // function
@@ -456,12 +456,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 							$expirationco = date("m/d/Y", $cc_expiration_date);
 						}
 
-						$expiration_date = sprintf(__(' and Expires on %s', 'coupon_creator' ), esc_attr($expirationco));
+						$expiration_date = sprintf(__(' and Expires on %s', 'coupon-creator' ), esc_attr($expirationco));
 					}
 
 						if( isset($cctor_license_info['status']) && $cctor_license_info['status'] !== false && $cctor_license_info['status'] == 'valid' ) {
 
-							echo '<span style="color:green;">'. __( 'License is Active','coupon_creator' ). $expiration_date.'</span><br><br>';
+							echo '<span style="color:green;">'. __( 'License is Active','coupon-creator' ). $expiration_date.'</span><br><br>';
 
 								wp_nonce_field( 'cctor_license_nonce', 'cctor_license_nonce' );
 
@@ -472,12 +472,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 						 } else {
 								$cctor_license_info_valid = "";
 							if(isset($cctor_license_info['status']) && ( $cctor_license_info['status'] == 'invalid' || $cctor_license_info['status'] == 'missing' ) && !$cctor_license_info['expired']) {
-								$cctor_license_info_valid = __('License is Invalid', 'coupon_creator' );
+								$cctor_license_info_valid = __('License is Invalid', 'coupon-creator' );
 							} elseif (isset($cctor_license_info['expired']) && $cctor_license_info['expired'] == "expired") {
-								$cctor_license_info_valid =  sprintf(__('License Expired on %s', 'coupon_creator' ), esc_attr($expirationco));
+								$cctor_license_info_valid =  sprintf(__('License Expired on %s', 'coupon-creator' ), esc_attr($expirationco));
 							}
 							else {
-								$cctor_license_info_valid = __( 'License is Not Active','coupon_creator' );
+								$cctor_license_info_valid = __( 'License is Not Active','coupon-creator' );
 							}
 
 							echo '<span style="color:red;">'.$cctor_license_info_valid.'</span><br><br>';
@@ -510,25 +510,25 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->options['header_defaults'] = array(
 				'section' => 'defaults',
 				'title'   => '',
-				'alert'    =>  __( '*These are defaults for new coupons only and do not change existing coupons.','coupon_creator' ),
+				'alert'    =>  __( '*These are defaults for new coupons only and do not change existing coupons.','coupon-creator' ),
 				'type'    => 'heading'
 			);
 			//Expiration
 			$this->options['header_expiration'] = array(
 				'section' => 'defaults',
 				'title'   => '',
-				'desc'    =>  __( 'Expiration','coupon_creator' ),
+				'desc'    =>  __( 'Expiration','coupon-creator' ),
 				'type'    => 'heading'
 			);
 			$this->options['cctor_default_date_format'] = array(
 				'section' => 'defaults',
-				'title'   => __( 'Expiration Date Format', 'coupon_creator' ),
-				'desc'    => __( 'Select the Date Format to show for all Coupons*', 'coupon_creator' ),
+				'title'   => __( 'Expiration Date Format', 'coupon-creator' ),
+				'desc'    => __( 'Select the Date Format to show for all Coupons*', 'coupon-creator' ),
 				'type'    => 'select',
 				'std'     => '0',
 				'choices' => array(
-					'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon_creator' ),
-					'1' => __( 'Day First - DD/MM/YYYY', 'coupon_creator' )
+					'0' =>  __( 'Month First - MM/DD/YYYY', 'coupon-creator' ),
+					'1' => __( 'Day First - DD/MM/YYYY', 'coupon-creator' )
 				)
 			);
 			$this->options['cctor_pro_recurrence_pattern_default'] = array(
@@ -562,12 +562,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->options['header_inner_border'] = array(
 				'section' => 'defaults',
 				'title'   => '',
-				'desc'    =>  __( 'Inner Border','coupon_creator' ),
+				'desc'    =>  __( 'Inner Border','coupon-creator' ),
 				'type'    => 'heading'
 			);
 			$this->options['cctor_border_color'] = array(
-				'title' =>  __( 'Inside Border Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default inside border color*','coupon_creator' ),
+				'title' =>  __( 'Inside Border Color','coupon-creator' ),
+				'desc'  =>  __( 'Choose default inside border color*','coupon-creator' ),
 				'std'     => '#81d742',
 				'type' => 'color', // color
 				'section' => 'defaults'
@@ -581,19 +581,19 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->options['header_discount'] = array(
 				'section' => 'defaults',
 				'title'   => '', // Not used for headings.
-				'desc'    =>  __( 'Deal Field Colors','coupon_creator' ),
+				'desc'    =>  __( 'Deal Field Colors','coupon-creator' ),
 				'type'    => 'heading'
 			);
 			$this->options['cctor_discount_bg_color'] = array(
-				'title' =>  __( 'Deal Background Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default background color*','coupon_creator' ),
+				'title' =>  __( 'Deal Background Color','coupon-creator' ),
+				'desc'  =>  __( 'Choose default background color*','coupon-creator' ),
 				'std'     => '#4377df',
 				'type' => 'color', // color
 				'section' => 'defaults'
 			);
 			$this->options['cctor_discount_text_color'] = array(
-				'title' =>  __( 'Deal Text Color','coupon_creator' ),
-				'desc'  =>  __( 'Choose default text color*','coupon_creator' ),
+				'title' =>  __( 'Deal Text Color','coupon-creator' ),
+				'desc'  =>  __( 'Choose default text color*','coupon-creator' ),
 				'std'     => '#000000',
 				'type' => 'color', // color
 				'section' => 'defaults'
@@ -603,39 +603,39 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->options['no_follow_heading'] = array(
 				'section' => 'permalinks',
 				'title'   => '', // Not used for headings.
-				'desc'    =>  __( 'Link Attribute Options','coupon_creator' ),
+				'desc'    =>  __( 'Link Attribute Options','coupon-creator' ),
 				'type'    => 'heading'
 			);
 			$this->options['cctor_nofollow_print_link'] = array(
 				'section' => 'permalinks',
-				'title'   => __( 'Print View Links', 'coupon_creator' ),
-				'desc'    => __( 'Add nofollow to all the "Click to Open in Print View" links', 'coupon_creator' ),
+				'title'   => __( 'Print View Links', 'coupon-creator' ),
+				'desc'    => __( 'Add nofollow to all the "Click to Open in Print View" links', 'coupon-creator' ),
 				'type'    => 'checkbox',
 				'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
 			$this->options['cctor_hide_print_link'] = array(
 				'section' => 'permalinks',
-				'title'   => __( 'Disable Print View', 'coupon_creator' ),
-				'desc'    => __( 'This will disable all custom links and the popup option in Pro as well as the "Click to Open in Print View" links under the coupon' , 'coupon_creator'),
+				'title'   => __( 'Disable Print View', 'coupon-creator' ),
+				'desc'    => __( 'This will disable all custom links and the popup option in Pro as well as the "Click to Open in Print View" links under the coupon' , 'coupon-creator'),
 				'type'    => 'checkbox',
 				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
 			$this->options['cctor_nofollow_print_template'] = array(
 				'section' => 'permalinks',
-				'title'   => __( 'Print Template No Follow', 'coupon_creator' ),
-				'desc'    => __( 'Add nofollow and noindex to the print template', 'coupon_creator' ),
+				'title'   => __( 'Print Template No Follow', 'coupon-creator' ),
+				'desc'    => __( 'Add nofollow and noindex to the print template', 'coupon-creator' ),
 				'type'    => 'checkbox',
 				'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
 			$this->options['header_permalink'] = array(
 				'section' => 'permalinks',
 				'title'   => '', // Not used for headings.
-				'desc'    =>  __( 'Permalink Options','coupon_creator' ),
+				'desc'    =>  __( 'Permalink Options','coupon-creator' ),
 				'type'    => 'heading'
 			);
 			$this->options['cctor_coupon_base'] = array(
-				'title'   => __( 'Coupon Print Template Slug', 'coupon_creator' ),
-				'desc'    => __( 'default: cctor_coupon', 'coupon_creator' ),
+				'title'   => __( 'Coupon Print Template Slug', 'coupon-creator' ),
+				'desc'    => __( 'default: cctor_coupon', 'coupon-creator' ),
 				'std'     => '',
 				'type'    => 'text',
 				'section' => 'permalinks',
@@ -644,8 +644,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			//Custom CSS
 			$this->options['cctor_custom_css'] = array(
-				'title'   => __( 'Custom Coupon Styles', 'coupon_creator' ),
-				'desc'    => __( 'Enter any custom CSS here to apply to the coupons for the shortcode and the print template.(without &#60;style&#62; tags)', 'coupon_creator' ),
+				'title'   => __( 'Custom Coupon Styles', 'coupon-creator' ),
+				'desc'    => __( 'Enter any custom CSS here to apply to the coupons for the shortcode and the print template.(without &#60;style&#62; tags)', 'coupon-creator' ),
 				'std'     => 'e.g. .cctor_coupon_container { width: 000px; }',
 				'type'    => 'textarea',
 				'section' => 'display',
@@ -654,23 +654,23 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			//wpautop
 			$this->options['cctor_wpautop'] = array(
 				'section' => 'display',
-				'title'   => __( 'Auto P Filter', 'coupon_creator' ),
-				'desc'    => __( 'Check to remove <a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop filter</a> from Coupon Terms Field', 'coupon_creator' ),
+				'title'   => __( 'Auto P Filter', 'coupon-creator' ),
+				'desc'    => __( 'Check to remove <a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop filter</a> from Coupon Terms Field', 'coupon-creator' ),
 				'type'    => 'checkbox',
 				'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
 			//wpautop
 			$this->options['cctor_print_base_css'] = array(
 				'section' => 'display',
-				'title'   => __( 'Print View Base CSS', 'coupon_creator' ),
-				'desc'    => __( 'Check to disable the base CSS in Print View', 'coupon_creator' ),
+				'title'   => __( 'Print View Base CSS', 'coupon-creator' ),
+				'desc'    => __( 'Check to disable the base CSS in Print View', 'coupon-creator' ),
 				'type'    => 'checkbox',
 				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
 			//Help
 			$this->options['cctor_help'] = array(
 				'section' => 'help',
-				'title'   => __( 'Support: ', 'coupon_creator' ),
+				'title'   => __( 'Support: ', 'coupon-creator' ),
 				'type'    => 'cctor_support',
 				'std'     => 0,
 				'desc'    => ''
@@ -679,18 +679,18 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$this->options['reset_heading'] = array(
 				'section' => 'reset',
 				'title'   => '', // Not used for headings.
-				'desc'    =>  __( 'Coupon Creator Option Reset','coupon_creator' ),
+				'desc'    =>  __( 'Coupon Creator Option Reset','coupon-creator' ),
 				'type'    => 'heading'
 			);
 
 			//Reset
 			$this->options['reset_theme'] = array(
 				'section' => 'reset',
-				'title'   => __( 'Reset', 'coupon_creator' ),
+				'title'   => __( 'Reset', 'coupon-creator' ),
 				'type'    => 'checkbox',
 				'std'     => 0,
 				'class'   => 'warning', // Custom class for CSS
-				'desc'    => __( 'Check this box and click "Save Changes" below to reset all coupon creator options to their defaults. This does not change any existing coupon settings or remove your licenses.', 'coupon_creator' )
+				'desc'    => __( 'Check this box and click "Save Changes" below to reset all coupon creator options to their defaults. This does not change any existing coupon settings or remove your licenses.', 'coupon-creator' )
 			);
 
 			//Filter Option Fields
