@@ -71,7 +71,7 @@ function cctor_show_expiration($coupon_id) {
 		$expirationco = date("d/m/Y", $cc_expiration_date);
 		}	?>
 	
-	<div class="cctor_expiration core"><?php echo __('Expires on:', 'coupon_creator'); ?>&nbsp;<?php echo esc_html($expirationco); ?></div>
+	<div class="cctor_expiration core"><?php echo __('Expires on:', 'coupon-creator'); ?>&nbsp;<?php echo esc_html($expirationco); ?></div>
 	
 	<?php }
 }	

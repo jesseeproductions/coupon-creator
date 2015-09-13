@@ -38,7 +38,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				//the id of the container I want to show in the popup
 				$container_id = 'coupon_container';
 				//our popup's title
-				$title = '<h3>' . __( 'Insert Coupon Creator Shortcode', 'coupon_creator' ) . '</h3>';
+				$title = '<h3>' . __( 'Insert Coupon Creator Shortcode', 'coupon-creator' ) . '</h3>';
 
 				// display ui button for 3.5 and greater
 				$context .="<style>.cctor_insert_icon{
@@ -215,10 +215,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				<div class="cctor-inserter-section">
 					<!--Create a Select Box with Coupon Titles -->
 					<div class="cctor-inserter-section-row">
-						<label for="coupon_select"><?php echo __( 'Select Loop or an Individual Coupon', 'coupon_creator' ); ?></label>
+						<label for="coupon_select"><?php echo __( 'Select Loop or an Individual Coupon', 'coupon-creator' ); ?></label>
 						<select name="coupon_select_box" id="coupon_select" onchange="show_category()">
 							<option value="#" ></option>
-							<option value="loop" ><?php echo __( 'Coupon Loop', 'coupon_creator' ); ?></option>
+							<option value="loop" ><?php echo __( 'Coupon Loop', 'coupon-creator' ); ?></option>
 							<?php
 							while ($querycoupon->have_posts()) {
 							$querycoupon->the_post(); ?>
@@ -231,10 +231,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 					<!--Create a Select Box for Categories -->
 					<div id="coupon_category_select_container" class="cctor-inserter-section-row">
-						<label for="coupon-categories"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon_creator' ); ?></label>
+						<label for="coupon-categories"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon-creator' ); ?></label>
 							<select id="coupon_category_select" name="coupon_category_select">
 							<option value="#" ></option>
-							 <option value=""><?php echo __( 'All Categories', 'coupon_creator' ); ?></option>
+							 <option value=""><?php echo __( 'All Categories', 'coupon-creator' ); ?></option>
 							 <?php
 								$cctor_cat_args = array(
 								  'orderby' => 'name',
@@ -255,27 +255,27 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 					</div>
 					<!--Create a Select Box for Align -->
 					<div class="cctor-inserter-section-row">
-						<label for="coupon_align"><?php echo __( 'Select How to Align the Coupon(s)', 'coupon_creator' ); ?></label>
+						<label for="coupon_align"><?php echo __( 'Select How to Align the Coupon(s)', 'coupon-creator' ); ?></label>
 						<select name="coupon_align_select_box" id="coupon_align">
-							 <option value="cctor_alignnone"><?php echo __( 'None', 'coupon_creator' ); ?></option>
-							 <option value="cctor_alignleft"><?php echo __( 'Align Left', 'coupon_creator' ); ?></option>
-							 <option value="cctor_alignright"><?php echo __( 'Align Right', 'coupon_creator' ); ?></option>
-							 <option value="cctor_aligncenter"><?php echo __( 'Align Center', 'coupon_creator' ); ?></option>
+							 <option value="cctor_alignnone"><?php echo __( 'None', 'coupon-creator' ); ?></option>
+							 <option value="cctor_alignleft"><?php echo __( 'Align Left', 'coupon-creator' ); ?></option>
+							 <option value="cctor_alignright"><?php echo __( 'Align Right', 'coupon-creator' ); ?></option>
+							 <option value="cctor_aligncenter"><?php echo __( 'Align Center', 'coupon-creator' ); ?></option>
 						</select> <!--End Select Box Align -->
 					</div>
 
 					<!--Create a Select Box for Orderby -->
 					<div id="coupon_orderby_select_container" class="cctor-inserter-section-row">
-						<label for="coupon_orberby_select_box"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon_creator' ); ?></label>
+						<label for="coupon_orberby_select_box"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon-creator' ); ?></label>
 						<select id="coupon_orderby" name="coupon_orberby_select_box">
-							 <option value="date"><?php echo __( 'Date (default)', 'coupon_creator' ); ?></option>
-							 <option value="none"><?php echo __( 'None', 'coupon_creator' ); ?></option>
-							 <option value="ID"><?php echo __( 'ID', 'coupon_creator' ); ?></option>
-							 <option value="author"><?php echo __( 'Author', 'coupon_creator' ); ?></option>
-							 <option value="title"><?php echo __( 'Coupon Post Title', 'coupon_creator' ); ?></option>
-							 <option value="name"><?php echo __( 'Slug Name', 'coupon_creator' ); ?></option>
-							 <option value="modified"><?php echo __( 'Last Modified', 'coupon_creator' ); ?></option>
-							 <option value="rand"><?php echo __( 'Random', 'coupon_creator' ); ?></option>
+							 <option value="date"><?php echo __( 'Date (default)', 'coupon-creator' ); ?></option>
+							 <option value="none"><?php echo __( 'None', 'coupon-creator' ); ?></option>
+							 <option value="ID"><?php echo __( 'ID', 'coupon-creator' ); ?></option>
+							 <option value="author"><?php echo __( 'Author', 'coupon-creator' ); ?></option>
+							 <option value="title"><?php echo __( 'Coupon Post Title', 'coupon-creator' ); ?></option>
+							 <option value="name"><?php echo __( 'Slug Name', 'coupon-creator' ); ?></option>
+							 <option value="modified"><?php echo __( 'Last Modified', 'coupon-creator' ); ?></option>
+							 <option value="rand"><?php echo __( 'Random', 'coupon-creator' ); ?></option>
 						</select> <!--End Select Box Align -->
 					</div>
 
@@ -293,7 +293,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				</div>
 
 				<?php } else { ?>
-					<h4><?php echo __( 'No Coupons are Published', 'coupon_creator' ); ?></h4>
+					<h4><?php echo __( 'No Coupons are Published', 'coupon-creator' ); ?></h4>
 				<?php } ?>
 			</div> <!--End #coupon_container -->
 		<?php }

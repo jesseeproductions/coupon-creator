@@ -308,20 +308,20 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			}
 
 			if( isset( $columns['title'] ) ) {
-				$cctor_columns['title'] = __( 'Coupon Title', 'coupon_creator' );
+				$cctor_columns['title'] = __( 'Coupon Title', 'coupon-creator' );
 			}
 
 			if( isset( $columns['author'] ) ) {
 				$cctor_columns['author'] = $columns['author'];
 			}
 
-			$cctor_columns['cctor_coupon_showing'] = __( 'Coupon is ', 'coupon_creator' );
+			$cctor_columns['cctor_coupon_showing'] = __( 'Coupon is ', 'coupon-creator' );
 
-			$cctor_columns['cctor_coupon_shortcode'] = __( 'Shortcode', 'coupon_creator' );
+			$cctor_columns['cctor_coupon_shortcode'] = __( 'Shortcode', 'coupon-creator' );
 
-			$cctor_columns['cctor_coupon_ignore_expiration'] = __( 'Ignore Expiration', 'coupon_creator' );
+			$cctor_columns['cctor_coupon_ignore_expiration'] = __( 'Ignore Expiration', 'coupon-creator' );
 
-			$cctor_columns['cctor_coupon_expiration'] = __( 'Expiration Date', 'coupon_creator' );
+			$cctor_columns['cctor_coupon_expiration'] = __( 'Expiration Date', 'coupon-creator' );
 
 
 			if( isset( $columns['date'] ) ) {
@@ -350,9 +350,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					$coupon_showing = Coupon_Creator_Plugin_Admin::cctor_admin_check_expiration($post_id);
 
 					if ( $coupon_showing ) {
-						echo "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing', 'coupon_creator' ) . "</p>";
+						echo "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing', 'coupon-creator' ) . "</p>";
 					} else {
-						echo "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing', 'coupon_creator' ) . "</p>";
+						echo "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing', 'coupon-creator' ) . "</p>";
 					}
 
 					break;
@@ -375,7 +375,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					break;
 				case 'cctor_coupon_ignore_expiration':
 					if (get_post_meta( $post_id, 'cctor_ignore_expiration', true ) == 1) {
-						echo "<p style='padding-left:40px;'>" . __( 'Yes', 'coupon_creator' ) . "</p>";
+						echo "<p style='padding-left:40px;'>" . __( 'Yes', 'coupon-creator' ) . "</p>";
 					}
 					break;
 			}

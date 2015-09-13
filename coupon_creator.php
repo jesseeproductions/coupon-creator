@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: Coupon Creator
-Plugin URI: http://jesseeproductions.com/coupon_creator/
-Version: 2.1
+Plugin URI: http://CouponCreatorPlugin.com/
+Version: 2.1.1
 
 Description: This plugin creates a custom post type for coupons with a shortcode to display it on website and a single view template for printing.
 
 Author: Brian Jessee
 Author URI: http://jesseeproductions.com
 
-Text Domain: coupon_creator
+Text Domain: coupon-creator
 Domain Path: /languages/
 
 License: GPL2
@@ -28,7 +28,7 @@ if (!defined('CCTOR_URL'))				define( 'CCTOR_URL',	plugin_dir_url( __FILE__ ));
 if (!defined('CCTOR_MIN_PHP_VERSION'))	define( 'CCTOR_MIN_PHP_VERSION',	'5.2');
 if (!defined('CCTOR_MIN_WP_VERSION'))	define( 'CCTOR_MIN_WP_VERSION',		'4.0');
 if (!defined('CCTOR_VERSION_KEY')) 		define( 'CCTOR_VERSION_KEY', 	'cctor_coupon_version');
-if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.1');
+if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.1.1');
 
 /*
 * Coupon Creator License
@@ -62,11 +62,11 @@ function cctor_error_requirements() {
     <div class="error">
 
 		<?php if( version_compare( PHP_VERSION, CCTOR_MIN_PHP_VERSION, '<' ) ) { ?>
-			<p><?php _e( 'Coupon Creator Requires PHP version: '.CCTOR_MIN_PHP_VERSION . ' You currently have PHP version: '.PHP_VERSION.'', 'coupon_creator' ); ?></p>
+			<p><?php _e( 'Coupon Creator Requires PHP version: '.CCTOR_MIN_PHP_VERSION . ' You currently have PHP version: '.PHP_VERSION.'', 'coupon-creator' ); ?></p>
 		<?php } ?>
 
 		<?php if( version_compare( $wp_version, CCTOR_MIN_WP_VERSION, '<' ) ) { ?>
-			<p><?php _e( 'Coupon Creator Requires WordPress version: '.CCTOR_MIN_WP_VERSION . ' You currently have WordPress version: '.$wp_version.'', 'coupon_creator' ); ?></p>
+			<p><?php _e( 'Coupon Creator Requires WordPress version: '.CCTOR_MIN_WP_VERSION . ' You currently have WordPress version: '.$wp_version.'', 'coupon-creator' ); ?></p>
 		<?php } ?>
 
     </div>
