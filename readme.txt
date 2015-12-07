@@ -5,8 +5,8 @@ Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.0
-Tested up to: 4.3
-Stable tag: 2.1.1
+Tested up to: 4.4
+Stable tag: 2.1.2
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -131,9 +131,12 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 2.1.2 December 7th, 2015 =
+* Fixed bug on option page tabs due to changes in 4.4
+
+
 = 2.1.1 September 13th, 2015 =
 * Changed Text Domain
-
 
 = 2.1 August 27th, 2015 =
 * Added base CSS to the print view to present a better layout of the text with more options in Pro to change font size, weight, and family.
@@ -275,8 +278,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.1 =
-Adds Print View basic css, Improved Coupon Inserter, along with 15 other changes
+= 2.1.2 =
+4.4 fixes and adds Print View basic css, Improved Coupon Inserter, along with 15 other changes
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>

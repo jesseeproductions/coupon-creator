@@ -1,19 +1,12 @@
 <?php
 /*
 Plugin Name: Coupon Creator
-Plugin URI: http://CouponCreatorPlugin.com/
-Version: 2.1.1
-
 Description: This plugin creates a custom post type for coupons with a shortcode to display it on website and a single view template for printing.
-
+Version: 2.1.2
 Author: Brian Jessee
-Author URI: http://jesseeproductions.com
-
+Author URI: http://couponcreatorplugin.com
 Text Domain: coupon-creator
-Domain Path: /languages/
-
-License: GPL2
-
+License: GPLv2 or later
 */
 //If Direct Access Kill the Script
 if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
@@ -28,7 +21,7 @@ if (!defined('CCTOR_URL'))				define( 'CCTOR_URL',	plugin_dir_url( __FILE__ ));
 if (!defined('CCTOR_MIN_PHP_VERSION'))	define( 'CCTOR_MIN_PHP_VERSION',	'5.2');
 if (!defined('CCTOR_MIN_WP_VERSION'))	define( 'CCTOR_MIN_WP_VERSION',		'4.0');
 if (!defined('CCTOR_VERSION_KEY')) 		define( 'CCTOR_VERSION_KEY', 	'cctor_coupon_version');
-if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.1.1');
+if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.1.2');
 
 /*
 * Coupon Creator License

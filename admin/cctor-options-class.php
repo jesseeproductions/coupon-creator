@@ -200,9 +200,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			//Detect if we saved or tried to save to set the current tab.
 			$cctor_options_updated = get_settings_errors();
 
+			global $wp_version;
+
 			$cctor_tabs_variables = array(
 				'tabs_arr' => $tabs_json_array,
 				'cctor_options_updated' => $cctor_options_updated,
+				'wp_version' => $wp_version,
 			);
 
 			wp_localize_script('cctor_coupon_option_js', 'cctor_coupon_option_js_vars', $cctor_tabs_variables);

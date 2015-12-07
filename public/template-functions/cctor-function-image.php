@@ -8,7 +8,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 * @version 1.90
 */
 function cctor_get_image_url( $coupon_id, $cctor_img_size='full' ) {
-	
+
 	$couponimage_id = get_post_meta($coupon_id, 'cctor_image', true);
 	$couponimage = wp_get_attachment_image_src($couponimage_id, $cctor_img_size);
 	$couponimage = $couponimage[0];
