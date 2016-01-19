@@ -20,8 +20,7 @@ if ( ! class_exists( 'Coupon_Creator_Taxonomy_Class' ) ) {
 			* Create Custom Taxonomy
 			* @version 1.40
 			*/
-			$slug = get_option( 'cctor_coupon_category_base' );
-			$slug = empty( $slug ) ? _x( 'coupon-category', 'slug', 'coupon-creator' ) : $slug;
+			$slug = cctor_options( 'cctor_coupon_category_base', false, 'coupon-category' );
 
 			$labels = array(
 				'name'              => _x( 'Coupon Category', 'coupon-creator' ),

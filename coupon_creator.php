@@ -73,7 +73,7 @@ if	( cctor_requirements() ) {
 	function cctor_options( $option, $falseable = null, $default = null ) {
 		$options = get_option( 'coupon_creator_options' );
 
-		if ( isset( $options[ $option ] ) ) {
+		if ( isset( $options[ $option ] ) &&  $options[ $option ] != '' ) {
 			return $options[ $option ];
 		} elseif ( $falseable ) {
 			return false;

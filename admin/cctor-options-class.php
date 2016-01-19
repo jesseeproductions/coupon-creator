@@ -644,6 +644,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => 'permalinks',
 				'class'   => 'permalink' //format text to lowercase before sanitizing
 			);
+			$this->options['cctor_coupon_category_base'] = array(
+				'type'    => '',
+				'section' => ''
+			);
 
 			//Custom CSS
 			$this->options['cctor_custom_css'] = array(
