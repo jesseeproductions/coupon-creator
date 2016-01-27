@@ -156,8 +156,6 @@ class CCTOR__Coupon__Templates {
 
 		ob_start();
 
-		//tribe_get_view();
-
 		echo 'here';
 
 		$contents = ob_get_contents();
