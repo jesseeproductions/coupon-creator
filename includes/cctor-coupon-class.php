@@ -478,13 +478,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 	/***************************************************************************/
 		/**
-		 * Check whether a post is an event.
+		 * Check whether a post is an coupon.
 		 *
-		 * @param int|WP_Post The event/post id or object.
+		 * @param int|WP_Post The coupon/post id or object.
 		 *
-		 * @return bool Is it an event?
+		 * @return bool Is it an coupon?
 		 */
-		public function isCoupon( $coupon ) {
+		public function is_coupon( $coupon ) {
 			if ( $coupon === null || ( ! is_numeric( $coupon ) && ! is_object( $coupon ) ) ) {
 				global $post;
 				if ( is_object( $post ) && isset( $post->ID ) ) {

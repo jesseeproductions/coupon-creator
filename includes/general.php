@@ -10,21 +10,21 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 if ( class_exists( 'Coupon_Creator_Plugin' ) ) {
 
 	/**
-	 * Event Type Test
+	 * Coupon Type Test
 	 *
-	 * Checks type of $postId to determine if it is an Event
+	 * Checks type of $postId to determine if it is an Coupon
 	 *
-	 * @category Events
+	 * @category Coupons
 	 * @param int $postId (optional)
 	 *
-	 * @return bool true if this post is an Event post type
+	 * @return bool true if this post is an Coupon post type
 	 */
 	function cctor_is_coupon( $postId = null ) {
-		return apply_filters( 'cctor_is_coupon', Coupon_Creator_Plugin::instance()->isCoupon( $postId ), $postId );
+		return apply_filters( 'cctor_is_coupon', Coupon_Creator_Plugin::instance()->is_coupon( $postId ), $postId );
 	}
 
 	/**
-	 * Conditional tag to check if current page is an event category page
+	 * Conditional tag to check if current page is an coupon category page
 	 *
 	 * @return bool
 	 **/
