@@ -49,11 +49,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			self::include_file( 'includes/cctor-taxonomy-class.php' );
 			add_action( 'init', array( 'Coupon_Creator_Taxonomy_Class', 'cctor_create_taxonomies' ), 10 );
 
-			//Template Class
-			// todo: remove
-			//self::include_file( 'includes/cctor-pro-template-class.php' );
-			//add_action( 'plugins_loaded', array( 'CCTOR__Coupon__Templates', 'init' ), 5 );
-
 			//Setup Capabilities
 			if ( is_admin() ) {
 				$this->cctor_add_capabilities();
