@@ -158,15 +158,16 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 	* Flush Permalink on Coupon Option Change
 	* @version 1.80
 	*/
-	public static function cctor_flush_permalinks() {
-		if ( get_option('cctor_coupon_base_change') == true ) {
+		public static function cctor_flush_permalinks() {
+			if ( get_option( 'cctor_coupon_base_change' ) == true || get_option( 'cctor_coupon_category_base_change' ) == true ) {
 
-			Coupon_Creator_Plugin::cctor_register_post_types();
-			flush_rewrite_rules();
-			update_option( 'coupon_flush_perm_change', date('l jS \of F Y h:i:s A') );
-			update_option( 'cctor_coupon_base_change', false );
+				Coupon_Creator_Plugin::cctor_register_post_types();
+				flush_rewrite_rules();
+				update_option( 'coupon_flush_perm_change', date( 'l jS \of F Y h:i:s A' ) );
+				update_option( 'cctor_coupon_base_change', false );
+				update_option( 'cctor_coupon_category_base_change', false );
 		}
-	}
+		}
 
 	/***************************************************************************/
 	/*
