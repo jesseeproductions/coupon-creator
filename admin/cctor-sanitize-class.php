@@ -149,6 +149,16 @@ class Coupon_Creator_Plugin_Sanitize {
 	}
 
 	/*
+	* Select Page Sanitize
+	* @version 2.1
+	*/
+	private function cctor_sanitize_selectpage( ) {
+
+		return $this->cctor_sanitize_enum( $this->input , $this->option);
+
+	}
+
+	/*
 	* Radio Sanitize
 	* @version 2.1
 	*/
