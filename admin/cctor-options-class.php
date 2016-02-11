@@ -133,6 +133,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		*/
 		public function coupon_option_styles() {
 
+			//jQuery UI
+			global $wp_scripts;
+			$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
+			wp_enqueue_style( 'jquery-ui-style', '//ajax.googleapis.com/ajax/libs/jqueryui/' . $jquery_version . '/themes/smoothness/jquery-ui.css' );
+
 			$cctor_options_css = CCTOR_PATH.'admin/css/cctor-options.css';
 			wp_enqueue_style( 'cctor_options_css', CCTOR_URL . 'admin/css/cctor-options.css', false, filemtime($cctor_options_css));
 
@@ -842,7 +847,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					}
 
 					// Create Separate License Option and Status
-					if ( $option['type'] == 'license' ) {
+					if ( $option['type'] == 'license' && isset( $input[$id] ) ) {
 
 						//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
 						$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
