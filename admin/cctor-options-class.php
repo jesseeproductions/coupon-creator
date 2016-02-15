@@ -79,7 +79,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			unset($this->sections['license']);
 
-			//Filter Option Tabs
+			/**
+			 * Filter Option Tabs
+			 *
+			 * @param array $sections an array of Option tab names and ids
+			 *
+			 */
 			if(has_filter('cctor_option_sections')) {
 				$this->sections = apply_filters('cctor_option_sections', $this->sections);
 			}
