@@ -10,7 +10,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 function cctor_show_img_coupon($coupon_id, $couponimage) {
 	//Build Click to Print Link for the Image - First Check if Option to Hide is Checked
 	
-	$nofollow = cctor_options('cctor_nofollow_print_link') == 1 ? 'rel="nofollow"' : '';
+	$nofollow = cctor_options('cctor_nofollow_print_link', TRUE, 1) == 1 ? 'rel="nofollow"' : '';
 	$cctor_onclick = !defined( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB' ) || !CCTOR_PREVENT_OPEN_IN_NEW_TAB ? "window.open(this.href);return false;" : '';
 	
 	if (cctor_options('cctor_hide_print_link') == 0) {
@@ -29,7 +29,7 @@ function cctor_show_img_coupon($coupon_id, $couponimage) {
 */
 function cctor_show_link($coupon_id) {
 	
-	$nofollow = cctor_options('cctor_nofollow_print_link') == 1 ? 'rel="nofollow"' : '';
+	$nofollow = cctor_options('cctor_nofollow_print_link', TRUE, 1) == 1 ? 'rel="nofollow"' : '';
 
 	$cctor_onclick = !defined( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB' ) || !CCTOR_PREVENT_OPEN_IN_NEW_TAB ? "window.open(this.href);return false;" : '';
 

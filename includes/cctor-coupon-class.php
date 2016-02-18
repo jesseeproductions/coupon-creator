@@ -154,8 +154,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		public static function cctor_register_post_types() {
 
 			// if no custom slug use this base slug
-			$slug = cctor_options( 'cctor_coupon_base' );
-			$slug = empty( $slug ) ? _x( 'cctor_coupon', 'slug', 'coupon-creator' ) : $slug;
+			$slug = cctor_options( 'cctor_coupon_base', false, _x( 'cctor_coupon', 'slug', 'coupon-creator' ) );
 
 			$labels = array(
 				'name'               => _x( 'Coupons', 'coupon-creator' ),
