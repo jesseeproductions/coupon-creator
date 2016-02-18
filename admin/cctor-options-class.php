@@ -222,13 +222,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			echo '<div class="wrap">
 				<div class="icon32" id="icon-options-general"></div>
-				<h2><img src="'. CCTOR_URL . 'admin/images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options' ) . '</h2>
+				<h2><img src="'. CCTOR_URL . 'admin/images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
 				<h4>Coupon Creator: '. get_option(CCTOR_VERSION_KEY).'</h4>';
 
 				do_action( 'cctor_before_option_form' );
 
 					if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true )
-						echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.' ) . '</p></div>';
+						echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.', 'coupon-creator' ) . '</p></div>';
 
 					echo '<form action="options.php" method="post">';
 
