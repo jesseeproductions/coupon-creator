@@ -84,6 +84,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			self::cctor_update_image_fields();
 
 			update_option(CCTOR_VERSION_KEY, CCTOR_VERSION_NUM);
+
+			update_option( 'cctor_coupon_base_change', TRUE );
+
 		}
 	}
 
