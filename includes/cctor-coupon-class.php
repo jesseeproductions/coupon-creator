@@ -44,15 +44,18 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Register Post Type			
 			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) ,5 );
 
-
 			//Register Custom Taxonomy
 			self::include_file( 'includes/cctor-taxonomy-class.php' );
 			add_action( 'init', array( 'Coupon_Creator_Taxonomy_Class', 'cctor_create_taxonomies' ), 10 );
 
+			//Remove Coupon From Search
+			add_action( 'pre_get_posts', array( __CLASS__, 'remove_coupon_from_search' ) );
+
 			//Setup Capabilities
-			if ( is_admin() ) {
-				$this->cctor_add_capabilities();
-			}
+			//todo remove cctor_add_capabilities function if no reports of issues
+			//if ( is_admin() ) {
+				//$this->cctor_add_capabilities();
+			//}
 
 			add_action( 'init', array( __CLASS__, 'init' ) );
 
@@ -191,6 +194,21 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				'exclude_from_search' => false,
 				'publicly_queryable'  => true,
 				'capability_type'     => array( 'cctor_coupon', 'cctor_coupons' ),
+				'capabilities' => array(
+					'publish_posts'          => 'publish_cctor_coupons',
+					'edit_post'              => 'edit_cctor_coupon',
+					'edit_posts'             => 'edit_cctor_coupons',
+					'edit_others_posts'      => 'edit_others_cctor_coupons',
+					'edit_private_posts'     => 'edit_private_cctor_coupons',
+					'edit_published_posts'   => 'edit_published_cctor_coupons',
+					'read_post'              => 'read_cctor_coupon',
+					'read_private_posts'     => 'read_private_cctor_coupons',
+					'delete_post'            => 'delete_cctor_coupon',
+					'delete_posts'           => 'delete_cctor_coupons',
+					'delete_private_posts'   => 'delete_private_cctor_coupons',
+					'delete_published_posts' => 'delete_published_cctor_coupons',
+					'delete_others_posts'    => 'delete_others_cctor_coupons',
+				),
 				'rewrite'             => array( 'slug' => $slug ),
 			);
 			register_post_type( 'cctor_coupon', $args );
@@ -220,6 +238,33 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			flush_rewrite_rules();
 
+		}
+
+	/***************************************************************************/
+		/*
+		* Remove Coupon Creator Post Type From Search
+		* @version 2.2
+		*/
+		public static function remove_coupon_from_search( $query ) {
+
+			if ($query->is_search && !is_admin() ) {
+
+				$post_types = get_post_types(array('public' => true, 'exclude_from_search' => false), 'objects');
+				$searchable_types = array();
+				// Add available post types, but remove coupons
+				if( $post_types ) {
+					foreach( $post_types as $type) {
+						if ( $type->name != 'cctor_coupon' ) {
+							$searchable_types[] = $type->name;
+						}
+					}
+				}
+
+				$query->set( 'post_type', $searchable_types );
+
+			}
+
+			return $query;
 		}
 
 	/***************************************************************************/
@@ -374,9 +419,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Use Single Coupon Template from Plugin when creating the print version
 		* @version 1.00
 		*/
-		public static function cctor_get_coupon_post_type_template($print_template) {
+		public static function cctor_get_coupon_post_type_template( $print_template ) {
 			 global $post;
-			 if ( is_object( $post ) && $post->post_type == 'cctor_coupon') {
+			 if ( ! is_search() && is_object( $post ) && $post->post_type == 'cctor_coupon') {
 				  $print_template = CCTOR_PATH. 'public/templates/print-coupon.php';
 			 }
 			 return $print_template;
