@@ -86,6 +86,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			 *
 			 */
 			if(has_filter('cctor_option_sections')) {
+				/**
+				 * Filter the Coupon Creator Option Tab Header
+				 *
+				 *
+				 * @param array $meta_tabs an array of tab headings.
+				 *
+				 */
 				$this->sections = apply_filters('cctor_option_sections', $this->sections);
 			}
 
@@ -507,7 +514,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			}
 
 			if(has_filter('cctor_option_cases')) {
-				// this adds any addon fields (from plugins) to the array
+				/**
+				 * Filter the cases for Coupon Creator Meta
+				 *
+				 * @param array $options current coupon option field being displayed.
+				 * @param array $option_args current value of option saved.
+				 */
 				echo apply_filters('cctor_option_cases', $options, $option_args);
 			}
 		}
@@ -729,6 +741,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			//Filter Option Fields
 			if(has_filter('cctor_option_filter')) {
+				/**
+				 * Filter the options fields from Coupon Creator
+				 *
+				 *
+				 * @param array $this->options an array of fields to display in option tabs.
+				 *
+				 */
 				$this->options = apply_filters('cctor_option_filter', $this->options);
 			}
 

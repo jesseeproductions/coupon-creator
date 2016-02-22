@@ -334,6 +334,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			//Filter Columns
 			if(has_filter('cctor_filter_coupon_list_columns')) {
+
+				/**
+				 * Filter the Admin Coupon List Columns Headers
+				 *
+				 * @param array $cctor_columns an array of column headers.
+				 *
+				 */
 				$cctor_columns = apply_filters('cctor_filter_coupon_list_columns', $cctor_columns,  $columns);
 			}
 
@@ -385,6 +392,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			}
 
 			if(has_filter('cctor_filter_column_cases')) {
+
+				/**
+				 * Filter the Admin Coupon List Columns Information per Coupon
+				 *
+				 *
+				 * @param string $column a string of data to display in the admin columns.
+				 *
+				 */
 				echo apply_filters('cctor_filter_column_cases', $column, $post_id);
 			}
 		}
@@ -406,6 +421,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				//Enable Filter to stop coupon from showing
 				$show_coupon_check = false;
 
+				/**
+				 * Filter the the Coupon in Admin if it should Display
+				 *
+				 *
+				 * @param boolean $show_coupon_check true or false a coupon should show.
+				 *
+				 */
 				$show_coupon_check = apply_filters('cctor_admin_check_coupon', $show_coupon_check, $coupon_id);
 
 				if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
