@@ -2,7 +2,7 @@
 //If Direct Access Kill the Script
 if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	die( 'Access denied.' );
-	
+
 	/*
 	* Coupon Creator Class
 	* @version 1.70
@@ -32,7 +32,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
         return self::$instance;
 
     }
-	
+
 	/***************************************************************************/
 
 		/*
@@ -41,7 +41,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public function __construct() {
 
-			//Register Post Type			
+			//Register Post Type
 			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) ,5 );
 
 			//Register Custom Taxonomy
@@ -50,12 +50,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Remove Coupon From Search
 			add_action( 'pre_get_posts', array( __CLASS__, 'remove_coupon_from_search' ) );
-
-			//Setup Capabilities
-			//todo remove cctor_add_capabilities function if no reports of issues
-			//if ( is_admin() ) {
-				//$this->cctor_add_capabilities();
-			//}
 
 			add_action( 'init', array( __CLASS__, 'init' ) );
 
@@ -78,7 +72,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			if ( is_admin() ) {
 				new Coupon_Creator_Plugin_Admin();
 			}
-					
+
 		}
 
 	/***************************************************************************/
@@ -91,45 +85,45 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Register Coupon Style
 			add_action('wp_enqueue_scripts',  array( __CLASS__, 'cctor_register_style' ));
-			
+
 			//Add Inline Style from Options
 			add_action( 'wp_enqueue_scripts', array( __CLASS__, 'cctor_inline_style' ), 100);
-			
+
 			//Setup Coupon Image Sizes
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
-			
+
 			//Register Coupon Shortcode
 			self::include_file( 'includes/cctor-coupon-shortcode-class.php' );
 			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
-				
+
 			//Build Shortcode
 			self::include_file( 'public/template-build/cctor-shortcode-build.php' );
 			add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 10);
-			
+
 			//Load Single Coupon Template
 			add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );
-			
+
 			//Include Print Template Hook Build
 			self::include_file( 'public/template-build/cctor-print-build.php' );
-			
+
 			//Add Print Template Functions
 			add_action( 'cctor_action_print_template', 'cctor_print_template', 10);
-			
+
 			//Print Template Inline Custom CSS from Option
 			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 20);
 
 			//Load Pro Meta Box Cases
-			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );		
-			
+			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );
+
 			//Remove wpautop filter on terms fields
 			if ( cctor_options('cctor_wpautop') == 1 ) {
-				add_filter( 'the_content', array( __CLASS__, 'cctor_remove_autop_for_coupons' ), 0 );  	
+				add_filter( 'the_content', array( __CLASS__, 'cctor_remove_autop_for_coupons' ), 0 );
 			}
 
 			add_action( 'parse_query', array( __CLASS__, 'parse_query' ), 50 );
 		}
 
-	/***************************************************************************/		
+	/***************************************************************************/
 		/**
 		 * Load all the required library files.
 		 */
@@ -143,7 +137,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			self::include_file( 'public/template-functions/cctor-function-terms.php' );
 			self::include_file( 'public/template-functions/cctor-function-links.php' );
 		}
-		
+
 	/***************************************************************************/
 
 		public static function i18n() {
@@ -213,7 +207,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			);
 			register_post_type( 'cctor_coupon', $args );
 		}
-	
+
 	/***************************************************************************/
 		/*
 		* Activate
@@ -221,7 +215,14 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public static function activate() {
 
-			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
+			if ( ! current_user_can( 'activate_plugins' ) ) {
+				return;
+			}
+
+			//Setup Capabilities, but only on initial activation
+			if ( ! get_option( CCTOR_VERSION_KEY ) ) {
+				Coupon_Creator_Plugin::instance()->cctor_add_capabilities();
+			}
 
 			self::cctor_register_post_types();
 			flush_rewrite_rules();
@@ -277,7 +278,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.00
 		*/
 		public function cctor_add_capabilities() {
-		
+
+			update_option( 'cctor_add_capabilities_option', date('l jS \of F Y h:i:s A') );
+
 			//Administrator
 			$caps['administrator'] = array(
 				'read_cctor_coupon',
@@ -309,7 +312,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				'delete_private_cctor_coupons',
 				'delete_published_cctor_coupons',
 				'delete_others_cctor_coupons',
-			);			
+			);
 			//Author
 			$caps['author'] = array(
 				'edit_cctor_coupon',
@@ -328,19 +331,19 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				'delete_cctor_coupon',
 				'delete_cctor_coupons',
 				'edit_cctor_coupons',
-				
+
 			);
 			//Subscriber
 			$caps['subscriber'] = array(
 				'read_cctor_coupon',
 			);
 
-			
+
 			//Filter Capabilities
 			if(has_filter('cctor_caps_filter')) {
 				$caps = apply_filters('cctor_caps_filter', $caps);
 			}
-			
+
 			$roles = array(
 				get_role( 'administrator' ),
 				get_role( 'editor' ),
@@ -362,7 +365,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 					}
 				}
 			}
-					
+
 		}
 	/***************************************************************************/
 		/*
@@ -373,30 +376,30 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			if (!is_admin()) {
 				$cctor_style = CCTOR_PATH.'css/cctor_coupon.css';
 				wp_register_style('coupon_creator_css',  CCTOR_URL . 'css/cctor_coupon.css', false, filemtime($cctor_style));
-							
+
 			}
 		}
 		/*
 		* Add Inline Style From Coupon Options
 		* @version 1.80
-		*/		
+		*/
 		public static function cctor_inline_style() {
-			
+
 			$cctor_option_css = "";
-			/* 
+			/*
 			*  Filter to Add More Custom CSS
 			*/
 			if(has_filter('cctor_filter_inline_css')) {
 				$coupon_css = "";
-				
+
 				$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
-			} 
-			//Add Custom CSS from Options				
-			if (cctor_options('cctor_custom_css')) {
-					
-				$cctor_option_css .= cctor_options('cctor_custom_css');				
 			}
-			
+			//Add Custom CSS from Options
+			if (cctor_options('cctor_custom_css')) {
+
+				$cctor_option_css .= cctor_options('cctor_custom_css');
+			}
+
 			wp_add_inline_style( 'coupon_creator_css', wp_kses_post($cctor_option_css) );
 		}
 		/*
@@ -404,14 +407,14 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.00
 		*/
 		public static function cctor_add_image_sizes() {
-		
+
 			$cctor_img_size = array();
 			$cctor_img_size['single'] = 300;
 			$cctor_img_size['print']  = 390;
 
 			if(has_filter('cctor_img_size')) {
 				$cctor_img_size = apply_filters('cctor_img_size', $cctor_img_size);
-			} 
+			}
 
 			add_image_size('single_coupon', $cctor_img_size['single'] );
 			add_image_size('print_coupon', $cctor_img_size['print'] );
@@ -429,31 +432,31 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			 }
 			 return $print_template;
 		}
-  
+
 	/***************************************************************************/
 
 		/*
 		* Hook Custom CSS into Print Template
 		* @version 1.80
-		* 
+		*
 		*/
 		public static function cctor_print_css(  ) {
-			
+
 			$cctor_option_css = "";
-			/* 
+			/*
 			*  Filter to Add More Custom CSS
 			*/
 			if(has_filter('cctor_filter_inline_css')) {
 				$coupon_css = "";
-				
+
 				$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
-			} 
-			//Add Custom CSS from Options				
-			if (cctor_options('cctor_custom_css')) {
-					
-				$cctor_option_css .= cctor_options('cctor_custom_css');				
 			}
-			
+			//Add Custom CSS from Options
+			if (cctor_options('cctor_custom_css')) {
+
+				$cctor_option_css .= cctor_options('cctor_custom_css');
+			}
+
 			if ($cctor_option_css) {
 				ob_start(); ?>
 				<!--  Coupon Style from the Options Page and Filter -->
@@ -464,17 +467,17 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			}
 		}
 	/***************************************************************************/
-	
+
 		/*
 		* Allowed Tags for Terms Field
 		* @version 2.0
-		*/	
+		*/
 		public static function cctor_terms_allowed_tags( $cctor_terms_tags ) {
 
 		    $cctor_terms_tags = '<h1><h2><h3><h4><h5><h6><p><blockquote><div><pre><code><span><br><b><strong><em><img><del><ins><sub><sup><ul><ol><li><hr>';
-			
+
 			return $cctor_terms_tags;
-			
+
 		}
 
 	/***************************************************************************/
@@ -482,14 +485,14 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Remove wpautop in Terms Field
 		* @version 2.0
 		* based of coding from http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
-		*/	
-		public static function cctor_remove_autop_for_coupons( $content )  {  
+		*/
+		public static function cctor_remove_autop_for_coupons( $content )  {
 
-			'cctor_coupon' === get_post_type() && remove_filter( 'the_content', 'wpautop' );  
-			
-			return $content;  
-			
-		} 
+			'cctor_coupon' === get_post_type() && remove_filter( 'the_content', 'wpautop' );
+
+			return $content;
+
+		}
 
 	/***************************************************************************/
 
@@ -583,7 +586,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		public static function include_file( $file ) {
 			include CCTOR_PATH . $file;
 		}
-		
+
 	/***************************************************************************/
-	
+
 } //end Coupon_Creator_Plugin Class
