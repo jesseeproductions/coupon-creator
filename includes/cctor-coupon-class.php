@@ -249,6 +249,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			$search = cctor_options( 'coupon-search' );
 
+			//if ( ! cctor_is_coupon_category() && ! $search && $query->is_search && ! is_admin() ) {
 			if ( ! $search && $query->is_search && ! is_admin() ) {
 
 				$post_types = get_post_types(array('public' => true, 'exclude_from_search' => false), 'objects');
