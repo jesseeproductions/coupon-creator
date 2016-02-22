@@ -247,20 +247,22 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		*/
 		public static function remove_coupon_from_search( $query ) {
 
-			if ($query->is_search && !is_admin() ) {
+			$search = cctor_options( 'coupon-search' );
+
+			if ( ! $search && $query->is_search && ! is_admin() ) {
 
 				$post_types = get_post_types(array('public' => true, 'exclude_from_search' => false), 'objects');
-				$searchable_types = array();
+				$searchable_cpt = array();
 				// Add available post types, but remove coupons
-				if( $post_types ) {
-					foreach( $post_types as $type) {
+				if ( $post_types ) {
+					foreach ( $post_types as $type ) {
 						if ( $type->name != 'cctor_coupon' ) {
-							$searchable_types[] = $type->name;
+							$searchable_cpt[] = $type->name;
 						}
 					}
 				}
 
-				$query->set( 'post_type', $searchable_types );
+				$query->set( 'post_type', $searchable_cpt );
 
 			}
 

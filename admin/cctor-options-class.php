@@ -684,6 +684,23 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type'    => 'checkbox',
 				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
+
+			//Search
+			$this->options['search_heading'] = array(
+				'section' => 'display',
+				'title'   => '',
+				'desc'    =>  __( 'WordPress Search','coupon-creator' ),
+				'type'    => 'heading'
+			);
+			$this->options['coupon-search'] = array(
+				'section' => 'display',
+				'title'   => __( 'Coupon Search', 'coupon-creator' ),
+				'type'    => 'checkbox',
+				'std'     => 0,
+				'class'   => '',
+				'desc'    => __( 'Check this to prevent the Coupon Creator from modifying the search query to remove the coupon custom post type.', 'coupon-creator' )
+			);
+
 			//Help
 			$this->options['cctor_help'] = array(
 				'section' => 'help',
