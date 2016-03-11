@@ -220,7 +220,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			}
 
 			//Setup Capabilities, but only on initial activation
-			if ( ! get_option( CCTOR_VERSION_KEY ) ) {
+			if ( ! get_option( 'coupon_creator_capabilties_register' ) ) {
 				Coupon_Creator_Plugin::instance()->cctor_add_capabilities();
 			}
 
@@ -278,8 +278,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.00
 		*/
 		public function cctor_add_capabilities() {
-
-			update_option( 'cctor_add_capabilities_option', date('l jS \of F Y h:i:s A') );
 
 			//Administrator
 			$caps['administrator'] = array(
@@ -365,6 +363,8 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 					}
 				}
 			}
+
+			update_option( 'coupon_creator_capabilties_register', date('l jS \of F Y h:i:s A') );
 
 		}
 	/***************************************************************************/
