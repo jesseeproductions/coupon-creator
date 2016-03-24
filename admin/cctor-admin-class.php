@@ -620,6 +620,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				<h4 class="coupon-heading">Pro Video Guides</h4>
 				<ul>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/L9uf9q9JRtc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Pro\'s couponloop shortcode, filter bar, and template system to manage coupons</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xEOdVUMFqg8?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Intro to Pro\'s Themer\'s Guide</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/EQRv8g2nmuE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Border Styles</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/JR4GA4lsOB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use Recurring Expiration</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/w67yqCZXF6I?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using Columns and Rows in the Visual Editor</a></li>
