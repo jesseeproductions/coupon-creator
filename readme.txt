@@ -5,8 +5,8 @@ Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.0
-Tested up to: 4.4
-Stable tag: 2.1.2
+Tested up to: 4.4.2
+Stable tag: 2.2
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -26,10 +26,11 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=oTa7puu7t24
 
-<h4>Coupon Creator Pro 2.1 Now Available!</h4>
-[Get a Pro License](http://cctor.us/hpcctor) with a 5 border styles, recurring expirations, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+<h4>Coupon Creator Pro 2.2 Now Available!</h4>
+[Get a Pro License](http://cctor.us/hpcctor) with a new shortcode, filter bar, template system, column display, 5 border styles, recurring expirations, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
 
-<h4>Coupon Creator Pro 2.1 Features Include:</h4>
+<h4>Coupon Creator Pro 2.2 Features Include:</h4>
+* couponloop shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
 * Border themes, Dotted Border, Stitched Border, Saw Tooth Border (modern browsers and IE 10+), and None Option
 * Recurring Expiration; set an expiration for the end of the month and have it automatically change to the end of the next month
 * Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows
@@ -131,6 +132,13 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 2.2 March 23rd, 2016 =
+* Added a check for the role before adding the coupon capabilities to prevent invalid argument warnings in the foreach statement, thanks Maxim
+* Changed the capability system to match to existing capabilities to make it possible to modify Added defaults to the coupon option functions to enable critical fields to have a backup
+* Add flush or permalinks on version upgrade to precent 404 errors
+* Added option to prevent coupon creator from modifying the standard search query to remove coupons due to change in custom post type setup
+
+
 = 2.1.2 December 7th, 2015 =
 * Fixed bug on option page tabs due to changes in 4.4
 
@@ -278,8 +286,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.1.2 =
-4.4 fixes and adds Print View basic css, Improved Coupon Inserter, along with 15 other changes
+= 2.2 =
+Improves capabilities coding to make it easier to customize.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>

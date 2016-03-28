@@ -42,6 +42,14 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 			//Filter Option Tabs
 			if(has_filter('cctor_filter_meta_tabs')) {
+
+				/**
+				 * Filter the Coupon Creator Meta Tab Header
+				 *
+				 *
+				 * @param array $meta_tabs an array of tab headings.
+				 *
+				 */
 				$meta_tabs = apply_filters('cctor_filter_meta_tabs', $meta_tabs);
 			}
 
@@ -64,6 +72,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			//Enable Filter to stop coupon from showing
 			$show_coupon_check = false;
 
+			/**
+			 * Filter the the Coupon in the Meta if it should Display
+			 *
+			 *
+			 * @param boolean $show_coupon_check true or false a coupon should show.
+			 *
+			 */
 			$show_coupon_check = apply_filters('cctor_filter_meta_show_coupon_check', $show_coupon_check, $coupon_id);
 
 			if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
@@ -440,7 +455,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 							} //end switch
 
 						if(has_filter('cctor_filter_meta_cases')) {
-							// this adds any addon fields (from plugins) to the array
+							/**
+							 * Filter the cases for Coupon Creator Meta
+							 *
+							 * @param array $field current coupon meta field being displayed.
+							 * @param array $meta current value of meta saved.
+							 * @param obj $post object of current post beign edited.
+							 */
 							echo apply_filters('cctor_filter_meta_cases', $field, $meta, $post);
 						} ?>
 
@@ -688,7 +709,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				);
 
 			if(has_filter('cctor_filter_meta_fields')) {
-				//Add Fields to the Coupon Creator Meta Box
+				/**
+				 * Filter the meta fields from Coupon Creator
+				 *
+				 *
+				 * @param array $coupon_creator_meta_fields an array of fields to display in meta tabs.
+				 *
+				 */
 				$coupon_creator_meta_fields = apply_filters('cctor_filter_meta_fields', $coupon_creator_meta_fields);
 			}
 

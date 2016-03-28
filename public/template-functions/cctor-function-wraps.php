@@ -51,7 +51,7 @@ function cctor_return_inner_coupon_wrap($coupon_id) {
 	$coupon_inner_content_wrap = array();
 	
 	$endlink = '';
-	$nofollow = cctor_options('cctor_nofollow_print_link') == 1 ? 'rel="nofollow"' : '';
+	$nofollow = cctor_options('cctor_nofollow_print_link', TRUE, 1 ) == 1 ? 'rel="nofollow"' : '';
 	$cctor_onclick = !defined( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB' ) || !CCTOR_PREVENT_OPEN_IN_NEW_TAB ? "window.open(this.href);return false;" : '';
 
 	//Build Click to Print Link For Coupon - First Check if Option to Hide is Checked

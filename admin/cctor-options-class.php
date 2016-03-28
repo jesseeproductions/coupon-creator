@@ -79,8 +79,20 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			unset($this->sections['license']);
 
-			//Filter Option Tabs
+			/**
+			 * Filter Option Tabs
+			 *
+			 * @param array $sections an array of Option tab names and ids
+			 *
+			 */
 			if(has_filter('cctor_option_sections')) {
+				/**
+				 * Filter the Coupon Creator Option Tab Header
+				 *
+				 *
+				 * @param array $meta_tabs an array of tab headings.
+				 *
+				 */
 				$this->sections = apply_filters('cctor_option_sections', $this->sections);
 			}
 
@@ -132,6 +144,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		* since 1.80
 		*/
 		public function coupon_option_styles() {
+
+			//jQuery UI
+			global $wp_scripts;
+			$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
+			wp_enqueue_style( 'jquery-ui-style', '//ajax.googleapis.com/ajax/libs/jqueryui/' . $jquery_version . '/themes/smoothness/jquery-ui.css' );
 
 			$cctor_options_css = CCTOR_PATH.'admin/css/cctor-options.css';
 			wp_enqueue_style( 'cctor_options_css', CCTOR_URL . 'admin/css/cctor-options.css', false, filemtime($cctor_options_css));
@@ -212,13 +229,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			echo '<div class="wrap">
 				<div class="icon32" id="icon-options-general"></div>
-				<h2><img src="'. CCTOR_URL . 'admin/images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options' ) . '</h2>
+				<h2><img src="'. CCTOR_URL . 'admin/images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
 				<h4>Coupon Creator: '. get_option(CCTOR_VERSION_KEY).'</h4>';
 
 				do_action( 'cctor_before_option_form' );
 
 					if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true )
-						echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.' ) . '</p></div>';
+						echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.', 'coupon-creator' ) . '</p></div>';
 
 					echo '<form action="options.php" method="post">';
 
@@ -497,7 +514,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			}
 
 			if(has_filter('cctor_option_cases')) {
-				// this adds any addon fields (from plugins) to the array
+				/**
+				 * Filter the cases for Coupon Creator Meta
+				 *
+				 * @param array $options current coupon option field being displayed.
+				 * @param array $option_args current value of option saved.
+				 */
 				echo apply_filters('cctor_option_cases', $options, $option_args);
 			}
 		}
@@ -644,6 +666,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => 'permalinks',
 				'class'   => 'permalink' //format text to lowercase before sanitizing
 			);
+			$this->options['cctor_coupon_category_base'] = array(
+				'type'    => '',
+				'section' => ''
+			);
 
 			//Custom CSS
 			$this->options['cctor_custom_css'] = array(
@@ -670,6 +696,23 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type'    => 'checkbox',
 				'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
 			);
+
+			//Search
+			$this->options['search_heading'] = array(
+				'section' => 'display',
+				'title'   => '',
+				'desc'    =>  __( 'WordPress Search','coupon-creator' ),
+				'type'    => 'heading'
+			);
+			$this->options['coupon-search'] = array(
+				'section' => 'display',
+				'title'   => __( 'Coupon Search', 'coupon-creator' ),
+				'type'    => 'checkbox',
+				'std'     => 0,
+				'class'   => '',
+				'desc'    => __( 'Check this to prevent the Coupon Creator from modifying the search query to remove the coupon custom post type.', 'coupon-creator' )
+			);
+
 			//Help
 			$this->options['cctor_help'] = array(
 				'section' => 'help',
@@ -698,6 +741,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			//Filter Option Fields
 			if(has_filter('cctor_option_filter')) {
+				/**
+				 * Filter the options fields from Coupon Creator
+				 *
+				 *
+				 * @param array $this->options an array of fields to display in option tabs.
+				 *
+				 */
 				$this->options = apply_filters('cctor_option_filter', $this->options);
 			}
 
@@ -838,7 +888,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					}
 
 					// Create Separate License Option and Status
-					if ( $option['type'] == 'license' ) {
+					if ( $option['type'] == 'license' && isset( $input[$id] ) ) {
 
 						//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
 						$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $input[$id], $option );
