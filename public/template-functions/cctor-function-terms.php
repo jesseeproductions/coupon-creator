@@ -17,7 +17,7 @@ function cctor_show_terms($coupon_id) {
 	$terms = convert_smilies( $terms );
 
 	//WPAutop
-	if ( cctor_options('cctor_wpautop') != 1 ) {
+	if ( cctor_options('cctor_wpautop', TRUE , 1) != 1 ) {
 		$terms = wpautop( $terms );
 	}
 	$terms = shortcode_unautop( $terms );

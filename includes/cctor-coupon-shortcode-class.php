@@ -18,7 +18,6 @@ class Coupon_Creator_Shortcode {
 	   //Load Stylesheet for Coupon Creator when Shortcode Called
 	   if( !wp_style_is( 'coupon_creator_css' ) ) {
 		 wp_enqueue_style('coupon_creator_css');
-		 		 		
 	   }	 
 	   
 		do_action( 'cctor_shortcode_start' );

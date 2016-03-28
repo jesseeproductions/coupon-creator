@@ -1,19 +1,12 @@
 <?php
 /*
 Plugin Name: Coupon Creator
-Plugin URI: http://CouponCreatorPlugin.com/
-Version: 2.1.1
-
 Description: This plugin creates a custom post type for coupons with a shortcode to display it on website and a single view template for printing.
-
+Version: 2.2
 Author: Brian Jessee
-Author URI: http://jesseeproductions.com
-
+Author URI: http://couponcreatorplugin.com
 Text Domain: coupon-creator
-Domain Path: /languages/
-
-License: GPL2
-
+License: GPLv2 or later
 */
 //If Direct Access Kill the Script
 if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
@@ -28,7 +21,7 @@ if (!defined('CCTOR_URL'))				define( 'CCTOR_URL',	plugin_dir_url( __FILE__ ));
 if (!defined('CCTOR_MIN_PHP_VERSION'))	define( 'CCTOR_MIN_PHP_VERSION',	'5.2');
 if (!defined('CCTOR_MIN_WP_VERSION'))	define( 'CCTOR_MIN_WP_VERSION',		'4.0');
 if (!defined('CCTOR_VERSION_KEY')) 		define( 'CCTOR_VERSION_KEY', 	'cctor_coupon_version');
-if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.1.1');
+if (!defined('CCTOR_VERSION_NUM'))  	define( 'CCTOR_VERSION_NUM', 	'2.2');
 
 /*
 * Coupon Creator License
@@ -76,23 +69,32 @@ function cctor_error_requirements() {
 // Check requirements and load files if met
 if	( cctor_requirements() ) {
 
-		//Coupon Options echo cctor_options('cctor_coupon_base');
-		function cctor_options( $option ) {
-			$options = get_option( 'coupon_creator_options' );
+	//Coupon Options echo cctor_options('cctor_coupon_base');
+	function cctor_options( $option, $falseable = null, $default = null ) {
+		$options = get_option( 'coupon_creator_options' );
 
-			if ( isset( $options[$option] ) )
-				return $options[$option];
-			else
-				return false;
+		if ( isset( $options[ $option ] ) &&  $options[ $option ] != '' ) {
+			return $options[ $option ];
+		} elseif ( $falseable ) {
+			return false;
+		} elseif ( $default ) {
+			return $default;
+		} else {
+			return false;
 		}
 
+	}
+
 		// Main Class
-		require_once( dirname( __FILE__ ) . '/classes/cctor-coupon-class.php' );
+		require_once( dirname( __FILE__ ) . '/includes/cctor-coupon-class.php' );
 		//Admin Class
 		require_once( dirname( __FILE__ ) . '/admin/cctor-admin-class.php' );
 
 		//Coupon Creator Start!
 		Coupon_Creator_Plugin::instance();
+
+		//Core Functions
+		require_once( dirname( __FILE__ ) . '/includes/general.php' );
 
 		//Flush Permalinks on Activate and Deactivate
 		register_activation_hook( __FILE__, 'Coupon_Creator_Plugin::activate' );

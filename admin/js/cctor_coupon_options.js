@@ -49,14 +49,22 @@ jQuery(document).ready(function($) {
 		var sections = cctor_coupon_option_js_vars.tabs_arr.replace(/&quot;/g, '"');
 		
 		var sections = jQuery.parseJSON(sections);
-			
-		var wrapped = $(".wrap h3").wrap("<div class=\"cctor-tabs-panel\">");
+
+		//Get Correct Selectors for 4.4 and greater
+		var wrap_id = '.wrap h2';
+		var wrap_panel_id = 'h2';
+		if ( cctor_coupon_option_js_vars.wp_version < '4.4' ) {
+			var wrap_id = '.wrap h3';
+			var wrap_panel_id = 'h3';
+		}
+
+		var wrapped = $(wrap_id).wrap("<div class=\"cctor-tabs-panel\">");
 		
 		wrapped.each(function() {
 			$(this).parent().append($(this).parent().nextUntil("div.cctor-tabs-panel"));
 		});
 		$(".cctor-tabs-panel").each(function(index) {
-			$(this).attr("id", sections[$(this).children("h3").text()]);
+			$(this).attr("id", sections[$(this).children(wrap_panel_id).text()]);
 			if (index > 0)
 				$(this).addClass("cctor-tabs-hide");
 		});

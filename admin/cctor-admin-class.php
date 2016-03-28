@@ -84,6 +84,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			self::cctor_update_image_fields();
 
 			update_option(CCTOR_VERSION_KEY, CCTOR_VERSION_NUM);
+
+			update_option( 'cctor_coupon_base_change', TRUE );
+
 		}
 	}
 
@@ -158,15 +161,16 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 	* Flush Permalink on Coupon Option Change
 	* @version 1.80
 	*/
-	public static function cctor_flush_permalinks() {
-		if ( get_option('cctor_coupon_base_change') == true ) {
+		public static function cctor_flush_permalinks() {
+			if ( get_option( 'cctor_coupon_base_change' ) == true || get_option( 'cctor_coupon_category_base_change' ) == true ) {
 
-			Coupon_Creator_Plugin::cctor_register_post_types();
-			flush_rewrite_rules();
-			update_option( 'coupon_flush_perm_change', date('l jS \of F Y h:i:s A') );
-			update_option( 'cctor_coupon_base_change', false );
+				Coupon_Creator_Plugin::cctor_register_post_types();
+				flush_rewrite_rules();
+				update_option( 'coupon_flush_perm_change', date( 'l jS \of F Y h:i:s A' ) );
+				update_option( 'cctor_coupon_base_change', false );
+				update_option( 'cctor_coupon_category_base_change', false );
 		}
-	}
+		}
 
 	/***************************************************************************/
 	/*
@@ -330,6 +334,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			//Filter Columns
 			if(has_filter('cctor_filter_coupon_list_columns')) {
+
+				/**
+				 * Filter the Admin Coupon List Columns Headers
+				 *
+				 * @param array $cctor_columns an array of column headers.
+				 *
+				 */
 				$cctor_columns = apply_filters('cctor_filter_coupon_list_columns', $cctor_columns,  $columns);
 			}
 
@@ -381,6 +392,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			}
 
 			if(has_filter('cctor_filter_column_cases')) {
+
+				/**
+				 * Filter the Admin Coupon List Columns Information per Coupon
+				 *
+				 *
+				 * @param string $column a string of data to display in the admin columns.
+				 *
+				 */
 				echo apply_filters('cctor_filter_column_cases', $column, $post_id);
 			}
 		}
@@ -402,6 +421,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				//Enable Filter to stop coupon from showing
 				$show_coupon_check = false;
 
+				/**
+				 * Filter the the Coupon in Admin if it should Display
+				 *
+				 *
+				 * @param boolean $show_coupon_check true or false a coupon should show.
+				 *
+				 */
 				$show_coupon_check = apply_filters('cctor_admin_check_coupon', $show_coupon_check, $coupon_id);
 
 				if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
@@ -594,6 +620,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				<h4 class="coupon-heading">Pro Video Guides</h4>
 				<ul>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/L9uf9q9JRtc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Pro\'s couponloop shortcode, filter bar, and template system to manage coupons</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xEOdVUMFqg8?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Intro to Pro\'s Themer\'s Guide</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/EQRv8g2nmuE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Border Styles</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/JR4GA4lsOB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use Recurring Expiration</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/w67yqCZXF6I?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using Columns and Rows in the Visual Editor</a></li>

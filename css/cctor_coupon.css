@@ -2,6 +2,21 @@
 * Coupon Creator CSS
 * @version 1.90
 */
+/* Utility CSS
+------------------------------------------------------------ */
+.cctor-clear {
+	clear: both;
+}
+
+.cctor-pro-coupons-visuallyhidden {
+	display: none;
+}
+
+.cctor-pro-overflow:after {
+	clear: both;
+	content: "";
+	display: block;
+}
 
 /* Coupon Creator CSS
 ------------------------------------------------------------ */
