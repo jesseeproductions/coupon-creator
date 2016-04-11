@@ -16,18 +16,18 @@ Create coupons to display on your site by using a shortcode.
 
 > <strong>Support on WordPress.org</strong> is for troubleshooting bugs and related issues. The forums are monitored and replied to within one week's time.
 >
-> If you are looking for direct support please check out [Coupon Creator Pro](http://cctor.us/hpcctor)
+> If you are looking for direct support please check out [Coupon Creator Pro](http://cctor.link/JIGHR)
 
 Create your own coupon with the Coupon Creator for WordPress or upload an image of a coupon instead.
 
-[Check out a demo gallery of Coupon Creator Features!](http://cctor.us/1Kpjgif)
+[Check out a demo gallery of Coupon Creator Features!](http://cctor.link/IjIV1)
 
 Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=oTa7puu7t24
 
 <h4>Coupon Creator Pro 2.2 Now Available!</h4>
-[Get a Pro License](http://cctor.us/hpcctor) with a new shortcode, filter bar, template system, column display, 5 border styles, recurring expirations, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+[Get a Pro License](http://cctor.link/JIGHR) with a new shortcode, filter bar, template system, column display, 5 border styles, recurring expirations, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
 
 <h4>Coupon Creator Pro 2.2 Features Include:</h4>
 * couponloop shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
@@ -97,7 +97,7 @@ Once you have all the options selected, press "Insert Coupon" to insert the shor
 
 <h4>Examples</h4>
 
-Find examples of coupons on the [Coupon Creator Home Page](http://cctor.us/hpcctor)
+Find examples of coupons on the [Coupon Creator Home Page](http://cctor.link/JIGHR)
 
 <h4>Coupons in Text Widgets</h4>
 
@@ -291,7 +291,7 @@ Improves capabilities coding to make it easier to customize.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>
-Please ask on the [Coupon Creator Support Forum](http://wordpress.org/support/plugin/coupon-creator) on WordPress. For Pro users, please visit [Coupon Creator Pro](http://cctor.us/hpcctor). On CouponCreatorPlugin.com there are documentation on the css and hooks of the coupon creator as well as more answers to questions and premium tutorials as well.
+Please ask on the [Coupon Creator Support Forum](http://wordpress.org/support/plugin/coupon-creator) on WordPress. For Pro users, please visit [Coupon Creator Pro](http://cctor.link/JIGHR). On CouponCreatorPlugin.com there are documentation on the css and hooks of the coupon creator as well as more answers to questions and premium tutorials as well.
 
 <h4>The Coupon Inserter, Image Uploader, the Expiration Date Picker, or the Color Pickers are not working, what is wrong?</h4>
 Most likely this is a JavaScript error and could be caused by another plugin or your theme. Please check the Developer Console for your browser and see if there is an error. If you post the error on the support forum I maybe able to help. Otherwise, try disabling plugins and changing themes to try and find the sources as well.
@@ -334,4 +334,4 @@ There is no direct way to customize the look of the coupon in the WordPress dash
 How can I remove the Click to Open in Print View or Click to Print Text?
 With version 1.90 on this tab Coupons > Options > Link Attributes/Permalinks Tab you can choose to hide the Click to Open in Print View Link for all Coupons.
 
-For more answers as well as documentation please visit [Coupon Creator Pro](http://cctor.us/hpcctor)
+For more answers as well as documentation please visit [Coupon Creator Pro](http://cctor.link/JIGHR)

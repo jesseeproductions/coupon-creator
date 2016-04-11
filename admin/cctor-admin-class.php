@@ -192,7 +192,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			//Show Upgrade to Pro Link
 			if ( !defined( 'CCTOR_HIDE_UPGRADE' ) || !CCTOR_HIDE_UPGRADE )  {
-				$plugin_links[] = '<a href="http://cctor.us/procoupon">Upgrade to Pro!</a>';
+				$plugin_links[] = '<a href="http://cctor.link/Abqoi">Upgrade to Pro!</a>';
 			}
 
 			// add the settings link to the links
@@ -639,10 +639,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				<h4 class="coupon-heading">Resources</h4>
 				<ul>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1TaXXoc">Documentation</a> - Overview of CSS Selectors, Actions, Filters, Capabilities, and Post Types</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1KV92nK">Frequently Asked Question</a> - Pre Sales, License, Requirements, and Setup Information</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.us/cg12Qf5">Guides</a> - User Guides and Troubleshooting Guides</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1TaY1EH">Tutorials</a> - Customization Tutorials and More</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.link/EsQPX">Documentation</a> - Overview of CSS Selectors, Actions, Filters, Capabilities, and Post Types</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.link/UzIZB">Frequently Asked Question</a> - Pre Sales, License, Requirements, and Setup Information</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.link/eQAEC">Guides</a> - User Guides and Troubleshooting Guides</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.link/loHtW">Tutorials</a> - Customization Tutorials and More</li>
 				</ul>';
 
 			return	$support_html;
@@ -659,12 +659,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			$support_html = '
 				<h4 class="coupon-heading">How to Contact Support</h4>
 				<ul>
-					<li>Please use the <a target="_blank" class="cctor-support" href="https://wordpress.org/support/plugin/coupon-creator/">WordPress.org Support Forum for the Coupon Creator</a>.</li>
+					<li>Please use the <a target="_blank" class="cctor-support" href="http://cctor.link/ZlQvh">WordPress.org Support Forum for the Coupon Creator</a>.</li>
 					<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:
 						<ul>
-						<li><br><a class="cctor-support" target="_blank" href="http://cctor.us/1MnSYeM">Troubleshooting 404 Errors</a></li>
-						<li><a class="cctor-support" target="_blank" href="http://cctor.us/1e2LhQH">Troubleshooting Conflicts</a></li>
-						<li><a class="cctor-support" target="_blank" href="http://cctor.us/1B20bkq">Troubleshooting Javascript Errors</a></li>
+						<li><br><a class="cctor-support" target="_blank" href="http://cctor.link/RgewD">Troubleshooting 404 Errors</a></li>
+						<li><a class="cctor-support" target="_blank" href="http://cctor.link/4rMqT">Troubleshooting Conflicts</a></li>
+						<li><a class="cctor-support" target="_blank" href="http://cctor.link/R7KRa">Troubleshooting Javascript Errors</a></li>
 						</ul>
 					</li>
 
