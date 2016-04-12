@@ -281,7 +281,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			<div class='cctor-pro-upsell'>
 				<h4><img alt="Get Coupon Creator Pro!" src="<?php echo CCTOR_URL; ?>admin/images/cctor-logo.png"/></h4>
 				<br>
-				<p><strong style="font-size:15px;"><a target="_blank" href="https://cctor.us/procoupon">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
+				<p><strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro</a> and get all the features below with 1 year of updates and direct support.</strong></p>
 				<br>
 				<ul>
 				<h4>Coupon Creator Pro Features Include:</h4><br>
@@ -324,7 +324,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 					<li>Direct Support through CouponCreatorPlugin.com</li>
 				</ul>
 				<br>
-				<strong style="font-size:15px;"><a target="_blank" href="https://cctor.us/procoupon">Purchase Pro Now!</a></strong>
+				<strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro Now!</a></strong>
 			</div>
 			<?php echo ob_get_clean();
 		}

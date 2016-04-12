@@ -285,7 +285,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 					<?php
 						//Show Upgrade to Pro Link
 						if ( !defined( 'CCTOR_HIDE_UPGRADE' ) || !CCTOR_HIDE_UPGRADE )  {
-							echo '<div class="cctor-inserter-upgrade-pro"><a href="http://cctor.us/procoupon" target="_blank">Upgrade to Pro</a> and search for Coupons in the Select Box to insert and many more features!</div>';
+							echo '<div class="cctor-inserter-upgrade-pro"><a href="http://cctor.link/Abqoi" target="_blank">Upgrade to Pro</a> and search for Coupons in the Select Box to insert and many more features!</div>';
 						}
 					?>
 					<!--Insert into Editor Button that Calls Script-->

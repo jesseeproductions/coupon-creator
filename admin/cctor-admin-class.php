@@ -192,7 +192,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			//Show Upgrade to Pro Link
 			if ( !defined( 'CCTOR_HIDE_UPGRADE' ) || !CCTOR_HIDE_UPGRADE )  {
-				$plugin_links[] = '<a href="http://cctor.us/procoupon">Upgrade to Pro!</a>';
+				$plugin_links[] = '<a href="http://cctor.link/Abqoi">Upgrade to Pro!</a>';
 			}
 
 			// add the settings link to the links
@@ -282,9 +282,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		public static function cctor_remove_coupon_row_actions( $actions, $post ) {
 		  global $current_screen, $current_user;
 
-			if( is_object( $current_screen ) && $current_screen->post_type != 'cctor_coupon' ) return $actions;
-
-			get_currentuserinfo();
+			if( is_object( $current_screen ) && $current_screen->post_type != 'cctor_coupon' ) {
+				return $actions;
+			}
 
 			if(!current_user_can( 'edit_others_cctor_coupons', $post->ID ) && ($post->post_author != $current_user->ID))  {
 				unset( $actions['edit'] );
@@ -456,7 +456,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			//Blog Time According to WordPress
 			$cc_blogtime = current_time('mysql');
-			list( $today_year, $today_month, $today_day, $hour, $minute, $second ) = preg_split( '([^0-9])', $cc_blogtime );
+			list( $today_year, $today_month, $today_day ) = preg_split( '([^0-9])', $cc_blogtime );
+
 			$expiration['today'] = strtotime($today_month."/".$today_day."/". $today_year);
 
 			if ($expiration['expiration'] >= $expiration['today']) {
@@ -478,11 +479,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			if( isset( $_POST['cctor_license_activate'] ) ) {
 
 				// run a quick security check
-				if( ! check_admin_referer( 'cctor_license_nonce', 'cctor_license_nonce' ) )
-					return; // get out if we didn't click the Activate button
-
-
-				$cctor_license_info = array();
+				if( ! check_admin_referer( 'cctor_license_nonce', 'cctor_license_nonce' ) ) {
+					return false; // get out if we didn't click the Activate button
+				}
 
 				//Set WordPress Option Name
 				$license_option_name = esc_attr($_POST['cctor_license_key']);
@@ -511,11 +510,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				// Call the custom API.
 				$response = wp_remote_get( esc_url_raw( add_query_arg( $api_params, COUPON_CREATOR_STORE_URL ) ), array( 'timeout' => 15, 'sslverify' => false ) );
-				
-				// make sure the response came back okay
-				if ( is_wp_error( $response ) )
-					return false;
 
+				// make sure the response came back okay
+				if ( is_wp_error( $response ) ) {
+					return false;
+				}
 				// decode the license data
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
@@ -547,6 +546,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				update_option( $license_option_name, $cctor_license_info );
 
 			}
+
+			return true;
 		}
 
 		/***************************************************************************/
@@ -561,43 +562,50 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			if( isset( $_POST['cctor_license_deactivate'] ) ) {
 
 				// run a quick security check
-				if( ! check_admin_referer( 'cctor_license_nonce', 'cctor_license_nonce' ) )
-					return; // get out if we didn't click the Activate button
+				if ( ! check_admin_referer( 'cctor_license_nonce', 'cctor_license_nonce' ) ) {
+					return false; // get out if we didn't click the Activate button
+				}
 
-				$license_option_name = esc_attr($_POST['cctor_license_key']);
+				$license_option_name = esc_attr( $_POST['cctor_license_key'] );
 
 				// retrieve the license from the database
 				$cctor_license_info = get_option( $license_option_name );
 
 				// data to send in our API request
 				$api_params = array(
-					'edd_action'=> 'deactivate_license',
-					'license' 	=> esc_attr(trim($cctor_license_info['key'])),
-					'item_name' => urlencode( esc_attr($_POST['cctor_license_name']) ), // the name of our product in EDD
-					'url'       => home_url()
+					'edd_action' => 'deactivate_license',
+					'license'    => esc_attr( trim( $cctor_license_info['key'] ) ),
+					'item_name'  => urlencode( esc_attr( $_POST['cctor_license_name'] ) ),
+					// the name of our product in EDD
+					'url'        => home_url()
 				);
 
 				// Call the custom API.
-				$response = wp_remote_get( esc_url_raw( add_query_arg( $api_params, COUPON_CREATOR_STORE_URL ) ), array( 'timeout' => 15, 'sslverify' => false ) );
+				$response = wp_remote_get( esc_url_raw( add_query_arg( $api_params, COUPON_CREATOR_STORE_URL ) ), array( 'timeout'   => 15,
+				                                                                                                         'sslverify' => false
+				) );
 
 				// make sure the response came back okay
-				if ( is_wp_error( $response ) )
+				if ( is_wp_error( $response ) ) {
 					return false;
+				}
 
 				// decode the license data
 				$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 				// $license_data->license will be either "deactivated" or "failed"
-				if( $license_data->license == 'deactivated' || $license_data->license == 'failed' ) {
+				if ( $license_data->license == 'deactivated' || $license_data->license == 'failed' ) {
 
-					unset($cctor_license_info['status']);
-					unset($cctor_license_info['expires']);
+					unset( $cctor_license_info['status'] );
+					unset( $cctor_license_info['expires'] );
 
 					//Update License Object
 					update_option( $license_option_name, $cctor_license_info );
 				}
 
 			}
+
+			return true;
 		}
 
 		/***************************************************************************/
@@ -639,10 +647,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 				<h4 class="coupon-heading">Resources</h4>
 				<ul>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1TaXXoc">Documentation</a> - Overview of CSS Selectors, Actions, Filters, Capabilities, and Post Types</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1KV92nK">Frequently Asked Question</a> - Pre Sales, License, Requirements, and Setup Information</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.us/cg12Qf5">Guides</a> - User Guides and Troubleshooting Guides</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.us/1TaY1EH">Tutorials</a> - Customization Tutorials and More</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.link/EsQPX">Documentation</a> - Overview of CSS Selectors, Actions, Filters, Capabilities, and Post Types</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.link/UzIZB">Frequently Asked Question</a> - Pre Sales, License, Requirements, and Setup Information</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.link/eQAEC">Guides</a> - User Guides and Troubleshooting Guides</li>
+					<li><a class="cctor-support" target="_blank" href="http://cctor.link/loHtW">Tutorials</a> - Customization Tutorials and More</li>
 				</ul>';
 
 			return	$support_html;
@@ -659,12 +667,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			$support_html = '
 				<h4 class="coupon-heading">How to Contact Support</h4>
 				<ul>
-					<li>Please use the <a target="_blank" class="cctor-support" href="https://wordpress.org/support/plugin/coupon-creator/">WordPress.org Support Forum for the Coupon Creator</a>.</li>
+					<li>Please use the <a target="_blank" class="cctor-support" href="http://cctor.link/ZlQvh">WordPress.org Support Forum for the Coupon Creator</a>.</li>
 					<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:
 						<ul>
-						<li><br><a class="cctor-support" target="_blank" href="http://cctor.us/1MnSYeM">Troubleshooting 404 Errors</a></li>
-						<li><a class="cctor-support" target="_blank" href="http://cctor.us/1e2LhQH">Troubleshooting Conflicts</a></li>
-						<li><a class="cctor-support" target="_blank" href="http://cctor.us/1B20bkq">Troubleshooting Javascript Errors</a></li>
+						<li><br><a class="cctor-support" target="_blank" href="http://cctor.link/RgewD">Troubleshooting 404 Errors</a></li>
+						<li><a class="cctor-support" target="_blank" href="http://cctor.link/4rMqT">Troubleshooting Conflicts</a></li>
+						<li><a class="cctor-support" target="_blank" href="http://cctor.link/R7KRa">Troubleshooting Javascript Errors</a></li>
 						</ul>
 					</li>
 
