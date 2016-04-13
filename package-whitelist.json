@@ -1,0 +1,11 @@
+[
+  "coupon-creator-pro.php",
+  "admin/**/*",
+  "css/**/*",
+  "includes/**/*",
+  "public/**/*",
+  "vendor/**/*",
+  "languages/**/*",
+  "readme.txt",
+  "screenshot*.png"
+]
