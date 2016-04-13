@@ -221,7 +221,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Setup Capabilities, but only on initial activation
 			if ( ! get_option( 'coupon_creator_capabilties_register' ) ) {
-				//Coupon_Creator_Plugin::instance()->cctor_add_capabilities();
+				Coupon_Creator_Plugin::instance()->cctor_add_capabilities();
 			}
 
 			self::cctor_register_post_types();
