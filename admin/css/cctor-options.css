@@ -46,6 +46,8 @@
 	background: linear-gradient(to right,  rgba(0,0,0,1) 1%,rgba(155,155,155,1) 28%,rgba(255,255,255,1) 85%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff',GradientType=1 );
 }
+
+.cctor-js .javascript-conflict,
 .wrap h3, .wrap table {
 	display: none;
 }
@@ -73,7 +75,7 @@
 	color: #048c7f;
 }
 
-div.alert {
+.cctor-error {
     border-left: 4px solid #dd3d36;
     padding: 1px 12px;
 	color: #dd3d36;

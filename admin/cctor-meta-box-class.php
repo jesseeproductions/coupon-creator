@@ -106,6 +106,10 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			$typenow = $post->post_type;
 		}
 
+			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
+
+			echo '<div class="javascript-conflict cctor-error"><p>' . sprintf( __( 'There maybe a javascript conflict preventing some features from working.  <a href="%s" target="_blank" >Please check this guide to narrow down the cause.</a>', 'coupon-creator' ), esc_url( $js_troubleshoot_url ) ) . '</p></div>';
+
 			//Display Message on Coupon Edit Screen, but not on a new coupon until saved
 			if($pagenow !='post-new.php' && $typenow=='cctor_coupon'){
 

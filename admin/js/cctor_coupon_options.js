@@ -5,15 +5,26 @@
 var $ = jQuery.noConflict();
 
 jQuery(document).ready(function ($) {    
-    $('.color-picker').wpColorPicker();
-});
 
-/*
-* Color Box Init for Help Videos
-* since 1.00
-*/								
-jQuery(document).ready(function ($) {  
+  	/*
+	* Colorpicker JS
+	* since 1.00
+	*/
+    $('.color-picker').wpColorPicker();
+
+
+	/*
+	* Color Box Init for Help Videos
+	* since 1.00
+	*/
 	$(".youtube_colorbox").colorbox({rel: "how_to_videos", current: "video {current} of {total}", iframe:true, width:"90%", height:"90%"});
+
+	/*
+	* Add Class to Show that no jQuery Errors
+	* since 2.3
+	*/
+	$('html').addClass('cctor-js');
+
 });
 
 /*
@@ -239,3 +250,12 @@ jQuery(document).ready(function($) {
 * since 1.80
 */					
 jQuery(".form-table label:empty").parent().hide();
+
+
+/*
+* Add Class to Show that no jQuery Errors
+* since 2.3
+*/
+jQuery(document).ready(function ($) {
+	$('html').addClass('cctor-js');
+});

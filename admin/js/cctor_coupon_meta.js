@@ -419,3 +419,11 @@ jQuery(function($) {
 		cctor_prepare_toggle_fields( 'input#cctor_image', true );
 	});
 });
+
+/*
+* Add Class to Show that no jQuery Errors
+* since 2.3
+*/
+jQuery(document).ready(function ($) {
+	$('html').addClass('cctor-js');
+});

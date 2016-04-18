@@ -68,6 +68,7 @@
 .field-wrap-cctor_videos .cctor-meta-field {
 	width:100%;
 }
+.cctor-js .javascript-conflict,
 #wp-cctor_description-media-buttons a:not(:first-child){
 	display:none;
 }

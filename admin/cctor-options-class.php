@@ -227,9 +227,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			wp_localize_script('cctor_coupon_option_js', 'cctor_coupon_option_js_vars', $cctor_tabs_variables);
 
+			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
+
 			echo '<div class="wrap">
 				<div class="icon32" id="icon-options-general"></div>
 				<h2><img src="'. CCTOR_URL . 'admin/images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
+
+				<div class="javascript-conflict cctor-error"><p>' . sprintf( __( 'There maybe a javascript conflict preventing some features from working.  <a href="%s" target="_blank" >Please check this guide to narrow down the cause.</a>', 'coupon-creator' ), esc_url( $js_troubleshoot_url ) ) . '</p></div>
+
 				<h4>Coupon Creator: '. get_option(CCTOR_VERSION_KEY).'</h4>';
 
 				do_action( 'cctor_before_option_form' );
@@ -357,7 +362,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 				case 'text':
 					if ( $option_args['alert'] != '' && cctor_options($option_args['condition']) == 1 )
-						echo '<div class="alert">' . $option_args['alert'] . '</div>';
+						echo '<div class="cctor-error">' . $option_args['alert'] . '</div>';
 
 					echo '<input class="regular-text' . $option_args['class'] . '" type="text" id="' . $option_args['id'] . '" name="coupon_creator_options[' . $option_args['id'] . ']" placeholder="' . $option_args['std']  . '" value="' . esc_attr( $options[$option_args['id']] ) . '" size="' . $option_args['size'] . '" />';
 
