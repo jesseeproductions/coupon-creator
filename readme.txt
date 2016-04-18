@@ -133,12 +133,10 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.2.1.1 April 13th, 2016 =
-* Fixed capabilties not running on initial install
-
 = 2.2.1 April 12th, 2016 =
 * Fixed deprecated notice for WordPress 4.5 from an unused function
 * Fixed conflict with bbPress, which caused forums, topics and replies to not show, thanks Dr Sagman!
+* Fixed capabilties not running on initial install
 
 = 2.2 March 23rd, 2016 =
 * Added a check for the role before adding the coupon capabilities to prevent invalid argument warnings in the foreach statement, thanks Maxim
