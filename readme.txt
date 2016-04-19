@@ -133,6 +133,10 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
+= 2.3 XXX =
+
+* Fixed search method from running on bbPress search results, thanks Dr Sagman for pointing this out
+
 = 2.2.1 April 12th, 2016 =
 * Fixed deprecated notice for WordPress 4.5 from an unused function
 * Fixed conflict with bbPress, which caused forums, topics and replies to not show, thanks Dr Sagman!

@@ -252,7 +252,24 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			if ( ! $search && $query->is_search && ! empty( $query->query['s'] ) && ! is_admin() ) {
 
+				/**
+				 * Fires on search results
+				 *
+				 * The hook includes the $query global and fires on
+				 * search results, but can be used to disable the coupon creator
+				 * from specifying the post types for search
+				 *
+				 * @since 2.3.0
+				 */
+				do_action( 'cctor_inside_remove_coupons_from _search' , $query );
+
+				//bbpress is exclude_from_search so add this check to prevent coupon creator from interfering
+				if ( class_exists( 'bbPress' ) && ( is_bbpress() || bbp_is_search_results() ) ) {
+					return $query;
+				}
+
 				$post_types = get_post_types(array('public' => true, 'exclude_from_search' => false), 'objects');
+
 				$searchable_cpt = array();
 				// Add available post types, but remove coupons
 				if ( $post_types ) {
@@ -262,6 +279,14 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 						}
 					}
 				}
+
+				/**
+				 * Filter the searchable custom post types
+				 *
+				 * @param array $searchable_cpt an array of post types to include in search
+				 *
+				 */
+				apply_filters( 'cctor_filter_searchable_post_types' , $searchable_cpt );
 
 				$query->set( 'post_type', $searchable_cpt );
 
@@ -551,29 +576,29 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	/***************************************************************************/
 
 		/**
-				 * Set any query flags
-				 *
-				 * @param WP_Query $query
-				 **/
-				public static function parse_query( $query ) {
+		 * Set any query flags
+		 *
+		 * @param WP_Query $query
+		 **/
+		public static function parse_query( $query ) {
 
-					$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
-					// check if a coupon query by post_type
-					$query->cctor_is_coupon = ( in_array( 'cctor_coupon', $types ) && count( $types ) < 2 )
-						? true // it is a coupon
-						: false;
+			$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
+			// check if a coupon query by post_type
+			$query->cctor_is_coupon = ( in_array( 'cctor_coupon', $types ) && count( $types ) < 2 )
+				? true // it is a coupon
+				: false;
 
-					$query->cctor_is_coupon_category = ! empty ( $query->query_vars[ 'cctor_coupon_category' ] )
-						? true // it was an coupon category
-						: false;
+			$query->cctor_is_coupon_category = ! empty ( $query->query_vars[ 'cctor_coupon_category' ] )
+				? true // it was an coupon category
+				: false;
 
-					$query->cctor_is_coupon_query = ( $query->cctor_is_coupon
-					                                 || $query->cctor_is_coupon_category )
-						? true // a coupon query of some type
-						: false;
+			$query->cctor_is_coupon_query = ( $query->cctor_is_coupon
+			                                 || $query->cctor_is_coupon_category )
+				? true // a coupon query of some type
+				: false;
 
-						do_action( 'cctor_coupon_parse_query', $query );
-				}
+				do_action( 'cctor_coupon_parse_query', $query );
+		}
 
 	/***************************************************************************/
 
