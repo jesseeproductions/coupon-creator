@@ -57,17 +57,38 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		}
 	/***************************************************************************/
 
-		/*
-		* Live Preview Below Title
-		* since 1.00
-		*/
-		public static function cctor_meta_expiration_check($coupon_id) {
+		/**
+		 ** Coupon Messages
+		 *
+		 * @since 1.00
+		 *
+		 * @param $coupon_id
+		 *
+		 * @return bool
+		 */
+		public static function cctor_meta_expiration_check( $coupon_id ) {
 
 			//Ignore Expiration Value
-			$ignore_expiration = get_post_meta($coupon_id, 'cctor_ignore_expiration', true);
+			$ignore_expiration = get_post_meta( $coupon_id, 'cctor_ignore_expiration', true );
+			/**
+			 * Filter the ignore expiration per coupon
+			 *
+			 * @param bool $ignore_expiration a boolean value
+			 * @param int  $coupon_id         an integer
+			 *
+			 */
+			$ignore_expiration = apply_filters( 'cctor_filter_ignore_expiration', $ignore_expiration, $coupon_id );
 
 			//Return If Not Passed Expiration Date
-			$expiration = cctor_expiration_and_current_date($coupon_id);
+			$expiration = cctor_expiration_and_current_date( $coupon_id );
+			/**
+			 * Filter if the coupon is expired or not
+			 *
+			 * @param bool $expiration a boolean value
+			 * @param int  $coupon_id  an integer
+			 *
+			 */
+			$expiration = apply_filters( 'cctor_filter_expiration', $expiration, $coupon_id );
 
 			//Enable Filter to stop coupon from showing
 			$show_coupon_check = false;
@@ -79,13 +100,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			 * @param boolean $show_coupon_check true or false a coupon should show.
 			 *
 			 */
-			$show_coupon_check = apply_filters('cctor_filter_meta_show_coupon_check', $show_coupon_check, $coupon_id);
+			$show_coupon_check = apply_filters( 'cctor_filter_meta_show_coupon_check', $show_coupon_check, $coupon_id );
 
-			if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
+			if ( ( $expiration || $ignore_expiration == 1 ) && ! $show_coupon_check ) {
 
 				return true;
 
-			}	else {
+			} else {
 
 				return false;
 
@@ -654,14 +675,31 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					'section' => 'coupon_creator_meta_box',
 					'tab' => 'expiration'
 				);
-				$coupon_creator_meta_fields[$prefix . 'expiration'] =	array(
-					'label' => __('Expiration Date', 'coupon-creator' ),
-					'id' => $prefix . 'expiration',
-					'desc' => __('The coupon will not display without the date and will not display on your site after the date', 'coupon-creator' ),
-					'type'  => 'date',
-					'section' => 'coupon_creator_meta_box',
-					'tab' => 'expiration'
+
+				$expiration_options = array(
+					'1' => __( 'Ignore Expiration', 'coupon-creator' ),
+					'2' => __( 'Expiration Date', 'coupon-creator' )
 				);
+				if ( class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
+					$expiration_options = array(
+						'1' => __( 'Ignore Expiration', 'coupon-creator' ),
+						'2' => __( 'Expiration Date', 'coupon-creator' ),
+						'3' => __( 'Recurring Expiration', 'coupon-creator' ),
+						'4' => __( 'Expires in X Days', 'coupon-creator' )
+					);
+				}
+
+				$coupon_creator_meta_fields[ $prefix . 'expiration_option' ] = array(
+					'label'   => __( 'Expiration Option', 'coupon-creator' ),
+					'desc'    => __( 'Choose the expiration method for this coupon', 'coupon-creator' ),
+					'id'      => $prefix . 'expiration_option',
+					'value'   => '',
+					'type'    => 'select',
+					'choices' => $expiration_options,
+					'section' => 'coupon_creator_meta_box',
+					'tab'     => 'expiration'
+				);
+
 				$coupon_creator_meta_fields[$prefix . 'date_format'] =	array(
 					'label'=> __('Date Format', 'coupon-creator' ),
 					'desc'  => __('Choose the date format', 'coupon-creator' ),
@@ -673,15 +711,28 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 						'1' => __( 'Day First - DD/MM/YYYY', 'coupon-creator' )
 					),
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'expiration'
+					'tab' => 'expiration',
+					'wrapclass' => 'expiration-field expiration-2 expiration-3 expiration-4'
 				);
+
+				$coupon_creator_meta_fields[$prefix . 'expiration'] =	array(
+					'label' => __('Expiration Date', 'coupon-creator' ),
+					'id' => $prefix . 'expiration',
+					'desc' => __('The coupon will not display without the date and will not display on your site after the date', 'coupon-creator' ),
+					'type'  => 'date',
+					'section' => 'coupon_creator_meta_box',
+					'tab' => 'expiration',
+					'wrapclass' => 'expiration-field expiration-2 expiration-3'
+				);
+
 				$coupon_creator_meta_fields[$prefix . 'ignore_expiration'] =	array(
 					'label'=> __('Ignore Expiration Date', 'coupon-creator' ),
 					'desc'  => __('Check this to ignore the expiration date', 'coupon-creator' ),
 					'id'    => $prefix . 'ignore_expiration',
 					'type'  => 'checkbox',
 					'section' => 'coupon_creator_meta_box',
-					'tab' => 'expiration'
+					'tab' => 'expiration',
+					'wrapclass' => 'expiration-field expiration-1'
 				);
 
 				//Image Coupon
@@ -751,6 +802,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				//Hook Meta Box Save
 				do_action( 'cctor_save_meta_fields',$post_id, $option);
 
+				//Expiration Option Auto Check Ignore Input
+				if ( 1 == $_POST['cctor_expiration_option'] ) {
+					$_POST['cctor_ignore_expiration'] = 'on';
+				} elseif ( 'on' == $_POST['cctor_ignore_expiration'] && 1 != $_POST['cctor_expiration_option'] ) {
+					unset( $_POST['cctor_ignore_expiration'] );
+				}
+log_me( $_POST );
 				//If No CheckBox Sent, then delete meta
 				if ($option['type'] == 'checkbox' ) {
 
@@ -785,6 +843,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 		/***************************************************************************/
 
-	} //end Coupon_Creator_Meta_Box Class
+	}//end Coupon_Creator_Meta_Box Class
 
-} // class_exists( 'Coupon_Creator_Meta_Box' )
+}//class_exists( 'Coupon_Creator_Meta_Box' )

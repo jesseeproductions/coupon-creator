@@ -4,23 +4,49 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
 }
 
-/*
-* Coupon Creator Check if Coupon Should Show
-* @version 1.90
-*/
+/**
+ * Coupon Creator Check if Coupon Should Show
+ *
+ * @since 1.90
+ *
+ * @param $coupon_id
+ *
+ * @return bool
+ */
 function cctor_expiration_check( $coupon_id ) {
 
 	//Ignore Expiration Value
 	$ignore_expiration = get_post_meta( $coupon_id, 'cctor_ignore_expiration', true );
+	/**
+	 * Filter the ignore expiration per coupon
+	 *
+	 * @param bool $ignore_expiration a boolean value
+	 * @param int $coupon_id an integer
+	 *
+	 */
 	$ignore_expiration = apply_filters( 'cctor_filter_ignore_expiration', $ignore_expiration, $coupon_id );
 
 	//Return If Not Passed Expiration Date
 	$expiration = cctor_expiration_and_current_date( $coupon_id );
+	/**
+	 * Filter if the coupon is expired or not
+	 *
+	 * @param bool $expiration a boolean value
+	 * @param int $coupon_id an integer
+	 *
+	 */
 	$expiration = apply_filters( 'cctor_filter_expiration', $expiration, $coupon_id );
 
 	//Enable Filter to stop coupon from showing
 	$show_coupon_check = false;
 
+	/**
+	 * Filter if the coupon should show, like if counter is reached
+	 *
+	 * @param bool $show_coupon_check a boolean value
+	 * @param int $coupon_id an integer
+	 *
+	 */
 	$show_coupon_check = apply_filters( 'cctor_show_coupon_check', $show_coupon_check, $coupon_id );
 
 	if ( ( $expiration || $ignore_expiration == 1 ) && ! $show_coupon_check ) {
@@ -30,10 +56,15 @@ function cctor_expiration_check( $coupon_id ) {
 	}
 }
 
-/*
-* Coupon Creator Return Expiration Date and Current Date
-* @version 1.90
-*/
+/**
+ * Coupon Creator Return Expiration Date and Current Date
+ *
+ * @since 1.90
+ *
+ * @param $coupon_id
+ *
+ * @return bool
+ */
 function cctor_expiration_and_current_date( $coupon_id ) {
 
 	//Coupon Expiration Date
@@ -52,10 +83,13 @@ function cctor_expiration_and_current_date( $coupon_id ) {
 	}
 }
 
-/*
-* Coupon Creator Print Template Expiration
-* @version 1.90
-*/
+/**
+ * Coupon Creator Print Template Expiration
+ *
+ * @since 1.90
+ *
+ * @param $coupon_id
+ */
 function cctor_show_expiration( $coupon_id ) {
 	//Coupon Expiration Date
 	$expirationco = get_post_meta( $coupon_id, 'cctor_expiration', true );
@@ -75,10 +109,13 @@ function cctor_show_expiration( $coupon_id ) {
 	<?php }
 }
 
-/*
-* Coupon Creator Print Template No Show Coupon
-* @version 1.90
-*/
+/**
+ * Coupon Creator Print Template No Show Coupon
+ *
+ * @since 1.90
+ *
+ * @param $coupon_id
+ */
 function cctor_show_no_coupon_comment( $coupon_id ) {
 	//Coupon Expiration Date
 	$expirationco = get_post_meta( $coupon_id, 'cctor_expiration', true );

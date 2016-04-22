@@ -421,9 +421,47 @@ jQuery(function($) {
 });
 
 /*
+ * Expiration Fields Display
+ * since 2.3
+ */
+jQuery( function ( $ ) {
+
+	var $expiration_option_val = $( '#cctor_expiration_option' );
+
+	cctor_toogle_fields( '#expiration .expiration-field', $expiration_option_val.val(), '#expiration .expiration-' );
+
+	$expiration_option_val.on( 'change', function () {
+		console.log( 'value' );
+		console.log( $(this).val() );
+		cctor_toogle_fields( '#expiration .expiration-field', $(this).val(), '#expiration .expiration-' );
+	} );
+} );
+
+/*
+ * Toogle Meta Field Display
+ * @version 2.1
+ *
+ */
+function cctor_toogle_fields( common_wrap, value, selector ) {
+
+	var $selector = selector + value;
+
+	//Hide All Fields with Common Wrap
+	$( common_wrap ).each( function () {
+		$(this).css( 'display', 'none' );
+	} );
+
+	//Show Fields Based on Value of a Field
+	$( $selector ).each( function () {
+		$(this).css( 'display', 'block' );
+	} );
+
+}
+
+/*
 * Add Class to Show that no jQuery Errors
 * since 2.3
 */
-jQuery(document).ready(function ($) {
+jQuery(function($) {
 	$('html').addClass('cctor-js');
 });
