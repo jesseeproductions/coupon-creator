@@ -92,6 +92,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Setup Coupon Image Sizes
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
 
+			//Load Expiration Class
+			Coupon_Creator_Plugin::include_file( 'includes/cctor_expiration_class.php' );
+
 			//Register Coupon Shortcode
 			self::include_file( 'includes/cctor-coupon-shortcode-class.php' );
 			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );

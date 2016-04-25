@@ -36,7 +36,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 	do_action( 'cctor_print_before_coupon', $coupon_id );
 
 		//Check to show the Coupon
-		if (cctor_expiration_check($coupon_id)) {
+	if ( CCtor_Expiration_Class::check_expiration( $coupon_id ) ) {
 
 			$outer_print_coupon_wrap  = apply_filters( 'cctor_print_outer_content_wrap' , $coupon_id  );
 

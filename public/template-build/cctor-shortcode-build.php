@@ -9,7 +9,8 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 */
 function cctor_shortcode_functions() {	 
 
-	add_filter('cctor_expiration_check', 'cctor_expiration_and_current_date', 10 , 1);
+	//todo remove as it is unused?
+	//add_filter('cctor_expiration_check', array( 'CCtor_Expiration_Class', 'is_coupon_before_expiration' ), 10 , 1);
 
 	add_filter('cctor_image_url', 'cctor_get_image_url', 10 , 2);
 

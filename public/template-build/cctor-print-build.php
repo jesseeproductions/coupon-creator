@@ -20,7 +20,8 @@ function cctor_print_template() {
 
 	add_action('coupon_print_meta', 'cctor_print_stylesheets_and_script', 10, 1 );
 
-	add_filter('cctor_print_expiration_check', 'cctor_expiration_and_current_date', 10 , 1);
+	//todo remove as it is unused?
+	//add_filter('cctor_print_expiration_check', array( 'CCtor_Expiration_Class', 'is_coupon_before_expiration' ), 10 , 1);
 
 	add_filter('cctor_print_image_url', 'cctor_get_image_url', 10 , 2);
 

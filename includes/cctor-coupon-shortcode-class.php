@@ -77,7 +77,7 @@ class Coupon_Creator_Shortcode {
 
 			do_action( 'cctor_before_coupon' , $coupon_id ); 
 				//Check to show the Coupon
-				if ( cctor_expiration_check( $coupon_id ) ) {
+				if ( CCtor_Expiration_Class::check_expiration( $coupon_id ) ) {
 					
 					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align, $cctor_atts['bordertheme'] );
 							
