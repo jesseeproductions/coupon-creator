@@ -68,6 +68,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Load Sanitize Functions
 			self::include_file( 'admin/cctor-sanitize-class.php' );
 
+			//Load Expiration Class
+			Coupon_Creator_Plugin::include_file( 'includes/cctor_expiration_class.php' );
+
 			//Load Admin Class if in Admin Section
 			if ( is_admin() ) {
 				new Coupon_Creator_Plugin_Admin();
@@ -91,9 +94,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Setup Coupon Image Sizes
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
-
-			//Load Expiration Class
-			Coupon_Creator_Plugin::include_file( 'includes/cctor_expiration_class.php' );
 
 			//Register Coupon Shortcode
 			self::include_file( 'includes/cctor-coupon-shortcode-class.php' );

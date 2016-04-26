@@ -23,13 +23,13 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			//Save Meta Boxes Data
 			add_action( 'save_post', array( __CLASS__, 'cctor_save_coupon_creator_meta' ), 10, 2 );
 
-			//Coupon Expiration Class
-			add_action( 'init', array( 'CCtor_Expiration_Class', 'meta_info' ) );
-
 			//Coupon Expiration Information
+			add_action( 'edit_form_after_title', array( __CLASS__, 'coupon_messages' ), 5 );
 			add_action( 'edit_form_after_title', array( __CLASS__, 'coupon_information_box' ) );
 			//JS Error Check
 			add_action( 'cctor_meta_message', array( __CLASS__, 'get_js_error_check_msg' ) );
+
+
 		}
 
 		/***************************************************************************/
@@ -51,10 +51,24 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				//Hook Meta Box Message
 				do_action( 'cctor_meta_message', $coupon_id );
 
+				$coupon_expiration_instance = new CCtor_Expiration_Class( $coupon_id );
+				echo '<pre>';
+				print_r($coupon_expiration_instance);
+				echo '</pre>';
+
 			}
 
 		}
 
+		/***************************************************************************/
+
+
+		public static function coupon_messages() {
+			$coupon_expiration = new CCtor_Expiration_Class();
+			add_action( 'cctor_meta_message', array(  $coupon_expiration, 'get_coupon_status' ), 15, 1 );
+			add_action( 'cctor_meta_message', array(  $coupon_expiration, 'get_coupon_status_msg' ), 20, 1 );
+
+		}
 		/***************************************************************************/
 
 		/**
