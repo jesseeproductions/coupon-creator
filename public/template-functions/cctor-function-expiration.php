@@ -12,22 +12,17 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
  * @param $coupon_id
  */
 function cctor_show_expiration( $coupon_id ) {
-	//Coupon Expiration Date
-	$expirationco = get_post_meta( $coupon_id, 'cctor_expiration', true );
 
-	$cc_expiration_date = strtotime( $expirationco );
+	$coupon_expiration = new CCtor_Expiration_Class( $coupon_id );
 
-	if ( $expirationco ) { // Only Display Expiration if Date
-		$daymonth_date_format = get_post_meta( $coupon_id, 'cctor_date_format', true ); //Date Format
+	$expiration_date = $coupon_expiration->get_coupon_expiration_dates();
 
-		if ( $daymonth_date_format == 1 ) { //Change to Day - Month Style
-			$expirationco = date( "d/m/Y", $cc_expiration_date );
-		} ?>
-
+	if ( isset( $expiration_date['exp_date'] ) ) {
+		?>
 		<div class="cctor_expiration core"><?php echo __( 'Expires on:', 'coupon-creator' ); ?>
-			&nbsp;<?php echo esc_html( $expirationco ); ?></div>
-
-	<?php }
+			&nbsp;<?php echo esc_html( $expiration_date['exp_date'] ); ?></div>
+		<?php
+	}
 }
 
 /**

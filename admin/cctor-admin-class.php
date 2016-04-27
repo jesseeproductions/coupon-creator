@@ -347,51 +347,44 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			return $cctor_columns;
 		}
 
-		/*
-		* Add Custom Meta Data to Columns
-		* @version 2.0
-		*/
+		/**
+		 * Add Custom Meta Data to Columns
+		 * @since 2.0
+		 *
+		 * @param $column
+		 * @param $post_id
+		 */
 		public static function cctor_column_cases( $column, $post_id ) {
-			switch( $column ) {
+
+			$coupon_expiration = new CCtor_Expiration_Class( $post_id );
+
+			switch ( $column ) {
 				case 'cctor_coupon_shortcode':
-					echo "<code>[coupon couponid='". $post_id ."' name='". get_the_title($post_id) ."']</code>";
+					echo "<code>[coupon couponid='" . $post_id . "' name='" . get_the_title( $post_id ) . "']</code>";
 					break;
 				case 'cctor_coupon_showing':
 
-					$coupon_showing = Coupon_Creator_Plugin_Admin::cctor_admin_check_expiration($post_id);
-
-					if ( $coupon_showing ) {
-						echo "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing', 'coupon-creator' ) . "</p>";
-					} else {
-						echo "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing', 'coupon-creator' ) . "</p>";
-					}
+					$coupon_expiration->get_admin_list_coupon_showing();
 
 					break;
 				case 'cctor_coupon_expiration':
-					//Coupon Expiration Date
-					$expirationco = get_post_meta($post_id, 'cctor_expiration', true);
 
-					$cc_expiration_date = strtotime($expirationco);
+					$expiration_date = $coupon_expiration->get_coupon_expiration_dates();
 
-					if ($expirationco) { // Only Display Expiration if Date
-						$daymonth_date_format = cctor_options('cctor_default_date_format'); //Date Format
-
-						if ($daymonth_date_format == 1 ) { //Change to Day - Month Style
-						$expirationco = date("d/m/Y", $cc_expiration_date);
-						}
-
-						echo $expirationco;
+					if ( isset( $expiration_date['exp_date'] ) ) {
+						echo esc_html( $expiration_date['exp_date'] );
 					}
 
 					break;
 				case 'cctor_coupon_ignore_expiration':
-					if (get_post_meta( $post_id, 'cctor_ignore_expiration', true ) == 1) {
+
+					if ( 1 == $coupon_expiration->get_expiration_option() ) {
 						echo "<p style='padding-left:40px;'>" . __( 'Yes', 'coupon-creator' ) . "</p>";
 					}
 					break;
 			}
 
-			if(has_filter('cctor_filter_column_cases')) {
+			if ( has_filter( 'cctor_filter_column_cases' ) ) {
 
 				/**
 				 * Filter the Admin Coupon List Columns Information per Coupon
@@ -400,70 +393,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				 * @param string $column a string of data to display in the admin columns.
 				 *
 				 */
-				echo apply_filters('cctor_filter_column_cases', $column, $post_id);
-			}
-		}
-
-		/***************************************************************************/
-
-		/*
-		* Admin Check if Coupon Shows on Front End
-		* @version 2.0
-		*/
-		public static function cctor_admin_check_expiration($coupon_id) {
-
-				//Ignore Expiration Value
-				$ignore_expiration = get_post_meta($coupon_id, 'cctor_ignore_expiration', true);
-
-				//Return If Not Passed Expiration Date
-				$expiration = Coupon_Creator_Plugin_Admin::cctor_admin_expiration_and_current_date($coupon_id);
-
-				//Enable Filter to stop coupon from showing
-				$show_coupon_check = false;
-
-				/**
-				 * Filter the the Coupon in Admin if it should Display
-				 *
-				 *
-				 * @param boolean $show_coupon_check true or false a coupon should show.
-				 *
-				 */
-				$show_coupon_check = apply_filters('cctor_admin_check_coupon', $show_coupon_check, $coupon_id);
-
-				if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
-
-					return true;
-
-				}	else {
-
-					return false;
-
-				}
-		}
-
-		/***************************************************************************/
-
-
-		/*
-		* Admin Check of Expiration Date
-		* @version 2.0
-		*/
-		public static function cctor_admin_expiration_and_current_date($coupon_id) {
-
-			//Coupon Expiration Date
-			$expirationco = get_post_meta($coupon_id, 'cctor_expiration', true);
-			$expiration['expiration'] = strtotime($expirationco);
-
-			//Blog Time According to WordPress
-			$cc_blogtime = current_time('mysql');
-			list( $today_year, $today_month, $today_day ) = preg_split( '([^0-9])', $cc_blogtime );
-
-			$expiration['today'] = strtotime($today_month."/".$today_day."/". $today_year);
-
-			if ($expiration['expiration'] >= $expiration['today']) {
-				return true;
-			} else {
-				return false;
+				echo apply_filters( 'cctor_filter_column_cases', $column, $post_id );
 			}
 		}
 
