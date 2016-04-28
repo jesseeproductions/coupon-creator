@@ -53,6 +53,10 @@ class CCtor_Expiration_Class {
 		$this->coupon_id = $coupon_id;
 		if ( ! $this->coupon_id ) {
 			$this->coupon_id = get_the_id();
+
+			if ( is_object($this->coupon_id) ) {
+				echo 'object!';
+			}
 		}
 
 		$this->expiration_option = get_post_meta( $this->coupon_id, 'cctor_expiration_option', true );
@@ -127,11 +131,7 @@ class CCtor_Expiration_Class {
 	/***************************************************************************/
 
 	/**
-	 * Coupon's Status Message
-	 *
-	 * @param $coupon_id
-	 *
-	 * @return array
+	 * Coupon Meta Status Message
 	 */
 	public function get_coupon_status_msg() {
 
@@ -153,17 +153,17 @@ class CCtor_Expiration_Class {
 				$msg_class     = 'cctor-error';
 			}
 
-		} elseif ( 3 == $this->expiration_option ) {
+		}
 
+		if ( $this->exp_msg ) {
 
-		} elseif ( 4 == $this->expiration_option ) {
+			$this->exp_msg = '<div class="cctor-meta-bg ' . esc_attr( $msg_class ) . '">' . $this->exp_msg . '' . '</div>';
 
+			echo $this->exp_msg;
 
 		}
 
-		$this->exp_msg = '<div class="cctor-meta-bg ' . esc_attr( $msg_class ) . '">' . $this->exp_msg . '' . '</div>';
-
-		echo $this->exp_msg;
+		return;
 
 	}
 
