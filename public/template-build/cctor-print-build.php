@@ -20,9 +20,6 @@ function cctor_print_template() {
 
 	add_action('coupon_print_meta', 'cctor_print_stylesheets_and_script', 10, 1 );
 
-	//todo remove as it is unused?
-	//add_filter('cctor_print_expiration_check', array( 'CCtor_Expiration_Class', 'is_coupon_before_expiration' ), 10 , 1);
-
 	add_filter('cctor_print_image_url', 'cctor_get_image_url', 10 , 2);
 
 	add_filter('cctor_print_outer_content_wrap', 'cctor_return_print_outer_coupon_wrap', 10 , 1);
@@ -39,7 +36,7 @@ function cctor_print_template() {
 
 	add_action('cctor_click_to_print_coupon', 'cctor_show_print_click', 10, 1 ); 
 
-	add_action('cctor_print_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 1 ); 		
+	add_action('cctor_print_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 2 );
 
 	do_action( 'cctor_print_template_functions' );
 }		 

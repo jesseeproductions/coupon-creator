@@ -5,15 +5,17 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 }
 
 /**
- * Coupon Creator Print Template Expiration
+ * Display Expiration Date
  *
- * @since 1.90
+ * @param null $coupon_expiration
  *
- * @param $coupon_id
+ * @return bool/string
  */
-function cctor_show_expiration( $coupon_id ) {
+function cctor_show_expiration( $coupon_expiration=null ) {
 
-	$coupon_expiration = new CCtor_Expiration_Class( $coupon_id );
+	if ( ! is_object( $coupon_expiration ) ) {
+		return false;
+	}
 
 	$expiration_date = $coupon_expiration->get_coupon_expiration_dates();
 
@@ -26,16 +28,23 @@ function cctor_show_expiration( $coupon_id ) {
 }
 
 /**
- * Coupon Creator Print Template No Show Coupon
- *
- * @since 1.90
+ * Add expiration date to html comment for expired coupon
  *
  * @param $coupon_id
+ * @param $coupon_expiration
+ *
+ * @return bool/string
  */
-function cctor_show_no_coupon_comment( $coupon_id ) {
-	//Coupon Expiration Date
-	$expirationco = get_post_meta( $coupon_id, 'cctor_expiration', true );
+function cctor_show_no_coupon_comment( $coupon_id, $coupon_expiration ) {
 
-	?><!-- Coupon "<?php echo get_the_title( $coupon_id ); ?>" Has Expired on <?php echo esc_html( $expirationco ); ?>--><?php
+	if ( ! is_object( $coupon_expiration ) ) {
+		return false;
+	}
+
+	$expiration_date = $coupon_expiration->get_coupon_expiration_dates();
+
+	if ( isset( $expiration_date['exp_date'] ) ) {
+		?><!-- Coupon "<?php echo get_the_title( $coupon_id ); ?>" Has Expired on <?php echo esc_html( $expiration_date['exp_date'] ); ?>--><?php
+	}
 
 }	

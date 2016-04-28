@@ -114,12 +114,12 @@ class CCtor_Expiration_Class {
 
 		if ( self::check_expiration() ) {
 
-			echo '<div class="cctor-meta-bg cctor-message"><div>' . __( 'This Coupon is Showing. class', 'coupon-creator' ) . '</div></div>';
+			echo '<div class="cctor-meta-bg cctor-message"><div>' . __( 'This Coupon is Showing. class1', 'coupon-creator' ) . '</div></div>';
 
 
 		} else {
 
-			echo '<div class="cctor-meta-bg cctor-error"><p>' . __( 'This Coupon is not Showing, please select an expiration option. class', 'coupon-creator' ) . '</p></div>';
+			echo '<div class="cctor-meta-bg cctor-error"><div>' . __( 'This Coupon is not Showing. class2', 'coupon-creator' ) . '</div></div>';
 
 		}
 
@@ -135,6 +135,8 @@ class CCtor_Expiration_Class {
 	 */
 	public function get_coupon_status_msg() {
 
+		$msg_class = 'cctor-message';
+
 		if ( 1 == $this->expiration_option ) {
 
 			$this->exp_msg = __( 'Ignore Coupon Expiration is On', 'coupon-creator' );
@@ -148,6 +150,7 @@ class CCtor_Expiration_Class {
 				$this->exp_msg = '<div>' . __( 'This Coupon Expires On ', 'coupon-creator' ) . $expiration['exp_date'] . '</div>';
 			} else {
 				$this->exp_msg = '<div>' . __( 'This Coupon Expired On ', 'coupon-creator' ) . $expiration['exp_date'] . '</div>';
+				$msg_class     = 'cctor-error';
 			}
 
 		} elseif ( 3 == $this->expiration_option ) {
@@ -158,7 +161,7 @@ class CCtor_Expiration_Class {
 
 		}
 
-		$this->exp_msg = '<div class="cctor-meta-bg cctor-message">' . $this->exp_msg . '' . '</div>';
+		$this->exp_msg = '<div class="cctor-meta-bg ' . esc_attr( $msg_class ) . '">' . $this->exp_msg . '' . '</div>';
 
 		echo $this->exp_msg;
 
@@ -225,9 +228,9 @@ class CCtor_Expiration_Class {
 	public function get_admin_list_coupon_showing() {
 
 		if ( self::check_expiration() ) {
-			echo "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing', 'coupon-creator' ) . "</p>";
+			echo "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing class1', 'coupon-creator' ) . "</p>";
 		} else {
-			echo "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing', 'coupon-creator' ) . "</p>";
+			echo "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing class2', 'coupon-creator' ) . "</p>";
 		}
 
 	}

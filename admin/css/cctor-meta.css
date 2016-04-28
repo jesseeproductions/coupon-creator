@@ -6,372 +6,397 @@
 #cctor_coupon_categorydiv h3,
 #coupon_creator_shortcode h3,
 #coupon_creator_meta_box h3 {
-    color: #2a5a8a;
-    font: italic 20px/30px Georgia,Times,serif;
-    margin: 0;
-    padding: 0 0 5px 10px;
-    text-shadow: 0 1px 0 #fff;
+	color: #2a5a8a;
+	font: italic 20px/30px Georgia, Times, serif;
+	margin: 0;
+	padding: 0 0 5px 10px;
+	text-shadow: 0 1px 0 #fff;
 }
 
 .postbox h4.coupon-heading:after {
-    background: linear-gradient(to right, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-    content: "";
-    display: block;
-    height: 1px;
-    margin-top: 10px;
+	background: linear-gradient(to right, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+	content: "";
+	display: block;
+	height: 1px;
+	margin-top: 10px;
 }
+
 .postbox h4.coupon-heading {
-    color: #048c7f;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 0 0 10px;
+	color: #048c7f;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0 0 10px;
 }
 
 .cctor_coupon_image.cctor_coupon_box_img,
 .cctor_coupon_box {
-	width: 200px;
+	border: 1px solid #dbdbdb;
+	font-size: 16px;
 	height: auto;
 	padding: 20px 5px;
-	border: 1px solid #dbdbdb;
 	text-align: center;
-	font-size: 16px;
+	width: 200px;
 }
+
 #image_coupon .cctor_coupon_image.cctor_coupon_box_img,
 #image_coupon .cctor_coupon_box {
 	border: 3px dashed #000000;
 }
+
 .cctor_coupon_image.cctor_coupon_box_img {
-	width: auto;
 	max-width: 400px;
+	width: auto;
 }
+
 .cctor-meta-field-wrap {
-	overflow:hidden;
 	margin: 10px 0;
+	overflow: hidden;
 }
+
 .cctor-meta-field,
-.cctor-meta-label  {
-	overflow:hidden;
-	float:left;
-}
 .cctor-meta-label {
-	width:30%;
+	float: left;
+	overflow: hidden;
 }
+
+.cctor-meta-label {
+	width: 30%;
+}
+
 .cctor-meta-field {
-	width:70%;
+	width: 70%;
 }
+
 .cctor-meta-field textarea,
 .cctor-meta-field.field-wysiwyg {
-    width: 100%;
+	width: 100%;
 }
 
 .field-wrap-cctor_videos .cctor-meta-label,
 .field-wrap-cctor_videos .cctor-meta-field {
-	width:100%;
+	width: 100%;
 }
+
 .cctor-js .javascript-conflict,
-#wp-cctor_description-media-buttons a:not(:first-child){
-	display:none;
+#wp-cctor_description-media-buttons a:not(:first-child) {
+	display: none;
 }
 
 .cctor-meta-bg {
-    background-color: #fff;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-    padding: 8px 12px;
+	background-color: #fff;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 	margin: 5px 0 15px;
-	overflow:hidden;
+	overflow: hidden;
+	padding: 8px 12px;
 }
 
-.cctor-message  {
-    border-left: 4px solid #048c7f;
+.cctor-message {
+	border-left: 4px solid #048c7f;
 	font-weight: bold;
-}
-.cctor-message  div {
-	width: 48%;
-	float:left;
-	padding: 0 2% 5px 0;
 }
 .cctor-error {
 	border-left: 4px solid #dd3d36;
-    padding: 1px 12px;
 	color: #dd3d36;
 }
+
+.cctor-error div,
+.cctor-message div {
+	float: left;
+	padding: 0 2% 0 0;
+	width: 48%;
+}
+
 .ui-widget-content a.cctor-support,
 .cctor-support {
-	color:#2a5a8a;
+	color: #2a5a8a;
 }
+
 .ui-widget-content a.cctor-support:hover,
 .cctor-support:hover {
-	color:#9DD3DF;
+	color: #9DD3DF;
 }
 
 .cctor-help-images {
-	max-width: 95%;
 	box-shadow: 0 1px 2px 0 rgba(21, 121, 111, 1);
+	display: none;
 	margin: 10px;
-	display:none;
+	max-width: 95%;
 }
-.cctor-pro-img  {
+
+.cctor-pro-img {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 	height: auto;
 	margin: 1% 0 2.5% 7%;
 	max-width: 90%;
-  	position:relative;
-    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	position: relative;
 }
+
 .cctor-pro-img:before, .cctor-pro-img:after {
-	content:"";
-    position:absolute;
-    z-index:-1;
-    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
-    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
-    box-shadow:0 0 20px rgba(0,0,0,0.8);
-    top:0;
-    bottom:0;
-    left:10px;
-    right:10px;
-    -moz-border-radius:100px / 10px;
-    border-radius:100px / 10px;
+	border-radius: 100px / 10px;
+	-moz-border-radius: 100px / 10px;
+	bottom: 0;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	content: "";
+	left: 10px;
+	position: absolute;
+	right: 10px;
+	top: 0;
+	z-index: -1;
 }
+
 .cctor-pro-img:after {
-	right:10px;
-    left:auto;
-    -webkit-transform:skew(8deg) rotate(3deg);
-       -moz-transform:skew(8deg) rotate(3deg);
-        -ms-transform:skew(8deg) rotate(3deg);
-         -o-transform:skew(8deg) rotate(3deg);
-            transform:skew(8deg) rotate(3deg);
+	left: auto;
+	right: 10px;
+	transform: skew(8deg) rotate(3deg);
+	-moz-transform: skew(8deg) rotate(3deg);
+	-ms-transform: skew(8deg) rotate(3deg);
+	-o-transform: skew(8deg) rotate(3deg);
+	-webkit-transform: skew(8deg) rotate(3deg);
 }
+
 .cctor-meta-field.field-cctor_upgrade_to_pro {
 	width: 100%;
 }
+
 /* Coupon Creator jQuery Tabs
 ------------------------------------------------------------ */
 .cctor-woo-tabs.ui-tabs.ui-widget-content,
 .cctor-tabs.ui-tabs.ui-widget-content {
-    background: none;
-    border: none;
-	font-family: "Open Sans",sans-serif;
+	background: none;
+	border: none;
+	font-family: "Open Sans", sans-serif;
 }
 
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav {
-	margin: 20px 0 -2px;
-	padding: 0;
 	background: none;
 	border: none;
 	height: 100%;
+	margin: 20px 0 -2px;
+	padding: 0;
 }
+
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li {
 	display: block;
 	float: left;
 	margin: 0;
 }
+
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-default,
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-active,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-default,
-.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active  {
-    background: none;
-    border: none;
+.ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active {
+	background: none;
+	border: none;
 }
+
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li a,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li a {
 	border-color: #fff;
+	border-radius: 8px 8px 0 0;
 	border-style: solid;
 	border-width: 1px 1px 0;
+	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
 	color: #5C5C5C;
-	text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
 	display: inline-block;
+	font-size: 13px;
+	font-weight: bold;
+	margin: 0 6px 1px 0;
 	padding: 4px 14px 6px;
 	text-decoration: none;
-	margin: 0 6px 1px 0;
-	border-radius: 8px 8px 0 0;
-	font-weight: bold;
-	font-size: 13px;
-	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
+	text-shadow: rgba(255, 255, 255, 1) 0 1px 0;
 }
+
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-tabs-selected a,
 .ui-tabs .cctor-woo-tabs-nav.ui-tabs-nav li.ui-state-active a,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-tabs-selected a,
 .ui-tabs .cctor-tabs-nav.ui-tabs-nav li.ui-state-active a {
-	border-width: 1px 1px 0;
-	color: #2A5A8A;
 	background: #fff;
+	border-width: 1px 1px 0;
 	box-shadow: 0 0 5px 0 rgba(18, 68, 107, 1.0);
+	color: #2A5A8A;
 }
 
 .coupon-section-fields {
 	margin: 3px 0 0;
 }
+
 .cctor-woo-tabs-panel.ui-tabs-panel.ui-widget-content,
-.cctor-tabs-panel.ui-tabs-panel.ui-widget-content{
-	clear: both;
+.cctor-tabs-panel.ui-tabs-panel.ui-widget-content {
 	background: #fff;
-	padding: 2%;
 	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
-	overflow:hidden;
+	clear: both;
+	overflow: hidden;
+	padding: 2%;
 }
 
 /* Responsive Tab Mode
 ------------------------------------------------------------ */
 .cctor-tabs-nav-mobile,
 .cctor-woo-tabs-nav-mobile {
-	display:none;
 	background: #fff;
 	border-color: #fff;
+	border-radius: 8px 8px 0 0;
 	border-style: solid;
 	border-width: 1px 1px 0;
-    box-shadow: 0 0 5px 0 rgba(18, 68, 107, 1);
-    color: #2a5a8a;
-	border-radius: 8px 8px 0 0;
-	padding: 3px 10px 8px;
+	box-shadow: 0 0 5px 0 rgba(18, 68, 107, 1);
+	color: #2a5a8a;
 	cursor: pointer;
-	margin-bottom: 2px;	
+	display: none;
+	margin-bottom: 2px;
+	padding: 3px 10px 8px;
 }
 
 .cctor-woo-tabs-nav-mobile.show,
 .cctor-tabs-nav-mobile.show {
-	display:block;
+	display: block;
 }
 
 .cctor-woo-tabs-nav-mobile:after,
 .cctor-tabs-nav-mobile:after {
-content: "☰";
-position: absolute;
-top: 8px;
-right: 15px;
-z-index: 2;
-pointer-events: none;
+	content: "☰";
+	pointer-events: none;
+	position: absolute;
+	right: 15px;
+	top: 8px;
+	z-index: 2;
 }
 
 .ui-tabs .cctor-woo-tabs-nav.cctor_accordiantabs,
 .ui-tabs .cctor-tabs-nav.cctor_accordiantabs {
-border-bottom: 0;
-height: auto;
-margin: 5px 0 15px;
-display:none;
+	border-bottom: 0;
+	display: none;
+	height: auto;
+	margin: 5px 0 15px;
 }
 
 .cctor-woo-tabs-nav.cctor_accordiantabs li a.ui-tabs-anchor,
 .cctor-tabs-nav.cctor_accordiantabs li a.ui-tabs-anchor {
-position: relative;
-display: block;
-margin:0;
-padding:5px;
-float:none;
-border-radius: 0;
-border: none;
+	border: none;
+	border-radius: 0;
+	display: block;
+	float: none;
+	margin: 0;
+	padding: 5px;
+	position: relative;
 }
+
 .cctor-woo-tabs-nav.cctor_accordiantabs li.ui-state-default,
 .cctor-tabs-nav.cctor_accordiantabs li.ui-state-default {
-display: block;
-float: none;
+	display: block;
+	float: none;
 }
 
 /* Coupon Creator jQuery UI Changes
 ------------------------------------------------------------ */
 .ui-datepicker.cctor-ui,
 .ui-dialog.cctor-ui {
-    background: #fefefe;
-    border: 1px solid #ccc;
+	background: #fefefe;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), /* The top layer shadow */ 0 8px 0 -5px #eee, /* The second layer */ 0 8px 1px -4px rgba(0, 0, 0, 0.15), /* The second layer shadow */ 0 14px 0 -8px #eee, /* The third layer */ 0 14px 1px -9px rgba(0, 0, 0, 0.15);
+	height: 250px;
 	padding: 10px;
-    height: 250px;
-	z-index:101;
-    -webkit-border-radius: 3px;
-       -moz-border-radius: 3px;
-            border-radius: 3px;
-	box-shadow:
-        0 1px 1px rgba(0,0,0,0.15), /* The top layer shadow */
-        0 8px 0 -5px #eee, /* The second layer */
-        0 8px 1px -4px rgba(0,0,0,0.15), /* The second layer shadow */
-        0 14px 0 -8px #eee, /* The third layer */
-        0 14px 1px -9px rgba(0,0,0,0.15); /* The third layer shadow */
+	z-index: 101; /* The third layer shadow */
 }
+
 .ui-datepicker.cctor-ui {
 	height: auto;
 }
+
 .ui-datepicker.cctor-ui:after,
 .ui-datepicker.cctor-ui:before,
 .ui-dialog.cctor-ui:after,
 .ui-dialog.cctor-ui:before {
-    bottom: 0;
-	top: 0;
-	right: 0;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	bottom: 0;
+	box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+	-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+	content: '';
 	left: 0;
-    content: '';
-    position: absolute;
+	position: absolute;
+	right: 0;
+	top: 0;
 	z-index: -10;
-    -webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
-       -moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
-            box-shadow: 0 0 3px rgba(0,0,0,.2);
-    -webkit-border-radius: 3px;
-       -moz-border-radius: 3px;
-            border-radius: 3px;
 }
 
 .cctor-ui .ui-widget-header .ui-state-default.ui-dialog-titlebar-close,
 .cctor-ui .ui-widget-header {
-    background: none;
-    border: none;
-    color: #000;
-    font-weight: bold;
+	background: none;
+	border: none;
+	color: #000;
+	font-weight: bold;
 }
+
 .cctor-ui .ui-widget-header .ui-icon {
 	background-image: url("../images/ui-icons_2e83ff_256x240.png");
 }
+
 .ui-dialog.cctor-ui .ui-dialog-titlebar-close span.ui-icon-closethick {
-    margin-left: -3px;
-    margin-top: -14px;
-    background-image: url("../images/ui-icons_2e83ff_256x240.png");
+	background-image: url("../images/ui-icons_2e83ff_256x240.png");
+	margin-left: -3px;
+	margin-top: -14px;
 }
 
 .cctor-ui .ui-state-default, .cctor-ui.ui-widget-content .ui-state-default, .cctor-ui .ui-widget-header .ui-state-default {
-    background: url("../images/ui-bg_flat_65_2a5a8a_40x100.png") repeat-x scroll 50% 50% #e6e6e6;
-    border: 1px solid #d3d3d3;
-    color: #fff;
-    font-weight: normal;
+	background: url("../images/ui-bg_flat_65_2a5a8a_40x100.png") repeat-x scroll 50% 50% #e6e6e6;
+	border: 1px solid #d3d3d3;
+	color: #fff;
+	font-weight: normal;
 }
-.cctor-ui  .ui-state-hover, .cctor-ui.ui-widget-content .ui-state-hover, .cctor-ui  .ui-widget-header .ui-state-hover, .cctor-ui  .ui-state-focus, .cctor-ui.ui-widget-content .ui-state-focus, .cctor-ui .ui-widget-header .ui-state-focus {
-	opacity: 0.7;
+
+.cctor-ui .ui-state-hover, .cctor-ui.ui-widget-content .ui-state-hover, .cctor-ui .ui-widget-header .ui-state-hover, .cctor-ui .ui-state-focus, .cctor-ui.ui-widget-content .ui-state-focus, .cctor-ui .ui-widget-header .ui-state-focus {
+	filter: alpha(opacity=70);
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=70)"; /* for IE8 in IE7 mode; must be before filter below */
-	filter: alpha(opacity=70); /* IE6-IE8 */
+	opacity: 0.7; /* IE6-IE8 */
 }
-.ui-dialog.cctor-ui  .ui-dialog-content {
+
+.ui-dialog.cctor-ui .ui-dialog-content {
 	overflow: hidden;
 }
+
 .post-type-cctor_coupon .ui-widget-overlay {
-    position: fixed;
+	position: fixed;
 }
 
 /* Coupon Creator Loading
 ------------------------------------------------------------ */
 
 #cctor-loading {
-	display           : none;
-	position          : absolute;
-	width             : 100%;
-	height            : 100%;
-	left              : 0;
-	top               : 0;
-	background        : #fff;
-	background        : rgba(255, 255, 255, 0.8);
-	z-index           : 4;
-	webkit-transition : all 1s linear;
-	-moz-transition   : all 1s linear;
-	-o-transition     : all 1s linear;
-	-ms-transition    : all 1s linear;
-	transition        : all 1s linear;
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	display: none;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-ms-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	width: 100%;
+	z-index: 4;
+	webkit-transition: all 1s linear;
 }
 
 #cctor-loading span {
-	position   : absolute;
-	width      : 32px;
-	height     : 32px;
-	left       : 50%;
-	top        : 50%;
-	margin     : -16px 0 0 -16px;
-	background : url(../images/cctor-loading.gif) 0 0 no-repeat;
+	background: url(../images/cctor-loading.gif) 0 0 no-repeat;
+	background-size: 32px 32px;
+	height: 32px;
+	left: 50%;
+	margin: -16px 0 0 -16px;
+	position: absolute;
+	top: 50%;
+	width: 32px;
 	-webkit-background-size: 32px 32px;
-			background-size: 32px 32px;
 }

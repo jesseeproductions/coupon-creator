@@ -9,9 +9,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 */
 function cctor_shortcode_functions() {	 
 
-	//todo remove as it is unused?
-	//add_filter('cctor_expiration_check', array( 'CCtor_Expiration_Class', 'is_coupon_before_expiration' ), 10 , 1);
-
 	add_filter('cctor_image_url', 'cctor_get_image_url', 10 , 2);
 
 	add_filter('cctor_outer_content_wrap', 'cctor_return_outer_coupon_wrap', 10 , 3);
@@ -28,7 +25,7 @@ function cctor_shortcode_functions() {
 
 	add_action('cctor_coupon_link', 'cctor_show_link', 10, 1 ); 
 
-	add_action('cctor_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 1 ); 		
+	add_action('cctor_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 2 );
 
 	do_action( 'cctor_shortcode_template_functions' );
 }

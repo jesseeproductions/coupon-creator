@@ -74,10 +74,11 @@ class Coupon_Creator_Shortcode {
 						
 			$coupon_id = $coupons->post->ID;
 
+			$coupon_expiration = new CCtor_Expiration_Class( $coupon_id );
 
-			do_action( 'cctor_before_coupon' , $coupon_id ); 
+			do_action( 'cctor_before_coupon' , $coupon_id );
 				//Check to show the Coupon
-				if ( CCtor_Expiration_Class::check_expiration( $coupon_id ) ) {
+				if ( $coupon_expiration->check_expiration() ) {
 					
 					$outer_coupon_wrap  = apply_filters( 'cctor_outer_content_wrap' , $coupon_id , $coupon_align, $cctor_atts['bordertheme'] );
 							
@@ -102,7 +103,7 @@ class Coupon_Creator_Shortcode {
 
 								do_action( 'cctor_coupon_terms' , $coupon_id );
 
-								do_action( 'cctor_coupon_expiration' , $coupon_id ); 
+								do_action( 'cctor_coupon_expiration' , $coupon_expiration );
 
 							echo $inner_coupon_wrap['end_wrap'];
 
@@ -114,7 +115,7 @@ class Coupon_Creator_Shortcode {
 					
 				} else {
 					//No Coupon Will Show So Print HTML Comment
-					do_action( 'cctor_no_show_coupon' , $coupon_id );
+					do_action( 'cctor_no_show_coupon' , $coupon_id, $coupon_expiration );
 				}
 
 				do_action( 'cctor_after_coupon' , $coupon_id );

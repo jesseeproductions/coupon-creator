@@ -796,7 +796,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			//Expiration Option Auto Check Ignore Input
 			if ( 1 == $_POST['cctor_expiration_option'] ) {
 				$_POST['cctor_ignore_expiration'] = 'on';
-			} elseif ( 'on' == $_POST['cctor_ignore_expiration'] && 1 != $_POST['cctor_expiration_option'] ) {
+			} elseif ( isset( $_POST['cctor_ignore_expiration'] ) && 'on' == $_POST['cctor_ignore_expiration'] && 1 != $_POST['cctor_expiration_option'] ) {
 				unset( $_POST['cctor_ignore_expiration'] );
 			}
 
