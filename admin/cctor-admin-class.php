@@ -356,7 +356,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 		 */
 		public static function cctor_column_cases( $column, $post_id ) {
 
-			$coupon_expiration = new CCtor_Expiration_Class( $post_id );
+			if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
+				$coupon_expiration = new CCtor_Pro_Expiration_Class();
+			} else {
+				$coupon_expiration = new CCtor_Expiration_Class();
+			}
 
 			switch ( $column ) {
 				case 'cctor_coupon_shortcode':
@@ -364,16 +368,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					break;
 				case 'cctor_coupon_showing':
 
-					$coupon_expiration->get_admin_list_coupon_showing();
+					echo $coupon_expiration->get_admin_list_coupon_showing();
 
 					break;
 				case 'cctor_coupon_expiration':
 
-					$expiration_date = $coupon_expiration->get_coupon_expiration_dates();
-
-					if ( isset( $expiration_date['exp_date'] ) ) {
-						echo esc_html( $expiration_date['exp_date'] );
-					}
+					echo $coupon_expiration->get_display_expiration();
 
 					break;
 				case 'cctor_coupon_ignore_expiration':
@@ -389,11 +389,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				/**
 				 * Filter the Admin Coupon List Columns Information per Coupon
 				 *
+				 * @since 1.80
 				 *
-				 * @param string $column a string of data to display in the admin columns.
+				 * @param string $column            a string of data to display in the admin columns.
+				 * @param int    $post_id           an integer of the coupon post
+				 * @param object $coupon_expiration the expiration object.
 				 *
 				 */
-				echo apply_filters( 'cctor_filter_column_cases', $column, $post_id );
+				apply_filters( 'cctor_filter_column_cases', $column, $post_id, $coupon_expiration );
 			}
 		}
 

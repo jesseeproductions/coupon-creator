@@ -1,12 +1,16 @@
 <?php
-
-
+//If Direct Access Kill the Script
+if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
+	die( 'Access denied.' );
+}
+/**
+ * Class CCtor_Expiration_Class
+ *
+ * @since 2.3
+ *
+ * Expiration Class to determine if a coupon should display and process all expiration information
+ */
 class CCtor_Expiration_Class {
-
-	/**
-	 * @var static
-	 */
-	protected static $instance;
 
 	/**
 	 * @var int
@@ -19,9 +23,9 @@ class CCtor_Expiration_Class {
 	protected $expiration_option;
 
 	/**
-	 * @var string
+	 * @var date
 	 */
-	protected $exp_msg;
+	protected $expiration;
 
 	/**
 	 * @var string
@@ -31,7 +35,17 @@ class CCtor_Expiration_Class {
 	/**
 	 * @var string
 	 */
-	protected $expiration;
+	protected $display_date;
+
+	/**
+	 * @var string
+	 */
+	protected $date_unix;
+
+	/**
+	 * @var string
+	 */
+	protected $today_unix;
 
 	/**
 	 * @var string
@@ -46,15 +60,23 @@ class CCtor_Expiration_Class {
 	/**
 	 * @var string
 	 */
-	//protected $ignore_expiration;
+	protected $exp_msg;
 
+	/**
+	 * @var string
+	 */
+	protected $exp_class;
+
+	/*
+	 * Contruct Coupon Expiration Class
+	 */
 	public function __construct( $coupon_id = null ) {
 
 		$this->coupon_id = $coupon_id;
 		if ( ! $this->coupon_id ) {
 			$this->coupon_id = get_the_id();
 
-			if ( is_object($this->coupon_id) ) {
+			if ( is_object( $this->coupon_id ) ) {
 				echo 'object!';
 			}
 		}
@@ -64,13 +86,22 @@ class CCtor_Expiration_Class {
 		if ( 1 != $this->expiration_option ) {
 			$this->date_format = get_post_meta( $this->coupon_id, 'cctor_date_format', true );
 			$this->expiration  = get_post_meta( $this->coupon_id, 'cctor_expiration', true );
+			self::set_coupon_expiration_dates();
 		}
 
 		$this->show_coupon   = true;
 		$this->coupon_hidden = false;
-		//$this->ignore_expiration = get_post_meta( $coupon_id, 'cctor_ignore_expiration', true );
+
+		if ( is_admin() ) {
+			self::set_coupon_status_msg();
+		}
 	}
 
+	/**
+	 *  Check whether a coupon should show or not
+	 *
+	 * @return bool
+	 */
 	public function check_expiration() {
 
 		if ( 1 != $this->expiration_option ) {
@@ -98,13 +129,9 @@ class CCtor_Expiration_Class {
 		$this->coupon_hidden = apply_filters( 'cctor_filter_meta_show_coupon_check', $this->coupon_hidden, $this->coupon_id );
 
 		if ( ( $this->show_coupon ) && ! $this->coupon_hidden ) {
-
 			return true;
-
 		} else {
-
 			return false;
-
 		}
 	}
 
@@ -115,27 +142,41 @@ class CCtor_Expiration_Class {
 	 *
 	 */
 	public function get_coupon_status() {
-
 		if ( self::check_expiration() ) {
-
 			echo '<div class="cctor-meta-bg cctor-message"><div>' . __( 'This Coupon is Showing. class1', 'coupon-creator' ) . '</div></div>';
-
-
 		} else {
-
 			echo '<div class="cctor-meta-bg cctor-error"><div>' . __( 'This Coupon is not Showing. class2', 'coupon-creator' ) . '</div></div>';
-
 		}
-
 	}
+
 	/***************************************************************************/
 
 	/**
-	 * Coupon Meta Status Message
+	 * Get the coupon status message
 	 */
 	public function get_coupon_status_msg() {
+		if ( $this->exp_msg ) {
+			$this->exp_msg = '<div class="cctor-meta-bg ' . esc_attr( $this->exp_class ) . '">' . $this->exp_msg . '' . '</div>';
+		}
 
-		$msg_class = 'cctor-message';
+		return $this->exp_msg;
+	}
+
+	/**
+	 * Display the coupon status message
+	 */
+	public function the_coupon_status_msg() {
+		echo self::get_coupon_status_msg();
+	}
+
+	/***************************************************************************/
+
+	/**
+	 * Set Coupon Meta Status Message
+	 */
+	public function set_coupon_status_msg() {
+
+		$this->exp_class = 'cctor-message';
 
 		if ( 1 == $this->expiration_option ) {
 
@@ -143,50 +184,51 @@ class CCtor_Expiration_Class {
 
 		} elseif ( 2 == $this->expiration_option ) {
 
-			$expiration = self::get_coupon_expiration_dates();
-			if ( ! isset( $expiration['exp_date'] ) ) {
+			if ( ! isset( $this->display_date ) ) {
 				$this->exp_msg = '<div>' . __( 'There is no Coupon Expiration Date', 'coupon-creator' ) . '</div>';
-			} elseif ( $expiration['exp_unix'] >= $expiration['today'] ) {
-				$this->exp_msg = '<div>' . __( 'This Coupon Expires On ', 'coupon-creator' ) . $expiration['exp_date'] . '</div>';
+			} elseif ( $this->date_unix >= $this->today_unix ) {
+				$this->exp_msg = '<div>' . __( 'This Coupon Expires On ', 'coupon-creator' ) . $this->display_date . '</div>';
 			} else {
-				$this->exp_msg = '<div>' . __( 'This Coupon Expired On ', 'coupon-creator' ) . $expiration['exp_date'] . '</div>';
-				$msg_class     = 'cctor-error';
+				$this->exp_msg   = '<div>' . __( 'This Coupon Expired On ', 'coupon-creator' ) . $this->display_date . '</div>';
+				$this->exp_class = 'cctor-error';
 			}
 
 		}
-
-		if ( $this->exp_msg ) {
-
-			$this->exp_msg = '<div class="cctor-meta-bg ' . esc_attr( $msg_class ) . '">' . $this->exp_msg . '' . '</div>';
-
-			echo $this->exp_msg;
-
-		}
-
-		return;
-
 	}
 
 	/***************************************************************************/
 
 	/**
-	 * Get Coupon Expiration Date, Unix Time, and Today
-	 *
-	 * @param $coupon_id
-	 *
-	 * @return mixed
+	 * Get the formatted expiration date
 	 */
-	public function get_coupon_expiration_dates() {
+	public function get_display_expiration() {
+		if ( $this->display_date ) {
+			return $this->display_date;
+		}
 
-		$expiration['exp_unix'] = strtotime( $this->expiration );
-		$expiration['exp_date'] = $this->expiration;
+		return false;
+	}
 
-		//Date Format
-		if ( $this->expiration ) { // Only Display Expiration if Date
+	/**
+	 * Display the formatted expiration date
+	 */
+	public function the_display_expiration() {
+		echo self::get_display_expiration();
+	}
+
+	/**
+	 * Set Coupon Expiration Date, Unix Time, and Today
+	 *
+	 */
+	public function set_coupon_expiration_dates() {
+
+		if ( $this->expiration ) {
+
+			$this->date_unix = strtotime( $this->expiration );
 
 			if ( $this->date_format == 1 ) { //Change to Day - Month Style
 
-				$expiration['exp_date'] = date( "d/m/Y", $expiration['exp_unix'] );
+				$this->display_date = date( "d/m/Y", $this->date_unix );
 
 			}
 		}
@@ -194,10 +236,10 @@ class CCtor_Expiration_Class {
 		//Blog Time According to WordPress
 		$cc_blogtime = current_time( 'mysql' );
 		list( $today_year, $today_month, $today_day ) = preg_split( '([^0-9])', $cc_blogtime );
-		$expiration['today'] = strtotime( $today_month . "/" . $today_day . "/" . $today_year );
+		$this->today_unix = strtotime( $today_month . "/" . $today_day . "/" . $today_year );
 
-		return $expiration;
 	}
+
 	/***************************************************************************/
 
 	/**
@@ -209,9 +251,7 @@ class CCtor_Expiration_Class {
 	 */
 	public function is_coupon_current() {
 
-		$expiration = self::get_coupon_expiration_dates();
-
-		if ( $expiration['exp_unix'] >= $expiration['today'] ) {
+		if ( $this->date_unix >= $this->today_unix ) {
 
 			return true;
 		}
@@ -223,14 +263,16 @@ class CCtor_Expiration_Class {
 	/***************************************************************************/
 
 	/**
-	 *  Show Message in Admin List if the Coupon is Showing Or Not
+	 * Show Message in Admin List if the Coupon is Showing Or Not
+	 *
+	 * @return string
 	 */
 	public function get_admin_list_coupon_showing() {
 
 		if ( self::check_expiration() ) {
-			echo "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing class1', 'coupon-creator' ) . "</p>";
+			return "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing', 'coupon-creator' ) . "</p>";
 		} else {
-			echo "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing class2', 'coupon-creator' ) . "</p>";
+			return "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing', 'coupon-creator' ) . "</p>";
 		}
 
 	}
