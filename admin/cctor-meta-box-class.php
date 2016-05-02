@@ -333,7 +333,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 												if ( $meta ) {
 													$selected = $meta;
 												} elseif ( $pagenow == 'post-new.php' ) {
-													$selected = $field['value'];
+													$selected = isset( $field['value'] ) ? $field['value'] : '';
 												}
 
 												?>
@@ -687,7 +687,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'wrapclass' => 'expiration-field expiration-3'
 			);
 			$coupon_creator_meta_fields[ $prefix . 'expiration_msg_4' ] = array(
-				'desc'      => __( 'This coupon will expire X days from when the date a visitor sees it.', 'coupon-creator' ),
+				'desc'      => __( 'This coupon will expire X days from when it is printed.', 'coupon-creator' ),
 				'id'        => $prefix . 'expiration_msg_4',
 				'type'      => 'message',
 				'section'   => 'coupon_creator_meta_box',

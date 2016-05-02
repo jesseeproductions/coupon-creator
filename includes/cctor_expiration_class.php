@@ -20,7 +20,7 @@ class CCtor_Expiration_Class {
 	/**
 	 * @var int
 	 */
-	protected $expiration_option;
+	public $expiration_option;
 
 	/**
 	 * @var date
@@ -143,9 +143,9 @@ class CCtor_Expiration_Class {
 	 */
 	public function get_coupon_status() {
 		if ( self::check_expiration() ) {
-			echo '<div class="cctor-meta-bg cctor-message"><div>' . __( 'This Coupon is Showing. class1', 'coupon-creator' ) . '</div></div>';
+			echo '<div class="cctor-meta-bg cctor-message"><div>' . __( 'This Coupon is Showing.', 'coupon-creator' ) . '</div></div>';
 		} else {
-			echo '<div class="cctor-meta-bg cctor-error"><div>' . __( 'This Coupon is not Showing. class2', 'coupon-creator' ) . '</div></div>';
+			echo '<div class="cctor-meta-bg cctor-error"><div>' . __( 'This Coupon is not Showing.', 'coupon-creator' ) . '</div></div>';
 		}
 	}
 
@@ -217,6 +217,18 @@ class CCtor_Expiration_Class {
 	}
 
 	/**
+	 *  Get the Expiration Date Format
+	 *
+	 * @return bool|mixed|string
+	 */
+	public function get_date_format() {
+		if ( $this->date_format ) {
+			return $this->date_format;
+		}
+
+		return false;
+	}
+	/**
 	 * Set Coupon Expiration Date, Unix Time, and Today
 	 *
 	 */
@@ -226,10 +238,10 @@ class CCtor_Expiration_Class {
 
 			$this->date_unix = strtotime( $this->expiration );
 
-			if ( $this->date_format == 1 ) { //Change to Day - Month Style
-
+			//Display Date with Formatting
+			$this->display_date = $this->expiration;
+			if ( $this->date_format == 1 ) {
 				$this->display_date = date( "d/m/Y", $this->date_unix );
-
 			}
 		}
 

@@ -325,13 +325,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				$cctor_columns['author'] = $columns['author'];
 			}
 
-			$cctor_columns['cctor_coupon_showing'] = __( 'Coupon is ', 'coupon-creator' );
+			$cctor_columns['cctor_showing'] = __( 'Coupon is ', 'coupon-creator' );
 
-			$cctor_columns['cctor_coupon_shortcode'] = __( 'Shortcode', 'coupon-creator' );
+			$cctor_columns['cctor_shortcode'] = __( 'Shortcode', 'coupon-creator' );
 
-			$cctor_columns['cctor_coupon_ignore_expiration'] = __( 'Ignore Expiration', 'coupon-creator' );
+			$cctor_columns['cctor_ignore_expiration'] = __( 'Ignore Expiration', 'coupon-creator' );
 
-			$cctor_columns['cctor_coupon_expiration'] = __( 'Expiration Date', 'coupon-creator' );
+			$cctor_columns['cctor_expiration_date'] = __( 'Expiration Date', 'coupon-creator' );
 
 
 			if( isset( $columns['date'] ) ) {
@@ -369,20 +369,20 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			}
 
 			switch ( $column ) {
-				case 'cctor_coupon_shortcode':
+				case 'cctor_showing':
 					echo "<code>[coupon couponid='" . $post_id . "' name='" . get_the_title( $post_id ) . "']</code>";
 					break;
-				case 'cctor_coupon_showing':
+				case 'cctor_shortcode':
 
 					echo $coupon_expiration->get_admin_list_coupon_showing();
 
 					break;
-				case 'cctor_coupon_expiration':
+				case 'cctor_expiration_date':
 
 					echo $coupon_expiration->get_display_expiration();
 
 					break;
-				case 'cctor_coupon_ignore_expiration':
+				case 'cctor_ignore_expiration':
 
 					if ( 1 == $coupon_expiration->get_expiration_option() ) {
 						echo "<p style='padding-left:40px;'>" . __( 'Yes', 'coupon-creator' ) . "</p>";
