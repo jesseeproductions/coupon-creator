@@ -17,7 +17,7 @@ function cctor_show_expiration( $coupon_expiration=null ) {
 		return false;
 	}
 
-	$expiration_date = $coupon_expiration->get_coupon_expiration_dates();
+	$expiration_date = $coupon_expiration->get_display_expiration();
 
 	if ( isset( $expiration_date['exp_date'] ) ) {
 		?>
@@ -41,7 +41,7 @@ function cctor_show_no_coupon_comment( $coupon_id, $coupon_expiration ) {
 		return false;
 	}
 
-	$expiration_date = $coupon_expiration->get_coupon_expiration_dates();
+	$expiration_date = $coupon_expiration->get_display_expiration();
 
 	if ( isset( $expiration_date['exp_date'] ) ) {
 		?><!-- Coupon "<?php echo get_the_title( $coupon_id ); ?>" Has Expired on <?php echo esc_html( $expiration_date['exp_date'] ); ?>--><?php
