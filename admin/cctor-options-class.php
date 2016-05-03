@@ -602,13 +602,12 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			}
 
 			$this->options['cctor_expiration_option'] = array(
-				'label'   => __( 'Expiration Option', 'coupon-creator' ),
+				'section' => 'defaults',
+				'title'   => __( 'Expiration Option', 'coupon-creator' ),
 				'desc'    => __( 'Choose the expiration method for this coupon', 'coupon-creator' ),
-				'value'   => '',
+				'std'     => '1',
 				'type'    => 'select',
 				'choices' => $expiration_options,
-				'section' => 'defaults',
-				'tab'     => 'expiration'
 			);
 
 			$this->options['cctor_default_date_format']                  = array(
@@ -631,6 +630,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => ''
 			);
 			$this->options['cctor_pro_recurrence_pattern_limit_default'] = array(
+				'type'    => '',
+				'section' => ''
+			);
+			$this->options['cctor_pro_x_days_default'] = array(
 				'type'    => '',
 				'section' => ''
 			);

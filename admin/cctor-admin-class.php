@@ -79,7 +79,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			update_option( 'coupon_update_version', date('l jS \of F Y h:i:s A') );
 
-			self::cctor_update_ignore_expiration();
+			self::cctor_update_expiration_option();
+
+			//self::cctor_update_ignore_expiration();
 
 			self::cctor_update_image_fields();
 
@@ -89,6 +91,59 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 		}
 	}
+
+	/***************************************************************************/
+		/**
+		 * Update Coupons with new Expiration Options in 2.3
+		 */
+		public static function cctor_update_expiration_option() {
+			//Run this script once
+			if ( get_option( 'coupon_update_expiration_type' ) ) {
+				return;
+			}
+			$args = array(
+				'posts_per_page' => 1000,
+				'post_type'      => 'cctor_coupon',
+				'post_status'    => 'publish',
+			);
+
+			$cctor_exp_option = new WP_Query( $args );
+
+			if ( $cctor_exp_option ) {
+
+				while ( $cctor_exp_option->have_posts() ) : $cctor_exp_option->the_post();
+
+					//If there is an Expiration Option Skip this Coupon
+					$cctor_expiration_option          = get_post_meta( $cctor_exp_option->post->ID, 'cctor_expiration_option', true );
+					if ( $cctor_expiration_option ) {
+						continue;
+					}
+
+					$cctor_ignore_expiration          = get_post_meta( $cctor_exp_option->post->ID, 'cctor_ignore_expiration', true );
+					$cctor_expiration                 = get_post_meta( $cctor_exp_option->post->ID, 'cctor_expiration', true );
+					$cctor_recurring_expiration_limit = get_post_meta( $cctor_exp_option->post->ID, 'cctor_recurring_expiration_limit', true );
+					$cctor_recurring_expiration       = get_post_meta( $cctor_exp_option->post->ID, 'cctor_recurring_expiration', true );
+					$cctor_x_days_expiration          = get_post_meta( $cctor_exp_option->post->ID, 'cctor_x_days_expiration', true );
+
+					if ( 1 == $cctor_ignore_expiration ) {
+						update_post_meta( $cctor_exp_option->post->ID, 'cctor_expiration_option', 1 );
+					} elseif ( $cctor_expiration && ! $cctor_recurring_expiration_limit && ! $cctor_recurring_expiration ) {
+						update_post_meta( $cctor_exp_option->post->ID, 'cctor_expiration_option', 2 );
+					} elseif ( $cctor_expiration && $cctor_recurring_expiration_limit && $cctor_recurring_expiration ) {
+						update_post_meta( $cctor_exp_option->post->ID, 'cctor_expiration_option', 3 );
+					} elseif ( $cctor_x_days_expiration ) {
+						update_post_meta( $cctor_exp_option->post->ID, 'cctor_expiration_option', 4 );
+					}
+
+				endwhile;
+			}
+
+
+			wp_reset_postdata();
+
+			update_option( 'coupon_update_expiration_type', date( 'l jS \of F Y h:i:s A' ) );
+
+		}
 
 	/***************************************************************************/
 	/*

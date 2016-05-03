@@ -655,7 +655,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'label'   => __( 'Expiration Option', 'coupon-creator' ),
 				'desc'    => __( 'Choose the expiration method for this coupon', 'coupon-creator' ),
 				'id'      => $prefix . 'expiration_option',
-				'value'   => '',
+				'value'   => cctor_options( 'cctor_expiration_option' ),
 				'type'    => 'select',
 				'choices' => $expiration_options,
 				'section' => 'coupon_creator_meta_box',
