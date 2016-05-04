@@ -74,7 +74,12 @@ class Coupon_Creator_Shortcode {
 						
 			$coupon_id = $coupons->post->ID;
 
-			$coupon_expiration = new CCtor_Expiration_Class( $coupon_id );
+
+			if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
+				$coupon_expiration = new CCtor_Pro_Expiration_Class( $coupon_id );
+			} else {
+				$coupon_expiration = new CCtor_Expiration_Class( $coupon_id );
+			}
 
 			do_action( 'cctor_before_coupon' , $coupon_id );
 				//Check to show the Coupon
@@ -103,7 +108,7 @@ class Coupon_Creator_Shortcode {
 
 								do_action( 'cctor_coupon_terms' , $coupon_id );
 
-								do_action( 'cctor_coupon_expiration' , $coupon_expiration );
+								do_action( 'cctor_coupon_expiration' , $coupon_id, $coupon_expiration );
 
 							echo $inner_coupon_wrap['end_wrap'];
 

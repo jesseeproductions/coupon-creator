@@ -32,7 +32,7 @@ function cctor_print_template() {
 
 	add_action('cctor_print_coupon_terms', 'cctor_show_terms', 10, 1 ); 
 
-	add_action('cctor_print_coupon_expiration', 'cctor_show_expiration', 10, 1 ); 
+	add_action('cctor_print_coupon_expiration', 'cctor_show_expiration', 10, 2 );
 
 	add_action('cctor_click_to_print_coupon', 'cctor_show_print_click', 10, 1 ); 
 

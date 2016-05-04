@@ -21,7 +21,7 @@ function cctor_shortcode_functions() {
 
 	add_action('cctor_coupon_terms', 'cctor_show_terms', 10, 1 ); 
 
-	add_action('cctor_coupon_expiration', 'cctor_show_expiration', 10, 1 ); 
+	add_action('cctor_coupon_expiration', 'cctor_show_expiration', 10, 2 );
 
 	add_action('cctor_coupon_link', 'cctor_show_link', 10, 1 ); 
 

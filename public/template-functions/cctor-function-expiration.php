@@ -11,7 +11,7 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
  *
  * @return bool/string
  */
-function cctor_show_expiration( $coupon_expiration=null ) {
+function cctor_show_expiration( $coupon_id, $coupon_expiration = null ) {
 
 	if ( ! is_object( $coupon_expiration ) ) {
 		return false;
@@ -19,10 +19,10 @@ function cctor_show_expiration( $coupon_expiration=null ) {
 
 	$expiration_date = $coupon_expiration->get_display_expiration();
 
-	if ( isset( $expiration_date['exp_date'] ) ) {
+	if ( ! empty( $expiration_date ) ) {
 		?>
 		<div class="cctor_expiration core"><?php echo __( 'Expires on:', 'coupon-creator' ); ?>
-			&nbsp;<?php echo esc_html( $expiration_date['exp_date'] ); ?></div>
+			&nbsp;<?php echo esc_html( $expiration_date ); ?></div>
 		<?php
 	}
 }
@@ -43,8 +43,8 @@ function cctor_show_no_coupon_comment( $coupon_id, $coupon_expiration ) {
 
 	$expiration_date = $coupon_expiration->get_display_expiration();
 
-	if ( isset( $expiration_date['exp_date'] ) ) {
-		?><!-- Coupon "<?php echo get_the_title( $coupon_id ); ?>" Has Expired on <?php echo esc_html( $expiration_date['exp_date'] ); ?>--><?php
+	if ( ! empty( $expiration_date ) ) {
+		?><!-- Coupon "<?php echo get_the_title( $coupon_id ); ?>" Has Expired on <?php echo esc_html( $expiration_date ); ?>--><?php
 	}
 
 }	
