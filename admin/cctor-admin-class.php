@@ -425,11 +425,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			switch ( $column ) {
 				case 'cctor_showing':
-					echo "<code>[coupon couponid='" . $post_id . "' name='" . get_the_title( $post_id ) . "']</code>";
+
+					echo $coupon_expiration->get_admin_list_coupon_showing();
+
 					break;
 				case 'cctor_shortcode':
 
-					echo $coupon_expiration->get_admin_list_coupon_showing();
+					echo "<code>[coupon couponid='" . $post_id . "' name='" . get_the_title( $post_id ) . "']</code>";
 
 					break;
 				case 'cctor_expiration_date':
