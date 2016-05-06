@@ -71,8 +71,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				$coupon_expiration = new CCtor_Expiration_Class();
 			}
 
-			add_action( 'cctor_meta_message', array(  $coupon_expiration, 'get_coupon_status' ), 15, 1 );
-			add_action( 'cctor_meta_message', array(  $coupon_expiration, 'the_coupon_status_msg' ), 20, 1 );
+			add_action( 'cctor_meta_message', array( $coupon_expiration, 'get_coupon_status' ), 15, 1 );
+			add_action( 'cctor_meta_message', array( $coupon_expiration, 'the_coupon_status_msg' ), 20, 1 );
 
 		}
 		/***************************************************************************/
@@ -652,14 +652,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			}
 
 			$coupon_creator_meta_fields[ $prefix . 'expiration_option' ] = array(
-				'label'   => __( 'Expiration Option', 'coupon-creator' ),
-				'desc'    => __( 'Choose the expiration method for this coupon', 'coupon-creator' ),
-				'id'      => $prefix . 'expiration_option',
-				'value'   => cctor_options( 'cctor_expiration_option' ),
-				'type'    => 'select',
-				'choices' => $expiration_options,
-				'section' => 'coupon_creator_meta_box',
-				'tab'     => 'expiration'
+				'label'    => __( 'Expiration Option', 'coupon-creator' ),
+				'desc'     => __( 'Choose the expiration method for this coupon', 'coupon-creator' ),
+				'id'       => $prefix . 'expiration_option',
+				'value'    => cctor_options( 'cctor_expiration_option' ),
+				'type'     => 'select',
+				'choices'  => $expiration_options,
+				'section'  => 'coupon_creator_meta_box',
+				'tab'      => 'expiration',
+				'bulkedit' => 'cctor_pro_expiration',
 			);
 
 			$coupon_creator_meta_fields[ $prefix . 'expiration_msg_1' ] = array(
@@ -668,7 +669,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'type'      => 'message',
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
-				'wrapclass' => 'expiration-field expiration-1'
+				'wrapclass' => 'expiration-field expiration-1',
+				'bulkedit'  => 'cctor_pro_expiration',
 			);
 			$coupon_creator_meta_fields[ $prefix . 'expiration_msg_2' ] = array(
 				'desc'      => __( 'This coupon will no longer show the day after the expiration date.', 'coupon-creator' ),
@@ -676,7 +678,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'type'      => 'message',
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
-				'wrapclass' => 'expiration-field expiration-2'
+				'wrapclass' => 'expiration-field expiration-2',
+				'bulkedit'  => 'cctor_pro_expiration',
 			);
 			$coupon_creator_meta_fields[ $prefix . 'expiration_msg_3' ] = array(
 				'desc'      => __( 'This coupon\'s expiration will change based on the choosen pattern.', 'coupon-creator' ),
@@ -684,7 +687,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'type'      => 'message',
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
-				'wrapclass' => 'expiration-field expiration-3'
+				'wrapclass' => 'expiration-field expiration-3',
+				'bulkedit'  => 'cctor_pro_expiration',
 			);
 			$coupon_creator_meta_fields[ $prefix . 'expiration_msg_4' ] = array(
 				'desc'      => __( 'This coupon will expire X days from when it is printed.', 'coupon-creator' ),
@@ -692,7 +696,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'type'      => 'message',
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
-				'wrapclass' => 'expiration-field expiration-4'
+				'wrapclass' => 'expiration-field expiration-4',
+				'bulkedit'  => 'cctor_pro_expiration',
 			);
 
 			$coupon_creator_meta_fields[ $prefix . 'date_format' ] = array(
@@ -707,7 +712,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				),
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
-				'wrapclass' => 'expiration-field expiration-2 expiration-3 expiration-4'
+				'wrapclass' => 'expiration-field expiration-2 expiration-3 expiration-4',
+				'bulkedit'  => 'cctor_pro_expiration',
 			);
 
 			$coupon_creator_meta_fields[ $prefix . 'expiration' ] = array(
@@ -717,7 +723,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'type'      => 'date',
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
-				'wrapclass' => 'expiration-field expiration-2 expiration-3'
+				'wrapclass' => 'expiration-field expiration-2 expiration-3',
+				'bulkedit'  => 'cctor_pro_expiration',
 			);
 
 			$coupon_creator_meta_fields[ $prefix . 'ignore_expiration' ] = array(
