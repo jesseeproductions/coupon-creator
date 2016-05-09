@@ -94,6 +94,7 @@
 	border-left: 4px solid #048c7f;
 	font-weight: bold;
 }
+
 .cctor-error {
 	border-left: 4px solid #dd3d36;
 	color: #dd3d36;
@@ -404,26 +405,41 @@
 /* Coupon Creator Admin Tooltips
 ------------------------------------------------------------ */
 .cctor-tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
+	border-bottom: 1px dotted black;
+	display: inline-block;
+	position: relative;
 }
 
 .cctor-tooltip .cctor-tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 50%;
-    margin-left: -60px;
+	background-color: black;
+	border-radius: 6px;
+	color: #fff;
+	left: 50%;
+	margin-left: -60px;
+	padding: 5px 0;
+	position: absolute;
+	text-align: center;
+	top: 100%;
+	visibility: hidden;
+	width: 120px;
+	z-index: 1;
 }
 
 .cctor-tooltip:hover .cctor-tooltiptext {
-    visibility: visible;
+	visibility: visible;
+}
+
+/* Coupon Creator Admin Quick Edit
+------------------------------------------------------------ */
+.inline-edit-row fieldset label.coupon-quick-edit {
+	margin: 1em 0;
+}
+
+.inline-edit-row fieldset label.coupon-quick-edit span.title {
+	width: 12em;
+}
+
+.inline-edit-row fieldset label.coupon-quick-edit.cctor_save_change_views label {
+	display: inline;
+	margin: 0;
 }
