@@ -269,12 +269,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			$screen = get_current_screen();
 
-			if ( 'edit-cctor_coupon' == $screen->id ) {
-				//Styles
-				$cctor_meta_css = CCTOR_PATH.'admin/css/cctor-meta.css';
-				wp_enqueue_style( 'cctor_meta_css', CCTOR_URL . 'admin/css/cctor-meta.css', false, filemtime($cctor_meta_css));
-
-			}
 			if ( 'cctor_coupon' == $screen->id ) {
 
 				//Styles

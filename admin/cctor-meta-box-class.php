@@ -786,21 +786,40 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		*/
 		public static function cctor_save_coupon_creator_meta( $post_id, $post ) {
 
+			//log_me( $_POST );
+
+			log_me('start save');
+
+			if ( empty( $_POST ) ) {
+				return;
+			}
+
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 				return;
 			}
 
-			if ( ! isset( $_POST['coupon_creator_nonce'] ) ) {
+			//Save on Coupon Creator Meta and for Inline Edit
+			if ( isset( $_POST['coupon_creator_nonce'] )  && ! wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) && ( isset( $_POST['_inline_edit'] ) && ! wp_verify_nonce( $_POST['_inline_edit'], 'inlineeditnonce' ) ) ) {
+				return;
+			}
+			log_me('post type');
+			log_me( $post->post_type);
+
+			if ( isset( $post->post_type ) && 'cctor_coupon' != $post->post_type ) {
 				return;
 			}
 
-			if ( ! wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) ) {
+			log_me('saving');
+
+			//if ( ! wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) ) {
+			//	return;
+			//}
+
+			if ( ! current_user_can( 'edit_cctor_coupon', $post->ID ) ) {
 				return;
 			}
 
-			if ( ! current_user_can( 'edit_post', $post->ID ) ) {
-				return;
-			}
+			log_me('saving user checks out');
 
 			// Save data
 			//Get Meta Fields
