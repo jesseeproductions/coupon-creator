@@ -429,7 +429,7 @@
 	visibility: visible;
 }
 
-/* Coupon Creator Admin Quick Edit
+/* Coupon Creator Admin Quick Edit & Bulk Edit
 ------------------------------------------------------------ */
 .inline-edit-row fieldset label.coupon-quick-edit {
 	margin: 1em 0;
@@ -442,4 +442,16 @@
 .inline-edit-row fieldset label.coupon-quick-edit.cctor_save_change_views label {
 	display: inline;
 	margin: 0;
+}
+
+#wpbody-content #bulk-edit.bulk-edit-row .inline-edit-col-left.coupon-bulk-col {
+	width: 30%;
+}
+
+#wpbody-content #bulk-edit.bulk-edit-row fieldset.inline-edit-col-left.coupon-bulk-col .inline-edit-group label {
+    max-width: 100%;
+}
+#wpbody-content #bulk-edit.bulk-edit-row fieldset.inline-edit-col-left.coupon-bulk-col .inline-edit-group label select {
+    width: 100%;
+    max-width: 185px;
 }
