@@ -670,7 +670,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
 				'wrapclass' => 'expiration-field expiration-1',
-				'bulkedit'  => 'cctor_pro_expiration',
+				'bulkedit'  => '',
 			);
 			$coupon_creator_meta_fields[ $prefix . 'expiration_msg_2' ] = array(
 				'desc'      => __( 'This coupon will no longer show the day after the expiration date.', 'coupon-creator' ),
@@ -679,7 +679,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
 				'wrapclass' => 'expiration-field expiration-2',
-				'bulkedit'  => 'cctor_pro_expiration',
+				'bulkedit'  => '',
 			);
 			$coupon_creator_meta_fields[ $prefix . 'expiration_msg_3' ] = array(
 				'desc'      => __( 'This coupon\'s expiration will change based on the choosen pattern.', 'coupon-creator' ),
@@ -688,7 +688,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
 				'wrapclass' => 'expiration-field expiration-3',
-				'bulkedit'  => 'cctor_pro_expiration',
+				'bulkedit'  => '',
 			);
 			$coupon_creator_meta_fields[ $prefix . 'expiration_msg_4' ] = array(
 				'desc'      => __( 'This coupon will expire X days from when it is printed.', 'coupon-creator' ),
@@ -697,7 +697,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				'section'   => 'coupon_creator_meta_box',
 				'tab'       => 'expiration',
 				'wrapclass' => 'expiration-field expiration-4',
-				'bulkedit'  => 'cctor_pro_expiration',
+				'bulkedit'  => '',
 			);
 
 			$coupon_creator_meta_fields[ $prefix . 'date_format' ] = array(
@@ -786,10 +786,6 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 		*/
 		public static function cctor_save_coupon_creator_meta( $post_id, $post ) {
 
-			//log_me( $_POST );
-
-			log_me('start save');
-
 			if ( empty( $_POST ) ) {
 				return;
 			}
@@ -802,24 +798,14 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			if ( isset( $_POST['coupon_creator_nonce'] )  && ! wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) && ( isset( $_POST['_inline_edit'] ) && ! wp_verify_nonce( $_POST['_inline_edit'], 'inlineeditnonce' ) ) ) {
 				return;
 			}
-			log_me('post type');
-			log_me( $post->post_type);
 
 			if ( isset( $post->post_type ) && 'cctor_coupon' != $post->post_type ) {
 				return;
 			}
 
-			log_me('saving');
-
-			//if ( ! wp_verify_nonce( $_POST['coupon_creator_nonce'], 'coupon_creator_save_post' ) ) {
-			//	return;
-			//}
-
 			if ( ! current_user_can( 'edit_cctor_coupon', $post->ID ) ) {
 				return;
 			}
-
-			log_me('saving user checks out');
 
 			// Save data
 			//Get Meta Fields
