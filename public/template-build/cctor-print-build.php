@@ -38,5 +38,10 @@ function cctor_print_template() {
 
 	add_action('cctor_print_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 2 );
 
+	/**
+	 * Print Template Hook for all Action and Filters
+	 *
+	 * @since 1.90
+	 */
 	do_action( 'cctor_print_template_functions' );
 }		 

@@ -366,6 +366,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Filter Capabilities
 			if(has_filter('cctor_caps_filter')) {
+				/**
+				 * Filter Coupon CPT Capabilities
+				 *
+				 *
+				 * @param array $caps.
+				 *
+				 */
 				$caps = apply_filters('cctor_caps_filter', $caps);
 			}
 
@@ -413,12 +420,15 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		public static function cctor_inline_style() {
 
 			$cctor_option_css = "";
-			/*
-			*  Filter to Add More Custom CSS
-			*/
 			if(has_filter('cctor_filter_inline_css')) {
 				$coupon_css = "";
-
+				/**
+				 * Filter Coupon Inline Styles
+				 *
+				 *
+				 * @param string $coupon_css.
+				 *
+				 */
 				$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
 			}
 			//Add Custom CSS from Options
@@ -440,6 +450,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			$cctor_img_size['print']  = 390;
 
 			if(has_filter('cctor_img_size')) {
+				/**
+				 * Filter Image Coupon Image Sizes
+				 *
+				 *
+				 * @param array $cctor_img_size.
+				 *
+				 */
 				$cctor_img_size = apply_filters('cctor_img_size', $cctor_img_size);
 			}
 
@@ -475,7 +492,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			*/
 			if(has_filter('cctor_filter_inline_css')) {
 				$coupon_css = "";
-
+				/**
+				 * Filter Print View Inline Styles
+				 *
+				 *
+				 * @param array $cctor_img_size.
+				 *
+				 */
 				$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
 			}
 			//Add Custom CSS from Options
@@ -600,6 +623,12 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				? true // a coupon query of some type
 				: false;
 
+				/**
+				 * Parse Coupon Query Action
+				 *
+				 * @since 2.2
+				 * @parm object $query
+				 */
 				do_action( 'cctor_coupon_parse_query', $query );
 		}
 

@@ -27,5 +27,10 @@ function cctor_shortcode_functions() {
 
 	add_action('cctor_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 2 );
 
+	/**
+	 * Shortcode Template Hook for all Action and Filters
+	 *
+	 * @since 1.90
+	 */
 	do_action( 'cctor_shortcode_template_functions' );
 }

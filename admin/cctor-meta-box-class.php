@@ -48,13 +48,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			//Display Message on Coupon Edit Screen, but not on a new coupon until saved
 			if ( $pagenow != 'post-new.php' && $typenow == 'cctor_coupon' ) {
 
-				//Hook Meta Box Message
+				/**
+				 * Display Message on Individual Coupon Editor Page
+				 *
+				 * @since 1.90
+				 *
+				 * @param int $coupon_id
+				 *
+				 */
 				do_action( 'cctor_meta_message', $coupon_id );
-
-				$coupon_expiration_instance = new CCtor_Expiration_Class( $coupon_id );
-				echo '<pre>';
-				//print_r($coupon_expiration_instance);
-				echo '</pre>';
 
 			}
 
@@ -156,7 +158,12 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 					);
 				}
 
-				//Hook for More Meta Boxes
+				/**
+				 * Add Coupon Metabox
+				 *
+				 * @since 1.90
+				 *
+				 */
 				do_action( 'cctor_add_meta_box' );
 
 			}
@@ -821,7 +828,15 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			//For Each Field Sanitize the Post Data
 			foreach ( $coupon_creator_meta_fields as $option ) {
 
-				//Hook Meta Box Save
+				/**
+				 * Save Meta Fields
+				 *
+				 * @since 1.90
+				 *
+				 * @param int $post_id
+				 * @param array $option
+				 *
+				 */
 				do_action( 'cctor_save_meta_fields', $post_id, $option );
 
 				//If No CheckBox Sent, then delete meta

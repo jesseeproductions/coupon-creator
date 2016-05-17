@@ -143,7 +143,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$cctor_colorbox_js = CCTOR_PATH . 'vendor/colorbox/jquery.colorbox-min.js';
 			wp_enqueue_script( 'cctor_colorbox_js', CCTOR_URL . 'vendor/colorbox/jquery.colorbox-min.js', array( 'jquery' ), filemtime( $cctor_colorbox_js ), true );
 
-			//Hook to Load New Scripts
+			/**
+			 * Coupon Option Page Scripts
+			 *
+			 * @since 1.90
+			 *
+			 *
+			 */
 			do_action( 'cctor_options_scripts' );
 		}
 
@@ -168,7 +174,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$cctor_colorbox_css = CCTOR_PATH . 'vendor/colorbox/colorbox.css';
 			wp_enqueue_style( 'cctor_colorbox_css', CCTOR_URL . 'vendor/colorbox/colorbox.css', false, filemtime( $cctor_colorbox_css ) );
 
-			//Hook to Load New Styles
+			/**
+			 * Coupon Option Page Styles
+			 *
+			 * @since 1.90
+			 *
+			 *
+			 */
 			do_action( 'cctor_options_styles' );
 
 		}
@@ -249,6 +261,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 				<h4>Coupon Creator: ' . get_option( CCTOR_VERSION_KEY ) . '</h4>';
 
+			/**
+			 * Before Coupon Options Form
+			 *
+			 * @since 1.90
+			 *
+			 *
+			 */
 			do_action( 'cctor_before_option_form' );
 
 			if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true ) {
@@ -273,6 +292,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 				</form>';
 
+			/**
+			 * After Coupon Options Form
+			 *
+			 * @since 1.90
+			 *
+			 *
+			 */
 			do_action( 'cctor_after_option_form' );
 
 			echo '<p style="text-align:right;">&copy; ' . date( "Y" ) . ' Jessee Productions, LLC</p>
