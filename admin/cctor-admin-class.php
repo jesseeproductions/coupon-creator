@@ -358,23 +358,29 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					<li><a class="cctor-support youtube_colorbox" href="http://www.youtube.com/embed/h3Zg8rxIDdc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Coupon Creator Options</a></li>
 				</ul>
 
-				<h4 class="coupon-heading">Pro Video Guides</h4>
+				<h4 class="coupon-heading">Pro Coupons</h4>
 				<ul>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/L9uf9q9JRtc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Pro\'s couponloop shortcode, filter bar, and template system to manage coupons</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xEOdVUMFqg8?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Intro to Pro\'s Themer\'s Guide</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/FI218DxXnrY?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Coupon</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/SqAG3s1FniA?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Image Coupon</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/EQRv8g2nmuE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Border Styles</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/JR4GA4lsOB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use Recurring Expiration</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/w67yqCZXF6I?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using Columns and Rows in the Visual Editor</a></li>
-                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/iThKkEgYBDE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Popup Print View Feature</a></li>
+				      <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/iThKkEgYBDE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Popup Print View Feature</a></li>
                     <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/h0YVXi2vq3g?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the View Shortcodes and Deal Display Options</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/FI218DxXnrY?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Coupon</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/SqAG3s1FniA?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Image Coupon</a></li>
+                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/aVkwq8cIgB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Counter</a></li>
+                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/vmViVkoQB0M?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Background Image</a></li>
+                     <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xH3GmKPzQKc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to Create a WooCommerce Coupon</a></li>
+				</ul>
+				<h4 class="coupon-heading">Pro Options</h4>
+				<ul>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/8L0JmSB_V-E?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Options</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/aVkwq8cIgB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Counter</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/vmViVkoQB0M?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Background Image</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/b3cV8gVf4lU?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Dimension Options</a></li>
 					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/pFnp5VsfwUE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Text Overrides</a></li>
-					 <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xH3GmKPzQKc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to Create a WooCommerce Coupon</a></li>
+				</ul>
+				<h4 class="coupon-heading">Pro Templates & Customizations</h4>
+				<ul>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/L9uf9q9JRtc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Pro\'s couponloop shortcode, filter bar, and template system to manage coupons</a></li>
+					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xEOdVUMFqg8?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Intro to Pro\'s Themer\'s Guide</a></li>
 				</ul>
 
 				<h4 class="coupon-heading">Resources</h4>
@@ -385,7 +391,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 					<li><a class="cctor-support" target="_blank" href="http://cctor.link/loHtW">Tutorials</a> - Customization Tutorials and More</li>
 				</ul>';
 
-			return	$support_html;
+			return $support_html;
 		}
 
 		/***************************************************************************/
