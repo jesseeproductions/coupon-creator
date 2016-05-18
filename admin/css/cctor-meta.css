@@ -455,3 +455,43 @@
     width: 100%;
     max-width: 185px;
 }
+
+/* Coupon Creator Help Tab
+------------------------------------------------------------ */
+.cctor-section-help-container {
+    background-color: #2a5a8a;
+    border-radius: 10px 10px 0;
+    margin-bottom: 1em;
+    overflow: hidden;
+}
+.cctor-section-help-container-toggle {
+    background-color: #2a5a8a;
+    border: medium none;
+    color: white;
+    cursor: pointer;
+    margin: 0;
+    outline: medium none;
+    padding: 0.5em;
+    text-align: left;
+    width: 100%;
+}
+.cctor-section-help-container:hover,
+.cctor-section-help-container-toggle:hover {
+    background: #9dd3df none repeat scroll 0 0;
+    border: 1px solid #2a5a8a;
+    color: #000;
+}
+.cctor-section-help-container-toggle .dashicons-before::before {
+    margin-right: 5px;
+}
+.cctor-section-help-container-toggle .toggle__arrow {
+    text-decoration: none;
+}
+.cctor-section-help-slideout {
+    background-color: white;
+    border: 1px solid #2a5a8a;
+    border-bottom-left-radius: 10px;
+    display: none;
+    overflow: hidden;
+    padding: 0.5em;
+}

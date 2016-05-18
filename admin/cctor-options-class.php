@@ -502,8 +502,9 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 				case 'cctor_support':
 
-					echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation();
-					echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_contact();
+					Coupon_Creator_Plugin::include_file( 'admin/cctor-help-class.php' );
+					echo Coupon_Creator_Help_Class::get_cctor_support_core_infomation();
+					echo Coupon_Creator_Help_Class::get_cctor_support_core_contact();
 
 					break;
 

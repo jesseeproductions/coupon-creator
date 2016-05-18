@@ -187,6 +187,8 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			//Get Tab Sections
 			$meta_tabs = self::get_cctor_tabs();
 
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-help-class.php' );
+
 			//Get Meta Boxes
 			$coupon_creator_meta_fields = self::cctor_metabox_options();
 
@@ -231,9 +233,14 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 
 						<h3 class="cctor-tab-heading-<?php echo $tab_slug; ?>"><?php echo $tab; ?></h3>
 
-						<?php foreach ( $coupon_creator_meta_fields as $field ) {
+						<?php
 
-							if ( $field['type'] && $field['section'] == $metabox['id'] && $field['tab'] == $tab_slug ) :
+						$help_class = new Coupon_Creator_Help_Class();
+						$help_class->display_help( $tab_slug );
+
+						foreach ( $coupon_creator_meta_fields as $field ) {
+
+							if ( $field['type'] && $field['section'] == $metabox['id'] && $tab_slug == $field['tab'] ) :
 
 								// get value of this field if it exists for this post
 								$meta      = get_post_meta( $post->ID, $field['id'], true );
@@ -242,8 +249,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 								$wrapclass = isset( $field['wrapclass'] ) ? $field['wrapclass'] : '';
 								?>
 
-								<div
-									class="cctor-meta-field-wrap field-wrap-<?php echo esc_html( $field['type'] ); ?> field-wrap-<?php echo esc_html( $field['id'] ); ?> <?php echo esc_html( $wrapclass ); ?>">
+								<div class="cctor-meta-field-wrap field-wrap-<?php echo esc_html( $field['type'] ); ?> field-wrap-<?php echo esc_html( $field['id'] ); ?> <?php echo esc_html( $wrapclass ); ?>">
 
 									<?php if ( isset( $field['label'] ) ) { ?>
 
@@ -430,13 +436,11 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 												<?php break;
 											// Videos
 											case 'cctor_support':
-												?>
 
-												<?php echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_infomation();
-												echo Coupon_Creator_Plugin_Admin::get_cctor_support_core_contact();
-												?>
+												echo Coupon_Creator_Help_Class::get_cctor_support_core_infomation();
+												echo Coupon_Creator_Help_Class::get_cctor_support_core_contact();
 
-												<?php break;
+												break;
 
 											// Videos
 											case 'cctor_pro':
