@@ -253,6 +253,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
 
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-help-class.php' );
+
 			echo '<div class="wrap">
 				<div class="icon32" id="icon-options-general"></div>
 				<h2><img src="' . CCTOR_URL . 'admin/images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
@@ -285,6 +287,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			}
 
 			echo '</ul>';
+
 			do_settings_sections( $_GET['page'] );
 
 			echo '</div>
@@ -408,6 +411,13 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 			switch ( $option_args['type'] ) {
 
+				case 'help':
+
+					$help_class = new Coupon_Creator_Help_Class();
+					$help_class->display_help( $option_args['section'] );
+
+					break;
+
 				case 'heading':
 					if ( $option_args['alert'] ) {
 						echo '</td></tr><tr valign="top"><td colspan="2"><span class="description">' . $option_args['alert'] . '</span>';
@@ -502,8 +512,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 
 				case 'cctor_support':
 
-					Coupon_Creator_Plugin::include_file( 'admin/cctor-help-class.php' );
-					echo Coupon_Creator_Help_Class::get_cctor_support_core_infomation();
+					$help_class = new Coupon_Creator_Help_Class();
+					$help_class->display_help( 'all' );
 					echo Coupon_Creator_Help_Class::get_cctor_support_core_contact();
 
 					break;
@@ -601,6 +611,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 		public function get_options() {
 
 			//defaults
+			$this->options['defaults_help'] = array(
+				'section' => 'defaults',
+				'type'    => 'help'
+			);
 			$this->options['header_defaults'] = array(
 				'section' => 'defaults',
 				'title'   => '',

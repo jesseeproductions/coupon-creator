@@ -440,6 +440,20 @@ jQuery( function ( $ ) {
 		console.log( $( this ).val() );
 		cctor_toogle_fields( '#expiration .expiration-field', $( this ).val(), '#expiration .expiration-' );
 	} );
+
+
+	$( ".cctor-section-help-container-toggle" ).on( "click", function ( event ) {
+		event.preventDefault();
+
+		$help_wrap = $( this ).parent();
+		var $help_section = $help_wrap.find( '.cctor-section-help-slideout' );
+
+		$help_section.animate( {
+			height: "toggle",
+			opacity: "toggle"
+		}, "fast" );
+	} );
+
 } );
 
 /*

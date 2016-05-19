@@ -437,7 +437,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 											// Videos
 											case 'cctor_support':
 
-												echo Coupon_Creator_Help_Class::get_cctor_support_core_infomation();
+												$help_class->display_help( 'all' );
 												echo Coupon_Creator_Help_Class::get_cctor_support_core_contact();
 
 												break;
