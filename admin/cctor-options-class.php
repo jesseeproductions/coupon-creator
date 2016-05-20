@@ -164,8 +164,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.9.2';
 			wp_enqueue_style( 'jquery-ui-style', '//ajax.googleapis.com/ajax/libs/jqueryui/' . $jquery_version . '/themes/smoothness/jquery-ui.css' );
 
-			$cctor_options_css = CCTOR_PATH . 'admin/css/cctor-options.css';
-			wp_enqueue_style( 'cctor_options_css', CCTOR_URL . 'admin/css/cctor-options.css', false, filemtime( $cctor_options_css ) );
+			$cctor_meta_css = CCTOR_PATH . 'admin/css/admin-style.css';
+			wp_enqueue_style( 'coupon-admin-style', CCTOR_URL . 'admin/css/admin-style.css', false, filemtime( $cctor_meta_css ) );
 
 			//Style or WP Color Picker
 			wp_enqueue_style( 'wp-color-picker' );

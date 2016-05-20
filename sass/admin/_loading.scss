@@ -1,0 +1,31 @@
+/* ==========================================================================
+  Loading CSS
+   ========================================================================== */
+#cctor-loading {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	display: none;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transition: all 1s linear;
+	-moz-transition: all 1s linear;
+	-ms-transition: all 1s linear;
+	-o-transition: all 1s linear;
+	width: 100%;
+	z-index: 4;
+	webkit-transition: all 1s linear;
+}
+
+#cctor-loading span {
+	background: url(../images/cctor-loading.gif) 0 0 no-repeat;
+	background-size: 32px 32px;
+	height: 32px;
+	left: 50%;
+	margin: -16px 0 0 -16px;
+	position: absolute;
+	top: 50%;
+	width: 32px;
+	-webkit-background-size: 32px 32px;
+}

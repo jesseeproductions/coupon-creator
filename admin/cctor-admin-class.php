@@ -144,9 +144,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			if ( 'cctor_coupon' == $screen->id ) {
 
 				//Styles
-				//Date Picker CSS
-				$cctor_meta_css = CCTOR_PATH.'admin/css/cctor-meta.css';
-				wp_enqueue_style( 'cctor_meta_css', CCTOR_URL . 'admin/css/cctor-meta.css', false, filemtime($cctor_meta_css));
+				$cctor_meta_css = CCTOR_PATH.'admin/css/admin-style.css';
+				wp_enqueue_style( 'coupon-admin-style', CCTOR_URL . 'admin/css/admin-style.css', false, filemtime($cctor_meta_css));
 
 				//Style or WP Color Picker
 				wp_enqueue_style( 'wp-color-picker' );

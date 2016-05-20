@@ -381,7 +381,7 @@ class Coupon_Creator_Help_Class {
 					case 'links':
 						?>
 						<li><a class="cctor-support" target="_blank"
-						   href="<?php echo $help_field['video_id']; ?>"><?php echo $help_field['text']; ?></a></li>
+						   href="<?php echo $help_field['link']; ?>"><?php echo $help_field['text']; ?></a></li>
 						<?php break;
 
 				}
