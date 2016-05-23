@@ -81,8 +81,13 @@
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
   color: #048c7f;
   font-size: 15px;
-  font-weight: bold;
+  font-weight: bold; }
+
+.cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
   margin: 0 0 0 -10px; }
+
+.cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content .cctor-section-help-slideout h4 {
+  margin: 0; }
 
 .cctor-promo-boxes h3:after,
 .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4:after {
@@ -151,6 +156,9 @@
   display: block;
   float: none; }
 
+/* ==========================================================================
+  jQuery UI CSS
+   ========================================================================== */
 /* ==========================================================================
   jQuery UI CSS
    ========================================================================== */

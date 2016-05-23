@@ -425,23 +425,24 @@ jQuery( function ( $ ) {
 	} );
 } );
 
-/*
- * Expiration Fields Display
- * since 2.3
- */
 jQuery( function ( $ ) {
 
+	/*
+	 * Expiration Fields Display
+	 * since 2.3
+	 */
 	var $expiration_option_val = $( '#cctor_expiration_option' );
 
 	cctor_toogle_fields( '#expiration .expiration-field', $expiration_option_val.val(), '#expiration .expiration-' );
 
 	$expiration_option_val.on( 'change', function () {
-		console.log( 'value' );
-		console.log( $( this ).val() );
 		cctor_toogle_fields( '#expiration .expiration-field', $( this ).val(), '#expiration .expiration-' );
 	} );
 
-
+	/*
+	 * Help Slideout
+	 * since 2.3
+	 */
 	$( ".cctor-section-help-container-toggle" ).on( "click", function ( event ) {
 		event.preventDefault();
 

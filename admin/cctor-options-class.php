@@ -785,6 +785,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'section' => ''
 			);
 
+			//display
+			$this->options['display_help'] = array(
+				'section' => 'display',
+				'type'    => 'help'
+			);
 			//Custom CSS
 			$this->options['cctor_custom_css'] = array(
 				'title'   => __( 'Custom Coupon Styles', 'coupon-creator' ),

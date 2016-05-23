@@ -252,10 +252,35 @@ jQuery(document).ready(function($) {
 jQuery(".form-table label:empty").parent().hide();
 
 
-/*
-* Add Class to Show that no jQuery Errors
-* since 2.3
-*/
 jQuery(document).ready(function ($) {
+
+	/*
+	* Add Class to Show that no jQuery Errors
+	* since 2.3
+	*/
 	$('html').addClass('cctor-js');
+
+	/*
+	* Hide Default Label
+	* since 2.3
+	*/
+	$("tbody tr th:contains(Default)").css("display", "none");
+
+
+	/*
+	 * Help Slideout
+	 * since 2.3
+	 */
+	$( ".cctor-section-help-container-toggle" ).on( "click", function ( event ) {
+		event.preventDefault();
+
+		$help_wrap = $( this ).parent();
+		var $help_section = $help_wrap.find( '.cctor-section-help-slideout' );
+
+		$help_section.animate( {
+			height: "toggle",
+			opacity: "toggle"
+		}, "fast" );
+	} );
+
 });

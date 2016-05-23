@@ -66,13 +66,6 @@ class Coupon_Creator_Help_Class {
 			'video_id' => 'sozW-J-g3Ts',
 			'type'     => 'video'
 		);
-		$this->fields['video_pro_shortcode_filter']             = array(
-			'section'  => '',
-			'tab'      => 'content',
-			'text'     => 'Pro\'s couponloop shortcode, filter bar, and template system to manage coupons',
-			'video_id' => 'L9uf9q9JRtc',
-			'type'     => 'video'
-		);
 		$this->fields['video_end_list_content']      = array(
 			'section' => '',
 			'tab'     => 'content',
@@ -200,6 +193,7 @@ class Coupon_Creator_Help_Class {
 		);
 
 
+		//Option Defaults
 		$this->fields['header_video_guides_defaults'] = array(
 			'section' => 'defaults',
 			'tab'     => '',
@@ -220,11 +214,45 @@ class Coupon_Creator_Help_Class {
 			'video_id' => '8L0JmSB_V-E',
 			'type'     => 'video'
 		);
+		$this->fields['video_end_list_defaults'] = array(
+			'section' => 'defaults',
+			'tab'     => '',
+			'type'    => 'end_list'
+		);
+
+
+		//Option Display
+		$this->fields['header_video_guides_defaults'] = array(
+			'section' => 'display',
+			'tab'     => '',
+			'text'    => 'Coupon Options',
+			'type'    => 'heading'
+		);
 		$this->fields['video_pro_text-overrides']             = array(
 			'section'  => 'display',
 			'tab'      => '',
 			'text'     => 'Using the Pro Text Overrides',
 			'video_id' => 'pFnp5VsfwUE',
+			'type'     => 'video'
+		);
+		$this->fields['video_end_list_defaults'] = array(
+			'section' => 'display',
+			'tab'     => '',
+			'type'    => 'end_list'
+		);
+
+		//Option Templating
+		$this->fields['header_video_guides_defaults'] = array(
+			'section' => 'templating',
+			'tab'     => '',
+			'text'    => 'Coupon Options',
+			'type'    => 'heading'
+		);
+		$this->fields['video_pro_dimension']             = array(
+			'section'  => 'templating',
+			'tab'      => '',
+			'text'     => 'Using the Pro Dimension Options',
+			'video_id' => 'b3cV8gVf4lU',
 			'type'     => 'video'
 		);
 		$this->fields['video_pro_shortcode_filter_options']             = array(
@@ -234,15 +262,8 @@ class Coupon_Creator_Help_Class {
 			'video_id' => 'L9uf9q9JRtc',
 			'type'     => 'video'
 		);
-		$this->fields['video_pro_dimension']             = array(
-			'section'  => 'templating',
-			'tab'      => '',
-			'text'     => 'Using the Pro Dimension Options',
-			'video_id' => 'b3cV8gVf4lU',
-			'type'     => 'video'
-		);
 		$this->fields['video_end_list_defaults'] = array(
-			'section' => 'defaults',
+			'section' => 'templating',
 			'tab'     => '',
 			'type'    => 'end_list'
 		);
@@ -340,7 +361,14 @@ class Coupon_Creator_Help_Class {
 			return;
 		}
 
+		$screen = get_current_screen();
+
 		if ( 'all' != $section ) {
+
+			if ( 'cctor_coupon_page_coupon-options' == $screen->id ) {
+				echo '</td></tr><tr valign="top"><td colspan="2">';
+			}
+
 			echo '<div class="cctor-meta-field-wrap cctor-section-help-container">';
 
 
@@ -353,14 +381,14 @@ class Coupon_Creator_Help_Class {
 		}
 		foreach ( $this->fields as $help_field ) {
 
-			if ( $help_field['type'] && ( 'all' == $section || $section == $help_field['tab'] ) ) {
+			if ( $help_field['type'] && ( 'all' == $section || $section == $help_field['tab'] || $section == $help_field['section'] ) ) {
 
 				switch ( $help_field['type'] ) {
 
 					case 'heading':
 						?>
 
-						<h4 class="coupon-heading"><?php echo $help_field['text']; ?></h4>
+						<h4 class="coupon-heading"><?php echo esc_html( $help_field['text'] ); ?></h4>
 						<ul>
 						<?php break;
 
@@ -370,18 +398,19 @@ class Coupon_Creator_Help_Class {
 						<?php break;
 
 					case 'video':
+							$rel = '';
+						if ( 'all' == $section ) {
+							$rel = 'how_to_videos';
+						}
 						?>
-
-						<li><a class="cctor-support youtube_colorbox"
-						   href="http://www.youtube.com/embed/<?php echo $help_field['video_id']; ?>?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1"
-						   rel="how_to_videos"><?php echo $help_field['text']; ?></a></li>
+						<li><a class="cctor-support youtube_colorbox" href="http://www.youtube.com/embed/<?php echo esc_html( $help_field['video_id'] ); ?>?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="<?php echo esc_attr( $rel ); ?>"><?php echo esc_html( $help_field['text'] ); ?></a></li>
 
 						<?php break;
 
 					case 'links':
 						?>
-						<li><a class="cctor-support" target="_blank"
-						   href="<?php echo $help_field['link']; ?>"><?php echo $help_field['text']; ?></a></li>
+						<li><a class="cctor-support" target="_blank" href="<?php echo esc_url( $help_field['link'] ); ?>"><?php echo esc_html( $help_field['text'] ); ?></a></li>
+
 						<?php break;
 
 				}
@@ -389,7 +418,12 @@ class Coupon_Creator_Help_Class {
 		}
 		if ( 'all' != $section ) {
 			echo '</div></div>';
+
+			if ( 'cctor_coupon_page_coupon-options' == $screen->id ) {
+				echo '</td></tr>';
+			}
 		}
+
 	}
 
 

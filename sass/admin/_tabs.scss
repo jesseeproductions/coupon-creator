@@ -87,7 +87,14 @@
 	color: $green;
 	font-size: 15px;
 	font-weight: bold;
+}
+
+.cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
 	margin: 0 0 0 -10px;
+}
+
+.cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content .cctor-section-help-slideout h4 {
+	margin: 0;
 }
 
 .cctor-promo-boxes h3:after,
