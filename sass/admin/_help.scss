@@ -8,6 +8,10 @@
 	overflow: hidden;
 }
 
+.cctor_coupon_page_coupon-options .cctor-section-help-container {
+	margin-left: -10px;
+}
+
 .cctor-section-help-container-toggle {
 	background-color: $blue;
 	border: medium none;
@@ -59,4 +63,19 @@
 	display: none;
 	margin: 10px;
 	max-width: 95%;
+}
+.cctor-meta-field-content {
+	width: 49%;
+	display: inline-block;
+	vertical-align: top;
+}
+.cctor-meta-field-content.text {
+	margin: 0 0 0 2%;
+}
+@media only screen and (max-width: 640px) {
+	.cctor-meta-field-content,
+	.cctor-meta-field-content.text {
+		margin: 0;
+		width: 100%;
+	}
 }

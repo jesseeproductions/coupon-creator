@@ -739,6 +739,10 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			);
 
 			//LinkAttributes - Permalinks
+			$this->options['permalinks_help'] = array(
+				'section' => 'permalinks',
+				'type'    => 'help'
+			);
 			$this->options['no_follow_heading']             = array(
 				'section' => 'permalinks',
 				'title'   => '', // Not used for headings.
@@ -846,6 +850,11 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Coupon Creator Option Reset', 'coupon-creator' ),
 				'type'    => 'heading'
+			);
+
+			$this->options['license_help'] = array(
+				'section' => 'license',
+				'type'    => 'help'
 			);
 
 			//Reset
