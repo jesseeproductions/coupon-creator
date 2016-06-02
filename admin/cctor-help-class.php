@@ -35,15 +35,8 @@ class Coupon_Creator_Help_Class {
 		$this->fields['video_creating_coupon']        = array(
 			'section'  => '',
 			'tab'      => 'content',
-			'text'     => 'Creating a Coupon',
-			'video_id' => 'tIau3ZNjoeI',
-			'type'     => 'video'
-		);
-		$this->fields['video_creating_coupon_pro']    = array(
-			'section'  => '',
-			'tab'      => 'content',
-			'text'     => 'Creating a Pro Coupon',
-			'video_id' => 'FI218DxXnrY',
+			'text'     => 'Overview of Creating a Coupon',
+			'video_id' => 'I1v9HxdIsSE',
 			'type'     => 'video'
 		);
 		$this->fields['video_pro_columns_rows']       = array(
@@ -142,11 +135,11 @@ class Coupon_Creator_Help_Class {
 			'text'    => 'Expiration Options',
 			'type'    => 'heading'
 		);
-		$this->fields['video_pro_recurring_expiration'] = array(
+		$this->fields['video_expiration_features']      = array(
 			'section'  => '',
 			'tab'      => 'expiration',
-			'text'     => 'How to use Recurring Expiration',
-			'video_id' => 'JR4GA4lsOB0',
+			'text'     => 'How to use the Expiration and Counter Features',
+			'video_id' => 'YugCWPVigH8',
 			'type'     => 'video'
 		);
 		$this->fields['link_pro_recurring_expiration']  = array(
@@ -169,6 +162,13 @@ class Coupon_Creator_Help_Class {
 			'text'    => 'Using the Counter in Pro',
 			'link'    => 'http://cctor.link/BpJhV',
 			'type'    => 'links'
+		);
+		$this->fields['video_expiration_bulk_edit']     = array(
+			'section'  => '',
+			'tab'      => 'expiration',
+			'text'     => 'How to Bulk or Quick Edit the Expiration or Counter Fields',
+			'video_id' => 'IZDV5Mv5iGM',
+			'type'     => 'video'
 		);
 		$this->fields['video_end_list_expiration']      = array(
 			'section' => '',
@@ -260,27 +260,41 @@ class Coupon_Creator_Help_Class {
 
 
 		//Option Defaults
-		$this->fields['header_video_guides_defaults'] = array(
+		$this->fields['header_video_guides_defaults']  = array(
 			'section' => 'defaults',
 			'tab'     => '',
 			'text'    => 'Coupon Defaults',
 			'type'    => 'heading'
 		);
-		$this->fields['video_coupon_defaults']        = array(
+		$this->fields['video_coupon_options_overview'] = array(
 			'section'  => 'defaults',
 			'tab'      => '',
-			'text'     => 'Using the Coupon Creator Options',
-			'video_id' => 'h3Zg8rxIDdc',
+			'text'     => 'An Overview of Coupon Creator Options',
+			'video_id' => 'zq2dUCY6yQk',
 			'type'     => 'video'
 		);
-		$this->fields['video_pro_defaults']           = array(
+		$this->fields['video_coupon_defaults']         = array(
 			'section'  => 'defaults',
 			'tab'      => '',
-			'text'     => 'Using the Pro Options',
-			'video_id' => '8L0JmSB_V-E',
+			'text'     => 'An Overview of Default Options',
+			'video_id' => 'jHAKJSzwFMA',
 			'type'     => 'video'
 		);
-		$this->fields['video_end_list_defaults']      = array(
+		$this->fields['video_defaults_bulk_edit']      = array(
+			'section'  => 'defaults',
+			'tab'      => '',
+			'text'     => 'How to Bulk or Quick Edit the Expiration or Counter Fields',
+			'video_id' => 'IZDV5Mv5iGM',
+			'type'     => 'video'
+		);
+		$this->fields['link_option_defaults']                = array(
+			'section' => 'defaults',
+			'tab'     => '',
+			'text'    => 'A Guide to the Default Options',
+			'link'    => 'http://cctor.link/r1MzQ',
+			'type'    => 'links'
+		);
+		$this->fields['video_end_list_defaults']       = array(
 			'section' => 'defaults',
 			'tab'     => '',
 			'type'    => 'end_list'
@@ -292,6 +306,13 @@ class Coupon_Creator_Help_Class {
 			'tab'     => '',
 			'text'    => 'Links Attributes / Permalinks Options',
 			'type'    => 'heading'
+		);
+		$this->fields['video_link_options']                = array(
+			'section'  => 'permalinks',
+			'tab'      => '',
+			'text'     => 'An Overview of the Link Options',
+			'video_id' => '0uuFEjUaKII',
+			'type'     => 'video'
 		);
 		$this->fields['link_pro_google']                = array(
 			'section' => 'permalinks',
@@ -312,6 +333,13 @@ class Coupon_Creator_Help_Class {
 			'tab'     => '',
 			'text'    => 'Display Options',
 			'type'    => 'heading'
+		);
+		$this->fields['video_display_options']                = array(
+			'section'  => 'display',
+			'tab'      => '',
+			'text'     => 'An Overview of the Display Options',
+			'video_id' => 'H26w4NmCuSw',
+			'type'     => 'video'
 		);
 		$this->fields['video_pro_text-overrides']    = array(
 			'section'  => 'display',
@@ -346,6 +374,13 @@ class Coupon_Creator_Help_Class {
 			'tab'     => '',
 			'text'    => 'Templating Options',
 			'type'    => 'heading'
+		);
+		$this->fields['video_pro_tempalate_overview']                = array(
+			'section'  => 'templating',
+			'tab'      => '',
+			'text'     => 'An Overview of Template Options ',
+			'video_id' => 'U014Ok9_TTY',
+			'type'     => 'video'
 		);
 		$this->fields['video_pro_dimension']                = array(
 			'section'  => 'templating',
@@ -391,8 +426,8 @@ class Coupon_Creator_Help_Class {
 		$this->fields['video_pro_license']           = array(
 			'section'  => 'license',
 			'tab'      => '',
-			'text'     => 'How to add your license',
-			'video_id' => 'pFnp5VsfwUE',
+			'text'     => 'How to Activate Your License',
+			'video_id' => '7kjuob7OBCI',
 			'type'     => 'video'
 		);
 		$this->fields['link_pro_where_license']      = array(
@@ -551,33 +586,33 @@ class Coupon_Creator_Help_Class {
 			echo '<div class="cctor-section-help-slideout">';
 
 			echo '<div class="cctor-meta-field-content video">';
-			echo '<h4>'.__( 'Video Guides' , 'coupon-creator').'</h4>';
+			echo '<h4>' . __( 'Video Guides', 'coupon-creator' ) . '</h4>';
 			echo '<ul>';
-				foreach ( $this->fields as $help_field ) {
+			foreach ( $this->fields as $help_field ) {
 
-					if ( isset( $help_field['type'] ) && 'video' == $help_field['type'] ) {
+				if ( isset( $help_field['type'] ) && 'video' == $help_field['type'] ) {
 
-						if ( $section == $help_field['tab'] || $section == $help_field['section'] ) {
-							$this->help_fields_switch( $help_field, $section );
-						}
+					if ( $section == $help_field['tab'] || $section == $help_field['section'] ) {
+						$this->help_fields_switch( $help_field, $section );
 					}
-
 				}
+
+			}
 			echo '</ul></div>';
 
 			echo '<div class="cctor-meta-field-content text">';
-			echo '<h4>'.__( 'Guides' , 'coupon-creator').'</h4>';
+			echo '<h4>' . __( 'Guides', 'coupon-creator' ) . '</h4>';
 			echo '<ul>';
-				foreach ( $this->fields as $help_field ) {
+			foreach ( $this->fields as $help_field ) {
 
-					if ( isset( $help_field['type'] ) && 'links' == $help_field['type'] ) {
+				if ( isset( $help_field['type'] ) && 'links' == $help_field['type'] ) {
 
-						if ( $section == $help_field['tab'] || $section == $help_field['section'] ) {
-							$this->help_fields_switch( $help_field, $section );
-						}
+					if ( $section == $help_field['tab'] || $section == $help_field['section'] ) {
+						$this->help_fields_switch( $help_field, $section );
 					}
-
 				}
+
+			}
 			echo '</ul></div>';
 
 			echo '</div></div>';

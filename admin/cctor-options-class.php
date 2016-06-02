@@ -670,10 +670,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 				'type'    => '',
 				'section' => ''
 			);
-			$this->options['cctor_pro_recurrence_pattern_limit_default'] = array(
-				'type'    => '',
-				'section' => ''
-			);
 			$this->options['cctor_pro_x_days_default'] = array(
 				'type'    => '',
 				'section' => ''
