@@ -782,7 +782,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin_Options' ) ) {
 			);
 			$this->options['cctor_coupon_category_base']    = array(
 				'type'    => '',
-				'section' => ''
+				'section' => '',
+				'class'   => ''
 			);
 
 			//display

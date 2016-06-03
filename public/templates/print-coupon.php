@@ -6,9 +6,9 @@
 	//Do Not Cache Print Templates
 	if ( ! defined( 'DONOTCACHEPAGE' ) )
         define( 'DONOTCACHEPAGE', true);
-	
+
 	$coupon_id = get_the_ID();
-	
+
 	do_action( 'cctor_action_print_template', $coupon_id );
 
 	if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
@@ -65,7 +65,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
 						do_action( 'cctor_print_coupon_terms' , $coupon_id );
 
-						do_action( 'cctor_print_coupon_expiration' , $coupon_expiration );
+					do_action( 'cctor_print_coupon_expiration', $coupon_id , $coupon_expiration );
 
 					echo $inner_print_coupon_wrap['end_wrap'];
 
