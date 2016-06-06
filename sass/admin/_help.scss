@@ -11,7 +11,11 @@
 .cctor_coupon_page_coupon-options .cctor-section-help-container {
 	margin-left: -10px;
 }
-
+@include media($tablet) {
+	.cctor_coupon_page_coupon-options .cctor-section-help-container {
+		margin-left: 0px;
+	}
+}
 .cctor-section-help-container-toggle {
 	background-color: $blue;
 	border: medium none;
@@ -47,7 +51,6 @@
 	overflow: hidden;
 	padding: 0.5em;
 }
-
 .ui-widget-content a.cctor-support,
 .cctor-support {
 	color: $blue;
@@ -71,6 +74,10 @@
 }
 .cctor-meta-field-content.text {
 	margin: 0 0 0 2%;
+}
+.pro-help-sup {
+	color: $darkred;
+
 }
 @media only screen and (max-width: 640px) {
 	.cctor-meta-field-content,

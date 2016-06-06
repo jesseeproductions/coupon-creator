@@ -2,6 +2,21 @@
 	Coupon Creator Admin CSS
 
 */
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+/*@mixin junction() {
+  font-family: "Junction", "Verdana", sans-serif;
+  font-weight: 400;
+}
+
+@mixin junction-light() {
+  font-family: "Junction", "Verdana", sans-serif;
+  font-weight: 100;
+}*/
 /* ==========================================================================
    Tabs CSS
    ========================================================================== */
@@ -85,6 +100,10 @@
 
 .cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
   margin: 0 0 0 -10px; }
+
+@media screen and (max-width: 768px) {
+  .cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
+    margin: 0 0 0 0px; } }
 
 .cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content .cctor-section-help-slideout h4 {
   margin: 0; }
@@ -341,6 +360,10 @@
 .cctor_coupon_page_coupon-options .cctor-section-help-container {
   margin-left: -10px; }
 
+@media screen and (max-width: 768px) {
+  .cctor_coupon_page_coupon-options .cctor-section-help-container {
+    margin-left: 0px; } }
+
 .cctor-section-help-container-toggle {
   background-color: #2a5a8a;
   border: medium none;
@@ -393,6 +416,9 @@
 
 .cctor-meta-field-content.text {
   margin: 0 0 0 2%; }
+
+.pro-help-sup {
+  color: #950402; }
 
 @media only screen and (max-width: 640px) {
   .cctor-meta-field-content,

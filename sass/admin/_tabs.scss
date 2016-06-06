@@ -92,7 +92,11 @@
 .cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
 	margin: 0 0 0 -10px;
 }
-
+@include media($tablet) {
+	.cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
+		margin: 0 0 0 0px;
+	}
+}
 .cctor_coupon_page_coupon-options .cctor-tabs-panel.ui-tabs-panel.ui-widget-content .cctor-section-help-slideout h4 {
 	margin: 0;
 }

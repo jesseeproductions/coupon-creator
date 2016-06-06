@@ -33,7 +33,7 @@ class Coupon_Update_Scripts {
 					return;
 				}
 				$args = array(
-					'posts_per_page' => 1000,
+					'posts_per_page' => 2000,
 					'post_type'      => 'cctor_coupon',
 					'post_status'    => 'publish',
 				);
