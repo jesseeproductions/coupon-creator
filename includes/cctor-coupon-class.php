@@ -77,7 +77,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			}
 
 			//Load Deprecated
-			Coupon_Creator_Plugin::include_file( 'includes/deprecated/deprecated.php' );
+			Coupon_Creator_Plugin::include_file( 'includes/deprecated/cctor_deprecated.php' );
 
 		}
 
