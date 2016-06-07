@@ -133,7 +133,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.3 XXX =
+= 2.3 June 6th, 2016 =
+
 
 * Fixed search method from running on bbPress search results, thanks Dr Sagman for pointing this out
 
@@ -296,8 +297,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.2.1.1 =
-Improves capabilities coding to make it easier to customize. 2.2.1 includes compatibility fix for bbPress and WordPress 4.5 as well as capabilties fix for new installs
+= 2.3 =
+This is a major update to the Coupon Creator Expiration and Help System and both it and Pro should be at least on 2.3 for them to work correctly.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>
