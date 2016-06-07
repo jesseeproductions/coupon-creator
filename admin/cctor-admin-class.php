@@ -281,6 +281,15 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			return true;
 		}
 
+		/*
+		* Get Support Information for Options and Meta Field
+		* @deprecated since 2.3
+		*/
+		public static function get_cctor_support_core_infomation() {
+
+			_deprecated_function( __FUNCTION__, '2.3', 'Coupon_Creator_Help_Class' );
+
+		}
 		/***************************************************************************/
 
 		/*
