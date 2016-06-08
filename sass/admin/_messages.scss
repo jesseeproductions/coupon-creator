@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Messages CSS
+   ========================================================================== */
+.cctor-meta-bg {
+	background-color: #fff;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+	margin: 5px 0 15px;
+	overflow: hidden;
+	padding: 8px 12px;
+}
+
+.success,
+.cctor-message {
+	border-left: 4px solid $green;
+	font-weight: bold;
+}
+
+.cctor-error,
+.cctor-error {
+	border-left: 4px solid $alert;
+	color: $alert;
+}
+
+.success {
+	padding: 1px 12px;
+}
+
+.cctor-error {
+	padding: 1px 12px;
+}
+
+.cctor-error div,
+.cctor-message div {
+	float: left;
+	padding: 0 2% 0 0;
+	width: 48%;
+}
+
+.cctor-meta-field.field-cctor_upgrade_to_pro {
+	width: 100%;
+}
+
+/* Pro Marketing
+------------------------------------------------------------ */
+.cctor-pro-img {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	height: auto;
+	margin: 1% 0 2.5% 7%;
+	max-width: 90%;
+	position: relative;
+}
+
+.cctor-pro-img:before, .cctor-pro-img:after {
+	border-radius: 100px / 10px;
+	-moz-border-radius: 100px / 10px;
+	bottom: 0;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	-moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+	content: "";
+	left: 10px;
+	position: absolute;
+	right: 10px;
+	top: 0;
+	z-index: -1;
+}
+
+.cctor-pro-img:after {
+	left: auto;
+	right: 10px;
+	transform: skew(8deg) rotate(3deg);
+	-moz-transform: skew(8deg) rotate(3deg);
+	-ms-transform: skew(8deg) rotate(3deg);
+	-o-transform: skew(8deg) rotate(3deg);
+	-webkit-transform: skew(8deg) rotate(3deg);
+}

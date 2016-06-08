@@ -24,8 +24,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			//Flush Permalinks on Permalink Option Change
 			add_action('admin_init', array( __CLASS__, 'cctor_flush_permalinks'));
 
-			// Remove Coupon Row Actions
-			add_filter( 'post_row_actions',  array( __CLASS__, 'cctor_remove_coupon_row_actions'), 10, 2 );
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-admin-columns.php' );
+			new Coupon_Admin_Columns();
 
 			//Load Coupon Options Class
 			Coupon_Creator_Plugin::include_file( 'admin/cctor-options-class.php' );
@@ -59,12 +59,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			//Load Admin Coupon Scripts
 			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'cctor_edit_enqueue_style_scripts' ) );
 
-			// Add Columns
-			add_filter( 'manage_edit-cctor_coupon_columns' ,  array( __CLASS__, 'cctor_list_columns' ) );
-
-			//Custom Column Cases
-			add_action( 'manage_posts_custom_column', array( __CLASS__, 'cctor_column_cases' ), 10, 2 );
-
 		} //end admin_init
 	/***************************************************************************/
 
@@ -79,81 +73,14 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 
 			update_option( 'coupon_update_version', date('l jS \of F Y h:i:s A') );
 
-			self::cctor_update_ignore_expiration();
-
-			self::cctor_update_image_fields();
+			Coupon_Creator_Plugin::include_file( 'admin/cctor-update-scripts.php' );
+			new Coupon_Update_Scripts();
 
 			update_option(CCTOR_VERSION_KEY, CCTOR_VERSION_NUM);
 
 			update_option( 'cctor_coupon_base_change', TRUE );
 
 		}
-	}
-
-	/***************************************************************************/
-	/*
-	* On Update Query Coupons and Change cctor_ignore_expiration value from on to 1
-	* This if for Coupons made prior to 1.80
-	* @version 2.1
-	*/
-	public static function cctor_update_ignore_expiration() {
-
-		update_option( 'coupon_update_ignore_expiration', date( 'l jS \of F Y h:i:s A' ) );
-
-		$args = array(
-			'posts_per_page' => 1000,
-			'post_type'      => 'cctor_coupon',
-			'post_status'    => 'publish',
-			'meta_key'       => 'cctor_ignore_expiration',
-			'meta_value'     => 'on'
-		);
-
-		$cctor_ignore_exp = new WP_Query( $args );
-
-		if ( $cctor_ignore_exp ) {
-			while ( $cctor_ignore_exp->have_posts() ) : $cctor_ignore_exp->the_post();
-
-				update_post_meta( $cctor_ignore_exp->post->ID, 'cctor_ignore_expiration', 1 , 'on' );
-
-			endwhile;
-		}
-
-		wp_reset_postdata();
-
-	}
-
-
-	/***************************************************************************/
-	/*
-	* On Update Query Coupons and update cctor_outer_radius to cctor_img_outer_radius value and delete
-	* This if for Image Coupons made prior to 2.1
-	* @version 2.1
-	*/
-	public static function cctor_update_image_fields() {
-
-		update_option( 'coupon_update_image_border_meta', date( 'l jS \of F Y h:i:s A' ) );
-
-		$args = array(
-			'posts_per_page' => 1000,
-			'post_type'      => 'cctor_coupon',
-			'post_status'    => 'publish',
-			'meta_key'       => 'cctor_img_outer_radius'
-		);
-
-		$cctor_ignore_exp = new WP_Query( $args );
-
-		if ( $cctor_ignore_exp ) {
-			while ( $cctor_ignore_exp->have_posts() ) : $cctor_ignore_exp->the_post();
-
-				update_post_meta( $cctor_ignore_exp->post->ID, 'cctor_outer_radius', get_post_meta( $cctor_ignore_exp->post->ID, 'cctor_img_outer_radius', true) );
-
-				delete_post_meta( $cctor_ignore_exp->post->ID, 'cctor_img_outer_radius' );
-
-			endwhile;
-		}
-
-		wp_reset_postdata();
-
 	}
 
 	/***************************************************************************/
@@ -217,9 +144,8 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			if ( 'cctor_coupon' == $screen->id ) {
 
 				//Styles
-				//Date Picker CSS
-				$cctor_meta_css = CCTOR_PATH.'admin/css/cctor-meta.css';
-				wp_enqueue_style( 'cctor_meta_css', CCTOR_URL . 'admin/css/cctor-meta.css', false, filemtime($cctor_meta_css));
+				$cctor_meta_css = CCTOR_PATH.'admin/css/admin-style.css';
+				wp_enqueue_style( 'coupon-admin-style', CCTOR_URL . 'admin/css/admin-style.css', false, filemtime($cctor_meta_css));
 
 				//Style or WP Color Picker
 				wp_enqueue_style( 'wp-color-picker' );
@@ -269,201 +195,6 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 				//Hook to Load New Styles and Scripts
 				do_action('cctor_meta_scripts_styles');
 
-			}
-		}
-
-		/***************************************************************************/
-
-		/*
-		* Remove Coupon Row Actions if user does not have permision to manage
-		* @version 1.90
-		* @param array $actions, $post
-		*/
-		public static function cctor_remove_coupon_row_actions( $actions, $post ) {
-		  global $current_screen, $current_user;
-
-			if( is_object( $current_screen ) && $current_screen->post_type != 'cctor_coupon' ) {
-				return $actions;
-			}
-
-			if(!current_user_can( 'edit_others_cctor_coupons', $post->ID ) && ($post->post_author != $current_user->ID))  {
-				unset( $actions['edit'] );
-				unset( $actions['view'] );
-				unset( $actions['trash'] );
-				unset( $actions['inline hide-if-no-js'] );
-			}
-
-			return $actions;
-		}
-
-
-		/***************************************************************************/
-
-		/*
-		* Setup Custom Columns
-		* @version 2.0
-		* @param array $columns
-		*/
-		public static function cctor_list_columns( $columns ) {
-			$cctor_columns = array();
-
-			if( isset( $columns['cb'] ) ) {
-				$cctor_columns['cb'] = $columns['cb'];
-			}
-
-			if( isset( $columns['title'] ) ) {
-				$cctor_columns['title'] = __( 'Coupon Title', 'coupon-creator' );
-			}
-
-			if( isset( $columns['author'] ) ) {
-				$cctor_columns['author'] = $columns['author'];
-			}
-
-			$cctor_columns['cctor_coupon_showing'] = __( 'Coupon is ', 'coupon-creator' );
-
-			$cctor_columns['cctor_coupon_shortcode'] = __( 'Shortcode', 'coupon-creator' );
-
-			$cctor_columns['cctor_coupon_ignore_expiration'] = __( 'Ignore Expiration', 'coupon-creator' );
-
-			$cctor_columns['cctor_coupon_expiration'] = __( 'Expiration Date', 'coupon-creator' );
-
-
-			if( isset( $columns['date'] ) ) {
-				$cctor_columns['date'] = $columns['date'];
-			}
-
-			//Filter Columns
-			if(has_filter('cctor_filter_coupon_list_columns')) {
-
-				/**
-				 * Filter the Admin Coupon List Columns Headers
-				 *
-				 * @param array $cctor_columns an array of column headers.
-				 *
-				 */
-				$cctor_columns = apply_filters('cctor_filter_coupon_list_columns', $cctor_columns,  $columns);
-			}
-
-			return $cctor_columns;
-		}
-
-		/*
-		* Add Custom Meta Data to Columns
-		* @version 2.0
-		*/
-		public static function cctor_column_cases( $column, $post_id ) {
-			switch( $column ) {
-				case 'cctor_coupon_shortcode':
-					echo "<code>[coupon couponid='". $post_id ."' name='". get_the_title($post_id) ."']</code>";
-					break;
-				case 'cctor_coupon_showing':
-
-					$coupon_showing = Coupon_Creator_Plugin_Admin::cctor_admin_check_expiration($post_id);
-
-					if ( $coupon_showing ) {
-						echo "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing', 'coupon-creator' ) . "</p>";
-					} else {
-						echo "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing', 'coupon-creator' ) . "</p>";
-					}
-
-					break;
-				case 'cctor_coupon_expiration':
-					//Coupon Expiration Date
-					$expirationco = get_post_meta($post_id, 'cctor_expiration', true);
-
-					$cc_expiration_date = strtotime($expirationco);
-
-					if ($expirationco) { // Only Display Expiration if Date
-						$daymonth_date_format = cctor_options('cctor_default_date_format'); //Date Format
-
-						if ($daymonth_date_format == 1 ) { //Change to Day - Month Style
-						$expirationco = date("d/m/Y", $cc_expiration_date);
-						}
-
-						echo $expirationco;
-					}
-
-					break;
-				case 'cctor_coupon_ignore_expiration':
-					if (get_post_meta( $post_id, 'cctor_ignore_expiration', true ) == 1) {
-						echo "<p style='padding-left:40px;'>" . __( 'Yes', 'coupon-creator' ) . "</p>";
-					}
-					break;
-			}
-
-			if(has_filter('cctor_filter_column_cases')) {
-
-				/**
-				 * Filter the Admin Coupon List Columns Information per Coupon
-				 *
-				 *
-				 * @param string $column a string of data to display in the admin columns.
-				 *
-				 */
-				echo apply_filters('cctor_filter_column_cases', $column, $post_id);
-			}
-		}
-
-		/***************************************************************************/
-
-		/*
-		* Admin Check if Coupon Shows on Front End
-		* @version 2.0
-		*/
-		public static function cctor_admin_check_expiration($coupon_id) {
-
-				//Ignore Expiration Value
-				$ignore_expiration = get_post_meta($coupon_id, 'cctor_ignore_expiration', true);
-
-				//Return If Not Passed Expiration Date
-				$expiration = Coupon_Creator_Plugin_Admin::cctor_admin_expiration_and_current_date($coupon_id);
-
-				//Enable Filter to stop coupon from showing
-				$show_coupon_check = false;
-
-				/**
-				 * Filter the the Coupon in Admin if it should Display
-				 *
-				 *
-				 * @param boolean $show_coupon_check true or false a coupon should show.
-				 *
-				 */
-				$show_coupon_check = apply_filters('cctor_admin_check_coupon', $show_coupon_check, $coupon_id);
-
-				if (($expiration || $ignore_expiration == 1) && !$show_coupon_check) {
-
-					return true;
-
-				}	else {
-
-					return false;
-
-				}
-		}
-
-		/***************************************************************************/
-
-
-		/*
-		* Admin Check of Expiration Date
-		* @version 2.0
-		*/
-		public static function cctor_admin_expiration_and_current_date($coupon_id) {
-
-			//Coupon Expiration Date
-			$expirationco = get_post_meta($coupon_id, 'cctor_expiration', true);
-			$expiration['expiration'] = strtotime($expirationco);
-
-			//Blog Time According to WordPress
-			$cc_blogtime = current_time('mysql');
-			list( $today_year, $today_month, $today_day ) = preg_split( '([^0-9])', $cc_blogtime );
-
-			$expiration['today'] = strtotime($today_month."/".$today_day."/". $today_year);
-
-			if ($expiration['expiration'] >= $expiration['today']) {
-				return true;
-			} else {
-				return false;
 			}
 		}
 
@@ -550,6 +281,15 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			return true;
 		}
 
+		/*
+		* Get Support Information for Options and Meta Field
+		* @deprecated since 2.3
+		*/
+		public static function get_cctor_support_core_infomation() {
+
+			_deprecated_function( __FUNCTION__, '2.3', 'Coupon_Creator_Help_Class' );
+
+		}
 		/***************************************************************************/
 
 		/*
@@ -608,80 +348,7 @@ if ( ! class_exists( 'Coupon_Creator_Plugin_Admin' ) ) {
 			return true;
 		}
 
-		/***************************************************************************/
-
-		/*
-		* Get Support Information for Options and Meta Field
-		* @version 2.0
-		*/
-		public static function get_cctor_support_core_infomation() {
-
-			$support_html = '
-
-				<h4 class="coupon-heading">Video Guides</h4>
-				<ul>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/tIau3ZNjoeI?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Coupon</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/A1mULc_MyHs?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating an Image Coupon</a></li>
-					<li><a  class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/sozW-J-g3Ts?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Inserter and Aligning Coupons</a></li>
-					<li><a class="cctor-support youtube_colorbox" href="http://www.youtube.com/embed/h3Zg8rxIDdc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Coupon Creator Options</a></li>
-				</ul>
-
-				<h4 class="coupon-heading">Pro Video Guides</h4>
-				<ul>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/L9uf9q9JRtc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Pro\'s couponloop shortcode, filter bar, and template system to manage coupons</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xEOdVUMFqg8?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Intro to Pro\'s Themer\'s Guide</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/EQRv8g2nmuE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Border Styles</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/JR4GA4lsOB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use Recurring Expiration</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/w67yqCZXF6I?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using Columns and Rows in the Visual Editor</a></li>
-                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/iThKkEgYBDE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the Popup Print View Feature</a></li>
-                    <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/h0YVXi2vq3g?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to use the View Shortcodes and Deal Display Options</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/FI218DxXnrY?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Coupon</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/SqAG3s1FniA?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Creating a Pro Image Coupon</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/8L0JmSB_V-E?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Options</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/aVkwq8cIgB0?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Counter</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/vmViVkoQB0M?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Background Image</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/b3cV8gVf4lU?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Dimension Options</a></li>
-					<li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/pFnp5VsfwUE?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">Using the Pro Text Overrides</a></li>
-					 <li><a class="cctor-support youtube_colorbox"  href="http://www.youtube.com/embed/xH3GmKPzQKc?hd=1&autohide=1&rel=0&showsearch=0&autoplay=1" rel="how_to_videos">How to Create a WooCommerce Coupon</a></li>
-				</ul>
-
-				<h4 class="coupon-heading">Resources</h4>
-				<ul>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.link/EsQPX">Documentation</a> - Overview of CSS Selectors, Actions, Filters, Capabilities, and Post Types</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.link/UzIZB">Frequently Asked Question</a> - Pre Sales, License, Requirements, and Setup Information</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.link/eQAEC">Guides</a> - User Guides and Troubleshooting Guides</li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.link/loHtW">Tutorials</a> - Customization Tutorials and More</li>
-				</ul>';
-
-			return	$support_html;
-		}
-
-		/***************************************************************************/
-
-		/*
-		* Get Support Information for Options and Meta Field
-		* @version 2.0
-		*/
-		public static function get_cctor_support_core_contact() {
-
-			$support_html = '
-				<h4 class="coupon-heading">How to Contact Support</h4>
-				<ul>
-					<li>Please use the <a target="_blank" class="cctor-support" href="http://cctor.link/ZlQvh">WordPress.org Support Forum for the Coupon Creator</a>.</li>
-					<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:
-						<ul>
-						<li><br><a class="cctor-support" target="_blank" href="http://cctor.link/RgewD">Troubleshooting 404 Errors</a></li>
-						<li><a class="cctor-support" target="_blank" href="http://cctor.link/4rMqT">Troubleshooting Conflicts</a></li>
-						<li><a class="cctor-support" target="_blank" href="http://cctor.link/R7KRa">Troubleshooting Javascript Errors</a></li>
-						</ul>
-					</li>
-
-				</ul>';
-
-			return	$support_html;
-		}
-
-		/***************************************************************************/
+			/***************************************************************************/
 
 	} //end Coupon_Creator_Plugin_Admin Class
 

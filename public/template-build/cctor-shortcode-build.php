@@ -9,8 +9,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 */
 function cctor_shortcode_functions() {	 
 
-	add_filter('cctor_expiration_check', 'cctor_expiration_and_current_date', 10 , 1);
-
 	add_filter('cctor_image_url', 'cctor_get_image_url', 10 , 2);
 
 	add_filter('cctor_outer_content_wrap', 'cctor_return_outer_coupon_wrap', 10 , 3);
@@ -23,11 +21,16 @@ function cctor_shortcode_functions() {
 
 	add_action('cctor_coupon_terms', 'cctor_show_terms', 10, 1 ); 
 
-	add_action('cctor_coupon_expiration', 'cctor_show_expiration', 10, 1 ); 
+	add_action('cctor_coupon_expiration', 'cctor_show_expiration', 10, 2 );
 
 	add_action('cctor_coupon_link', 'cctor_show_link', 10, 1 ); 
 
-	add_action('cctor_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 1 ); 		
+	add_action('cctor_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 2 );
 
+	/**
+	 * Shortcode Template Hook for all Action and Filters
+	 *
+	 * @since 1.90
+	 */
 	do_action( 'cctor_shortcode_template_functions' );
 }

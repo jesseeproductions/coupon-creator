@@ -6,10 +6,16 @@
 	//Do Not Cache Print Templates
 	if ( ! defined( 'DONOTCACHEPAGE' ) )
         define( 'DONOTCACHEPAGE', true);
-	
+
 	$coupon_id = get_the_ID();
-	
+
 	do_action( 'cctor_action_print_template', $coupon_id );
+
+	if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
+		$coupon_expiration = new CCtor_Pro_Expiration_Class( $coupon_id );
+	} else {
+		$coupon_expiration = new CCtor_Expiration_Class( $coupon_id );
+	}
 
 ?>
 <!DOCTYPE html>
@@ -36,7 +42,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 	do_action( 'cctor_print_before_coupon', $coupon_id );
 
 		//Check to show the Coupon
-		if (cctor_expiration_check($coupon_id)) {
+	if ( $coupon_expiration->check_expiration() ) {
 
 			$outer_print_coupon_wrap  = apply_filters( 'cctor_print_outer_content_wrap' , $coupon_id  );
 
@@ -59,7 +65,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
 						do_action( 'cctor_print_coupon_terms' , $coupon_id );
 
-						do_action( 'cctor_print_coupon_expiration' , $coupon_id );
+					do_action( 'cctor_print_coupon_expiration', $coupon_id , $coupon_expiration );
 
 					echo $inner_print_coupon_wrap['end_wrap'];
 
@@ -71,7 +77,7 @@ if ( have_posts() ) while ( have_posts() ) : the_post();
 
 		} else {
 			//No Coupon Will Show So Print HTML Comment
-			do_action( 'cctor_print_no_show_coupon' , $coupon_id );
+			do_action( 'cctor_print_no_show_coupon' , $coupon_id, $coupon_expiration );
 		}
 
 	do_action( 'cctor_print_after_coupon' , $coupon_id );

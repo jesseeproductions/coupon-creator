@@ -1,0 +1,28 @@
+/* ==========================================================================
+  Tooltips CSS
+   ========================================================================== */
+
+.cctor-tooltip {
+	border-bottom: 1px dotted black;
+	display: inline-block;
+	position: relative;
+}
+
+.cctor-tooltip .cctor-tooltiptext {
+	background-color: black;
+	border-radius: 6px;
+	color: #fff;
+	left: 50%;
+	margin-left: -60px;
+	padding: 5px 0;
+	position: absolute;
+	text-align: center;
+	top: 100%;
+	visibility: hidden;
+	width: 120px;
+	z-index: 1;
+}
+
+.cctor-tooltip:hover .cctor-tooltiptext {
+	visibility: visible;
+}

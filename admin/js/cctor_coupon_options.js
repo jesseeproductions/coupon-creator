@@ -5,15 +5,26 @@
 var $ = jQuery.noConflict();
 
 jQuery(document).ready(function ($) {    
-    $('.color-picker').wpColorPicker();
-});
 
-/*
-* Color Box Init for Help Videos
-* since 1.00
-*/								
-jQuery(document).ready(function ($) {  
+  	/*
+	* Colorpicker JS
+	* since 1.00
+	*/
+    $('.color-picker').wpColorPicker();
+
+
+	/*
+	* Color Box Init for Help Videos
+	* since 1.00
+	*/
 	$(".youtube_colorbox").colorbox({rel: "how_to_videos", current: "video {current} of {total}", iframe:true, width:"90%", height:"90%"});
+
+	/*
+	* Add Class to Show that no jQuery Errors
+	* since 2.3
+	*/
+	$('html').addClass('cctor-js');
+
 });
 
 /*
@@ -239,3 +250,37 @@ jQuery(document).ready(function($) {
 * since 1.80
 */					
 jQuery(".form-table label:empty").parent().hide();
+
+
+jQuery(document).ready(function ($) {
+
+	/*
+	* Add Class to Show that no jQuery Errors
+	* since 2.3
+	*/
+	$('html').addClass('cctor-js');
+
+	/*
+	* Hide Default Label
+	* since 2.3
+	*/
+	$("tbody tr th:contains(Default)").css("display", "none");
+
+
+	/*
+	 * Help Slideout
+	 * since 2.3
+	 */
+	$( ".cctor-section-help-container-toggle" ).on( "click", function ( event ) {
+		event.preventDefault();
+
+		$help_wrap = $( this ).parent();
+		var $help_section = $help_wrap.find( '.cctor-section-help-slideout' );
+
+		$help_section.animate( {
+			height: "toggle",
+			opacity: "toggle"
+		}, "fast" );
+	} );
+
+});

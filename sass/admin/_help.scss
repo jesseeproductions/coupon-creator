@@ -1,0 +1,88 @@
+/* ==========================================================================
+   Help CSS
+   ========================================================================== */
+.cctor-section-help-container {
+	background-color: $blue;
+	border-radius: 10px 10px 0;
+	margin-bottom: 1em;
+	overflow: hidden;
+}
+
+.cctor_coupon_page_coupon-options .cctor-section-help-container {
+	margin-left: -10px;
+}
+@include media($tablet) {
+	.cctor_coupon_page_coupon-options .cctor-section-help-container {
+		margin-left: 0px;
+	}
+}
+.cctor-section-help-container-toggle {
+	background-color: $blue;
+	border: medium none;
+	color: white;
+	cursor: pointer;
+	margin: 0;
+	outline: medium none;
+	padding: 0.5em;
+	text-align: left;
+	width: 100%;
+}
+
+.cctor-section-help-container:hover,
+.cctor-section-help-container-toggle:hover {
+	background: #9dd3df none repeat scroll 0 0;
+	border: 1px solid $blue;
+	color: $black;
+}
+
+.cctor-section-help-container-toggle .dashicons-before::before {
+	margin-right: 5px;
+}
+
+.cctor-section-help-container-toggle .toggle__arrow {
+	text-decoration: none;
+}
+
+.cctor-section-help-slideout {
+	background-color: white;
+	border: 1px solid $blue;
+	border-bottom-left-radius: 10px;
+	display: none;
+	overflow: hidden;
+	padding: 0.5em;
+}
+.ui-widget-content a.cctor-support,
+.cctor-support {
+	color: $blue;
+}
+
+.ui-widget-content a.cctor-support:hover,
+.cctor-support:hover {
+	color: #9DD3DF;
+}
+
+.cctor-help-images {
+	box-shadow: 0 1px 2px 0 rgba(21, 121, 111, 1);
+	display: none;
+	margin: 10px;
+	max-width: 95%;
+}
+.cctor-meta-field-content {
+	width: 49%;
+	display: inline-block;
+	vertical-align: top;
+}
+.cctor-meta-field-content.text {
+	margin: 0 0 0 2%;
+}
+.pro-help-sup {
+	color: $darkred;
+
+}
+@media only screen and (max-width: 640px) {
+	.cctor-meta-field-content,
+	.cctor-meta-field-content.text {
+		margin: 0;
+		width: 100%;
+	}
+}
