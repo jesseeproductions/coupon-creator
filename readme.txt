@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.0
 Tested up to: 4.5
-Stable tag: 2.2.90
+Stable tag: 2.3
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -26,13 +26,15 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=oTa7puu7t24
 
-<h4>Coupon Creator Pro 2.2 Now Available!</h4>
-[Get a Pro License](http://cctor.link/JIGHR) with a new shortcode, filter bar, template system, column display, 5 border styles, recurring expirations, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+<h4>Coupon Creator Pro 2.3 Now Available!</h4>
+[Get a Pro License](http://cctor.link/JIGHR) with a new shortcode, filter bar, quick & bulk edits, template system, column display, 5 border styles, recurring expirations, x days expiration, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
 
-<h4>Coupon Creator Pro 2.2 Features Include:</h4>
-* couponloop shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
+<h4>Coupon Creator Pro 2.3 Features Include:</h4>
+* [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
+* Quick and Bulk edits for the expiration and counter fields
 * Border themes, Dotted Border, Stitched Border, Saw Tooth Border (modern browsers and IE 10+), and None Option
 * Recurring Expiration; set an expiration for the end of the month and have it automatically change to the end of the next month
+* X Days expiration to set a period to redeem a coupon from the day of printing it
 * Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows
 * Pro Inserter has the ability to search coupons and categories in the dropdown
 * Visual editor to easily style the term's content on your site
@@ -133,165 +135,168 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.3 June 6th, 2016 =
-
-
-* Fixed search method from running on bbPress search results, thanks Dr Sagman for pointing this out
+= 2.3 June 7th, 2016 =
+* Add - expiration system as a new class to manage coupon display and expiration messages from a central source
+* Add - message on coupon options and the individual editor pages to inform the user if there is an error that needs to be troubleshooted with a link to the guide to start that process
+* Add - new expiration option with defaults to choose how the coupon will expired or if ignored
+* Add - script to update coupons to the new expiration option
+* Upgrade  - The Help System to sort videos to respective tabs to make it easier to find help and add written guide links that are available.
+* Tweak - Move update scripts to their own class and add a update script for the new expiration class
+* Tweak - Move the admin column methods into their own class
+* Fix - search method from running on bbPress search results, thanks Dr Sagman for pointing this out
+* Deprecate - cctor_expiration_check, cctor_expiration_and_current_date, and method get_cctor_support_core_infomation
 
 = 2.2.1 April 12th, 2016 =
-* Fixed deprecated notice for WordPress 4.5 from an unused function
-* Fixed conflict with bbPress, which caused forums, topics and replies to not show, thanks Dr Sagman!
-* Fixed capabilties not running on initial install
+* Fix - deprecated notice for WordPress 4.5 from an unused function
+* Fix - conflict with bbPress, which caused forums, topics and replies to not show, thanks Dr Sagman!
+* Fix - capabilties not running on initial install
 
 = 2.2 March 23rd, 2016 =
-* Added a check for the role before adding the coupon capabilities to prevent invalid argument warnings in the foreach statement, thanks Maxim
-* Changed the capability system to match to existing capabilities to make it possible to modify Added defaults to the coupon option functions to enable critical fields to have a backup
-* Add flush or permalinks on version upgrade to precent 404 errors
-* Added option to prevent coupon creator from modifying the standard search query to remove coupons due to change in custom post type setup
+* Add - a check for the role before adding the coupon capabilities to prevent invalid argument warnings in the foreach statement, thanks Maxim
+* Update - the capability system to match to existing capabilities to make it possible to modify Added defaults to the coupon option functions to enable critical fields to have a backup
+* Add - flush or permalinks on version upgrade to precent 404 errors
+* Add - option to prevent coupon creator from modifying the standard search query to remove coupons due to change in custom post type setup
 
 
 = 2.1.2 December 7th, 2015 =
-* Fixed bug on option page tabs due to changes in 4.4
+* Fix - bug on option page tabs due to changes in 4.4
 
 
 = 2.1.1 September 13th, 2015 =
-* Changed Text Domain
+* Update - Text Domain
 
 = 2.1 August 27th, 2015 =
-* Added base CSS to the print view to present a better layout of the text with more options in Pro to change font size, weight, and family.
-* Added option to disable the base CSS for the print view.
-* Added constant to prevent all coupons from opening in new windows or tabs - define( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB', true );
-* Added PHP Date Validation when saving.
-* Added define('CCTOR_HIDE_UPGRADE', true); to hide Pro Upgrade Notices.
-* Added do_action( 'cctor_before_coupon_inner_wrap' , $coupon_id ); hook into the shortcode coupon.
-* Added function to update old image border radius field to the outer border.
-* Added update function to change the cctor_ignore_expiration value from on to 1 for older version upgrades.
-* Updated deal CSS to this class cctor_deal instead of targeting a heading tag directly to enable use of h3 tags in content.
+* Add - base CSS to the print view to present a better layout of the text with more options in Pro to change font size, weight, and family.
+* Add - option to disable the base CSS for the print view.
+* Add - constant to prevent all coupons from opening in new windows or tabs - define( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB', true );
+* Add - PHP Date Validation when saving.
+* Add - define('CCTOR_HIDE_UPGRADE', true); to hide Pro Upgrade Notices.
+* Add - do_action( 'cctor_before_coupon_inner_wrap' , $coupon_id ); hook into the shortcode coupon.
+* Add - function to update old image border radius field to the outer border.
+* Add - update function to change the cctor_ignore_expiration value from on to 1 for older version upgrades.
+* Update - deal CSS to this class cctor_deal instead of targeting a heading tag directly to enable use of h3 tags in content.
 * Update combined sanitize functions into a class to enable future validation messages.
-* Updated Coupon Options Tabs and Coupon Meta Tabs to detect if saved by php and use that to determine what tab to return to after a save attempt instead of detecting if message div exists with jQuery.
-* Updated the styling of the Coupon Inserter based off new coding in Pro and added script to resize the thickbox based on the Content.
-* Fixed an issue with default options not saving with Pro and added sanitization for defaults.
-* Fixed custom permalinks change to make sure permalinks are flushed and the new slug is being used.
-* Fixed select option defaults to work again.
-* Fixed spelling on cctor_options_styles and cctor_options_scripts hooks.
+* Update - Coupon Options Tabs and Coupon Meta Tabs to detect if saved by php and use that to determine what tab to return to after a save attempt instead of detecting if message div exists with jQuery.
+* Update - the styling of the Coupon Inserter based off new coding in Pro and added script to resize the thickbox based on the Content.
+* Fix - an issue with default options not saving with Pro and added sanitization for defaults.
+* Fix - custom permalinks change to make sure permalinks are flushed and the new slug is being used.
+* Fix - select option defaults to work again.
+* Fix - spelling on cctor_options_styles and cctor_options_scripts hooks.
 
 = 2.0.3 May 21st, 2015 =
-* Fixed Coupon Inserter so categories show in dropdown
-* Fixed status variable undefined notices
-* Removed the_content filter from terms and manually run each function to remove conflicts with other plugins such as JetPack
+* Fix - Coupon Inserter so categories show in dropdown
+* Fix - status variable undefined notices
+* Remove - the_content filter from terms and manually run each function to remove conflicts with other plugins such as JetPack
 
 = 2.0.2 April 9th, 2015 =
-* Fixed tabs on reload of options or editor it returns you to the same tab
-* Secured wp_remote_get function with esc_url_raw on add_query_arg call
+* Fix - tabs on reload of options or editor it returns you to the same tab
+* Update - wp_remote_get function with esc_url_raw on add_query_arg call
 
 = 2.0.1 April 9th, 2015 =
-* Fixed so permalinks are flushed on activate and deactivate
-* Fixed undefined notice error when saving coupon options
+* Fix - so permalinks are flushed on activate and deactivate
+* Fix - undefined notice error when saving coupon options
 
 = 2.0 April 8th, 2015 =
-* Added column in coupon list to mention if the coupon is showing of not showing based on expiration date
-* Added current date from this function current_time('mysql') under the expiration date for reference and date formats to the default format chosen in the options
-* Added numeric check for image uploads instead of using text sanitize
-* Added -webkit-print-color-adjust: exact; to the CSS to help print background colors in Webkit Browsers, does not work in FireFox or IE. The user has to choose to print background images and colors in the browser
-* Changed support fields in option and meta sections to use same information instead of four (4) different ones
-* Added new styling to the support links
-* Added coding to change Admin Tabs to Accordion when the div width cannot fit the tabs
-* Added Option to remove wpautop from running on terms fields by default it is on thanks to this snippet - http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
-* Added DONOTCACHEPAGE Constant to Print Template
-* Updated Colorbox to 1.5.14
-* Fixed Undefined property: stdClass::$delete_posts in Coupon List
-* Fixed save_post hook priority as some plugins caused the custom fields to not save
-* Fixed bug where Date Format does not save to Month First if Day First is the Default
-* Fixed textarea width
-* Removed extract function from the WordPress Settings API functions and replaced with arrays instead, this removes the last use of the extract function from the Coupon Creator
+* Add - column in coupon list to mention if the coupon is showing of not showing based on expiration date
+* Add - current date from this function current_time('mysql') under the expiration date for reference and date formats to the default format chosen in the options
+* Add - numeric check for image uploads instead of using text sanitize
+* Add - -webkit-print-color-adjust: exact; to the CSS to help print background colors in Webkit Browsers, does not work in FireFox or IE. The user has to choose to print background images and colors in the browser
+* Update - support fields in option and meta sections to use same information instead of four (4) different ones
+* Add - new styling to the support links
+* Add - coding to change Admin Tabs to Accordion when the div width cannot fit the tabs
+* Add - Option to remove wpautop from running on terms fields by default it is on thanks to this snippet - http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
+* Add - DONOTCACHEPAGE Constant to Print Template
+* Update - Colorbox to 1.5.14
+* Fix - Undefined property: stdClass::$delete_posts in Coupon List
+* Fix - save_post hook priority as some plugins caused the custom fields to not save
+* Fix - bug where Date Format does not save to Month First if Day First is the Default
+* Fix - textarea width
+* Remove - extract function from the WordPress Settings API functions and replaced with arrays instead, this removes the last use of the extract function from the Coupon Creator
 
 = 1.90 November 20th, 2014 =
-* Major update to all coding
-* Added a hook templating system to modify the shortcode and print templates
-* Added coding for licenses
-* Added hooks for Option and Meta additions from add ons
-* Update Coupon List and Individual Coupon Information to make it easier to see the expiration
-* Added more translation fields
-* Added tab system for both Options and Meta fields to make it easier to edit
-* Added coupon capabilities
-* Added shortcode to the coupon editor page and to the coupon admin list
-* Made entire coupon a link
+* Add - a hook templating system to modify the shortcode and print templates
+* Add - coding for licenses
+* Add - hooks for Option and Meta additions from add ons
+* Update - Coupon List and Individual Coupon Information to make it easier to see the expiration
+* Add - more translation fields
+* Add - tab system for both Options and Meta fields to make it easier to edit
+* Add - coupon capabilities
+* Add - shortcode to the coupon editor page and to the coupon admin list
+* Add - Entire coupon a link
 
 = 1.80 July 7th, 2014 =
-* Added Expiration Date and If Ignore Expiration is on to the Coupon Listing
-* Added class for Options including, Custom CSS, Default, Colors, nofollow on print link, hide print link, improved permalink
-* Added new options for all coupons including adding custom CSS.
-* Added class to manage meta fields
-* Added various hooks and filters to upcoming
-* Changed image size to only set the width of image and allow for different heights
-* Changed Version check to alert message to make it more noticeable
-* Coding Updates and fixes throughout
-* Fixed Permalink Flush on Activation of Plugin
-* Fixed filemtime error on Windows Servers for the Print Template
+* Add - Expiration Date and If Ignore Expiration is on to the Coupon Listing
+* Add - class for Options including, Custom CSS, Default, Colors, nofollow on print link, hide print link, improved permalink
+* Add - new options for all coupons including adding custom CSS.
+* Add - class to manage meta fields
+* Add - various hooks and filters to upcoming
+* Update - image size to only set the width of image and allow for different heights
+* Update - Version check to alert message to make it more noticeable
+* Fix - Permalink Flush on Activation of Plugin
+* Fix - filemtime error on Windows Servers for the Print Template
 
 = 1.70 April 4th, 2014 =
-* Rewrite of entire plugin to Object-oriented programming
-* Update Color Picker to lastest version
-* Change Image Uploader to the latest version of WordPress Media Uploader
-* Added Setting Page with ability to change slug of coupon permalinks
-* Added custom columns to list view of all coupons
-* Added localization for admin and frontend
-* Replaced deprecated php split function
+* Update - entire plugin to Object-oriented programming
+* Update - Color Picker to lastest version
+* Update - Change Image Uploader to the latest version of WordPress Media Uploader
+* Add - Setting Page with ability to change slug of coupon permalinks
+* Add - custom columns to list view of all coupons
+* Add - localization for admin and frontend
+* Fix - Deprecated php split function
 
 = 1.60 March, 5th 2015 =
-* Updated Styling to make the coupons more flexible in size
-* Updated and Added Responsive Styling with basic support still for IE7
-* Added a html comment that shows when a coupon is expired
-* Added version numbers to the scripts and stylesheets
-* Added New Q&A to the FAQ
-* Updated Colorbox to 1.4.37
-* Changed the single_template filter to template_include that was causing 404 errors in some themes
+* Update - Styling to make the coupons more flexible in size
+* Update - and Added Responsive Styling with basic support still for IE7
+* Add - a html comment that shows when a coupon is expired
+* Add - version numbers to the scripts and stylesheets
+* Add - New Q&A to the FAQ
+* Update - Colorbox to 1.4.37
+* Update - the single_template filter to template_include that was causing 404 errors in some themes
 
 = 1.50 February 13th, 2014 =
-* Added Translation using the standard WordPress method
-* Added Spanish Translation thanks to Carmen in Miami
-* Cleaned up coding to prepare for a rewrite
+* Add - Translation using the standard WordPress method
+* Add - Spanish Translation thanks to Carmen in Miami
+* Update - Coding to prepare for a rewrite
 
 = 1.45 October 23rd, 2013 =
-* Fixes issue where check box uncheck does not save.
+* Fix - issue where check box uncheck does not save.
 
 = 1.41 August, 20th 2013 =
-* Added Post Reset Function to the shortcode to fix an issue preventing comments from showing
+* Add - Post Reset Function to the shortcode to fix an issue preventing comments from showing
 
 = 1.40 August 14th, 2013 =
-* Added a loop option to the shortcode to display more then one coupon
-* Added coupon categories to use with the loop option of the shortcode
-* Fixed css for box-sizing: content-box for the coupons or in themes like Twenty Thirteen the styling broke
-* Added plugin version into WordPress Database options for future updates
-* Updated Colobox script and fixed background images
+* Add - a loop option to the shortcode to display more then one coupon
+* Add - coupon categories to use with the loop option of the shortcode
+* Fix - css for box-sizing: content-box for the coupons or in themes like Twenty Thirteen the styling broke
+* Add - plugin version into WordPress Database options for future updates
+* Update - Colobox script and fixed background images
 
 = 1.37 January 6th, 2013 =
-* Fixed SVN to latest version
+* Fix - SVN to latest version
 
 = 1.35 January 6th, 2013 =
-* Changed Insert Coupon Icon on Editor for WordPress 3.5
-* Added CSS for inside .widget-wrap to fit 100% into space
-* Coupon Images are now links to larger view. Thanks to the coding from Darin of VzPro
-* Made the Click to Open in Print View font a little larger
+* Update - Insert Coupon Icon on Editor for WordPress 3.5
+* Add - CSS for inside .widget-wrap to fit 100% into space
+* Add - Coupon Images are now links to larger view. Thanks to the coding from Darin of VzPro
+* Update - the Click to Open in Print View font a little larger
 
 = 1.31 =
-* Modifed Click to Open in New Window Coding so it will open new window without javascript.
-* Note this may not open a new window in all browsers.
+* Update - Click to Open in New Window Coding so it will open new window without javascript. (Note this may not open a new window in all browsers.)
 
 = 1.30 July 21st, 2012 =
-* Added checkbox to ignore expiration date so coupon will always display one website
+* Add - checkbox to ignore expiration date so coupon will always display one website
 * "Expire On" will not show if no expiration is added
-* Added some more comments to coding and fixed line spacing issue
-* Added donation link
+* Add - some more comments to coding and fixed line spacing issue
+* Add - donation link
 
 = 1.20 July 16th, 2012 =
-* Bug fixes to remove php notices in shortcode and in meta box
+* Fix - fixes to remove php notices in shortcode and in meta box
 
 = 1.1.5 =
-* Fixed SVN to latest version
+* Fix - SVN to latest version
 
 = 1.1 =
-* Bug Fixes preventing images, js, and css from loading - Thanks for heads up from Tom Ewer of WPMU.org
+* Fix - Fixes preventing images, js, and css from loading - Thanks for heads up from Tom Ewer of WPMU.org
 
 = 1.0 July 8th, 2012 =
 * Initial Release and 1st Version and 1st Plugin!
