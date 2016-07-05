@@ -54,7 +54,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			add_action( 'init', array( __CLASS__, 'init' ) );
 
 			//Localization
-			add_action( 'plugins_loaded', array( __CLASS__, 'i18n' ) );
+			//add_action( 'plugins_loaded', array( __CLASS__, 'i18n' ) );
 
 			//Setup Coupon Image Sizes
 			add_action( 'init', array( __CLASS__, 'cctor_add_image_sizes' ) );
@@ -146,12 +146,12 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 	/***************************************************************************/
 
-		public static function i18n() {
+	/*	public static function i18n() {
 
 	   $cctor_local_path = CCTOR_URL . '/languages/';
        load_plugin_textdomain('coupon-creator', false, $cctor_local_path );
 
-	}
+	}*/
 	/***************************************************************************/
 
 		public static function cctor_register_post_types() {
@@ -219,7 +219,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Activate
 		* @version 1.80
 		*/
-		public static function activate() {
+	/*	public static function activate() {
 
 			if ( ! current_user_can( 'activate_plugins' ) ) {
 				return;
@@ -239,7 +239,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Deactivate
 		* @version 1.80
 		*/
-		public static function deactivate() {
+	/*	public static function deactivate() {
 
 			if ( ! current_user_can( 'activate_plugins' ) ) { return; }
 
