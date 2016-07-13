@@ -42,7 +42,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		public function __construct() {
 
 			//Register Post Type
-			add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) ,5 );
+			//add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) ,5 );
 
 			//Register Custom Taxonomy
 			self::include_file( 'includes/cctor-taxonomy-class.php' );

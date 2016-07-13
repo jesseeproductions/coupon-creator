@@ -19,6 +19,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		//const CCTOR_MIN_PHP_VERSION      = plugin_dir_url( __FILE__ ));
 		const TAXONOMY                 = 'cctor_coupon_category';
 		const POSTTYPE                 = 'cctor_coupon';
+		const COUPON_TEXT_DOMAIN       = 'coupon-creator';
 		const CCTOR_MIN_PHP_VERSION    = '5.2';
 		const CCTOR_MIN_WP_VERSION     = '4.0';
 		const CCTOR_VERSION_KEY        = 'cctor_coupon_version';
@@ -107,6 +108,44 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		}
 
 		/**
+		 * Test PHP and WordPress versions for compatibility
+		 *
+		 * @param string $system - system to be tested such as 'php' or 'wordpress'
+		 *
+		 * @return boolean - is the existing version of the system supported?
+		 */
+		public function supportedVersion( $system ) {
+			if ( $supported = wp_cache_get( $system, 'tribe_version_test' ) ) {
+				return $supported;
+			} else {
+				switch ( strtolower( $system ) ) {
+					case 'wordpress' :
+						$supported = version_compare( get_bloginfo( 'version' ), self::CCTOR_MIN_WP_VERSION, '>=' );
+						break;
+					case 'php' :
+						$supported = version_compare( phpversion(), self::CCTOR_MIN_PHP_VERSION, '>=' );
+						break;
+				}
+				$supported = apply_filters( 'cctor_supported_version', $supported, $system );
+				wp_cache_set( $system, $supported, 'cctor_version_test' );
+
+				return $supported;
+			}
+		}
+
+		/**
+		 * Display a WordPress or PHP incompatibility error
+		 */
+		public function notSupportedError() {
+			if ( ! self::supportedVersion( 'wordpress' ) ) {
+				echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::CCTOR_MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
+			}
+			if ( ! self::supportedVersion( 'php' ) ) {
+				echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::CCTOR_MIN_PHP_VERSION, phpversion() ) . '</p></div>';
+			}
+		}
+
+		/**
 		 * Auto Loader from Plugin Engine
 		 */
 		protected function init_autoloading() {
@@ -134,7 +173,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		 *
 		 */
 		public function load_text_domain() {
-			Pngx__Main::instance()->load_text_domain( 'coupon-creator', $this->plugin_dir . 'lang/' );
+			Pngx__Main::instance()->load_text_domain( self::COUPON_TEXT_DOMAIN, $this->plugin_dir . 'lang/' );
 		}
 
 		/**
@@ -213,7 +252,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		 * Add filters and actions
 		 */
 		protected function addHooks() {
-
+			add_action( 'init', array( $this, 'init' ), 10 );
 
 		}
 
@@ -221,47 +260,30 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		 * Run on applied action init
 		 */
 		public function init() {
-
-
+			$this->register_post_type();
 		}
 
 
 		/**
-		 * Test PHP and WordPress versions for compatibility
-		 *
-		 * @param string $system - system to be tested such as 'php' or 'wordpress'
-		 *
-		 * @return boolean - is the existing version of the system supported?
+		 * Register the post types.
 		 */
-		public function supportedVersion( $system ) {
-			if ( $supported = wp_cache_get( $system, 'tribe_version_test' ) ) {
-				return $supported;
-			} else {
-				switch ( strtolower( $system ) ) {
-					case 'wordpress' :
-						$supported = version_compare( get_bloginfo( 'version' ), self::CCTOR_MIN_WP_VERSION, '>=' );
-						break;
-					case 'php' :
-						$supported = version_compare( phpversion(), self::CCTOR_MIN_PHP_VERSION, '>=' );
-						break;
-				}
-				$supported = apply_filters( 'cctor_supported_version', $supported, $system );
-				wp_cache_set( $system, $supported, 'cctor_version_test' );
-
-				return $supported;
-			}
-		}
-
-		/**
-		 * Display a WordPress or PHP incompatibility error
-		 */
-		public function notSupportedError() {
-			if ( ! self::supportedVersion( 'wordpress' ) ) {
-				echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::CCTOR_MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
-			}
-			if ( ! self::supportedVersion( 'php' ) ) {
-				echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::CCTOR_MIN_PHP_VERSION, phpversion() ) . '</p></div>';
-			}
+		public function register_post_type() {
+			//Todo reduce this coding down, maybe use a filter like events for the naming?
+			$cap_plural     = 'cctor_coupons';
+			$name           = 'Coupon';
+			$plural_name    = 'Coupons';
+			$lc_name        = 'coupon';
+			$lc_plural_name = 'coupons';
+			$slug           = cctor_options( 'cctor_coupon_base', false, _x( self::POSTTYPE, 'slug', self::COUPON_TEXT_DOMAIN ) );
+			$text_domain    = self::COUPON_TEXT_DOMAIN;
+			$updates        = array(
+				'supports'            => array( 'title', 'coupon_creator_meta_box' ),
+				'menu_icon'           => CCTOR_URL . 'admin/images/coupon_creator.png',
+			);
+			//Register Post Type and customize labels
+			$labels = Pngx__Register_Post_Type::generate_post_type_labels( $name, $plural_name, $lc_name, $lc_plural_name, $text_domain );
+			Pngx__Register_Post_Type::register_post_types( self::POSTTYPE, $cap_plural, $name, $labels, $slug, $text_domain, $updates );
+			new Pngx__Register_Post_Type(self::POSTTYPE, __( 'Enter Coupon Admin Title', self::COUPON_TEXT_DOMAIN ) );
 		}
 
 		/**
