@@ -45,8 +45,8 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//add_action( 'init', array( __CLASS__, 'cctor_register_post_types' ) ,5 );
 
 			//Register Custom Taxonomy
-			self::include_file( 'includes/cctor-taxonomy-class.php' );
-			add_action( 'init', array( 'Coupon_Creator_Taxonomy_Class', 'cctor_create_taxonomies' ), 10 );
+			//self::include_file( 'includes/cctor-taxonomy-class.php' );
+			//add_action( 'init', array( 'Coupon_Creator_Taxonomy_Class', 'cctor_create_taxonomies' ), 10 );
 
 			//Remove Coupon From Search
 			add_action( 'pre_get_posts', array( __CLASS__, 'remove_coupon_from_search' ) );
@@ -57,7 +57,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//add_action( 'plugins_loaded', array( __CLASS__, 'i18n' ) );
 
 			//Setup Coupon Image Sizes
-			add_action( 'init', array( __CLASS__, 'cctor_add_image_sizes' ) );
+			//add_action( 'init', array( __CLASS__, 'cctor_add_image_sizes' ) );
 
 			//Cron Schedule
 			add_action( 'init', array( $this, 'filter_cron_schedules' ) );
@@ -71,13 +71,17 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Load Expiration Class
 			Coupon_Creator_Plugin::include_file( 'includes/cctor_expiration_class.php' );
 
+			//Load Deprecated
+			Coupon_Creator_Plugin::include_file( 'includes/deprecated/cctor_deprecated.php' );
+
+
+			//Todo leaves these two, but inegrate the rest then work on admin
+			//Load Sanitize Functions
+			self::include_file( 'admin/cctor-sanitize-class.php' );
 			//Load Admin Class if in Admin Section
 			if ( is_admin() ) {
 				new Coupon_Creator_Plugin_Admin();
 			}
-
-			//Load Deprecated
-			Coupon_Creator_Plugin::include_file( 'includes/deprecated/cctor_deprecated.php' );
 
 		}
 
@@ -154,7 +158,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 	}*/
 	/***************************************************************************/
 
-		public static function cctor_register_post_types() {
+		/*public static function cctor_register_post_types() {
 
 			// if no custom slug use this base slug
 			$slug = cctor_options( 'cctor_coupon_base', false, _x( 'cctor_coupon', 'slug', 'coupon-creator' ) );
@@ -212,7 +216,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				'rewrite'             => array( 'slug' => $slug ),
 			);
 			register_post_type( 'cctor_coupon', $args );
-		}
+		}*/
 
 	/***************************************************************************/
 		/*
@@ -307,7 +311,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Setup Capabilities
 		* @version 1.00
 		*/
-		public function cctor_add_capabilities() {
+		/*public function cctor_add_capabilities() {
 
 			//Administrator
 			$caps['administrator'] = array(
@@ -376,7 +380,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				 * @param array $caps.
 				 *
 				 */
-				$caps = apply_filters('cctor_caps_filter', $caps);
+			/*	$caps = apply_filters('cctor_caps_filter', $caps);
 			}
 
 			$roles = array(
@@ -403,7 +407,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			update_option( 'coupon_creator_capabilties_register', date('l jS \of F Y h:i:s A') );
 
-		}
+		}*/
 	/***************************************************************************/
 		/*
 		* Register Coupon Creator CSS

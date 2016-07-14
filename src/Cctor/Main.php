@@ -9,17 +9,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 
 	/**
-	 * The Events Calendar Class
+	 * Coupon Creator Class
 	 *
-	 * This is where all the magic happens, the unicorns run wild and the leprechauns use WordPress to schedule events.
+	 * This is the initial class with mostly generic methods to start a plugin
+	 *
 	 */
 	class Cctor__Coupon__Main {
 
-		//const CCTOR_PATH   =  plugin_dir_path( __FILE__ );
-		//const CCTOR_MIN_PHP_VERSION      = plugin_dir_url( __FILE__ ));
 		const TAXONOMY                 = 'cctor_coupon_category';
 		const POSTTYPE                 = 'cctor_coupon';
-		const COUPON_TEXT_DOMAIN       = 'coupon-creator';
+		const CAPABILITIESPLURAL       = 'cctor_coupons';
+		const TEXT_DOMAIN              = 'coupon-creator';
 		const CCTOR_MIN_PHP_VERSION    = '5.2';
 		const CCTOR_MIN_WP_VERSION     = '4.0';
 		const CCTOR_VERSION_KEY        = 'cctor_coupon_version';
@@ -34,6 +34,13 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		public           $plugin_path;
 		public           $plugin_url;
 		public           $plugin_name;
+
+		public $singular_coupon_label;
+		public $plural_coupon_label;
+		public $singular_coupon_label_lowercase;
+		public $plural_coupon_label_lowercase;
+		public $singular_category_label;
+		public $plural_category_label;
 
 		/**
 		 * Static Singleton Factory Method
@@ -57,7 +64,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 			$this->pluginDir  = $this->plugin_dir = trailingslashit( basename( $this->plugin_path ) );
 			$this->pluginUrl  = $this->plugin_url = plugins_url( $this->plugin_dir );
 			$this->maybe_set_common_lib_info();
-			// let's initialize tec silly-early to avoid fatals with upgrades from 3.x to 4.x
+
 			add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 0 );
 		}
 
@@ -71,12 +78,13 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 				return;
 			}
 
-			//Setup Capabilities, but only on initial activation
-			if ( ! get_option( 'coupon_creator_capabilties_register' ) ) {
-				Coupon_Creator_Plugin::instance()->cctor_add_capabilities();
+			//Setup Capabilities for CPT
+			if ( ! get_option( self::POSTTYPE . '_capabilities_register' ) ) {
+				new Pngx__Add_Capabilities( self::POSTTYPE, self::CAPABILITIESPLURAL );
 			}
 
-			self::cctor_register_post_types();
+			self::register_post_types();
+
 			flush_rewrite_rules();
 
 		}
@@ -173,7 +181,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		 *
 		 */
 		public function load_text_domain() {
-			Pngx__Main::instance()->load_text_domain( self::COUPON_TEXT_DOMAIN, $this->plugin_dir . 'lang/' );
+			Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'lang/' );
 		}
 
 		/**
@@ -260,38 +268,145 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		 * Run on applied action init
 		 */
 		public function init() {
-			$this->register_post_type();
+
+			$this->singular_coupon_label           = $this->get_coupon_label_singular();
+			$this->singular_coupon_label_lowercase = $this->get_coupon_label_singular_lowercase();
+			$this->plural_coupon_label             = $this->get_coupon_label_plural();
+			$this->plural_coupon_label_lowercase   = $this->get_coupon_label_plural_lowercase();
+			$this->singular_category_label         = $this->get_category_label_plural();
+			$this->plural_category_label_label     = $this->get_category_label_singular();
+
+			$this->register_post_types();
+			$this->register_taxonomies();
 		}
 
+
+		/**
+		 * Allow users to specify their own plural label for Coupons
+		 *
+		 * @return string
+		 */
+		public function get_coupon_label_plural() {
+			return apply_filters( 'cctor_coupon_label_plural', esc_html__( 'Coupons', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Get Coupon Label Plural lowercase
+		 *
+		 * Returns the plural version of the Coupon Label
+		 *
+		 * @return string
+		 */
+		function get_coupon_label_plural_lowercase() {
+			return apply_filters( 'cctor_coupon_label_plural_lowercase', esc_html__( 'coupons', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Allow users to specify their own singular label for Coupons
+		 *
+		 * @return string
+		 */
+		public function get_coupon_label_singular() {
+			return apply_filters( 'cctor_coupon_label_singular', esc_html__( 'Coupon', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Get Coupon Label Singular lowercase
+		 *
+		 * Returns the singular version of the Coupon Label
+		 *
+		 * @return string
+		 */
+		function get_coupon_label_singular_lowercase() {
+			return apply_filters( 'cctor_coupon_label_singular_lowercase', esc_html__( 'coupon', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Allow users to specify their own plural label for Categories
+		 *
+		 * @return string
+		 */
+		public function get_category_label_plural() {
+			return apply_filters( 'cctor_coupon_category_plural', esc_html__( 'Categories', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Allow users to specify their own singular label for Category
+		 *
+		 * @return string
+		 */
+		public function get_category_label_singular() {
+			return apply_filters( 'cctor_coupon_category_label_singular', esc_html__( 'Category', self::TEXT_DOMAIN ) );
+		}
 
 		/**
 		 * Register the post types.
 		 */
-		public function register_post_type() {
-			//Todo reduce this coding down, maybe use a filter like events for the naming?
-			$cap_plural     = 'cctor_coupons';
-			$name           = 'Coupon';
-			$plural_name    = 'Coupons';
-			$lc_name        = 'coupon';
-			$lc_plural_name = 'coupons';
-			$slug           = cctor_options( 'cctor_coupon_base', false, _x( self::POSTTYPE, 'slug', self::COUPON_TEXT_DOMAIN ) );
-			$text_domain    = self::COUPON_TEXT_DOMAIN;
-			$updates        = array(
-				'supports'            => array( 'title', 'coupon_creator_meta_box' ),
-				'menu_icon'           => CCTOR_URL . 'admin/images/coupon_creator.png',
+		public function register_post_types() {
+
+			//Register Coupon Post Type and customize labels
+			// @formatter:off
+			$labels = Pngx__Register_Post_Type::generate_post_type_labels(
+				$this->singular_coupon_label,
+				$this->plural_coupon_label,
+				$this->singular_coupon_label_lowercase,
+				$this->plural_coupon_label_lowercase,
+				self::TEXT_DOMAIN
 			);
-			//Register Post Type and customize labels
-			$labels = Pngx__Register_Post_Type::generate_post_type_labels( $name, $plural_name, $lc_name, $lc_plural_name, $text_domain );
-			Pngx__Register_Post_Type::register_post_types( self::POSTTYPE, $cap_plural, $name, $labels, $slug, $text_domain, $updates );
-			new Pngx__Register_Post_Type(self::POSTTYPE, __( 'Enter Coupon Admin Title', self::COUPON_TEXT_DOMAIN ) );
+
+			Pngx__Register_Post_Type::register_post_types(
+				self::POSTTYPE,
+				self::CAPABILITIESPLURAL,
+				$this->singular_coupon_label,
+				$labels,
+				cctor_options( 'cctor_coupon_base', false, _x( self::POSTTYPE, 'slug', self::TEXT_DOMAIN ) ),
+				self::TEXT_DOMAIN,
+				array(
+					'supports'  => array( 'title', 'coupon_creator_meta_box' ),
+					'menu_icon' => $this->pluginUrl . 'admin/images/coupon_creator.png',
+				)
+			);
+
+			new Pngx__Register_Post_Type(
+				self::POSTTYPE,
+				__( 'Enter Coupon Admin Title', self::TEXT_DOMAIN )
+			);
+			// @formatter:on
 		}
 
 		/**
-		 * Get the event taxonomy
+		 * Register the taxonomies.
+		 */
+		public function register_taxonomies() {
+
+			//Register Coupon Taxonomu
+			// @formatter:off
+			$labels = Pngx__Register_Taxonomy::generate_taxonomy_labels(
+				$this->singular_category_label,
+				$this->plural_category_label,
+				$this->singular_coupon_label,
+				$this->plural_coupon_label,
+				$this->singular_coupon_label_lowercase,
+				$this->plural_coupon_label_lowercase,
+				self::TEXT_DOMAIN
+			);
+
+			Pngx__Register_Taxonomy::register_taxonomy(
+				self::TAXONOMY,
+				self::POSTTYPE,
+				$labels,
+				cctor_options( 'cctor_coupon_base', false, _x( self::POSTTYPE, 'slug', self::TEXT_DOMAIN ) ),
+				false
+			);
+			// @formatter:on
+		}
+
+		/**
+		 * Get the coupon taxonomy
 		 *
 		 * @return string
 		 */
-		public function get_event_taxonomy() {
+		public function get_coupon_taxonomy() {
 			return self::TAXONOMY;
 		}
 
@@ -315,7 +430,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		 * @return array The post types associated with this plugin
 		 */
 		public static function getPostTypes() {
-			return apply_filters( 'tribe_events_post_types', Cctor__Coupon__Main::get_post_types() );
+			return apply_filters( 'cctor_get_coupon_post_types', Cctor__Coupon__Main::get_post_types() );
 		}
 
 
