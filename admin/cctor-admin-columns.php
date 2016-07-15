@@ -119,7 +119,7 @@ class Coupon_Admin_Columns extends WP_List_Table {
 		if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
 			$coupon_expiration = new CCtor_Pro_Expiration_Class();
 		} else {
-			$coupon_expiration = new CCtor_Expiration_Class();
+			$coupon_expiration = new Cctor__Coupon__Expiration();
 		}
 
 		switch ( $column ) {

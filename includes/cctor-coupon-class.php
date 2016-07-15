@@ -49,7 +49,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//add_action( 'init', array( 'Coupon_Creator_Taxonomy_Class', 'cctor_create_taxonomies' ), 10 );
 
 			//Remove Coupon From Search
-			add_action( 'pre_get_posts', array( __CLASS__, 'remove_coupon_from_search' ) );
+			//add_action( 'pre_get_posts', array( __CLASS__, 'remove_coupon_from_search' ) );
 
 			add_action( 'init', array( __CLASS__, 'init' ) );
 
@@ -60,16 +60,16 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//add_action( 'init', array( __CLASS__, 'cctor_add_image_sizes' ) );
 
 			//Cron Schedule
-			add_action( 'init', array( $this, 'filter_cron_schedules' ) );
+			//add_action( 'init', array( $this, 'filter_cron_schedules' ) );
 
 			//Load Template Functions
 			$this->cctor_Load_Template_Functions();
 
 			//Load Expiration Class
-			Coupon_Creator_Plugin::include_file( 'includes/cctor_expiration_class.php' );
+			//Coupon_Creator_Plugin::include_file( 'includes/cctor_expiration_class.php' );
 
 			//Load Deprecated
-			Coupon_Creator_Plugin::include_file( 'includes/deprecated/cctor_deprecated.php' );
+			//Coupon_Creator_Plugin::include_file( 'includes/deprecated/cctor_deprecated.php' );
 
 
 			//Todo leaves these two, but inegrate the rest then work on admin
@@ -91,10 +91,10 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		public static function init() {
 
 			//Register Coupon Style
-			add_action('wp_enqueue_scripts',  array( __CLASS__, 'cctor_register_style' ));
+			//add_action('wp_enqueue_scripts',  array( __CLASS__, 'cctor_register_style' ));
 
 			//Add Inline Style from Options
-			add_action( 'wp_enqueue_scripts', array( __CLASS__, 'cctor_inline_style' ), 100);
+		//	add_action( 'wp_enqueue_scripts', array( __CLASS__, 'cctor_inline_style' ), 100);
 
 			//Setup Coupon Image Sizes
 			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
@@ -119,6 +119,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Print Template Inline Custom CSS from Option
 			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 20);
 
+//TODO START HERE NEXT
 			//Load Pro Meta Box Cases
 			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );
 
@@ -253,7 +254,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Remove Coupon Creator Post Type From Search
 		* @version 2.2
 		*/
-		public static function remove_coupon_from_search( $query ) {
+	/*	public static function remove_coupon_from_search( $query ) {
 
 			$search = cctor_options( 'coupon-search' );
 
@@ -268,7 +269,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				 *
 				 * @since 2.3.0
 				 */
-				do_action( 'cctor_inside_remove_coupons_from _search' , $query );
+			/*	do_action( 'cctor_inside_remove_coupons_from _search' , $query );
 
 				//bbpress is exclude_from_search so add this check to prevent coupon creator from interfering
 				if ( class_exists( 'bbPress' ) && ( is_bbpress() || bbp_is_search_results() ) ) {
@@ -293,14 +294,14 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				 * @param array $searchable_cpt an array of post types to include in search
 				 *
 				 */
-				apply_filters( 'cctor_filter_searchable_post_types' , $searchable_cpt );
+			/*	apply_filters( 'cctor_filter_searchable_post_types' , $searchable_cpt );
 
 				$query->set( 'post_type', $searchable_cpt );
 
 			}
 
 			return $query;
-		}
+		}*/
 
 	/***************************************************************************/
 
@@ -410,7 +411,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Register Coupon Creator CSS
 		* @version 1.00
 		*/
-		public static function cctor_register_style() {
+		/*public static function cctor_register_style() {
 			if (!is_admin()) {
 				$cctor_style = CCTOR_PATH.'css/cctor_coupon.css';
 				wp_register_style('coupon_creator_css',  CCTOR_URL . 'css/cctor_coupon.css', false, filemtime($cctor_style));
@@ -421,7 +422,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Add Inline Style From Coupon Options
 		* @version 1.80
 		*/
-		public static function cctor_inline_style() {
+		/*public static function cctor_inline_style() {
 
 			$cctor_option_css = "";
 			if(has_filter('cctor_filter_inline_css')) {
@@ -433,7 +434,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				 * @param string $coupon_css.
 				 *
 				 */
-				$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
+			/*	$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
 			}
 			//Add Custom CSS from Options
 			if (cctor_options('cctor_custom_css')) {
@@ -556,7 +557,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		 *
 		 * @return void
 		 */
-		public function filter_cron_schedules() {
+		/*public function filter_cron_schedules() {
 			add_filter( 'cron_schedules', array( $this, 'register_20min_interval' ) );
 		}
 
@@ -566,7 +567,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		 * @param  array $schedules
 		 * @return array
 		 */
-		public function register_20min_interval( $schedules ) {
+		/*public function register_20min_interval( $schedules ) {
 			$schedules['every_20mins'] = array(
 				'interval' => 20 * MINUTE_IN_SECONDS,
 				'display'  => __( 'Once Every 20 Mins', 'cctor_coupon' ),

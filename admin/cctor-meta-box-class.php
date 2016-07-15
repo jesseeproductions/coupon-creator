@@ -70,7 +70,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 			if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
 				$coupon_expiration = new CCtor_Pro_Expiration_Class();
 			} else {
-				$coupon_expiration = new CCtor_Expiration_Class();
+				$coupon_expiration = new Cctor__Coupon__Expiration();
 			}
 
 			add_action( 'cctor_meta_message', array( $coupon_expiration, 'get_coupon_status' ), 15, 1 );

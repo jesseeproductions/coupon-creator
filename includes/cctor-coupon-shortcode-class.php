@@ -107,7 +107,7 @@ class Coupon_Creator_Shortcode {
 			if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
 				$coupon_expiration = new CCtor_Pro_Expiration_Class( $coupon_id );
 			} else {
-				$coupon_expiration = new CCtor_Expiration_Class( $coupon_id );
+				$coupon_expiration = new Cctor__Coupon__Expiration( $coupon_id );
 			}
 			/**
 			 * Before Core Coupon Shortcode Individual Coupon

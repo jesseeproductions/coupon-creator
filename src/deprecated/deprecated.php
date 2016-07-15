@@ -13,7 +13,7 @@ if ( class_exists( 'Coupon_Creator_Plugin' ) ) {
 		*/
 		function cctor_expiration_check( $coupon_id ) {
 
-			_deprecated_function( __FUNCTION__, '2.3', 'CCtor_Expiration_Class' );
+			_deprecated_function( __FUNCTION__, '2.3', 'Cctor__Coupon__Expiration' );
 
 			//Ignore Expiration Value
 			$ignore_expiration = get_post_meta( $coupon_id, 'cctor_ignore_expiration', true );
@@ -42,7 +42,7 @@ if ( class_exists( 'Coupon_Creator_Plugin' ) ) {
 		*/
 		function cctor_expiration_and_current_date( $coupon_id ) {
 
-			_deprecated_function( __FUNCTION__, '2.3', 'CCtor_Expiration_Class' );
+			_deprecated_function( __FUNCTION__, '2.3', 'Cctor__Coupon__Expiration' );
 
 			//Coupon Expiration Date
 			$expirationco             = get_post_meta( $coupon_id, 'cctor_expiration', true );
