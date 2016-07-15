@@ -65,9 +65,6 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Load Template Functions
 			$this->cctor_Load_Template_Functions();
 
-			//Load Sanitize Functions
-			self::include_file( 'admin/cctor-sanitize-class.php' );
-
 			//Load Expiration Class
 			Coupon_Creator_Plugin::include_file( 'includes/cctor_expiration_class.php' );
 

@@ -40,7 +40,9 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		public $singular_coupon_label_lowercase;
 		public $plural_coupon_label_lowercase;
 		public $singular_category_label;
+		public $singular_category_label_lowercase;
 		public $plural_category_label;
+		public $plural_category_label_lowercase;
 
 		/**
 		 * Static Singleton Factory Method
@@ -273,33 +275,16 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 			$this->singular_coupon_label_lowercase = $this->get_coupon_label_singular_lowercase();
 			$this->plural_coupon_label             = $this->get_coupon_label_plural();
 			$this->plural_coupon_label_lowercase   = $this->get_coupon_label_plural_lowercase();
-			$this->singular_category_label         = $this->get_category_label_plural();
-			$this->plural_category_label_label     = $this->get_category_label_singular();
+
+			$this->singular_category_label           = $this->get_coupon_category_label_singular();
+			$this->singular_category_label_lowercase = $this->get_coupon_category_label_singular_lowercase();
+			$this->plural_category_label             = $this->get_coupon_category_label_plural();
+			$this->plural_category_label_lowercase   = $this->get_coupon_category_label_plural_lowercase();
 
 			$this->register_post_types();
 			$this->register_taxonomies();
 		}
 
-
-		/**
-		 * Allow users to specify their own plural label for Coupons
-		 *
-		 * @return string
-		 */
-		public function get_coupon_label_plural() {
-			return apply_filters( 'cctor_coupon_label_plural', esc_html__( 'Coupons', self::TEXT_DOMAIN ) );
-		}
-
-		/**
-		 * Get Coupon Label Plural lowercase
-		 *
-		 * Returns the plural version of the Coupon Label
-		 *
-		 * @return string
-		 */
-		function get_coupon_label_plural_lowercase() {
-			return apply_filters( 'cctor_coupon_label_plural_lowercase', esc_html__( 'coupons', self::TEXT_DOMAIN ) );
-		}
 
 		/**
 		 * Allow users to specify their own singular label for Coupons
@@ -322,21 +307,59 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		}
 
 		/**
-		 * Allow users to specify their own plural label for Categories
+		 * Allow users to specify their own plural label for Coupons
 		 *
 		 * @return string
 		 */
-		public function get_category_label_plural() {
-			return apply_filters( 'cctor_coupon_category_plural', esc_html__( 'Categories', self::TEXT_DOMAIN ) );
+		public function get_coupon_label_plural() {
+			return apply_filters( 'cctor_coupon_label_plural', esc_html__( 'Coupons', self::TEXT_DOMAIN ) );
 		}
 
 		/**
-		 * Allow users to specify their own singular label for Category
+		 * Get Coupon Label Plural lowercase
+		 *
+		 * Returns the plural version of the Coupon Label
 		 *
 		 * @return string
 		 */
-		public function get_category_label_singular() {
-			return apply_filters( 'cctor_coupon_category_label_singular', esc_html__( 'Category', self::TEXT_DOMAIN ) );
+		function get_coupon_label_plural_lowercase() {
+			return apply_filters( 'cctor_coupon_label_plural_lowercase', esc_html__( 'coupons', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Allow users to specify their own singular label for Coupon Category
+		 *
+		 * @return string
+		 */
+		public function get_coupon_category_label_singular() {
+			return apply_filters( 'cctor_coupon_category_label_singular', esc_html__( 'Coupon Category', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Allow users to specify their own lowercase singular label for Coupon Category
+		 *
+		 * @return string
+		 */
+		public function get_coupon_category_label_singular_lowercase() {
+			return apply_filters( 'cctor_coupon_category_label_singular_lowercase', esc_html__( 'coupon category', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Allow users to specify their own plural label for Coupon Categories
+		 *
+		 * @return string
+		 */
+		public function get_coupon_category_label_plural() {
+			return apply_filters( 'cctor_coupon_category_plural', esc_html__( 'Coupon Categories', self::TEXT_DOMAIN ) );
+		}
+
+		/**
+		 * Allow users to specify their own plural label for coupon categories
+		 *
+		 * @return string
+		 */
+		public function get_coupon_category_label_plural_lowercase() {
+			return apply_filters( 'cctor_coupon_category_plural_lowercase', esc_html__( 'coupon categories', self::TEXT_DOMAIN ) );
 		}
 
 		/**
@@ -359,7 +382,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 				self::CAPABILITIESPLURAL,
 				$this->singular_coupon_label,
 				$labels,
-				cctor_options( 'cctor_coupon_base', false, _x( self::POSTTYPE, 'slug', self::TEXT_DOMAIN ) ),
+				$this->get_coupon_slug(),
 				self::TEXT_DOMAIN,
 				array(
 					'supports'  => array( 'title', 'coupon_creator_meta_box' ),
@@ -375,6 +398,30 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		}
 
 		/**
+		 * Get the coupon post type
+		 *
+		 * @return string
+		 */
+		public function get_coupon_post_type() {
+			return self::POSTTYPE;
+		}
+
+		/**
+		 * Returns the string to be used as the taxonomy slug.
+		 *
+		 * @return string
+		 */
+		public function get_coupon_slug() {
+
+			/**
+			 * Provides an opportunity to modify the coupon slug.
+			 *
+			 * @var string
+			 */
+			return apply_filters( 'cctor_coupon_slug', sanitize_title( cctor_options( 'cctor_coupon_base', false, __( self::POSTTYPE, 'slug', self::TEXT_DOMAIN ) ) ) );
+		}
+
+		/**
 		 * Register the taxonomies.
 		 */
 		public function register_taxonomies() {
@@ -383,11 +430,9 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 			// @formatter:off
 			$labels = Pngx__Register_Taxonomy::generate_taxonomy_labels(
 				$this->singular_category_label,
+				$this->singular_category_label_lowercase,
 				$this->plural_category_label,
-				$this->singular_coupon_label,
-				$this->plural_coupon_label,
-				$this->singular_coupon_label_lowercase,
-				$this->plural_coupon_label_lowercase,
+				$this->plural_category_label_lowercase,
 				self::TEXT_DOMAIN
 			);
 
@@ -395,7 +440,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 				self::TAXONOMY,
 				self::POSTTYPE,
 				$labels,
-				cctor_options( 'cctor_coupon_base', false, _x( self::POSTTYPE, 'slug', self::TEXT_DOMAIN ) ),
+				$this->get_category_slug(),
 				false
 			);
 			// @formatter:on
@@ -416,12 +461,13 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 		 * @return string
 		 */
 		public function get_category_slug() {
+
 			/**
 			 * Provides an opportunity to modify the category slug.
 			 *
 			 * @var string
 			 */
-			return apply_filters( 'cctor_category_slug', sanitize_title( __( 'category', 'coupon-creator' ) ) );
+			return apply_filters( 'cctor_category_slug', sanitize_title( cctor_options( 'cctor_coupon_category_base', false, __( 'coupon-category', 'slug', self::TEXT_DOMAIN ) ) ) );
 		}
 
 		/**
