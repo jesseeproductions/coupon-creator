@@ -3,8 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-
-
 /**
  * Load Front End Assets
  *
@@ -20,9 +18,9 @@ class Cctor__Coupon__Assets {
 		// @formatter:off
 		wp_register_style(
 			'coupon_creator_css',
-			Cctor__Coupon__Main::instance()->resource_url . 'css/cctor_coupon.css',
+			Cctor__Coupon__Main::instance()->resource_url . 'css/coupon.css',
 			false,
-			filemtime( Cctor__Coupon__Main::instance()->resource_path . 'css/cctor_coupon.css' )
+			filemtime( Cctor__Coupon__Main::instance()->resource_path . 'css/coupon.css' )
 		);
 		// @formatter:on
 

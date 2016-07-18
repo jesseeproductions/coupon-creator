@@ -61,11 +61,11 @@ class Cctor__Coupon__Main {
 	 * Initializes plugin variables and sets up WordPress hooks/actions.
 	 */
 	protected function __construct() {
-		$this->plugin_path = trailingslashit( dirname( dirname( dirname( __FILE__ ) ) ) );
-		$this->plugin_dir = trailingslashit( basename( $this->plugin_path ) );
-		$this->plugin_url = plugins_url( $this->plugin_dir );
+		$this->plugin_path   = trailingslashit( dirname( dirname( dirname( __FILE__ ) ) ) );
+		$this->plugin_dir    = trailingslashit( basename( $this->plugin_path ) );
+		$this->plugin_url    = plugins_url( $this->plugin_dir );
 		$this->resource_path = $this->plugin_path . 'src/resources/';
-		$this->resource_url = $this->plugin_url . 'src/resources/';
+		$this->resource_url  = $this->plugin_url . 'src/resources/';
 
 		$this->maybe_set_common_lib_info();
 
@@ -245,6 +245,19 @@ class Cctor__Coupon__Main {
 		//Deprecated Functions
 		require_once $this->plugin_path . 'src/deprecated/deprecated.php';
 
+		//Load Template Functions
+		require_once $this->plugin_path . 'src/functions/template-functions/cctor-function-meta.php';
+		require_once $this->plugin_path . 'src/functions/template-functions/cctor-function-expiration.php';
+		require_once $this->plugin_path . 'src/functions/template-functions/cctor-function-wraps.php';
+		require_once $this->plugin_path . 'src/functions/template-functions/cctor-function-image.php';
+		require_once $this->plugin_path . 'src/functions/template-functions/cctor-function-deal.php';
+		require_once $this->plugin_path . 'src/functions/template-functions/cctor-function-terms.php';
+		require_once $this->plugin_path . 'src/functions/template-functions/cctor-function-links.php';
+
+		//Shortcode and Print Build
+		require_once $this->plugin_path . 'src/functions/template-build/cctor-shortcode-build.php';
+		require_once $this->plugin_path . 'src/functions/template-build/cctor-print-build.php';
+
 		// Tribe common resources
 		//require_once $this->plugin_path . 'vendor/tribe-common-libraries/tribe-common-libraries.class.php';
 		// Load CSV importer
@@ -278,6 +291,28 @@ class Cctor__Coupon__Main {
 		//Front End Assets
 		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'load_assets' ) );
 		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'inline_style' ), 100 );
+
+		//Front End
+		add_shortcode( 'coupon', array( 'Cctor__Coupon__Shortcode', 'core_shortcode' ) );
+		add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 10 );
+		add_action( 'init', array( 'Cctor__Coupon__Images', 'add_image_sizes' ) );
+		add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'allowed_tags' ), 10, 1 );
+		if ( cctor_options( 'cctor_wpautop' ) == 1 ) {
+			add_filter( 'the_content', array( __CLASS__, 'remove_autop_for_coupons' ), 0 );
+		}
+
+		//Print Template
+		add_action( 'cctor_action_print_template', 'cctor_print_template', 10 );
+		add_filter( 'template_include', array( 'Cctor__Coupon__Print', 'get_coupon_post_type_template' ) );
+		add_action( 'coupon_print_head', array( 'Cctor__Coupon__Print', 'print_css' ), 20 );
+
+		//Query
+		add_action( 'parse_query', array( __CLASS__, 'parse_query' ), 50 );
+
+		//Load Admin Class if in Admin Section
+		if ( is_admin() ) {
+			new Cctor__Coupon__Admin__Main();
+		}
 	}
 
 	/**
@@ -485,13 +520,98 @@ class Cctor__Coupon__Main {
 		return apply_filters( 'cctor_category_slug', sanitize_title( cctor_options( 'cctor_coupon_category_base', false, __( 'coupon-category', 'slug', self::TEXT_DOMAIN ) ) ) );
 	}
 
+
+	/*
+	* Allowed Tags for Terms Field
+	* @version 2.0
+	*/
+	public static function allowed_tags( $cctor_terms_tags ) {
+
+		$cctor_terms_tags = '<h1><h2><h3><h4><h5><h6><p><blockquote><div><pre><code><span><br><b><strong><em><img><del><ins><sub><sup><ul><ol><li><hr>';
+
+		return $cctor_terms_tags;
+
+	}
+
+	/*
+	* Remove wpautop in Terms Field
+	* @version 2.0
+	* based of coding from http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
+	*/
+	public static function remove_autop_for_coupons( $content ) {
+
+		'cctor_coupon' === get_post_type() && remove_filter( 'the_content', 'wpautop' );
+
+		return $content;
+
+	}
+
+
+	/**
+	 * Check whether a post is an coupon.
+	 *
+	 * @param int|WP_Post The coupon/post id or object.
+	 *
+	 * @return bool Is it an coupon?
+	 */
+	public function is_coupon( $coupon ) {
+		if ( $coupon === null || ( ! is_numeric( $coupon ) && ! is_object( $coupon ) ) ) {
+			global $post;
+			if ( is_object( $post ) && isset( $post->ID ) ) {
+				$coupon = $post->ID;
+			}
+		}
+		if ( is_numeric( $coupon ) ) {
+			if ( get_post_type( $coupon ) == 'cctor_coupon' ) {
+				return true;
+			}
+		} elseif ( is_object( $coupon ) ) {
+			if ( get_post_type( $coupon ) == 'cctor_coupon' ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Set any query flags
+	 *
+	 * @param WP_Query $query
+	 **/
+	public static function parse_query( $query ) {
+
+		// @formatter:off
+	$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
+	// check if a coupon query by post_type
+	$query->cctor_is_coupon = ( in_array( 'cctor_coupon', $types ) && count( $types ) < 2 )
+		? true // it is a coupon
+		: false;
+
+	$query->cctor_is_coupon_category = ! empty ( $query->query_vars[ 'cctor_coupon_category' ] )
+		? true // it was an coupon category
+		: false;
+
+	$query->cctor_is_coupon_query = ( $query->cctor_is_coupon || $query->cctor_is_coupon_category )
+		? true // a coupon query of some type
+		: false;
+	// @formatter:on
+		/**
+		 * Parse Coupon Query Action
+		 *
+		 * @since 2.2
+		 * @parm  object $query
+		 */
+		do_action( 'cctor_coupon_parse_query', $query );
+	}
+
 	/**
 	 * Get the post types that are associated with TEC.
 	 *
 	 * @return array The post types associated with this plugin
 	 */
 	public static function getPostTypes() {
-	//	return apply_filters( 'cctor_get_coupon_post_types', Cctor__Coupon__Main::get_post_types() );
+		//	return apply_filters( 'cctor_get_coupon_post_types', Cctor__Coupon__Main::get_post_types() );
 	}
 
 

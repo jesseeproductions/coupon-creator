@@ -3,8 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-
-
 /**
  * Add Cron Schedule
  *

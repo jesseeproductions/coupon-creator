@@ -858,7 +858,7 @@ if ( ! class_exists( 'Coupon_Creator_Meta_Box' ) ) {
 				if ( isset( $_POST[ $option['id'] ] ) ) {
 
 					//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
-					$cctor_sanitize = new Coupon_Creator_Plugin_Sanitize( $option['type'], $_POST[ $option['id'] ], $option );
+					$cctor_sanitize = new Pngx_Sanitize( $option['type'], $_POST[ $option['id'] ], $option );
 
 					$old = get_post_meta( $post_id, $option['id'], true );
 

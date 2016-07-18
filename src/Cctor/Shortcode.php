@@ -3,21 +3,16 @@
 if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
 }
-
-
 /*
 * Coupon Creator Shortcode Class
-* @version 1.90
+*
 */
-
-
-class Coupon_Creator_Shortcode {
+class Cctor__Coupon__Shortcode {
 
 	/*
-	* Register Coupon Creator Shortcode
-	* @version 1.90
+	* Coupon Creator Shortcode
 	*/
-	public static function cctor_allcoupons_shortcode( $atts ) {
+	public static function core_shortcode( $atts ) {
 
 		//Load Stylesheet for Coupon Creator when Shortcode Called
 		if ( ! wp_style_is( 'coupon_creator_css' ) ) {

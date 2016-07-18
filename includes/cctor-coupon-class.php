@@ -51,7 +51,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//Remove Coupon From Search
 			//add_action( 'pre_get_posts', array( __CLASS__, 'remove_coupon_from_search' ) );
 
-			add_action( 'init', array( __CLASS__, 'init' ) );
+			//add_action( 'init', array( __CLASS__, 'init' ) );
 
 			//Localization
 			//add_action( 'plugins_loaded', array( __CLASS__, 'i18n' ) );
@@ -63,7 +63,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 			//add_action( 'init', array( $this, 'filter_cron_schedules' ) );
 
 			//Load Template Functions
-			$this->cctor_Load_Template_Functions();
+			//$this->cctor_Load_Template_Functions();
 
 			//Load Expiration Class
 			//Coupon_Creator_Plugin::include_file( 'includes/cctor_expiration_class.php' );
@@ -74,7 +74,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 			//Todo leaves these two, but inegrate the rest then work on admin
 			//Load Sanitize Functions
-			self::include_file( 'admin/cctor-sanitize-class.php' );
+			//self::include_file( 'admin/cctor-sanitize-class.php' );
 			//Load Admin Class if in Admin Section
 			if ( is_admin() ) {
 				new Coupon_Creator_Plugin_Admin();
@@ -97,45 +97,49 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		//	add_action( 'wp_enqueue_scripts', array( __CLASS__, 'cctor_inline_style' ), 100);
 
 			//Setup Coupon Image Sizes
-			add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
+			//add_action( 'init',  array( __CLASS__, 'cctor_add_image_sizes' ) );
 
 			//Register Coupon Shortcode
-			self::include_file( 'includes/cctor-coupon-shortcode-class.php' );
-			add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
+			//self::include_file( 'includes/cctor-coupon-shortcode-class.php' );
+			//add_shortcode( 'coupon', array(  'Coupon_Creator_Shortcode', 'cctor_allcoupons_shortcode' ) );
 
 			//Build Shortcode
-			self::include_file( 'public/template-build/cctor-shortcode-build.php' );
-			add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 10);
+			//self::include_file( 'public/template-build/cctor-shortcode-build.php' );
+			//add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 10);
+
+
+
 
 			//Load Single Coupon Template
-			add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );
+			//add_filter( 'template_include', array(  __CLASS__, 'cctor_get_coupon_post_type_template') );
 
 			//Include Print Template Hook Build
-			self::include_file( 'public/template-build/cctor-print-build.php' );
+			//self::include_file( 'public/template-build/cctor-print-build.php' );
 
 			//Add Print Template Functions
-			add_action( 'cctor_action_print_template', 'cctor_print_template', 10);
+			//add_action( 'cctor_action_print_template', 'cctor_print_template', 10);
 
 			//Print Template Inline Custom CSS from Option
-			add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 20);
+			//add_action('coupon_print_head', array( __CLASS__, 'cctor_print_css' ), 20);
 
-//TODO START HERE NEXT
+
+
 			//Load Pro Meta Box Cases
-			add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );
+		//	add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'cctor_terms_allowed_tags' ) , 10 , 1 );
 
 			//Remove wpautop filter on terms fields
-			if ( cctor_options('cctor_wpautop') == 1 ) {
-				add_filter( 'the_content', array( __CLASS__, 'cctor_remove_autop_for_coupons' ), 0 );
-			}
+			//if ( cctor_options('cctor_wpautop') == 1 ) {
+			//	add_filter( 'the_content', array( __CLASS__, 'cctor_remove_autop_for_coupons' ), 0 );
+			//}
 
-			add_action( 'parse_query', array( __CLASS__, 'parse_query' ), 50 );
+			//add_action( 'parse_query', array( __CLASS__, 'parse_query' ), 50 );
 		}
 
 	/***************************************************************************/
 		/**
 		 * Load all the required library files.
 		 */
-		protected function cctor_Load_Template_Functions() {
+		/*protected function cctor_Load_Template_Functions() {
 			//Load Template Functions
 			self::include_file( 'public/template-functions/cctor-function-meta.php' );
 			self::include_file( 'public/template-functions/cctor-function-expiration.php' );
@@ -448,7 +452,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Register Coupon Creator Image Sizes
 		* @version 1.00
 		*/
-		public static function cctor_add_image_sizes() {
+		/*public static function cctor_add_image_sizes() {
 
 			$cctor_img_size = array();
 			$cctor_img_size['single'] = 300;
@@ -462,7 +466,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				 * @param array $cctor_img_size.
 				 *
 				 */
-				$cctor_img_size = apply_filters('cctor_img_size', $cctor_img_size);
+			/*	$cctor_img_size = apply_filters('cctor_img_size', $cctor_img_size);
 			}
 
 			add_image_size('single_coupon', $cctor_img_size['single'] );
@@ -474,7 +478,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Use Single Coupon Template from Plugin when creating the print version
 		* @version 1.00
 		*/
-		public static function cctor_get_coupon_post_type_template( $print_template ) {
+		/*public static function cctor_get_coupon_post_type_template( $print_template ) {
 			 global $post;
 			 if ( ! is_search() && is_object( $post ) && $post->post_type == 'cctor_coupon') {
 				  $print_template = CCTOR_PATH. 'public/templates/print-coupon.php';
@@ -489,13 +493,13 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 1.80
 		*
 		*/
-		public static function cctor_print_css(  ) {
+		/*public static function cctor_print_css(  ) {
 
 			$cctor_option_css = "";
 			/*
 			*  Filter to Add More Custom CSS
 			*/
-			if(has_filter('cctor_filter_inline_css')) {
+			/*if(has_filter('cctor_filter_inline_css')) {
 				$coupon_css = "";
 				/**
 				 * Filter Print View Inline Styles
@@ -504,7 +508,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				 * @param array $cctor_img_size.
 				 *
 				 */
-				$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
+				/*$cctor_option_css = apply_filters('cctor_filter_inline_css', $coupon_css);
 			}
 			//Add Custom CSS from Options
 			if (cctor_options('cctor_custom_css')) {
@@ -527,7 +531,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* Allowed Tags for Terms Field
 		* @version 2.0
 		*/
-		public static function cctor_terms_allowed_tags( $cctor_terms_tags ) {
+	/*	public static function cctor_terms_allowed_tags( $cctor_terms_tags ) {
 
 		    $cctor_terms_tags = '<h1><h2><h3><h4><h5><h6><p><blockquote><div><pre><code><span><br><b><strong><em><img><del><ins><sub><sup><ul><ol><li><hr>';
 
@@ -541,7 +545,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		* @version 2.0
 		* based of coding from http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
 		*/
-		public static function cctor_remove_autop_for_coupons( $content )  {
+	/*	public static function cctor_remove_autop_for_coupons( $content )  {
 
 			'cctor_coupon' === get_post_type() && remove_filter( 'the_content', 'wpautop' );
 
@@ -584,7 +588,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		 *
 		 * @return bool Is it an coupon?
 		 */
-		public function is_coupon( $coupon ) {
+		/*public function is_coupon( $coupon ) {
 			if ( $coupon === null || ( ! is_numeric( $coupon ) && ! is_object( $coupon ) ) ) {
 				global $post;
 				if ( is_object( $post ) && isset( $post->ID ) ) {
@@ -611,7 +615,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 		 *
 		 * @param WP_Query $query
 		 **/
-		public static function parse_query( $query ) {
+		/*public static function parse_query( $query ) {
 
 			$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
 			// check if a coupon query by post_type
@@ -634,7 +638,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 				 * @since 2.2
 				 * @parm object $query
 				 */
-				do_action( 'cctor_coupon_parse_query', $query );
+			/*	do_action( 'cctor_coupon_parse_query', $query );
 		}
 
 	/***************************************************************************/
