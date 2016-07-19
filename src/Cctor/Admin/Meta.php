@@ -857,7 +857,7 @@ class Cctor__Coupon__Admin__Meta {
 			if ( isset( $_POST[ $option['id'] ] ) ) {
 
 				//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
-				$cctor_sanitize = new Pngx_Sanitize( $option['type'], $_POST[ $option['id'] ], $option );
+				$cctor_sanitize = new Pngx__Sanitize( $option['type'], $_POST[ $option['id'] ], $option );
 
 				$old = get_post_meta( $post_id, $option['id'], true );
 

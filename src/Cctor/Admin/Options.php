@@ -935,7 +935,7 @@ class Cctor__Coupon__Admin__Options {
 			if ( $option['type'] != 'heading' && isset( $option['std'] ) ) {
 
 				//Sanitize Default
-				$cctor_sanitize = new Pngx_Sanitize( $option['type'], $option['std'], $option );
+				$cctor_sanitize = new Pngx__Sanitize( $option['type'], $option['std'], $option );
 
 				//Set Sanitized Input in Array
 				$default_options[ $id ] = $cctor_sanitize->result;
@@ -1018,7 +1018,7 @@ class Cctor__Coupon__Admin__Options {
 				if ( $option['type'] == 'license' && isset( $input[ $id ] ) ) {
 
 					//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
-					$cctor_sanitize = new Pngx_Sanitize( $option['type'], $input[ $id ], $option );
+					$cctor_sanitize = new Pngx__Sanitize( $option['type'], $input[ $id ], $option );
 
 					$cctor_license_info = array();
 
@@ -1057,7 +1057,7 @@ class Cctor__Coupon__Admin__Options {
 				if ( isset( $input[ $id ] ) && $option['type'] != 'license' && $option['type'] != 'license_status' ) {
 
 					//Send Input to Sanitize Class, will return sanitized input or no input if no sanitization method
-					$cctor_sanitize = new Pngx_Sanitize( $option['type'], $input[ $id ], $option );
+					$cctor_sanitize = new Pngx__Sanitize( $option['type'], $input[ $id ], $option );
 
 					//Set Sanitized Input in Array
 					$clean[ $id ] = $cctor_sanitize->result;
