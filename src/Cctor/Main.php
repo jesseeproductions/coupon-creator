@@ -258,13 +258,6 @@ class Cctor__Coupon__Main {
 		require_once $this->plugin_path . 'src/functions/template-build/cctor-shortcode-build.php';
 		require_once $this->plugin_path . 'src/functions/template-build/cctor-print-build.php';
 
-		// Tribe common resources
-		//require_once $this->plugin_path . 'vendor/tribe-common-libraries/tribe-common-libraries.class.php';
-		// Load CSV importer
-		//require_once $this->plugin_path . 'src/io/csv/ecp-events-importer.php';
-		// Load Template Tags
-		//require_once $this->plugin_path . 'src/functions/template-tags/query.php';
-
 	}
 
 	/**
@@ -334,7 +327,6 @@ class Cctor__Coupon__Main {
 		$this->register_taxonomies();
 
 	}
-
 
 	/**
 	 * Allow users to specify their own singular label for Coupons
@@ -520,7 +512,6 @@ class Cctor__Coupon__Main {
 		return apply_filters( 'cctor_category_slug', sanitize_title( cctor_options( 'cctor_coupon_category_base', false, __( 'coupon-category', 'slug', self::TEXT_DOMAIN ) ) ) );
 	}
 
-
 	/*
 	* Allowed Tags for Terms Field
 	* @version 2.0
@@ -545,7 +536,6 @@ class Cctor__Coupon__Main {
 		return $content;
 
 	}
-
 
 	/**
 	 * Check whether a post is an coupon.
@@ -603,31 +593,6 @@ class Cctor__Coupon__Main {
 		 * @parm  object $query
 		 */
 		do_action( 'cctor_coupon_parse_query', $query );
-	}
-
-	/**
-	 * Get the post types that are associated with TEC.
-	 *
-	 * @return array The post types associated with this plugin
-	 */
-	public static function getPostTypes() {
-		//	return apply_filters( 'cctor_get_coupon_post_types', Cctor__Coupon__Main::get_post_types() );
-	}
-
-
-	/**
-	 * Adds post types to the post_types array used to determine if on a post type screen
-	 *
-	 * @param array $post_types Collection of post types
-	 *
-	 * @return array
-	 */
-	public function is_post_type_screen_post_types( $post_types ) {
-		foreach ( self::getPostTypes() as $post_type ) {
-			$post_types[] = $post_type;
-		}
-
-		return $post_types;
 	}
 
 }

@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Cctor__Coupon__Admin__Main {
 
-
 	/*
 	* Admin Construct
 	*/
@@ -21,26 +20,65 @@ class Cctor__Coupon__Admin__Main {
 		//Setup Admin
 		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
 
-	}
+		//Update Version Number
+		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__Updates', 'admin_upgrade_version' ) );
 
+		//License Class
+		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__License', 'activate_license' ) );
+		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__License', 'deactivate_license' ) );
+
+		new Cctor__Coupon__Admin__Columns();
+		new Cctor__Coupon__Admin__Options();
+		new Cctor__Coupon__Admin__Meta();
+
+	}
 
 	/**
 	 * Admin Init
 	 */
 	public static function admin_init() {
 
-		if ( !class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
-			//Add Button for Coupons in Editor
-			Coupon_Creator_Plugin::include_file( 'admin/cctor-inserter-class.php' );
-			new Coupon_Creator_Inserter();
+		if ( ! class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
+			new Cctor__Coupon__Admin__Inserter();
 		}
-		//Add Options Link on Plugin Activation Page
-		add_action('plugin_action_links', array( __CLASS__, 'plugin_setting_link' ) , 10, 2);
 
-		//Load Admin Coupon Scripts
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'cctor_edit_enqueue_style_scripts' ) );
+		//Add Options Link on Plugin Activation Page
+		add_action( 'plugin_action_links', array( __CLASS__, 'plugin_setting_link' ), 10, 2 );
+
+		//Load Admin Assets
+		add_action( 'admin_enqueue_scripts', array( 'Cctor__Coupon__Admin__Assets', 'load_assets' ) );
 
 	} //end admin_init
 
+	/*
+	* Add Options Link in Plugin entry of Plugins Menu
+	*
+	*/
+	public static function plugin_setting_link( $links, $file ) {
+		static $this_plugin;
+
+		if ( ! $this_plugin ) {
+			$this_plugin = 'coupon-creator/coupon_creator.php';
+		}
+
+		// make sure this is the coupon creator
+		if ( $file == $this_plugin ) {
+
+			//Show Options Link
+			$plugin_links[] = '<a href="' . get_bloginfo( 'wpurl' ) . '/wp-admin/edit.php?post_type=cctor_coupon&page=coupon-options">Options</a>';
+
+			//Show Upgrade to Pro Link
+			if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+				$plugin_links[] = '<a href="http://cctor.link/Abqoi">Upgrade to Pro!</a>';
+			}
+
+			// add the settings link to the links
+			foreach ( $plugin_links as $link ) {
+				array_unshift( $links, $link );
+			}
+		}
+
+		return $links;
+	}
 
 }

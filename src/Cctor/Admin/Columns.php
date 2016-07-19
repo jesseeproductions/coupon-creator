@@ -1,13 +1,12 @@
 <?php
 //If Direct Access Kill the Script
-if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
+if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
-
+}
 
 if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
-
 
 /**
  * Class Coupon_Admin_Columns
@@ -16,7 +15,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
  * @since 2.3
  *
  */
-class Coupon_Admin_Columns extends WP_List_Table {
+class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 
 
 	function __construct() {

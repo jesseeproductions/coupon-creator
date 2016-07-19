@@ -11,7 +11,6 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
 	return;
 }
-
 /**
  * Coupon Type Test
  *
