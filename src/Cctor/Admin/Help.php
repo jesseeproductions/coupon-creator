@@ -11,15 +11,19 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 
 class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 
-	//Help Fields
-	protected $fields;
+	//Help Fields array()
+	protected $fields = array();
 
+	/**
+	 * Set Fields on Class Initialize
+	 */
 	public function __construct() {
-
 		$this->set_help_fields();
-
 	}
 
+	/**
+	 * Array of All Help Fields
+	 */
 	protected function set_help_fields() {
 
 		//Content
@@ -557,8 +561,12 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 
 	}
 
+	/**
+	 * Coupon Creator Help Tab Support Links
+	 *
+	 * @return string
+	 */
 	public static function get_cctor_support_core_contact() {
-
 
 		if ( class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
 			$support_html = '

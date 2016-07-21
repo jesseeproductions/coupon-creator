@@ -266,21 +266,4 @@ jQuery(document).ready(function ($) {
 	*/
 	$("tbody tr th:contains(Default)").css("display", "none");
 
-
-	/*
-	 * Help Slideout
-	 * since 2.3
-	 */
-	$( ".cctor-section-help-container-toggle" ).on( "click", function ( event ) {
-		event.preventDefault();
-
-		$help_wrap = $( this ).parent();
-		var $help_section = $help_wrap.find( '.cctor-section-help-slideout' );
-
-		$help_section.animate( {
-			height: "toggle",
-			opacity: "toggle"
-		}, "fast" );
-	} );
-
 });

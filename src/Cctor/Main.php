@@ -282,7 +282,7 @@ class Cctor__Coupon__Main {
 		add_action( 'pre_get_posts', array( 'Cctor__Coupon__Search', 'remove_coupon_from_search' ) );
 
 		//Front End Assets
-		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'load_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'register_assets' ) );
 		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'inline_style' ), 100 );
 
 		//Front End
@@ -428,7 +428,7 @@ class Cctor__Coupon__Main {
 				self::TEXT_DOMAIN,
 				array(
 					'supports'  => array( 'title', 'coupon_creator_meta_box' ),
-					'menu_icon' => $this->plugin_url . 'admin/images/coupon_creator.png',
+					'menu_icon' => $this->resource_url . 'images/coupon_creator.png',
 				)
 			);
 

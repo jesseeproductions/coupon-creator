@@ -13,7 +13,7 @@ class Cctor__Coupon__Assets {
 	/*
 	* Register Coupon Creator CSS
 	*/
-	public static function load_assets() {
+	public static function register_assets() {
 
 		// @formatter:off
 		wp_register_style(

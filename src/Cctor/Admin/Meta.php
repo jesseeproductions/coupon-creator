@@ -140,7 +140,7 @@ class Cctor__Coupon__Admin__Meta {
 			$typenow = $post->post_type;
 		}
 
-		if ( is_admin() && $pagenow == 'post-new.php' OR $pagenow == 'post.php' && $typenow == 'cctor_coupon' ) {
+		if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) && $typenow == 'cctor_coupon' ) {
 			add_meta_box( 'coupon_creator_meta_box', // id
 				__( 'Coupon Fields', 'coupon-creator' ), // title
 				array( __CLASS__, 'cctor_show_meta_box' ), // callback
@@ -234,7 +234,7 @@ class Cctor__Coupon__Admin__Meta {
 					<?php
 
 					$help_class = new Cctor__Coupon__Admin__Help();
-					$help_class->display_help( $tab_slug );
+					$help_class->display_help( $tab_slug, false, 'coupon' );
 
 					foreach ( $coupon_creator_meta_fields as $field ) {
 
@@ -436,7 +436,7 @@ class Cctor__Coupon__Admin__Meta {
 										// Videos
 										case 'cctor_support':
 
-											$help_class->display_help( 'all' );
+											$help_class->display_help( 'all', false, 'coupon' );
 											echo Cctor__Coupon__Admin__Help::get_cctor_support_core_contact();
 
 											break;

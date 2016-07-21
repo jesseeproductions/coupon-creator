@@ -138,7 +138,8 @@ class Cctor__Coupon__Admin__Options {
 		wp_enqueue_script( 'cctor_coupon_option_js', Cctor__Coupon__Main::instance()->resource_url . 'js/cctor_coupon_options.js', array(
 			'jquery',
 			'thickbox',
-			'farbtastic'
+			'farbtastic',
+			'pngx-admin'
 		), filemtime( $cctor_coupon_option_js ), true );
 
 		$cctor_colorbox_js = Cctor__Coupon__Main::instance()->plugin_path . 'vendor/colorbox/jquery.colorbox-min.js';
@@ -166,7 +167,7 @@ class Cctor__Coupon__Admin__Options {
 		wp_enqueue_style( 'jquery-ui-style', '//ajax.googleapis.com/ajax/libs/jqueryui/' . $jquery_version . '/themes/smoothness/jquery-ui.css' );
 
 		$cctor_meta_css = Cctor__Coupon__Main::instance()->resource_path . 'css/admin-style.css';
-		wp_enqueue_style( 'coupon-admin-style', Cctor__Coupon__Main::instance()->resource_url . 'css/admin-style.css', false, filemtime( $cctor_meta_css ) );
+		wp_enqueue_style( 'coupon-admin-style', Cctor__Coupon__Main::instance()->resource_url . 'css/admin-style.css', array( 'pngx-admin' ), filemtime( $cctor_meta_css ) );
 
 		//Style or WP Color Picker
 		wp_enqueue_style( 'wp-color-picker' );
@@ -326,7 +327,7 @@ class Cctor__Coupon__Admin__Options {
 	public static function display_pro_section() {
 		ob_start(); ?>
 		<div class='cctor-pro-upsell'>
-			<h4><img alt="Get Coupon Creator Pro!" src="<?php echo Cctor__Coupon__Main::instance()->plugin_url; ?>images/cctor-logo.png"/></h4>
+			<h4><img alt="Get Coupon Creator Pro!" src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-logo.png"/></h4>
 			<br>
 
 			<p><strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro</a>
@@ -337,28 +338,28 @@ class Cctor__Coupon__Admin__Options {
 				<li>Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon,
 					and None.<br>
 					<img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples"
-					     src="<?php echo Cctor__Coupon__Main::instance()->plugin_url; ?>images/cctor-border-examples.gif"/>
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-border-examples.gif"/>
 				</li>
 				<li>Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3
 					Weeks:<br>
 					<img class="cctor-pro-img" alt="Coupon Creator Pro Recurring Expiration"
-					     src="<?php echo Cctor__Coupon__Main::instance()->plugin_url; ?>images/cctor-recurring-expiration.gif"/>
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-recurring-expiration.gif"/>
 				</li>
 				<li>In Pro use the Visual editor to easily style the term's content on your site:<br>
 					<img class="cctor-pro-img" alt="Coupon Creator Pro Visual Editor"
-					     src="<?php echo Cctor__Coupon__Main::instance()->plugin_url; ?>images/cctor-visual-editor.gif"/>
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-visual-editor.gif"/>
 				</li>
 				<li>Display the Print View in a Popup for any coupons and print directly from the Popup:<br>
 					<img class="cctor-pro-img" alt="Coupon Creator Pro Popup"
-					     src="<?php echo Cctor__Coupon__Main::instance()->plugin_url; ?>images/cctor-popup.gif"/>
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-popup.gif"/>
 				</li>
 				<li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:<br>
 					<img class="cctor-pro-img" alt="Coupon Creator Pro Shortcode for hooks and print views"
-					     src="<?php echo Cctor__Coupon__Main::instance()->plugin_url; ?>images/cctor-shortcodes.gif"/>
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-shortcodes.gif"/>
 				</li>
 				<li>Set a Counter per coupon to expire the coupon after a limit has been reached:<br>
 					<img class="cctor-pro-img" alt="Coupon Creator Pro Counter"
-					     src="<?php echo Cctor__Coupon__Main::instance()->plugin_url; ?>images/cctor-pro-counter.png"/>
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-pro-counter.png"/>
 				</li>
 				<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons</li>
 				<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon</li>
@@ -414,7 +415,7 @@ class Cctor__Coupon__Admin__Options {
 			case 'help':
 
 				$help_class = new Cctor__Coupon__Admin__Help();
-				$help_class->display_help( $option_args['section'] );
+				$help_class->display_help( $option_args['section'], 'cctor_coupon_page_coupon-options', 'coupon' );
 
 				break;
 
@@ -513,7 +514,7 @@ class Cctor__Coupon__Admin__Options {
 			case 'cctor_support':
 
 				$help_class = new Cctor__Coupon__Admin__Help();
-				$help_class->display_help( 'all' );
+				$help_class->display_help( 'all', false, 'coupon' );
 				echo Cctor__Coupon__Admin__Help::get_cctor_support_core_contact();
 
 				break;

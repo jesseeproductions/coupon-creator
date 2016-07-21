@@ -2,21 +2,6 @@
 	Coupon Creator Admin CSS
 
 */
-html {
-  box-sizing: border-box; }
-
-*, *::after, *::before {
-  box-sizing: inherit; }
-
-/*@mixin junction() {
-  font-family: "Junction", "Verdana", sans-serif;
-  font-weight: 400;
-}
-
-@mixin junction-light() {
-  font-family: "Junction", "Verdana", sans-serif;
-  font-weight: 100;
-}*/
 /* ==========================================================================
    Tabs CSS
    ========================================================================== */
@@ -351,80 +336,32 @@ html {
 /* ==========================================================================
    Help CSS
    ========================================================================== */
-.cctor-section-help-container {
-  background-color: #2a5a8a;
-  border-radius: 10px 10px 0;
-  margin-bottom: 1em;
-  overflow: hidden; }
-
-.cctor_coupon_page_coupon-options .cctor-section-help-container {
-  margin-left: -10px; }
-
-@media screen and (max-width: 768px) {
-  .cctor_coupon_page_coupon-options .cctor-section-help-container {
-    margin-left: 0px; } }
-
-.cctor-section-help-container-toggle {
-  background-color: #2a5a8a;
-  border: medium none;
-  color: white;
-  cursor: pointer;
-  margin: 0;
-  outline: medium none;
-  padding: 0.5em;
-  text-align: left;
-  width: 100%; }
-
-.cctor-section-help-container:hover,
-.cctor-section-help-container-toggle:hover {
-  background: #9dd3df none repeat scroll 0 0;
-  border: 1px solid #2a5a8a;
-  color: #000; }
-
-.cctor-section-help-container-toggle .dashicons-before::before {
-  margin-right: 5px; }
-
-.cctor-section-help-container-toggle .toggle__arrow {
-  text-decoration: none; }
-
-.cctor-section-help-slideout {
-  background-color: white;
-  border: 1px solid #2a5a8a;
-  border-bottom-left-radius: 10px;
-  display: none;
-  overflow: hidden;
-  padding: 0.5em; }
-
-.ui-widget-content a.cctor-support,
-.cctor-support {
-  color: #2a5a8a; }
-
-.ui-widget-content a.cctor-support:hover,
-.cctor-support:hover {
-  color: #9DD3DF; }
-
-.cctor-help-images {
-  box-shadow: 0 1px 2px 0 #15796f;
-  display: none;
-  margin: 10px;
-  max-width: 95%; }
-
-.cctor-meta-field-content {
-  width: 49%;
-  display: inline-block;
-  vertical-align: top; }
-
-.cctor-meta-field-content.text {
-  margin: 0 0 0 2%; }
-
-.pro-help-sup {
-  color: #950402; }
-
-@media only screen and (max-width: 640px) {
-  .cctor-meta-field-content,
-  .cctor-meta-field-content.text {
-    margin: 0;
-    width: 100%; } }
+.coupon.pngx-section-help-container {
+  background-color: #2a5a8a; }
+  .coupon.pngx-section-help-container .pngx-section-help-container-toggle {
+    background-color: #2a5a8a; }
+  .coupon.pngx-section-help-container .cctor_coupon_page_coupon-options .pngx-section-help-container {
+    margin-left: -10px; }
+  @media screen and (max-width: 768px) {
+    .coupon.pngx-section-help-container .cctor_coupon_page_coupon-options .pngx-section-help-container {
+      margin-left: 0px; } }
+  .coupon.pngx-section-help-container .pngx-section-help-container:hover,
+  .coupon.pngx-section-help-container .pngx-section-help-container-toggle:hover {
+    background: #9dd3df none repeat scroll 0 0;
+    border: 1px solid #2a5a8a;
+    color: #000; }
+  .coupon.pngx-section-help-container .pngx-section-help-slideout {
+    border: 1px solid #2a5a8a; }
+  .coupon.pngx-section-help-container .ui-widget-content a.pngx-support,
+  .coupon.pngx-section-help-container .pngx-support {
+    color: #2a5a8a; }
+  .coupon.pngx-section-help-container .ui-widget-content a.pngx-support:hover,
+  .coupon.pngx-section-help-container .pngx-support:hover {
+    color: #9dd3df; }
+  .coupon.pngx-section-help-container .pngx-help-images {
+    box-shadow: 0 1px 2px 0 #048c7f; }
+  .coupon.pngx-section-help-container .promote-sup {
+    color: #950402; }
 
 /* ==========================================================================
   Tooltips CSS

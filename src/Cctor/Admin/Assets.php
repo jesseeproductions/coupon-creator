@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Cctor__Coupon__Admin__Assets {
 
 	/*
-	* Register Coupon Creator CSS
+	* Enqueue Coupon Creator Assets
 	*/
 	public static function load_assets() {
 
@@ -23,7 +23,7 @@ class Cctor__Coupon__Admin__Assets {
 
 			//Styles
 			$cctor_meta_css = Cctor__Coupon__Main::instance()->resource_path . 'css/admin-style.css';
-			wp_enqueue_style( 'coupon-admin-style', Cctor__Coupon__Main::instance()->resource_url . 'css/admin-style.css', false, filemtime( $cctor_meta_css ) );
+			wp_enqueue_style( 'coupon-admin-style', Cctor__Coupon__Main::instance()->resource_url . 'css/admin-style.css', array( 'pngx-admin' ), filemtime( $cctor_meta_css ) );
 
 			//Style or WP Color Picker
 			wp_enqueue_style( 'wp-color-picker' );
@@ -45,7 +45,8 @@ class Cctor__Coupon__Admin__Assets {
 				'jquery',
 				'media-upload',
 				'thickbox',
-				'farbtastic'
+				'farbtastic',
+				'pngx-admin'
 			), filemtime( $cctor_coupon_meta_js ), true );
 
 			//Localize Pro Meta Script
