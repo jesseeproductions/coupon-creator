@@ -340,11 +340,6 @@
   background-color: #2a5a8a; }
   .coupon.pngx-section-help-container .pngx-section-help-container-toggle {
     background-color: #2a5a8a; }
-  .coupon.pngx-section-help-container .cctor_coupon_page_coupon-options .pngx-section-help-container {
-    margin-left: -10px; }
-  @media screen and (max-width: 768px) {
-    .coupon.pngx-section-help-container .cctor_coupon_page_coupon-options .pngx-section-help-container {
-      margin-left: 0px; } }
   .coupon.pngx-section-help-container .pngx-section-help-container:hover,
   .coupon.pngx-section-help-container .pngx-section-help-container-toggle:hover {
     background: #9dd3df none repeat scroll 0 0;
@@ -362,6 +357,13 @@
     box-shadow: 0 1px 2px 0 #048c7f; }
   .coupon.pngx-section-help-container .promote-sup {
     color: #950402; }
+
+.cctor_coupon_page_coupon-options .pngx-section-help-container {
+  margin-left: -10px; }
+
+@media screen and (max-width: 768px) {
+  .cctor_coupon_page_coupon-options .pngx-section-help-container {
+    margin-left: 0px; } }
 
 /* ==========================================================================
   Tooltips CSS

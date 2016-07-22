@@ -8,16 +8,6 @@
 		background-color: $blue;
 	}
 
-	//Coupon Options Page CSS
-	.cctor_coupon_page_coupon-options .pngx-section-help-container {
-		margin-left: -10px;
-	}
-	@include media($tablet) {
-		.cctor_coupon_page_coupon-options .pngx-section-help-container {
-			margin-left: 0px;
-		}
-	}
-
 	.pngx-section-help-container:hover,
 	.pngx-section-help-container-toggle:hover {
 		background: $color__light_blue none repeat scroll 0 0;
@@ -46,4 +36,14 @@
 		color: $darkred;
 	}
 
+}
+
+//Coupon Options Page CSS
+.cctor_coupon_page_coupon-options .pngx-section-help-container {
+	margin-left: -10px;
+}
+@include media($tablet) {
+	.cctor_coupon_page_coupon-options .pngx-section-help-container {
+		margin-left: 0px;
+	}
 }

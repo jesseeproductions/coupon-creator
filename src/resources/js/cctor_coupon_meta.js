@@ -318,7 +318,7 @@ function showHelp( helpid ) {
  */
 function cctor_prepare_toggle_fields( field_check, remove_img ) {
 
-	if ( field_check == 'input#cctor_image' ) {
+/*	if ( field_check == 'input#cctor_image' ) {
 
 		var cctor_img_id = $( field_check ).val();
 		//Continue if ID Found
@@ -365,8 +365,9 @@ function cctor_prepare_toggle_fields( field_check, remove_img ) {
 		}
 	}
 
-	cctor_toggle_fields( field_check, dissable_style_fields_arr, show_fields, message_div );
+	cctor_toggle_fields( field_check, dissable_style_fields_arr, show_fields, message_div );*/
 }
+
 /*
  * Toggle Meta Field Display
  * @version 2.1
