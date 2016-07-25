@@ -19,6 +19,18 @@
 	display: none;
 }
 
+.cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
+	margin: 0 0 0 -10px;
+}
+@include media($tablet) {
+	.cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
+		margin: 0 0 0 0px;
+	}
+}
+.cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content .pngx-section-help-slideout h4 {
+	margin: 0;
+}
+
 /* License Button
 ------------------------------------------------------------ */
 .cctor-license-button-act {
@@ -115,4 +127,33 @@
 	display: inline-block;
 	margin: 10px 0;
 	padding: 3px 5px;
+}
+
+/* Promo Boxes
+----------------------------------------------------------- */
+.cctor-promo-boxes {
+	background: #fff;
+	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
+	clear: both;
+	overflow: hidden;
+	padding: 2%;
+}
+.cctor-promo-boxes h3 {
+	color: $green;
+	font-size: 15px;
+	font-weight: bold;
+}
+.cctor-promo-boxes h3:after {
+	background: rgb(0, 0, 0);
+	background: -moz-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(1%, rgba(0, 0, 0, 1)), color-stop(28%, rgba(155, 155, 155, 1)), color-stop(85%, rgba(255, 255, 255, 1)));
+	background: -webkit-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+	background: -o-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+	background: -ms-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+	background: linear-gradient(to right, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+	content: "";
+	display: block;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff', GradientType=1);
+	height: 1px;
+	margin-top: 10px;
 }

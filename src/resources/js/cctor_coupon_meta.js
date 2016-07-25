@@ -1,4 +1,17 @@
 /**
+ * Tabs
+ */
+(function() {
+
+	var sections =  jQuery.parseJSON( cctor_coupon_meta_js_vars.tabs_arr.replace( /&quot;/g, '"' ) );
+	console.log(sections);
+
+	new Pngx__Tabs.init( sections );
+
+})();
+
+
+/**
  * Update color picker element
  * Used for static & dynamic added elements (when clone)
 
@@ -112,7 +125,7 @@ jQuery( function ( $ ) {
  *	http://stackoverflow.com/questions/1582534/calculating-text-width-with-jquery
  * 	since 2.0
  */
-$.fn.textWidth = function ( text, font ) {
+/*$.fn.textWidth = function ( text, font ) {
 	if ( !$.fn.textWidth.fakeEl ) $.fn.textWidth.fakeEl = $( '<span>' ).hide().appendTo( document.body );
 	$.fn.textWidth.fakeEl.text( text || this.val() || this.text() ).css( 'font', font || this.css( 'font' ) );
 	return $.fn.textWidth.fakeEl.width();
@@ -122,7 +135,7 @@ $.fn.textWidth = function ( text, font ) {
  * Toogle Slide Responsive Mode Tabs
  * since 2.0
  */
-function toggleMobileMenu( event, tabClass ) {
+/*function toggleMobileMenu( event, tabClass ) {
 
 	tabClass = tabClass.slice( 0, -7 )
 
@@ -134,7 +147,7 @@ function toggleMobileMenu( event, tabClass ) {
  *
  * since 1.90
  */
-jQuery( function ( $ ) {
+/*jQuery( function ( $ ) {
 
 	//Variable from Localize Script
 	var sections = cctor_coupon_meta_js_vars.tabs_arr.replace( /&quot;/g, '"' );
@@ -235,7 +248,7 @@ jQuery( function ( $ ) {
 	 * 	since 2.0
 	 */
 	//Calculate Total Tab Length to determine when to switch between Responsive and Regular Tabs
-	var tabText = 0;
+	/*var tabText = 0;
 	var tabCount = 0;
 
 	$( ".cctor-tabs-nav li" ).each( function () {
@@ -272,7 +285,7 @@ jQuery( function ( $ ) {
 	 *
 	 * since 2.0
 	 */
-	$( '.cctor-tabs-nav' ).before( '<div class="cctor-tabs-nav-mobile">Menu</div>' );
+	/*$( '.cctor-tabs-nav' ).before( '<div class="cctor-tabs-nav-mobile">Menu</div>' );
 
 	//Change Menu Text on Creation of Tabs
 	$( ".cctor-tabs" ).on( "tabscreate", function ( event, ui ) {
