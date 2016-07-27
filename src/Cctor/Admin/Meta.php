@@ -211,7 +211,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'       => 'content',
 			'wrapclass' => 'cctor-img-coupon deal-display'
 		);
-		/*$fields[ $prefix . 'deal_display' ]  = array(
+		$fields[ $prefix . 'deal_display' ]  = array(
 			'id'        => $prefix . 'deal_display',
 			'type'      => '',
 			'section'   => 'coupon_creator_meta_box',
@@ -468,8 +468,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			 * @param array $fields an array of fields to display in meta tabs.
 			 *
 			 */
-			//$fields = apply_filters( 'cctor_filter_meta_fields', $fields );
-		//}
+			$fields = apply_filters( 'cctor_filter_meta_fields', $fields );
+		}
 
 		self::$fields = $fields;
 	}
