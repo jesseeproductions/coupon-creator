@@ -570,7 +570,7 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 
 		if ( class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
 			$support_html = '
-				<h4 class="coupon-heading">How to Contact Support</h4>
+				<h4 class="pngx-fields-heading">How to Contact Support</h4>
 					<ul>
 						<li>For Coupon Creator Pro users please use the <a class="cctor-support" target="_blank" href="http://cctor.link/pro-support">Support Form on CouponCreatorPlugin.com</a> to get direct support.</li>
 
@@ -585,7 +585,7 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 					</ul>';
 		} else {
 			$support_html = '
-			<h4 class="coupon-heading">How to Contact Support</h4>
+			<h4 class="pngx-fields-heading">How to Contact Support</h4>
 			<ul>
 				<li>Please use the <a target="_blank" class="cctor-support" href="http://cctor.link/ZlQvh">WordPress.org Support Forum for the Coupon Creator</a>.</li>
 				<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:

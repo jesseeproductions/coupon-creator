@@ -40,19 +40,19 @@ class Cctor__Coupon__Admin__Assets {
 
 			//Script for WP Color Picker
 			wp_enqueue_script( 'wp-color-picker' );
-			$cctor_coupon_meta_js = Cctor__Coupon__Main::instance()->resource_path . 'js/cctor_coupon_meta.js';
-			wp_enqueue_script( 'cctor_coupon_meta_js', Cctor__Coupon__Main::instance()->resource_url . 'js/cctor_coupon_meta.js', array(
+			$cctor_admin_js = Cctor__Coupon__Main::instance()->resource_path . 'js/coupon-admin.js';
+			wp_enqueue_script( 'cctor_admin_js', Cctor__Coupon__Main::instance()->resource_url . 'js/coupon-admin.js', array(
 				'jquery',
 				'media-upload',
 				'thickbox',
 				'farbtastic',
 				'pngx-admin'
-			), filemtime( $cctor_coupon_meta_js ), true );
+			), filemtime( $cctor_admin_js ), true );
 
 			//Localize Pro Meta Script
-			wp_localize_script( 'cctor_coupon_meta_js', 'cctor_meta_js', array(
-				'cctor_disable_content_msg' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon_creator_pro' ),
-				'cctor_disable_style_msg'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon_creator_pro' )
+			wp_localize_script( 'cctor_admin_js', 'cctor_meta_js', array(
+				'cctor_disable_content_msg' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
+				'cctor_disable_style_msg'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
 			) );
 
 

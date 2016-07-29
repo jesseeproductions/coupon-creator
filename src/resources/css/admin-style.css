@@ -3,6 +3,9 @@
 
 */
 /* ==========================================================================
+   Tabs CSS
+   ========================================================================== */
+/* ==========================================================================
   jQuery UI CSS
    ========================================================================== */
 /* ==========================================================================
@@ -268,14 +271,14 @@
   padding: 0 0 5px 10px;
   text-shadow: 0 1px 0 #fff; }
 
-.postbox h4.coupon-heading:after {
+.postbox h4.pngx-fields-heading:after {
   background: linear-gradient(to right, black 1%, #9b9b9b 28%, white 85%) repeat scroll 0 0 transparent;
   content: "";
   display: block;
   height: 1px;
   margin-top: 10px; }
 
-.postbox h4.coupon-heading {
+.postbox h4.pngx-fields-heading {
   color: #048c7f;
   font-size: 15px;
   font-weight: bold;
@@ -378,7 +381,7 @@
 
 #cctor_woocommerce hr,
 #cctor_woocommerce h3,
-.postbox #cctor_woocommerce h4.coupon-heading {
+.postbox #cctor_woocommerce h4.pngx-fields-heading {
   color: #a46497; }
 
 #cctor_woo_options textarea {
