@@ -199,7 +199,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'type'      => 'heading',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => 'cctor-img-coupon'
+			'wrapclass' => 'image-coupon-disable'
 		);
 		$fields[ $prefix . 'amount' ]        = array(
 			'label'     => __( 'Deal', 'coupon-creator' ),
@@ -209,14 +209,14 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'alert'     => '',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => 'cctor-img-coupon deal-display'
+			'wrapclass' => 'image-coupon-disable deal-display'
 		);
 		$fields[ $prefix . 'deal_display' ]  = array(
 			'id'        => $prefix . 'deal_display',
 			'type'      => '',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => 'cctor-img-coupon'
+			'wrapclass' => 'image-coupon-disable'
 		);
 		$fields[ $prefix . 'heading_terms' ] = array(
 			'id'        => $prefix . 'heading_terms',
@@ -225,7 +225,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'type'      => 'heading',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => 'cctor-img-coupon'
+			'wrapclass' => 'image-coupon-disable'
 		);
 		$fields[ $prefix . 'description' ]   = array(
 			'label'     => __( 'Terms', 'coupon-creator' ),
@@ -235,7 +235,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'class'     => 'code',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => 'cctor-img-coupon'
+			'wrapclass' => 'image-coupon-disable'
 		);
 
 		//Style Tab
@@ -273,7 +273,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'type'      => 'heading',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'style',
-			'wrapclass' => 'cctor-img-coupon'
+			'wrapclass' => 'image-coupon-disable'
 		);
 		$fields[ $prefix . 'bordercolor' ]          = array(
 			'label'     => __( 'Inside Border Color', 'coupon-creator' ),
@@ -283,7 +283,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'value'     => cctor_options( 'cctor_border_color' ),
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'style',
-			'wrapclass' => 'cctor-img-coupon'
+			'wrapclass' => 'image-coupon-disable'
 		);
 		$fields[ $prefix . 'inside_radius' ]        = array(
 			'id'      => $prefix . 'inside_radius',
@@ -300,7 +300,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'type'      => 'heading',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'style',
-			'wrapclass' => 'cctor-img-coupon deal-display'
+			'wrapclass' => 'image-coupon-disable deal-display'
 		);
 		$fields[ $prefix . 'colordiscount' ] = array(
 			'label'     => __( 'Deal Background Color', 'coupon-creator' ),
@@ -310,7 +310,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'value'     => cctor_options( 'cctor_discount_bg_color' ),
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'style',
-			'wrapclass' => 'cctor-img-coupon deal-display'
+			'wrapclass' => 'image-coupon-disable deal-display'
 		);
 		$fields[ $prefix . 'colorheader' ]   = array(
 			'label'     => __( 'Deal Text Color', 'coupon-creator' ),
@@ -320,7 +320,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'value'     => cctor_options( 'cctor_discount_text_color' ),
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'style',
-			'wrapclass' => 'cctor-img-coupon deal-display'
+			'wrapclass' => 'image-coupon-disable deal-display'
 		);
 
 		//Expiration
@@ -440,7 +440,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'type'    => 'image',
 			'image'   => 'Image Coupon',
 			'section' => 'coupon_creator_meta_box',
-			'tab'     => 'image_coupon'
+			'tab'     => 'image_coupon',
+			'data'    => 'data-toggle-group="image-coupon-disable"'
 		);
 		//Help
 		$fields[ $prefix . 'videos' ] = array(

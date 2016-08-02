@@ -11,27 +11,94 @@
 
 	/*
 	 * Expiration Fields Display
-	 * since 2.3
 	 */
 	var $expiration_option_val = $( '#cctor_expiration_option' );
-
 	pngx_fields_toggle.toggle_basic( '#expiration .expiration-field', $expiration_option_val.val(), '#expiration .expiration-' );
-
 	$expiration_option_val.on( 'change', function () {
 		pngx_fields_toggle.toggle_basic( '#expiration .expiration-field', $( this ).val(), '#expiration .expiration-' );
 	} );
 
-	/*
-	 * Core Meta Field Logic
-	 */
-	//Run Function to hide Content and Style Fields if Image Selected
-	pngx_fields_toggle.prepare( 'input#cctor_image', 'initial' );
-	$( "input#cctor_image" ).on( "display", function () {
-		pngx_fields_toggle.prepare( 'input#cctor_image' );
+
+	toremove = {};
+	toremove.prepare = function( field_check, remove_img, messages   ) {
+
+		if ( field_check == 'input#cctor_image' ) {
+
+			var cctor_img_id = $( field_check ).val();
+
+			//Continue if ID Found
+			if ( cctor_img_id != '' || remove_img == true ) {
+
+				var show_fields = [".cctor-img-coupon"];
+				var dissable_style_fields_arr = '';
+
+				if ( cctor_img_id != '' ) {
+
+					var border_disable = "sawtooth-border";
+					$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', false );
+
+					dissable_style_fields_arr = [".cctor-img-coupon"];
+
+					if ( !$( '.pngx-tabs .pngx-tab-heading-links' ).length ) {
+						var messages = {
+							".pngx-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+							".pngx-tab-heading-style": cctor_meta_js.cctor_disable_style_msg
+						};
+					} else {
+						var messages = {
+							".pngx-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+							".pngx-tab-heading-style": ''
+						};
+
+						//If Saw Tooth Border is Selected then change as it does not work with the Image Coupon
+						if ( $( "#cctor_coupon_border_themes option:selected" ).val() == border_disable ) {
+
+							$( "select#cctor_coupon_border_themes" ).prop( "selectedIndex", 0 );
+
+							if ( typeof cctor_pro_prepare_toggle_fields == 'function' ) {
+
+								cctor_pro_prepare_toggle_fields( '#cctor_coupon_border_themes' );
+							}
+						}
+						$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', true );
+					}
+				}
+			}
+		}
+
+		obj.toggle( field_check, dissable_style_fields_arr, show_fields, message_div );
+	};
+
+
+	var messages = {
+		".pngx-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+		".pngx-tab-heading-style": cctor_meta_js.cctor_disable_style_msg
+	};
+
+	var data = $( 'input#cctor_image' ).data();
+	console.log(data);
+
+	var $data_fields = [];
+
+	$( '.pngx-meta-field-wrap' ).each( function () {
+		if ( '' != $( this ).data() ) {
+			//var $data_field[] = this.data();
+			console.log($( this ).data());
+		}
 	} );
-	$( ".pngx-clear-image" ).on( "click", function () {
-		pngx_fields_toggle.prepare( 'input#cctor_image', true );
-	} );
+	console.log($data_fields);
+	///for ( var field in data ) {
+
+	//}
+	pngx_fields_toggle.toggle( 'input#cctor_image', 'initial', messages );
+
+
+	/*$( "input#cctor_image" ).on( "display", function () {
+		pngx_fields_toggle.toggle( 'input#cctor_image' );
+	} );*/
+	/*$( ".pngx-clear-image" ).on( "click", function () {
+		pngx_fields_toggle.toggle( 'input#cctor_image', true, messages );
+	} );*/
 
 })( jQuery );
 
@@ -115,9 +182,8 @@ var cctor_admin_fields_init = cctor_admin_fields_init || {};
 		} );
 
 		/*
-		 * Remove Image
+		 * Remove Image and replace with default and Erase Image ID for Coupon
 		 */
-		//Remove Image and replace with default and Erase Image ID for Coupon
 		$( '.pngx-clear-image' ).click( function ( e ) {
 			e.preventDefault();
 			var coupon_remove_input_id = 'input#' + this.id + '.pngx-upload-image';
