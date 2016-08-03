@@ -49,13 +49,6 @@ class Cctor__Coupon__Admin__Assets {
 				'pngx-admin'
 			), filemtime( $cctor_admin_js ), true );
 
-			//Localize Pro Meta Script
-			wp_localize_script( 'cctor_admin_js', 'cctor_meta_js', array(
-				'cctor_disable_content_msg' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
-				'cctor_disable_style_msg'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
-			) );
-
-
 			//Script for Datepicker
 			wp_enqueue_script( 'jquery-ui-datepicker' );
 
