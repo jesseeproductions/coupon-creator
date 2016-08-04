@@ -357,8 +357,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'          => 'expiration',
 			'bulkedit'     => 'cctor_pro_expiration',
 			'toggle_field' => 'select',
-			'toggle_group' => '.expiration-fields',
-			'toggle_show'  => ''
+			'toggle_group' => '.expiration-field',
+			'toggle_show'  => '.expiration-'
 		);
 
 		$fields[ $prefix . 'expiration_msg_1' ] = array(

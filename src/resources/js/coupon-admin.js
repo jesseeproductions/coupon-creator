@@ -8,8 +8,97 @@
 	var coupon_id = cctor_admin_js_vars.cctor_coupon_id;
 	pngx_admin_tabs.init( '.pngx-tabs', sections, updated_tab, coupon_id );
 
+	var $data = [];
+	var $toggle = [];
 
-	toremove = {};
+	$( '.pngx-meta-field-wrap' ).each( function () {
+		if ( ! $.isEmptyObject( $( this ).data() ) ) {
+			$data.push( $( this ).data() );
+		}
+	} );
+
+	for ( var id in $data ) {
+
+		//console.log($data[id]);
+		//console.log($data[id].toggleInput);
+		//console.log($data[id].toggleGroup);
+		//console.log($data[id].toggleShow);
+		//console.log($data[id].toggleMsg);
+
+		if ( 'select#cctor_expiration_option' == $data[id].toggleInput  ) {
+
+			console.log('change0');
+			console.log($data[id].toggleGroup);
+			pngx_fields_toggle.toggle(
+				$data[id].toggleInput,
+				$data[id].toggleGroup,
+				$data[id].toggleShow + $( $data[id].toggleInput ).val(),
+				$data[id].toggleMsg
+			);
+
+			/*pngx_fields_toggle.toggle_basic(
+				'.expiration-field',
+				$( $data[id].toggleInput ).val(),
+				'.expiration-'
+			);*/
+			$( $data[id].toggleInput ).on( 'change', function () {
+				console.log('change1');
+					console.log($data[id].toggleGroup);
+				console.log($data[id].toggleShow + $( this ).val());
+				pngx_fields_toggle.toggle(
+					$data[id].toggleInput,
+					$data[id].toggleGroup,
+					$data[id].toggleShow + $( this ).val(),
+					$data[id].toggleMsg
+				);
+				/*pngx_fields_toggle.toggle_basic(
+					'.expiration-field',
+					$( this ).val(),
+					'.expiration-'
+				);*/
+			} );
+
+		}
+
+		if ( 'input#cctor_image' == $data[id].toggleInput  ) {
+			console.log('change2');
+			console.log($data[id].toggleGroup);
+			pngx_fields_toggle.toggle(
+				$data[id].toggleInput,
+				$data[id].toggleGroup,
+				$data[id].toggleShow,
+				$data[id].toggleMsg
+			);
+
+			$( $data[id].toggleInput ).on( 'display', function () {
+				console.log('change3');
+				console.log($data[id].toggleGroup);
+				pngx_fields_toggle.toggle(
+					$data[id].toggleInput,
+					$data[id].toggleGroup,
+					$data[id].toggleShow,
+					$data[id].toggleMsg
+				);
+			} );
+
+			$( ".pngx-clear-image" ).on( "click", function () {
+				console.log('change4');
+				console.log($data[id].toggleGroup);
+				pngx_fields_toggle.toggle(
+					$data[id].toggleInput,
+					$data[id].toggleGroup,
+					$data[id].toggleShow,
+					$data[id].toggleMsg
+				);
+			} );
+		}
+
+	}
+
+	//////REMOVE DOWN
+	//Todo img coupon toggle - disable style message when pro active
+	//todo img coupon toggle - disbale saw tooth border
+	/*toremove = {};
 	toremove.prepare = function( field_check, remove_img, messages   ) {
 
 		if ( field_check == 'input#cctor_image' ) {
@@ -41,7 +130,7 @@
 						};
 
 						//If Saw Tooth Border is Selected then change as it does not work with the Image Coupon
-						/*if ( $( "#cctor_coupon_border_themes option:selected" ).val() == border_disable ) {
+						if ( $( "#cctor_coupon_border_themes option:selected" ).val() == border_disable ) {
 
 							$( "select#cctor_coupon_border_themes" ).prop( "selectedIndex", 0 );
 
@@ -50,155 +139,14 @@
 								cctor_pro_prepare_toggle_fields( '#cctor_coupon_border_themes' );
 							}
 						}
-						$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', true );*/
+						$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', true );
 					}
 				}
 			}
 		}
 
 		obj.toggle( field_check, dissable_style_fields_arr, show_fields, message_div );
-	};
-
-	var $data_fields = [];
-
-	$( '.pngx-meta-field-wrap' ).each( function () {
-		if ( ! $.isEmptyObject( $( this ).data() ) ) {
-			$data_fields.push( $( this ).data() );
-		}
-	} );
-
-	for ( var toogle_fields in $data_fields ) {
-
-		//console.log($data_fields[toogle_fields]);
-		//console.log($data_fields[toogle_fields].toggleInput);
-		//console.log($data_fields[toogle_fields].toggleGroup);
-		//console.log($data_fields[toogle_fields].toggleShow);
-		//console.log($data_fields[toogle_fields].toggleMsg);
-
-		pngx_fields_toggle.toggle(
-			$data_fields[toogle_fields].toggleInput,
-			$data_fields[toogle_fields].toggleGroup,
-			$data_fields[toogle_fields].toggleShow,
-			$data_fields[toogle_fields].toggleMsg
-		);
-
-	}
-
-	/*$( "input#cctor_image" ).on( "display", function () {
-		pngx_fields_toggle.toggle( 'input#cctor_image' );
-	} );*/
-	/*$( ".pngx-clear-image" ).on( "click", function () {
-		pngx_fields_toggle.toggle( 'input#cctor_image', true, messages );
-	} );*/
-
-	/*
-	 * Expiration Fields Display
-	 */
-	var $expiration_option_val = $( '#cctor_expiration_option' );
-	pngx_fields_toggle.toggle_basic( '#expiration .expiration-field', $expiration_option_val.val(), '#expiration .expiration-' );
-	$expiration_option_val.on( 'change', function () {
-		pngx_fields_toggle.toggle_basic( '#expiration .expiration-field', $( this ).val(), '#expiration .expiration-' );
-	} );
+	};*/
+	//////REMOVE UP
 
 })( jQuery );
-
-/**
- * Fields Scripts
- * @type {{}}
- */
-var cctor_admin_fields_init = cctor_admin_fields_init || {};
-(function ( $, obj ) {
-	'use strict';
-
-	obj.init = function () {
-		this.init_scripts();
-	};
-
-	obj.init_scripts = function () {
-
-		/*
-		 * WP Date Picker
-		 */
-		$( '#cctor_expiration' ).datepicker( {
-			beforeShow: function ( input, inst ) {
-				$( "#ui-datepicker-div" ).addClass( "cctor-ui" )
-			}
-		} );
-
-
-		/*
-		 * WP Color Picker
-		 */
-		$( '.color-picker' ).wpColorPicker();
-
-		/*
-		 * Media Manager 3.5
-		 */
-		$( '.pngx-image-button' ).click( function ( e ) {
-
-			//Create Media Manager On Click to allow multiple on one Page
-			var img_uploader, attachment;
-
-			e.preventDefault();
-
-			//Setup the Variables based on the Button Clicked to enable multiple
-			var img_input_id = '#' + this.id + '.pngx-upload-image';
-			var img_src = 'img#' + this.id + '.pngx-image';
-			var default_msg = 'div#' + this.id + '.pngx-default-image';
-
-			//If the uploader object has already been created, reopen the dialog
-			if ( img_uploader ) {
-				img_uploader.open();
-				return;
-			}
-
-			//Extend the wp.media object
-			img_uploader = wp.media.frames.file_frame = wp.media( {
-				title: 'Choose Coupon Image',
-				button: {
-					text: 'Use Image'
-				},
-				multiple: false
-			} );
-
-			//When a file is selected, grab the URL and set it as the text field's value
-			img_uploader.on( 'select', function () {
-				attachment = img_uploader.state().get( 'selection' ).first().toJSON();
-				//Set the Field with the Image ID
-				$( img_input_id ).val( attachment.id );
-				//Set the Sample Image with the URL
-				$( img_src ).attr( 'src', attachment.url );
-				//Show Image
-				$( img_src ).show();
-				//Hide Message
-				$( default_msg ).hide();
-				//Trigger New Image Uploaded
-				$( 'input#cctor_image' ).trigger( 'display' );
-			} );
-
-			//Open the uploader dialog
-			img_uploader.open();
-
-		} );
-
-		/*
-		 * Remove Image and replace with default and Erase Image ID for Coupon
-		 */
-		$( '.pngx-clear-image' ).click( function ( e ) {
-			e.preventDefault();
-			var remove_input_id = 'input#' + this.id + '.pngx-upload-image';
-			var img_src = 'img#' + this.id + '.pngx-image';
-
-			$( remove_input_id ).val( '' );
-			$( img_src ).hide();
-			$( 'div#' + this.id + '.pngx-default-image' ).show();
-			$( 'input#cctor_image' ).trigger( 'display' );
-		} );
-
-	};
-
-	$( function () {
-		obj.init();
-	} );
-
-})( jQuery, cctor_admin_fields_init );
