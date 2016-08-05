@@ -347,18 +347,20 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		}
 
 		$fields[ $prefix . 'expiration_option' ] = array(
-			'label'        => __( 'Expiration Option', 'coupon-creator' ),
-			'desc'         => __( 'Choose the expiration method for this coupon', 'coupon-creator' ),
-			'id'           => $prefix . 'expiration_option',
-			'value'        => cctor_options( 'cctor_expiration_option' ),
-			'type'         => 'select',
-			'choices'      => $expiration_options,
-			'section'      => 'coupon_creator_meta_box',
-			'tab'          => 'expiration',
-			'bulkedit'     => 'cctor_pro_expiration',
-			'toggle_field' => 'select',
-			'toggle_group' => '.expiration-field',
-			'toggle_show'  => '.expiration-'
+			'label'    => __( 'Expiration Option', 'coupon-creator' ),
+			'desc'     => __( 'Choose the expiration method for this coupon', 'coupon-creator' ),
+			'id'       => $prefix . 'expiration_option',
+			'value'    => cctor_options( 'cctor_expiration_option' ),
+			'type'     => 'select',
+			'choices'  => $expiration_options,
+			'section'  => 'coupon_creator_meta_box',
+			'tab'      => 'expiration',
+			'bulkedit' => 'cctor_pro_expiration',
+			'toggle'   => array(
+				'field' => 'select',
+				'group' => '.expiration-field',
+				'show'  => '.expiration-'
+			)
 		);
 
 		$fields[ $prefix . 'expiration_msg_1' ] = array(
@@ -437,19 +439,21 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		//Image Coupon
 		$fields[ $prefix . 'image' ] = array(
-			'label'        => '',
-			'desc'         => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
-			'id'           => $prefix . 'image',
-			'type'         => 'image',
-			'image'        => 'Image Coupon',
-			'section'      => 'coupon_creator_meta_box',
-			'tab'          => 'image_coupon',
-			'toggle_field' => 'input',
-			'toggle_group' => '.image-coupon-disable',
-			'toggle_show'  => '',
-			'toggle_msg'   => array(
-				'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
-				'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
+			'label'   => '',
+			'desc'    => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
+			'id'      => $prefix . 'image',
+			'type'    => 'image',
+			'image'   => 'Image Coupon',
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'image_coupon',
+			'toggle'  => array(
+				'field'      => 'input',
+				'group'      => '.image-coupon-disable',
+				'show'       => '',
+				'msg' => array(
+					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
+					'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
+				)
 			)
 		);
 		//Help

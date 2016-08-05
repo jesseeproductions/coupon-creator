@@ -12,141 +12,143 @@
 	var $toggle = [];
 
 	$( '.pngx-meta-field-wrap' ).each( function () {
-		if ( ! $.isEmptyObject( $( this ).data() ) ) {
+		if ( !$.isEmptyObject( $( this ).data() ) ) {
 			$data.push( $( this ).data() );
 		}
 	} );
 
-	for ( var id in $data ) {
+	//Create Image Upload Object
+	var coupon_img = new PNGX__Media( $, 'input#cctor_image', 'Choose Coupon Image', 'Use Image' );
 
-		//console.log($data[id]);
-		//console.log($data[id].toggleInput);
-		//console.log($data[id].toggleGroup);
-		//console.log($data[id].toggleShow);
-		//console.log($data[id].toggleMsg);
+	//for ( var id in $data ) {
 
-		if ( 'select#cctor_expiration_option' == $data[id].toggleInput  ) {
+	//console.log(id);
+	//console.log($data[id].toggleField);
+	//console.log($data[id].toggleGroup);
+	//console.log($data[id].toggleShow);
+	//console.log($data[id].toggleMsg);
 
-			console.log('change0');
-			console.log($data[id].toggleGroup);
+	if ( 'select#cctor_expiration_option' == $data[0].toggleField ) {
+
+		//console.log('change0');
+		//console.log($data[0].toggleGroup);
+		pngx_fields_toggle.toggle(
+			$data[0].toggleField,
+			$data[0].toggleGroup,
+			$data[0].toggleShow + $( $data[0].toggleField ).val(),
+			$data[0].toggleMsg
+		);
+
+		/*pngx_fields_toggle.toggle_basic(
+		 '.expiration-field',
+		 $( $data[id].toggleField ).val(),
+		 '.expiration-'
+		 );*/
+		$( $data[0].toggleField ).on( 'change', function () {
+			//console.log('change1');
+			//	console.log($data[0].toggleGroup);
+			//console.log($data[0].toggleShow + $( this ).val());
 			pngx_fields_toggle.toggle(
-				$data[id].toggleInput,
-				$data[id].toggleGroup,
-				$data[id].toggleShow + $( $data[id].toggleInput ).val(),
-				$data[id].toggleMsg
+				$data[0].toggleField,
+				$data[0].toggleGroup,
+				$data[0].toggleShow + $( this ).val(),
+				$data[0].toggleMsg
 			);
-
 			/*pngx_fields_toggle.toggle_basic(
-				'.expiration-field',
-				$( $data[id].toggleInput ).val(),
-				'.expiration-'
-			);*/
-			$( $data[id].toggleInput ).on( 'change', function () {
-				console.log('change1');
-					console.log($data[id].toggleGroup);
-				console.log($data[id].toggleShow + $( this ).val());
-				pngx_fields_toggle.toggle(
-					$data[id].toggleInput,
-					$data[id].toggleGroup,
-					$data[id].toggleShow + $( this ).val(),
-					$data[id].toggleMsg
-				);
-				/*pngx_fields_toggle.toggle_basic(
-					'.expiration-field',
-					$( this ).val(),
-					'.expiration-'
-				);*/
-			} );
-
-		}
-
-		if ( 'input#cctor_image' == $data[id].toggleInput  ) {
-			console.log('change2');
-			console.log($data[id].toggleGroup);
-			pngx_fields_toggle.toggle(
-				$data[id].toggleInput,
-				$data[id].toggleGroup,
-				$data[id].toggleShow,
-				$data[id].toggleMsg
-			);
-
-			$( $data[id].toggleInput ).on( 'display', function () {
-				console.log('change3');
-				console.log($data[id].toggleGroup);
-				pngx_fields_toggle.toggle(
-					$data[id].toggleInput,
-					$data[id].toggleGroup,
-					$data[id].toggleShow,
-					$data[id].toggleMsg
-				);
-			} );
-
-			$( ".pngx-clear-image" ).on( "click", function () {
-				console.log('change4');
-				console.log($data[id].toggleGroup);
-				pngx_fields_toggle.toggle(
-					$data[id].toggleInput,
-					$data[id].toggleGroup,
-					$data[id].toggleShow,
-					$data[id].toggleMsg
-				);
-			} );
-		}
+			 '.expiration-field',
+			 $( this ).val(),
+			 '.expiration-'
+			 );*/
+		} );
 
 	}
 
+	if ( 'input#cctor_image' == $data[1].toggleField ) {
+		//console.log('change2');
+		//console.log($data[1].toggleGroup);
+		pngx_fields_toggle.toggle(
+			$data[1].toggleField,
+			$data[1].toggleGroup,
+			$data[1].toggleShow,
+			$data[1].toggleMsg
+		);
+
+		$( $data[1].toggleField ).on( 'display', function () {
+			//console.log('change3');
+			//console.log($data[1].toggleGroup);
+			pngx_fields_toggle.toggle(
+				$data[1].toggleField,
+				$data[1].toggleGroup,
+				$data[1].toggleShow,
+				$data[1].toggleMsg
+			);
+		} );
+
+		$( ".pngx-clear-image" ).on( "click", function () {
+			//console.log('change4');
+			//console.log($data[1].toggleGroup);
+			pngx_fields_toggle.toggle(
+				$data[1].toggleField,
+				$data[1].toggleGroup,
+				$data[1].toggleShow,
+				$data[1].toggleMsg
+			);
+		} );
+	}
+
+	//}
 	//////REMOVE DOWN
 	//Todo img coupon toggle - disable style message when pro active
 	//todo img coupon toggle - disbale saw tooth border
 	/*toremove = {};
-	toremove.prepare = function( field_check, remove_img, messages   ) {
+	 toremove.prepare = function( field_check, remove_img, messages   ) {
 
-		if ( field_check == 'input#cctor_image' ) {
+	 if ( field_check == 'input#cctor_image' ) {
 
-			var cctor_img_id = $( field_check ).val();
+	 var cctor_img_id = $( field_check ).val();
 
-			//Continue if ID Found
-			if ( cctor_img_id != '' || remove_img == true ) {
+	 //Continue if ID Found
+	 if ( cctor_img_id != '' || remove_img == true ) {
 
-				var show_fields = [".cctor-img-coupon"];
-				var dissable_style_fields_arr = '';
+	 var show_fields = [".cctor-img-coupon"];
+	 var dissable_style_fields_arr = '';
 
-				if ( cctor_img_id != '' ) {
+	 if ( cctor_img_id != '' ) {
 
-					//var border_disable = "sawtooth-border";
-					//$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', false );
+	 //var border_disable = "sawtooth-border";
+	 //$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', false );
 
-					dissable_style_fields_arr = [".cctor-img-coupon"];
+	 dissable_style_fields_arr = [".cctor-img-coupon"];
 
-					if ( !$( '.pngx-tabs .pngx-tab-heading-links' ).length ) {
-						var messages = {
-							".pngx-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
-							".pngx-tab-heading-style": cctor_meta_js.cctor_disable_style_msg
-						};
-					} else {
-						var messages = {
-							".pngx-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
-							".pngx-tab-heading-style": ''
-						};
+	 if ( !$( '.pngx-tabs .pngx-tab-heading-links' ).length ) {
+	 var messages = {
+	 ".pngx-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+	 ".pngx-tab-heading-style": cctor_meta_js.cctor_disable_style_msg
+	 };
+	 } else {
+	 var messages = {
+	 ".pngx-tab-heading-content": cctor_meta_js.cctor_disable_content_msg,
+	 ".pngx-tab-heading-style": ''
+	 };
 
-						//If Saw Tooth Border is Selected then change as it does not work with the Image Coupon
-						if ( $( "#cctor_coupon_border_themes option:selected" ).val() == border_disable ) {
+	 //If Saw Tooth Border is Selected then change as it does not work with the Image Coupon
+	 if ( $( "#cctor_coupon_border_themes option:selected" ).val() == border_disable ) {
 
-							$( "select#cctor_coupon_border_themes" ).prop( "selectedIndex", 0 );
+	 $( "select#cctor_coupon_border_themes" ).prop( "selectedIndex", 0 );
 
-							if ( typeof cctor_pro_prepare_toggle_fields == 'function' ) {
+	 if ( typeof cctor_pro_prepare_toggle_fields == 'function' ) {
 
-								cctor_pro_prepare_toggle_fields( '#cctor_coupon_border_themes' );
-							}
-						}
-						$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', true );
-					}
-				}
-			}
-		}
+	 cctor_pro_prepare_toggle_fields( '#cctor_coupon_border_themes' );
+	 }
+	 }
+	 $( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', true );
+	 }
+	 }
+	 }
+	 }
 
-		obj.toggle( field_check, dissable_style_fields_arr, show_fields, message_div );
-	};*/
+	 obj.toggle( field_check, dissable_style_fields_arr, show_fields, message_div );
+	 };*/
 	//////REMOVE UP
 
 })( jQuery );
