@@ -511,7 +511,7 @@ class Cctor__Coupon__Admin__Options {
 				}
 				break;
 
-			case 'cctor_support':
+			case 'help':
 
 				$help_class = new Cctor__Coupon__Admin__Help();
 				$help_class->display_help( 'all', false, 'coupon' );
@@ -838,7 +838,7 @@ class Cctor__Coupon__Admin__Options {
 		$this->options['cctor_help'] = array(
 			'section' => 'help',
 			'title'   => __( 'Support: ', 'coupon-creator' ),
-			'type'    => 'cctor_support',
+			'type'    => 'help',
 			'std'     => 0,
 			'desc'    => ''
 		);

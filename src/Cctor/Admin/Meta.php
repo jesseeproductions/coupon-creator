@@ -35,6 +35,26 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		self::set_tabs();
 		self::set_fields();
 
+		add_action( 'pngx-per-tab-help', array( __CLASS__, 'per_tab_help' ), 10, 1 );
+		add_action( 'pngx-help-tab', array( __CLASS__, 'per_help_tab' ), 10 );
+	}
+
+	/*
+	* Set Post Type
+	*/
+	public static function per_tab_help( $tab_slug ) {
+
+		$help_class = new Cctor__Coupon__Admin__Help();
+		$help_class->display_help( $tab_slug, false, 'coupon' );
+
+	}
+
+	public static function per_help_tab() {
+
+		$help_class = new Cctor__Coupon__Admin__Help();
+		$help_class->display_help( 'all', false, 'coupon' );
+		echo Cctor__Coupon__Admin__Help::get_cctor_support_core_contact();
+
 	}
 
 	/*
@@ -460,7 +480,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$fields[ $prefix . 'videos' ] = array(
 			'label'   => '',
 			'id'      => $prefix . 'videos',
-			'type'    => 'cctor_support',
+			'type'    => 'help',
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'help'
 		);

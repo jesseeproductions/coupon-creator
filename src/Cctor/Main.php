@@ -109,7 +109,7 @@ class Cctor__Coupon__Main {
 	public function plugins_loaded() {
 		// include the autoloader class
 		$this->init_autoloading();
-		add_action( 'init', array( $this, 'load_text_domain' ), 1 );
+		add_action( 'plugins_loaded', array( $this, 'i18n' ), 1 );
 		if ( self::supportedVersion( 'wordpress' ) && self::supportedVersion( 'php' ) ) {
 			$this->addHooks();
 			$this->loadLibraries();
@@ -187,8 +187,12 @@ class Cctor__Coupon__Main {
 	 * Load the text domain.
 	 *
 	 */
-	public function load_text_domain() {
-		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'lang/' );
+	public function i18n() {
+
+		$local_path =  dirname( dirname( dirname( plugin_basename( __FILE__ ) ) ) ) .'/languages';
+
+        load_plugin_textdomain( self::TEXT_DOMAIN , false, $local_path );
+
 	}
 
 	/**
