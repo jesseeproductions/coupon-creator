@@ -138,7 +138,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) && $typenow == 'cctor_coupon' ) {
 			add_meta_box( 'coupon_creator_meta_box', // id
 				__( 'Coupon Fields', 'coupon-creator' ), // title
-				array( __CLASS__, 'show_fields' ), // callback
+				array( __CLASS__, 'display_fields' ), // callback
 				'cctor_coupon', // post_type
 				'normal', // context
 				'high' // priority

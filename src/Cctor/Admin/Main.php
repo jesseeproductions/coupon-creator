@@ -28,7 +28,8 @@ class Cctor__Coupon__Admin__Main {
 		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__License', 'deactivate_license' ) );
 
 		new Cctor__Coupon__Admin__Columns();
-		new Cctor__Coupon__Admin__Options();
+		new Pngx__Admin__Options();
+		//new Cctor__Coupon__Admin__Options();
 		new Cctor__Coupon__Admin__Meta();
 
 	}

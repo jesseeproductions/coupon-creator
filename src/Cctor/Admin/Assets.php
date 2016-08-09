@@ -40,17 +40,12 @@ class Cctor__Coupon__Admin__Assets {
 
 			//Script for WP Color Picker
 			wp_enqueue_script( 'wp-color-picker' );
-			$cctor_admin_js = Cctor__Coupon__Main::instance()->resource_path . 'js/coupon-admin.js';
-			wp_enqueue_script( 'cctor_admin_js', Cctor__Coupon__Main::instance()->resource_url . 'js/coupon-admin.js', array(
-				'jquery',
-				'media-upload',
-				'thickbox',
-				'farbtastic',
-				'pngx-admin'
-			), filemtime( $cctor_admin_js ), true );
 
 			//Script for Datepicker
 			wp_enqueue_script( 'jquery-ui-datepicker' );
+
+			//core
+			wp_enqueue_script( 'jquery-ui-core' );
 
 			//Tabs
 			wp_enqueue_script( 'jquery-ui-tabs' );
@@ -68,8 +63,17 @@ class Cctor__Coupon__Admin__Assets {
 			$cctor_colorbox_js = Cctor__Coupon__Main::instance()->plugin_path . 'vendor/colorbox/jquery.colorbox-min.js';
 			wp_enqueue_script( 'cctor_colorbox_js', Cctor__Coupon__Main::instance()->plugin_url . 'vendor/colorbox/jquery.colorbox-min.js', array( 'jquery' ), filemtime( $cctor_colorbox_js ), true );
 
+			$cctor_admin_js = Cctor__Coupon__Main::instance()->resource_path . 'js/coupon-admin.js';
+			wp_enqueue_script( 'cctor_admin_js', Cctor__Coupon__Main::instance()->resource_url . 'js/coupon-admin.js', array(
+				'jquery',
+				'media-upload',
+				'thickbox',
+				'farbtastic',
+				'pngx-admin'
+			), filemtime( $cctor_admin_js ), true );
+
 			//Hook to Load New Styles and Scripts
-			do_action( 'cctor_meta_scripts_styles' );
+			do_action( 'cctor_admin_assets' );
 
 		}
 
