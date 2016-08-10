@@ -19,7 +19,7 @@ class Cctor__Coupon__Admin__Assets {
 
 		$screen = get_current_screen();
 
-		if ( 'cctor_coupon' == $screen->id ) {
+		if ( 'cctor_coupon' == $screen->id ||  'settings_page_plugin-engine-options' == $screen->id ||  'settings_page_coupon-options' == $screen->id ) {
 
 			//Styles
 			$cctor_meta_css = Cctor__Coupon__Main::instance()->resource_path . 'css/admin-style.css';

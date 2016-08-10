@@ -51,6 +51,8 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			add_action( 'admin_init', array( &$this, 'set_defaults' ), 10 );
 		}
 
+		add_action( 'pngx_before_option_form', array( __CLASS__, 'display_options_header' ) , 10 );
+
 	}
 
 	/*
@@ -126,10 +128,29 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 	}
 
+	/*
+	* Options Header
+	*/
+	public static function display_options_header() {
+
+		$js_troubleshoot_url = 'http://cctor.link/R7KRa';
+
+		echo '<div class="wrap">
+			<div class="icon32" id="icon-options-general"></div>
+			<h2><img src="' . Cctor__Coupon__Main::instance()->resource_url . 'images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
+
+			<div class="javascript-conflict pngx-error"><p>' . sprintf( __( 'There maybe a javascript conflict preventing some features from working.  <a href="%s" target="_blank" >Please check this guide to narrow down the cause.</a>', 'coupon-creator' ), esc_url( $js_troubleshoot_url ) ) . '</p></div>
+
+			<h4>Coupon Creator: ' . get_option( Cctor__Coupon__Main::CCTOR_VERSION_KEY ) . '</h4>';
+
+		if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true ) {
+			echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.', 'coupon-creator' ) . '</p></div>';
+		}
+
+	}
 
 	/*
 	* Coupon Creator Pro Section
-	* since 1.80
 	*/
 	public static function display_pro_section() {
 		ob_start(); ?>
