@@ -14,22 +14,19 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 	/*
-	* Tab Sections
-	*/
-	protected $sections;
-	/*
-	* Checkbox Fields
-	*/
-	protected $checkboxes;
-	/*
-	* Option Fields
-	*/
-	public $options;
-
-	/*
 	* Options Page Slug
 	*/
 	protected $options_slug = 'coupon-options';
+
+	/*
+	* Options ID
+	*/
+	protected $options_id = 'coupon_creator_options';
+
+	/*
+	* Field Prefix
+	*/
+	protected $field_prefix = 'cctor_';
 
 	/*
 	* Construct
@@ -44,14 +41,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		add_action( 'admin_menu', array( $this, 'options_page' ) );
 		add_action( 'admin_init', array( $this, 'register_options' ), 15 );
 
-		//Add Coupon Newsletter Sign Up
-		add_action( 'cctor_after_option_form', array( __CLASS__, 'cctor_newsletter_signup' ) );
 
-		if ( ! get_option( 'coupon_creator_options' ) ) {
+		if ( ! get_option( $this->options_id ) ) {
 			add_action( 'admin_init', array( &$this, 'set_defaults' ), 10 );
 		}
 
-		add_action( 'pngx_before_option_form', array( __CLASS__, 'display_options_header' ) , 10 );
+		add_action( 'pngx_before_option_form', array( __CLASS__, 'display_options_header' ) , 5 );
+		add_action( 'pngx_after_option_form', array( __CLASS__, 'cctor_newsletter_signup' ) );
 
 	}
 
@@ -77,19 +73,19 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	*/
 	public function register_options() {
 
-		register_setting( 'coupon_creator_options', 'coupon_creator_options', array( $this, 'validate_options' ) );
+		register_setting( $this->options_id, $this->options_id, array( $this, 'validate_options' ) );
 
 		foreach ( $this->sections as $slug => $title ) {
 			if ( 'pro' == $slug ) {
 				add_settings_section( $slug, $title, array( $this, 'display_pro_section' ), $this->options_slug );
 			} else {
-				add_settings_section( $slug, $title, array( $this, 'display_fields' ), $this->options_slug );
+				add_settings_section( $slug, $title, array( $this, 'display_section' ), $this->options_slug );
 			}
 		}
 
 		foreach ( $this->options as $id => $option ) {
 			$option['id'] = $id;
-			$this->create_option( $option );
+			$this->create_field( $option );
 		}
 
 	}
@@ -131,96 +127,27 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	/*
 	* Options Header
 	*/
-	public static function display_options_header() {
+	public static function display_options_header( $slug ) {
 
-		$js_troubleshoot_url = 'http://cctor.link/R7KRa';
+		if ( 'coupon-options' == $slug ) {
 
-		echo '<div class="wrap">
-			<div class="icon32" id="icon-options-general"></div>
+			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
+
+			echo '<div class="icon32" id="icon-options-general"></div>
 			<h2><img src="' . Cctor__Coupon__Main::instance()->resource_url . 'images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
 
 			<div class="javascript-conflict pngx-error"><p>' . sprintf( __( 'There maybe a javascript conflict preventing some features from working.  <a href="%s" target="_blank" >Please check this guide to narrow down the cause.</a>', 'coupon-creator' ), esc_url( $js_troubleshoot_url ) ) . '</p></div>
 
 			<h4>Coupon Creator: ' . get_option( Cctor__Coupon__Main::CCTOR_VERSION_KEY ) . '</h4>';
 
-		if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true ) {
-			echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.', 'coupon-creator' ) . '</p></div>';
+			if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true ) {
+				echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.', 'coupon-creator' ) . '</p></div>';
+			}
+
 		}
 
 	}
 
-	/*
-	* Coupon Creator Pro Section
-	*/
-	public static function display_pro_section() {
-		ob_start(); ?>
-		<div class='cctor-pro-upsell'>
-			<h4><img alt="Get Coupon Creator Pro!" src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-logo.png"/></h4>
-			<br>
-
-			<p><strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro</a>
-					and get all the features below with 1 year of updates and direct support.</strong></p>
-			<br>
-			<ul>
-				<h4>Coupon Creator Pro Features Include:</h4><br>
-				<li>Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon,
-					and None.<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-border-examples.gif"/>
-				</li>
-				<li>Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3
-					Weeks:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Recurring Expiration"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-recurring-expiration.gif"/>
-				</li>
-				<li>In Pro use the Visual editor to easily style the term's content on your site:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Visual Editor"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-visual-editor.gif"/>
-				</li>
-				<li>Display the Print View in a Popup for any coupons and print directly from the Popup:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Popup"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-popup.gif"/>
-				</li>
-				<li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Shortcode for hooks and print views"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-shortcodes.gif"/>
-				</li>
-				<li>Set a Counter per coupon to expire the coupon after a limit has been reached:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Counter"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-pro-counter.png"/>
-				</li>
-				<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons</li>
-				<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon</li>
-				<li>Override "Click to Open in Print View" text and link per coupon</li>
-				<li>Override "Print the Coupon" text and link per coupon</li>
-				<li>Select where you want to display the Coupon Deal per coupon</li>
-				<li>Disable the Print View per Coupon</li>
-				<li>Add your Google Analytics Code to the Print Template from the Coupon Options</li>
-				<li>Create and Display WooCommerce Coupons from the Coupon Creator Editor</li>
-			</ul>
-			<ul>
-				<h4>Coupon Creator Pro Style Features:</h4><br>
-				<li>Set all the styles for the coupons as defaults to get the same custom look for all your coupons
-					with less work
-				</li>
-				<li>Set Inside Border Radius</li>
-				<li>Select Coupon Outside Border Color</li>
-				<li>Set Outer Border Radius, works for the image coupon too</li>
-				<li>Select Coupon Terms Text Color</li>
-				<li>Select Coupon Background Color</li>
-				<li>Choose a Background Image with option to set Background Repeat, Background Position, and
-					Background Size
-				</li>
-				<li>Direct Support through CouponCreatorPlugin.com</li>
-			</ul>
-			<br>
-			<strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro
-					Now!</a></strong>
-		</div>
-		<?php echo ob_get_clean();
-	}
-
-	/***************************************************************************/
 
 	/*
 	* Coupon Creator Options
@@ -496,60 +423,131 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 	}    // End get_fields()
 
-	/***************************************************************************/
+
+/*
+	* Coupon Creator Pro Section
+	*/
+	public static function display_pro_section() {
+		ob_start(); ?>
+		<div class='cctor-pro-upsell'>
+			<h4><img alt="Get Coupon Creator Pro!" src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-logo.png"/></h4>
+			<br>
+
+			<p><strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro</a>
+					and get all the features below with 1 year of updates and direct support.</strong></p>
+			<br>
+			<ul>
+				<h4>Coupon Creator Pro Features Include:</h4><br>
+				<li>Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon,
+					and None.<br>
+					<img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples"
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-border-examples.gif"/>
+				</li>
+				<li>Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3
+					Weeks:<br>
+					<img class="cctor-pro-img" alt="Coupon Creator Pro Recurring Expiration"
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-recurring-expiration.gif"/>
+				</li>
+				<li>In Pro use the Visual editor to easily style the term's content on your site:<br>
+					<img class="cctor-pro-img" alt="Coupon Creator Pro Visual Editor"
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-visual-editor.gif"/>
+				</li>
+				<li>Display the Print View in a Popup for any coupons and print directly from the Popup:<br>
+					<img class="cctor-pro-img" alt="Coupon Creator Pro Popup"
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-popup.gif"/>
+				</li>
+				<li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:<br>
+					<img class="cctor-pro-img" alt="Coupon Creator Pro Shortcode for hooks and print views"
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-shortcodes.gif"/>
+				</li>
+				<li>Set a Counter per coupon to expire the coupon after a limit has been reached:<br>
+					<img class="cctor-pro-img" alt="Coupon Creator Pro Counter"
+					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-pro-counter.png"/>
+				</li>
+				<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons</li>
+				<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon</li>
+				<li>Override "Click to Open in Print View" text and link per coupon</li>
+				<li>Override "Print the Coupon" text and link per coupon</li>
+				<li>Select where you want to display the Coupon Deal per coupon</li>
+				<li>Disable the Print View per Coupon</li>
+				<li>Add your Google Analytics Code to the Print Template from the Coupon Options</li>
+				<li>Create and Display WooCommerce Coupons from the Coupon Creator Editor</li>
+			</ul>
+			<ul>
+				<h4>Coupon Creator Pro Style Features:</h4><br>
+				<li>Set all the styles for the coupons as defaults to get the same custom look for all your coupons
+					with less work
+				</li>
+				<li>Set Inside Border Radius</li>
+				<li>Select Coupon Outside Border Color</li>
+				<li>Set Outer Border Radius, works for the image coupon too</li>
+				<li>Select Coupon Terms Text Color</li>
+				<li>Select Coupon Background Color</li>
+				<li>Choose a Background Image with option to set Background Repeat, Background Position, and
+					Background Size
+				</li>
+				<li>Direct Support through CouponCreatorPlugin.com</li>
+			</ul>
+			<br>
+			<strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro
+					Now!</a></strong>
+		</div>
+		<?php echo ob_get_clean();
+	}
 
 	/*
 	* Coupon Creator Display Newsletter Sign Up
-	* since 1.90
 	*/
-	public static function cctor_newsletter_signup() {
+	public static function cctor_newsletter_signup( $slug ) {
 
-		echo '<div class="cctor-promo-boxes">
+		if ( 'coupon-options' == $slug ) {
+
+			echo '<div class="cctor-promo-boxes">
 
 					<h3>Keep The Coupon Creator Going!</h3>
 					<p>Every time you rate <strong>5 stars</strong>, it shows your support for the Coupon Creator and helps make it better!</p>
 					<p><a href="https://wordpress.org/support/view/plugin-reviews/coupon-creator?filter=5" target="_blank" class="button-primary">Rate It</a></p>
 				</div>';
 
-		echo '<!-- Begin MailChimp Signup Form -->
-					<div id="mc_embed_signup" class="cctor-promo-boxes">
-						<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			echo '<!-- Begin MailChimp Signup Form -->
+				<div id="mc_embed_signup" class="cctor-promo-boxes">
+					<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
-							<div id="mc_embed_signup_scroll">
+						<div id="mc_embed_signup_scroll">
 
-							<h3>Sign Up for Coupon Creator Updates, Tips, and More</h3>
-						<div class="mc-field-group">
-							<input type="email" value="" placeholder="email address" name="EMAIL" class="required email" id="mce-EMAIL">
+						<h3>Sign Up for Coupon Creator Updates, Tips, and More</h3>
+					<div class="mc-field-group">
+						<input type="email" value="" placeholder="email address" name="EMAIL" class="required email" id="mce-EMAIL">
+					</div>
+
+						<div id="mce-responses">
+							<div class="response" id="mce-error-response" style="display:none"></div>
+							<div class="response" id="mce-success-response" style="display:none"></div>
+						</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+
+						<div style="position: absolute; left: -5000px;"><input type="text" name="b_f2b881e89d24e6f424aa25aa5_2b82660ba0" tabindex="-1" value=""></div>
+
+
+						<input type="submit" value="Sign Me Up" name="subscribe" id="mc-embedded-subscribe" class="button">
+
 						</div>
-
-							<div id="mce-responses">
-								<div class="response" id="mce-error-response" style="display:none"></div>
-								<div class="response" id="mce-success-response" style="display:none"></div>
-							</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-
-							<div style="position: absolute; left: -5000px;"><input type="text" name="b_f2b881e89d24e6f424aa25aa5_2b82660ba0" tabindex="-1" value=""></div>
-
-
-							<input type="submit" value="Sign Me Up" name="subscribe" id="mc-embedded-subscribe" class="button">
-
-							</div>
-						</form>
-					</div><!--End mc_embed_signup-->';
+					</form>
+				</div><!--End mc_embed_signup-->';
+		}
 	}
 
-	/*
-	* Flush Permalink on Coupon Option Change
-	* @version 1.80
-	*/
-	public static function cctor_flush_permalinks() {
-		if ( get_option( 'cctor_coupon_base_change' ) == true || get_option( 'cctor_coupon_category_base_change' ) == true ) {
-
-			Coupon_Creator_Plugin::cctor_register_post_types();
-			flush_rewrite_rules();
-			update_option( 'coupon_flush_perm_change', date( 'l jS \of F Y h:i:s A' ) );
-			update_option( 'cctor_coupon_base_change', false );
-			update_option( 'cctor_coupon_category_base_change', false );
+	/**
+	 * Static Singleton Factory Method
+	 *
+	 * @return Pngx__Admin__Options
+	 */
+	public static function instance() {
+		if ( ! isset( self::$instance ) ) {
+			$className      = __CLASS__;
+			self::$instance = new $className;
 		}
+
+		return self::$instance;
 	}
 
 } //end Coupon_Creator_Plugin_Admin_Options Class

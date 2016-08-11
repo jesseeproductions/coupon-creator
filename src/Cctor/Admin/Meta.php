@@ -508,5 +508,19 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		self::$fields = $fields;
 	}
 
+	/**
+	 * Static Singleton Factory Method
+	 *
+	 * @return Pngx__Admin__Options
+	 */
+	public static function instance() {
+		if ( ! isset( self::$instance ) ) {
+			$className      = __CLASS__;
+			self::$instance = new $className;
+		}
+
+		return self::$instance;
+	}
+
 }
 
