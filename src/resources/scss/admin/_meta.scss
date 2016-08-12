@@ -1,10 +1,10 @@
 /* ==========================================================================
    Meta Box CSS
    ========================================================================== */
-#coupon_creator_pro_meta_box h3,
-#cctor_coupon_categorydiv h3,
-#coupon_creator_shortcode h3,
-#coupon_creator_meta_box h3 {
+#coupon_creator_pro_meta_box h2,
+#cctor_coupon_categorydiv h2,
+#coupon_creator_shortcode h2,
+#coupon_creator_meta_box h2 {
 	color: $blue;
 	font: italic 20px/30px Georgia, Times, serif;
 	margin: 0;
@@ -54,89 +54,4 @@
 .field-wrap-cctor_videos .cctor-meta-label,
 .field-wrap-cctor_videos .cctor-meta-field {
 	width: 100%;
-}
-
-.wp-admin.post-type-cctor_coupon .wrap h3,
-.wp-admin.post-type-cctor_coupon.wrap table,
-.cctor-js .javascript-conflict,
-#wp-cctor_description-media-buttons a:not(:first-child) {
-	display: none;
-}
-/* Coupon Editor
------------------------------------------------------------- */
-.cctor-column-row-insert,
-#wp-cctor_description-wrap {
-    width: 600px;
-    max-width:100%;
-    overflow:hidden;
-}
-.cctor-column-row-insert {
-	margin: 15px 0;
-}
-.cctor-column-row-insert .cctor-content-column-row {
-	width: 46%;
-	float: left;
-}
-.cctor_button {
-    border-radius: 6px;
-    border: solid 1px #9dd3df;
-    background: #2a5a8a;
-    padding: 3px 1%;
-    text-decoration: none;
-    color: #fff;
-    text-align: center;
-}
-.ui-widget-content a.cctor_button {
-	color: #fff;
-}
-.cctor_button:hover,
-.ui-widget-content a.cctor_button:hover {
-	color: #000;
-	border: solid 1px #2a5a8a;
-    background: #9dd3df;
-}
-.cctor-column-row-insert select {
-	width: 48%;
-	float: right;
-}
-/* WooCommerce
------------------------------------------------------------- */
-.field-wrap-woocoupon .cctor-meta-label,
-.field-wrap-woocoupon .cctor-meta-field {
-    width: 100%;
-}
-.ajax_chosen_select_products_and_variations.cctor_woo_field {
-	width: 50%;
-}
-.cctor-woo-send-buttons {
-	margin-bottom: 15px;
-}
-#cctor_woocommerce hr,
-#cctor_woocommerce h3,
-.postbox #cctor_woocommerce h4.pngx-fields-heading {
-	color: #a46497;
-}
-#cctor_woo_options textarea {
-	width:100%;
-}
-#cctor_woo_submit {
-	margin-top: 30px;
-}
-#cctor_woocommerce label {
-	width: 130px;
-	display: inline-block;
-}
-#cctor_woocommerce .form-field input[type="email"],
-#cctor_woocommerce .form-field input[type="number"],
-#cctor_woocommerce .form-field input[type="text"] {
-	width: 230px;
-	max-width: 80%;
-}
-#cctor_woocommerce .form-field .chosen-container-multi input[type="text"] {
-	max-width: 100%;
-	min-width: 100px;
-}
-#cctor_woocommerce .select2-container.cctor_woo_field  {
-	width: 50%;
-	display: inline-block!important;
 }

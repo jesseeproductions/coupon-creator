@@ -196,10 +196,10 @@
 /* ==========================================================================
    Meta Box CSS
    ========================================================================== */
-#coupon_creator_pro_meta_box h3,
-#cctor_coupon_categorydiv h3,
-#coupon_creator_shortcode h3,
-#coupon_creator_meta_box h3 {
+#coupon_creator_pro_meta_box h2,
+#cctor_coupon_categorydiv h2,
+#coupon_creator_shortcode h2,
+#coupon_creator_meta_box h2 {
   color: #2a5a8a;
   font: italic 20px/30px Georgia, Times, serif;
   margin: 0;
@@ -242,158 +242,47 @@
 .field-wrap-cctor_videos .cctor-meta-field {
   width: 100%; }
 
-.wp-admin.post-type-cctor_coupon .wrap h3,
-.wp-admin.post-type-cctor_coupon.wrap table,
-.cctor-js .javascript-conflict,
-#wp-cctor_description-media-buttons a:not(:first-child) {
-  display: none; }
-
-/* Coupon Editor
------------------------------------------------------------- */
-.cctor-column-row-insert,
-#wp-cctor_description-wrap {
-  width: 600px;
-  max-width: 100%;
-  overflow: hidden; }
-
-.cctor-column-row-insert {
-  margin: 15px 0; }
-
-.cctor-column-row-insert .cctor-content-column-row {
-  width: 46%;
-  float: left; }
-
-.cctor_button {
-  border-radius: 6px;
-  border: solid 1px #9dd3df;
-  background: #2a5a8a;
-  padding: 3px 1%;
-  text-decoration: none;
-  color: #fff;
-  text-align: center; }
-
-.ui-widget-content a.cctor_button {
-  color: #fff; }
-
-.cctor_button:hover,
-.ui-widget-content a.cctor_button:hover {
-  color: #000;
-  border: solid 1px #2a5a8a;
-  background: #9dd3df; }
-
-.cctor-column-row-insert select {
-  width: 48%;
-  float: right; }
-
-/* WooCommerce
------------------------------------------------------------- */
-.field-wrap-woocoupon .cctor-meta-label,
-.field-wrap-woocoupon .cctor-meta-field {
-  width: 100%; }
-
-.ajax_chosen_select_products_and_variations.cctor_woo_field {
-  width: 50%; }
-
-.cctor-woo-send-buttons {
-  margin-bottom: 15px; }
-
-#cctor_woocommerce hr,
-#cctor_woocommerce h3,
-.postbox #cctor_woocommerce h4.pngx-fields-heading {
-  color: #a46497; }
-
-#cctor_woo_options textarea {
-  width: 100%; }
-
-#cctor_woo_submit {
-  margin-top: 30px; }
-
-#cctor_woocommerce label {
-  width: 130px;
-  display: inline-block; }
-
-#cctor_woocommerce .form-field input[type="email"],
-#cctor_woocommerce .form-field input[type="number"],
-#cctor_woocommerce .form-field input[type="text"] {
-  width: 230px;
-  max-width: 80%; }
-
-#cctor_woocommerce .form-field .chosen-container-multi input[type="text"] {
-  max-width: 100%;
-  min-width: 100px; }
-
-#cctor_woocommerce .select2-container.cctor_woo_field {
-  width: 50%;
-  display: inline-block !important; }
-
-/* ==========================================================================
-   Options CSS
-   ========================================================================== */
-.cctor_coupon_page_coupon-options input.regular-text {
-  width: auto; }
-
-.cctor_coupon_page_coupon-options p.submit {
-  overflow: hidden; }
-
-.cctor_coupon_page_coupon-options.wp-core-ui .button-primary {
-  float: right; }
-
-/*hides empty row and support label*/
-#help .form-table th,
-.form-table tr > *:empty {
-  display: none; }
-
-.cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
-  margin: 0 0 0 -10px; }
-
-@media screen and (max-width: 768px) {
-  .cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
-    margin: 0 0 0 0px; } }
-
-.cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content .pngx-section-help-slideout h4 {
-  margin: 0; }
-
 /* License Button
 ------------------------------------------------------------ */
-.cctor-license-button-act {
+.pngx-license-button-act {
   background: #2a5a8a;
   border: 1px solid #2a5a8a;
   color: #fff; }
 
-.cctor-license-button-act:hover {
+.pngx-license-button-act:hover {
   background: #1e4164;
   cursor: pointer; }
 
-.cctor-license-button-det {
+.pngx-license-button-det {
   background: #048c7f;
   border: 1px solid #048c7f;
   color: #fff; }
 
-.cctor-license-button-det:hover {
+.pngx-license-button-det:hover {
   background: #2a5a8a;
   cursor: pointer; }
 
 /* Options Sign Up Form / Promo Boxes
 ----------------------------------------------------------- */
-#pro.cctor-tabs-panel h3:first-child {
+#pro.pngx-tabs-panel h2:first-child {
   display: none !important; }
 
-#pro.cctor-tabs-panel ul {
+#pro.pngx-tabs-panel ul {
   list-style-type: disc; }
 
-#pro.cctor-tabs-panel li {
+#pro.pngx-tabs-panel li {
   font-size: 14px;
   margin-left: 20px;
   padding-left: 5px; }
 
-.cctor-promo-boxes {
+.pngx-promo-boxes {
   clear: none;
   float: left;
   margin: 0 1%;
   overflow: hidden;
   width: 44%; }
 
-.cctor_coupon_page_coupon-options #mc_embed_signup h3 {
+.pngx-wrapper #mc_embed_signup h2 {
   margin: 0 0 10px; }
 
 .mc-field-group {
@@ -412,17 +301,17 @@
   background: #dd3d36; }
 
 @media only screen and (max-width: 640px) {
-  .cctor-promo-boxes h3,
-  .cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
+  .pngx-promo-boxes h2,
+  .pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
     margin: 0; }
-  .cctor-promo-boxes {
+  .pngx-promo-boxes {
     width: 94%;
     float: none;
     margin: 2% 1%; } }
 
 /* Pro CSS
 ----------------------------------------------------------- */
-.cctor_coupon_image.pngx-image-wrap-img,
+.pngx_coupon_image.pngx-image-wrap-img,
 .pngx-image-wrap {
   width: 200px;
   height: auto;
@@ -438,19 +327,19 @@
 
 /* Promo Boxes
 ----------------------------------------------------------- */
-.cctor-promo-boxes {
+.pngx-promo-boxes {
   background: #fff;
   box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
   clear: both;
   overflow: hidden;
   padding: 2%; }
 
-.cctor-promo-boxes h3 {
+.pngx-promo-boxes h2 {
   color: #048c7f;
   font-size: 15px;
   font-weight: bold; }
 
-.cctor-promo-boxes h3:after {
+.pngx-promo-boxes h2:after {
   background: black;
   background: -moz-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
   background: -webkit-gradient(linear, left top, right top, color-stop(1%, black), color-stop(28%, #9b9b9b), color-stop(85%, white));

@@ -27,54 +27,44 @@
 	//console.log($data[id].toggleGroup);
 	//console.log($data[id].toggleShow);
 	//console.log($data[id].toggleMsg);
+	if ( $data && $data.length ) {
+		if ( 'select#cctor_expiration_option' == $data[0].toggleField ) {
 
-	if ( 'select#cctor_expiration_option' == $data[0].toggleField ) {
-
-		//console.log('change0');
-		//console.log($data[0].toggleGroup);
-		pngx_fields_toggle.toggle(
-			$data[0].toggleField,
-			$data[0].toggleGroup,
-			$data[0].toggleShow + $( $data[0].toggleField ).val(),
-			$data[0].toggleMsg
-		);
-
-		/*pngx_fields_toggle.toggle_basic(
-		 '.expiration-field',
-		 $( $data[id].toggleField ).val(),
-		 '.expiration-'
-		 );*/
-		$( $data[0].toggleField ).on( 'change', function () {
-			//console.log('change1');
-			//	console.log($data[0].toggleGroup);
-			//console.log($data[0].toggleShow + $( this ).val());
+			//console.log('change0');
+			//console.log($data[0].toggleGroup);
 			pngx_fields_toggle.toggle(
 				$data[0].toggleField,
 				$data[0].toggleGroup,
-				$data[0].toggleShow + $( this ).val(),
+				$data[0].toggleShow + $( $data[0].toggleField ).val(),
 				$data[0].toggleMsg
 			);
+
 			/*pngx_fields_toggle.toggle_basic(
 			 '.expiration-field',
-			 $( this ).val(),
+			 $( $data[id].toggleField ).val(),
 			 '.expiration-'
 			 );*/
-		} );
+			$( $data[0].toggleField ).on( 'change', function () {
+				//console.log('change1');
+				//	console.log($data[0].toggleGroup);
+				//console.log($data[0].toggleShow + $( this ).val());
+				pngx_fields_toggle.toggle(
+					$data[0].toggleField,
+					$data[0].toggleGroup,
+					$data[0].toggleShow + $( this ).val(),
+					$data[0].toggleMsg
+				);
+				/*pngx_fields_toggle.toggle_basic(
+				 '.expiration-field',
+				 $( this ).val(),
+				 '.expiration-'
+				 );*/
+			} );
 
-	}
+		}
 
-	if ( 'input#cctor_image' == $data[1].toggleField ) {
-		//console.log('change2');
-		//console.log($data[1].toggleGroup);
-		pngx_fields_toggle.toggle(
-			$data[1].toggleField,
-			$data[1].toggleGroup,
-			$data[1].toggleShow,
-			$data[1].toggleMsg
-		);
-
-		$( $data[1].toggleField ).on( 'display', function () {
-			//console.log('change3');
+		if ( 'input#cctor_image' == $data[1].toggleField ) {
+			//console.log('change2');
 			//console.log($data[1].toggleGroup);
 			pngx_fields_toggle.toggle(
 				$data[1].toggleField,
@@ -82,18 +72,29 @@
 				$data[1].toggleShow,
 				$data[1].toggleMsg
 			);
-		} );
 
-		$( ".pngx-clear-image" ).on( "click", function () {
-			//console.log('change4');
-			//console.log($data[1].toggleGroup);
-			pngx_fields_toggle.toggle(
-				$data[1].toggleField,
-				$data[1].toggleGroup,
-				$data[1].toggleShow,
-				$data[1].toggleMsg
-			);
-		} );
+			$( $data[1].toggleField ).on( 'display', function () {
+				//console.log('change3');
+				//console.log($data[1].toggleGroup);
+				pngx_fields_toggle.toggle(
+					$data[1].toggleField,
+					$data[1].toggleGroup,
+					$data[1].toggleShow,
+					$data[1].toggleMsg
+				);
+			} );
+
+			$( ".pngx-clear-image" ).on( "click", function () {
+				//console.log('change4');
+				//console.log($data[1].toggleGroup);
+				pngx_fields_toggle.toggle(
+					$data[1].toggleField,
+					$data[1].toggleGroup,
+					$data[1].toggleShow,
+					$data[1].toggleMsg
+				);
+			} );
+		}
 	}
 
 	//}

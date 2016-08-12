@@ -82,12 +82,16 @@ class Cctor__Coupon__Main {
 			return;
 		}
 
+		//Setup Auto Loader to Prevent Fatal on Activate
+		Cctor__Coupon__Main::instance()->init_autoloading();
+
 		//Setup Capabilities for CPT
 		if ( ! get_option( self::POSTTYPE . '_capabilities_register' ) ) {
 			new Pngx__Add_Capabilities( self::POSTTYPE, self::CAPABILITIESPLURAL );
 		}
 
-		self::register_post_types();
+		//Use Instance to call method to setup cpt
+		Cctor__Coupon__Main::instance()->register_post_types();
 
 		flush_rewrite_rules();
 

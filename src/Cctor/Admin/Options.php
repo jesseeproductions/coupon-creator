@@ -33,9 +33,8 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	*/
 	public function __construct() {
 
-		//Track Checkbox Options for validate_options()
 		$this->checkboxes = array();
-		$this->get_fields();
+		$this->fields     = $this->get_option_fields();
 		$this->set_sections();
 
 		add_action( 'admin_menu', array( $this, 'options_page' ) );
@@ -46,7 +45,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			add_action( 'admin_init', array( &$this, 'set_defaults' ), 10 );
 		}
 
-		add_action( 'pngx_before_option_form', array( __CLASS__, 'display_options_header' ) , 5 );
+		add_action( 'pngx_before_option_form', array( __CLASS__, 'display_options_header' ), 5 );
 		add_action( 'pngx_after_option_form', array( __CLASS__, 'cctor_newsletter_signup' ) );
 
 	}
@@ -64,7 +63,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			array( $this, 'display_fields' ) // function
 		);
 
-		add_action( 'admin_print_scripts-' . $admin_page,  array( 'Cctor__Coupon__Admin__Assets', 'load_assets' ) );
+		add_action( 'admin_print_scripts-' . $admin_page, array( 'Cctor__Coupon__Admin__Assets', 'load_assets' ) );
 
 	}
 
@@ -83,10 +82,11 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			}
 		}
 
-		foreach ( $this->options as $id => $option ) {
+		foreach ( $this->fields as $id => $option ) {
 			$option['id'] = $id;
 			$this->create_field( $option );
 		}
+
 
 	}
 
@@ -97,7 +97,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		//Section Tab Headings
 		$this->sections['defaults']   = __( 'Defaults', 'coupon-creator' );
-		/*$this->sections['permalinks'] = __( 'Link Attributes / Permalinks', 'coupon-creator' );
+		$this->sections['permalinks'] = __( 'Link Attributes / Permalinks', 'coupon-creator' );
 		$this->sections['display']    = __( 'Display', 'coupon-creator' );
 		$this->sections['help']       = __( 'Help', 'coupon-creator' );
 		$this->sections['license']    = __( 'Licenses', 'coupon-creator' );
@@ -113,12 +113,12 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		 *
 		 */
 		//if ( has_filter( 'cctor_option_sections' ) ) {
-			/**
-			 * Filter the Coupon Creator Option Tab Header
-			 *
-			 * @param array $meta_tabs an array of tab headings.
-			 *
-			 */
+		/**
+		 * Filter the Coupon Creator Option Tab Header
+		 *
+		 * @param array $meta_tabs an array of tab headings.
+		 *
+		 */
 		//	$this->sections = apply_filters( 'cctor_option_sections', $this->sections );
 		//}
 
@@ -150,24 +150,23 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 
 	/*
-	* Coupon Creator Options
-	* since 1.80
+	* Option Fields
 	*/
-	public function get_fields() {
+	public function get_option_fields() {
 
 		//defaults
-		$this->options['defaults_help']   = array(
+		$fields['defaults_help']   = array(
 			'section' => 'defaults',
 			'type'    => 'help'
 		);
-		$this->options['header_defaults'] = array(
+		$fields['header_defaults'] = array(
 			'section' => 'defaults',
 			'title'   => '',
 			'alert'   => __( '*These are defaults for new coupons only and do not change existing coupons.', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
 		//Expiration
-		$this->options['header_expiration'] = array(
+		$fields['header_expiration'] = array(
 			'section' => 'defaults',
 			'title'   => '',
 			'desc'    => __( 'Expiration', 'coupon-creator' ),
@@ -187,7 +186,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			);
 		}
 
-		$this->options['cctor_expiration_option'] = array(
+		$fields['cctor_expiration_option'] = array(
 			'section' => 'defaults',
 			'title'   => __( 'Expiration Option', 'coupon-creator' ),
 			'desc'    => __( 'Choose the expiration method for this coupon', 'coupon-creator' ),
@@ -196,7 +195,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'choices' => $expiration_options,
 		);
 
-		/*$this->options['cctor_default_date_format']                  = array(
+		$fields['cctor_default_date_format']                  = array(
 			'section' => 'defaults',
 			'title'   => __( 'Expiration Date Format', 'coupon-creator' ),
 			'desc'    => __( 'Select the Date Format to show for all Coupons*', 'coupon-creator' ),
@@ -207,71 +206,71 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 				'1' => __( 'Day First - DD/MM/YYYY', 'coupon-creator' )
 			)
 		);
-		$this->options['cctor_pro_recurrence_pattern_default']       = array(
+		$fields['cctor_pro_recurrence_pattern_default']       = array(
 			'type'    => '',
 			'section' => ''
 		);
-		$this->options['cctor_pro_recurrence_pattern_limit_default'] = array(
+		$fields['cctor_pro_recurrence_pattern_limit_default'] = array(
 			'type'    => '',
 			'section' => ''
 		);
-		$this->options['cctor_pro_x_days_default']                   = array(
+		$fields['cctor_pro_x_days_default']                   = array(
 			'type'    => '',
 			'section' => ''
 		);
 
 		//Outer Border
-		$this->options['cctor_pro_heading_outer_border'] = array(
+		$fields['cctor_pro_heading_outer_border'] = array(
 			'type'    => '',
 			'section' => ''
 		);
-		$this->options['cctor_pro_default_border_style'] = array(
+		$fields['cctor_pro_default_border_style'] = array(
 			'type'    => '',
 			'section' => ''
 		);
-		$this->options['cctor_outer_border_color']       = array(
+		$fields['cctor_outer_border_color']       = array(
 			'type'    => '',
 			'section' => ''
 		);
-		$this->options['cctor_pro_outer_border_default'] = array(
+		$fields['cctor_pro_outer_border_default'] = array(
 			'type'    => '',
 			'section' => ''
 		);
 
 		//Inner Border
-		$this->options['header_inner_border']            = array(
+		$fields['header_inner_border']            = array(
 			'section' => 'defaults',
 			'title'   => '',
 			'desc'    => __( 'Inner Border', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
-		$this->options['cctor_border_color']             = array(
+		$fields['cctor_border_color']             = array(
 			'title'   => __( 'Inside Border Color', 'coupon-creator' ),
 			'desc'    => __( 'Choose default inside border color*', 'coupon-creator' ),
 			'std'     => '#81d742',
 			'type'    => 'color', // color
 			'section' => 'defaults'
 		);
-		$this->options['cctor_pro_inner_border_default'] = array(
+		$fields['cctor_pro_inner_border_default'] = array(
 			'type'    => '',
 			'section' => ''
 		);
 
 		//Discount Field Colors
-		$this->options['header_discount']           = array(
+		$fields['header_discount']           = array(
 			'section' => 'defaults',
 			'title'   => '', // Not used for headings.
 			'desc'    => __( 'Deal Field Colors', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
-		$this->options['cctor_discount_bg_color']   = array(
+		$fields['cctor_discount_bg_color']   = array(
 			'title'   => __( 'Deal Background Color', 'coupon-creator' ),
 			'desc'    => __( 'Choose default background color*', 'coupon-creator' ),
 			'std'     => '#4377df',
 			'type'    => 'color', // color
 			'section' => 'defaults'
 		);
-		$this->options['cctor_discount_text_color'] = array(
+		$fields['cctor_discount_text_color'] = array(
 			'title'   => __( 'Deal Text Color', 'coupon-creator' ),
 			'desc'    => __( 'Choose default text color*', 'coupon-creator' ),
 			'std'     => '#000000',
@@ -280,44 +279,44 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		);
 
 		//LinkAttributes - Permalinks
-		$this->options['permalinks_help']               = array(
+		$fields['permalinks_help']               = array(
 			'section' => 'permalinks',
 			'type'    => 'help'
 		);
-		$this->options['no_follow_heading']             = array(
+		$fields['no_follow_heading']             = array(
 			'section' => 'permalinks',
 			'title'   => '', // Not used for headings.
 			'desc'    => __( 'Link Attribute Options', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
-		$this->options['cctor_nofollow_print_link']     = array(
+		$fields['cctor_nofollow_print_link']     = array(
 			'section' => 'permalinks',
 			'title'   => __( 'Print View Links', 'coupon-creator' ),
 			'desc'    => __( 'Add nofollow to all the "Click to Open in Print View" links', 'coupon-creator' ),
 			'type'    => 'checkbox',
 			'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 		);
-		$this->options['cctor_hide_print_link']         = array(
+		$fields['cctor_hide_print_link']         = array(
 			'section' => 'permalinks',
 			'title'   => __( 'Disable Print View', 'coupon-creator' ),
 			'desc'    => __( 'This will disable all custom links and the popup option in Pro as well as the "Click to Open in Print View" links under the coupon', 'coupon-creator' ),
 			'type'    => 'checkbox',
 			'std'     => 0 // Set to 1 to be checked by default, 0 to be unchecked by default.
 		);
-		$this->options['cctor_nofollow_print_template'] = array(
+		$fields['cctor_nofollow_print_template'] = array(
 			'section' => 'permalinks',
 			'title'   => __( 'Print Template No Follow', 'coupon-creator' ),
 			'desc'    => __( 'Add nofollow and noindex to the print template', 'coupon-creator' ),
 			'type'    => 'checkbox',
 			'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 		);
-		$this->options['header_permalink']              = array(
+		$fields['header_permalink']              = array(
 			'section' => 'permalinks',
 			'title'   => '', // Not used for headings.
 			'desc'    => __( 'Permalink Options', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
-		$this->options['cctor_coupon_base']             = array(
+		$fields['cctor_coupon_base']             = array(
 			'title'   => __( 'Coupon Print Template Slug', 'coupon-creator' ),
 			'desc'    => __( 'default: cctor_coupon', 'coupon-creator' ),
 			'std'     => '',
@@ -325,19 +324,19 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'section' => 'permalinks',
 			'class'   => 'permalink' //format text to lowercase before sanitizing
 		);
-		$this->options['cctor_coupon_category_base']    = array(
+		$fields['cctor_coupon_category_base']    = array(
 			'type'    => '',
 			'section' => '',
 			'class'   => ''
 		);
 
 		//display
-		$this->options['display_help'] = array(
+		$fields['display_help'] = array(
 			'section' => 'display',
 			'type'    => 'help'
 		);
 		//Custom CSS
-		$this->options['cctor_custom_css'] = array(
+		$fields['cctor_custom_css'] = array(
 			'title'   => __( 'Custom Coupon Styles', 'coupon-creator' ),
 			'desc'    => __( 'Enter any custom CSS here to apply to the coupons for the shortcode and the print template.(without &#60;style&#62; tags)', 'coupon-creator' ),
 			'std'     => 'e.g. .cctor_coupon_container { width: 000px; }',
@@ -346,7 +345,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'class'   => 'code'
 		);
 		//wpautop
-		$this->options['cctor_wpautop'] = array(
+		$fields['cctor_wpautop'] = array(
 			'section' => 'display',
 			'title'   => __( 'Auto P Filter', 'coupon-creator' ),
 			'desc'    => __( 'Check to remove <a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop filter</a> from Coupon Terms Field', 'coupon-creator' ),
@@ -354,7 +353,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'std'     => 1 // Set to 1 to be checked by default, 0 to be unchecked by default.
 		);
 		//wpautop
-		$this->options['cctor_print_base_css'] = array(
+		$fields['cctor_print_base_css'] = array(
 			'section' => 'display',
 			'title'   => __( 'Print View Base CSS', 'coupon-creator' ),
 			'desc'    => __( 'Check to disable the base CSS in Print View', 'coupon-creator' ),
@@ -363,13 +362,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		);
 
 		//Search
-		$this->options['search_heading'] = array(
+		$fields['search_heading'] = array(
 			'section' => 'display',
 			'title'   => '',
 			'desc'    => __( 'WordPress Search', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
-		$this->options['coupon-search']  = array(
+		$fields['coupon-search']  = array(
 			'section' => 'display',
 			'title'   => __( 'Coupon Search', 'coupon-creator' ),
 			'type'    => 'checkbox',
@@ -379,7 +378,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		);
 
 		//Help
-		$this->options['cctor_help'] = array(
+		$fields['cctor_help'] = array(
 			'section' => 'help',
 			'title'   => __( 'Support: ', 'coupon-creator' ),
 			'type'    => 'help',
@@ -387,20 +386,20 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'desc'    => ''
 		);
 
-		$this->options['reset_heading'] = array(
+		$fields['reset_heading'] = array(
 			'section' => 'reset',
 			'title'   => '', // Not used for headings.
 			'desc'    => __( 'Coupon Creator Option Reset', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
 
-		$this->options['license_help'] = array(
+		$fields['license_help'] = array(
 			'section' => 'license',
 			'type'    => 'help'
 		);
 
 		//Reset
-		$this->options['reset_theme'] = array(
+		$fields['reset_theme'] = array(
 			'section' => 'reset',
 			'title'   => __( 'Reset', 'coupon-creator' ),
 			'type'    => 'checkbox',
@@ -418,17 +417,20 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			 * @param array $this ->options an array of fields to display in option tabs.
 			 *
 			 */
-		/*	$this->options = apply_filters( 'cctor_option_filter', $this->options );
-		}*/
+			$fields = apply_filters( 'cctor_option_filter', $fields );
+		}
 
-	}    // End get_fields()
+		return $fields;
 
+	}
 
-/*
-	* Coupon Creator Pro Section
+	/*
+	* Pro Sales Section
 	*/
 	public static function display_pro_section() {
+
 		ob_start(); ?>
+
 		<div class='cctor-pro-upsell'>
 			<h4><img alt="Get Coupon Creator Pro!" src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-logo.png"/></h4>
 			<br>
@@ -492,7 +494,9 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			<strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro
 					Now!</a></strong>
 		</div>
+
 		<?php echo ob_get_clean();
+
 	}
 
 	/*
@@ -502,9 +506,9 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		if ( 'coupon-options' == $slug ) {
 
-			echo '<div class="cctor-promo-boxes">
+			echo '<div class="pngx-promo-boxes">
 
-					<h3>Keep The Coupon Creator Going!</h3>
+					<h2>Keep The Coupon Creator Going!</h2>
 					<p>Every time you rate <strong>5 stars</strong>, it shows your support for the Coupon Creator and helps make it better!</p>
 					<p><a href="https://wordpress.org/support/view/plugin-reviews/coupon-creator?filter=5" target="_blank" class="button-primary">Rate It</a></p>
 				</div>';
@@ -515,7 +519,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 						<div id="mc_embed_signup_scroll">
 
-						<h3>Sign Up for Coupon Creator Updates, Tips, and More</h3>
+						<h2>Sign Up for Coupon Creator Updates, Tips, and More</h2>
 					<div class="mc-field-group">
 						<input type="email" value="" placeholder="email address" name="EMAIL" class="required email" id="mce-EMAIL">
 					</div>

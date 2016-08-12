@@ -1,77 +1,45 @@
-/* ==========================================================================
-   Options CSS
-   ========================================================================== */
-.cctor_coupon_page_coupon-options input.regular-text {
-	width: auto;
-}
-
-.cctor_coupon_page_coupon-options p.submit {
-	overflow: hidden;
-}
-
-.cctor_coupon_page_coupon-options.wp-core-ui .button-primary {
-	float: right;
-}
-
-/*hides empty row and support label*/
-#help .form-table th,
-.form-table tr > *:empty {
-	display: none;
-}
-
-.cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
-	margin: 0 0 0 -10px;
-}
-@include media($tablet) {
-	.cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
-		margin: 0 0 0 0px;
-	}
-}
-.cctor_coupon_page_coupon-options .pngx-tabs-panel.ui-tabs-panel.ui-widget-content .pngx-section-help-slideout h4 {
-	margin: 0;
-}
 
 /* License Button
 ------------------------------------------------------------ */
-.cctor-license-button-act {
+.pngx-license-button-act {
 	background: $blue;
 	border: 1px solid $blue;
 	color: $white;
 }
 
-.cctor-license-button-act:hover {
+.pngx-license-button-act:hover {
 	background: #1e4164;
 	cursor: pointer;
 }
 
-.cctor-license-button-det {
+.pngx-license-button-det {
 	background: $green;
 	border: 1px solid $green;
 	color: $white;
 }
 
-.cctor-license-button-det:hover {
+.pngx-license-button-det:hover {
 	background: $blue;
 	cursor: pointer;
 }
 
 /* Options Sign Up Form / Promo Boxes
 ----------------------------------------------------------- */
-#pro.cctor-tabs-panel h3:first-child {
+#pro.pngx-tabs-panel h2:first-child {
 	display: none !important;
 }
 
-#pro.cctor-tabs-panel ul {
+#pro.pngx-tabs-panel ul {
 	list-style-type: disc;
 }
 
-#pro.cctor-tabs-panel li {
+#pro.pngx-tabs-panel li {
 	font-size: 14px;
 	margin-left: 20px;
 	padding-left: 5px;
 }
 
-.cctor-promo-boxes {
+.pngx-promo-boxes {
 	clear: none;
 	float: left;
 	margin: 0 1%;
@@ -79,7 +47,7 @@
 	width: 44%;
 }
 
-.cctor_coupon_page_coupon-options #mc_embed_signup h3 {
+.pngx-wrapper #mc_embed_signup h2 {
 	margin: 0 0 10px;
 }
 
@@ -102,11 +70,11 @@
 }
 @media only screen and (max-width: 640px) {
 
-	.cctor-promo-boxes h3,
-	.cctor-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
+	.pngx-promo-boxes h2,
+	.pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
 		margin: 0;
 	}
-	.cctor-promo-boxes {
+	.pngx-promo-boxes {
 		width: 94%;
 		float: none;
 		margin: 2% 1%;
@@ -114,7 +82,7 @@
 }
 /* Pro CSS
 ----------------------------------------------------------- */
-.cctor_coupon_image.pngx-image-wrap-img,
+.pngx_coupon_image.pngx-image-wrap-img,
 .pngx-image-wrap {
 	width: 200px;
 	height: auto;
@@ -131,19 +99,19 @@
 
 /* Promo Boxes
 ----------------------------------------------------------- */
-.cctor-promo-boxes {
+.pngx-promo-boxes {
 	background: #fff;
 	box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
 	clear: both;
 	overflow: hidden;
 	padding: 2%;
 }
-.cctor-promo-boxes h3 {
+.pngx-promo-boxes h2 {
 	color: $green;
 	font-size: 15px;
 	font-weight: bold;
 }
-.cctor-promo-boxes h3:after {
+.pngx-promo-boxes h2:after {
 	background: rgb(0, 0, 0);
 	background: -moz-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
 	background: -webkit-gradient(linear, left top, right top, color-stop(1%, rgba(0, 0, 0, 1)), color-stop(28%, rgba(155, 155, 155, 1)), color-stop(85%, rgba(255, 255, 255, 1)));
