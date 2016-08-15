@@ -436,13 +436,17 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'bulkedit'  => 'cctor_pro_expiration',
 		);
 
+			$date_format = get_metadata( get_the_id(), $prefix . 'date_format', true );
+			log_me($date_format);
 		$fields[ $prefix . 'expiration' ] = array(
 			'label'     => __( 'Expiration Date', 'coupon-creator' ),
 			'id'        => $prefix . 'expiration',
-			'desc'      => __( 'The coupon will not display without the date and will not display on your site after the date', 'coupon-creator' ),
+			'desc'      => __( 'The coupon will not display without the date and will not display on your site after the date.', 'coupon-creator' ),
 			'type'      => 'date',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'expiration',
+			'condition' => 'show_current_date',
+			'format'    => ! empty( $date_format ) ? $date_format : cctor_options( 'cctor_default_date_format' ),
 			'wrapclass' => 'expiration-field expiration-2 expiration-3',
 			'bulkedit'  => 'cctor_pro_expiration',
 		);
