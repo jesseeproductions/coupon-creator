@@ -255,6 +255,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'class'     => 'code',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
+			'cols'       => 60,
+			'rows'       => 4,
 			'wrapclass' => 'image-coupon-disable'
 		);
 
@@ -436,8 +438,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'bulkedit'  => 'cctor_pro_expiration',
 		);
 
-			$date_format = get_metadata( get_the_id(), $prefix . 'date_format', true );
-			log_me($date_format);
+		$date_format = get_metadata( get_the_id(), $prefix . 'date_format', true );
+
 		$fields[ $prefix . 'expiration' ] = array(
 			'label'     => __( 'Expiration Date', 'coupon-creator' ),
 			'id'        => $prefix . 'expiration',
