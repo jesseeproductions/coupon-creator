@@ -45,6 +45,9 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			add_action( 'admin_init', array( &$this, 'set_defaults' ), 10 );
 		}
 
+		//Add Plugin Only Fields
+		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
+
 		add_action( 'pngx_before_option_form', array( __CLASS__, 'display_options_header' ), 5 );
 		add_action( 'pngx_after_option_form', array( __CLASS__, 'cctor_newsletter_signup' ) );
 
@@ -75,18 +78,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		register_setting( $this->options_id, $this->options_id, array( $this, 'validate_options' ) );
 
 		foreach ( $this->sections as $slug => $title ) {
-			if ( 'pro' == $slug ) {
-				add_settings_section( $slug, $title, array( $this, 'display_pro_section' ), $this->options_slug );
-			} else {
-				add_settings_section( $slug, $title, array( $this, 'display_section' ), $this->options_slug );
-			}
+			add_settings_section( $slug, $title, array( $this, 'display_section' ), $this->options_slug );
 		}
 
 		foreach ( $this->fields as $id => $option ) {
 			$option['id'] = $id;
 			$this->create_field( $option );
 		}
-
 
 	}
 
@@ -378,7 +376,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		);
 
 		//Help
-		$fields['cctor_help'] = array(
+		$fields['cctor_all_help'] = array(
 			'section' => 'help',
 			'title'   => __( 'Support: ', 'coupon-creator' ),
 			'type'    => 'help',
@@ -407,6 +405,16 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'class'   => 'warning', // Custom class for CSS
 			'desc'    => __( 'Check this box and click "Save Changes" below to reset all coupon creator options to their defaults. This does not change any existing coupon settings or remove your licenses.', 'coupon-creator' )
 		);
+
+		//Help
+		$fields['pro_tab'] = array(
+			'section' => 'pro',
+			'title'   => __( 'Coupon Creator Pro', 'coupon-creator' ),
+			'type'    => 'pro',
+			'std'     => 0,
+			'desc'    => ''
+		);
+
 
 		//Filter Option Fields
 		if ( has_filter( 'cctor_option_filter' ) ) {
@@ -495,7 +503,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 					Now!</a></strong>
 		</div>
 
-		<?php echo ob_get_clean();
+		<?php return ob_get_clean();
 
 	}
 

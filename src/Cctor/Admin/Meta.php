@@ -35,27 +35,11 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		self::set_tabs();
 		self::set_fields();
 
-		add_action( 'pngx-per-tab-help', array( __CLASS__, 'per_tab_help' ), 10, 1 );
-		add_action( 'pngx-help-tab', array( __CLASS__, 'per_help_tab' ), 10 );
-	}
-
-	/*
-	* Set Post Type
-	*/
-	public static function per_tab_help( $tab_slug ) {
-
-		$help_class = new Cctor__Coupon__Admin__Help();
-		$help_class->display_help( $tab_slug, false, 'coupon' );
+		//Add Plugin Only Fields
+		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
 
 	}
 
-	public static function per_help_tab() {
-
-		$help_class = new Cctor__Coupon__Admin__Help();
-		$help_class->display_help( 'all', false, 'coupon' );
-		echo Cctor__Coupon__Admin__Help::get_cctor_support_core_contact();
-
-	}
 
 	/*
 	* Set Post Type
@@ -212,6 +196,12 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$prefix = self::get_fields_prefix();
 
 		//Content
+		$fields[ $prefix . 'content_help' ]  = array(
+			'id'        => $prefix . 'content_help',
+			'type'      => 'help',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'content',
+		);
 		$fields[ $prefix . 'heading_deal' ]  = array(
 			'id'        => $prefix . 'heading_deal',
 			'title'     => '',
@@ -261,6 +251,12 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		);
 
 		//Style Tab
+		$fields[ $prefix . 'style_help' ]  = array(
+			'id'        => $prefix . 'style_help',
+			'type'      => 'help',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'style',
+		);
 		//Outer Border Placeholders
 		$fields[ $prefix . 'heading_pro_display' ]  = array(
 			'id'      => $prefix . 'heading_pro_display',
@@ -346,6 +342,12 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		);
 
 		//Expiration
+		$fields[ $prefix . 'expiration_help' ]  = array(
+			'id'        => $prefix . 'expiration_help',
+			'type'      => 'help',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'expiration',
+		);
 		$fields[ $prefix . 'heading_expiration' ] = array(
 			'id'      => $prefix . 'heading_expiration',
 			'title'   => '',
@@ -464,6 +466,12 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		);
 
 		//Image Coupon
+		$fields[ $prefix . 'image_coupon_help' ]  = array(
+			'id'        => $prefix . 'image_coupon_help',
+			'type'      => 'help',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'image_coupon',
+		);
 		$fields[ $prefix . 'image' ] = array(
 			'label'   => '',
 			'desc'    => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
@@ -483,19 +491,18 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			)
 		);
 		//Help
-		$fields[ $prefix . 'videos' ] = array(
-			'label'   => '',
-			'id'      => $prefix . 'videos',
-			'type'    => 'help',
-			'section' => 'coupon_creator_meta_box',
-			'tab'     => 'help'
+		$fields[ $prefix . 'all_help' ]  = array(
+			'id'        => $prefix . 'all_help',
+			'type'      => 'help',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'help',
 		);
 
 		//Upgreade to Pro
 		$fields[ $prefix . 'upgrade_to_pro' ] = array(
 			'label'   => '',
 			'id'      => $prefix . 'upgrade_to_pro',
-			'type'    => 'cctor_pro',
+			'type'    => 'pro',
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'pro'
 		);

@@ -10,9 +10,44 @@ if ( class_exists( 'Pngx__Admin__Meta' ) ) {
 
 /**
  * Class Pngx__Admin__Fields
- * Fields for Meta and Options
+ * Coupon Fields for Meta and Options
  */
-class Cctor__Coupon__Admin__Fields Extends Pngx__Admin__Fields {
+class Cctor__Coupon__Admin__Fields  {
 
+
+	/*
+	* Display Individual Fields
+	*/
+	public static function display_field( $field = array(), $options = array(), $options_id = null, $meta = null, $wp_version ) {
+
+		//Create Different Name for Option Fields and Not Meta Fields
+		if ( $options ) {
+			$options_id = $options_id . '[' . $field['id'] . ']';
+		}
+
+		switch ( $field['type'] ) {
+
+			case 'coupon_image':
+
+				Cctor__Coupon__Admin__Field__Help::display( $field, $options, $options_id, $meta );
+
+				break;
+
+			case 'help':
+
+				Cctor__Coupon__Admin__Field__Help::display( $field, $options, $options_id, $meta );
+
+				break;
+
+
+			case 'pro':
+
+				Cctor__Coupon__Admin__Field__Pro::display( $field, $options, $options_id, $meta );
+
+				break;
+
+		}
+
+	}
 
 }

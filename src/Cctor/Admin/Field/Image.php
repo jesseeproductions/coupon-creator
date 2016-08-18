@@ -3,16 +3,16 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-if ( class_exists( 'Pngx__Admin__Field__Image' ) ) {
+if ( class_exists( 'Cctor__Coupon__Admin__Field__Image_Coupon' ) ) {
 	return;
 }
 
 
 /**
- * Class Pngx__Admin__Field__Text
- * Text Field
+ * Class Cctor__Coupon__Admin__Field__Image_Coupon
+ * Image Coupon Field
  */
-class Pngx__Admin__Field__Image {
+class Cctor__Coupon__Admin__Field__Image_Coupon {
 
 	public static function display( $field = array(), $options = array(), $options_id = null, $meta = null ) {
 
@@ -24,15 +24,24 @@ class Pngx__Admin__Field__Image {
 			$value = $meta;
 		}
 
-		$size  = isset( $field['size'] ) ? $field['size'] : 30;
+		$imagemsg = isset( $field['imagemsg'] ) ? $field['imagemsg'] : '';
 		$class = isset( $field['class'] ) ? $field['class'] : '';
-		$std   = isset( $field['std'] ) ? $field['std'] : '';
+		$imagesrc = '';
 
-		if ( isset( $field['alert'] ) && '' != $field['alert'] && 1 == cctor_options( $field['condition'] ) ) {
-			echo '<div class="pngx-error">&nbsp;&nbsp;' . $field['alert'] . '</div>';
+		if ( is_numeric( $value ) ) {
+			$imagesrc     = wp_get_attachment_image_src( absint( $value ), 'medium' );
+			$imagesrc     = $imagesrc[0];
+			$imagedisplay = '<div style="display:none" id="' . esc_attr( $field['id'] ) . '" class="pngx-default-image pngx-image-wrap">' . esc_html( $imagemsg ) . '</div> <img src="' . $imagesrc . '" id="' . esc_attr( $field['id'] ) . '" class="pngx-image pngx-image-wrap-img" />';
+		} else {
+			$imagedisplay = '<div style="display:block" id="' . esc_attr( $field['id'] ) . '" class="pngx-default-image pngx-image-wrap">' . esc_html( $imagemsg ) . '</div> <img style="display:none" src="' . $imagesrc . '" id="' . esc_attr( $field['id'] ) . '" class="pngx-image pngx-image-wrap-img" />';
 		}
 
-		echo '<input type="text" class="regular-text ' . esc_attr( $class ) . '"  id="' . $field['id'] . '" name="' . esc_attr( $name ) . '" placeholder="' . esc_attr( $std ) . '" value="' . esc_attr( $value ) . '" size="' . absint( $size ) . '" />';
+		echo $imagedisplay . '<br>';
+
+		echo '<input class="pngx-upload-image ' . esc_attr( $class ) . '"  type="hidden" id="' . esc_attr( $field['id'] ) . '" name="' . esc_attr( $name ) . '" value="' . absint( $value ) . '" />';
+		echo '<input id="' . esc_attr( $field['id'] ) . '" class="pngx-image-button" type="button" value="Upload Image" />';
+		echo '<small> <a href="#" id="' . esc_attr( $field['id'] ) . '" class="pngx-clear-image">Remove Image</a></small>';
+
 
 		if ( "" != $field['desc'] ) {
 			echo '<br /><span class="description">' . $field['desc'] . '</span>';
