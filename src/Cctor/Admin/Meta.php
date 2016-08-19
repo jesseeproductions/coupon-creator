@@ -477,7 +477,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'desc'    => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
 			'id'      => $prefix . 'image',
 			'type'    => 'image',
-			'image'   => 'Image Coupon',
+			'imagemsg'   => 'Image Coupon',
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'image_coupon',
 			'toggle'  => array(

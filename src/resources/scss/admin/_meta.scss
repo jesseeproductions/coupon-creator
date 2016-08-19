@@ -12,46 +12,6 @@
 	text-shadow: 0 1px 0 #fff;
 }
 
-.postbox h4.pngx-fields-heading:after {
-	background: linear-gradient(to right, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%) repeat scroll 0 0 rgba(0, 0, 0, 0);
-	content: "";
-	display: block;
-	height: 1px;
-	margin-top: 10px;
-}
-
 .postbox h4.pngx-fields-heading {
 	color: $green;
-	font-size: 15px;
-	font-weight: bold;
-	margin: 0 0 10px;
-}
-
-.cctor-meta-field-wrap {
-	margin: 10px 0;
-	overflow: hidden;
-}
-
-.cctor-meta-field,
-.cctor-meta-label {
-	float: left;
-	overflow: hidden;
-}
-
-.cctor-meta-label {
-	width: 30%;
-}
-
-.cctor-meta-field {
-	width: 70%;
-}
-
-.cctor-meta-field textarea,
-.cctor-meta-field.field-wysiwyg {
-	width: 100%;
-}
-
-.field-wrap-cctor_videos .cctor-meta-label,
-.field-wrap-cctor_videos .cctor-meta-field {
-	width: 100%;
 }

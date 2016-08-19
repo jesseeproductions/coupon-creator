@@ -572,13 +572,13 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			$support_html = '
 				<h4 class="pngx-fields-heading">How to Contact Support</h4>
 					<ul>
-						<li>For Coupon Creator Pro users please use the <a class="cctor-support" target="_blank" href="http://cctor.link/pro-support">Support Form on CouponCreatorPlugin.com</a> to get direct support.</li>
+						<li>For Coupon Creator Pro users please use the <a class="pngx-support" target="_blank" href="http://cctor.link/pro-support">Support Form on CouponCreatorPlugin.com</a> to get direct support.</li>
 
 						<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:
 							<ul>
-							<li><br><a class="cctor-support" target="_blank" href="http://cctor.link/pro-404">Troubleshooting 404 Errors</a></li>
-							<li><a class="cctor-support" target="_blank" href="http://cctor.link/pro-tc">Troubleshooting Conflicts</a></li>
-							<li><a class="cctor-support" target="_blank" href="http://cctor.link/pro-jscon">Troubleshooting Javascript Errors</a></li>
+							<li><br><a class="pngx-support" target="_blank" href="http://cctor.link/pro-404">Troubleshooting 404 Errors</a></li>
+							<li><a class="pngx-support" target="_blank" href="http://cctor.link/pro-tc">Troubleshooting Conflicts</a></li>
+							<li><a class="pngx-support" target="_blank" href="http://cctor.link/pro-jscon">Troubleshooting Javascript Errors</a></li>
 							</ul>
 						</li>
 
@@ -587,12 +587,12 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			$support_html = '
 			<h4 class="pngx-fields-heading">How to Contact Support</h4>
 			<ul>
-				<li>Please use the <a target="_blank" class="cctor-support" href="http://cctor.link/ZlQvh">WordPress.org Support Forum for the Coupon Creator</a>.</li>
+				<li>Please use the <a target="_blank" class="pngx-support" href="http://cctor.link/ZlQvh">WordPress.org Support Forum for the Coupon Creator</a>.</li>
 				<li><br>Before contacting support please try to narrow or solve your issue by using one or all of these troubleshooting guides:
 					<ul>
-					<li><br><a class="cctor-support" target="_blank" href="http://cctor.link/RgewD">Troubleshooting 404 Errors</a></li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.link/4rMqT">Troubleshooting Conflicts</a></li>
-					<li><a class="cctor-support" target="_blank" href="http://cctor.link/R7KRa">Troubleshooting Javascript Errors</a></li>
+					<li><br><a class="pngx-support" target="_blank" href="http://cctor.link/RgewD">Troubleshooting 404 Errors</a></li>
+					<li><a class="pngx-support" target="_blank" href="http://cctor.link/4rMqT">Troubleshooting Conflicts</a></li>
+					<li><a class="pngx-support" target="_blank" href="http://cctor.link/R7KRa">Troubleshooting Javascript Errors</a></li>
 					</ul>
 				</li>
 

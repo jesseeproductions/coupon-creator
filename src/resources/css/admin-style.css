@@ -3,84 +3,17 @@
 
 */
 /* ==========================================================================
-   Tabs CSS
+   Fields CSS
    ========================================================================== */
-/* ==========================================================================
-  jQuery UI CSS
-   ========================================================================== */
-/* ==========================================================================
-  jQuery UI CSS
-   ========================================================================== */
-.post-type-cctor_coupon .ui-widget-overlay {
-  position: fixed; }
+/**
+* All Fields
+***************************************************/
+.promote-sup {
+  color: #950402; }
 
-/* ==========================================================================
-  Loading CSS
-   ========================================================================== */
-#cctor-loading {
-  background: #fff;
-  background: rgba(255, 255, 255, 0.8);
-  display: none;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transition: all 1s linear;
-  -moz-transition: all 1s linear;
-  -ms-transition: all 1s linear;
-  -o-transition: all 1s linear;
-  width: 100%;
-  z-index: 4;
-  webkit-transition: all 1s linear; }
-
-#cctor-loading span {
-  background: url(../images/cctor-loading.gif) 0 0 no-repeat;
-  background-size: 32px 32px;
-  height: 32px;
-  left: 50%;
-  margin: -16px 0 0 -16px;
-  position: absolute;
-  top: 50%;
-  width: 32px;
-  -webkit-background-size: 32px 32px; }
-
-/* ==========================================================================
-   Messages CSS
-   ========================================================================== */
-.cctor-meta-bg {
-  background-color: #fff;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-  margin: 5px 0 15px;
-  overflow: hidden;
-  padding: 8px 12px; }
-
-.success,
-.cctor-message {
-  border-left: 4px solid #048c7f;
-  font-weight: bold; }
-
-.cctor-error,
-.cctor-error {
-  border-left: 4px solid #dd3d36;
-  color: #dd3d36; }
-
-.success {
-  padding: 1px 12px; }
-
-.cctor-error {
-  padding: 1px 12px; }
-
-.cctor-error div,
-.cctor-message div {
-  float: left;
-  padding: 0 2% 0 0;
-  width: 48%; }
-
-.cctor-meta-field.field-cctor_upgrade_to_pro {
-  width: 100%; }
-
-/* Pro Marketing
------------------------------------------------------------- */
+/**
+* Pro Marketing
+***************************************************/
 .cctor-pro-img {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -113,6 +46,86 @@
   -o-transform: skew(8deg) rotate(3deg);
   -webkit-transform: skew(8deg) rotate(3deg); }
 
+/**
+* WooCommerce
+***************************************************/
+.field-wrap-woocoupon .cctor-meta-label,
+.field-wrap-woocoupon .cctor-meta-field {
+  width: 100%; }
+
+.ajax_chosen_select_products_and_variations.cctor_woo_field {
+  width: 50%; }
+
+.cctor-woo-send-buttons {
+  margin-bottom: 15px; }
+
+#cctor_woocommerce hr,
+#cctor_woocommerce h2,
+.postbox #cctor_woocommerce h4.pngx-fields-heading {
+  color: #a46497; }
+
+#cctor_woo_options textarea {
+  width: 100%; }
+
+#cctor_woo_submit {
+  margin-top: 30px; }
+
+#cctor_woocommerce label {
+  width: 130px;
+  display: inline-block; }
+
+#cctor_woocommerce .form-field input[type="email"],
+#cctor_woocommerce .form-field input[type="number"],
+#cctor_woocommerce .form-field input[type="text"] {
+  width: 230px;
+  max-width: 80%; }
+
+#cctor_woocommerce .form-field .chosen-container-multi input[type="text"] {
+  max-width: 100%;
+  min-width: 100px; }
+
+#cctor_woocommerce .select2-container.cctor_woo_field {
+  width: 50%;
+  display: inline-block !important; }
+
+/**
+* Wysiwyg
+***************************************************/
+.cctor-column-row-insert,
+#wp-cctor_description-wrap {
+  width: 600px;
+  max-width: 100%;
+  overflow: hidden; }
+
+.cctor-column-row-insert {
+  margin: 15px 0; }
+
+.cctor-column-row-insert .cctor-content-column-row {
+  width: 46%;
+  float: left; }
+
+.cctor_button {
+  border-radius: 6px;
+  border: solid 1px #9dd3df;
+  background: #2a5a8a;
+  padding: 3px 1%;
+  text-decoration: none;
+  color: #fff;
+  text-align: center; }
+
+.ui-widget-content a.cctor_button {
+  color: #fff; }
+
+.cctor_button:hover,
+.ui-widget-content a.cctor_button:hover {
+  color: #000;
+  border: solid 1px #2a5a8a;
+  background: #9dd3df; }
+
+.cctor-column-row-insert select {
+  width: 48%;
+  float: right; }
+
 /* ==========================================================================
    Help CSS
    ========================================================================== */
@@ -135,63 +148,12 @@
     color: #9dd3df; }
   .coupon.pngx-section-help-container .pngx-help-images {
     box-shadow: 0 1px 2px 0 #048c7f; }
-  .coupon.pngx-section-help-container .promote-sup {
-    color: #950402; }
-
-.cctor_coupon_page_coupon-options .pngx-section-help-container {
-  margin-left: -10px; }
-
-@media screen and (max-width: 768px) {
-  .cctor_coupon_page_coupon-options .pngx-section-help-container {
-    margin-left: 0px; } }
 
 /* ==========================================================================
-  Tooltips CSS
+  jQuery UI CSS
    ========================================================================== */
-.cctor-tooltip {
-  border-bottom: 1px dotted black;
-  display: inline-block;
-  position: relative; }
-
-.cctor-tooltip .cctor-tooltiptext {
-  background-color: black;
-  border-radius: 6px;
-  color: #fff;
-  left: 50%;
-  margin-left: -60px;
-  padding: 5px 0;
-  position: absolute;
-  text-align: center;
-  top: 100%;
-  visibility: hidden;
-  width: 120px;
-  z-index: 1; }
-
-.cctor-tooltip:hover .cctor-tooltiptext {
-  visibility: visible; }
-
-/* ==========================================================================
-  Quick and Bulk Edit CSS
-   ========================================================================== */
-.inline-edit-row fieldset label.coupon-quick-edit {
-  margin: 1em 0; }
-
-.inline-edit-row fieldset label.coupon-quick-edit span.title {
-  width: 12em; }
-
-.inline-edit-row fieldset label.coupon-quick-edit.cctor_save_change_views label {
-  display: inline;
-  margin: 0; }
-
-#wpbody-content #bulk-edit.bulk-edit-row .inline-edit-col-left.coupon-bulk-col {
-  width: 30%; }
-
-#wpbody-content #bulk-edit.bulk-edit-row fieldset.inline-edit-col-left.coupon-bulk-col .inline-edit-group label {
-  max-width: 100%; }
-
-#wpbody-content #bulk-edit.bulk-edit-row fieldset.inline-edit-col-left.coupon-bulk-col .inline-edit-group label select {
-  max-width: 185px;
-  width: 100%; }
+.post-type-cctor_coupon .ui-widget-overlay {
+  position: fixed; }
 
 /* ==========================================================================
    Meta Box CSS
@@ -206,64 +168,39 @@
   padding: 0 0 5px 10px;
   text-shadow: 0 1px 0 #fff; }
 
-.postbox h4.pngx-fields-heading:after {
-  background: linear-gradient(to right, black 1%, #9b9b9b 28%, white 85%) repeat scroll 0 0 transparent;
-  content: "";
-  display: block;
-  height: 1px;
-  margin-top: 10px; }
-
 .postbox h4.pngx-fields-heading {
-  color: #048c7f;
-  font-size: 15px;
-  font-weight: bold;
-  margin: 0 0 10px; }
+  color: #048c7f; }
 
-.cctor-meta-field-wrap {
-  margin: 10px 0;
-  overflow: hidden; }
+/* ==========================================================================
+   Options CSS
+   ========================================================================== */
+/**
+* Help
+***************************************************/
+.cctor_coupon_page_coupon-options .pngx-section-help-container {
+  margin-left: -10px; }
 
-.cctor-meta-field,
-.cctor-meta-label {
-  float: left;
-  overflow: hidden; }
+@media screen and (max-width: 768px) {
+  .cctor_coupon_page_coupon-options .pngx-section-help-container {
+    margin-left: 0px; } }
 
-.cctor-meta-label {
-  width: 30%; }
-
-.cctor-meta-field {
-  width: 70%; }
-
-.cctor-meta-field textarea,
-.cctor-meta-field.field-wysiwyg {
-  width: 100%; }
-
-.field-wrap-cctor_videos .cctor-meta-label,
-.field-wrap-cctor_videos .cctor-meta-field {
-  width: 100%; }
-
-/* License Button
------------------------------------------------------------- */
+/**
+* License Fields
+***************************************************/
 .pngx-license-button-act {
   background: #2a5a8a;
-  border: 1px solid #2a5a8a;
-  color: #fff; }
-
-.pngx-license-button-act:hover {
-  background: #1e4164;
-  cursor: pointer; }
+  border: 1px solid #2a5a8a; }
 
 .pngx-license-button-det {
   background: #048c7f;
-  border: 1px solid #048c7f;
-  color: #fff; }
+  border: 1px solid #048c7f; }
 
 .pngx-license-button-det:hover {
-  background: #2a5a8a;
-  cursor: pointer; }
+  background: #2a5a8a; }
 
-/* Options Sign Up Form / Promo Boxes
------------------------------------------------------------ */
+/**
+* Promo Boxes
+***************************************************/
 #pro.pngx-tabs-panel h2:first-child {
   display: none !important; }
 
@@ -277,7 +214,8 @@
 
 .pngx-promo-boxes {
   clear: none;
-  float: left;
+  display: inline-block;
+  vertical-align: top;
   margin: 0 1%;
   overflow: hidden;
   width: 44%; }
@@ -285,6 +223,9 @@
 .pngx-wrapper #mc_embed_signup h2 {
   margin: 0 0 10px; }
 
+/**
+* MailChimp
+***************************************************/
 .mc-field-group {
   float: left;
   width: 192px; }
@@ -309,24 +250,17 @@
     float: none;
     margin: 2% 1%; } }
 
-/* Pro CSS
------------------------------------------------------------ */
-.pngx_coupon_image.pngx-image-wrap-img,
-.pngx-image-wrap {
-  width: 200px;
-  height: auto;
-  padding: 20px 5px;
-  border: 1px solid #dbdbdb;
-  text-align: center;
-  font-size: 16px; }
-
+/**
+* Pro CSS
+***************************************************/
 .create-shortcode {
   display: inline-block;
   margin: 10px 0;
   padding: 3px 5px; }
 
-/* Promo Boxes
------------------------------------------------------------ */
+/**
+* Promo Boxes
+***************************************************/
 .pngx-promo-boxes {
   background: #fff;
   box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
@@ -352,3 +286,30 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff', GradientType=1);
   height: 1px;
   margin-top: 10px; }
+
+/* ==========================================================================
+  Quick and Bulk Edit CSS
+   ========================================================================== */
+.inline-edit-row fieldset label.coupon-quick-edit {
+  margin: 1em 0; }
+
+.inline-edit-row fieldset label.coupon-quick-edit span.title {
+  width: 12em; }
+
+.inline-edit-row fieldset label.coupon-quick-edit.cctor_save_change_views label {
+  display: inline;
+  margin: 0; }
+
+#wpbody-content #bulk-edit.bulk-edit-row .inline-edit-col-left.coupon-bulk-col {
+  width: 30%; }
+
+#wpbody-content #bulk-edit.bulk-edit-row fieldset.inline-edit-col-left.coupon-bulk-col .inline-edit-group label {
+  max-width: 100%; }
+
+#wpbody-content #bulk-edit.bulk-edit-row fieldset.inline-edit-col-left.coupon-bulk-col .inline-edit-group label select {
+  max-width: 185px;
+  width: 100%; }
+
+/* ==========================================================================
+   Tabs CSS
+   ========================================================================== */

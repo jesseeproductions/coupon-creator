@@ -31,7 +31,7 @@
 		if ( 'select#cctor_expiration_option' == $data[0].toggleField ) {
 
 			//console.log('change0');
-			//console.log($data[0].toggleGroup);
+			console.log($data[0]);
 			pngx_fields_toggle.toggle(
 				$data[0].toggleField,
 				$data[0].toggleGroup,
@@ -65,7 +65,7 @@
 
 		if ( 'input#cctor_image' == $data[1].toggleField ) {
 			//console.log('change2');
-			//console.log($data[1].toggleGroup);
+			//console.log( $data[1] );
 			pngx_fields_toggle.toggle(
 				$data[1].toggleField,
 				$data[1].toggleGroup,

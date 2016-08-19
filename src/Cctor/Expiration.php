@@ -140,9 +140,9 @@ class Cctor__Coupon__Expiration {
 	 */
 	public function get_coupon_status() {
 		if ( self::check_expiration() ) {
-			echo '<div class="cctor-meta-bg cctor-message"><div>' . __( 'This Coupon is Showing.', 'coupon-creator' ) . '</div></div>';
+			echo '<div class="pngx-meta-bg pngx-message"><div>' . __( 'This Coupon is Showing.', 'coupon-creator' ) . '</div></div>';
 		} else {
-			echo '<div class="cctor-meta-bg cctor-error"><div>' . __( 'This Coupon is not Showing.', 'coupon-creator' ) . '</div></div>';
+			echo '<div class="pngx-meta-bg pngx-error"><div>' . __( 'This Coupon is not Showing.', 'coupon-creator' ) . '</div></div>';
 		}
 	}
 
@@ -153,7 +153,7 @@ class Cctor__Coupon__Expiration {
 	 */
 	public function get_coupon_status_msg() {
 		if ( $this->exp_msg ) {
-			$this->exp_msg = '<div class="cctor-meta-bg ' . esc_attr( $this->exp_class ) . '">' . $this->exp_msg . '' . '</div>';
+			$this->exp_msg = '<div class="pngx-meta-bg ' . esc_attr( $this->exp_class ) . '">' . $this->exp_msg . '' . '</div>';
 		}
 
 		return $this->exp_msg;
@@ -173,7 +173,7 @@ class Cctor__Coupon__Expiration {
 	 */
 	public function set_coupon_status_msg() {
 
-		$this->exp_class = 'cctor-message';
+		$this->exp_class = 'pngx-message';
 
 		if ( 1 == $this->expiration_option ) {
 
@@ -187,7 +187,7 @@ class Cctor__Coupon__Expiration {
 				$this->exp_msg = '<div>' . __( 'This Coupon Expires On ', 'coupon-creator' ) . $this->display_date . '</div>';
 			} else {
 				$this->exp_msg   = '<div>' . __( 'This Coupon Expired On ', 'coupon-creator' ) . $this->display_date . '</div>';
-				$this->exp_class = 'cctor-error';
+				$this->exp_class = 'pngx-error';
 			}
 
 		}

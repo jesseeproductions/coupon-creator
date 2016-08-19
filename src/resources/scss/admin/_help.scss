@@ -31,19 +31,4 @@
 	.pngx-help-images {
 		box-shadow: 0 1px 2px 0 $green;
 	}
-
-	.promote-sup {
-		color: $darkred;
-	}
-
-}
-
-//Coupon Options Page CSS
-.cctor_coupon_page_coupon-options .pngx-section-help-container {
-	margin-left: -10px;
-}
-@include media($tablet) {
-	.cctor_coupon_page_coupon-options .pngx-section-help-container {
-		margin-left: 0px;
-	}
 }

@@ -409,7 +409,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		//Help
 		$fields['pro_tab'] = array(
 			'section' => 'pro',
-			'title'   => __( 'Coupon Creator Pro', 'coupon-creator' ),
+			'title'   => '',
 			'type'    => 'pro',
 			'std'     => 0,
 			'desc'    => ''
@@ -522,7 +522,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 				</div>';
 
 			echo '<!-- Begin MailChimp Signup Form -->
-				<div id="mc_embed_signup" class="cctor-promo-boxes">
+				<div id="mc_embed_signup" class="pngx-promo-boxes">
 					<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
 						<div id="mc_embed_signup_scroll">
