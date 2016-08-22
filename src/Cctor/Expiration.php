@@ -3,6 +3,8 @@
 if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
 }
+
+
 /**
  * Class Cctor__Coupon__Expiration
  *
@@ -82,7 +84,7 @@ class Cctor__Coupon__Expiration {
 		}
 		$this->expiration_option = get_post_meta( $this->coupon_id, 'cctor_expiration_option', true );
 
-		$this->show_coupon   = true;
+		$this->show_coupon = true;
 
 		if ( 1 != $this->expiration_option ) {
 			$this->date_format = get_post_meta( $this->coupon_id, 'cctor_date_format', true );
@@ -123,7 +125,7 @@ class Cctor__Coupon__Expiration {
 		 * @param boolean $show_coupon_check true or false a coupon should show.
 		 *
 		 */
-		$this->coupon_hidden = apply_filters( 'cctor_filter_meta_show_coupon_check' , $this->coupon_hidden, $this->coupon_id );
+		$this->coupon_hidden = apply_filters( 'cctor_filter_meta_show_coupon_check', $this->coupon_hidden, $this->coupon_id );
 
 		if ( ( $this->show_coupon ) && ! $this->coupon_hidden ) {
 			return true;
@@ -225,6 +227,7 @@ class Cctor__Coupon__Expiration {
 
 		return false;
 	}
+
 	/**
 	 * Set Coupon Expiration Date, Unix Time, and Today
 	 *
@@ -242,10 +245,7 @@ class Cctor__Coupon__Expiration {
 			}
 		}
 
-		//Blog Time According to WordPress
-		$cc_blogtime = current_time( 'mysql' );
-		list( $today_year, $today_month, $today_day ) = preg_split( '([^0-9])', $cc_blogtime );
-		$this->today_unix = strtotime( $today_month . "/" . $today_day . "/" . $today_year );
+		$this->today_unix = strtotime( Pngx__Date::display_date( 0 ) );
 
 	}
 

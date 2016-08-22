@@ -68,16 +68,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	 */
 	public static function coupon_information_box() {
 
-		global $pagenow, $post, $typenow;
-		$coupon_id = $post->ID;
-
-		if ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
-			$post    = get_post( $_GET['post'] );
-			$typenow = $post->post_type;
-		}
+		$current_screen = self::get_screen_variables();
 
 		//Display Message on Coupon Edit Screen, but not on a new coupon until saved
-		if ( $pagenow != 'post-new.php' && 'cctor_coupon' == $typenow ) {
+		if ( 'post-new.php' != $current_screen['pagenow'] && in_array( $current_screen['type'], self::get_post_types() ) ) {
 
 			/**
 			 * Display Message on Individual Coupon Editor Page
@@ -87,7 +81,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			 * @param int $coupon_id
 			 *
 			 */
-			do_action( 'cctor_meta_message', $coupon_id );
+			do_action( 'pngx_meta_message', $current_screen['post'] );
 
 		}
 
@@ -104,8 +98,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			$coupon_expiration = new Cctor__Coupon__Expiration();
 		}
 
-		add_action( 'cctor_meta_message', array( $coupon_expiration, 'get_coupon_status' ), 15, 1 );
-		add_action( 'cctor_meta_message', array( $coupon_expiration, 'the_coupon_status_msg' ), 20, 1 );
+		add_action( 'pngx_meta_message', array( $coupon_expiration, 'get_coupon_status' ), 15, 1 );
+		add_action( 'pngx_meta_message', array( $coupon_expiration, 'the_coupon_status_msg' ), 20, 1 );
 
 	}
 
@@ -113,26 +107,23 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	* Add Meta Boxes
 	*/
 	public static function add_meta_boxes() {
-		global $pagenow, $typenow;
-		if ( empty( $typenow ) && ! empty( $_GET['post'] ) ) {
-			$post    = get_post( $_GET['post'] );
-			$typenow = $post->post_type;
-		}
 
-		if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) && $typenow == 'cctor_coupon' ) {
+		$current_screen = self::get_screen_variables();
+
+		if ( in_array( $current_screen['pagenow'], array( 'post.php', 'post-new.php' ) ) && in_array( $current_screen['type'], self::get_post_types() ) ) {
 			add_meta_box( 'coupon_creator_meta_box', // id
 				__( 'Coupon Fields', 'coupon-creator' ), // title
 				array( __CLASS__, 'display_fields' ), // callback
-				'cctor_coupon', // post_type
+				self::get_post_types(), // post_type
 				'normal', // context
 				'high' // priority
 			);
 
-			if ( $pagenow != 'post-new.php' ) {
+			if ( 'post-new.php' != $current_screen['pagenow'] ) {
 				add_meta_box( 'coupon_creator_shortcode', // id
 					__( 'Coupon Shortcode', 'coupon-creator' ), // title
 					array( __CLASS__, 'show_coupon_shortcode' ), // callback
-					'cctor_coupon', // post_type
+					self::get_post_types(), // post_type
 					'side' // context
 				);
 			}
@@ -140,7 +131,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			/**
 			 * Additional Coupons Hook
 			 */
-			do_action( 'cctor_add_meta_box' );
+			do_action( 'cctor_add_meta_box', $current_screen['post'] );
 
 		}
 	}
@@ -169,7 +160,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$tabs['expiration']   = __( 'Expiration', 'coupon-creator' );
 		$tabs['image_coupon'] = __( 'Image Coupon', 'coupon-creator' );
 		$tabs['help']         = __( 'Help', 'coupon-creator' );
-		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $tabs['pro'] = __( 'Upgrade to Pro', 'coupon-creator' ) : '';
+		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $tabs['pro'] = __( 'Upgrade to Pro', 'coupon-creator' ) : null;
 
 		//Filter Option Tabs
 		if ( has_filter( 'cctor_filter_meta_tabs' ) ) {
@@ -186,6 +177,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		self::$tabs = $tabs;
 	}
+
 	/*
 	* Load Fields
 	*
@@ -197,10 +189,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		//Content
 		$fields[ $prefix . 'content_help' ]  = array(
-			'id'        => $prefix . 'content_help',
-			'type'      => 'help',
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'content',
+			'id'      => $prefix . 'content_help',
+			'type'    => 'help',
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'content',
 		);
 		$fields[ $prefix . 'heading_deal' ]  = array(
 			'id'        => $prefix . 'heading_deal',
@@ -245,17 +237,17 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'class'     => 'code',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'cols'       => 60,
-			'rows'       => 4,
+			'cols'      => 60,
+			'rows'      => 4,
 			'wrapclass' => 'image-coupon-disable'
 		);
 
 		//Style Tab
-		$fields[ $prefix . 'style_help' ]  = array(
-			'id'        => $prefix . 'style_help',
-			'type'      => 'help',
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'style',
+		$fields[ $prefix . 'style_help' ] = array(
+			'id'      => $prefix . 'style_help',
+			'type'    => 'help',
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'style',
 		);
 		//Outer Border Placeholders
 		$fields[ $prefix . 'heading_pro_display' ]  = array(
@@ -342,11 +334,11 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		);
 
 		//Expiration
-		$fields[ $prefix . 'expiration_help' ]  = array(
-			'id'        => $prefix . 'expiration_help',
-			'type'      => 'help',
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'expiration',
+		$fields[ $prefix . 'expiration_help' ]    = array(
+			'id'      => $prefix . 'expiration_help',
+			'type'    => 'help',
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'expiration',
 		);
 		$fields[ $prefix . 'heading_expiration' ] = array(
 			'id'      => $prefix . 'heading_expiration',
@@ -466,36 +458,36 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		);
 
 		//Image Coupon
-		$fields[ $prefix . 'image_coupon_help' ]  = array(
-			'id'        => $prefix . 'image_coupon_help',
-			'type'      => 'help',
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'image_coupon',
-		);
-		$fields[ $prefix . 'image' ] = array(
-			'label'   => '',
-			'desc'    => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
-			'id'      => $prefix . 'image',
-			'type'    => 'image',
-			'imagemsg'   => 'Image Coupon',
+		$fields[ $prefix . 'image_coupon_help' ] = array(
+			'id'      => $prefix . 'image_coupon_help',
+			'type'    => 'help',
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'image_coupon',
-			'toggle'  => array(
-				'field'      => 'input',
-				'group'      => '.image-coupon-disable',
-				'show'       => '',
-				'msg' => array(
+		);
+		$fields[ $prefix . 'image' ]             = array(
+			'label'    => '',
+			'desc'     => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
+			'id'       => $prefix . 'image',
+			'type'     => 'image',
+			'imagemsg' => 'Image Coupon',
+			'section'  => 'coupon_creator_meta_box',
+			'tab'      => 'image_coupon',
+			'toggle'   => array(
+				'field' => 'input',
+				'group' => '.image-coupon-disable',
+				'show'  => '',
+				'msg'   => array(
 					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
 					'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
 				)
 			)
 		);
 		//Help
-		$fields[ $prefix . 'all_help' ]  = array(
-			'id'        => $prefix . 'all_help',
-			'type'      => 'help',
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'help',
+		$fields[ $prefix . 'all_help' ] = array(
+			'id'      => $prefix . 'all_help',
+			'type'    => 'help',
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'help',
 		);
 
 		//Upgreade to Pro
