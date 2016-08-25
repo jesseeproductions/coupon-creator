@@ -38,7 +38,7 @@ class Cctor__Coupon__Search {
 			// Add available post types, but remove coupons
 			if ( $post_types ) {
 				foreach ( $post_types as $type ) {
-					if ( $type->name != 'cctor_coupon' ) {
+					if ( 'cctor_coupon' != $type->name ) {
 						$searchable_cpt[] = $type->name;
 					}
 				}

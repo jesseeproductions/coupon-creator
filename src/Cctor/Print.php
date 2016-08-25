@@ -20,7 +20,7 @@ class Cctor__Coupon__Print {
 	public static function get_coupon_post_type_template( $print_template ) {
 
 		global $post;
-		if ( ! is_search() && is_object( $post ) && $post->post_type == 'cctor_coupon' ) {
+		if ( ! is_search() && is_object( $post ) && 'cctor_coupon' == $post->post_type ) {
 			$print_template = Cctor__Coupon__Main::instance()->plugin_path . 'src/functions/templates/print-coupon.php';
 		}
 
@@ -58,7 +58,7 @@ class Cctor__Coupon__Print {
 			ob_start(); ?>
 			<!--  Coupon Style from the Options Page and Filter -->
 			<style type='text/css'>
-				<?php echo wp_kses_post($cctor_option_css); ?>
+				<?php echo wp_kses_post( $cctor_option_css ); ?>
 			</style>
 			<?php echo ob_get_clean();
 		}

@@ -3,10 +3,14 @@
 if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
 }
+
+
 /*
-* Coupon Creator Pro Inserter Class
-* @version 1.90
+* Coupon Creator Inserter Class
+*
 */
+
+
 class Cctor__Coupon__Admin__Inserter {
 
 	/*
@@ -55,7 +59,6 @@ class Cctor__Coupon__Admin__Inserter {
 							#TB_title h3 {
 								margin: 0;
 								color: #2a5a8a;
-								margin: 0;
 								text-shadow: 0 1px 0 #fff;
 							}
 							.cctor-inserter-section-bt,
@@ -116,35 +119,45 @@ class Cctor__Coupon__Admin__Inserter {
 		<script>
 			//Insert Shortcode into Editor
 			function InsertCoupon() {
-				var coupon_id = jQuery( "#coupon_select" ).val();
-				if ( coupon_id == "loop" ) {
-					var coupon_shortcode = "coupon";
-					var coupon_category = jQuery( "#coupon_category_select" ).val();
-					var coupon_category = " category=\"" + coupon_category + "\" ";
+				var $coupon_align = jQuery( "#coupon_align" );
+				var $coupon_select = jQuery( "#coupon_select" );
+				var coupon_id = $coupon_select.val();
+				var coupon_name, coupon_shortcode, coupon_align, coupon_category, coupon_orderby = '';
 
-					var coupon_orderby = jQuery( "#coupon_orderby" ).val();
-					var coupon_orderby = " couponorderby=\"" + coupon_orderby + "\" ";
+				if ( coupon_id == "loop" ) {
+					coupon_shortcode = "coupon";
+					coupon_category = jQuery( "#coupon_category_select" ).val();
+					coupon_category = " category=\"" + coupon_category + "\" ";
+
+					coupon_orderby = jQuery( "#coupon_orderby" ).val();
+					coupon_orderby = " couponorderby=\"" + coupon_orderby + "\" ";
 				} else {
-					var coupon_shortcode = "coupon";
-					var coupon_category = "";
-					var coupon_orderby = "";
+					coupon_shortcode = "coupon";
+					coupon_category = "";
+					coupon_orderby = "";
 				}
-				var coupon_name = jQuery( "#coupon_select option[value='" + coupon_id + "']" ).text().replace( /[\[\]]/g, '' );
-				var cctor_align = jQuery( "#coupon_align" ).val();
-				var coupon_align = jQuery( "#coupon_align option[value='" + cctor_align + "']" ).text().replace( /[\[\]]/g, '' );
+
+				coupon_name = $coupon_select.find( "option[value='" + coupon_id + "']" ).text().replace( /[\[\]]/g, '' );
+				var cctor_align = $coupon_align.val();
+				coupon_align = $coupon_align.find( "option[value='" + cctor_align + "']" ).text().replace( /[\[\]]/g, '' );
 				window.send_to_editor( "[" + coupon_shortcode + " couponid=\"" + coupon_id + "\"" + coupon_category + coupon_orderby + " coupon_align=\"" + cctor_align + "\" name=\"" + coupon_name + "\"]" );
 			}
 
 			//Resize Thickbox for Coupon Inserter
 			function cctor_resize_thickbox() {
 				jQuery( function ( $ ) {
-					if ( $( "#TB_window" ).find( ".cctor-inserter-section" ).length > 0 ) {
 
-						var coupon_thickbox_height = $( '.cctor-inserter-section' ).outerHeight() + $( '.cctor-inserter-section-bt' ).outerHeight() + $( '#TB_title' ).outerHeight()
+					var $tb_window = $( "#TB_window" );
 
-						$( "#TB_window" ).height( ( coupon_thickbox_height + 10 ) );
-						$( "#TB_ajaxContent" ).height( ( coupon_thickbox_height  ) );
-						$( "#TB_ajaxContent" ).css( {
+					if ( $tb_window.find( ".cctor-inserter-section" ).length > 0 ) {
+
+						var coupon_thickbox_height = $( '.cctor-inserter-section' ).outerHeight() + $( '.cctor-inserter-section-bt' ).outerHeight() + $( '#TB_title' ).outerHeight();
+
+						var $tb_ajax_content = $( "#TB_ajaxContent" );
+
+						$tb_window.height( ( coupon_thickbox_height + 10 ) );
+						$tb_ajax_content.height( ( coupon_thickbox_height  ) );
+						$tb_ajax_content.css( {
 							'width': '100%',
 							'padding': '0'
 						} );
@@ -189,7 +202,7 @@ class Cctor__Coupon__Admin__Inserter {
 				} );
 
 				//On Page resize or Load with resize Thickbox
-				$( window ).on( 'resize load', function ( e ) {
+				$( window ).on( 'resize load', function () {
 					cctor_resize_thickbox();
 				} );
 
@@ -233,7 +246,7 @@ class Cctor__Coupon__Admin__Inserter {
 					<!--Create a Select Box for Categories -->
 					<div id="coupon_category_select_container" class="cctor-inserter-section-row">
 						<label
-							for="coupon-categories"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon-creator' ); ?></label>
+							for="coupon_category_select"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon-creator' ); ?></label>
 						<select id="coupon_category_select" name="coupon_category_select">
 							<option value="#"></option>
 							<option value=""><?php echo __( 'All Categories', 'coupon-creator' ); ?></option>
@@ -272,7 +285,7 @@ class Cctor__Coupon__Admin__Inserter {
 					<!--Create a Select Box for Orderby -->
 					<div id="coupon_orderby_select_container" class="cctor-inserter-section-row">
 						<label
-							for="coupon_orberby_select_box"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon-creator' ); ?></label>
+							for="coupon_orderby"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon-creator' ); ?></label>
 						<select id="coupon_orderby" name="coupon_orberby_select_box">
 							<option value="date"><?php echo __( 'Date (default)', 'coupon-creator' ); ?></option>
 							<option value="none"><?php echo __( 'None', 'coupon-creator' ); ?></option>

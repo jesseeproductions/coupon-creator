@@ -16,6 +16,12 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	//fields id prefix
 	protected $fields_prefix = 'cctor_';
 
+	//post type
+	protected static $post_type = array();
+
+	//user capability
+	protected static $user_capability = array();
+
 	/*
 	* Construct
 	*/
@@ -37,6 +43,9 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		//Add Plugin Only Fields
 		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
+
+		//Modify Expiration Field
+		add_filter( 'pngx_before_save_meta_fields', array( __CLASS__, 'modify_ignore_expiration' ) );
 
 	}
 
@@ -511,6 +520,19 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		}
 
 		self::$fields = $fields;
+	}
+
+	/**
+	 * Set Ignore Expiration Field
+	 */
+	public static function modify_ignore_expiration() {
+
+		//Expiration Option Auto Check Ignore Input
+		if ( isset( $_POST['cctor_ignore_expiration'] ) && 1 == $_POST['cctor_expiration_option'] ) {
+			$_POST['cctor_ignore_expiration'] = 'on';
+		} elseif ( isset( $_POST['cctor_ignore_expiration'] ) && 'on' == $_POST['cctor_ignore_expiration'] && 1 != $_POST['cctor_expiration_option'] ) {
+			unset( $_POST['cctor_ignore_expiration'] );
+		}
 	}
 
 	/**

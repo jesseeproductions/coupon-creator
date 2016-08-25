@@ -93,9 +93,6 @@ class Cctor__Coupon__Expiration {
 			$this->show_coupon = self::is_coupon_current();
 		}
 
-		//$this->show_coupon   = true;
-		//$this->coupon_hidden = false;
-
 		if ( is_admin() ) {
 			self::set_coupon_status_msg();
 		}

@@ -524,7 +524,7 @@ class Cctor__Coupon__Main {
 	* Allowed Tags for Terms Field
 	* @version 2.0
 	*/
-	public static function allowed_tags( $cctor_terms_tags ) {
+	public static function allowed_tags() {
 
 		$cctor_terms_tags = '<h1><h2><h3><h4><h5><h6><p><blockquote><div><pre><code><span><br><b><strong><em><img><del><ins><sub><sup><ul><ol><li><hr>';
 
