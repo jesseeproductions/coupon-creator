@@ -41,6 +41,8 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		add_action( 'admin_init', array( $this, 'register_options' ), 15 );
 		add_action( 'init', array( 'Pngx__Admin__Fields', 'flush_permalinks' ) );
 
+		add_action( 'pngx_flush_permalinks',  array( $this, 'flush_coupon_permalinks' ) );
+
 		if ( ! get_option( $this->options_id ) ) {
 			add_action( 'admin_init', array( &$this, 'set_defaults' ), 10 );
 		}
@@ -546,6 +548,18 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 					</form>
 				</div><!--End mc_embed_signup-->';
 		}
+	}
+
+
+	/*
+	* Flush Permalink on Permalink Field Change
+	*
+	*/
+	public static function flush_coupon_permalinks() {
+
+		//setup coupon cpt when flushing permalinks
+		Cctor__Coupon__Main::instance()->register_post_types();
+
 	}
 
 	/**
