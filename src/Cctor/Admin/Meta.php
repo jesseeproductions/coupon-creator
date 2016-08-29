@@ -17,11 +17,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	protected $fields_prefix = 'cctor_';
 
 	//post type
-	protected static $post_type = array();
+	protected $post_type = array( 'cctor_coupon' );
 
 	//user capability
-	protected static $user_capability = array();
-
+	protected $user_capability = 'edit_cctor_coupon';
 	/*
 	* Construct
 	*/
@@ -36,8 +35,6 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		add_action( 'edit_form_after_title', array( __CLASS__, 'coupon_messages' ), 5 );
 		add_action( 'edit_form_after_title', array( __CLASS__, 'coupon_information_box' ) );
 
-		self::set_post_type();
-		self::set_user_capability();
 		self::set_tabs();
 		self::set_fields();
 
@@ -46,29 +43,6 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		//Modify Expiration Field
 		add_filter( 'pngx_before_save_meta_fields', array( __CLASS__, 'modify_ignore_expiration' ) );
-
-	}
-
-
-	/*
-	* Set Post Type
-	*/
-	protected function set_post_type() {
-
-		$post_type[] = 'cctor_coupon';
-
-		self::$post_type = $post_type;
-
-	}
-
-	/*
-	* Set User Capability
-	*/
-	protected function set_user_capability() {
-
-		$user_capability = 'edit_cctor_coupon';
-
-		self::$user_capability = $user_capability;
 
 	}
 
@@ -120,6 +94,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$current_screen = self::get_screen_variables();
 
 		if ( in_array( $current_screen['pagenow'], array( 'post.php', 'post-new.php' ) ) && in_array( $current_screen['type'], self::get_post_types() ) ) {
+
 			add_meta_box( 'coupon_creator_meta_box', // id
 				__( 'Coupon Fields', 'coupon-creator' ), // title
 				array( __CLASS__, 'display_fields' ), // callback
