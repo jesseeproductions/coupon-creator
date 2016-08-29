@@ -12,6 +12,7 @@ jQuery( function ( $ ) {
 	 * since 1.70
 	 */
 	$( '#cctor_expiration' ).datepicker( {
+		dateFormat: "mm/dd/yy",
 		beforeShow: function ( input, inst ) {
 			$( "#ui-datepicker-div" ).addClass( "cctor-ui" )
 		}
