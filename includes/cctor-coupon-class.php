@@ -148,8 +148,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 		public static function i18n() {
 
-	   $cctor_local_path = CCTOR_URL . '/languages/';
-       load_plugin_textdomain('coupon-creator', false, $cctor_local_path );
+	   $cctor_local_path =  dirname( dirname( plugin_basename( __FILE__ ) ) ) .'/languages';
+	   
+       load_plugin_textdomain( 'coupon-creator' , false, $cctor_local_path ); 
 
 	}
 	/***************************************************************************/

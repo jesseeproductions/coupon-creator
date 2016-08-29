@@ -1,12 +1,12 @@
-=== Coupon Creator ===
+﻿=== Coupon Creator ===
 Contributors: brianjessee
 Plugin Name: Coupon Creator
 Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.0
-Tested up to: 4.5
-Stable tag: 2.3
+Tested up to: 4.6
+Stable tag: 2.3.1
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -134,6 +134,9 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+
+= 2.3.1 August 16th, 2016 =
+* Fix - Translations not loading, thanks to cahaubold for bringing up this issue
 
 = 2.3 June 7th, 2016 =
 * Add - expiration system as a new class to manage coupon display and expiration messages from a central source
