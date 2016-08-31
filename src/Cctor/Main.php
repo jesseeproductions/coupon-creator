@@ -252,6 +252,10 @@ class Cctor__Coupon__Main {
 		require_once $this->plugin_path . 'src/functions/template-tags/general.php';
 
 		//Deprecated Functions
+		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator_Plugin.php';
+		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator_Plugin_Admin_Options.php';
+		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator_Meta_Box.php';
+		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator_Plugin_Sanitize.php';
 		require_once $this->plugin_path . 'src/deprecated/deprecated.php';
 
 		//Load Template Functions

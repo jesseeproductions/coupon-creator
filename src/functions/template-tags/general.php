@@ -23,7 +23,7 @@ if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {
  * @return bool true if this post is an Coupon post type
  */
 function cctor_is_coupon( $postId = null ) {
-	return apply_filters( 'cctor_is_coupon', Coupon_Creator_Plugin::instance()->is_coupon( $postId ), $postId );
+	return apply_filters( 'cctor_is_coupon', Cctor__Coupon__Main::instance()->is_coupon( $postId ), $postId );
 }
 
 /**
