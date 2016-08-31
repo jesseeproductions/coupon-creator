@@ -49,7 +49,7 @@ class Cctor__Coupon__Admin__Inserter {
 								background:url('{$img}') no-repeat top left;
 								display: inline-block;
 								height: 16px;
-								margin: 0 2px 0 0;
+								margin: 2px 2px 0 0;
 								vertical-align: text-top;
 								width: 16px;
 							}

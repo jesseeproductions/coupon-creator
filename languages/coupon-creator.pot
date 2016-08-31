@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Coupon Creator\n"
-"POT-Creation-Date: 2016-08-29 11:00-0400\n"
+"POT-Creation-Date: 2016-08-30 09:14-0400\n"
 "PO-Revision-Date: 2016-03-18 10:08-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -271,9 +271,7 @@ msgid "Day First - DD/MM/YYYY"
 msgstr ""
 
 #: src/Cctor/Admin/Meta.php:424
-msgid ""
-"The coupon will not display without the date and will not display on your "
-"site after the date."
+msgid "Choose a date this coupon will expire."
 msgstr ""
 
 #: src/Cctor/Admin/Meta.php:435
@@ -498,64 +496,64 @@ msgstr ""
 msgid "Not Showing"
 msgstr ""
 
-#: src/Cctor/Main.php:157
+#: src/Cctor/Main.php:160
 #, php-format
 msgid ""
 "Coupon Creator Requires WordPress version: %s or higher. You currently have "
 "WordPress version: %s"
 msgstr ""
 
-#: src/Cctor/Main.php:160
+#: src/Cctor/Main.php:163
 #, php-format
 msgid ""
 "Coupon Creator Requires PHP version: %s or higher. You currently have PHP "
 "version: %s"
 msgstr ""
 
-#: src/Cctor/Main.php:236
+#: src/Cctor/Main.php:237
 msgid ""
 "It appears as if the plugin-engine libraries cannot be found! The directory "
 "should be in the \"plugin-engine/\" directory in the Coupon Creator plugin."
 msgstr ""
 
-#: src/Cctor/Main.php:345
+#: src/Cctor/Main.php:346
 #: src/functions/template-functions/cctor-function-links.php:19
 msgid "Coupon"
 msgstr ""
 
-#: src/Cctor/Main.php:356
+#: src/Cctor/Main.php:357
 msgid "coupon"
 msgstr ""
 
-#: src/Cctor/Main.php:365
+#: src/Cctor/Main.php:366
 msgid "Coupons"
 msgstr ""
 
-#: src/Cctor/Main.php:376
+#: src/Cctor/Main.php:377
 msgid "coupons"
 msgstr ""
 
-#: src/Cctor/Main.php:385
+#: src/Cctor/Main.php:386
 msgid "Coupon Category"
 msgstr ""
 
-#: src/Cctor/Main.php:394
+#: src/Cctor/Main.php:395
 msgid "coupon category"
 msgstr ""
 
-#: src/Cctor/Main.php:403
+#: src/Cctor/Main.php:404
 msgid "Coupon Categories"
 msgstr ""
 
-#: src/Cctor/Main.php:412
+#: src/Cctor/Main.php:413
 msgid "coupon categories"
 msgstr ""
 
-#: src/Cctor/Main.php:445
+#: src/Cctor/Main.php:446
 msgid "Enter Coupon Admin Title"
 msgstr ""
 
-#: src/Cctor/Main.php:520
+#: src/Cctor/Main.php:521
 msgid "coupon-category"
 msgstr ""
 

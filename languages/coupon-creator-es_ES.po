@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Coupon Creator\n"
-"POT-Creation-Date: 2016-08-29 10:10-0400\n"
-"PO-Revision-Date: 2016-08-29 10:12-0400\n"
+"POT-Creation-Date: 2016-08-30 09:15-0400\n"
+"PO-Revision-Date: 2016-08-30 10:01-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -24,6 +24,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: sass\n"
 "X-Poedit-SearchPathExcluded-4: vendor\n"
 "X-Poedit-SearchPathExcluded-5: languages\n"
+"X-Poedit-SearchPathExcluded-6: plugin-engine\n"
 
 #: src/Cctor/Admin/Columns.php:73
 msgid "Coupon Title"
@@ -127,21 +128,23 @@ msgstr ""
 
 #: src/Cctor/Admin/Meta.php:99
 msgid "Coupon Fields"
-msgstr ""
+msgstr "Campos del Cupón"
 
 #: src/Cctor/Admin/Meta.php:108
 msgid "Coupon Shortcode"
-msgstr ""
+msgstr "Shortcode de cupón"
 
 #: src/Cctor/Admin/Meta.php:130
 msgid ""
 "Place this coupon in your posts, pages, custom post types, or widgets by "
 "using the shortcode below:<br><br>"
 msgstr ""
+"Coloca este cupón en tus posts, páginas, tipos de post personalizados o "
+"widgets utilizando el código siguiente:<br><br>"
 
 #: src/Cctor/Admin/Meta.php:142
 msgid "Content"
-msgstr ""
+msgstr "Contenido"
 
 #: src/Cctor/Admin/Meta.php:143
 msgid "Style"
@@ -150,15 +153,15 @@ msgstr ""
 #: src/Cctor/Admin/Meta.php:144 src/Cctor/Admin/Meta.php:330
 #: src/Cctor/Admin/Options.php:172
 msgid "Expiration"
-msgstr ""
+msgstr "Expiración"
 
 #: src/Cctor/Admin/Meta.php:145
 msgid "Image Coupon"
-msgstr ""
+msgstr "Imagen del Cupón"
 
 #: src/Cctor/Admin/Meta.php:146 src/Cctor/Admin/Options.php:102
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 #: src/Cctor/Admin/Meta.php:147 src/Cctor/Admin/Options.php:105
 msgid "Upgrade to Pro"
@@ -270,9 +273,7 @@ msgid "Day First - DD/MM/YYYY"
 msgstr ""
 
 #: src/Cctor/Admin/Meta.php:424
-msgid ""
-"The coupon will not display without the date and will not display on your "
-"site after the date."
+msgid "Choose a date this coupon will expire."
 msgstr ""
 
 #: src/Cctor/Admin/Meta.php:435
@@ -299,7 +300,7 @@ msgstr ""
 
 #: src/Cctor/Admin/Options.php:64 src/Cctor/Admin/Options.php:137
 msgid "Coupon Creator Options"
-msgstr ""
+msgstr "Opciones de Creador de Cupón"
 
 #: src/Cctor/Admin/Options.php:65
 msgid "Options"
@@ -315,15 +316,15 @@ msgstr ""
 
 #: src/Cctor/Admin/Options.php:101
 msgid "Display"
-msgstr ""
+msgstr "Visualización"
 
 #: src/Cctor/Admin/Options.php:103
 msgid "Licenses"
-msgstr ""
+msgstr "Licencias"
 
 #: src/Cctor/Admin/Options.php:104 src/Cctor/Admin/Options.php:404
 msgid "Reset"
-msgstr ""
+msgstr "Borrar"
 
 #: src/Cctor/Admin/Options.php:139
 #, php-format
@@ -448,7 +449,7 @@ msgstr ""
 
 #: src/Cctor/Admin/Options.php:383
 msgid "Support: "
-msgstr ""
+msgstr "Apoyo:"
 
 #: src/Cctor/Admin/Options.php:392
 msgid "Coupon Creator Option Reset"
@@ -467,11 +468,11 @@ msgstr ""
 
 #: src/Cctor/Expiration.php:142
 msgid "This Coupon is Showing."
-msgstr ""
+msgstr "Este cupón se está mostrando"
 
 #: src/Cctor/Expiration.php:144
 msgid "This Coupon is not Showing."
-msgstr ""
+msgstr "Este cupon no está mostrandose"
 
 #: src/Cctor/Expiration.php:179
 msgid "Ignore Coupon Expiration is On"
@@ -483,78 +484,78 @@ msgstr ""
 
 #: src/Cctor/Expiration.php:186
 msgid "This Coupon Expires On "
-msgstr ""
+msgstr "Este cupón expira el"
 
 #: src/Cctor/Expiration.php:188
 msgid "This Coupon Expired On "
-msgstr ""
+msgstr "Este cupón expiró el"
 
 #: src/Cctor/Expiration.php:279
 msgid "Showing"
-msgstr ""
+msgstr "Mostrando"
 
 #: src/Cctor/Expiration.php:281
 msgid "Not Showing"
-msgstr ""
+msgstr "No mostrándose"
 
-#: src/Cctor/Main.php:157
+#: src/Cctor/Main.php:160
 #, php-format
 msgid ""
 "Coupon Creator Requires WordPress version: %s or higher. You currently have "
 "WordPress version: %s"
 msgstr ""
 
-#: src/Cctor/Main.php:160
+#: src/Cctor/Main.php:163
 #, php-format
 msgid ""
 "Coupon Creator Requires PHP version: %s or higher. You currently have PHP "
 "version: %s"
 msgstr ""
 
-#: src/Cctor/Main.php:236
+#: src/Cctor/Main.php:237
 msgid ""
 "It appears as if the plugin-engine libraries cannot be found! The directory "
 "should be in the \"plugin-engine/\" directory in the Coupon Creator plugin."
 msgstr ""
 
-#: src/Cctor/Main.php:345
+#: src/Cctor/Main.php:346
 #: src/functions/template-functions/cctor-function-links.php:19
 msgid "Coupon"
 msgstr ""
 
-#: src/Cctor/Main.php:356
+#: src/Cctor/Main.php:357
 msgid "coupon"
 msgstr ""
 
-#: src/Cctor/Main.php:365
+#: src/Cctor/Main.php:366
 msgid "Coupons"
 msgstr ""
 
-#: src/Cctor/Main.php:376
+#: src/Cctor/Main.php:377
 msgid "coupons"
 msgstr ""
 
-#: src/Cctor/Main.php:385
+#: src/Cctor/Main.php:386
 msgid "Coupon Category"
 msgstr ""
 
-#: src/Cctor/Main.php:394
+#: src/Cctor/Main.php:395
 msgid "coupon category"
 msgstr ""
 
-#: src/Cctor/Main.php:403
+#: src/Cctor/Main.php:404
 msgid "Coupon Categories"
 msgstr ""
 
-#: src/Cctor/Main.php:412
+#: src/Cctor/Main.php:413
 msgid "coupon categories"
 msgstr ""
 
-#: src/Cctor/Main.php:445
+#: src/Cctor/Main.php:446
 msgid "Enter Coupon Admin Title"
 msgstr ""
 
-#: src/Cctor/Main.php:520
+#: src/Cctor/Main.php:521
 msgid "coupon-category"
 msgstr ""
 

@@ -34,14 +34,12 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	public function __construct() {
 
 		$this->checkboxes = array();
-		$this->fields     = $this->get_option_fields();
-		$this->set_sections();
 
 		add_action( 'admin_menu', array( $this, 'options_page' ) );
 		add_action( 'admin_init', array( $this, 'register_options' ), 15 );
 		add_action( 'init', array( 'Pngx__Admin__Fields', 'flush_permalinks' ) );
 
-		add_action( 'pngx_flush_permalinks',  array( $this, 'flush_coupon_permalinks' ) );
+		add_action( 'pngx_flush_permalinks', array( $this, 'flush_coupon_permalinks' ) );
 
 		if ( ! get_option( $this->options_id ) ) {
 			add_action( 'admin_init', array( &$this, 'set_defaults' ), 10 );
@@ -76,6 +74,10 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	* Register Options
 	*/
 	public function register_options() {
+
+		//Set options and sections here so they can be translated
+		$this->fields = $this->get_option_fields();
+		$this->set_sections();
 
 		register_setting( $this->options_id, $this->options_id, array( $this, 'validate_options' ) );
 

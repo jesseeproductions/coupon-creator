@@ -21,12 +21,16 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 	//user capability
 	protected $user_capability = 'edit_cctor_coupon';
+
 	/*
 	* Construct
 	*/
 	public function __construct() {
 
 		parent::__construct();
+
+		//Setup Coupon Fields at Init for Translation
+		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
 
 		//Setup Coupon Meta Boxes
 		add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );
@@ -35,14 +39,21 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		add_action( 'edit_form_after_title', array( __CLASS__, 'coupon_messages' ), 5 );
 		add_action( 'edit_form_after_title', array( __CLASS__, 'coupon_information_box' ) );
 
-		self::set_tabs();
-		self::set_fields();
-
 		//Add Plugin Only Fields
 		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
 
 		//Modify Expiration Field
 		add_filter( 'pngx_before_save_meta_fields', array( __CLASS__, 'modify_ignore_expiration' ) );
+
+	}
+
+	/**
+	 * Admin Init
+	 */
+	public static function admin_init() {
+
+		self::instance()->set_tabs();
+		self::instance()->set_fields();
 
 	}
 
@@ -421,7 +432,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$fields[ $prefix . 'expiration' ] = array(
 			'label'     => __( 'Expiration Date', 'coupon-creator' ),
 			'id'        => $prefix . 'expiration',
-			'desc'      => __( 'The coupon will not display without the date and will not display on your site after the date.', 'coupon-creator' ),
+			'desc'      => __( 'Choose a date this coupon will expire.', 'coupon-creator' ),
 			'type'      => 'date',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'expiration',
@@ -496,6 +507,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		self::$fields = $fields;
 	}
+
 
 	/**
 	 * Set Ignore Expiration Field

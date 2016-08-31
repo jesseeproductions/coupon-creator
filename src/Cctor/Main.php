@@ -111,9 +111,11 @@ class Cctor__Coupon__Main {
 	}
 
 	public function plugins_loaded() {
+
 		// include the autoloader class
 		$this->init_autoloading();
 		add_action( 'plugins_loaded', array( $this, 'i18n' ), 1 );
+
 		if ( self::supportedVersion( 'wordpress' ) && self::supportedVersion( 'php' ) ) {
 			$this->addHooks();
 			$this->loadLibraries();
@@ -121,6 +123,7 @@ class Cctor__Coupon__Main {
 			// Either PHP or WordPress version is inadequate so we simply return an error.
 			add_action( 'admin_head', array( $this, 'notSupportedError' ) );
 		}
+
 	}
 
 	/**
@@ -193,10 +196,7 @@ class Cctor__Coupon__Main {
 	 */
 	public function i18n() {
 
-		$local_path =  dirname( dirname( dirname( plugin_basename( __FILE__ ) ) ) ) .'/languages';
-		log_me($local_path);
-		log_me(self::TEXT_DOMAIN);
-        load_plugin_textdomain( self::TEXT_DOMAIN , false, $local_path );
+		Pngx__Main::instance()->load_text_domain(  self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
 
 	}
 
@@ -298,7 +298,7 @@ class Cctor__Coupon__Main {
 		add_shortcode( 'coupon', array( 'Cctor__Coupon__Shortcode', 'core_shortcode' ) );
 		add_action( 'cctor_before_coupon', 'cctor_shortcode_functions', 10 );
 		add_action( 'init', array( 'Cctor__Coupon__Images', 'add_image_sizes' ) );
-		add_filter( 'cctor_filter_terms_tags', array( __CLASS__, 'allowed_tags' ), 10, 1 );
+		add_filter( 'cctor_filter_terms_tags', array( 'Pngx__Allowed_Tags', 'content_no_link' ), 10, 1 );
 		if ( cctor_options( 'cctor_wpautop' ) == 1 ) {
 			add_filter( 'the_content', array( __CLASS__, 'remove_autop_for_coupons' ), 0 );
 		}
@@ -521,21 +521,9 @@ class Cctor__Coupon__Main {
 		return apply_filters( 'cctor_category_slug', sanitize_title( cctor_options( 'cctor_coupon_category_base', false, __( 'coupon-category', 'slug', self::TEXT_DOMAIN ) ) ) );
 	}
 
-	/*
-	* Allowed Tags for Terms Field
-	* @version 2.0
-	*/
-	public static function allowed_tags() {
-
-		$cctor_terms_tags = '<h1><h2><h3><h4><h5><h6><p><blockquote><div><pre><code><span><br><b><strong><em><img><del><ins><sub><sup><ul><ol><li><hr>';
-
-		return $cctor_terms_tags;
-
-	}
 
 	/*
 	* Remove wpautop in Terms Field
-	* @version 2.0
 	* based of coding from http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
 	*/
 	public static function remove_autop_for_coupons( $content ) {

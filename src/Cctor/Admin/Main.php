@@ -27,10 +27,10 @@ class Cctor__Coupon__Admin__Main {
 		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__License', 'activate_license' ) );
 		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__License', 'deactivate_license' ) );
 
-		new Cctor__Coupon__Admin__Columns();
 		Cctor__Coupon__Admin__Options::instance();
-		Cctor__Coupon__Admin__Meta::instance();
 
+		new Cctor__Coupon__Admin__Columns();
+		Cctor__Coupon__Admin__Meta::instance();
 	}
 
 	/**
@@ -41,6 +41,7 @@ class Cctor__Coupon__Admin__Main {
 		if ( ! class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
 			new Cctor__Coupon__Admin__Inserter();
 		}
+
 
 		//Add Options Link on Plugin Activation Page
 		add_action( 'plugin_action_links', array( __CLASS__, 'plugin_setting_link' ), 10, 2 );
