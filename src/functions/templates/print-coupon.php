@@ -11,8 +11,8 @@
 
 	do_action( 'cctor_action_print_template', $coupon_id );
 
-	if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
-		$coupon_expiration = new CCtor_Pro_Expiration_Class( $coupon_id );
+	if ( class_exists( 'Cctor__Coupon__Pro__Expiration' ) ) {
+		$coupon_expiration = new Cctor__Coupon__Pro__Expiration( $coupon_id );
 	} else {
 		$coupon_expiration = new Cctor__Coupon__Expiration( $coupon_id );
 	}

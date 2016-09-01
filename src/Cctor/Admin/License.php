@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Cctor__Coupon__Admin__License {
 
 	private static $default_update_url = 'https://couponcreatorplugin.com/edd-sl-api/';
+
 	private $update_url = '';
 
 	public function __construct() {
@@ -25,8 +26,8 @@ class Cctor__Coupon__Admin__License {
 	 *
 	 * @return string
 	 */
-	public function get_update_url() {
-		return apply_filters( 'pngx_get_update_url', $this->update_url );
+	public static function get_update_url() {
+		return apply_filters( 'pngx_get_update_url', self::$default_update_url );
 	}
 
 	/**

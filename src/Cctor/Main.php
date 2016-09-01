@@ -170,7 +170,6 @@ class Cctor__Coupon__Main {
 	protected function init_autoloading() {
 		$prefixes = array(
 			'Cctor__Coupon__' => $this->plugin_path . 'src/Cctor',
-			//'ForceUTF8__'     => $this->plugin_path . 'vendor/ForceUTF8',
 		);
 
 		if ( ! class_exists( 'Pngx__Autoloader' ) ) {
@@ -252,7 +251,7 @@ class Cctor__Coupon__Main {
 		require_once $this->plugin_path . 'src/functions/template-tags/general.php';
 
 		//Deprecated Functions
-		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator_Plugin.php';
+		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator.php';
 		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator_Plugin_Admin_Options.php';
 		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator_Meta_Box.php';
 		require_once $this->plugin_path . 'src/deprecated/Coupon_Creator_Plugin_Sanitize.php';

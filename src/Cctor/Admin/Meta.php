@@ -86,8 +86,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	 */
 	public static function coupon_messages() {
 
-		if ( class_exists( 'CCtor_Pro_Expiration_Class' ) ) {
-			$coupon_expiration = new CCtor_Pro_Expiration_Class();
+		if ( class_exists( 'Cctor__Coupon__Pro__Expiration' ) ) {
+			$coupon_expiration = new Cctor__Coupon__Pro__Expiration();
 		} else {
 			$coupon_expiration = new Cctor__Coupon__Expiration();
 		}

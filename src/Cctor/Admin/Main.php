@@ -31,6 +31,7 @@ class Cctor__Coupon__Admin__Main {
 
 		new Cctor__Coupon__Admin__Columns();
 		Cctor__Coupon__Admin__Meta::instance();
+
 	}
 
 	/**
@@ -48,6 +49,13 @@ class Cctor__Coupon__Admin__Main {
 
 		//Load Admin Assets
 		add_action( 'admin_enqueue_scripts', array( 'Cctor__Coupon__Admin__Assets', 'load_assets' ) );
+
+		//Load License Fields for Old Versions of Pro to Upgrade
+		//$pro_version = get_option( 'cctor_coupon_pro_version' );
+		//if ( $pro_version && version_compare( $pro_version , Cctor__Coupon__Main::CCTOR_VERSION_NUM, '<' ) )  {
+			//new Cctor__Coupon__Admin__Upgrades();
+		//}
+
 
 	} //end admin_init
 

@@ -114,15 +114,15 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		 * @param array $sections an array of Option tab names and ids
 		 *
 		 */
-		//if ( has_filter( 'cctor_option_sections' ) ) {
+		if ( has_filter( 'cctor_option_sections' ) ) {
 		/**
 		 * Filter the Coupon Creator Option Tab Header
 		 *
 		 * @param array $meta_tabs an array of tab headings.
 		 *
 		 */
-		//	$this->sections = apply_filters( 'cctor_option_sections', $this->sections );
-		//}
+			$this->sections = apply_filters( 'cctor_option_sections', $this->sections );
+		}
 
 	}
 
