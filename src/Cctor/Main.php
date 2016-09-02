@@ -66,6 +66,8 @@ class Cctor__Coupon__Main {
 		$this->plugin_url    = plugins_url( $this->plugin_dir );
 		$this->resource_path = $this->plugin_path . 'src/resources/';
 		$this->resource_url  = $this->plugin_url . 'src/resources/';
+		$this->vendor_path = $this->plugin_path . 'vendor/';
+		$this->vendor_url  = $this->plugin_url . 'vendor/';
 
 		$this->maybe_set_common_lib_info();
 
