@@ -531,7 +531,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 						<div id="mc_embed_signup_scroll">
 
-						<h2>Sign Up for Coupon Creator Updates, Tips, and More</h2>
+						<h2>Sign Up for Coupon Creator Updater, Tips, and More</h2>
 					<div class="mc-field-group">
 						<input type="email" value="" placeholder="email address" name="EMAIL" class="required email" id="mce-EMAIL">
 					</div>

@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /**
- * Plugin Version Update and Data Updates
+ * Plugin Version Update and Data Updater
  *
  *
  */

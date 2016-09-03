@@ -38,7 +38,7 @@ class Cctor__Coupon__Admin__Upgrades {
 		if ( ( isset( $cctor_license_info['key'] ) && '' != $cctor_license_info['key'] ) && ( isset( $cctor_license_info['status'] ) && 'valid' == $cctor_license_info['status'] ) ) {
 
 			// setup the updater
-			$edd_updater = new EDD_SL_Plugin_Updater( COUPON_CREATOR_STORE_URL, CCTOR_PRO_PATH . 'coupon-creator-pro.php', array(
+			$edd_updater = new Cctor__Coupon__Pro__Admin__Updater( COUPON_CREATOR_STORE_URL, CCTOR_PRO_PATH . 'coupon-creator-pro.php', array(
 				'version'   => get_option( CCTOR_PRO_VERSION_KEY ),    // current version number
 				'license'   => trim( $cctor_license_info['key'] ),
 				'item_name' => COUPON_CREATOR_PRO,        // name of this plugin
