@@ -3,13 +3,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-if ( class_exists( 'Pngx__Admin__Meta' ) ) {
-	return;
-}
-
-
 /**
- * Class Pngx__Admin__Fields
+ * Class Cctor__Coupon__Admin__Fields
  * Coupon Fields for Meta and Options
  */
 class Cctor__Coupon__Admin__Fields  {
@@ -47,6 +42,9 @@ class Cctor__Coupon__Admin__Fields  {
 				break;
 
 		}
+
+		//return field so other filters can use it
+		return $field;
 
 	}
 
