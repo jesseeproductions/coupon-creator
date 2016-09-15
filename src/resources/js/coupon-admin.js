@@ -111,7 +111,7 @@
 	 //Continue if ID Found
 	 if ( cctor_img_id != '' || remove_img == true ) {
 
-	 var show_fields = [".cctor-img-coupon"];
+	 var show_fields = [".image-coupon-disable"];
 	 var dissable_style_fields_arr = '';
 
 	 if ( cctor_img_id != '' ) {
@@ -119,7 +119,7 @@
 	 //var border_disable = "sawtooth-border";
 	 //$( "select#cctor_coupon_border_themes" ).children( 'option[value="' + border_disable + '"]' ).prop( 'disabled', false );
 
-	 dissable_style_fields_arr = [".cctor-img-coupon"];
+	 dissable_style_fields_arr = [".image-coupon-disable"];
 
 	 if ( !$( '.pngx-tabs .pngx-tab-heading-links' ).length ) {
 	 var messages = {
