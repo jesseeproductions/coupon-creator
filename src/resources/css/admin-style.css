@@ -12,6 +12,13 @@
   color: #950402; }
 
 /**
+* Image Coupon
+***************************************************/
+#cctor_image.pngx-default-image,
+#cctor_image.pngx-image {
+  border: 3px dashed #000000; }
+
+/**
 * Pro Marketing
 ***************************************************/
 .cctor-pro-img {
