@@ -8,30 +8,15 @@
 	//var coupon_id = cctor_admin_js_vars.cctor_coupon_id;
 	pngx_admin_tabs.init( '.main.pngx-tabs' );
 
-	var $data = [];
-	var $toggle = [];
-
-	$( '.pngx-meta-field-wrap' ).each( function () {
-		if ( !$.isEmptyObject( $( this ).data() ) ) {
-			$data.push( $( this ).data() );
-		}
-	} );
-
 	//Create Image Upload Object
 	var coupon_img = new PNGX__Media( $, 'input#cctor_image', 'Choose Coupon Image', 'Use Image' );
 
-	//for ( var id in $data ) {
-
-	//console.log(id);
-	//console.log($data[id].toggleField);
-	//console.log($data[id].toggleGroup);
-	//console.log($data[id].toggleShow);
-	//console.log($data[id].toggleMsg);
+/*
 	if ( $data && $data.length ) {
 		if ( 'select#cctor_expiration_option' == $data[0].toggleField ) {
 
 			//console.log('change0');
-			console.log($data[0]);
+			//console.log($data[0]);
 			pngx_fields_toggle.toggle(
 				$data[0].toggleField,
 				$data[0].toggleGroup,
@@ -44,8 +29,8 @@
 			 $( $data[id].toggleField ).val(),
 			 '.expiration-'
 			 );*/
-			$( $data[0].toggleField ).on( 'change', function () {
-				//console.log('change1');
+		/*	$( $data[0].toggleField ).on( 'change', function () {
+				console.log('change1');
 				//	console.log($data[0].toggleGroup);
 				//console.log($data[0].toggleShow + $( this ).val());
 				pngx_fields_toggle.toggle(
@@ -54,13 +39,8 @@
 					$data[0].toggleShow + $( this ).val(),
 					$data[0].toggleMsg
 				);
-				/*pngx_fields_toggle.toggle_basic(
-				 '.expiration-field',
-				 $( this ).val(),
-				 '.expiration-'
-				 );*/
-			} );
 
+			} );
 		}
 
 		if ( 'input#cctor_image' == $data[1].toggleField ) {
@@ -95,9 +75,8 @@
 				);
 			} );
 		}
-	}
+	}*/
 
-	//}
 	//////REMOVE DOWN
 	//Todo img coupon toggle - disable style message when pro active
 	//todo img coupon toggle - disbale saw tooth border

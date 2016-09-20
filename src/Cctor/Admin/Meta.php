@@ -469,6 +469,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'      => 'image_coupon',
 			'toggle'   => array(
 				'field' => 'input',
+				'type'  => 'image',
 				'group' => '.image-coupon-disable',
 				'show'  => '',
 				'msg'   => array(
