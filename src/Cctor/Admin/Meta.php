@@ -294,7 +294,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'id'      => $prefix . 'inside_radius',
 			'type'    => '',
 			'section' => 'coupon_creator_meta_box',
-			'tab'     => 'style'
+			'tab'     => 'style',
+			'wrapclass' => 'image-coupon-disable'
 		);
 
 		//Discount
@@ -459,7 +460,32 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'image_coupon',
 		);
-		$fields[ $prefix . 'image' ]             = array(
+
+		$img_toggle = array(
+			'field' => 'input',
+			'type'  => 'image',
+			'group' => '.image-coupon-disable',
+			'show'  => '',
+			'msg'   => array(
+				'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
+				'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
+			)
+		);
+
+		if ( class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
+			$img_toggle = array(
+				'field' => 'input',
+				'type'  => 'image',
+				'group' => '.image-coupon-disable',
+				'show'  => '',
+				'msg'   => array(
+					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
+					'style'   => __( ' Only outer border styles are available when using an Image Coupon', 'coupon-creator' )
+				)
+			);
+
+		}
+		$fields[ $prefix . 'image' ] = array(
 			'label'    => '',
 			'desc'     => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
 			'id'       => $prefix . 'image',
@@ -467,16 +493,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'imagemsg' => 'Image Coupon',
 			'section'  => 'coupon_creator_meta_box',
 			'tab'      => 'image_coupon',
-			'toggle'   => array(
-				'field' => 'input',
-				'type'  => 'image',
-				'group' => '.image-coupon-disable',
-				'show'  => '',
-				'msg'   => array(
-					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
-					'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
-				)
-			)
+			'toggle'   => $img_toggle
 		);
 		//Help
 		$fields[ $prefix . 'all_help' ] = array(
