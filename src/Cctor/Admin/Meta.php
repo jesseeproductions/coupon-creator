@@ -370,6 +370,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'bulkedit' => 'cctor_pro_expiration',
 			'toggle'   => array(
 				'field' => 'select',
+				'priority'  => 3,
 				'group' => '.expiration-field',
 				'show'  => '.expiration-'
 			)
@@ -464,6 +465,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$img_toggle = array(
 			'field' => 'input',
 			'type'  => 'image',
+			'priority'  => 1,
 			'group' => '.image-coupon-disable',
 			'show'  => '',
 			'msg'   => array(
@@ -476,6 +478,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			$img_toggle = array(
 				'field' => 'input',
 				'type'  => 'image',
+				'priority'  => 1,
 				'group' => '.image-coupon-disable',
 				'show'  => '',
 				'msg'   => array(
