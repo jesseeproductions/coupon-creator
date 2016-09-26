@@ -206,7 +206,7 @@
   background: #2a5a8a; }
 
 /**
-* Promo Boxes
+* Panel CSS
 ***************************************************/
 #pro.pngx-tabs-panel h2:first-child {
   display: none !important; }
@@ -218,17 +218,6 @@
   font-size: 14px;
   margin-left: 20px;
   padding-left: 5px; }
-
-.pngx-promo-boxes {
-  clear: none;
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 1%;
-  overflow: hidden;
-  width: 44%; }
-
-.pngx-wrapper #mc_embed_signup h2 {
-  margin: 0 0 10px; }
 
 /**
 * MailChimp
@@ -248,15 +237,6 @@
 #mc-embedded-subscribe:hover {
   background: #dd3d36; }
 
-@media only screen and (max-width: 640px) {
-  .pngx-promo-boxes h2,
-  .pngx-tabs-panel.ui-tabs-panel.ui-widget-content h4 {
-    margin: 0; }
-  .pngx-promo-boxes {
-    width: 94%;
-    float: none;
-    margin: 2% 1%; } }
-
 /**
 * Pro CSS
 ***************************************************/
@@ -269,30 +249,38 @@
 * Promo Boxes
 ***************************************************/
 .pngx-promo-boxes {
-  background: #fff;
-  box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
-  clear: both;
-  overflow: hidden;
-  padding: 2%; }
-
-.pngx-promo-boxes h2 {
-  color: #048c7f;
-  font-size: 15px;
-  font-weight: bold; }
-
-.pngx-promo-boxes h2:after {
-  background: black;
-  background: -moz-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(1%, black), color-stop(28%, #9b9b9b), color-stop(85%, white));
-  background: -webkit-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
-  background: -o-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
-  background: -ms-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
-  background: linear-gradient(to right, black 1%, #9b9b9b 28%, white 85%);
-  content: "";
-  display: block;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff', GradientType=1);
-  height: 1px;
-  margin-top: 10px; }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .pngx-promo-boxes .pngx-promo-box {
+    background: #fff;
+    box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
+    overflow: hidden;
+    padding: 15px 2.25%;
+    margin: 0 0 15px;
+    width: 45%; }
+    .pngx-promo-boxes .pngx-promo-box h2 {
+      color: #048c7f;
+      font-size: 15px;
+      font-weight: bold; }
+      .pngx-promo-boxes .pngx-promo-box h2:after {
+        background: black;
+        background: -moz-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(1%, black), color-stop(28%, #9b9b9b), color-stop(85%, white));
+        background: -webkit-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
+        background: -o-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
+        background: -ms-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
+        background: linear-gradient(to right, black 1%, #9b9b9b 28%, white 85%);
+        content: "";
+        display: block;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff', GradientType=1);
+        height: 1px;
+        margin-top: 10px; }
+  @media only screen and (max-width: 640px) {
+    .pngx-promo-boxes .pngx-promo-box {
+      width: 100%;
+      margin: 0 0 15px; } }
 
 /* ==========================================================================
   Quick and Bulk Edit CSS

@@ -206,7 +206,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'alert'     => '',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable deal-display'
+			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
 		);
 		$fields[ $prefix . 'deal_display' ]  = array(
 			'id'        => $prefix . 'deal_display',
@@ -478,7 +478,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			$img_toggle = array(
 				'field' => 'input',
 				'type'  => 'image',
-				'priority'  => 1,
+				'priority'  => 6,
 				'group' => '.image-coupon-disable',
 				'show'  => '',
 				'msg'   => array(

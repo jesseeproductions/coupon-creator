@@ -519,14 +519,14 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		if ( 'coupon-options' == $slug ) {
 
 			echo '<div class="pngx-promo-boxes">
-
+				<div class="pngx-promo-box">
 					<h2>Keep The Coupon Creator Going!</h2>
 					<p>Every time you rate <strong>5 stars</strong>, it shows your support for the Coupon Creator and helps make it better!</p>
 					<p><a href="https://wordpress.org/support/view/plugin-reviews/coupon-creator?filter=5" target="_blank" class="button-primary">Rate It</a></p>
 				</div>';
 
 			echo '<!-- Begin MailChimp Signup Form -->
-				<div id="mc_embed_signup" class="pngx-promo-boxes">
+				<div id="mc_embed_signup" class="pngx-promo-box">
 					<form action="//CouponCreatorPlugin.us9.list-manage.com/subscribe/post?u=f2b881e89d24e6f424aa25aa5&amp;id=2b82660ba0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
 						<div id="mc_embed_signup_scroll">
@@ -548,7 +548,8 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 						</div>
 					</form>
-				</div><!--End mc_embed_signup-->';
+				</div>
+			</div>';
 		}
 	}
 
