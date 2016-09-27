@@ -121,7 +121,7 @@
 
 	}
 
-	@media only screen and (max-width: 640px) {
+	@include media($mobile) {
 		.pngx-promo-box{
 			width: 100%;
 			margin: 0 0 15px;
