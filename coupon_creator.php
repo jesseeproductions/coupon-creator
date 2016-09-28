@@ -9,8 +9,15 @@ Text Domain: coupon-creator
 License: GPLv2 or later
 */
 //If Direct Access Kill the Script
-if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
+if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
+}
+
+// the main plugin class
+require_once dirname( __FILE__ ) . '/src/Cctor/Main.php';
+Cctor__Coupon__Main::instance();
+register_activation_hook( __FILE__, array( 'Cctor__Coupon__Main', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Cctor__Coupon__Main', 'deactivate' ) );
 
 /**
  * Get Options from Array
@@ -24,9 +31,9 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
  * @return bool|null
  */
 function cctor_options( $option, $falseable = null, $default = null ) {
-	$options = get_option( 'coupon_creator_options' );
+	$options = get_option( Cctor__Coupon__Main::OPTIONS_ID );
 
-	if ( isset( $options[ $option ] ) &&  $options[ $option ] != '' ) {
+	if ( isset( $options[ $option ] ) && $options[ $option ] != '' ) {
 		return $options[ $option ];
 	} elseif ( $falseable ) {
 		return false;
@@ -37,9 +44,3 @@ function cctor_options( $option, $falseable = null, $default = null ) {
 	}
 
 }
-
-// the main plugin class
-require_once dirname( __FILE__ ) . '/src/Cctor/Main.php';
-Cctor__Coupon__Main::instance();
-register_activation_hook( __FILE__, array( 'Cctor__Coupon__Main', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Cctor__Coupon__Main', 'deactivate' ) );

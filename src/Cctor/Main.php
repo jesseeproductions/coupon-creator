@@ -23,6 +23,7 @@ class Cctor__Coupon__Main {
 	const CCTOR_VERSION_NUM        = '2.4dev';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
+	const OPTIONS_ID               = 'coupon_creator_options';
 
 	public static $cctorUrl = 'https://couponcreatorplugin.com/';
 
@@ -66,8 +67,8 @@ class Cctor__Coupon__Main {
 		$this->plugin_url    = plugins_url( $this->plugin_dir );
 		$this->resource_path = $this->plugin_path . 'src/resources/';
 		$this->resource_url  = $this->plugin_url . 'src/resources/';
-		$this->vendor_path = $this->plugin_path . 'vendor/';
-		$this->vendor_url  = $this->plugin_url . 'vendor/';
+		$this->vendor_path   = $this->plugin_path . 'vendor/';
+		$this->vendor_url    = $this->plugin_url . 'vendor/';
 
 		$this->maybe_set_common_lib_info();
 
@@ -197,7 +198,7 @@ class Cctor__Coupon__Main {
 	 */
 	public function i18n() {
 
-		Pngx__Main::instance()->load_text_domain(  self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
+		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
 
 	}
 

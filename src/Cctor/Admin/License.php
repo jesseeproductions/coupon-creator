@@ -61,9 +61,9 @@ class Cctor__Coupon__Admin__License {
 			$license_info = get_option( $license_option_name );
 
 			//Check if the License has changed and deactivate
-			if ( $_POST['coupon_creator_options'][ $license_option_name ] != $license_info['key'] ) {
+			if ( $_POST[ Cctor__Coupon__Main::OPTIONS_ID ][ $license_option_name ] != $license_info['key'] ) {
 
-				$license_info['key'] = esc_attr( trim( $_POST['coupon_creator_options'][ $license_option_name ] ) );
+				$license_info['key'] = esc_attr( trim( $_POST[ Cctor__Coupon__Main::OPTIONS_ID ][ $license_option_name ] ) );
 
 				delete_option( $license_option_name );
 
@@ -80,8 +80,9 @@ class Cctor__Coupon__Admin__License {
 			);
 
 			// Call the custom API.
-			$response = wp_remote_get( esc_url_raw( add_query_arg( $api_params, self::get_update_url() ) ), array( 'timeout'   => 15,
-			                                                                                                         'sslverify' => false
+			$response = wp_remote_get( esc_url_raw( add_query_arg( $api_params, self::get_update_url() ) ), array(
+				'timeout'   => 15,
+				'sslverify' => false
 			) );
 
 			// make sure the response came back okay
@@ -152,7 +153,7 @@ class Cctor__Coupon__Admin__License {
 			);
 
 			// Call the custom API.
-			$response = wp_remote_get( esc_url_raw( add_query_arg( $api_params,  self::get_update_url() ) ), array(
+			$response = wp_remote_get( esc_url_raw( add_query_arg( $api_params, self::get_update_url() ) ), array(
 				'timeout'   => 15,
 				'sslverify' => false
 			) );

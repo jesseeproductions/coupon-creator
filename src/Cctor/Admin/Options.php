@@ -21,7 +21,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	/*
 	* Options ID
 	*/
-	protected $options_id = 'coupon_creator_options';
+	protected $options_id = Cctor__Coupon__Main::OPTIONS_ID;
 
 	/*
 	* Field Prefix
@@ -38,6 +38,9 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		add_action( 'admin_menu', array( $this, 'options_page' ) );
 		add_action( 'admin_init', array( $this, 'register_options' ), 15 );
 		add_action( 'init', array( 'Pngx__Admin__Fields', 'flush_permalinks' ) );
+
+		//Filter Options Field Name ID
+		add_filter( 'pngx_options_name_id', array( $this, 'filter_options_field_id' ) );
 
 		add_action( 'pngx_flush_permalinks', array( $this, 'flush_coupon_permalinks' ) );
 
@@ -115,12 +118,12 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		 *
 		 */
 		if ( has_filter( 'cctor_option_sections' ) ) {
-		/**
-		 * Filter the Coupon Creator Option Tab Header
-		 *
-		 * @param array $meta_tabs an array of tab headings.
-		 *
-		 */
+			/**
+			 * Filter the Coupon Creator Option Tab Header
+			 *
+			 * @param array $meta_tabs an array of tab headings.
+			 *
+			 */
 			$this->sections = apply_filters( 'cctor_option_sections', $this->sections );
 		}
 
@@ -148,6 +151,17 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		}
 
+	}
+
+
+	/*
+	* Filter Options Field ID for Display of Fields
+	*/
+	public function filter_options_field_id( $id ) {
+
+		$id = $this->options_id;
+
+		return $id;
 	}
 
 
