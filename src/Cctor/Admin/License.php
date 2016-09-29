@@ -22,12 +22,12 @@ class Cctor__Coupon__Admin__License {
 	}
 
 	/**
-	 * Get the PUE update API endpoint url
+	 * Get the update API endpoint url
 	 *
 	 * @return string
 	 */
 	public static function get_update_url() {
-		return apply_filters( 'pngx_get_update_url', self::$default_update_url );
+		return apply_filters( 'cctor_update_url', self::$default_update_url );
 	}
 
 	/**
@@ -37,7 +37,7 @@ class Cctor__Coupon__Admin__License {
 	 *
 	 */
 	private function set_update_url() {
-		$this->update_url = ( defined( 'COUPON_CREATOR_STORE_URL' ) ) ? trailingslashit( COUPON_CREATOR_STORE_URL ) : trailingslashit( $this->default_update_url );
+		$this->update_url = Cctor__Coupon__Main::COUPON_CREATOR_STORE_URL ? trailingslashit( Cctor__Coupon__Main::COUPON_CREATOR_STORE_URL ) : trailingslashit( self::get_update_url() );
 	}
 
 	/*
