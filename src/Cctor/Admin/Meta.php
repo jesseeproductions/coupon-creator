@@ -306,7 +306,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'type'      => 'heading',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'style',
-			'wrapclass' => 'image-coupon-disable deal-display'
+			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
 		);
 		$fields[ $prefix . 'colordiscount' ] = array(
 			'label'     => __( 'Deal Background Color', 'coupon-creator' ),
@@ -316,7 +316,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'value'     => cctor_options( 'cctor_discount_bg_color' ),
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'style',
-			'wrapclass' => 'image-coupon-disable deal-display'
+			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
 		);
 		$fields[ $prefix . 'colorheader' ]   = array(
 			'label'     => __( 'Deal Text Color', 'coupon-creator' ),
@@ -326,7 +326,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'value'     => cctor_options( 'cctor_discount_text_color' ),
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'style',
-			'wrapclass' => 'image-coupon-disable deal-display'
+			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
 		);
 
 		//Expiration
@@ -354,7 +354,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'1' => __( 'Ignore Expiration', 'coupon-creator' ),
 				'2' => __( 'Expiration Date', 'coupon-creator' ),
 				'3' => __( 'Recurring Expiration', 'coupon-creator' ),
-				'4' => __( 'Expires in X Days', 'coupon-creator' )
+				'4' => __( 'Expires in X Days', 'coupon-creator' ),
+				'5' => __( 'Range Expiration', 'coupon-creator' ),
 			);
 		}
 
@@ -412,6 +413,16 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'wrapclass' => 'expiration-field expiration-4',
 			'bulkedit'  => '',
 		);
+		$fields[ $prefix . 'expiration_msg_5' ] = array(
+			'desc'      => __( 'This coupon will show a range of dates that it is valid.', 'coupon-creator' ),
+			'id'        => $prefix . 'expiration_msg_5',
+			'type'      => 'message',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'expiration',
+			'wrapclass' => 'expiration-field expiration-5',
+			'bulkedit'  => '',
+		);
+
 
 		$fields[ $prefix . 'date_format' ] = array(
 			'label'     => __( 'Date Format', 'coupon-creator' ),
@@ -431,6 +442,13 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		$date_format = get_metadata( get_the_id(), $prefix . 'date_format', true );
 
+		$fields[ $prefix . 'start_date' ]         = array(
+			'id'      => $prefix . 'start_date',
+			'type'    => '',
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'expiration'
+		);
+
 		$fields[ $prefix . 'expiration' ] = array(
 			'label'     => __( 'Expiration Date', 'coupon-creator' ),
 			'id'        => $prefix . 'expiration',
@@ -440,7 +458,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'       => 'expiration',
 			'condition' => 'show_current_date',
 			'format'    => ! empty( $date_format ) ? $date_format : cctor_options( 'cctor_default_date_format' ),
-			'wrapclass' => 'expiration-field expiration-2 expiration-3',
+			'wrapclass' => 'expiration-field expiration-2 expiration-3 expiration-5',
 			'bulkedit'  => 'cctor_pro_expiration',
 		);
 

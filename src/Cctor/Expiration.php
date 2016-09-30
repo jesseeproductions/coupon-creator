@@ -27,6 +27,11 @@ class Cctor__Coupon__Expiration {
 	/**
 	 * @var date
 	 */
+	protected $start;
+
+	/**
+	 * @var date
+	 */
 	protected $expiration;
 
 	/**
@@ -37,7 +42,17 @@ class Cctor__Coupon__Expiration {
 	/**
 	 * @var string
 	 */
+	protected $display_start_date;
+
+	/**
+	 * @var string
+	 */
 	protected $display_date;
+
+	/**
+	 * @var string
+	 */
+	protected $date_start_unix;
 
 	/**
 	 * @var string
@@ -88,6 +103,7 @@ class Cctor__Coupon__Expiration {
 
 		if ( 1 != $this->expiration_option ) {
 			$this->date_format = get_post_meta( $this->coupon_id, 'cctor_date_format', true );
+			$this->start_date  = get_post_meta( $this->coupon_id, 'cctor_start_date', true );
 			$this->expiration  = get_post_meta( $this->coupon_id, 'cctor_expiration', true );
 			self::set_coupon_expiration_dates();
 			$this->show_coupon = self::is_coupon_current();
@@ -197,6 +213,17 @@ class Cctor__Coupon__Expiration {
 	/**
 	 * Get the formatted expiration date
 	 */
+	public function get_display_start() {
+		if ( $this->display_start_date ) {
+			return $this->display_start_date;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get the formatted expiration date
+	 */
 	public function get_display_expiration() {
 		if ( $this->display_date ) {
 			return $this->display_date;
@@ -230,6 +257,18 @@ class Cctor__Coupon__Expiration {
 	 *
 	 */
 	public function set_coupon_expiration_dates() {
+
+		if ( $this->start_date ) {
+
+			$this->date_start_unix = strtotime( $this->start_date );
+
+			//Display Date with Formatting
+			$this->display_start_date = $this->start_date;
+			if ( $this->date_format == 1 ) {
+				$this->display_start_date = date( "d/m/Y", $this->date_start_unix );
+			}
+
+		}
 
 		if ( $this->expiration ) {
 

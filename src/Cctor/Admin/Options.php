@@ -198,7 +198,8 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 				'1' => __( 'Ignore Expiration', 'coupon-creator' ),
 				'2' => __( 'Expiration Date', 'coupon-creator' ),
 				'3' => __( 'Recurring Expiration', 'coupon-creator' ),
-				'4' => __( 'Expires in X Days', 'coupon-creator' )
+				'4' => __( 'Expires in X Days', 'coupon-creator' ),
+				'5' => __( 'Range Expiration', 'coupon-creator' ),
 			);
 		}
 
