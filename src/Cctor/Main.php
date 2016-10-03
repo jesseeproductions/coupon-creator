@@ -96,6 +96,15 @@ class Cctor__Coupon__Main {
 		//Use Instance to call method to setup cpt
 		Cctor__Coupon__Main::instance()->register_post_types();
 
+		/**
+		 * Fires on deactivation of Coupon Creator Pro
+		 *
+		 * Avaiable when Pro is decativated users who have
+		 * activate_plugins capability
+		 *
+		 */
+		do_action( 'cctor_activate' );
+
 		flush_rewrite_rules();
 
 	}
@@ -108,6 +117,15 @@ class Cctor__Coupon__Main {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
+
+		/**
+		 * Fires on deactivation of Coupon Creator
+		 *
+		 * Avaiable when Pro is decativated users who have
+		 * activate_plugins capability
+		 *
+		 */
+		do_action( 'cctor_deactivate' );
 
 		flush_rewrite_rules();
 
@@ -293,7 +311,7 @@ class Cctor__Coupon__Main {
 	protected function addHooks() {
 		add_action( 'init', array( $this, 'init' ), 10 );
 
-		add_action( 'init', array( 'Cctor__Coupon__Cron', 'filter_cron_schedules' ) );
+		add_action( 'init', array( 'Pngx__Cron_20', 'filter_cron_schedules' ) );
 		add_action( 'pre_get_posts', array( 'Cctor__Coupon__Search', 'remove_coupon_from_search' ) );
 
 		//Front End Assets
@@ -340,6 +358,8 @@ class Cctor__Coupon__Main {
 
 		$this->register_post_types();
 		$this->register_taxonomies();
+
+		require_once $this->plugin_path . 'src/deprecated/Coupon_Pro_Deprecated.php';
 
 	}
 
