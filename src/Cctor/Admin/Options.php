@@ -235,6 +235,14 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'type'    => '',
 			'section' => ''
 		);
+		$fields['cctor_pro_status_heading']                   = array(
+			'type'    => '',
+			'section' => ''
+		);
+		$fields['cctor_pro_status']                           = array(
+			'type'    => '',
+			'section' => ''
+		);
 
 		//Outer Border
 		$fields['cctor_pro_heading_outer_border'] = array(
