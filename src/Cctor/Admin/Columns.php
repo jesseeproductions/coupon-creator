@@ -8,6 +8,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
+
 /**
  * Class Coupon_Admin_Columns
  * Coupon Column Methods for the Coupon CPT
@@ -85,6 +86,8 @@ class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 
 		$cctor_columns['cctor_expiration_date'] = __( 'Expiration Date', 'coupon-creator' );
 
+		$cctor_columns['cctor_category'] = __( 'Coupon Category', 'coupon-creator' );
+
 
 		if ( isset( $columns['date'] ) ) {
 			$cctor_columns['date'] = $columns['date'];
@@ -115,6 +118,8 @@ class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 	 */
 	public static function cctor_column_cases( $column, $post_id ) {
 
+		global $post;
+
 		if ( class_exists( 'Cctor__Coupon__Pro__Expiration' ) ) {
 			$coupon_expiration = new Cctor__Coupon__Pro__Expiration();
 		} else {
@@ -142,6 +147,28 @@ class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 				if ( 1 == $coupon_expiration->get_expiration_option() ) {
 					echo "<p style='padding-left:40px;'>" . __( 'Yes', 'coupon-creator' ) . "</p>";
 				}
+				break;
+
+			case 'cctor_category':
+
+				$terms = get_the_terms( $post_id, 'cctor_coupon_category' );
+
+				if ( ! empty( $terms ) ) {
+
+					$out = array();
+
+					foreach ( $terms as $term ) {
+						$out[] = sprintf( '<a href="%s">%s</a>', esc_url( add_query_arg( array(
+								'post_type' => $post->post_type,
+								'cctor_coupon_category'     => $term->slug
+							), 'edit.php' ) ), esc_html( sanitize_term_field( 'name', $term->name, $term->term_id, 'genre', 'display' ) ) );
+					}
+
+					echo join( ', ', $out );
+				} else {
+					_e( 'No Categories', 'coupon-creator' );
+				}
+
 				break;
 		}
 

@@ -127,7 +127,9 @@ class Cctor__Coupon__Admin__Inserter {
 				if ( coupon_id == "loop" ) {
 					coupon_shortcode = "coupon";
 					coupon_category = jQuery( "#coupon_category_select" ).val();
-					coupon_category = " category=\"" + coupon_category + "\" ";
+					if ( coupon_category ) {
+						coupon_category = " category=\"" + coupon_category + "\" ";
+					}
 
 					coupon_orderby = jQuery( "#coupon_orderby" ).val();
 					coupon_orderby = " couponorderby=\"" + coupon_orderby + "\" ";
@@ -231,7 +233,7 @@ class Cctor__Coupon__Admin__Inserter {
 						<label
 							for="coupon_select"><?php echo __( 'Select Loop or an Individual Coupon', 'coupon-creator' ); ?></label>
 						<select name="coupon_select_box" id="coupon_select" onchange="show_category()">
-							<option value="#"></option>
+							<option value=""></option>
 							<option value="loop"><?php echo __( 'Coupon Loop', 'coupon-creator' ); ?></option>
 							<?php
 							while ( $querycoupon->have_posts() ) {
@@ -248,7 +250,7 @@ class Cctor__Coupon__Admin__Inserter {
 						<label
 							for="coupon_category_select"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon-creator' ); ?></label>
 						<select id="coupon_category_select" name="coupon_category_select">
-							<option value="#"></option>
+							<option value=""></option>
 							<option value=""><?php echo __( 'All Categories', 'coupon-creator' ); ?></option>
 							<?php
 							$cctor_cat_args = array(

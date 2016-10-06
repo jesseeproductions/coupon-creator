@@ -189,6 +189,13 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'content',
 		);
+		$fields[ $prefix . 'coupon_type' ]  = array(
+			'id'        => $prefix . 'coupon_type',
+			'type'      => '',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'content',
+			'wrapclass' => ''
+		);
 		$fields[ $prefix . 'heading_deal' ]  = array(
 			'id'        => $prefix . 'heading_deal',
 			'title'     => '',
