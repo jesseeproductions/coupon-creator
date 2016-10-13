@@ -11,12 +11,12 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
  * Show the License Fields If Core was Already Updated but not Pro
  *
  */
-class Cctor__Coupon__Admin__Upgrades {
+/*class Cctor__Coupon__Admin__Upgrades {
 
 	/*
 	* Construct
 	*/
-	public function __construct() {
+/*public function __construct() {
 
 		//Load Pro Option Tabs
 		add_filter( 'cctor_option_sections', array( __CLASS__, 'cctor_pro_option_tabs' ), 10, 1 );
@@ -38,7 +38,7 @@ class Cctor__Coupon__Admin__Upgrades {
 		if ( ( isset( $cctor_license_info['key'] ) && '' != $cctor_license_info['key'] ) && ( isset( $cctor_license_info['status'] ) && 'valid' == $cctor_license_info['status'] ) ) {
 
 			// setup the updater
-			$edd_updater = new Cctor__Coupon__Pro__Admin__Updater( COUPON_CREATOR_STORE_URL, CCTOR_PRO_PATH . 'coupon-creator-pro.php', array(
+			$edd_updater = new Cctor__Coupon__Pro__Admin__Updater( Cctor__Coupon__Main::instance()->get_shop_url(), CCTOR_PRO_PATH . 'coupon-creator-pro.php', array(
 				'version'   => get_option( CCTOR_PRO_VERSION_KEY ),    // current version number
 				'license'   => trim( $cctor_license_info['key'] ),
 				'item_name' => COUPON_CREATOR_PRO,        // name of this plugin
@@ -52,7 +52,7 @@ class Cctor__Coupon__Admin__Upgrades {
 	/*
 	* Coupon Creator Pro Option Tabs
 	*/
-	public static function cctor_pro_option_tabs( $sections ) {
+/*	public static function cctor_pro_option_tabs( $sections ) {
 
 		$sections['license'] = __( 'Licenses', 'coupon-creator-pro' );
 
@@ -63,7 +63,7 @@ class Cctor__Coupon__Admin__Upgrades {
 	/*
 	* Coupon Creator Pro Option Fields
 	*/
-	public static function cctor_pro_option_fields( $options ) {
+/*	public static function cctor_pro_option_fields( $options ) {
 
 		//Pro License
 		$options['cctor_pro_license_head']   = array(
@@ -94,4 +94,4 @@ class Cctor__Coupon__Admin__Upgrades {
 
 	}
 
-}
+}*/

@@ -618,4 +618,16 @@ class Cctor__Coupon__Main {
 		do_action( 'cctor_coupon_parse_query', $query );
 	}
 
+
+	/**
+	 * Return Shop URL for Plugin
+	 *
+	 * @return string
+	 */
+	public function get_shop_url() {
+
+		return defined( 'COUPON_CREATOR_STORE_URL' ) ? COUPON_CREATOR_STORE_URL : self::COUPON_CREATOR_STORE_URL;
+
+	}
+
 }
