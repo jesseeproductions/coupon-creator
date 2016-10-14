@@ -17,10 +17,10 @@ class Cctor__Coupon__Main {
 	const POSTTYPE                 = 'cctor_coupon';
 	const CAPABILITIESPLURAL       = 'cctor_coupons';
 	const TEXT_DOMAIN              = 'coupon-creator';
-	const CCTOR_MIN_PHP_VERSION    = '5.2';
-	const CCTOR_MIN_WP_VERSION     = '4.0';
-	const CCTOR_VERSION_KEY        = 'cctor_coupon_version';
-	const CCTOR_VERSION_NUM        = '2.4dev';
+	const MIN_PHP_VERSION    = '5.2';
+	const MIN_WP_VERSION     = '4.0';
+	const VERSION_KEY        = 'cctor_coupon_version';
+	const VERSION_NUM        = '2.4dev';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
@@ -160,10 +160,10 @@ class Cctor__Coupon__Main {
 		} else {
 			switch ( strtolower( $system ) ) {
 				case 'wordpress' :
-					$supported = version_compare( get_bloginfo( 'version' ), self::CCTOR_MIN_WP_VERSION, '>=' );
+					$supported = version_compare( get_bloginfo( 'version' ), self::MIN_WP_VERSION, '>=' );
 					break;
 				case 'php' :
-					$supported = version_compare( phpversion(), self::CCTOR_MIN_PHP_VERSION, '>=' );
+					$supported = version_compare( phpversion(), self::MIN_PHP_VERSION, '>=' );
 					break;
 			}
 			$supported = apply_filters( 'cctor_supported_version', $supported, $system );
@@ -178,10 +178,10 @@ class Cctor__Coupon__Main {
 	 */
 	public function notSupportedError() {
 		if ( ! self::supportedVersion( 'wordpress' ) ) {
-			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::CCTOR_MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
+			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
 		}
 		if ( ! self::supportedVersion( 'php' ) ) {
-			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::CCTOR_MIN_PHP_VERSION, phpversion() ) . '</p></div>';
+			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::MIN_PHP_VERSION, phpversion() ) . '</p></div>';
 		}
 	}
 

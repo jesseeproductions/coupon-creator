@@ -19,7 +19,7 @@ class Cctor__Coupon__Admin__Updates {
 	public static function admin_upgrade_version() {
 
 		//Update Version Number
-		if ( get_option( Cctor__Coupon__Main::CCTOR_VERSION_KEY ) != Cctor__Coupon__Main::CCTOR_VERSION_NUM ) {
+		if ( get_option( Cctor__Coupon__Main::VERSION_KEY ) != Cctor__Coupon__Main::VERSION_NUM ) {
 
 			// Then update the version value
 			update_option( 'coupon_update_version', date( 'l jS \of F Y h:i:s A' ) );
@@ -30,7 +30,7 @@ class Cctor__Coupon__Admin__Updates {
 
 			//self::update_ignore_expiration();
 
-			update_option( Cctor__Coupon__Main::CCTOR_VERSION_KEY, Cctor__Coupon__Main::CCTOR_VERSION_NUM );
+			update_option( Cctor__Coupon__Main::VERSION_KEY, Cctor__Coupon__Main::VERSION_NUM );
 
 			update_option( 'cctor_coupon_base_change', true );
 
