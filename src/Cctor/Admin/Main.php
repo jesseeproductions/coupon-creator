@@ -28,6 +28,13 @@ class Cctor__Coupon__Admin__Main {
 		new Cctor__Coupon__Admin__Columns();
 		Cctor__Coupon__Admin__Meta::instance();
 
+		//handle older versions of Pro so they can update before 2.4
+		if ( defined( 'CCTOR_PRO_VERSION_NUM' ) && 2.4 > CCTOR_PRO_VERSION_NUM ) {
+
+			new Cctor__Coupon__Admin__Pro_License_Pre_24();
+
+		}
+
 	}
 
 	/**
