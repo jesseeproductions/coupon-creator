@@ -159,9 +159,9 @@ class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 
 					foreach ( $terms as $term ) {
 						$out[] = sprintf( '<a href="%s">%s</a>', esc_url( add_query_arg( array(
-								'post_type' => $post->post_type,
-								'cctor_coupon_category'     => $term->slug
-							), 'edit.php' ) ), esc_html( sanitize_term_field( 'name', $term->name, $term->term_id, 'genre', 'display' ) ) );
+							'post_type'             => $post->post_type,
+							'cctor_coupon_category' => $term->slug
+						), 'edit.php' ) ), esc_html( sanitize_term_field( 'name', $term->name, $term->term_id, 'genre', 'display' ) ) );
 					}
 
 					echo join( ', ', $out );

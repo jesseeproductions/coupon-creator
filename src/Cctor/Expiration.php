@@ -290,8 +290,6 @@ class Cctor__Coupon__Expiration {
 	/**
 	 * Check if a Coupon is Expired
 	 *
-	 * @param $coupon_id
-	 *
 	 * @return bool
 	 */
 	public function is_coupon_current() {

@@ -3,6 +3,8 @@
 if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
 }
+
+
 /*
 * Admin Help Class
 *

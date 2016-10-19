@@ -25,7 +25,7 @@ class Cctor__Coupon__Admin__Field__Image_Coupon {
 		}
 
 		$imagemsg = isset( $field['imagemsg'] ) ? $field['imagemsg'] : '';
-		$class = isset( $field['class'] ) ? $field['class'] : '';
+		$class    = isset( $field['class'] ) ? $field['class'] : '';
 		$imagesrc = '';
 
 		if ( is_numeric( $value ) ) {

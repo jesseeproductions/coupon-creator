@@ -3,11 +3,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
+
+
 /**
  * Class Cctor__Coupon__Admin__Fields
  * Coupon Fields for Meta and Options
  */
-class Cctor__Coupon__Admin__Fields  {
+class Cctor__Coupon__Admin__Fields {
 
 
 	/*

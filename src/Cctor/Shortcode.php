@@ -3,10 +3,14 @@
 if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
 }
+
+
 /*
 * Coupon Creator Shortcode Class
 *
 */
+
+
 class Cctor__Coupon__Shortcode {
 
 	/*
@@ -36,9 +40,6 @@ class Cctor__Coupon__Shortcode {
 			"bordertheme"   => '',
 			"filterid"      => ''
 		), $atts, 'coupon' );
-
-		$filterid     = '';
-		$coupon_align = '';
 
 		$filterid     = $cctor_atts['filterid'];
 		$coupon_align = $cctor_atts['coupon_align'];
@@ -119,9 +120,9 @@ class Cctor__Coupon__Shortcode {
 				 * Filter Individual Coupon Outer Wrap
 				 *
 				 *
-				 * @param int $coupon_id .
+				 * @param int         $coupon_id    .
 				 * @param string|null $coupon_align .
-				 * @param string $cctor_atts['bordertheme'] .
+				 * @param string      $cctor_atts   ['bordertheme'] .
 				 *
 				 */
 				$outer_coupon_wrap = apply_filters( 'cctor_outer_content_wrap', $coupon_id, $coupon_align, $cctor_atts['bordertheme'] );
@@ -144,7 +145,7 @@ class Cctor__Coupon__Shortcode {
 				 *
 				 *
 				 * @param int $coupon_id
-				 * @param string single_coupon (image size)
+				 * @param     string (image size)
 				 *
 				 */
 				$couponimage = apply_filters( 'cctor_image_url', $coupon_id, 'single_coupon' );
@@ -166,9 +167,9 @@ class Cctor__Coupon__Shortcode {
 					 * Filter Individual Coupon Inner Wrap
 					 *
 					 *
-					 * @param int $coupon_id .
+					 * @param int         $coupon_id    .
 					 * @param string|null $coupon_align .
-					 * @param string $cctor_atts['bordertheme'] .
+					 * @param string      $cctor_atts   ['bordertheme'] .
 					 *
 					 */
 					$inner_coupon_wrap = apply_filters( 'cctor_inner_content_wrap', $coupon_id, $cctor_atts['bordertheme'] );

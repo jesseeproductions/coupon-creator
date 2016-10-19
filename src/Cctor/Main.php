@@ -17,10 +17,10 @@ class Cctor__Coupon__Main {
 	const POSTTYPE                 = 'cctor_coupon';
 	const CAPABILITIESPLURAL       = 'cctor_coupons';
 	const TEXT_DOMAIN              = 'coupon-creator';
-	const MIN_PHP_VERSION    = '5.2';
-	const MIN_WP_VERSION     = '4.0';
-	const VERSION_KEY        = 'cctor_coupon_version';
-	const VERSION_NUM        = '2.4';
+	const MIN_PHP_VERSION          = '5.2';
+	const MIN_WP_VERSION           = '4.0';
+	const VERSION_KEY              = 'cctor_coupon_version';
+	const VERSION_NUM              = '2.4';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
@@ -594,7 +594,7 @@ class Cctor__Coupon__Main {
 	 **/
 	public static function parse_query( $query ) {
 
-		// @formatter:off
+	// @formatter:off
 	$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
 	// check if a coupon query by post_type
 	$query->cctor_is_coupon = ( in_array( 'cctor_coupon', $types ) && count( $types ) < 2 )
@@ -609,10 +609,10 @@ class Cctor__Coupon__Main {
 		? true // a coupon query of some type
 		: false;
 	// @formatter:on
+
 		/**
 		 * Parse Coupon Query Action
 		 *
-		 * @since 2.2
 		 * @parm  object $query
 		 */
 		do_action( 'cctor_coupon_parse_query', $query );

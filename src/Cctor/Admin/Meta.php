@@ -189,7 +189,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'content',
 		);
-		$fields[ $prefix . 'coupon_type' ]  = array(
+		$fields[ $prefix . 'coupon_type' ]   = array(
 			'id'        => $prefix . 'coupon_type',
 			'type'      => '',
 			'section'   => 'coupon_creator_meta_box',
@@ -298,10 +298,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'wrapclass' => 'image-coupon-disable'
 		);
 		$fields[ $prefix . 'inside_radius' ]        = array(
-			'id'      => $prefix . 'inside_radius',
-			'type'    => '',
-			'section' => 'coupon_creator_meta_box',
-			'tab'     => 'style',
+			'id'        => $prefix . 'inside_radius',
+			'type'      => '',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'style',
 			'wrapclass' => 'image-coupon-disable'
 		);
 
@@ -377,10 +377,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'      => 'expiration',
 			'bulkedit' => 'cctor_pro_expiration',
 			'toggle'   => array(
-				'field' => 'select',
-				'priority'  => 10,
-				'group' => '.expiration-field',
-				'show'  => '.expiration-'
+				'field'    => 'select',
+				'priority' => 10,
+				'group'    => '.expiration-field',
+				'show'     => '.expiration-'
 			)
 		);
 
@@ -449,7 +449,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		$date_format = get_metadata( get_the_id(), $prefix . 'date_format', true );
 
-		$fields[ $prefix . 'start_date' ]         = array(
+		$fields[ $prefix . 'start_date' ] = array(
 			'id'      => $prefix . 'start_date',
 			'type'    => '',
 			'section' => 'coupon_creator_meta_box',
@@ -488,12 +488,12 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		);
 
 		$img_toggle = array(
-			'field' => 'input',
-			'type'  => 'image',
-			'priority'  => 6,
-			'group' => '.image-coupon-disable',
-			'show'  => '',
-			'msg'   => array(
+			'field'    => 'input',
+			'type'     => 'image',
+			'priority' => 6,
+			'group'    => '.image-coupon-disable',
+			'show'     => '',
+			'msg'      => array(
 				'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
 				'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
 			)
@@ -501,12 +501,12 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		if ( class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
 			$img_toggle = array(
-				'field' => 'input',
-				'type'  => 'image',
-				'priority'  => 6,
-				'group' => '.image-coupon-disable',
-				'show'  => '',
-				'msg'   => array(
+				'field'    => 'input',
+				'type'     => 'image',
+				'priority' => 6,
+				'group'    => '.image-coupon-disable',
+				'show'     => '',
+				'msg'      => array(
 					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
 					'style'   => __( ' Only outer border styles are available when using an Image Coupon', 'coupon-creator' )
 				)

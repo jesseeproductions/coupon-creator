@@ -56,7 +56,7 @@ class Cctor__Coupon__Admin__Main {
 		//Load License Fields for Old Versions of Pro to Upgrade
 		//$pro_version = get_option( 'cctor_coupon_pro_version' );
 		//if ( $pro_version && version_compare( $pro_version , Cctor__Coupon__Main::CCTOR_VERSION_NUM, '<' ) )  {
-			//new Cctor__Coupon__Admin__Upgrades();
+		//new Cctor__Coupon__Admin__Upgrades();
 		//}
 
 

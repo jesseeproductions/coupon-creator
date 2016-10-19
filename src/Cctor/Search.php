@@ -3,6 +3,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
+
+
 /**
  * Modify WordPress Search
  *

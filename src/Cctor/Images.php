@@ -3,6 +3,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
+
+
 /**
  * Add Image Sizes and Filters for Image Coupons
  *
