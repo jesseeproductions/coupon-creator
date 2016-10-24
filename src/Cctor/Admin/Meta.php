@@ -443,7 +443,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			),
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'expiration',
-			'wrapclass' => 'expiration-field expiration-2 expiration-3 expiration-4',
+			'wrapclass' => 'expiration-field expiration-2 expiration-3 expiration-4 expiration-5',
 			'bulkedit'  => 'cctor_pro_expiration',
 		);
 
@@ -490,7 +490,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$img_toggle = array(
 			'field'    => 'input',
 			'type'     => 'image',
-			'priority' => 6,
+			'priority' => 5,
 			'group'    => '.image-coupon-disable',
 			'show'     => '',
 			'msg'      => array(

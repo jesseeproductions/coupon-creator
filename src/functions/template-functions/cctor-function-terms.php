@@ -5,7 +5,7 @@ if( $_SERVER[ 'SCRIPT_FILENAME' ] == __FILE__ )
 
 /*
 * Coupon Creator Print Template Deal
-* @version 1.90
+*
 */
 function cctor_show_terms($coupon_id) {
 	
@@ -25,7 +25,6 @@ function cctor_show_terms($coupon_id) {
 	//Run Shortcodes
 	$terms = do_shortcode( $terms );
 	
-	?><div class="cctor_terms"><?php echo strip_tags( $terms, 
-	apply_filters( 'cctor_filter_terms_tags', $cctor_terms_tags ) );  ?></div><?php
+	?><div class="cctor_terms"><?php echo strip_tags( $terms, apply_filters( 'cctor_filter_terms_tags', $cctor_terms_tags ) );  ?></div><?php
 
 }

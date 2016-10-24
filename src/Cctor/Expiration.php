@@ -27,7 +27,7 @@ class Cctor__Coupon__Expiration {
 	/**
 	 * @var date
 	 */
-	protected $start;
+	protected $start_date;
 
 	/**
 	 * @var date

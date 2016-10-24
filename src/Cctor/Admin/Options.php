@@ -214,7 +214,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		$fields['cctor_default_date_format']                  = array(
 			'section' => 'defaults',
-			'title'   => __( 'Expiration Date Format', 'coupon-creator' ),
+			'title'   => __( 'Date Format', 'coupon-creator' ),
 			'desc'    => __( 'Select the Date Format to show for all Coupons*', 'coupon-creator' ),
 			'type'    => 'select',
 			'std'     => '0',
