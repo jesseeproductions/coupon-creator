@@ -32,7 +32,7 @@ class Cctor__Coupon__Admin__Updates {
 
 			update_option( Cctor__Coupon__Main::VERSION_KEY, Cctor__Coupon__Main::VERSION_NUM );
 
-			update_option( 'cctor_coupon_base_change', true );
+			update_option( 'pngx_permalink_change', true );
 
 		}
 	}

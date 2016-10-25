@@ -17,6 +17,9 @@ class Cctor__Coupon__Admin__Main {
 	*/
 	public function __construct() {
 
+		//Check to flush permalinks
+		add_action( 'init', array( 'Pngx__Admin__Fields', 'flush_permalinks' ) );
+
 		//Setup Admin
 		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
 
