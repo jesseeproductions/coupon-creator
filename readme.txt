@@ -26,22 +26,22 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=oTa7puu7t24
 
-<h4>Coupon Creator Pro 2.3 Now Available!</h4>
-[Get a Pro License](http://cctor.link/JIGHR) with a new shortcode, filter bar, quick & bulk edits, template system, column display, 5 border styles, recurring expirations, x days expiration, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+<h4>Coupon Creator Pro 2.4 Now Available!</h4>
+[Get a Pro License](http://cctor.link/JIGHR) with a couponloop shortcode, filter bar with ability to exclude coupon categories, quick & bulk edits, template system, column display, 5 border styles, recurring expirations, x days expiration, range expiration, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
 
-<h4>Coupon Creator Pro 2.3 Features Include:</h4>
+<h4>Coupon Creator Pro 2.4 Features Include:</h4>
 * [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
 * Quick and Bulk edits for the expiration and counter fields
 * Border themes, Dotted Border, Stitched Border, Saw Tooth Border (modern browsers and IE 10+), and None Option
 * Recurring Expiration; set an expiration for the end of the month and have it automatically change to the end of the next month
 * X Days expiration to set a period to redeem a coupon from the day of printing it
+* Range expiration to display a start and end date for the coupon to be valid such as valid 11/11/17 thru 12/11/17
 * Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows
 * Pro Inserter has the ability to search coupons and categories in the dropdown
 * Visual editor to easily style the term's content on your site
 * Display the Print View in a Popup for any coupons and print directly from the Popup
 * Use the View Shortcodes to display content in the Shortcode View or the Print View only
-* Create and Display WooCommerce Coupons from the Coupon Creator Editor
-* Set a Counter per coupon to expire the coupon after a limit has been reached
+* Set a Counter per coupon to expire the coupon after a limit has been reached or use as an unlimited counter
 * Change “Expires on:”, “Click to Open in Print View”, and “Print the Coupon” for all coupons
 * Set coupon size for the Shortcode View and the Print View for all coupons including the Image Coupon
 * Override “Click to Open in Print View” text and link per coupon
@@ -134,6 +134,9 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+
+= 2.4 October 31st, 2016 =
+
 
 = 2.3.1 August 16th, 2016 =
 * Fix - Translations not loading, thanks to cahaubold for bringing up this issue
@@ -305,8 +308,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.3 =
-This is a major update to the Coupon Creator Expiration and Help System and both it and Pro should be at least on 2.3 for them to work correctly.
+= 2.4 =
+Coupon Creator Pro 2.4 is a complete refactor of the code base and both it and Coupon Creator Pro and 2.4 must be on 2.4 for them to work correctly.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>

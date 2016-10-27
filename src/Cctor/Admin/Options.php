@@ -302,6 +302,33 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'type'    => 'color', // color
 			'section' => 'defaults'
 		);
+		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+			$fields['pro_feature_defaults_pro']           = array(
+				'section' => 'defaults',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
+				'type'    => 'heading'
+			);
+			$fields['pro_feature_defaults']                  = array(
+				'section' => 'defaults',
+				'title'   => '',
+				'desc'    => '',
+				'type'    => 'list',
+				'std'     => '',
+				'choices' => array(
+					'0' => __( 'Set all the styles for the coupons as defaults to get the same custom look for all your coupons with less work', 'coupon-creator' ),
+					'1' => __( 'Set Inside Border Radius', 'coupon-creator' ),
+					'2' => __( 'Select Coupon Outside Border Color', 'coupon-creator' ),
+					'3' => __( 'Set Outer Border Radius, works for the image coupon too', 'coupon-creator' ),
+					'4' => __( 'Select Coupon Terms Text Color', 'coupon-creator' ),
+					'5' => __( 'Select Coupon Background Color', 'coupon-creator' ),
+					'6' => __( 'Choose a Background Image with option to set Background Repeat, Background Position, and Background Size', 'coupon-creator' ),
+					'7' => __( 'Set Inside Border Radius', 'coupon-creator' ),
+				)
+			);
+		}
+
+
 
 		//LinkAttributes - Permalinks
 		$fields['permalinks_help']               = array(
@@ -474,55 +501,28 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 					and get all the features below with 1 year of updates and direct support.</strong></p>
 			<br>
 			<ul>
-				<h4>Coupon Creator Pro Features Include:</h4><br>
 				<li>Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon,
 					and None.<br>
 					<img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples"
 					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-border-examples.gif"/>
 				</li>
-				<li>Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3
-					Weeks:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Recurring Expiration"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-recurring-expiration.gif"/>
+
 				</li>
-				<li>In Pro use the Visual editor to easily style the term's content on your site:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Visual Editor"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-visual-editor.gif"/>
-				</li>
-				<li>Display the Print View in a Popup for any coupons and print directly from the Popup:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Popup"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-popup.gif"/>
-				</li>
-				<li>Use the View Shortcodes to display content in the Shortcode View or the Print View only:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Shortcode for hooks and print views"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-shortcodes.gif"/>
-				</li>
-				<li>Set a Counter per coupon to expire the coupon after a limit has been reached:<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Counter"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-pro-counter.png"/>
-				</li>
-				<li>Change "Expires on:", "Click to Open in Print View", and "Print the Coupon" for all Coupons</li>
+				<li>Display the Print View in a Popup for any coupons and print directly from the Popup</li>
+				<li>Set a Range Expiration to show coupons with a start and end date such as Valid 11/01/16 thru 11/10/16.</li>
+				<li>Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3 Weeks</li>
+				<li>Set a Counter per coupon to expire the coupon after a limit has been reached or set it to unlimited</li>
+
+				<li>Change "Expires on:", "Click to Open in Print View", Valid thru, and "Print the Coupon" for all Coupons</li>
 				<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon</li>
 				<li>Override "Click to Open in Print View" text and link per coupon</li>
 				<li>Override "Print the Coupon" text and link per coupon</li>
-				<li>Select where you want to display the Coupon Deal per coupon</li>
+
 				<li>Disable the Print View per Coupon</li>
 				<li>Add your Google Analytics Code to the Print Template from the Coupon Options</li>
 				<li>Create and Display WooCommerce Coupons from the Coupon Creator Editor</li>
 			</ul>
 			<ul>
-				<h4>Coupon Creator Pro Style Features:</h4><br>
-				<li>Set all the styles for the coupons as defaults to get the same custom look for all your coupons
-					with less work
-				</li>
-				<li>Set Inside Border Radius</li>
-				<li>Select Coupon Outside Border Color</li>
-				<li>Set Outer Border Radius, works for the image coupon too</li>
-				<li>Select Coupon Terms Text Color</li>
-				<li>Select Coupon Background Color</li>
-				<li>Choose a Background Image with option to set Background Repeat, Background Position, and
-					Background Size
-				</li>
 				<li>Direct Support through CouponCreatorPlugin.com</li>
 			</ul>
 			<br>

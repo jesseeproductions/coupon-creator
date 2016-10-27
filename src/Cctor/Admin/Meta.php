@@ -243,6 +243,31 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'rows'      => 4,
 			'wrapclass' => 'image-coupon-disable'
 		);
+		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+			$fields[ $prefix . 'pro_content_features_heading' ]   = array(
+				'id'        => $prefix . 'pro_content_features_heading',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'content',
+				'title'   => '',
+				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
+				'type'    => 'heading'
+			);
+			$fields[ $prefix . 'pro_content_features' ]   = array(
+				'id'        => $prefix . 'pro_content_features',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'content',
+				'title'   => '',
+				'desc'    => '',
+				'type'    => 'list',
+				'std'     => '',
+				'choices' => array(
+					'0' => __( 'Visual editor to easily style the term\'s content on your site', 'coupon-creator' ),
+					'1' => __( 'Use the View Shortcodes to display content in the Shortcode View or the Print View only', 'coupon-creator' ),
+					'2' => __( 'Select where you want to display the Coupon Deal per coupon', 'coupon-creator' ),
+					'3' => __( 'Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows', 'coupon-creator' ),
+				)
+			);
+		}
 
 		//Style Tab
 		$fields[ $prefix . 'style_help' ] = array(
