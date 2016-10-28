@@ -104,10 +104,10 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		$this->sections['defaults']   = __( 'Defaults', 'coupon-creator' );
 		$this->sections['permalinks'] = __( 'Link Attributes / Permalinks', 'coupon-creator' );
 		$this->sections['display']    = __( 'Display', 'coupon-creator' );
+		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $this->sections['templating'] = __( 'Templating', 'coupon-creator' ) : '';
 		$this->sections['help']       = __( 'Help', 'coupon-creator' );
 		$this->sections['license']    = __( 'Licenses', 'coupon-creator' );
 		$this->sections['reset']      = __( 'Reset', 'coupon-creator' );
-		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $this->sections['pro'] = __( 'Upgrade to Pro', 'coupon-creator' ) : '';
 
 		unset( $this->sections['license'] );
 
@@ -303,11 +303,11 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'section' => 'defaults'
 		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields['pro_feature_defaults_pro']           = array(
+			$fields['pro_feature_defaults_heading']           = array(
 				'section' => 'defaults',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
-				'type'    => 'heading'
+				'type'    => 'pro_heading'
 			);
 			$fields['pro_feature_defaults']                  = array(
 				'section' => 'defaults',
@@ -316,14 +316,9 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Set all the styles for the coupons as defaults to get the same custom look for all your coupons with less work', 'coupon-creator' ),
-					'1' => __( 'Set Inside Border Radius', 'coupon-creator' ),
-					'2' => __( 'Select Coupon Outside Border Color', 'coupon-creator' ),
-					'3' => __( 'Set Outer Border Radius, works for the image coupon too', 'coupon-creator' ),
-					'4' => __( 'Select Coupon Terms Text Color', 'coupon-creator' ),
-					'5' => __( 'Select Coupon Background Color', 'coupon-creator' ),
-					'6' => __( 'Choose a Background Image with option to set Background Repeat, Background Position, and Background Size', 'coupon-creator' ),
-					'7' => __( 'Set Inside Border Radius', 'coupon-creator' ),
+					'0' => __( 'Set default options for the expiration fields for all new coupons' ),
+					'1' => __( 'Use the Expiration status to change expired coupons to draft' ),
+					'2' => __( 'Set default styling such as color, radius, and border type for new coupons with the Outer & Inner Border, Deal & Background Fields' ),
 				)
 			);
 		}
@@ -381,6 +376,25 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'section' => '',
 			'class'   => ''
 		);
+		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+			$fields['pro_feature_permalink_heading']           = array(
+				'section' => 'permalinks',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
+				'type'    => 'pro_heading'
+			);
+			$fields['pro_feature_permalink']                  = array(
+				'section' => 'permalinks',
+				'title'   => '',
+				'desc'    => '',
+				'type'    => 'list',
+				'std'     => '',
+				'choices' => array(
+					'0' => __( 'Add your Google Analytics Code to Track Print Views' ),
+					'1' => __( 'Set new coupons to default as Pop Up Coupons and hHide the "Click to Open in Print View" links' ),
+				)
+			);
+		}
 
 		//display
 		$fields['display_help'] = array(
@@ -428,6 +442,49 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'class'   => '',
 			'desc'    => __( 'Check this to prevent the Coupon Creator from modifying the search query to remove the coupon custom post type.', 'coupon-creator' )
 		);
+		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+			$fields['pro_feature_display_heading']           = array(
+				'section' => 'display',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
+				'type'    => 'pro_heading'
+			);
+			$fields['pro_feature_display']                  = array(
+				'section' => 'display',
+				'title'   => '',
+				'desc'    => '',
+				'type'    => 'list',
+				'std'     => '',
+				'choices' => array(
+					'0' => __( 'Change "Expires on:", "Click to Open in Print View", Valid thru, and "Print the Coupon" for all Coupons' ),
+					'1' => __( 'Set Default fonts and font weights for the Print Template' ),
+				)
+			);
+		}
+
+
+		//Pro Template Tab UpSell
+		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+			$fields['pro_feature_templating_heading']           = array(
+				'section' => 'templating',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
+				'type'    => 'pro_heading'
+			);
+			$fields['pro_feature_templating']                  = array(
+				'section' => 'templating',
+				'title'   => '',
+				'desc'    => '',
+				'type'    => 'list',
+				'std'     => '',
+				'choices' => array(
+					'0' => __( 'Set default settings such as per page, order, and columns for the &#91;couponloop&#93; shortcode in Pro along with choosing a main page to display coupons from' ),
+					'1' => __( 'Set the responsive breakpoints for uses of the &#91;couponloop&#93; shortcode' ),
+					'2' => __( 'Set Coupon Size for both views of the coupon for regular coupons and the image coupon' ),
+				)
+			);
+		}
+
 
 		//Help
 		$fields['cctor_all_help'] = array(
@@ -460,15 +517,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'desc'    => __( 'Check this box and click "Save Changes" below to reset all coupon creator options to their defaults. This does not change any existing coupon settings or remove your licenses.', 'coupon-creator' )
 		);
 
-		//Help
-		$fields['pro_tab'] = array(
-			'section' => 'pro',
-			'title'   => '',
-			'type'    => 'pro',
-			'std'     => 0,
-			'desc'    => ''
-		);
-
 
 		//Filter Option Fields
 		if ( has_filter( 'cctor_option_filter' ) ) {
@@ -483,54 +531,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		}
 
 		return $fields;
-
-	}
-
-	/*
-	* Pro Sales Section
-	*/
-	public static function display_pro_section() {
-
-		ob_start(); ?>
-
-		<div class='cctor-pro-upsell'>
-			<h4><img alt="Get Coupon Creator Pro!" src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-logo.png"/></h4>
-			<br>
-
-			<p><strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro</a>
-					and get all the features below with 1 year of updates and direct support.</strong></p>
-			<br>
-			<ul>
-				<li>Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon,
-					and None.<br>
-					<img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples"
-					     src="<?php echo Cctor__Coupon__Main::instance()->resource_url; ?>images/cctor-border-examples.gif"/>
-				</li>
-
-				</li>
-				<li>Display the Print View in a Popup for any coupons and print directly from the Popup</li>
-				<li>Set a Range Expiration to show coupons with a start and end date such as Valid 11/01/16 thru 11/10/16.</li>
-				<li>Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3 Weeks</li>
-				<li>Set a Counter per coupon to expire the coupon after a limit has been reached or set it to unlimited</li>
-
-				<li>Change "Expires on:", "Click to Open in Print View", Valid thru, and "Print the Coupon" for all Coupons</li>
-				<li>Set Coupon Size for both views of the coupon for regular coupons and the image coupon</li>
-				<li>Override "Click to Open in Print View" text and link per coupon</li>
-				<li>Override "Print the Coupon" text and link per coupon</li>
-
-				<li>Disable the Print View per Coupon</li>
-				<li>Add your Google Analytics Code to the Print Template from the Coupon Options</li>
-				<li>Create and Display WooCommerce Coupons from the Coupon Creator Editor</li>
-			</ul>
-			<ul>
-				<li>Direct Support through CouponCreatorPlugin.com</li>
-			</ul>
-			<br>
-			<strong style="font-size:15px;"><a target="_blank" href="http://cctor.link/Abqoi">Purchase Pro
-					Now!</a></strong>
-		</div>
-
-		<?php return ob_get_clean();
 
 	}
 

@@ -36,10 +36,9 @@ class Cctor__Coupon__Admin__Fields {
 
 				break;
 
+			case 'pro_heading':
 
-			case 'pro':
-
-				Cctor__Coupon__Admin__Field__Pro::display( $field, $options, $options_id, $meta );
+				Cctor__Coupon__Admin__Field__Pro_Heading::display( $field, $options, $options_id, $meta );
 
 				break;
 

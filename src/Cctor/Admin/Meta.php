@@ -154,8 +154,9 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$tabs['style']        = __( 'Style', 'coupon-creator' );
 		$tabs['expiration']   = __( 'Expiration', 'coupon-creator' );
 		$tabs['image_coupon'] = __( 'Image Coupon', 'coupon-creator' );
+		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $tabs['links'] = __( 'Links', 'coupon-creator' ) : null;
 		$tabs['help']         = __( 'Help', 'coupon-creator' );
-		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $tabs['pro'] = __( 'Upgrade to Pro', 'coupon-creator' ) : null;
+
 
 		//Filter Option Tabs
 		if ( has_filter( 'cctor_filter_meta_tabs' ) ) {
@@ -250,7 +251,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'tab'       => 'content',
 				'title'   => '',
 				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
-				'type'    => 'heading'
+				'type'    => 'pro_heading'
 			);
 			$fields[ $prefix . 'pro_content_features' ]   = array(
 				'id'        => $prefix . 'pro_content_features',
@@ -261,10 +262,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Visual editor to easily style the term\'s content on your site', 'coupon-creator' ),
-					'1' => __( 'Use the View Shortcodes to display content in the Shortcode View or the Print View only', 'coupon-creator' ),
-					'2' => __( 'Select where you want to display the Coupon Deal per coupon', 'coupon-creator' ),
-					'3' => __( 'Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows', 'coupon-creator' ),
+					'0' => __( 'Visual editor to easily style the term\'s content on your site' ),
+					'1' => __( 'Use the View Shortcodes to display content in the Shortcode View or the Print View only' ),
+					'2' => __( 'Select where you want to display the Coupon Deal per coupon' ),
+					'3' => __( 'Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows' ),
 				)
 			);
 		}
@@ -360,6 +361,29 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'       => 'style',
 			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
 		);
+		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+			$fields[ $prefix . 'pro_content_style_heading' ]   = array(
+				'id'        => $prefix . 'pro_content_style_heading',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'style',
+				'title'   => '',
+				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
+				'type'    => 'pro_heading'
+			);
+			$fields[ $prefix . 'pro_content_style' ]   = array(
+				'id'        => $prefix . 'pro_content_style',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'style',
+				'title'   => '',
+				'desc'    => '',
+				'type'    => 'list',
+				'std'     => '',
+				'choices' => array(
+					'0' => __( 'Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br> <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="'. esc_url( Cctor__Coupon__Main::instance()->resource_url ).'images/cctor-border-examples.gif"/>' ),
+					'1' => __( 'Style the outer & inner border fields along with the deal & beakground for this coupon in Pro' ),
+				)
+			);
+		}
 
 		//Expiration
 		$fields[ $prefix . 'expiration_help' ]    = array(
@@ -503,6 +527,31 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'       => 'expiration',
 			'wrapclass' => 'expiration-field'
 		);
+		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+			$fields[ $prefix . 'pro_content_expiration_heading' ]   = array(
+				'id'        => $prefix . 'pro_content_expiration_heading',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'expiration',
+				'title'   => '',
+				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
+				'type'    => 'pro_heading'
+			);
+			$fields[ $prefix . 'pro_expiration_style' ]   = array(
+				'id'        => $prefix . 'pro_expiration_style',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'expiration',
+				'title'   => '',
+				'desc'    => '',
+				'type'    => 'list',
+				'std'     => '',
+				'choices' => array(
+					'0' => __( 'Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3 Weeks' ),
+					'1' => __( 'Set a Range Expiration to show coupons with a start and end date such as Valid 11/01/16 thru 11/10/16.' ),
+					'2' => __( 'Set a Counter per coupon to expire the coupon after a limit has been reached or set it to unlimited', 'coupon-creator'  ),
+					'3' => __( 'Set a Counter per coupon to expire the coupon after a limit has been reached or use as an unlimited counter' ),
+				)
+			);
+		}
 
 		//Image Coupon
 		$fields[ $prefix . 'image_coupon_help' ] = array(
@@ -556,14 +605,32 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'     => 'help',
 		);
 
-		//Upgreade to Pro
-		$fields[ $prefix . 'upgrade_to_pro' ] = array(
-			'label'   => '',
-			'id'      => $prefix . 'upgrade_to_pro',
-			'type'    => 'pro',
-			'section' => 'coupon_creator_meta_box',
-			'tab'     => 'pro'
-		);
+		//Liinks
+		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
+			$fields[ $prefix . 'pro_content_links_heading' ]   = array(
+				'id'        => $prefix . 'pro_content_links_heading',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'links',
+				'title'   => '',
+				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
+				'type'    => 'pro_heading'
+			);
+			$fields[ $prefix . 'pro_links_style' ]   = array(
+				'id'        => $prefix . 'pro_links_style',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'links',
+				'title'   => '',
+				'desc'    => '',
+				'type'    => 'list',
+				'std'     => '',
+				'choices' => array(
+					'0' => __( 'Display the Print View in a Popup for any coupons and print directly from the Popup' ),
+					'1' => __( 'Override "Click to Open in Print View" text and link per coupon' ),
+					'2' => __( 'Override "Print the Coupon" text and link per coupon' ),
+					'3' => __( 'Disable the Print View per Coupon' ),
+				)
+			);
+		}
 
 		if ( has_filter( 'cctor_filter_meta_fields' ) ) {
 			/**
