@@ -262,11 +262,18 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Visual editor to easily style the term\'s content on your site' ),
-					'1' => __( 'Use the View Shortcodes to display content in the Shortcode View or the Print View only' ),
-					'2' => __( 'Select where you want to display the Coupon Deal per coupon' ),
-					'3' => __( 'Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows' ),
+					'0' => __( 'Use the Visual editor to easily style the coupons term\'s' ),
+					'1' => __( 'Give visitors a reason to click on the coupon by only showing the deal in print view or by using the view shortcodes to selectively display content on either view' ),
+					'2' => __( 'Insert columns and rows into the content editor for more unique coupons' ),
 				)
+			);
+			$fields[ $prefix . 'pro_feature_content_link']           = array(
+				'id'        => $prefix . 'pro_feature_content_link',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'content',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Link', 'coupon-creator' ),
+				'type'    => 'pro_link'
 			);
 		}
 
@@ -379,9 +386,17 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br> <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="'. esc_url( Cctor__Coupon__Main::instance()->resource_url ).'images/cctor-border-examples.gif"/>' ),
-					'1' => __( 'Style the outer & inner border fields along with the deal & beakground for this coupon in Pro' ),
+					'0' => __( 'Use 4 style sections in Pro to create a unique coupon or a standard brand to attract customers' ),
+					'2' => __( 'Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br> <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="'. esc_url( Cctor__Coupon__Main::instance()->resource_url ).'images/cctor-border-examples.gif"/>' ),
 				)
+			);
+			$fields[ $prefix . 'pro_feature_style_link']           = array(
+				'id'        => $prefix . 'pro_feature_style_link',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'style',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Link', 'coupon-creator' ),
+				'type'    => 'pro_link'
 			);
 		}
 
@@ -545,11 +560,18 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Setup Recurring Expirations with Patterns such as Monthly, Weekly, Biweekly, and Every 3 Weeks' ),
-					'1' => __( 'Set a Range Expiration to show coupons with a start and end date such as Valid 11/01/16 thru 11/10/16.' ),
-					'2' => __( 'Set a Counter per coupon to expire the coupon after a limit has been reached or set it to unlimited', 'coupon-creator'  ),
-					'3' => __( 'Set a Counter per coupon to expire the coupon after a limit has been reached or use as an unlimited counter' ),
+					'0' => __( 'Utilize 5 different expiration options to help promote sales at your business' ),
+					'1' => __( 'Save time by editing multiple coupons expiration and counter fields using Pro\'s Bulk Edits' ),
+					'2' => __( 'Track coupon print views using the unlimited counter or set a limit to restrict a coupon to a certain amount of customers' ),
 				)
+			);
+			$fields[ $prefix . 'pro_feature_expiration_link']           = array(
+				'id'        => $prefix . 'pro_feature_expiration_link',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'expiration',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Link', 'coupon-creator' ),
+				'type'    => 'pro_link'
 			);
 		}
 
@@ -624,11 +646,17 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Display the Print View in a Popup for any coupons and print directly from the Popup' ),
-					'1' => __( 'Override "Click to Open in Print View" text and link per coupon' ),
-					'2' => __( 'Override "Print the Coupon" text and link per coupon' ),
-					'3' => __( 'Disable the Print View per Coupon' ),
+					'0' => __( 'Use the custom links and text to promote your affiliate links' ),
+					'1' => __( 'Enable your visitors to print coupons while staying on the same page using the Pop Up Coupon' ),
 				)
+			);
+			$fields[ $prefix . 'pro_feature_links_link']           = array(
+				'id'        => $prefix . 'pro_feature_links_link',
+				'section'   => 'coupon_creator_meta_box',
+				'tab'       => 'links',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Link', 'coupon-creator' ),
+				'type'    => 'pro_link'
 			);
 		}
 

@@ -56,6 +56,27 @@
 }
 
 /**
+* Pro Links
+***************************************************/
+div.cctor-pro-link {
+	margin: 0;
+
+	a {
+		color: $darkred;
+		text-decoration: underline;
+
+		&:hover {
+			color: $black;
+			text-decoration: none;
+		}
+	}
+}
+.pngx-wrapper {
+	div.cctor-pro-link {
+		margin: -20px 0 0;
+	}
+}
+/**
 * WooCommerce
 ***************************************************/
 .field-wrap-woocoupon .cctor-meta-label,

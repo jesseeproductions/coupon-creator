@@ -42,6 +42,12 @@ class Cctor__Coupon__Admin__Fields {
 
 				break;
 
+			case 'pro_link':
+
+				Cctor__Coupon__Admin__Field__Pro_Link::display( $field, $options, $options_id, $meta );
+
+				break;
+
 		}
 
 		//return field so other filters can use it

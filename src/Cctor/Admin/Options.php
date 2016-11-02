@@ -316,10 +316,16 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Set default options for the expiration fields for all new coupons' ),
-					'1' => __( 'Use the Expiration status to change expired coupons to draft' ),
-					'2' => __( 'Set default styling such as color, radius, and border type for new coupons with the Outer & Inner Border, Deal & Background Fields' ),
+					'0' => __( 'Save time by setting default options for the expiration fields for all new coupons' ),
+					'1' => __( 'Remove your coupons from the front end by having them set to draft after expired' ),
+					'2' => __( 'Create a standard look with default styling fields such as color, radius, border type, and background fields' ),
 				)
+			);
+			$fields['pro_feature_defaults_link']           = array(
+				'section' => 'defaults',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Link', 'coupon-creator' ),
+				'type'    => 'pro_link'
 			);
 		}
 
@@ -390,9 +396,15 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Add your Google Analytics Code to Track Print Views' ),
-					'1' => __( 'Set new coupons to default as Pop Up Coupons and hHide the "Click to Open in Print View" links' ),
+					'0' => __( 'Use Google Analytics to Track Print Views' ),
+					'1' => __( 'Choose all new coupons to start as Pop Up Coupons or hide the "Click to Open in Print View" links' ),
 				)
+			);
+			$fields['pro_feature_permalink_link']           = array(
+				'section' => 'permalinks',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Link', 'coupon-creator' ),
+				'type'    => 'pro_link'
 			);
 		}
 
@@ -456,9 +468,15 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Change "Expires on:", "Click to Open in Print View", Valid thru, and "Print the Coupon" for all Coupons' ),
-					'1' => __( 'Set Default fonts and font weights for the Print Template' ),
+					'0' => __( 'Customize "Expires on:", "Click to Open in Print View", Valid thru, and "Print the Coupon" for all Coupons' ),
+					'1' => __( 'Change default font and font weights for the Print Template' ),
 				)
+			);
+			$fields['pro_feature_display_link']           = array(
+				'section' => 'display',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Link', 'coupon-creator' ),
+				'type'    => 'pro_link'
 			);
 		}
 
@@ -478,10 +496,17 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Set default settings such as per page, order, and columns for the &#91;couponloop&#93; shortcode in Pro along with choosing a main page to display coupons from' ),
-					'1' => __( 'Set the responsive breakpoints for uses of the &#91;couponloop&#93; shortcode' ),
-					'2' => __( 'Set Coupon Size for both views of the coupon for regular coupons and the image coupon' ),
+					'0' => __( 'Set a custom size for both views of the coupon for coupons and the image coupon' ),
+					'1' => __( 'With the Pro &#91;couponloop&#93; shortcode change default settings such as per page, order, and columns' ),
+					'2' => __( 'Customize to your theme the responsive breakpoints for the &#91;couponloop&#93; shortcode' ),
+					'3' => __( 'Easily build all the attributes of the &#91;couponloop&#93; shortcode and insert it into content using the Pro inserter' ),
 				)
+			);
+			$fields['pro_feature_templating_link']           = array(
+				'section' => 'templating',
+				'title'   => '', // Not used for headings.
+				'desc'    => __( 'Pro Link', 'coupon-creator' ),
+				'type'    => 'pro_link'
 			);
 		}
 

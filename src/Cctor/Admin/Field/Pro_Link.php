@@ -3,16 +3,16 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
-if ( class_exists( 'Cctor__Coupon__Admin__Field__Pro_Heading' ) ) {
+if ( class_exists( 'Cctor__Coupon__Admin__Field__Pro_Link' ) ) {
 	return;
 }
 
 
 /**
- * Class Cctor__Coupon__Admin__Field__Pro_Header
+ * Class Cctor__Coupon__Admin__Field__Pro_Link
  * Coupon Creator Pro Field Header
  */
-class Cctor__Coupon__Admin__Field__Pro_Heading {
+class Cctor__Coupon__Admin__Field__Pro_Link {
 
 	public static function display( $field = array(), $options = array(), $options_id = null, $meta = null ) {
 
@@ -22,7 +22,7 @@ class Cctor__Coupon__Admin__Field__Pro_Heading {
 				echo '</td></tr><tr valign="top"><td colspan="2">';
 			}
 
-			echo '<div class="pro-heading"><img style="width: 180px; height: auto;" alt="Get Coupon Creator Pro!" src="' . esc_url( Cctor__Coupon__Main::instance()->resource_url ) . 'images/cctor-logo.png"/></div>';
+			echo '<div class="cctor-pro-link" ><a target="_blank" href="http://cctor.link/CjZX2">Find out more about the features listed above that you can use from this tab in Pro!</a></div>';
 		}
 
 	}
