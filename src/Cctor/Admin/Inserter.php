@@ -287,7 +287,7 @@ class Cctor__Coupon__Admin__Inserter {
 					<!--Create a Select Box for Orderby -->
 					<div id="coupon_orderby_select_container" class="cctor-inserter-section-row">
 						<label
-							for="coupon_orderby"><?php echo __( 'Select a Coupon Category to use in the Loop', 'coupon-creator' ); ?></label>
+							for="coupon_orderby"><?php echo __( 'Select how to order the coupons', 'coupon-creator' ); ?></label>
 						<select id="coupon_orderby" name="coupon_orberby_select_box">
 							<option value="date"><?php echo __( 'Date (default)', 'coupon-creator' ); ?></option>
 							<option value="none"><?php echo __( 'None', 'coupon-creator' ); ?></option>

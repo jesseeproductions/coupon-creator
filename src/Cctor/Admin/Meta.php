@@ -264,7 +264,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'choices' => array(
 					'0' => __( 'Use the Visual editor to easily style the coupons term\'s' ),
 					'1' => __( 'Give visitors a reason to click on the coupon by only showing the deal in print view or by using the view shortcodes to selectively display content on either view' ),
-					'2' => __( 'Insert columns and rows into the content editor for more unique coupons' ),
+					'2' => __( 'Insert columns and rows into the content editor for more unique looking coupons' ),
 				)
 			);
 			$fields[ $prefix . 'pro_feature_content_link']           = array(
@@ -560,9 +560,9 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
-					'0' => __( 'Utilize 5 different expiration options to help promote sales at your business' ),
+					'0' => __( 'Utilize five(5) different expiration options to help promote sales at your business' ),
 					'1' => __( 'Save time by editing multiple coupons expiration and counter fields using Pro\'s Bulk Edits' ),
-					'2' => __( 'Track coupon print views using the unlimited counter or set a limit to restrict a coupon to a certain amount of customers' ),
+					'2' => __( 'Track coupon print views by using the unlimited counter or set a limit to restrict a coupon to a certain amount of customers' ),
 				)
 			);
 			$fields[ $prefix . 'pro_feature_expiration_link']           = array(

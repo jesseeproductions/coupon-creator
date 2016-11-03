@@ -24,7 +24,7 @@ Create your own coupon with the Coupon Creator for WordPress or upload an image 
 
 Watch this quick video to see the Coupon Creator in Action:
 
-https://www.youtube.com/watch?v=oTa7puu7t24
+https://www.youtube.com/watch?v=q9Jzq3Y00Cw
 
 <h4>Coupon Creator Pro 2.4 Now Available!</h4>
 [Get a Pro License](http://cctor.link/JIGHR) with a couponloop shortcode, filter bar with ability to exclude coupon categories, quick & bulk edits, template system, column display, 5 border styles, recurring expirations, x days expiration, range expiration, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
@@ -135,8 +135,12 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.4 October 31st, 2016 =
-
+= 2.4 November 3rd, 2016 =
+* Add - Modified Enter Title Here to Enter Admin Coupon Title per http://stephanieleary.com/2016/06/wordpress-hidden-gem-enter_title_here-filter/
+* Add - Add the display of the Coupon Category terms per coupon in the admin list table.
+* Add - Add the pngx as the basis for the plugins to make it more modular
+* Tweak - Change Coupon Updated Messages to remove word Post and replace with Coupon per http://wordpress.stackexchange.com/questions/15357/edit-the-post-updated-view-post-link
+* Fix - Fixed it so that if no category is selected with the inserter nothing is add to the shortcode.
 
 = 2.3.1 August 16th, 2016 =
 * Fix - Translations not loading, thanks to cahaubold for bringing up this issue

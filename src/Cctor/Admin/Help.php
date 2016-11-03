@@ -150,7 +150,7 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'section'  => '',
 			'tab'      => 'expiration',
 			'text'     => 'How to use the Expiration and Counter Features',
-			'video_id' => 'YugCWPVigH8',
+			'video_id' => 'QBRCoFEezWY',
 			'type'     => 'video'
 		);
 		$this->fields['link_pro_recurring_expiration']  = array(
