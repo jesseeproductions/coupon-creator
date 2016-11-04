@@ -135,7 +135,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.4 November 3rd, 2016 =
+= 2.4 November 7th, 2016 =
 * Add - Modified Enter Title Here to Enter Admin Coupon Title per http://stephanieleary.com/2016/06/wordpress-hidden-gem-enter_title_here-filter/
 * Add - Add the display of the Coupon Category terms per coupon in the admin list table.
 * Add - Add the pngx as the basis for the plugins to make it more modular
@@ -313,7 +313,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Upgrade Notice ==
 = 2.4 =
-Coupon Creator Pro 2.4 is a complete refactor of the code base and both it and Coupon Creator Pro and 2.4 must be on 2.4 for them to work correctly.
+Coupon Creator 2.4 is a complete refactor, because of this refactor both Coupon Creator and Coupon Creator Pro must be updated to version 2.4 for them to work together.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>
