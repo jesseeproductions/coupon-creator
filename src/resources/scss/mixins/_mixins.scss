@@ -1,0 +1,18 @@
+// Bourbon and Neat mixins and grid system
+@import "bourbon/app/assets/stylesheets/bourbon";
+@import "../grid-settings";
+@import "neat/app/assets/stylesheets/neat";
+//@import "font-kit";
+
+@mixin omega-reset($nth) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter(); }
+  &:nth-child(#{$nth}+1) { clear: none }
+}
+
+@mixin inline_align {
+  display: inline-block;
+  *display: inline;
+  position: relative;
+  vertical-align: top;
+  zoom: 1;
+}

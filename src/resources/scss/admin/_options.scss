@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Options CSS
+   ========================================================================== */
+
+/**
+* Help
+***************************************************/
+.cctor_coupon_page_coupon-options .pngx-section-help-container {
+	margin-left: -10px;
+}
+
+@include media($tablet) {
+	.cctor_coupon_page_coupon-options .pngx-section-help-container {
+		margin-left: 0px;
+	}
+}
+
+/**
+* License Fields
+***************************************************/
+.pngx-license-button-act {
+	background: $blue;
+	border: 1px solid $blue;
+}
+
+.pngx-license-button-det {
+	background: $green;
+	border: 1px solid $green;
+}
+
+.pngx-license-button-det:hover {
+	background: $blue;
+}
+
+/**
+* Panel CSS
+***************************************************/
+#pro.pngx-tabs-panel h2:first-child {
+	display: none !important;
+}
+
+#pro.pngx-tabs-panel ul {
+	list-style-type: disc;
+}
+
+#pro.pngx-tabs-panel li {
+	font-size: 14px;
+	margin-left: 20px;
+	padding-left: 5px;
+}
+
+/**
+* MailChimp
+***************************************************/
+
+.mc-field-group {
+	float: left;
+	width: 192px;
+}
+
+#mc-embedded-subscribe {
+	background: $darkred;
+	border: 1px solid $alert;
+	box-shadow: none;
+	color: #fff;
+	float: left;
+	font-weight: 700;
+}
+
+#mc-embedded-subscribe:hover {
+	background: $alert;
+}
+
+/**
+* Pro CSS
+***************************************************/
+
+.create-shortcode {
+	display: inline-block;
+	margin: 10px 0;
+	padding: 3px 5px;
+}
+
+/**
+* Promo Boxes
+***************************************************/
+.pngx-promo-boxes {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+	.pngx-promo-box {
+		background: #fff;
+		box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
+		overflow: hidden;
+		padding: 15px 2.25%;
+		margin: 0 0 15px;
+		width: 45%;
+
+		h2 {
+			color: $green;
+			font-size: 15px;
+			font-weight: bold;
+
+			&:after {
+				background: rgb(0, 0, 0);
+				background: -moz-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+				background: -webkit-gradient(linear, left top, right top, color-stop(1%, rgba(0, 0, 0, 1)), color-stop(28%, rgba(155, 155, 155, 1)), color-stop(85%, rgba(255, 255, 255, 1)));
+				background: -webkit-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+				background: -o-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+				background: -ms-linear-gradient(left, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+				background: linear-gradient(to right, rgba(0, 0, 0, 1) 1%, rgba(155, 155, 155, 1) 28%, rgba(255, 255, 255, 1) 85%);
+				content: "";
+				display: block;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff', GradientType=1);
+				height: 1px;
+				margin-top: 10px;
+			}
+		}
+
+	}
+
+	@include media($mobile) {
+		.pngx-promo-box{
+			width: 100%;
+			margin: 0 0 15px;
+		}
+	}
+}

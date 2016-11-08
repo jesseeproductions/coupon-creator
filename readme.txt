@@ -5,8 +5,8 @@ Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.0
-Tested up to: 4.6
-Stable tag: 2.3.2
+Tested up to: 4.6.1
+Stable tag: 2.4
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -24,24 +24,24 @@ Create your own coupon with the Coupon Creator for WordPress or upload an image 
 
 Watch this quick video to see the Coupon Creator in Action:
 
-https://www.youtube.com/watch?v=oTa7puu7t24
+https://www.youtube.com/watch?v=q9Jzq3Y00Cw
 
-<h4>Coupon Creator Pro 2.3 Now Available!</h4>
-[Get a Pro License](http://cctor.link/JIGHR) with a new shortcode, filter bar, quick & bulk edits, template system, column display, 5 border styles, recurring expirations, x days expiration, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+<h4>Coupon Creator Pro 2.4 Now Available!</h4>
+[Get a Pro License](http://cctor.link/JIGHR) with a couponloop shortcode, filter bar with ability to exclude coupon categories, quick & bulk edits, template system, column display, 5 border styles, recurring expirations, x days expiration, range expiration, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
 
-<h4>Coupon Creator Pro 2.3 Features Include:</h4>
+<h4>Coupon Creator Pro 2.4 Features Include:</h4>
 * [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
 * Quick and Bulk edits for the expiration and counter fields
 * Border themes, Dotted Border, Stitched Border, Saw Tooth Border (modern browsers and IE 10+), and None Option
 * Recurring Expiration; set an expiration for the end of the month and have it automatically change to the end of the next month
 * X Days expiration to set a period to redeem a coupon from the day of printing it
+* Range expiration to display a start and end date for the coupon to be valid such as valid 11/11/17 thru 12/11/17
 * Ability to insert columns and rows into the content editor. Options include, two column combinations, three column combinations, four columns, and rows
 * Pro Inserter has the ability to search coupons and categories in the dropdown
 * Visual editor to easily style the term's content on your site
 * Display the Print View in a Popup for any coupons and print directly from the Popup
 * Use the View Shortcodes to display content in the Shortcode View or the Print View only
-* Create and Display WooCommerce Coupons from the Coupon Creator Editor
-* Set a Counter per coupon to expire the coupon after a limit has been reached
+* Set a Counter per coupon to expire the coupon after a limit has been reached or use as an unlimited counter
 * Change “Expires on:”, “Click to Open in Print View”, and “Print the Coupon” for all coupons
 * Set coupon size for the Shortcode View and the Print View for all coupons including the Image Coupon
 * Override “Click to Open in Print View” text and link per coupon
@@ -135,8 +135,12 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.3.2 August 29th, 2016 =
-* Fix - So datepicker dates are insertered correctly for the expiration if your WordPress 4.6 installs date format is not mm/dd/yy, thanks to Brett and Jason for bringing this up.
+= 2.4 November 7th, 2016 =
+* Add - Modified Enter Title Here to Enter Admin Coupon Title per http://stephanieleary.com/2016/06/wordpress-hidden-gem-enter_title_here-filter/
+* Add - Add the display of the Coupon Category terms per coupon in the admin list table.
+* Add - Add the pngx as the basis for the plugins to make it more modular
+* Tweak - Change Coupon Updated Messages to remove word Post and replace with Coupon per http://wordpress.stackexchange.com/questions/15357/edit-the-post-updated-view-post-link
+* Fix - Fixed it so that if no category is selected with the inserter nothing is add to the shortcode.
 
 = 2.3.1 August 16th, 2016 =
 * Fix - Translations not loading, thanks to cahaubold for bringing up this issue
@@ -308,8 +312,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.3 =
-This is a major update to the Coupon Creator Expiration and Help System and both it and Pro should be at least on 2.3 for them to work correctly.
+= 2.4 =
+Coupon Creator 2.4 is a complete refactor, because of this refactor both Coupon Creator and Coupon Creator Pro must be updated to version 2.4 for them to work together.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>

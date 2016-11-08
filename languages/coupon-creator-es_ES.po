@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Coupon Creator\n"
-"POT-Creation-Date: 2016-06-08 09:53-0400\n"
-"PO-Revision-Date: 2016-08-09 07:53-0400\n"
+"POT-Creation-Date: 2016-11-03 12:30-0400\n"
+"PO-Revision-Date: 2016-11-03 12:30-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: coupon_creator.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -24,124 +24,409 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: sass\n"
 "X-Poedit-SearchPathExcluded-4: vendor\n"
 "X-Poedit-SearchPathExcluded-5: languages\n"
+"X-Poedit-SearchPathExcluded-6: plugin-engine\n"
 
-#: admin/cctor-admin-class.php:171
-msgid " Content Fields are disabled when using an Image Coupon"
-msgstr ""
-
-#: admin/cctor-admin-class.php:172
-msgid " Style Fields are disabled when using an Image Coupon"
-msgstr ""
-
-#: admin/cctor-admin-columns.php:74
+#: src/Cctor/Admin/Columns.php:74
 msgid "Coupon Title"
-msgstr ""
+msgstr "Título del Cupón"
 
-#: admin/cctor-admin-columns.php:81
+#: src/Cctor/Admin/Columns.php:81
 msgid "Coupon is "
 msgstr ""
 
-#: admin/cctor-admin-columns.php:83
+#: src/Cctor/Admin/Columns.php:83
 msgid "Shortcode"
 msgstr ""
 
-#: admin/cctor-admin-columns.php:85 admin/cctor-meta-box-class.php:653
-#: admin/cctor-meta-box-class.php:658 admin/cctor-options-class.php:633
-#: admin/cctor-options-class.php:638
+#: src/Cctor/Admin/Columns.php:85 src/Cctor/Admin/Meta.php:420
+#: src/Cctor/Admin/Meta.php:425 src/Cctor/Admin/Options.php:193
+#: src/Cctor/Admin/Options.php:198
 msgid "Ignore Expiration"
-msgstr ""
+msgstr "Ignorar fecha de caducidad"
 
-#: admin/cctor-admin-columns.php:87 admin/cctor-meta-box-class.php:654
-#: admin/cctor-meta-box-class.php:659 admin/cctor-meta-box-class.php:731
-#: admin/cctor-options-class.php:634 admin/cctor-options-class.php:639
+#: src/Cctor/Admin/Columns.php:87 src/Cctor/Admin/Meta.php:421
+#: src/Cctor/Admin/Meta.php:426 src/Cctor/Admin/Meta.php:524
+#: src/Cctor/Admin/Options.php:194 src/Cctor/Admin/Options.php:199
 msgid "Expiration Date"
-msgstr ""
+msgstr "Fecha de expiración"
 
-#: admin/cctor-admin-columns.php:144
+#: src/Cctor/Admin/Columns.php:89 src/Cctor/Main.php:412
+msgid "Coupon Category"
+msgstr "Categoría de cupón"
+
+#: src/Cctor/Admin/Columns.php:148
 msgid "Yes"
-msgstr ""
+msgstr "Si"
 
-#: admin/cctor-help-class.php:620
-msgid "Video Guides"
-msgstr ""
+#: src/Cctor/Admin/Columns.php:169
+msgid "No Categories"
+msgstr "No hay categorías"
 
-#: admin/cctor-help-class.php:635
-msgid "Guides"
-msgstr ""
-
-#: admin/cctor-inserter-class.php:41
+#: src/Cctor/Admin/Inserter.php:45
 msgid "Insert Coupon Creator Shortcode"
-msgstr ""
+msgstr "Inserte shortcode del cupón"
 
-#: admin/cctor-inserter-class.php:218
+#: src/Cctor/Admin/Inserter.php:234
 msgid "Select Loop or an Individual Coupon"
-msgstr ""
+msgstr "Seleccione bucle o un cupón Individual"
 
-#: admin/cctor-inserter-class.php:221
+#: src/Cctor/Admin/Inserter.php:237
 msgid "Coupon Loop"
-msgstr ""
+msgstr "Lazo de cupón"
 
-#: admin/cctor-inserter-class.php:234 admin/cctor-inserter-class.php:269
+#: src/Cctor/Admin/Inserter.php:251
 msgid "Select a Coupon Category to use in the Loop"
-msgstr ""
+msgstr "Seleccione una categoría de cupones para utilizar en el circuito"
 
-#: admin/cctor-inserter-class.php:237
+#: src/Cctor/Admin/Inserter.php:254
 msgid "All Categories"
-msgstr ""
+msgstr "Todas las Categorías"
 
-#: admin/cctor-inserter-class.php:258
+#: src/Cctor/Admin/Inserter.php:276
 msgid "Select How to Align the Coupon(s)"
-msgstr ""
+msgstr "Seleccione la que desea alinear el cupon"
 
-#: admin/cctor-inserter-class.php:260 admin/cctor-inserter-class.php:272
+#: src/Cctor/Admin/Inserter.php:278 src/Cctor/Admin/Inserter.php:293
 msgid "None"
-msgstr ""
+msgstr "Ninguna"
 
-#: admin/cctor-inserter-class.php:261
+#: src/Cctor/Admin/Inserter.php:279
 msgid "Align Left"
 msgstr ""
 
-#: admin/cctor-inserter-class.php:262
+#: src/Cctor/Admin/Inserter.php:281
 msgid "Align Right"
 msgstr ""
 
-#: admin/cctor-inserter-class.php:263
+#: src/Cctor/Admin/Inserter.php:283
 msgid "Align Center"
 msgstr ""
 
-#: admin/cctor-inserter-class.php:271
-msgid "Date (default)"
+#: src/Cctor/Admin/Inserter.php:290
+msgid "Select how to order the coupons"
 msgstr ""
 
-#: admin/cctor-inserter-class.php:273
+#: src/Cctor/Admin/Inserter.php:292
+msgid "Date (default)"
+msgstr "Fecha (por defecto)"
+
+#: src/Cctor/Admin/Inserter.php:294
 msgid "ID"
 msgstr ""
 
-#: admin/cctor-inserter-class.php:274
+#: src/Cctor/Admin/Inserter.php:295
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
-#: admin/cctor-inserter-class.php:275
+#: src/Cctor/Admin/Inserter.php:296
 msgid "Coupon Post Title"
-msgstr ""
+msgstr "Título del cupón"
 
-#: admin/cctor-inserter-class.php:276
+#: src/Cctor/Admin/Inserter.php:297
 msgid "Slug Name"
-msgstr ""
+msgstr "Sula Nombre"
 
-#: admin/cctor-inserter-class.php:277
+#: src/Cctor/Admin/Inserter.php:298
 msgid "Last Modified"
-msgstr ""
+msgstr "Última modificación"
 
-#: admin/cctor-inserter-class.php:278
+#: src/Cctor/Admin/Inserter.php:299
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio"
 
-#: admin/cctor-inserter-class.php:296
+#: src/Cctor/Admin/Inserter.php:318
 msgid "No Coupons are Published"
+msgstr "No hay cupones publicados"
+
+#: src/Cctor/Admin/Meta.php:110
+msgid "Coupon Fields"
+msgstr "Campos del Cupón"
+
+#: src/Cctor/Admin/Meta.php:119
+msgid "Coupon Shortcode"
+msgstr "Shortcode de cupón"
+
+#: src/Cctor/Admin/Meta.php:141
+msgid ""
+"Place this coupon in your posts, pages, custom post types, or widgets by "
+"using the shortcode below:<br><br>"
+msgstr ""
+"Coloca este cupón en tus posts, páginas, tipos de post personalizados o "
+"widgets utilizando el código siguiente:<br><br>"
+
+#: src/Cctor/Admin/Meta.php:153
+msgid "Content"
+msgstr "Contenido"
+
+#: src/Cctor/Admin/Meta.php:154
+msgid "Style"
+msgstr "Estilo"
+
+#: src/Cctor/Admin/Meta.php:155 src/Cctor/Admin/Meta.php:413
+#: src/Cctor/Admin/Options.php:188
+msgid "Expiration"
+msgstr "Expiración"
+
+#: src/Cctor/Admin/Meta.php:156
+msgid "Image Coupon"
+msgstr "Imagen del Cupón"
+
+#: src/Cctor/Admin/Meta.php:157
+msgid "Links"
 msgstr ""
 
-#: admin/cctor-meta-box-class.php:91 admin/cctor-options-class.php:262
+#: src/Cctor/Admin/Meta.php:158 src/Cctor/Admin/Options.php:108
+msgid "Help"
+msgstr "Ayuda"
+
+#: src/Cctor/Admin/Meta.php:203
+msgid "Coupon Deal"
+msgstr "Promoción del Cupón"
+
+#: src/Cctor/Admin/Meta.php:210
+msgid "Deal"
+msgstr "Acuerdo"
+
+#: src/Cctor/Admin/Meta.php:211
+msgid "Enter coupon deal - 30% OFF! or Buy One Get One Free, etc..."
+msgstr ""
+"Introduzca la promoción - 30% de Descuento! o Compre uno y tenga otro "
+"gratis, etc..."
+
+#: src/Cctor/Admin/Meta.php:229
+msgid "Coupon Terms"
+msgstr "Términos de cupón"
+
+#: src/Cctor/Admin/Meta.php:236
+msgid "Terms"
+msgstr "Términos"
+
+#: src/Cctor/Admin/Meta.php:237
+msgid "Enter the terms of the discount"
+msgstr "Introducir en los términos del descuento"
+
+#: src/Cctor/Admin/Meta.php:253 src/Cctor/Admin/Meta.php:377
+#: src/Cctor/Admin/Meta.php:551 src/Cctor/Admin/Meta.php:637
+msgid "Pro Content Features"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:265
+msgid "Use the Visual editor to easily style the coupons term's"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:266
+msgid ""
+"Give visitors a reason to click on the coupon by only showing the deal in "
+"print view or by using the view shortcodes to selectively display content on "
+"either view"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:267
+msgid ""
+"Insert columns and rows into the content editor for more unique looking "
+"coupons"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:275 src/Cctor/Admin/Meta.php:398
+#: src/Cctor/Admin/Meta.php:573 src/Cctor/Admin/Meta.php:658
+#: src/Cctor/Admin/Options.php:327 src/Cctor/Admin/Options.php:406
+#: src/Cctor/Admin/Options.php:478 src/Cctor/Admin/Options.php:508
+msgid "Pro Link"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:317 src/Cctor/Admin/Options.php:269
+msgid "Inner Border"
+msgstr "Borde interior"
+
+#: src/Cctor/Admin/Meta.php:324 src/Cctor/Admin/Options.php:273
+msgid "Inside Border Color"
+msgstr "Color del interior del borde"
+
+#: src/Cctor/Admin/Meta.php:325
+msgid "Choose inside border color"
+msgstr "Seleccione el color del borde interior"
+
+#: src/Cctor/Admin/Meta.php:345 src/Cctor/Admin/Options.php:288
+msgid "Deal Field Colors"
+msgstr "Oferta campo colores"
+
+#: src/Cctor/Admin/Meta.php:352 src/Cctor/Admin/Options.php:292
+msgid "Deal Background Color"
+msgstr "Color de fondo del descuento"
+
+#: src/Cctor/Admin/Meta.php:353
+msgid "Choose background color"
+msgstr "Elija el color de fondo"
+
+#: src/Cctor/Admin/Meta.php:362 src/Cctor/Admin/Options.php:299
+msgid "Deal Text Color"
+msgstr "Color del texto del descuento"
+
+#: src/Cctor/Admin/Meta.php:363
+msgid "Choose color for discount text"
+msgstr "Seleccione un color para el texto del descuento"
+
+#: src/Cctor/Admin/Meta.php:389
+msgid ""
+"Use 4 style sections in Pro to create a unique coupon or a standard brand to "
+"attract customers"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:390
+msgid ""
+"Choose between 5 different border styles in Pro, including Saw Tooth, "
+"Stitched, Dotted, Coupon, and None.<br> <img class=\"cctor-pro-img\" alt="
+"\"Coupon Creator Pro Border Examples\" src=\""
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:427 src/Cctor/Admin/Options.php:200
+msgid "Recurring Expiration"
+msgstr "Recurrentes de la caducidad"
+
+#: src/Cctor/Admin/Meta.php:428 src/Cctor/Admin/Options.php:201
+msgid "Expires in X Days"
+msgstr "Caduca dentro de X días"
+
+#: src/Cctor/Admin/Meta.php:429 src/Cctor/Admin/Options.php:202
+msgid "Range Expiration"
+msgstr "Rango de vencimiento"
+
+#: src/Cctor/Admin/Meta.php:434 src/Cctor/Admin/Options.php:208
+msgid "Expiration Option"
+msgstr "Opción de vencimiento"
+
+#: src/Cctor/Admin/Meta.php:435 src/Cctor/Admin/Options.php:209
+msgid "Choose the expiration method for this coupon"
+msgstr "Elegir el método de caducidad para este cupón"
+
+#: src/Cctor/Admin/Meta.php:452
+msgid ""
+"This coupon will not expire and always show on the front end of your site."
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:461
+msgid "This coupon will no longer show the day after the expiration date."
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:470
+msgid "This coupon's expiration will change based on the choosen pattern."
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:479
+msgid "This coupon will expire X days from when it is printed."
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:488
+msgid "This coupon will show a range of dates that it is valid."
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:499 src/Cctor/Admin/Options.php:217
+msgid "Date Format"
+msgstr "Formato de Fecha"
+
+#: src/Cctor/Admin/Meta.php:500
+msgid "Choose the date format"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:505 src/Cctor/Admin/Options.php:222
+msgid "Month First - MM/DD/YYYY"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:506 src/Cctor/Admin/Options.php:223
+msgid "Day First - DD/MM/YYYY"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:526
+msgid "Choose a date this coupon will expire."
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:537
+msgid "Ignore Expiration Date"
+msgstr "Ignorar fecha de caducidad"
+
+#: src/Cctor/Admin/Meta.php:538
+msgid "Check this to ignore the expiration date"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:563
+msgid ""
+"Utilize five(5) different expiration options to help promote sales at your "
+"business"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:564
+msgid ""
+"Save time by editing multiple coupons expiration and counter fields using "
+"Pro's Bulk Edits"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:565
+msgid ""
+"Track coupon print views by using the unlimited counter or set a limit to "
+"restrict a coupon to a certain amount of customers"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:593 src/Cctor/Admin/Meta.php:606
+msgid " Content Fields are disabled when using an Image Coupon"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:594
+msgid " Style Fields are disabled when using an Image Coupon"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:607
+msgid " Only outer border styles are available when using an Image Coupon"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:614
+msgid ""
+"Upload an image to use as the entire coupon - Current image size is for 390 "
+"pixels in width with auto height"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:649
+msgid "Use the custom links and text to promote your affiliate links"
+msgstr ""
+
+#: src/Cctor/Admin/Meta.php:650
+msgid ""
+"Enable your visitors to print coupons while staying on the same page using "
+"the Pop Up Coupon"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:65 src/Cctor/Admin/Options.php:142
+msgid "Coupon Creator Options"
+msgstr "Opciones de Creador de Cupón"
+
+#: src/Cctor/Admin/Options.php:66
+msgid "Options"
+msgstr "Opciones"
+
+#: src/Cctor/Admin/Options.php:104
+msgid "Defaults"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:105
+msgid "Link Attributes / Permalinks"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:106
+msgid "Display"
+msgstr "Visualización"
+
+#: src/Cctor/Admin/Options.php:107
+msgid "Templating"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:109
+msgid "Licenses"
+msgstr "Licencias"
+
+#: src/Cctor/Admin/Options.php:110 src/Cctor/Admin/Options.php:538
+msgid "Reset"
+msgstr "Borrar"
+
+#: src/Cctor/Admin/Options.php:144
 #, php-format
 msgid ""
 "There maybe a javascript conflict preventing some features from working.  <a "
@@ -149,574 +434,302 @@ msgid ""
 "cause.</a>"
 msgstr ""
 
-#: admin/cctor-meta-box-class.php:108
-msgid "Content"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:109
-msgid "Style"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:110 admin/cctor-meta-box-class.php:646
-#: admin/cctor-options-class.php:628
-msgid "Expiration"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:111
-msgid "Image Coupon"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:112 admin/cctor-options-class.php:79
-msgid "Help"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:113 admin/cctor-options-class.php:82
-msgid "Upgrade to Pro"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:145
-msgid "Coupon Fields"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:154
-msgid "Coupon Shortcode"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:426
-msgid "Today's Date is "
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:494
-msgid ""
-"Place this coupon in your posts, pages, custom post types, or widgets by "
-"using the shortcode below:<br><br>"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:514
-msgid "Coupon Deal"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:521
-msgid "Deal"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:522
-msgid "Enter coupon deal - 30% OFF! or Buy One Get One Free, etc..."
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:540
-msgid "Coupon Terms"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:547
-msgid "Terms"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:548
-msgid "Enter the terms of the discount"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:588 admin/cctor-options-class.php:700
-msgid "Inner Border"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:595 admin/cctor-options-class.php:704
-msgid "Inside Border Color"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:596
-msgid "Choose inside border color"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:615 admin/cctor-options-class.php:719
-msgid "Deal Field Colors"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:622 admin/cctor-options-class.php:723
-msgid "Deal Background Color"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:623
-msgid "Choose background color"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:632 admin/cctor-options-class.php:730
-msgid "Deal Text Color"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:633
-msgid "Choose color for discount text"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:660 admin/cctor-options-class.php:640
-msgid "Recurring Expiration"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:661 admin/cctor-options-class.php:641
-msgid "Expires in X Days"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:666 admin/cctor-options-class.php:647
-msgid "Expiration Option"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:667 admin/cctor-options-class.php:648
-msgid "Choose the expiration method for this coupon"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:678
-msgid ""
-"This coupon will not expire and always show on the front end of your site."
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:687
-msgid "This coupon will no longer show the day after the expiration date."
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:696
-msgid "This coupon's expiration will change based on the choosen pattern."
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:705
-msgid "This coupon will expire X days from when it is printed."
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:715
-msgid "Date Format"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:716
-msgid "Choose the date format"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:721 admin/cctor-options-class.php:661
-msgid "Month First - MM/DD/YYYY"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:722 admin/cctor-options-class.php:662
-msgid "Day First - DD/MM/YYYY"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:733
-msgid ""
-"The coupon will not display without the date and will not display on your "
-"site after the date"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:742
-msgid "Ignore Expiration Date"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:743
-msgid "Check this to ignore the expiration date"
-msgstr ""
-
-#: admin/cctor-meta-box-class.php:754
-msgid ""
-"Upload an image to use as the entire coupon - Current image size is for 390 "
-"pixels in width with auto height"
-msgstr ""
-
-#: admin/cctor-options-class.php:76
-msgid "Defaults"
-msgstr ""
-
-#: admin/cctor-options-class.php:77
-msgid "Link Attributes / Permalinks"
-msgstr ""
-
-#: admin/cctor-options-class.php:78
-msgid "Display"
-msgstr ""
-
-#: admin/cctor-options-class.php:80
-msgid "Licenses"
-msgstr ""
-
-#: admin/cctor-options-class.php:81 admin/cctor-options-class.php:860
-msgid "Reset"
-msgstr ""
-
-#: admin/cctor-options-class.php:113 admin/cctor-options-class.php:260
-msgid "Coupon Creator Options"
-msgstr ""
-
-#: admin/cctor-options-class.php:114
-msgid "Options"
-msgstr ""
-
-#: admin/cctor-options-class.php:196
-msgid "Default"
-msgstr ""
-
-#: admin/cctor-options-class.php:197
-msgid "This is a default description."
-msgstr ""
-
-#: admin/cctor-options-class.php:276
+#: src/Cctor/Admin/Options.php:149
 msgid "Coupon Creator Options updated."
 msgstr ""
 
-#: admin/cctor-options-class.php:294
-msgid "Save Changes"
-msgstr ""
-
-#: admin/cctor-options-class.php:559
-#, php-format
-msgid " and Expires on %s"
-msgstr ""
-
-#: admin/cctor-options-class.php:564
-msgid "License is Active"
-msgstr ""
-
-#: admin/cctor-options-class.php:570
-msgid "Deactivate License"
-msgstr ""
-
-#: admin/cctor-options-class.php:575
-msgid "License is Invalid"
-msgstr ""
-
-#: admin/cctor-options-class.php:577
-#, php-format
-msgid "License Expired on %s"
-msgstr ""
-
-#: admin/cctor-options-class.php:579
-msgid "License is Not Active"
-msgstr ""
-
-#: admin/cctor-options-class.php:588
-msgid "Activate License"
-msgstr ""
-
-#: admin/cctor-options-class.php:621
+#: src/Cctor/Admin/Options.php:181
 msgid ""
 "*These are defaults for new coupons only and do not change existing coupons."
 msgstr ""
 
-#: admin/cctor-options-class.php:656
-msgid "Expiration Date Format"
-msgstr ""
-
-#: admin/cctor-options-class.php:657
+#: src/Cctor/Admin/Options.php:218
 msgid "Select the Date Format to show for all Coupons*"
 msgstr ""
 
-#: admin/cctor-options-class.php:705
+#: src/Cctor/Admin/Options.php:274
 msgid "Choose default inside border color*"
 msgstr ""
 
-#: admin/cctor-options-class.php:724
+#: src/Cctor/Admin/Options.php:293
 msgid "Choose default background color*"
 msgstr ""
 
-#: admin/cctor-options-class.php:731
+#: src/Cctor/Admin/Options.php:300
 msgid "Choose default text color*"
 msgstr ""
 
-#: admin/cctor-options-class.php:745
+#: src/Cctor/Admin/Options.php:309 src/Cctor/Admin/Options.php:389
+#: src/Cctor/Admin/Options.php:461 src/Cctor/Admin/Options.php:489
+msgid "Pro Default Features"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:319
+msgid ""
+"Save time by setting default options for the expiration fields for all new "
+"coupons"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:320
+msgid ""
+"Remove your coupons from the front end by having them set to draft after "
+"expired"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:321
+msgid ""
+"Create a standard look with default styling fields such as color, radius, "
+"border type, and background fields"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:342
 msgid "Link Attribute Options"
 msgstr ""
 
-#: admin/cctor-options-class.php:750
+#: src/Cctor/Admin/Options.php:347
 msgid "Print View Links"
 msgstr ""
 
-#: admin/cctor-options-class.php:751
+#: src/Cctor/Admin/Options.php:348
 msgid "Add nofollow to all the \"Click to Open in Print View\" links"
 msgstr ""
 
-#: admin/cctor-options-class.php:757
+#: src/Cctor/Admin/Options.php:354
 msgid "Disable Print View"
 msgstr ""
 
-#: admin/cctor-options-class.php:758
+#: src/Cctor/Admin/Options.php:355
 msgid ""
 "This will disable all custom links and the popup option in Pro as well as "
 "the \"Click to Open in Print View\" links under the coupon"
 msgstr ""
 
-#: admin/cctor-options-class.php:764
+#: src/Cctor/Admin/Options.php:361
 msgid "Print Template No Follow"
 msgstr ""
 
-#: admin/cctor-options-class.php:765
+#: src/Cctor/Admin/Options.php:362
 msgid "Add nofollow and noindex to the print template"
 msgstr ""
 
-#: admin/cctor-options-class.php:772
+#: src/Cctor/Admin/Options.php:369
 msgid "Permalink Options"
 msgstr ""
 
-#: admin/cctor-options-class.php:776
+#: src/Cctor/Admin/Options.php:373
 msgid "Coupon Print Template Slug"
 msgstr ""
 
-#: admin/cctor-options-class.php:777
+#: src/Cctor/Admin/Options.php:374
 msgid "default: cctor_coupon"
 msgstr ""
 
-#: admin/cctor-options-class.php:796
+#: src/Cctor/Admin/Options.php:399
+msgid "Use Google Analytics to Track Print Views"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:400
+msgid ""
+"Choose all new coupons to start as Pop Up Coupons or hide the \"Click to "
+"Open in Print View\" links"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:418
 msgid "Custom Coupon Styles"
 msgstr ""
 
-#: admin/cctor-options-class.php:797
+#: src/Cctor/Admin/Options.php:419
 msgid ""
 "Enter any custom CSS here to apply to the coupons for the shortcode and the "
 "print template.(without &#60;style&#62; tags)"
 msgstr ""
 
-#: admin/cctor-options-class.php:806
+#: src/Cctor/Admin/Options.php:428
 msgid "Auto P Filter"
 msgstr ""
 
-#: admin/cctor-options-class.php:807
+#: src/Cctor/Admin/Options.php:429
 msgid ""
 "Check to remove <a href=\"http://codex.wordpress.org/Function_Reference/"
 "wpautop\" target=\"_blank\">wpautop filter</a> from Coupon Terms Field"
 msgstr ""
 
-#: admin/cctor-options-class.php:814
+#: src/Cctor/Admin/Options.php:436
 msgid "Print View Base CSS"
 msgstr ""
 
-#: admin/cctor-options-class.php:815
+#: src/Cctor/Admin/Options.php:437
 msgid "Check to disable the base CSS in Print View"
 msgstr ""
 
-#: admin/cctor-options-class.php:824
+#: src/Cctor/Admin/Options.php:446
 msgid "WordPress Search"
 msgstr ""
 
-#: admin/cctor-options-class.php:829
+#: src/Cctor/Admin/Options.php:451
 msgid "Coupon Search"
 msgstr ""
 
-#: admin/cctor-options-class.php:833
+#: src/Cctor/Admin/Options.php:455
 msgid ""
 "Check this to prevent the Coupon Creator from modifying the search query to "
 "remove the coupon custom post type."
 msgstr ""
 
-#: admin/cctor-options-class.php:839
-msgid "Support: "
+#: src/Cctor/Admin/Options.php:471
+msgid ""
+"Customize \"Expires on:\", \"Click to Open in Print View\", Valid thru, and "
+"\"Print the Coupon\" for all Coupons"
 msgstr ""
 
-#: admin/cctor-options-class.php:848
+#: src/Cctor/Admin/Options.php:472
+msgid "Change default font and font weights for the Print Template"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:499
+msgid ""
+"Set a custom size for both views of the coupon for coupons and the image "
+"coupon"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:500
+msgid ""
+"With the Pro &#91;couponloop&#93; shortcode change default settings such as "
+"per page, order, and columns"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:501
+msgid ""
+"Customize to your theme the responsive breakpoints for the &#91;"
+"couponloop&#93; shortcode"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:502
+msgid ""
+"Easily build all the attributes of the &#91;couponloop&#93; shortcode and "
+"insert it into content using the Pro inserter"
+msgstr ""
+
+#: src/Cctor/Admin/Options.php:517
+msgid "Support: "
+msgstr "Apoyo:"
+
+#: src/Cctor/Admin/Options.php:526
 msgid "Coupon Creator Option Reset"
 msgstr ""
 
-#: admin/cctor-options-class.php:864
+#: src/Cctor/Admin/Options.php:542
 msgid ""
 "Check this box and click \"Save Changes\" below to reset all coupon creator "
 "options to their defaults. This does not change any existing coupon settings "
 "or remove your licenses."
 msgstr ""
 
-#: coupon_creator.php:58
-msgid "Coupon Creator Requires PHP version: "
-msgstr ""
-
-#: coupon_creator.php:62
-msgid "Coupon Creator Requires WordPress version: "
-msgstr ""
-
-#: includes/cctor-coupon-class.php:160
-msgctxt "slug"
-msgid "cctor_coupon"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:163
-msgctxt "coupon-creator"
-msgid "Coupons"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:164
-msgctxt "coupon-creator"
-msgid "Coupon"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:165
-msgid "Add New"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:166
-msgid "Add New Coupon"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:167
-msgid "Edit Coupon"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:168
-msgid "New Coupon"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:169
-msgid "View Coupon"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:170
-msgid "Search Coupons"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:171
-msgid "No coupons found"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:172
-msgid "No coupons found in Trash"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:173
-msgid "Parent Coupon:"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:174 includes/cctor-coupon-class.php:175
-msgid "Coupons"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:176
-msgid "All Coupons"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:177
-msgid "Update Coupon"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:180
-#: public/template-functions/cctor-function-links.php:19
-msgid "Coupon"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:181
-msgid "Creates a Coupon as a Custom Post Type"
-msgstr ""
-
-#: includes/cctor-coupon-class.php:571
-msgid "Once Every 20 Mins"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:26 includes/cctor-taxonomy-class.php:36
-msgctxt "coupon-creator"
-msgid "Coupon Category"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:27
-msgctxt "coupon-creator"
-msgid "Coupon Categories"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:28
-msgctxt "coupon-creator"
-msgid "Search Coupon Categories"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:29
-msgctxt "coupon-creator"
-msgid "All Coupon Categories"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:30
-msgctxt "coupon-creator"
-msgid "Parent Coupon Categories"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:31
-msgctxt "coupon-creator"
-msgid "Parent Coupon Categories:"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:32
-msgctxt "coupon-creator"
-msgid "Edit Coupon Categories"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:33
-msgctxt "coupon-creator"
-msgid "Update Coupon Categories"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:34
-msgctxt "coupon-creator"
-msgid "Add New Coupon Category"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:35
-msgctxt "coupon-creator"
-msgid "New Coupon Categories Name"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:37
-msgctxt "coupon-creator"
-msgid "Popular Coupons"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:38
-msgctxt "coupon-creator"
-msgid "Separate coupons with commas"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:39
-msgctxt "coupon-creator"
-msgid "Add or remove coupons"
-msgstr ""
-
-#: includes/cctor-taxonomy-class.php:40
-msgctxt "coupon-creator"
-msgid "Choose from the most used coupons"
-msgstr ""
-
-#: includes/cctor_expiration_class.php:143
+#: src/Cctor/Expiration.php:158
 msgid "This Coupon is Showing."
-msgstr ""
+msgstr "Este cupón se está mostrando"
 
-#: includes/cctor_expiration_class.php:145
+#: src/Cctor/Expiration.php:160
 msgid "This Coupon is not Showing."
-msgstr ""
+msgstr "Este cupon no está mostrandose"
 
-#: includes/cctor_expiration_class.php:180
+#: src/Cctor/Expiration.php:195
 msgid "Ignore Coupon Expiration is On"
 msgstr ""
 
-#: includes/cctor_expiration_class.php:185
+#: src/Cctor/Expiration.php:200
 msgid "There is no Coupon Expiration Date"
 msgstr ""
 
-#: includes/cctor_expiration_class.php:187
+#: src/Cctor/Expiration.php:202
 msgid "This Coupon Expires On "
-msgstr ""
+msgstr "Este cupón expira el"
 
-#: includes/cctor_expiration_class.php:189
+#: src/Cctor/Expiration.php:204
 msgid "This Coupon Expired On "
-msgstr ""
+msgstr "Este cupón expiró el"
 
-#: includes/cctor_expiration_class.php:282
+#: src/Cctor/Expiration.php:316
 msgid "Showing"
-msgstr ""
+msgstr "Mostrando"
 
-#: includes/cctor_expiration_class.php:284
+#: src/Cctor/Expiration.php:318
 msgid "Not Showing"
+msgstr "No mostrándose"
+
+#: src/Cctor/Main.php:181
+#, php-format
+msgid ""
+"Coupon Creator Requires WordPress version: %s or higher. You currently have "
+"WordPress version: %s"
 msgstr ""
 
-#: public/template-functions/cctor-function-expiration.php:24
+#: src/Cctor/Main.php:184
+#, php-format
+msgid ""
+"Coupon Creator Requires PHP version: %s or higher. You currently have PHP "
+"version: %s"
+msgstr ""
+
+#: src/Cctor/Main.php:257
+msgid ""
+"It appears as if the plugin-engine libraries cannot be found! The directory "
+"should be in the \"plugin-engine/\" directory in the Coupon Creator plugin."
+msgstr ""
+
+#: src/Cctor/Main.php:372
+#: src/functions/template-functions/cctor-function-links.php:22
+msgid "Coupon"
+msgstr "Cupón"
+
+#: src/Cctor/Main.php:383
+msgid "coupon"
+msgstr "cupón"
+
+#: src/Cctor/Main.php:392
+msgid "Coupons"
+msgstr "Cupones"
+
+#: src/Cctor/Main.php:403
+msgid "coupons"
+msgstr "cupones"
+
+#: src/Cctor/Main.php:421
+msgid "coupon category"
+msgstr "Categoría de cupón"
+
+#: src/Cctor/Main.php:430
+msgid "Coupon Categories"
+msgstr "Categorías de cupones"
+
+#: src/Cctor/Main.php:439
+msgid "coupon categories"
+msgstr "categorías de cupones"
+
+#: src/Cctor/Main.php:472
+msgid "Enter Coupon Admin Title"
+msgstr "Título de administrador de cupón"
+
+#: src/Cctor/Main.php:547
+msgid "coupon-category"
+msgstr ""
+
+#: src/functions/template-functions/cctor-function-expiration.php:24
 msgid "Expires on:"
 msgstr "Expira el:"
 
-#: public/template-functions/cctor-function-links.php:19
-#: public/template-functions/cctor-function-links.php:39
+#: src/functions/template-functions/cctor-function-links.php:21
+#: src/functions/template-functions/cctor-function-links.php:46
 msgid "Click to Open in Print View"
 msgstr "Haga Clic en Para Abrir la Vista de Impresión"
 
-#: public/template-functions/cctor-function-links.php:52
+#: src/functions/template-functions/cctor-function-links.php:62
 msgid "Click to Print"
 msgstr "Haga Clic Para Imprimir"
 
 #. Plugin Name of the plugin/theme
 msgid "Coupon Creator"
-msgstr ""
+msgstr "Creador de cupón Pro"
 
 #. Description of the plugin/theme
 msgid ""
@@ -731,3 +744,12 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://couponcreatorplugin.com"
 msgstr ""
+
+#~ msgid "Upgrade to Pro"
+#~ msgstr "Actualizar a Pro"
+
+#~ msgid "Today's Date is "
+#~ msgstr "La fecha de hoy es"
+
+#~ msgid "License is Active"
+#~ msgstr "Licencia Activa"

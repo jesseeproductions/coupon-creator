@@ -1,11 +1,16 @@
 [
   "coupon_creator.php",
-  "admin/**/*",
-  "css/**/*",
-  "includes/**/*",
-  "public/**/*",
-  "vendor/**/*",
+  "src/**/*",
+  "plugin-engine/pngx-autoload.php",
+  "plugin-engine/pngx-common.php",
+  "plugin-engine/readme.txt",
+  "plugin-engine/src/**/*",
+  "plugin-engine/languages/**/*",
+  "plugin-engine/vendor/**/*",
+  "license.txt",
   "languages/**/*",
+  "README.md",
+  "vendor/**/*",
   "readme.txt",
   "screenshot*.png"
 ]
