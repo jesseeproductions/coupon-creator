@@ -1,0 +1,3 @@
+[submodule "plugin-engine"]
+	path = plugin-engine
+	url = https://github.com/jesseeproductions/plugin-engine
