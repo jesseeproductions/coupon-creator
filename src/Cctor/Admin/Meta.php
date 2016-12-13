@@ -139,8 +139,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	public static function show_coupon_shortcode( $post ) {
 		?><p class="shortcode">
 		<?php _e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon-creator' ); ?>
-		<code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
-		</p><?php
+        <code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
+        </p><?php
 
 	}
 
@@ -155,7 +155,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$tabs['expiration']   = __( 'Expiration', 'coupon-creator' );
 		$tabs['image_coupon'] = __( 'Image Coupon', 'coupon-creator' );
 		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $tabs['links'] = __( 'Links', 'coupon-creator' ) : null;
-		$tabs['help']         = __( 'Help', 'coupon-creator' );
+		$tabs['help'] = __( 'Help', 'coupon-creator' );
 
 
 		//Filter Option Tabs
@@ -184,79 +184,98 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$prefix = self::get_fields_prefix();
 
 		//Content
-		$fields[ $prefix . 'content_help' ]  = array(
+		$fields[ $prefix . 'content_help' ]           = array(
 			'id'      => $prefix . 'content_help',
 			'type'    => 'help',
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'content',
 		);
-		$fields[ $prefix . 'coupon_type' ]   = array(
+		$fields[ $prefix . 'coupon_type' ]            = array(
 			'id'        => $prefix . 'coupon_type',
 			'type'      => '',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
 			'wrapclass' => ''
 		);
-		$fields[ $prefix . 'heading_deal' ]  = array(
+		$fields[ $prefix . 'start_content_template' ] = array(
+			'id'        => $prefix . 'start_content_template',
+			'type'      => 'template_start',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'content',
+			'wrapclass' => 'cctor_coupon_type'
+		);
+		$fields[ $prefix . 'heading_deal' ]           = array(
 			'id'        => $prefix . 'heading_deal',
 			'title'     => '',
 			'desc'      => __( 'Coupon Deal', 'coupon-creator' ),
 			'type'      => 'heading',
 			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
-		$fields[ $prefix . 'amount' ]        = array(
+		$fields[ $prefix . 'amount' ]                 = array(
 			'label'     => __( 'Deal', 'coupon-creator' ),
 			'desc'      => __( 'Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon-creator' ),
 			'id'        => $prefix . 'amount',
 			'type'      => 'text',
 			'alert'     => '',
 			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
 		);
-		$fields[ $prefix . 'deal_display' ]  = array(
+		$fields[ $prefix . 'deal_display' ]           = array(
 			'id'        => $prefix . 'deal_display',
 			'type'      => '',
 			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
-		$fields[ $prefix . 'heading_terms' ] = array(
+		$fields[ $prefix . 'heading_terms' ]          = array(
 			'id'        => $prefix . 'heading_terms',
 			'title'     => '',
 			'desc'      => __( 'Coupon Terms', 'coupon-creator' ),
 			'type'      => 'heading',
 			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
-		$fields[ $prefix . 'description' ]   = array(
+		$fields[ $prefix . 'description' ]            = array(
 			'label'     => __( 'Terms', 'coupon-creator' ),
 			'desc'      => __( 'Enter the terms of the discount', 'coupon-creator' ),
 			'id'        => $prefix . 'description',
 			'type'      => 'textarea',
 			'class'     => 'code',
 			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
 			'tab'       => 'content',
 			'cols'      => 60,
 			'rows'      => 4,
 			'wrapclass' => 'image-coupon-disable'
 		);
+		$fields[ $prefix . 'end_content_template' ]   = array(
+			'id'        => $prefix . 'end_content_template',
+			'type'      => 'template_end',
+			'section'   => 'coupon_creator_meta_box',
+			'tab'       => 'content',
+			'wrapclass' => 'content_templates'
+		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields[ $prefix . 'pro_content_features_heading' ]   = array(
-				'id'        => $prefix . 'pro_content_features_heading',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'content',
+			$fields[ $prefix . 'pro_content_features_heading' ] = array(
+				'id'      => $prefix . 'pro_content_features_heading',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'content',
 				'title'   => '',
 				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
 				'type'    => 'pro_heading'
 			);
-			$fields[ $prefix . 'pro_content_features' ]   = array(
-				'id'        => $prefix . 'pro_content_features',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'content',
+			$fields[ $prefix . 'pro_content_features' ]         = array(
+				'id'      => $prefix . 'pro_content_features',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'content',
 				'title'   => '',
 				'desc'    => '',
 				'type'    => 'list',
@@ -267,10 +286,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 					'2' => __( 'Insert columns and rows into the content editor for more unique looking coupons' ),
 				)
 			);
-			$fields[ $prefix . 'pro_feature_content_link']           = array(
-				'id'        => $prefix . 'pro_feature_content_link',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'content',
+			$fields[ $prefix . 'pro_feature_content_link' ]     = array(
+				'id'      => $prefix . 'pro_feature_content_link',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'content',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
 				'type'    => 'pro_link'
@@ -369,31 +388,31 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
 		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields[ $prefix . 'pro_content_style_heading' ]   = array(
-				'id'        => $prefix . 'pro_content_style_heading',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'style',
+			$fields[ $prefix . 'pro_content_style_heading' ] = array(
+				'id'      => $prefix . 'pro_content_style_heading',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'style',
 				'title'   => '',
 				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
 				'type'    => 'pro_heading'
 			);
-			$fields[ $prefix . 'pro_content_style' ]   = array(
-				'id'        => $prefix . 'pro_content_style',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'style',
+			$fields[ $prefix . 'pro_content_style' ]         = array(
+				'id'      => $prefix . 'pro_content_style',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'style',
 				'title'   => '',
 				'desc'    => '',
 				'type'    => 'list',
 				'std'     => '',
 				'choices' => array(
 					'0' => __( 'Use 4 style sections in Pro to create a unique coupon or a standard brand to attract customers' ),
-					'2' => __( 'Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br> <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="'. esc_url( Cctor__Coupon__Main::instance()->resource_url ).'images/cctor-border-examples.gif"/>' ),
+					'2' => __( 'Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br> <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="' . esc_url( Cctor__Coupon__Main::instance()->resource_url ) . 'images/cctor-border-examples.gif"/>' ),
 				)
 			);
-			$fields[ $prefix . 'pro_feature_style_link']           = array(
-				'id'        => $prefix . 'pro_feature_style_link',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'style',
+			$fields[ $prefix . 'pro_feature_style_link' ]    = array(
+				'id'      => $prefix . 'pro_feature_style_link',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'style',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
 				'type'    => 'pro_link'
@@ -543,18 +562,18 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'wrapclass' => 'expiration-field'
 		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields[ $prefix . 'pro_content_expiration_heading' ]   = array(
-				'id'        => $prefix . 'pro_content_expiration_heading',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'expiration',
+			$fields[ $prefix . 'pro_content_expiration_heading' ] = array(
+				'id'      => $prefix . 'pro_content_expiration_heading',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'expiration',
 				'title'   => '',
 				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
 				'type'    => 'pro_heading'
 			);
-			$fields[ $prefix . 'pro_expiration_style' ]   = array(
-				'id'        => $prefix . 'pro_expiration_style',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'expiration',
+			$fields[ $prefix . 'pro_expiration_style' ]           = array(
+				'id'      => $prefix . 'pro_expiration_style',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'expiration',
 				'title'   => '',
 				'desc'    => '',
 				'type'    => 'list',
@@ -565,10 +584,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 					'2' => __( 'Track coupon print views by using the unlimited counter or set a limit to restrict a coupon to a certain amount of customers' ),
 				)
 			);
-			$fields[ $prefix . 'pro_feature_expiration_link']           = array(
-				'id'        => $prefix . 'pro_feature_expiration_link',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'expiration',
+			$fields[ $prefix . 'pro_feature_expiration_link' ]    = array(
+				'id'      => $prefix . 'pro_feature_expiration_link',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'expiration',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
 				'type'    => 'pro_link'
@@ -629,18 +648,18 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		//Liinks
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields[ $prefix . 'pro_content_links_heading' ]   = array(
-				'id'        => $prefix . 'pro_content_links_heading',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'links',
+			$fields[ $prefix . 'pro_content_links_heading' ] = array(
+				'id'      => $prefix . 'pro_content_links_heading',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'links',
 				'title'   => '',
 				'desc'    => __( 'Pro Content Features', 'coupon-creator' ),
 				'type'    => 'pro_heading'
 			);
-			$fields[ $prefix . 'pro_links_style' ]   = array(
-				'id'        => $prefix . 'pro_links_style',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'links',
+			$fields[ $prefix . 'pro_links_style' ]           = array(
+				'id'      => $prefix . 'pro_links_style',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'links',
 				'title'   => '',
 				'desc'    => '',
 				'type'    => 'list',
@@ -650,10 +669,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 					'1' => __( 'Enable your visitors to print coupons while staying on the same page using the Pop Up Coupon' ),
 				)
 			);
-			$fields[ $prefix . 'pro_feature_links_link']           = array(
-				'id'        => $prefix . 'pro_feature_links_link',
-				'section'   => 'coupon_creator_meta_box',
-				'tab'       => 'links',
+			$fields[ $prefix . 'pro_feature_links_link' ]    = array(
+				'id'      => $prefix . 'pro_feature_links_link',
+				'section' => 'coupon_creator_meta_box',
+				'tab'     => 'links',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
 				'type'    => 'pro_link'
