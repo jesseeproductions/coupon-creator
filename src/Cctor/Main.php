@@ -456,7 +456,7 @@ class Cctor__Coupon__Main {
 
 			Pngx__Register_Post_Type::register_post_types(
 				self::POSTTYPE,
-				self::CAPABILITIESPLURAL,
+				self::POSTTYPE,
 				$this->singular_coupon_label,
 				$labels,
 				$this->get_coupon_slug(),

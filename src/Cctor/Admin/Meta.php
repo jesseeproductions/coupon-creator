@@ -256,6 +256,19 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'rows'      => 4,
 			'wrapclass' => 'image-coupon-disable'
 		);
+
+		if ( has_filter( 'cctor_filter_meta_template_fields' ) ) {
+			/**
+			 * Filter the meta fields from Coupon Creator for custom templates
+			 *
+			 *
+			 * @param array $fields an array of fields to display in meta tabs.
+			 *
+			 */
+			$fields = apply_filters( 'cctor_filter_meta_template_fields', $fields );
+		}
+
+
 		$fields[ $prefix . 'end_content_template' ]   = array(
 			'id'        => $prefix . 'end_content_template',
 			'type'      => 'template_end',
