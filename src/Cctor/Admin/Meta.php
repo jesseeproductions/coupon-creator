@@ -269,7 +269,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		}
 
 
-		$fields[ $prefix . 'end_content_template' ]   = array(
+		$fields[ $prefix . 'end_content_template' ] = array(
 			'id'        => $prefix . 'end_content_template',
 			'type'      => 'template_end',
 			'section'   => 'coupon_creator_meta_box',
@@ -615,7 +615,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'tab'     => 'image_coupon',
 		);
 
-		$img_toggle = array(
+		$img_toggle   = array(
 			'field'    => 'input',
 			'type'     => 'image',
 			'priority' => 5,
@@ -626,7 +626,10 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 				'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
 			)
 		);
-
+		$function_img = array(
+			'upload_title' => 'Choose Coupon Image',
+			'button_text'  => 'Use Image',
+		);
 		if ( class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
 			$img_toggle = array(
 				'field'    => 'input',
@@ -649,7 +652,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			'imagemsg' => 'Image Coupon',
 			'section'  => 'coupon_creator_meta_box',
 			'tab'      => 'image_coupon',
-			'toggle'   => $img_toggle
+			'toggle'   => $img_toggle,
+			'function' => $function_img
 		);
 		//Help
 		$fields[ $prefix . 'all_help' ] = array(
