@@ -97,7 +97,7 @@ class Cctor__Coupon__Main {
 		Cctor__Coupon__Main::instance()->register_post_types();
 
 		/**
-		 * Fires on deactivation of Coupon Creator Pro
+		 * Fires on Activation of Coupon Creator
 		 *
 		 * Avaiable when Pro is decativated users who have
 		 * activate_plugins capability
