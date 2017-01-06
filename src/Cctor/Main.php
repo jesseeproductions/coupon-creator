@@ -85,15 +85,15 @@ class Cctor__Coupon__Main {
 			return;
 		}
 
-		//Setup Auto Loader to Prevent Fatal on Activate
+		// Setup Auto Loader to Prevent Fatal on Activate
 		Cctor__Coupon__Main::instance()->init_autoloading();
 
-		//Setup Capabilities for CPT
+		// Setup Capabilities for CPT
 		if ( ! get_option( self::POSTTYPE . '_capabilities_register' ) ) {
 			new Pngx__Add_Capabilities( self::POSTTYPE, self::CAPABILITIESPLURAL );
 		}
 
-		//Use Instance to call method to setup cpt
+		// Use Instance to call method to setup cpt
 		Cctor__Coupon__Main::instance()->register_post_types();
 
 		/**
@@ -332,10 +332,12 @@ class Cctor__Coupon__Main {
 		add_filter( 'template_include', array( 'Cctor__Coupon__Print', 'get_coupon_post_type_template' ) );
 		add_action( 'coupon_print_head', array( 'Cctor__Coupon__Print', 'print_css' ), 20 );
 
-		//Query
+		// Query
 		add_action( 'parse_query', array( __CLASS__, 'parse_query' ), 50 );
 
-		//Load Admin Class if in Admin Section
+		new Cctor__Coupon__Meta__Fields();
+
+		// Load Admin Class if in Admin Section
 		if ( is_admin() ) {
 			new Cctor__Coupon__Admin__Main();
 		}
@@ -444,8 +446,8 @@ class Cctor__Coupon__Main {
 	 */
 	public function register_post_types() {
 
-		//Register Coupon Post Type and customize labels
-		// @formatter:off
+		// Register Coupon Post Type and customize labels
+		//  @formatter:off
 			$labels = Pngx__Register_Post_Type::generate_post_type_labels(
 				$this->singular_coupon_label,
 				$this->plural_coupon_label,
@@ -503,7 +505,7 @@ class Cctor__Coupon__Main {
 	 */
 	public function register_taxonomies() {
 
-		//Register Coupon Taxonomu
+		// Register Coupon Taxonomu
 		// @formatter:off
 			$labels = Pngx__Register_Taxonomy::generate_taxonomy_labels(
 				$this->singular_category_label,

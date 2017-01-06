@@ -10,13 +10,23 @@ if ( class_exists( 'Cctor__Coupon__Meta__Fields' ) ) {
 
 class Cctor__Coupon__Meta__Fields {
 
-	//fields id prefix
+	// fields id prefix
 	public static $fields_prefix = 'cctor_';
 
 
-	/*
-	* Get Fields ID Prefix
-	*/
+	/**
+	 * Cctor__Coupon__Meta__Fields constructor
+	 */
+	public function __construct() {
+		add_filter( 'cctor_filter_meta_template_fields', array( __CLASS__, 'get_template_fields' ), 5, 1 );
+	}
+
+
+	/**
+	 * Get Fields ID Prefix
+	 *
+	 * @return string
+	 */
 	public static function get_fields_prefix() {
 		return self::$fields_prefix;
 	}
@@ -27,10 +37,10 @@ class Cctor__Coupon__Meta__Fields {
 	*/
 	public static function get_fields() {
 
-		//fields prefix
+		// fields prefix
 		$prefix = self::get_fields_prefix();
 
-		//Content
+		// Content
 		$fields[ $prefix . 'content_help' ]           = array(
 			'id'      => $prefix . 'content_help',
 			'type'    => 'help',
@@ -42,66 +52,14 @@ class Cctor__Coupon__Meta__Fields {
 			'type'      => '',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => ''
+			'wrapclass' => '',
 		);
 		$fields[ $prefix . 'start_content_template' ] = array(
 			'id'        => $prefix . 'start_content_template',
 			'type'      => 'template_start',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => 'cctor_coupon_type'
-		);
-		$fields[ $prefix . 'heading_deal' ]           = array(
-			'id'        => $prefix . 'heading_deal',
-			'title'     => '',
-			'desc'      => __( 'Coupon Deal', 'coupon-creator' ),
-			'type'      => 'heading',
-			'section'   => 'coupon_creator_meta_box',
-			'template'  => array( 'default' ),
-			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable'
-		);
-		$fields[ $prefix . 'amount' ]                 = array(
-			'label'     => __( 'Deal', 'coupon-creator' ),
-			'desc'      => __( 'Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon-creator' ),
-			'id'        => $prefix . 'amount',
-			'type'      => 'text',
-			'alert'     => '',
-			'section'   => 'coupon_creator_meta_box',
-			'template'  => array( 'default' ),
-			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
-		);
-		$fields[ $prefix . 'deal_display' ]           = array(
-			'id'        => $prefix . 'deal_display',
-			'type'      => '',
-			'section'   => 'coupon_creator_meta_box',
-			'template'  => array( 'default' ),
-			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable'
-		);
-		$fields[ $prefix . 'heading_terms' ]          = array(
-			'id'        => $prefix . 'heading_terms',
-			'title'     => '',
-			'desc'      => __( 'Coupon Terms', 'coupon-creator' ),
-			'type'      => 'heading',
-			'section'   => 'coupon_creator_meta_box',
-			'template'  => array( 'default' ),
-			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable'
-		);
-		$fields[ $prefix . 'description' ]            = array(
-			'label'     => __( 'Terms', 'coupon-creator' ),
-			'desc'      => __( 'Enter the terms of the discount', 'coupon-creator' ),
-			'id'        => $prefix . 'description',
-			'type'      => 'textarea',
-			'class'     => 'code',
-			'section'   => 'coupon_creator_meta_box',
-			'template'  => array( 'default' ),
-			'tab'       => 'content',
-			'cols'      => 60,
-			'rows'      => 4,
-			'wrapclass' => 'image-coupon-disable'
+			'wrapclass' => 'cctor_coupon_type',
 		);
 
 		if ( has_filter( 'cctor_filter_meta_template_fields' ) ) {
@@ -115,13 +73,12 @@ class Cctor__Coupon__Meta__Fields {
 			$fields = apply_filters( 'cctor_filter_meta_template_fields', $fields );
 		}
 
-
 		$fields[ $prefix . 'end_content_template' ] = array(
 			'id'        => $prefix . 'end_content_template',
 			'type'      => 'template_end',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
-			'wrapclass' => 'content_templates'
+			'wrapclass' => 'content_templates',
 		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
 			$fields[ $prefix . 'pro_content_features_heading' ] = array(
@@ -152,7 +109,7 @@ class Cctor__Coupon__Meta__Fields {
 				'tab'     => 'content',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
-				'type'    => 'pro_link'
+				'type'    => 'pro_link',
 			);
 		}
 
@@ -168,13 +125,13 @@ class Cctor__Coupon__Meta__Fields {
 			'id'      => $prefix . 'heading_pro_display',
 			'type'    => '',
 			'section' => 'coupon_creator_meta_box',
-			'tab'     => 'style'
+			'tab'     => 'style',
 		);
 		$fields[ $prefix . 'coupon_border_themes' ] = array(
 			'id'      => $prefix . 'coupon_border_themes',
 			'type'    => '',
 			'section' => 'coupon_creator_meta_box',
-			'tab'     => 'style'
+			'tab'     => 'style',
 		);
 		$fields[ $prefix . 'outer_border_color' ]   = array(
 			'id'      => $prefix . 'outer_border_color',
@@ -557,4 +514,68 @@ class Cctor__Coupon__Meta__Fields {
 		return $fields;
 	}
 
+	/*
+	* Get Template Fields
+	*
+	*/
+	public static function get_template_fields( $fields ) {
+
+		//fields prefix
+		$prefix = self::get_fields_prefix();
+
+		$fields[ $prefix . 'heading_deal' ]  = array(
+			'id'        => $prefix . 'heading_deal',
+			'title'     => '',
+			'desc'      => __( 'Coupon Deal', 'coupon-creator' ),
+			'type'      => 'heading',
+			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
+			'tab'       => 'content',
+			'wrapclass' => 'image-coupon-disable'
+		);
+		$fields[ $prefix . 'amount' ]        = array(
+			'label'     => __( 'Deal', 'coupon-creator' ),
+			'desc'      => __( 'Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon-creator' ),
+			'id'        => $prefix . 'amount',
+			'type'      => 'text',
+			'alert'     => '',
+			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
+			'tab'       => 'content',
+			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
+		);
+		$fields[ $prefix . 'deal_display' ]  = array(
+			'id'        => $prefix . 'deal_display',
+			'type'      => '',
+			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
+			'tab'       => 'content',
+			'wrapclass' => 'image-coupon-disable'
+		);
+		$fields[ $prefix . 'heading_terms' ] = array(
+			'id'        => $prefix . 'heading_terms',
+			'title'     => '',
+			'desc'      => __( 'Coupon Terms', 'coupon-creator' ),
+			'type'      => 'heading',
+			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
+			'tab'       => 'content',
+			'wrapclass' => 'image-coupon-disable'
+		);
+		$fields[ $prefix . 'description' ]   = array(
+			'label'     => __( 'Terms', 'coupon-creator' ),
+			'desc'      => __( 'Enter the terms of the discount', 'coupon-creator' ),
+			'id'        => $prefix . 'description',
+			'type'      => 'textarea',
+			'class'     => 'code',
+			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
+			'tab'       => 'content',
+			'cols'      => 60,
+			'rows'      => 4,
+			'wrapclass' => 'image-coupon-disable'
+		);
+
+		return $fields;
+	}
 }
