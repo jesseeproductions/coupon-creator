@@ -33,6 +33,8 @@ class Cctor__Coupon__Main {
 	public           $plugin_url;
 	public           $resource_path;
 	public           $resource_url;
+	public $vendor_path;
+	public $vendor_url;
 	public           $plugin_name;
 
 	public $singular_coupon_label;
@@ -596,7 +598,7 @@ class Cctor__Coupon__Main {
 	 **/
 	public static function parse_query( $query ) {
 
-	// @formatter:off
+		// @formatter:off
 	$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
 	// check if a coupon query by post_type
 	$query->cctor_is_coupon = ( in_array( 'cctor_coupon', $types ) && count( $types ) < 2 )
