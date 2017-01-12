@@ -48,6 +48,12 @@ class Cctor__Coupon__Admin__Fields {
 
 				break;
 
+			case 'variety':
+
+				Cctor__Coupon__Admin__Field__Variety::display( $field, $options, $options_id, $meta );
+
+				break;
+
 		}
 
 		//return field so other filters can use it

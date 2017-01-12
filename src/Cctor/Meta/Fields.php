@@ -576,6 +576,18 @@ class Cctor__Coupon__Meta__Fields {
 			'wrapclass' => 'image-coupon-disable'
 		);
 
+		$fields[ $prefix . 'expiration' ]    = array(
+			'alpha'        => '',
+			'label'        => '',
+			'inside_label' => __( 'Expiration Message', 'coupon-creator-add-on' ),
+			'desc'         => __( 'Use the Expiration Tab to set the Expiration and Counter for them to display here based on your selection.', 'coupon-creator-add-on' ),
+			'id'           => $prefix . 'expiration',
+			'type'         => 'message',
+			'section'      => 'coupon_creator_meta_box',
+			'value'        => '',
+			'std'          => '',
+		);
+
 		return $fields;
 	}
 }
