@@ -63,10 +63,22 @@ class Cctor__Coupon__Admin__Field__Variety {
 
 			foreach ( $field['choices'] as $name => $label ) {
 
+				if ( 0 === strpos( $name, 'before_' ) ) {
+					log_me( 'before' );
+					log_me( $name );
+					$name = str_replace( 'before_', '', $name );
+				}
+
+				if ( 0 === strpos( $name, 'after_' ) ) {
+					log_me( 'after' );
+					log_me( $name );
+					$name = str_replace( 'after_', '', $name );
+				}
+
 				if ( ! isset( $fields[ 'cctor_' . $name ] ) ) {
 					continue;
 				}
-
+				log_me( $name );
 				$meta = get_post_meta( $post->ID, 'cctor_' . $name, true );
 				Pngx__Admin__Fields::display_field( $fields[ 'cctor_' . $name ], false, false, $meta, null );
 
