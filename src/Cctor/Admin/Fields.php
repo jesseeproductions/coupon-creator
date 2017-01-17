@@ -24,12 +24,6 @@ class Cctor__Coupon__Admin__Fields {
 
 		switch ( $field['type'] ) {
 
-			case 'counter_expiration_msg':
-
-				Cctor__Coupon__Admin__Field__Counter_Expiration_Msg::display( $field, $options, $options_id, $meta );
-
-				break;
-
 			case 'coupon_image':
 
 				Cctor__Coupon__Admin__Field__Help::display( $field, $options, $options_id, $meta );
@@ -53,6 +47,13 @@ class Cctor__Coupon__Admin__Fields {
 				Cctor__Coupon__Admin__Field__Pro_Link::display( $field, $options, $options_id, $meta );
 
 				break;
+
+			case 'template_chooser':
+
+				Cctor__Coupon__Admin__Field__Template::display( $field, $options, $options_id, $meta );
+
+				break;
+
 
 			case 'variety':
 
