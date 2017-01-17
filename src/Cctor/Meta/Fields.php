@@ -552,7 +552,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
-		$fields[ $prefix . 'heading_terms' ] = array(
+		$fields[ $prefix . 'heading_terms' ]              = array(
 			'id'        => $prefix . 'heading_terms',
 			'title'     => '',
 			'desc'      => __( 'Coupon Terms', 'coupon-creator' ),
@@ -562,7 +562,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
-		$fields[ $prefix . 'description' ]   = array(
+		$fields[ $prefix . 'description' ]                = array(
 			'label'     => __( 'Terms', 'coupon-creator' ),
 			'desc'      => __( 'Enter the terms of the discount', 'coupon-creator' ),
 			'id'        => $prefix . 'description',
@@ -576,16 +576,23 @@ class Cctor__Coupon__Meta__Fields {
 			'wrapclass' => 'image-coupon-disable'
 		);
 
-		$fields[ $prefix . 'expiration' ]    = array(
-			'alpha'        => '',
-			'label'        => '',
-			'inside_label' => __( 'Expiration Message', 'coupon-creator-add-on' ),
-			'desc'         => __( 'Use the Expiration Tab to set the Expiration and Counter for them to display here based on your selection.', 'coupon-creator-add-on' ),
-			'id'           => $prefix . 'expiration',
-			'type'         => 'counter_expiration_msg',
-			'section'      => 'coupon_creator_meta_box',
-			'value'        => '',
-			'std'          => '',
+		$fields[ $prefix . 'var_expiration_msg' ]         = array(
+			'desc'    => __( 'The Expiration Date will display based off the selection in the Expiration / Counter Tab of this Coupon.', 'coupon-creator' ),
+			'id'      => $prefix . 'expiration',
+			'type'    => 'message',
+			'section' => 'coupon_creator_meta_box',
+		);
+		$fields[ $prefix . 'var_counter_msg' ]            = array(
+			'desc'    => __( 'The Counter will display based off the selection in the Expiration / Counter Tab of this Coupon.', 'coupon-creatorn' ),
+			'id'      => $prefix . 'expiration',
+			'type'    => 'message',
+			'section' => 'coupon_creator_meta_box',
+		);
+		$fields[ $prefix . 'var_expiration_counter_msg' ] = array(
+			'desc'    => __( 'The Expiration Date and Counter will display based off the selection in the Expiration / Counter Tab of this Coupon.', 'coupon-creator' ),
+			'id'      => $prefix . 'expiration',
+			'type'    => 'message',
+			'section' => 'coupon_creator_meta_box',
 		);
 
 		return $fields;

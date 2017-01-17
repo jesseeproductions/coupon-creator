@@ -58,30 +58,20 @@ class Cctor__Coupon__Admin__Field__Variety {
 		</div>
 		<div class="pngx-two-thirds">
 			<?php
-			$fields = apply_filters( 'cctor_filter_meta_template_fields', array() );;
+			$fields = apply_filters( 'cctor_filter_meta_template_fields', array() );
 			global $post;
 
-			foreach ( $field['choices'] as $name => $label ) {
+			if ( isset( $field['variety_choices'][ $selected ] ) ) {
+				foreach ( $field['variety_choices'][ $selected ] as $label ) {
 
-				if ( 0 === strpos( $name, 'before_' ) ) {
-					log_me( 'before' );
-					log_me( $name );
-					$name = str_replace( 'before_', '', $name );
+					if ( ! isset( $fields[ 'cctor_' . $label ] ) ) {
+						continue;
+					}
+
+					$meta = get_post_meta( $post->ID, 'cctor_' . $label, true );
+					Pngx__Admin__Fields::display_field( $fields[ 'cctor_' . $label ], false, false, $meta, null );
+
 				}
-
-				if ( 0 === strpos( $name, 'after_' ) ) {
-					log_me( 'after' );
-					log_me( $name );
-					$name = str_replace( 'after_', '', $name );
-				}
-
-				if ( ! isset( $fields[ 'cctor_' . $name ] ) ) {
-					continue;
-				}
-				log_me( $name );
-				$meta = get_post_meta( $post->ID, 'cctor_' . $name, true );
-				Pngx__Admin__Fields::display_field( $fields[ 'cctor_' . $name ], false, false, $meta, null );
-
 			}
 			?>
 
