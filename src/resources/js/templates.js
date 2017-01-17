@@ -84,4 +84,48 @@ jQuery( function ( $ ) {
 
 	} );
 
+	$( document ).on( 'change', '#cctor_l3_expiration', function ( e ) {
+
+		e.preventDefault();
+
+		var $option = $( this ).find( 'option:selected' ).val();
+		console.log('changing', $option);
+		$( ".field-cctor_l3_expiration .pngx-two-thirds" ).html( 'loading' );
+
+		$.ajax( {
+			url: cctor_templates.ajaxurl,
+			type: 'post',
+			cache: false,
+			dataType: 'json',
+			data: {
+				nonce: cctor_templates.nonce,
+				post_id: cctor_templates.post_id,
+				field: 'cctor_l3_expiration',
+				option: $option,
+				action: 'cctor_variety'
+			},
+			success: function ( results ) {
+
+				//console.log(results);
+
+				if ( results.success ) {
+
+					//console.log(JSON.parse( results.data ) );
+
+					$( ".field-cctor_l3_expiration .pngx-two-thirds" ).html( JSON.parse( results.data ) );
+
+					pngx_loadScript.init( cctor_templates.pngx_resource_url + 'js/pngx-admin.js?' + cctor_templates.coupon_version, true );
+
+				}
+			},
+			failure: function ( results ) {
+
+				//console.log(results);
+
+			}
+
+		} );
+
+	} );
+
 } );

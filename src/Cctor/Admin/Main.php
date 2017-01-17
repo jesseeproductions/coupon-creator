@@ -23,6 +23,8 @@ class Cctor__Coupon__Admin__Main {
 		//Update Version Number
 		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__Updates', 'admin_upgrade_version' ) );
 
+		new Cctor__Coupon__Admin__Admin_Templates();
+
 		Cctor__Coupon__Admin__Options::instance();
 
 		new Cctor__Coupon__Admin__Columns();
