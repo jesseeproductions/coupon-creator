@@ -59,13 +59,13 @@ class Cctor__Coupon__Admin__Field__Template {
 
 		wp_enqueue_script( 'cctor-load-template-ajax', Cctor__Coupon__Main::instance()->resource_url . 'js/templates.js', array( 'jquery' ), '201504155' );
 		wp_localize_script( 'cctor-load-template-ajax', 'cctor_templates', array(
-			'ajaxurl'                     => admin_url( 'admin-ajax.php', ( is_ssl() ? 'https' : 'http' ) ),
-			'nonce'                       => wp_create_nonce( 'download_click_counter_' . $post->ID ),
-			'coupon_add_ons_resource_url' => Cctor__Coupon__Main::instance()->resource_url,
-			'coupon_pro_resource_url'     => Cctor__Coupon__Pro__Main::instance()->resource_url,
-			'pngx_resource_url'           => Pngx__Main::instance()->resource_url,
-			'coupon_version'              => Cctor__Coupon__Main::VERSION_NUM,
-			'post_id'                     => $post->ID
+			'ajaxurl'                 => admin_url( 'admin-ajax.php', ( is_ssl() ? 'https' : 'http' ) ),
+			'nonce'                   => wp_create_nonce( 'download_click_counter_' . $post->ID ),
+			'pngx_vendor_url'         => Pngx__Main::instance()->vendor_url,
+			'coupon_pro_resource_url' => Cctor__Coupon__Pro__Main::instance()->resource_url,
+			'pngx_resource_url'       => Pngx__Main::instance()->resource_url,
+			'coupon_version'          => Cctor__Coupon__Main::VERSION_NUM,
+			'post_id'                 => $post->ID
 		) );
 
 	}

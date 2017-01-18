@@ -44,7 +44,12 @@ class Cctor__Coupon__Admin__Field__Variety {
 
 		?>
 		<div class="pngx-one-third pngx-first">
-			<select id="<?php echo esc_attr( $field['id'] ); ?>" class="select <?php echo esc_attr( $class ); ?>" name="<?php echo esc_attr( $name ); ?>"><
+			<select
+				id="<?php echo esc_attr( $field['id'] ); ?>"
+				class="select pngx-variety-select <?php echo esc_attr( $class ); ?>"
+				name="<?php echo esc_attr( $name ); ?>"
+				<?php echo isset( $field['data'] ) ? Pngx__Admin__Fields::toggle( $field['data'], null ) : ''; ?>
+			>
 				<?php
 				foreach ( $field['choices'] as $value => $label ) {
 

@@ -52,10 +52,6 @@ jQuery( function ( $ ) {
 						}
 						//console.log( selector );
 					}
-					//if ( selector ) {
-					//	$( selector ).wp_editor();
-					//}
-
 					var image_upload = $( ".pngx-meta-template-wrap .pngx-meta-field.field-image" );
 					var selector_img;
 					for ( i = 0; i < image_upload.length; i++ ) {
@@ -65,12 +61,7 @@ jQuery( function ( $ ) {
 
 					$( '.pngx-color-picker' ).wpColorPicker();
 
-
 					//pngx_loadScript.init( cctor_templates.pngx_resource_url + 'js/pngx-admin.js?' + cctor_templates.coupon_version, true );
-
-					//pngx_loadScript.init( cctor_templates.coupon_pro_resource_url + 'js/coupon-pro-admin.js?' + cctor_templates.coupon_version, true );
-
-					//pngx_loadScript.init( cctor_templates.coupon_add_ons_resource_url + 'js/templates.js?' + cctor_templates.coupon_version, true );
 
 				}
 			},
@@ -84,13 +75,22 @@ jQuery( function ( $ ) {
 
 	} );
 
-	$( document ).on( 'change', '#cctor_l3_expiration', function ( e ) {
+	$( document ).on( 'change', '.pngx-variety-select', function ( e ) {
 
 		e.preventDefault();
 
 		var $option = $( this ).find( 'option:selected' ).val();
-		console.log('changing', $option);
-		$( ".field-cctor_l3_expiration .pngx-two-thirds" ).html( 'loading' );
+
+		var $ajax_field = $( this ).data( 'toggleAjax_field' );
+		var $ajax_field_id = $( this ).data( 'toggleAjax_field_id' );
+		var $ajax_action = $( this ).data( 'toggleAjax_action' );
+
+		if ( ! $ajax_field && ! $ajax_field_id && ! $ajax_action ) {
+			console.log('missing');
+			return;
+		}
+		console.log('running');
+		$( $ajax_field ).html( 'loading' );
 
 		$.ajax( {
 			url: cctor_templates.ajaxurl,
@@ -100,9 +100,9 @@ jQuery( function ( $ ) {
 			data: {
 				nonce: cctor_templates.nonce,
 				post_id: cctor_templates.post_id,
-				field: 'cctor_l3_expiration',
+				field: $ajax_field_id,
 				option: $option,
-				action: 'cctor_variety'
+				action: $ajax_action
 			},
 			success: function ( results ) {
 
@@ -112,9 +112,9 @@ jQuery( function ( $ ) {
 
 					//console.log(JSON.parse( results.data ) );
 
-					$( ".field-cctor_l3_expiration .pngx-two-thirds" ).html( JSON.parse( results.data ) );
+					$( $ajax_field ).html( JSON.parse( results.data ) );
 
-					pngx_loadScript.init( cctor_templates.pngx_resource_url + 'js/pngx-admin.js?' + cctor_templates.coupon_version, true );
+					$( $ajax_field + ' .pngx-icon-picker' ).iconpicker();
 
 				}
 			},
