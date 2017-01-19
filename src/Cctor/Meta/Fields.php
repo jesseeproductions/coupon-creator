@@ -18,9 +18,27 @@ class Cctor__Coupon__Meta__Fields {
 	 * Cctor__Coupon__Meta__Fields constructor
 	 */
 	public function __construct() {
+
 		add_filter( 'cctor_filter_meta_template_fields', array( __CLASS__, 'get_template_fields' ), 5, 1 );
+
+		add_filter( 'pngx_meta_fields', array( __CLASS__, 'get_fields' ), 5 );
+
+		add_filter( 'pngx_meta_template_fields', array( __CLASS__, 'get_template_fields_for_filter' ), 5 );
 	}
 
+
+	public static function get_template_fields_for_filter( $fields=array() ) {
+
+		/**
+		 * Filter the meta fields from Coupon Creator for custom templates
+		 *
+		 *
+		 * @param array $fields an array of fields to display in meta tabs.
+		 *
+		 */
+		return apply_filters( 'cctor_filter_meta_template_fields', $fields );
+
+	}
 
 	/**
 	 * Get Fields ID Prefix
