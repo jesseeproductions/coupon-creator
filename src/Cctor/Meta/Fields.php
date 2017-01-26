@@ -27,7 +27,7 @@ class Cctor__Coupon__Meta__Fields {
 	}
 
 
-	public static function get_template_fields_for_filter( $fields=array() ) {
+	public static function get_template_fields_for_filter( $fields = array() ) {
 
 		/**
 		 * Filter the meta fields from Coupon Creator for custom templates
@@ -59,19 +59,47 @@ class Cctor__Coupon__Meta__Fields {
 		$prefix = self::get_fields_prefix();
 
 		// Content
-		$fields[ $prefix . 'content_help' ]           = array(
+		$fields[ $prefix . 'content_help' ] = array(
 			'id'      => $prefix . 'content_help',
 			'type'    => 'help',
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'content',
 		);
-		$fields[ $prefix . 'coupon_type' ]            = array(
-			'id'        => $prefix . 'coupon_type',
-			'type'      => '',
+		// Coupon Type
+		$fields[ $prefix . 'coupon_type' ] = array(
+			'label'   => __( 'Coupon Type', 'coupon-creator-pro' ),
+			'desc'    => __( 'Choose a coupon type to use.', 'coupon-creator-pro' ),
+			'id'      => $prefix . 'coupon_type',
+			'data'    => array(
+				'ajax_field'    => '.template-wrap-cctor_coupon_type',
+				'ajax_field_id' => 'cctor_coupon_type',
+				'ajax_action'   => 'pngx_templates',
+			),
+			'value'   => 'standard',
+			'class'   => 'pngx-template-chooser',
+			'type'    => 'select',
+			'choices' => array(
+				'default'     => __( 'Default', 'coupon-creator-pro' ),
+				'image'       => __( 'Image', 'coupon-creator-pro' ),
+				'two-column'  => __( 'Two Columns', 'coupon-creator-pro' ),
+				'lower-third' => __( 'Lower Third', 'coupon-creator-pro' ),
+				'highlight'   => __( 'Highlight', 'coupon-creator-pro' ),
+			),
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'content',
+		);
+
+		$fields[ $prefix . 'template_chooser' ] = array(
+			'label'     => '',
+			'desc'      => '',
+			'id'        => $prefix . 'template_chooser',
+			'type'      => 'template_chooser',
+			'alert'     => '',
 			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
 			'wrapclass' => '',
 		);
+
 		$fields[ $prefix . 'start_content_template' ] = array(
 			'id'        => $prefix . 'start_content_template',
 			'type'      => 'template_start',
@@ -437,46 +465,6 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'     => 'image_coupon',
 		);
 
-		$img_toggle   = array(
-			'field'    => 'input',
-			'type'     => 'image',
-			'priority' => 5,
-			'group'    => '.image-coupon-disable',
-			'show'     => '',
-			'msg'      => array(
-				'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
-				'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
-			)
-		);
-		$function_img = array(
-			'upload_title' => 'Choose Coupon Image',
-			'button_text'  => 'Use Image',
-		);
-		if ( class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
-			$img_toggle = array(
-				'field'    => 'input',
-				'type'     => 'image',
-				'priority' => 6,
-				'group'    => '.image-coupon-disable',
-				'show'     => '',
-				'msg'      => array(
-					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
-					'style'   => __( ' Only outer border styles are available when using an Image Coupon', 'coupon-creator' )
-				)
-			);
-
-		}
-		$fields[ $prefix . 'image' ] = array(
-			'label'    => '',
-			'desc'     => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
-			'id'       => $prefix . 'image',
-			'type'     => 'image',
-			'imagemsg' => 'Image Coupon',
-			'section'  => 'coupon_creator_meta_box',
-			'tab'      => 'image_coupon',
-			'toggle'   => $img_toggle,
-			'function' => $function_img
-		);
 		//Help
 		$fields[ $prefix . 'all_help' ] = array(
 			'id'      => $prefix . 'all_help',
@@ -485,7 +473,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'     => 'help',
 		);
 
-		//Liinks
+		//Links
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
 			$fields[ $prefix . 'pro_content_links_heading' ] = array(
 				'id'      => $prefix . 'pro_content_links_heading',
@@ -541,6 +529,10 @@ class Cctor__Coupon__Meta__Fields {
 		//fields prefix
 		$prefix = self::get_fields_prefix();
 
+
+		/**
+		 * Start Default Template
+		 */
 		$fields[ $prefix . 'heading_deal' ]  = array(
 			'id'        => $prefix . 'heading_deal',
 			'title'     => '',
@@ -570,7 +562,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
-		$fields[ $prefix . 'heading_terms' ]              = array(
+		$fields[ $prefix . 'heading_terms' ] = array(
 			'id'        => $prefix . 'heading_terms',
 			'title'     => '',
 			'desc'      => __( 'Coupon Terms', 'coupon-creator' ),
@@ -580,7 +572,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
-		$fields[ $prefix . 'description' ]                = array(
+		$fields[ $prefix . 'description' ]   = array(
 			'label'     => __( 'Terms', 'coupon-creator' ),
 			'desc'      => __( 'Enter the terms of the discount', 'coupon-creator' ),
 			'id'        => $prefix . 'description',
@@ -593,7 +585,59 @@ class Cctor__Coupon__Meta__Fields {
 			'rows'      => 4,
 			'wrapclass' => 'image-coupon-disable'
 		);
+		/**
+		 * End Default Template
+		 */
 
+		/**
+		 * Start Image Template
+		 */
+		$img_toggle   = array(
+			'field'    => 'input',
+			'type'     => 'image',
+			'priority' => 5,
+			'group'    => '.image-coupon-disable',
+			'show'     => '',
+			'msg'      => array(
+				'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
+				'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
+			)
+		);
+		$function_img = array(
+			'upload_title' => 'Choose Coupon Image',
+			'button_text'  => 'Use Image',
+		);
+		if ( class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
+			$img_toggle = array(
+				'field'    => 'input',
+				'type'     => 'image',
+				'priority' => 6,
+				'group'    => '.image-coupon-disable',
+				'show'     => '',
+				'msg'      => array(
+					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
+					'style'   => __( ' Only outer border styles are available when using an Image Coupon', 'coupon-creator' )
+				)
+			);
+
+		}
+		$fields[ $prefix . 'image' ] = array(
+			'label'    => '',
+			'desc'     => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
+			'id'       => $prefix . 'image',
+			'type'     => 'image',
+			'imagemsg' => 'Image Coupon',
+			'section'  => 'coupon_creator_meta_box',
+			'tab'      => 'content',
+			'template' => array( 'image' ),
+			'toggle'   => $img_toggle,
+			'function' => $function_img
+		);
+		/**
+		 * End Image Template
+		 */
+
+		// Variety Messages
 		$fields[ $prefix . 'var_expiration_msg' ]         = array(
 			'desc'    => __( 'The Expiration Date will display based off the selection in the Expiration / Counter Tab of this Coupon.', 'coupon-creator' ),
 			'id'      => $prefix . 'expiration',
