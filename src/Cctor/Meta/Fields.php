@@ -221,35 +221,6 @@ class Cctor__Coupon__Meta__Fields {
 		);
 
 		//Discount
-		$fields[ $prefix . 'heading_color' ] = array(
-			'id'        => $prefix . 'heading_color',
-			'title'     => '',
-			'desc'      => __( 'Deal Field Colors', 'coupon-creator' ),
-			'type'      => 'heading',
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'style',
-			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
-		);
-		$fields[ $prefix . 'colordiscount' ] = array(
-			'label'     => __( 'Deal Background Color', 'coupon-creator' ),
-			'desc'      => __( 'Choose background color', 'coupon-creator' ),
-			'id'        => $prefix . 'colordiscount',
-			'type'      => 'color', // color
-			'value'     => cctor_options( 'cctor_discount_bg_color' ),
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'style',
-			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
-		);
-		$fields[ $prefix . 'colorheader' ]   = array(
-			'label'     => __( 'Deal Text Color', 'coupon-creator' ),
-			'desc'      => __( 'Choose color for discount text', 'coupon-creator' ),
-			'id'        => $prefix . 'colorheader',
-			'type'      => 'color', // color
-			'value'     => cctor_options( 'cctor_discount_text_color' ),
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'style',
-			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
-		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
 			$fields[ $prefix . 'pro_content_style_heading' ] = array(
 				'id'      => $prefix . 'pro_content_style_heading',
@@ -464,6 +435,14 @@ class Cctor__Coupon__Meta__Fields {
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'image_coupon',
 		);
+		$fields[ $prefix . 'img_border_message' ] = array(
+			'id'      => $prefix . 'img_border_message',
+			'title'   => '',
+			'desc'    => __( 'The Image Coupon is now part of the template system. Go to the Content tab and choose the Image template to create one.', 'coupon-creator-pro' ),
+			'type'    => 'message',
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'image_coupon'
+		);
 
 		//Help
 		$fields[ $prefix . 'all_help' ] = array(
@@ -543,6 +522,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
+
 		$fields[ $prefix . 'amount' ]        = array(
 			'label'     => __( 'Deal', 'coupon-creator' ),
 			'desc'      => __( 'Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon-creator' ),
@@ -550,10 +530,37 @@ class Cctor__Coupon__Meta__Fields {
 			'type'      => 'text',
 			'alert'     => '',
 			'section'   => 'coupon_creator_meta_box',
+			'styles'    => array(
+				'font-color'       => $prefix . 'colorheader',
+				'background-color' => $prefix . 'colordiscount',
+			),
 			'template'  => array( 'default' ),
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
 		);
+		$fields[ $prefix . 'colorheader' ]       = array(
+			'alpha'        => '',
+			'label'        => '',
+			'inside_label' => __( 'Font Color', 'coupon-creator' ),
+			'desc'         => '',
+			'id'           => $prefix . 'colorheader',
+			'type'         => 'color',
+			'section'      => 'coupon_creator_meta_box',
+			'value'     => cctor_options( 'cctor_discount_text_color' ),
+			'std'          => '',
+		);
+		$fields[ $prefix . 'colordiscount' ]         = array(
+			'alpha'        => 'true',
+			'label'        => '',
+			'inside_label' => __( 'Background Color', 'coupon-creator' ),
+			'desc'         => '',
+			'id'           => $prefix . 'colordiscount',
+			'type'         => 'color',
+			'section'      => 'coupon_creator_meta_box',
+			'value'     => cctor_options( 'cctor_discount_bg_color' ),
+			'std'          => '',
+		);
+
 		$fields[ $prefix . 'deal_display' ]  = array(
 			'id'        => $prefix . 'deal_display',
 			'type'      => '',
