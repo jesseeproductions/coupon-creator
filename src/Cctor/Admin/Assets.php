@@ -70,21 +70,6 @@ class Cctor__Coupon__Admin__Assets {
 			wp_enqueue_script( 'jquery-ui-dialog' );
 
 			// @formatter:off
-			wp_enqueue_style(
-				'cctor_colorbox_css',
-				Cctor__Coupon__Main::instance()->plugin_url . 'vendor/colorbox/colorbox.css',
-				false,
-				filemtime( Cctor__Coupon__Main::instance()->plugin_path . 'vendor/colorbox/colorbox.css' )
-			);
-
-			wp_enqueue_script(
-				'cctor_colorbox_js',
-				Cctor__Coupon__Main::instance()->plugin_url . 'vendor/colorbox/jquery.colorbox-min.js',
-				array( 'jquery' ),
-				filemtime( Cctor__Coupon__Main::instance()->plugin_path . 'vendor/colorbox/jquery.colorbox-min.js' ),
-				true
-			);
-
 			wp_enqueue_script(
 				'cctor_admin_js',
 				Cctor__Coupon__Main::instance()->resource_url . 'js/coupon-admin.js',
