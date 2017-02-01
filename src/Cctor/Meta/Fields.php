@@ -650,18 +650,30 @@ class Cctor__Coupon__Meta__Fields {
 			'id'      => $prefix . 'expiration',
 			'type'    => 'message',
 			'section' => 'coupon_creator_meta_box',
+			'display'   => array(
+				'type'  => 'expiration',
+				'class' => 'expiration-date',
+			),
 		);
 		$fields[ $prefix . 'var_counter_msg' ]            = array(
 			'desc'    => __( 'The Counter will display based off the selection in the Expiration / Counter Tab of this Coupon.', 'coupon-creatorn' ),
 			'id'      => $prefix . 'expiration',
 			'type'    => 'message',
 			'section' => 'coupon_creator_meta_box',
+			'display'   => array(
+				'type'  => 'expiration',
+				'class' => 'counter',
+			),
 		);
 		$fields[ $prefix . 'var_expiration_counter_msg' ] = array(
 			'desc'    => __( 'The Expiration Date and Counter will display based off the selection in the Expiration / Counter Tab of this Coupon.', 'coupon-creator' ),
 			'id'      => $prefix . 'expiration',
 			'type'    => 'message',
 			'section' => 'coupon_creator_meta_box',
+			'display'   => array(
+				'type'  => 'expiration',
+				'class' => 'expiration-counter',
+			),
 		);
 
 		return $fields;
