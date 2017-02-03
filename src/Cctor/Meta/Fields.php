@@ -638,7 +638,11 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'      => 'content',
 			'template' => array( 'image' ),
 			'toggle'   => $img_toggle,
-			'function' => $function_img
+			'function' => $function_img,
+			'display'   => array(
+				'type'  => 'image',
+				'class' => 'cctor_coupon_image',
+			),
 		);
 		/**
 		 * End Image Template
