@@ -640,7 +640,7 @@ class Cctor__Coupon__Meta__Fields {
 			'toggle'   => $img_toggle,
 			'function' => $function_img,
 			'display'   => array(
-				'type'  => 'image',
+				'type'  => 'image_coupon',
 				'class' => 'cctor_coupon_image',
 			),
 		);

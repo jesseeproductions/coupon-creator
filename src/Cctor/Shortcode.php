@@ -25,8 +25,6 @@ class Cctor__Coupon__Shortcode {
 		/**
 		 * Core Coupon Shortcode Starting Hook
 		 *
-		 * @since 1.90
-		 *
 		 */
 		do_action( 'cctor_shortcode_start' );
 
@@ -59,7 +57,6 @@ class Cctor__Coupon__Shortcode {
 			/**
 			 * Filter Core ShortCode Query Arguments
 			 *
-			 *
 			 * @param array $cctor_args .
 			 *
 			 */
@@ -71,7 +68,6 @@ class Cctor__Coupon__Shortcode {
 			if ( has_filter( 'cctor_shortcode_query_args_' . $filterid ) ) {
 				/**
 				 * Filter Core ShortCode Query Arguments by ID
-				 *
 				 *
 				 * @param array $cctor_args .
 				 *
@@ -108,8 +104,6 @@ class Cctor__Coupon__Shortcode {
 			/**
 			 * Before Core Coupon Shortcode Individual Coupon
 			 *
-			 * @since 1.90
-			 *
 			 * @param int $coupon_id
 			 *
 			 */
@@ -118,7 +112,6 @@ class Cctor__Coupon__Shortcode {
 			if ( $coupon_expiration->check_expiration() ) {
 				/**
 				 * Filter Individual Coupon Outer Wrap
-				 *
 				 *
 				 * @param int         $coupon_id    .
 				 * @param string|null $coupon_align .
@@ -132,8 +125,6 @@ class Cctor__Coupon__Shortcode {
 				/**
 				 * Before Core Shortcode Individual Coupon Wrap
 				 *
-				 * @since 1.90
-				 *
 				 * @param int $coupon_id
 				 *
 				 */
@@ -142,7 +133,6 @@ class Cctor__Coupon__Shortcode {
 				//Return If Not Passed Expiration Date
 				/**
 				 * Filter Individual Image Coupon URL
-				 *
 				 *
 				 * @param int $coupon_id
 				 * @param     string (image size)
@@ -154,8 +144,6 @@ class Cctor__Coupon__Shortcode {
 					/**
 					 * Display Coupon Image Hook
 					 *
-					 * @since 1.90
-					 *
 					 * @param int    $coupon_id
 					 * @param string $couponimage
 					 * @param array  $cctor_atts ['bordertheme']
@@ -165,7 +153,6 @@ class Cctor__Coupon__Shortcode {
 				} else {
 					/**
 					 * Filter Individual Coupon Inner Wrap
-					 *
 					 *
 					 * @param int         $coupon_id    .
 					 * @param string|null $coupon_align .
@@ -178,8 +165,6 @@ class Cctor__Coupon__Shortcode {
 					/**
 					 * Coupon Deal Hook
 					 *
-					 * @since 1.90
-					 *
 					 * @param int $coupon_id
 					 *
 					 */
@@ -187,16 +172,13 @@ class Cctor__Coupon__Shortcode {
 					/**
 					 * Coupon Terms Hook
 					 *
-					 * @since 1.90
-					 *
 					 * @param int $coupon_id
 					 *
 					 */
 					do_action( 'cctor_coupon_terms', $coupon_id );
+
 					/**
 					 * Coupon Expiration Display Hook
-					 *
-					 * @since 1.90
 					 *
 					 * @param int    $coupon_id
 					 * @param object $coupon_expiration
@@ -208,8 +190,6 @@ class Cctor__Coupon__Shortcode {
 				}
 				/**
 				 * Individual Coupon Link
-				 *
-				 * @since 1.90
 				 *
 				 * @param int $coupon_id
 				 *
@@ -223,8 +203,6 @@ class Cctor__Coupon__Shortcode {
 				 * coupon Expired Hook
 				 * Only Shows for expired coupon
 				 *
-				 * @since 1.90
-				 *
 				 * @param int    $coupon_id
 				 * @param object $coupon_expiration
 				 */
@@ -232,8 +210,6 @@ class Cctor__Coupon__Shortcode {
 			}
 			/**
 			 * After Core Shortcode Wrap
-			 *
-			 * @since 1.90
 			 *
 			 * @param int $coupon_id
 			 *
@@ -244,9 +220,6 @@ class Cctor__Coupon__Shortcode {
 
 		/**
 		 * End Core Shortcode
-		 *
-		 * @since 1.90
-		 *
 		 *
 		 */
 		do_action( 'cctor_shortcode_end' );
