@@ -429,7 +429,7 @@ class Cctor__Coupon__Meta__Fields {
 		}
 
 		//Image Coupon
-		$fields[ $prefix . 'image_coupon_help' ] = array(
+		$fields[ $prefix . 'image_coupon_help' ]  = array(
 			'id'      => $prefix . 'image_coupon_help',
 			'type'    => 'help',
 			'section' => 'coupon_creator_meta_box',
@@ -512,13 +512,13 @@ class Cctor__Coupon__Meta__Fields {
 		/**
 		 * Start Default Template
 		 */
-		$fields[ $prefix . 'heading_deal' ]  = array(
+		$fields[ $prefix . 'heading_deal' ] = array(
 			'id'        => $prefix . 'heading_deal',
 			'title'     => '',
 			'desc'      => __( 'Coupon Deal', 'coupon-creator' ),
 			'type'      => 'heading',
-			'section'   => 'coupon_creator_meta_box',
 			'template'  => array( 'default' ),
+			'section'   => 'coupon_creator_meta_box',
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable'
 		);
@@ -536,9 +536,14 @@ class Cctor__Coupon__Meta__Fields {
 			),
 			'template'  => array( 'default' ),
 			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print'
+			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print',
+			'display'   => array(
+				'type'  => 'content',
+				'class' => 'cctor_deal',
+				'wrap'  => 'h3',
+			),
 		);
-		$fields[ $prefix . 'colorheader' ]       = array(
+		$fields[ $prefix . 'colorheader' ]   = array(
 			'alpha'        => '',
 			'label'        => '',
 			'inside_label' => __( 'Font Color', 'coupon-creator' ),
@@ -546,10 +551,10 @@ class Cctor__Coupon__Meta__Fields {
 			'id'           => $prefix . 'colorheader',
 			'type'         => 'color',
 			'section'      => 'coupon_creator_meta_box',
-			'value'     => cctor_options( 'cctor_discount_text_color' ),
+			'value'        => cctor_options( 'cctor_discount_text_color' ),
 			'std'          => '',
 		);
-		$fields[ $prefix . 'colordiscount' ]         = array(
+		$fields[ $prefix . 'colordiscount' ] = array(
 			'alpha'        => 'true',
 			'label'        => '',
 			'inside_label' => __( 'Background Color', 'coupon-creator' ),
@@ -557,7 +562,7 @@ class Cctor__Coupon__Meta__Fields {
 			'id'           => $prefix . 'colordiscount',
 			'type'         => 'color',
 			'section'      => 'coupon_creator_meta_box',
-			'value'     => cctor_options( 'cctor_discount_bg_color' ),
+			'value'        => cctor_options( 'cctor_discount_bg_color' ),
 			'std'          => '',
 		);
 
@@ -567,7 +572,7 @@ class Cctor__Coupon__Meta__Fields {
 			'section'   => 'coupon_creator_meta_box',
 			'template'  => array( 'default' ),
 			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable'
+			'wrapclass' => 'image-coupon-disable',
 		);
 		$fields[ $prefix . 'heading_terms' ] = array(
 			'id'        => $prefix . 'heading_terms',
@@ -590,7 +595,23 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'cols'      => 60,
 			'rows'      => 4,
-			'wrapclass' => 'image-coupon-disable'
+			'wrapclass' => 'image-coupon-disable',
+			'display'   => array(
+				'type'  => 'terms',
+				'tags'  => 'content_no_link',
+				'class' => 'cctor_terms',
+			),
+		);
+		$fields[ $prefix . 'default_expiration' ]        = array(
+			'id'        => $prefix . 'default_expiration',
+			'type'      => '',
+			'alert'     => '',
+			'section'   => 'coupon_creator_meta_box',
+			'template'  => array( 'default' ),
+			'display'   => array(
+				'type'  => 'expiration',
+				'class' => 'expiration-date',
+			),
 		);
 		/**
 		 * End Default Template
@@ -639,7 +660,7 @@ class Cctor__Coupon__Meta__Fields {
 			'template' => array( 'image' ),
 			'toggle'   => $img_toggle,
 			'function' => $function_img,
-			'display'   => array(
+			'display'  => array(
 				'type'  => 'image_coupon',
 				'class' => 'cctor_coupon_image',
 			),
@@ -654,7 +675,7 @@ class Cctor__Coupon__Meta__Fields {
 			'id'      => $prefix . 'expiration',
 			'type'    => 'message',
 			'section' => 'coupon_creator_meta_box',
-			'display'   => array(
+			'display' => array(
 				'type'  => 'expiration',
 				'class' => 'expiration-date',
 			),
@@ -664,7 +685,7 @@ class Cctor__Coupon__Meta__Fields {
 			'id'      => $prefix . 'expiration',
 			'type'    => 'message',
 			'section' => 'coupon_creator_meta_box',
-			'display'   => array(
+			'display' => array(
 				'type'  => 'expiration',
 				'class' => 'counter',
 			),
@@ -674,7 +695,7 @@ class Cctor__Coupon__Meta__Fields {
 			'id'      => $prefix . 'expiration',
 			'type'    => 'message',
 			'section' => 'coupon_creator_meta_box',
-			'display'   => array(
+			'display' => array(
 				'type'  => 'expiration',
 				'class' => 'expiration-counter',
 			),
