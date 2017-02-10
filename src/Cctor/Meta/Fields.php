@@ -538,7 +538,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print',
 			'display'   => array(
-				'type'  => 'content',
+				'type'  => 'title',
 				'class' => 'cctor_deal',
 				'wrap'  => 'h3',
 			),
@@ -597,7 +597,7 @@ class Cctor__Coupon__Meta__Fields {
 			'rows'      => 4,
 			'wrapclass' => 'image-coupon-disable',
 			'display'   => array(
-				'type'  => 'terms',
+				'type'  => 'content',
 				'tags'  => 'content_no_link',
 				'class' => 'cctor_terms',
 			),
