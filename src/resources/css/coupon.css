@@ -40,17 +40,49 @@
 	print-color-adjust: exact;
 }
 
+/* Standard CSS
+------------------------------------------------------------ */
+.cctor-wrap-link,
+.cctor_wrap_link {
+	text-decoration: none;
+}
+
+.coupon-inline-fields {
+	display: inline-block;
+	vertical-align: top;
+	width: auto;
+}
+
+.coupon-text-left {
+	text-align: left;
+}
+
+.coupon-text-center {
+	text-align: center;
+}
+
+.coupon-text-right {
+	text-align: right;
+}
+
+.coupon-overflow {
+	overflow: hidden;
+}
+
 /* Coupon Contents
 ------------------------------------------------------------ */
+.cctor-coupon,
 .cctor_coupon {
 	padding: 5px;
 	width: 100%;
 }
 
+.coupon-border .cctor-coupon,
 .coupon-border .cctor_coupon {
 	border: 3px dashed black;
 }
 
+.cctor-coupon-image,
 .cctor_coupon_image {
 	border: 3px dashed black;
 	height: auto;
@@ -58,6 +90,7 @@
 	padding: 1%;
 }
 
+.cctor-coupon-content,
 .cctor_coupon_content {
 	background: #fff;
 	border: 2px solid #0030ff;
@@ -65,6 +98,7 @@
 	width: 100%;
 }
 
+.cctor-deal,
 .cctor_deal {
 	background: #ffa300;
 	color: #000;
@@ -76,6 +110,7 @@
 	width: 100%;
 }
 
+.cctor-terms,
 .cctor_terms {
 	color: #000;
 	font-size: 14px;
@@ -87,11 +122,13 @@
 	width: 100%;
 }
 
+.cctor-terms img,
 .cctor_terms img {
 	height: auto;
 	max-width: 100%;
 }
 
+.cctor-expiration,
 .cctor_expiration {
 	font-size: 10px;
 	font-weight: bold;
