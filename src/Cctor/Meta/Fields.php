@@ -602,6 +602,7 @@ class Cctor__Coupon__Meta__Fields {
 				'class' => 'cctor_terms',
 			),
 		);
+
 		$fields[ $prefix . 'default_expiration' ]        = array(
 			'id'        => $prefix . 'default_expiration',
 			'type'      => '',
