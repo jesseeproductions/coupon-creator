@@ -107,6 +107,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $this->sections['templating'] = __( 'Templating', 'coupon-creator' ) : '';
 		$this->sections['help']       = __( 'Help', 'coupon-creator' );
 		$this->sections['license']    = __( 'Licenses', 'coupon-creator' );
+		$this->sections['systeminfo'] = __( 'System Info', 'coupon-creator' );
 		$this->sections['reset']      = __( 'Reset', 'coupon-creator' );
 
 		unset( $this->sections['license'] );
@@ -303,13 +304,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'section' => 'defaults'
 		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields['pro_feature_defaults_heading']           = array(
+			$fields['pro_feature_defaults_heading'] = array(
 				'section' => 'defaults',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
 				'type'    => 'pro_heading'
 			);
-			$fields['pro_feature_defaults']                  = array(
+			$fields['pro_feature_defaults']         = array(
 				'section' => 'defaults',
 				'title'   => '',
 				'desc'    => '',
@@ -321,14 +322,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 					'2' => __( 'Create a standard look with default styling fields such as color, radius, border type, and background fields' ),
 				)
 			);
-			$fields['pro_feature_defaults_link']           = array(
+			$fields['pro_feature_defaults_link']    = array(
 				'section' => 'defaults',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
 				'type'    => 'pro_link'
 			);
 		}
-
 
 
 		//LinkAttributes - Permalinks
@@ -383,13 +383,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'class'   => ''
 		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields['pro_feature_permalink_heading']           = array(
+			$fields['pro_feature_permalink_heading'] = array(
 				'section' => 'permalinks',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
 				'type'    => 'pro_heading'
 			);
-			$fields['pro_feature_permalink']                  = array(
+			$fields['pro_feature_permalink']         = array(
 				'section' => 'permalinks',
 				'title'   => '',
 				'desc'    => '',
@@ -400,7 +400,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 					'1' => __( 'Choose all new coupons to start as Pop Up Coupons or hide the "Click to Open in Print View" links' ),
 				)
 			);
-			$fields['pro_feature_permalink_link']           = array(
+			$fields['pro_feature_permalink_link']    = array(
 				'section' => 'permalinks',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
@@ -455,13 +455,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'desc'    => __( 'Check this to prevent the Coupon Creator from modifying the search query to remove the coupon custom post type.', 'coupon-creator' )
 		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields['pro_feature_display_heading']           = array(
+			$fields['pro_feature_display_heading'] = array(
 				'section' => 'display',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
 				'type'    => 'pro_heading'
 			);
-			$fields['pro_feature_display']                  = array(
+			$fields['pro_feature_display']         = array(
 				'section' => 'display',
 				'title'   => '',
 				'desc'    => '',
@@ -472,7 +472,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 					'1' => __( 'Change default font and font weights for the Print Template' ),
 				)
 			);
-			$fields['pro_feature_display_link']           = array(
+			$fields['pro_feature_display_link']    = array(
 				'section' => 'display',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
@@ -483,13 +483,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		//Pro Template Tab UpSell
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
-			$fields['pro_feature_templating_heading']           = array(
+			$fields['pro_feature_templating_heading'] = array(
 				'section' => 'templating',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Default Features', 'coupon-creator' ),
 				'type'    => 'pro_heading'
 			);
-			$fields['pro_feature_templating']                  = array(
+			$fields['pro_feature_templating']         = array(
 				'section' => 'templating',
 				'title'   => '',
 				'desc'    => '',
@@ -502,7 +502,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 					'3' => __( 'Easily build all the attributes of the &#91;couponloop&#93; shortcode and insert it into content using the Pro inserter' ),
 				)
 			);
-			$fields['pro_feature_templating_link']           = array(
+			$fields['pro_feature_templating_link']    = array(
 				'section' => 'templating',
 				'title'   => '', // Not used for headings.
 				'desc'    => __( 'Pro Link', 'coupon-creator' ),
@@ -519,6 +519,19 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'std'     => 0,
 			'desc'    => ''
 		);
+
+		$fields['systeminfo_heading'] = array(
+			'section' => 'systeminfo',
+			'title'   => '', // Not used for headings.
+			'desc'    => __( 'System Info', 'coupon-creator' ),
+			'type'    => 'heading'
+		);
+
+		$fields['systeminfo'] = array(
+			'section' => 'systeminfo',
+			'type'    => 'systeminfo'
+		);
+
 
 		$fields['reset_heading'] = array(
 			'section' => 'reset',
