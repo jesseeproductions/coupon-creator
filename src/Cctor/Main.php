@@ -15,6 +15,7 @@ class Cctor__Coupon__Main {
 
 	const TAXONOMY                 = 'cctor_coupon_category';
 	const POSTTYPE                 = 'cctor_coupon';
+	const PLUGIN_NAME              = 'Coupon Creator';
 	const CAPABILITIESPLURAL       = 'cctor_coupons';
 	const TEXT_DOMAIN              = 'coupon-creator';
 	const MIN_PHP_VERSION          = '5.2';
@@ -92,7 +93,7 @@ class Cctor__Coupon__Main {
 
 		// Setup Capabilities for CPT
 		if ( ! get_option( self::POSTTYPE . '_capabilities_register' ) ) {
-			new Pngx__Add_Capabilities( self::POSTTYPE, self::CAPABILITIESPLURAL );
+			new Pngx__Add_Capabilities( self::POSTTYPE );
 		}
 
 		// Use Instance to call method to setup cpt

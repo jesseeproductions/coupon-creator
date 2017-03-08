@@ -54,6 +54,15 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		add_action( 'pngx_before_option_form', array( __CLASS__, 'display_options_header' ), 5 );
 		add_action( 'pngx_after_option_form', array( __CLASS__, 'cctor_newsletter_signup' ) );
 
+		//add license key for support
+		add_filter( 'pngx-system-info-options', array( __CLASS__, 'add_options' ) );
+
+		//add option fields
+		add_filter( 'pngx-option-fields', array( __CLASS__, 'add_fields' ) );
+
+		//add option fields
+		add_filter( 'pngx-support-info', array( __CLASS__, 'add_system_items' ) );
+
 	}
 
 	/*
@@ -623,6 +632,72 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		//setup coupon cpt when flushing permalinks
 		Cctor__Coupon__Main::instance()->register_post_types();
+
+	}
+
+	/**
+	 * Add Coupon Options to System Info
+	 *
+	 * @param $keys
+	 *
+	 * @return mixed
+	 */
+	public static function add_options( $options ) {
+
+		$options[ Cctor__Coupon__Main::PLUGIN_NAME ] = get_option( Cctor__Coupon__Main::OPTIONS_ID );
+
+		return $options;
+
+	}
+
+	/**
+	 * Add Coupon Option Fields for System Info
+	 *
+	 * @param $keys
+	 *
+	 * @return mixed
+	 */
+	public static function add_fields() {
+
+		$fields = Cctor__Coupon__Admin__Options::instance()->get_option_fields();
+
+		return $fields;
+
+	}
+
+	/**
+	 * Add Coupon Option Fields to System Info
+	 *
+	 * @param $keys
+	 *
+	 * @return mixed
+	 */
+	public static function add_system_items( $systeminfo ) {
+
+		$post_type = Cctor__Coupon__Main::POSTTYPE;
+
+		$systeminfo['Coupon Creator License Keys'] = Pngx__Admin__Support::getInstance()->get_key();
+		$systeminfo['Coupon Creator Options']      = Pngx__Admin__Support::getInstance()->get_plugin_settings();
+
+		$options = array(
+			'Coupon Post Type Capabilities'   => $post_type . '_capabilities_register',
+			'Coupon Updated Version'          => 'coupon_update_version',
+			'Coupon Update Ignore Field'      => 'coupon_update_ignore_expiration',
+			'Coupon Update Image Border Meta' => 'coupon_update_image_border_meta',
+			'Coupon Update Expiration Type'   => 'coupon_update_expiration_type',
+		);
+
+		$coupon_system_info = array();
+
+		foreach ( $options as $k => $v ) {
+			if ( $option_val = get_option( $v ) ) {
+				$coupon_system_info[ $k ] = esc_attr( $option_val );
+			}
+		}
+
+		$systeminfo = array_merge( $systeminfo, $coupon_system_info );
+
+		return $systeminfo;
 
 	}
 
