@@ -70,7 +70,7 @@ class Cctor__Coupon__Admin__Main {
 		if ( $file == $this_plugin ) {
 
 			//Show Options Link
-			$plugin_links[] = '<a href="' . get_bloginfo( 'wpurl' ) . '/wp-admin/edit.php?post_type=cctor_coupon&page=coupon-options">Options</a>';
+			$plugin_links[] = '<a href="' . esc_url( get_admin_url() ) . 'edit.php?post_type=cctor_coupon&page=coupon-options">' . esc_html__( 'Options', 'coupon-creator' ) . '</a>';
 
 			//Show Upgrade to Pro Link
 			if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
