@@ -512,16 +512,16 @@ class Cctor__Coupon__Meta__Fields {
 		/**
 		 * Start Default Template
 		 */
-		$fields[ $prefix . 'heading_deal' ] = array(
-			'id'        => $prefix . 'heading_deal',
-			'title'     => '',
-			'desc'      => __( 'Coupon Deal', 'coupon-creator' ),
-			'type'      => 'heading',
-			'template'  => array( 'default' ),
-			'section'   => 'coupon_creator_meta_box',
-			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable'
-		);
+		/*		$fields[ $prefix . 'heading_deal' ] = array(
+					'id'        => $prefix . 'heading_deal',
+					'title'     => '',
+					'desc'      => __( 'Coupon Deal', 'coupon-creator' ),
+					'type'      => 'heading',
+					'template'  => array( 'default' ),
+					'section'   => 'coupon_creator_meta_box',
+					'tab'       => 'content',
+					'wrapclass' => 'image-coupon-disable'
+				);*/
 
 		$fields[ $prefix . 'amount' ]        = array(
 			'label'     => __( 'Deal', 'coupon-creator' ),
@@ -536,7 +536,7 @@ class Cctor__Coupon__Meta__Fields {
 			),
 			'template'  => array( 'default' ),
 			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print',
+			'wrapclass' => 'deal-display deal-display-both deal-display-hook deal-display-print',
 			'display'   => array(
 				'type'  => 'title',
 				'class' => 'cctor_deal',
@@ -566,25 +566,25 @@ class Cctor__Coupon__Meta__Fields {
 			'std'          => '',
 		);
 
-		$fields[ $prefix . 'deal_display' ]  = array(
+		$fields[ $prefix . 'deal_display' ] = array(
 			'id'        => $prefix . 'deal_display',
 			'type'      => '',
 			'section'   => 'coupon_creator_meta_box',
 			'template'  => array( 'default' ),
 			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable',
+			'wrapclass' => '',
 		);
-		$fields[ $prefix . 'heading_terms' ] = array(
-			'id'        => $prefix . 'heading_terms',
-			'title'     => '',
-			'desc'      => __( 'Coupon Terms', 'coupon-creator' ),
-			'type'      => 'heading',
-			'section'   => 'coupon_creator_meta_box',
-			'template'  => array( 'default' ),
-			'tab'       => 'content',
-			'wrapclass' => 'image-coupon-disable'
-		);
-		$fields[ $prefix . 'description' ]   = array(
+		/*		$fields[ $prefix . 'heading_terms' ] = array(
+					'id'        => $prefix . 'heading_terms',
+					'title'     => '',
+					'desc'      => __( 'Coupon Terms', 'coupon-creator' ),
+					'type'      => 'heading',
+					'section'   => 'coupon_creator_meta_box',
+					'template'  => array( 'default' ),
+					'tab'       => 'content',
+					'wrapclass' => ''
+				);*/
+		$fields[ $prefix . 'description' ] = array(
 			'label'     => __( 'Terms', 'coupon-creator' ),
 			'desc'      => __( 'Enter the terms of the discount', 'coupon-creator' ),
 			'id'        => $prefix . 'description',
@@ -595,7 +595,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'cols'      => 60,
 			'rows'      => 4,
-			'wrapclass' => 'image-coupon-disable',
+			'wrapclass' => '',
 			'display'   => array(
 				'type'  => 'content',
 				'tags'  => 'content_no_link',
@@ -603,13 +603,13 @@ class Cctor__Coupon__Meta__Fields {
 			),
 		);
 
-		$fields[ $prefix . 'default_expiration' ]        = array(
-			'id'        => $prefix . 'default_expiration',
-			'type'      => '',
-			'alert'     => '',
-			'section'   => 'coupon_creator_meta_box',
-			'template'  => array( 'default' ),
-			'display'   => array(
+		$fields[ $prefix . 'default_expiration' ] = array(
+			'id'       => $prefix . 'default_expiration',
+			'type'     => '',
+			'alert'    => '',
+			'section'  => 'coupon_creator_meta_box',
+			'template' => array( 'default' ),
+			'display'  => array(
 				'type'  => 'expiration',
 				'class' => 'expiration-date',
 			),
@@ -628,7 +628,6 @@ class Cctor__Coupon__Meta__Fields {
 			'group'    => '.image-coupon-disable',
 			'show'     => '',
 			'msg'      => array(
-				'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
 				'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
 			)
 		);
@@ -644,14 +643,13 @@ class Cctor__Coupon__Meta__Fields {
 				'group'    => '.image-coupon-disable',
 				'show'     => '',
 				'msg'      => array(
-					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
 					'style'   => __( ' Only outer border styles are available when using an Image Coupon', 'coupon-creator' )
 				)
 			);
 
 		}
 		$fields[ $prefix . 'image' ] = array(
-			'label'    => '',
+			'label'    => __( 'Image Coupon', 'coupon-creator' ),
 			'desc'     => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
 			'id'       => $prefix . 'image',
 			'type'     => 'image',

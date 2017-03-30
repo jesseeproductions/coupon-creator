@@ -15,3 +15,31 @@
 .postbox h4.pngx-fields-heading {
 	color: $green;
 }
+
+/* ==========================================================================
+   Meta Box
+   ========================================================================== */
+
+.postbox-container {
+
+
+	.pngx-meta-field {
+
+		&.field-checkbox,
+		&.field-color,
+		&.field-date,
+		&.field-image,
+		&.field-number,
+		&.field-select,
+		&.field-text,
+		&.field-url,
+		&.field-variety,
+		&.field-wysiwyg {
+
+			& > label {
+				color: $blue;
+			}
+
+		}
+	}
+}
