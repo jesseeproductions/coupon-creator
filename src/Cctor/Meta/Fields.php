@@ -512,17 +512,6 @@ class Cctor__Coupon__Meta__Fields {
 		/**
 		 * Start Default Template
 		 */
-		/*		$fields[ $prefix . 'heading_deal' ] = array(
-					'id'        => $prefix . 'heading_deal',
-					'title'     => '',
-					'desc'      => __( 'Coupon Deal', 'coupon-creator' ),
-					'type'      => 'heading',
-					'template'  => array( 'default' ),
-					'section'   => 'coupon_creator_meta_box',
-					'tab'       => 'content',
-					'wrapclass' => 'image-coupon-disable'
-				);*/
-
 		$fields[ $prefix . 'amount' ]        = array(
 			'label'     => __( 'Deal', 'coupon-creator' ),
 			'desc'      => __( 'Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon-creator' ),
@@ -536,7 +525,7 @@ class Cctor__Coupon__Meta__Fields {
 			),
 			'template'  => array( 'default' ),
 			'tab'       => 'content',
-			'wrapclass' => 'deal-display deal-display-both deal-display-hook deal-display-print',
+			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print',
 			'display'   => array(
 				'type'  => 'title',
 				'class' => 'cctor_deal',
@@ -572,18 +561,9 @@ class Cctor__Coupon__Meta__Fields {
 			'section'   => 'coupon_creator_meta_box',
 			'template'  => array( 'default' ),
 			'tab'       => 'content',
-			'wrapclass' => '',
+			'wrapclass' => 'image-coupon-disable',
 		);
-		/*		$fields[ $prefix . 'heading_terms' ] = array(
-					'id'        => $prefix . 'heading_terms',
-					'title'     => '',
-					'desc'      => __( 'Coupon Terms', 'coupon-creator' ),
-					'type'      => 'heading',
-					'section'   => 'coupon_creator_meta_box',
-					'template'  => array( 'default' ),
-					'tab'       => 'content',
-					'wrapclass' => ''
-				);*/
+
 		$fields[ $prefix . 'description' ] = array(
 			'label'     => __( 'Terms', 'coupon-creator' ),
 			'desc'      => __( 'Enter the terms of the discount', 'coupon-creator' ),
@@ -595,7 +575,7 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'       => 'content',
 			'cols'      => 60,
 			'rows'      => 4,
-			'wrapclass' => '',
+			'wrapclass' => 'image-coupon-disable',
 			'display'   => array(
 				'type'  => 'content',
 				'tags'  => 'content_no_link',
@@ -643,6 +623,7 @@ class Cctor__Coupon__Meta__Fields {
 				'group'    => '.image-coupon-disable',
 				'show'     => '',
 				'msg'      => array(
+					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
 					'style'   => __( ' Only outer border styles are available when using an Image Coupon', 'coupon-creator' )
 				)
 			);
