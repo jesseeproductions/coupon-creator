@@ -191,6 +191,37 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'alert'   => __( '*These are defaults for new coupons only and do not change existing coupons.', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
+
+		//Template
+		$fields['header_template'] = array(
+			'section' => 'defaults',
+			'title'   => '',
+			'desc'    => __( 'Template', 'coupon-creator' ),
+			'type'    => 'heading'
+		);
+		$template_options          = array(
+			'default' => __( 'Default', 'coupon-creator' ),
+			'image'   => __( 'Image', 'coupon-creator' ),
+		);
+		if ( class_exists( 'Cctor__Coupon__Addons__Main' ) ) {
+			$template_options = array(
+				'default'     => __( 'Default', 'coupon-creator' ),
+				'image'       => __( 'Image', 'coupon-creator' ),
+				'two-column'  => __( 'Two Columns', 'coupon-creator' ),
+				'lower-third' => __( 'Lower Third', 'coupon-creator' ),
+				'highlight'   => __( 'Highlight', 'coupon-creator' ),
+			);
+		}
+
+		$fields['cctor_default_template'] = array(
+			'section' => 'defaults',
+			'title'   => __( 'Template Option', 'coupon-creator' ),
+			'desc'    => __( 'Choose a default template for new coupons', 'coupon-creator' ),
+			'std'     => 'default',
+			'type'    => 'select',
+			'choices' => $template_options,
+		);
+
 		//Expiration
 		$fields['header_expiration'] = array(
 			'section' => 'defaults',

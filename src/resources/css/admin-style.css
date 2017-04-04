@@ -152,9 +152,11 @@ div.cctor-pro-link {
    Help CSS
    ========================================================================== */
 .coupon.pngx-section-help-container {
-  background-color: #2a5a8a; }
+  background-color: #2a5a8a;
+  border: 1px solid #2a5a8a; }
   .coupon.pngx-section-help-container .pngx-section-help-container-toggle {
-    background-color: #2a5a8a; }
+    background-color: #2a5a8a;
+    border: 1px solid #2a5a8a; }
   .coupon.pngx-section-help-container .pngx-section-help-container:hover,
   .coupon.pngx-section-help-container .pngx-section-help-container-toggle:hover {
     background: #9dd3df none repeat scroll 0 0;

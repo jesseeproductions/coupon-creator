@@ -65,6 +65,21 @@ class Cctor__Coupon__Meta__Fields {
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'content',
 		);
+
+		$template_options = array(
+			'default' => __( 'Default', 'coupon-creator' ),
+			'image'   => __( 'Image', 'coupon-creator' ),
+		);
+		if ( class_exists( 'Cctor__Coupon__Addons__Main' ) ) {
+			$template_options = array(
+				'default'     => __( 'Default', 'coupon-creator' ),
+				'image'       => __( 'Image', 'coupon-creator' ),
+				'two-column'  => __( 'Two Columns', 'coupon-creator' ),
+				'lower-third' => __( 'Lower Third', 'coupon-creator' ),
+				'highlight'   => __( 'Highlight', 'coupon-creator' ),
+			);
+		}
+
 		// Coupon Type
 		$fields[ $prefix . 'coupon_type' ] = array(
 			'label'   => __( 'Coupon Type', 'coupon-creator-pro' ),
@@ -75,16 +90,10 @@ class Cctor__Coupon__Meta__Fields {
 				'ajax_field_id' => 'cctor_coupon_type',
 				'ajax_action'   => 'pngx_templates',
 			),
-			'value'   => 'standard',
+			'value'    => cctor_options( 'cctor_default_template' ),
 			'class'   => 'pngx-template-chooser',
 			'type'    => 'select',
-			'choices' => array(
-				'default'     => __( 'Default', 'coupon-creator-pro' ),
-				'image'       => __( 'Image', 'coupon-creator-pro' ),
-				'two-column'  => __( 'Two Columns', 'coupon-creator-pro' ),
-				'lower-third' => __( 'Lower Third', 'coupon-creator-pro' ),
-				'highlight'   => __( 'Highlight', 'coupon-creator-pro' ),
-			),
+			'choices' => $template_options,
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'content',
 		);
@@ -601,20 +610,17 @@ class Cctor__Coupon__Meta__Fields {
 		/**
 		 * Start Image Template
 		 */
-		$img_toggle   = array(
+		$img_toggle = array(
 			'field'    => 'input',
 			'type'     => 'image',
 			'priority' => 5,
 			'group'    => '.image-coupon-disable',
 			'show'     => '',
 			'msg'      => array(
-				'style'   => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
+				'style' => __( ' Style Fields are disabled when using an Image Coupon', 'coupon-creator' )
 			)
 		);
-		$function_img = array(
-			'upload_title' => 'Choose Coupon Image',
-			'button_text'  => 'Use Image',
-		);
+
 		if ( class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
 			$img_toggle = array(
 				'field'    => 'input',
@@ -623,12 +629,11 @@ class Cctor__Coupon__Meta__Fields {
 				'group'    => '.image-coupon-disable',
 				'show'     => '',
 				'msg'      => array(
-					'content' => __( ' Content Fields are disabled when using an Image Coupon', 'coupon-creator' ),
-					'style'   => __( ' Only outer border styles are available when using an Image Coupon', 'coupon-creator' )
+					'style' => __( ' Only outer border styles are available when using an Image Coupon', 'coupon-creator' )
 				)
 			);
-
 		}
+
 		$fields[ $prefix . 'image' ] = array(
 			'label'    => __( 'Image Coupon', 'coupon-creator' ),
 			'desc'     => __( 'Upload an image to use as the entire coupon - Current image size is for 390 pixels in width with auto height', 'coupon-creator' ),
@@ -639,7 +644,10 @@ class Cctor__Coupon__Meta__Fields {
 			'tab'      => 'content',
 			'template' => array( 'image' ),
 			'toggle'   => $img_toggle,
-			'function' => $function_img,
+			'function' => array(
+				'upload_title' => 'Choose Coupon Image',
+				'button_text'  => 'Use Image',
+			),
 			'display'  => array(
 				'type'  => 'image_coupon',
 				'class' => 'cctor_coupon_image',

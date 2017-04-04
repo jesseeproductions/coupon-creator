@@ -3,9 +3,11 @@
    ========================================================================== */
 .coupon.pngx-section-help-container {
 	background-color: $blue;
+	border: 1px solid $blue;
 
 	.pngx-section-help-container-toggle {
 		background-color: $blue;
+		border: 1px solid $blue;
 	}
 
 	.pngx-section-help-container:hover,
