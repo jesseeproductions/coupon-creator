@@ -128,9 +128,8 @@ function cctor_print_stylesheets_and_script() { ?>
 	$coupon_url_dir = plugins_url(); // Declare Plugin Directory
 
 	//Get File Time of CSS File so that CSS Updater when changes made
-	$cctor_file  = wp_normalize_path( plugin_dir_path( __FILE__ ) );
-	$cctor_file  = str_replace( "/functions/template-functions/", "/", $cctor_file );
-	$cctor_file  = $cctor_file . 'resources/css/coupon.css';
+	$cctor_file  = wp_normalize_path( WP_PLUGIN_DIR );
+	$cctor_file  = $cctor_file . '/coupon-creator/src/resources/css/coupon.css';
 	$cctor_style = @filemtime( $cctor_file );
 
 	if ( $cctor_style == null ) {

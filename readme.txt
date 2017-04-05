@@ -134,6 +134,9 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 2.5 TBD =
+* Add - Template system and move default and image coupons as two free options
+* Fix - Warnings for File Time on Print Stylesheet
 
 = 2.4 November 7th, 2016 =
 * Add - Modified Enter Title Here to Enter Admin Coupon Title per http://stephanieleary.com/2016/06/wordpress-hidden-gem-enter_title_here-filter/
