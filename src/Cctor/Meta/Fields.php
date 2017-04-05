@@ -588,7 +588,7 @@ class Cctor__Coupon__Meta__Fields {
 			'display'   => array(
 				'type'  => 'content',
 				'tags'  => 'content_no_link',
-				'class' => 'cctor_terms',
+				'class' => 'cctor-terms',
 			),
 		);
 

@@ -159,6 +159,7 @@ a .cctor_expiration {
 	color: #000;
 }
 
+.cctor-terms p,
 .cctor_terms p {
 	margin: 0;
 }
@@ -202,6 +203,7 @@ a .cctor_expiration {
 	font-size: 30px;
 }
 
+.print_coupon .cctor-terms,
 .print_coupon .cctor_terms {
 	font-size: 20px;
 	line-height: 1.2;
@@ -232,6 +234,15 @@ a .cctor_expiration {
 	left: 35px;
 }
 
+/* Float Clear
+------------------------------------------------------------ */
+.cctor-clear:after {
+	display: table;
+	content: '';
+	clear: both;
+}
+
+
 /* Basic IE7 Support
 ------------------------------------------------------------ */
 .cctor_coupon {
@@ -239,6 +250,7 @@ a .cctor_expiration {
 }
 
 .cctor_coupon_content h3,
+.cctor-terms,
 .cctor_terms,
 .cctor_expiration {
 	*width: 96%;
