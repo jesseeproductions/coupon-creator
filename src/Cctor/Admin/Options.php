@@ -230,6 +230,11 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'type'    => 'heading'
 		);
 
+		$fields['cctor-add-ons-expiration-display'] = array(
+			'type'    => '',
+			'section' => ''
+		);
+
 		$expiration_options = array(
 			'1' => __( 'Ignore Expiration', 'coupon-creator' ),
 			'2' => __( 'Expiration Date', 'coupon-creator' )
