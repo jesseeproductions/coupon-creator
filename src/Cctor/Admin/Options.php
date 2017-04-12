@@ -331,7 +331,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		$fields['header_discount']           = array(
 			'section' => 'defaults',
 			'title'   => '', // Not used for headings.
-			'desc'    => __( 'Deal Field Colors', 'coupon-creator' ),
+			'desc'    => __( 'Default Template', 'coupon-creator' ),
 			'type'    => 'heading'
 		);
 		$fields['cctor_discount_bg_color']   = array(
@@ -348,6 +348,12 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'type'    => 'color', // color
 			'section' => 'defaults'
 		);
+		$fields['cctor_terms_text_color'] = array(
+			'type'    => '',
+			'section' => ''
+		);
+
+
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
 			$fields['pro_feature_defaults_heading'] = array(
 				'section' => 'defaults',
