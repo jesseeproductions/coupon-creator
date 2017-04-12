@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.2
 Tested up to:  4.7
-Stable tag: 2.4
+Stable tag: 2.4dev
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -135,7 +135,14 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 = 2.5 TBD =
+* Add - A new Admin UI to modernize the look and make it easier to organize related fields
+* Add - System Info Tab to get more details about a site setup for troubleshooting
 * Add - Template system and move default and image coupons as two free options
+* Add - License Key Activation and Deactivation from the Plugin List
+* Add - Default template option for new coupons
+* Change - The Styles tab to be border and background tab
+* Change - Move the field colors to be inline with the field they modify
+* Add - A saftey check for the Plugin Engine Version
 * Fix - Warnings for File Time on Print Stylesheet
 
 = 2.4 November 7th, 2016 =

@@ -146,6 +146,11 @@
 
 /* Coupon CSS Adjustments
 ------------------------------------------------------------ */
+.print_coupon a,
+.cctor_coupon_container a {
+	color: #000;
+}
+
 .cctor_coupon_container a:hover {
 	opacity: .8;
 	text-decoration: none;
@@ -241,7 +246,6 @@ a .cctor_expiration {
 	content: '';
 	clear: both;
 }
-
 
 /* Basic IE7 Support
 ------------------------------------------------------------ */
