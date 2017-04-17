@@ -606,6 +606,15 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'desc'    => __( 'Check this box and click "Save Changes" below to reset all coupon creator options to their defaults. This does not change any existing coupon settings or remove your licenses.', 'coupon-creator' )
 		);
 
+		$fields['wisdom_registered_setting'] = array(
+			'section' => '',
+			'title'   => '',
+			'type'    => 'checkbox',
+			'std'     => 1,
+			'class'   => '',
+			'desc'    => ''
+		);
+
 
 		//Filter Option Fields
 		if ( has_filter( 'cctor_option_filter' ) ) {

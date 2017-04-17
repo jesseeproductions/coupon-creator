@@ -19,6 +19,7 @@ Cctor__Coupon__Main::instance();
 register_activation_hook( __FILE__, array( 'Cctor__Coupon__Main', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'Cctor__Coupon__Main', 'deactivate' ) );
 
+
 /**
  * Get Options from Array
  *
@@ -43,4 +44,21 @@ function cctor_options( $option, $falseable = null, $default = null ) {
 		return false;
 	}
 
+}
+
+if( ! class_exists( 'Plugin_Usage_Tracker') ) {
+	require_once dirname( __FILE__ ) . '/src/tracking/class-plugin-usage-tracker.php';
+}
+if( ! function_exists( 'coupon_creator_start_plugin_tracking' ) ) {
+	function coupon_creator_start_plugin_tracking() {
+		$wisdom = new Plugin_Usage_Tracker(
+			__FILE__,
+			'https://couponcreatorplugin.com',
+			array('coupon_creator_options'),
+			true,
+			true,
+			1
+		);
+	}
+	coupon_creator_start_plugin_tracking();
 }

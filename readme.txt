@@ -140,6 +140,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Add - Template system and move default and image coupons as two free options
 * Add - License Key Activation and Deactivation from the Plugin List
 * Add - Default template option for new coupons
+* Add - Wisdom plugin for opt in to track plugin stats to help improve it
 * Change - The Styles tab to be border and background tab
 * Change - Move the field colors to be inline with the field they modify
 * Add - A saftey check for the Plugin Engine Version
