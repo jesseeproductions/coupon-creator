@@ -60,15 +60,12 @@ class Cctor__Coupon__Admin__Updates {
 
 		if ( $cctor_tempaltes ) {
 			while ( $cctor_tempaltes->have_posts() ) : $cctor_tempaltes->the_post();
-				log_me($cctor_tempaltes->post->ID);
+
 				//if image in coupon set as image template
 				$image = get_post_meta( $cctor_tempaltes->post->ID, 'cctor_image', true );
 				if ( $image ) {
-				log_me('image template');
-				log_me($image);
 					update_post_meta( $cctor_tempaltes->post->ID, 'cctor_coupon_type', 'image' );
 				} else {
-					log_me('default template');
 					update_post_meta( $cctor_tempaltes->post->ID, 'cctor_coupon_type', 'default' );
 				}
 
