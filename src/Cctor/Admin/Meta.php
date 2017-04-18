@@ -194,8 +194,11 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	 * @return bool|null
 	 */
 	public static function default_template( $template ) {
-		if ( ! $template ) {
-			$template = cctor_options( 'cctor_default_template' );
+
+		$default = cctor_options( 'cctor_default_template' );
+
+		if ( $default ) {
+			$template = $default;
 		}
 
 		return $template;
