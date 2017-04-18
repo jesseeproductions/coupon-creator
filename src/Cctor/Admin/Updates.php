@@ -24,17 +24,59 @@ class Cctor__Coupon__Admin__Updates {
 			// Then update the version value
 			update_option( 'coupon_update_version', date( 'l jS \of F Y h:i:s A' ) );
 
+			self::update_templates();
+
 			self::update_expiration_option();
 
 			self::update_image_fields();
-
-			//self::update_ignore_expiration();
 
 			update_option( Cctor__Coupon__Main::VERSION_KEY, Cctor__Coupon__Main::VERSION_NUM );
 
 			update_option( 'pngx_permalink_change', true );
 
 		}
+	}
+
+	/*
+	* Update to new template system on 2.5
+	*
+	*/
+	public static function update_templates() {
+
+		update_option( 'coupon_update_templates', date( 'l jS \of F Y h:i:s A' ) );
+
+		$args = array(
+			'posts_per_page' => 1000,
+			'post_type'      => 'cctor_coupon',
+			'meta_query'     => array(
+				array(
+					'key'     => 'cctor_coupon_type',
+					'compare' => 'NOT EXISTS'
+				),
+			)
+		);
+
+		$cctor_tempaltes = new WP_Query( $args );
+
+		if ( $cctor_tempaltes ) {
+			while ( $cctor_tempaltes->have_posts() ) : $cctor_tempaltes->the_post();
+				log_me($cctor_tempaltes->post->ID);
+				//if image in coupon set as image template
+				$image = get_post_meta( $cctor_tempaltes->post->ID, 'cctor_image', true );
+				if ( $image ) {
+				log_me('image template');
+				log_me($image);
+					update_post_meta( $cctor_tempaltes->post->ID, 'cctor_coupon_type', 'image' );
+				} else {
+					log_me('default template');
+					update_post_meta( $cctor_tempaltes->post->ID, 'cctor_coupon_type', 'default' );
+				}
+
+			endwhile;
+		}
+
+		wp_reset_postdata();
+
 	}
 
 	/**
@@ -122,34 +164,4 @@ class Cctor__Coupon__Admin__Updates {
 
 	}
 
-	/*
-	* On Update Query Coupons and Change cctor_ignore_expiration value from on to 1
-	* This if for Coupons made prior to 1.80
-	*
-	*/
-	public static function update_ignore_expiration() {
-
-		update_option( 'coupon_update_ignore_expiration', date( 'l jS \of F Y h:i:s A' ) );
-
-		$args = array(
-			'posts_per_page' => 1000,
-			'post_type'      => 'cctor_coupon',
-			'post_status'    => 'publish',
-			'meta_key'       => 'cctor_ignore_expiration',
-			'meta_value'     => 'on'
-		);
-
-		$cctor_ignore_exp = new WP_Query( $args );
-
-		if ( $cctor_ignore_exp ) {
-			while ( $cctor_ignore_exp->have_posts() ) : $cctor_ignore_exp->the_post();
-
-				update_post_meta( $cctor_ignore_exp->post->ID, 'cctor_ignore_expiration', 1, 'on' );
-
-			endwhile;
-		}
-
-		wp_reset_postdata();
-
-	}
 }

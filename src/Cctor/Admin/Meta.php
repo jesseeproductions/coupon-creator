@@ -42,6 +42,9 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		//Add Plugin Only Fields
 		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
 
+		// Add default template
+		add_filter( 'pngx-default-template', array( __CLASS__, 'default_template' ) );
+
 		//Modify Expiration Field
 		add_filter( 'pngx_before_save_meta_fields', array( __CLASS__, 'modify_ignore_expiration' ) );
 
@@ -139,8 +142,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	public static function show_coupon_shortcode( $post ) {
 		?><p class="shortcode">
 		<?php _e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon-creator' ); ?>
-        <code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
-        </p><?php
+		<code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
+		</p><?php
 
 	}
 
@@ -182,6 +185,21 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		self::$fields = Cctor__Coupon__Meta__Fields::get_fields();
 	}
 
+
+	/**
+	 * Add default template
+	 *
+	 * @param $template
+	 *
+	 * @return bool|null
+	 */
+	public static function default_template( $template ) {
+		if ( ! $template ) {
+			$template = cctor_options( 'cctor_default_template' );
+		}
+
+		return $template;
+	}
 
 	/**
 	 * Set Ignore Expiration Field
