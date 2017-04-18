@@ -203,7 +203,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'default' => __( 'Default', 'coupon-creator' ),
 			'image'   => __( 'Image', 'coupon-creator' ),
 		);
-		if ( class_exists( 'Cctor__Coupon__Addons__Main' ) ) {
+		if ( class_exists( 'Cctor__Coupon__Addons__Main' ) && 1 == cctor_options( 'cctor_advanced_templates' ) ) {
 			$template_options = array(
 				'default'     => __( 'Default', 'coupon-creator' ),
 				'image'       => __( 'Image', 'coupon-creator' ),
@@ -348,7 +348,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'type'    => 'color', // color
 			'section' => 'defaults'
 		);
-		$fields['cctor_terms_text_color'] = array(
+		$fields['cctor_terms_text_color']    = array(
 			'type'    => '',
 			'section' => ''
 		);
@@ -608,7 +608,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		$fields['wisdom_registered_setting'] = array(
 			'section' => '',
-			'title'   => '',
+			'title'   => __( 'Wisdom Enabled', 'coupon-creator' ),
 			'type'    => 'checkbox',
 			'std'     => 1,
 			'class'   => '',

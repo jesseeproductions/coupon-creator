@@ -70,7 +70,7 @@ class Cctor__Coupon__Meta__Fields {
 			'default' => __( 'Default', 'coupon-creator' ),
 			'image'   => __( 'Image', 'coupon-creator' ),
 		);
-		if ( class_exists( 'Cctor__Coupon__Addons__Main' ) ) {
+		if ( class_exists( 'Cctor__Coupon__Addons__Main' ) && 1 == cctor_options( 'cctor_advanced_templates' ) ) {
 			$template_options = array(
 				'default'     => __( 'Default', 'coupon-creator' ),
 				'image'       => __( 'Image', 'coupon-creator' ),
