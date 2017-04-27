@@ -203,7 +203,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'default' => __( 'Default', 'coupon-creator' ),
 			'image'   => __( 'Image', 'coupon-creator' ),
 		);
-		if ( class_exists( 'Cctor__Coupon__Addons__Main' ) && 1 == cctor_options( 'cctor_advanced_templates' ) ) {
+		if ( class_exists( 'Cctor__Coupon__Addons__Main' ) && 1 == cctor_options( 'cctor_advanced_templates', true, 1 ) ) {
 			$template_options = array(
 				'default'     => __( 'Default', 'coupon-creator' ),
 				'image'       => __( 'Image', 'coupon-creator' ),

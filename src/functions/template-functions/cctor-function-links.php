@@ -43,7 +43,7 @@ function cctor_show_link( $coupon_id ) {
 
 		?>
 		<div class='cctor_opencoupon'>
-		<a class="print-link"<?php echo $nofollow; ?> href='<?php echo esc_url( get_permalink( $coupon_id ) ); ?>' onclick='<?php echo esc_js( $cctor_onclick ); ?>'><?php echo __( 'Click to Open in Print View', 'coupon-creator' ); ?></a>
+		<a class="print-link" <?php echo $nofollow; ?> href='<?php echo esc_url( get_permalink( $coupon_id ) ); ?>' onclick='<?php echo esc_js( $cctor_onclick ); ?>'><?php echo __( 'Click to Open in Print View', 'coupon-creator' ); ?></a>
 		</div><!--end .opencoupon --><?php
 
 	} else {
