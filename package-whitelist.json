@@ -1,6 +1,7 @@
 [
   "coupon_creator.php",
   "src/**/*",
+  "!src/resources/scss/**/*",
   "plugin-engine/pngx-autoload.php",
   "plugin-engine/pngx-common.php",
   "plugin-engine/readme.txt",
