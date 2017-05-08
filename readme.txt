@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.2
 Tested up to:  4.7
-Stable tag: 2.5dev1
+Stable tag: 2.5
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -26,10 +26,14 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=q9Jzq3Y00Cw
 
-<h4>Coupon Creator Pro 2.4 Now Available!</h4>
-[Get a Pro License](http://cctor.link/JIGHR) with a couponloop shortcode, filter bar with ability to exclude coupon categories, quick & bulk edits, template system, column display, 5 border styles, recurring expirations, x days expiration, range expiration, a column and row inserter and visual editor for the coupon terms, counter, six (6) more style options, custom coupon sizing,text overrides, and more with 1 year of updates and support.
+<h4>Coupon Creator Add-ons 2.5 Features Include: (included with Pro Business and higher license levels)</h4>
+* Reveal Code Feature
+* Lower Third Advanced Template
+* Highlight Advanced Template
+* Lower Third Advanced Template
+* Create and Display WooCommerce Coupons from the Coupon Creator Editor
 
-<h4>Coupon Creator Pro 2.4 Features Include:</h4>
+<h4>Coupon Creator Pro 2.5 Features Include:</h4>
 * [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
 * Quick and Bulk edits for the expiration and counter fields
 * Border themes, Dotted Border, Stitched Border, Saw Tooth Border (modern browsers and IE 10+), and None Option
@@ -48,7 +52,6 @@ https://www.youtube.com/watch?v=q9Jzq3Y00Cw
 * Override “Print the Coupon” text and link per coupon
 * Disable the Print View per coupon
 * Add your Google Analytics Code to the Print Template from the Coupon Options
-
 <h4>How to Create a Coupon</h4>
 Create a coupon by going to the coupon custom post type and filling in all the settings in the custom meta box.
 
