@@ -35,11 +35,41 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'text'    => 'Coupon Content',
 			'type'    => 'heading'
 		);
-		$this->fields['video_creating_coupon']        = array(
+/*		$this->fields['video_creating_coupon']        = array(
 			'section'  => '',
 			'tab'      => 'content',
 			'text'     => 'Overview of Creating a Coupon',
 			'video_id' => 'I1v9HxdIsSE',
+			'type'     => 'video'
+		);*/
+		$this->fields['video_creating_templates_coupon25']        = array(
+			'section'  => '',
+			'tab'      => 'content',
+			'text'     => 'Standard and Default Templates',
+			'video_id' => 'hoVwCWe3qO8',
+			'type'     => 'video'
+		);
+		$this->fields['video_creating_image_coupon25']        = array(
+			'section'  => '',
+			'tab'      => 'content',
+			'text'     => 'Overview of Creating an Image Coupon',
+			'video_id' => 'S14cK04phZI',
+			'type'     => 'video'
+		);
+		$this->fields['video_click_reveal_coupon25']        = array(
+			'section'  => '',
+			'tab'      => 'content',
+			'text'     => 'How to use the Click Reveal',
+			'video_id' => 'n-dXdLCj0SU',
+			'pro'      => 'Pro',
+			'type'     => 'video'
+		);
+		$this->fields['video_expiration_display_coupon25']        = array(
+			'section'  => '',
+			'tab'      => 'content',
+			'text'     => 'How to use the Expiration Display',
+			'video_id' => 'DsU7pDDV_qs',
+			'pro'      => 'Pro',
 			'type'     => 'video'
 		);
 		$this->fields['video_pro_columns_rows']       = array(
@@ -86,6 +116,13 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'tab'     => 'content',
 			'text'    => 'How can I display coupons using the shortcode in a sidebar text widget?',
 			'link'    => 'http://cctor.link/CKv4w',
+			'type'    => 'links'
+		);
+		$this->fields['link_pro_image_size']             = array(
+			'section' => '',
+			'tab'     => 'content',
+			'text'    => 'What is the size of the image coupon?',
+			'link'    => 'http://cctor.link/cYn4L',
 			'type'    => 'links'
 		);
 		$this->fields['video_end_list_content']       = array(
@@ -191,41 +228,6 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'type'    => 'end_list'
 		);
 
-		//Image
-		$this->fields['header_video_guides_img']         = array(
-			'section' => '',
-			'tab'     => 'image_coupon',
-			'text'    => 'Image Coupons',
-			'type'    => 'heading'
-		);
-		$this->fields['video_creating_image_coupon']     = array(
-			'section'  => '',
-			'tab'      => 'image_coupon',
-			'text'     => 'Creating an Image Coupon',
-			'video_id' => 'A1mULc_MyHs',
-			'type'     => 'video'
-		);
-		$this->fields['video_creating_pro_image_coupon'] = array(
-			'section'  => '',
-			'tab'      => 'image_coupon',
-			'text'     => 'Creating a Pro Image Coupon',
-			'video_id' => 'SqAG3s1FniA',
-			'pro'      => 'Pro',
-			'type'     => 'video'
-		);
-		$this->fields['link_pro_image_size']             = array(
-			'section' => '',
-			'tab'     => 'image_coupon',
-			'text'    => 'What is the size of the image coupon?',
-			'link'    => 'http://cctor.link/cYn4L',
-			'type'    => 'links'
-		);
-		$this->fields['video_end_list_image']            = array(
-			'section' => '',
-			'tab'     => 'image_coupon',
-			'type'    => 'end_list'
-		);
-
 		//Links
 		$this->fields['header_video_guides_links'] = array(
 			'section' => '',
@@ -277,7 +279,6 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'type'    => 'end_list'
 		);
 
-
 		//Option Defaults
 		$this->fields['header_video_guides_defaults']  = array(
 			'section' => 'defaults',
@@ -296,7 +297,7 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'section'  => 'defaults',
 			'tab'      => '',
 			'text'     => 'An Overview of Default Options',
-			'video_id' => 'jHAKJSzwFMA',
+			'video_id' => 'mjIy7L0YLmY',
 			'type'     => 'video'
 		);
 		$this->fields['video_defaults_bulk_edit']      = array(
@@ -454,7 +455,7 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'section'  => 'license',
 			'tab'      => '',
 			'text'     => 'How to Activate Your License',
-			'video_id' => '7kjuob7OBCI',
+			'video_id' => 'soynAHmFmzs',
 			'pro'      => 'Pro',
 			'type'     => 'video'
 		);

@@ -438,12 +438,6 @@ class Cctor__Coupon__Meta__Fields {
 		}
 
 		//Image Coupon
-		$fields[ $prefix . 'image_coupon_help' ]  = array(
-			'id'      => $prefix . 'image_coupon_help',
-			'type'    => 'help',
-			'section' => 'coupon_creator_meta_box',
-			'tab'     => 'image_coupon',
-		);
 		$fields[ $prefix . 'img_border_message' ] = array(
 			'id'      => $prefix . 'img_border_message',
 			'title'   => '',
@@ -451,6 +445,14 @@ class Cctor__Coupon__Meta__Fields {
 			'type'    => 'message',
 			'section' => 'coupon_creator_meta_box',
 			'tab'     => 'image_coupon'
+		);
+
+		//links
+		$fields[ $prefix . 'link_coupon_help' ] = array(
+			'id'      => $prefix . 'link_coupon_help',
+			'type'    => 'help',
+			'section' => 'coupon_creator_meta_box',
+			'tab'     => 'links',
 		);
 
 		//Help
