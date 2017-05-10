@@ -213,7 +213,7 @@ div.cctor-pro-link {
 /* ==========================================================================
    Meta Box
    ========================================================================== */
-.postbox-container .pngx-meta-field.field-checkbox > label, .postbox-container .pngx-meta-field.field-color > label, .postbox-container .pngx-meta-field.field-date > label, .postbox-container .pngx-meta-field.field-image > label, .postbox-container .pngx-meta-field.field-number > label, .postbox-container .pngx-meta-field.field-select > label, .postbox-container .pngx-meta-field.field-text > label, .postbox-container .pngx-meta-field.field-url > label, .postbox-container .pngx-meta-field.field-variety > label, .postbox-container .pngx-meta-field.field-wysiwyg > label {
+.postbox-container .pngx-meta-field.field-checkbox > label, .postbox-container .pngx-meta-field.field-color > label, .postbox-container .pngx-meta-field.field-date > label, .postbox-container .pngx-meta-field.field-image > label, .postbox-container .pngx-meta-field.field-number > label, .postbox-container .pngx-meta-field.field-select > label, .postbox-container .pngx-meta-field.field-text > label, .postbox-container .pngx-meta-field.field-textarea > label, .postbox-container .pngx-meta-field.field-url > label, .postbox-container .pngx-meta-field.field-variety > label, .postbox-container .pngx-meta-field.field-wysiwyg > label {
   color: #2a5a8a; }
 
 /* ==========================================================================
