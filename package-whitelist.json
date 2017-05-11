@@ -6,6 +6,7 @@
   "plugin-engine/pngx-common.php",
   "plugin-engine/readme.txt",
   "plugin-engine/src/**/*",
+  "!plugin-engine/src/resources/scss/**/*",
   "plugin-engine/languages/**/*",
   "plugin-engine/vendor/**/*",
   "license.txt",
