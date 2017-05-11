@@ -24,7 +24,7 @@ Create your own coupon with the Coupon Creator for WordPress or upload an image 
 
 Watch this quick video to see the Coupon Creator in Action:
 
-https://www.youtube.com/watch?v=9O5liXSR-GU
+https://www.youtube.com/watch?v=aGoxJ3TBRhk
 
 <h4>Coupon Creator Add-ons 2.5 Features Include: (included with Pro Business and higher license levels)</h4>
 * Reveal Code Feature
