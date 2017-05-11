@@ -327,8 +327,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.4 =
-Coupon Creator 2.4 is a complete refactor, because of this refactor both Coupon Creator and Coupon Creator Pro must be updated to version 2.4 for them to work together.
+= 2.5 =
+Coupon Creator 2.5 includes numerous improvements and introduces Coupon Creator Add-ons. It is recommended to update both Coupon Creator and Coupon Creator Pro to 2.5 for them to work correctly.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>
