@@ -93,9 +93,9 @@ class Cctor__Coupon__Main {
 		Cctor__Coupon__Main::instance()->init_autoloading();
 
 		// Safety check: if Plugin Engine is not at a certain minimum version, bail out
-		if ( version_compare( Pngx__Main::VERSION, self::MIN_PNGX_VERSION, '<' ) ) {
-			return;
-		}
+		/*		if ( version_compare( Pngx__Main::VERSION, self::MIN_PNGX_VERSION, '<' ) ) {
+					return;
+				}*/
 
 		// Setup Capabilities for CPT
 		if ( ! get_option( self::POSTTYPE . '_capabilities_register' ) ) {
