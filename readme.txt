@@ -137,6 +137,10 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+
+= 2.5.1 May 11th, 2017 =
+* Tweak - Change deal selector to cctor-deal to standarize all css
+
 = 2.5 May 11th, 2017 =
 * Add - A new Admin UI to modernize the look and make it easier to organize related fields
 * Add - System Info Tab to get more details about a site setup for troubleshooting
