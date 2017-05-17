@@ -539,7 +539,7 @@ class Cctor__Coupon__Meta__Fields {
 			'wrapclass' => 'image-coupon-disable deal-display deal-display-both deal-display-hook deal-display-print',
 			'display'   => array(
 				'type'  => class_exists( 'Cctor__Coupon__Pro__Main' ) ? 'deal' : 'title',
-				'class' => 'cctor_deal',
+				'class' => 'cctor-deal',
 				'wrap'  => 'h3',
 			),
 		);
