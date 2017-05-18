@@ -612,20 +612,21 @@ class Cctor__Coupon__Main {
 	public static function parse_query( $query ) {
 
 		// @formatter:off
-	$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
-	// check if a coupon query by post_type
-	$query->cctor_is_coupon = ( in_array( 'cctor_coupon', $types ) && count( $types ) < 2 )
-		? true // it is a coupon
-		: false;
+		$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
 
-	$query->cctor_is_coupon_category = ! empty ( $query->query_vars[ 'cctor_coupon_category' ] )
-		? true // it was an coupon category
-		: false;
+		// check if a coupon query by post_type
+		$query->cctor_is_coupon = ( in_array( 'cctor_coupon', $types ) && count( $types ) < 2 )
+			? true // it is a coupon
+			: false;
 
-	$query->cctor_is_coupon_query = ( $query->cctor_is_coupon || $query->cctor_is_coupon_category )
-		? true // a coupon query of some type
-		: false;
-	// @formatter:on
+		$query->cctor_is_coupon_category = ! empty ( $query->query_vars[ 'cctor_coupon_category' ] )
+			? true // it was an coupon category
+			: false;
+
+		$query->cctor_is_coupon_query = ( $query->cctor_is_coupon || $query->cctor_is_coupon_category )
+			? true // a coupon query of some type
+			: false;
+		// @formatter:on
 
 		/**
 		 * Parse Coupon Query Action

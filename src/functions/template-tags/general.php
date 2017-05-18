@@ -49,3 +49,17 @@ function cctor_is_coupon_query() {
 
 	return apply_filters( 'cctor_query_is_coupon_query', $cctor_is_coupon_query );
 }
+
+/**
+ * Conditional tag to check if current page is displaying coupon taxonomy
+ *
+ * @return bool
+ **/
+if ( ! function_exists( 'cctor_is_coupon_taxonomy' ) ) {
+	function cctor_is_coupon_taxonomy() {
+		global $wp_query;
+		$cctor_is_coupon_taxonomy = ! empty( $wp_query->cctor_is_coupon_taxonomy );
+
+		return apply_filters( 'cctor_query_is_coupon_taxonomy', $cctor_is_coupon_taxonomy );
+	}
+}
