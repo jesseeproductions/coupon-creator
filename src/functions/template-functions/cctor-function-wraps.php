@@ -61,14 +61,14 @@ function cctor_return_inner_coupon_wrap( $coupon_id ) {
 	if ( cctor_options( 'cctor_hide_print_link' ) == 0 ) {
 
 		$coupon_inner_content_wrap['start_wrap'] = '<a class="cctor_wrap_link" href="' . esc_html( get_permalink( $coupon_id ) ) . '"  onclick="' . esc_js( $cctor_onclick ) . '" ' . $nofollow . '>
-			<div class="cctor_coupon">
-			<div class="cctor_coupon_content" style="border-color:' . esc_html( get_post_meta( $coupon_id, 'cctor_bordercolor', true ) ) . '">';
+			<div class="cctor_coupon cctor-coupon">
+			<div class="cctor_coupon_content cctor-coupon-content" style="border-color:' . esc_html( get_post_meta( $coupon_id, 'cctor_bordercolor', true ) ) . '">';
 
 		$endlink = '</a>';
 
 	} else {
-		$coupon_inner_content_wrap['start_wrap'] = '<div class="cctor_coupon">
-			<div class="cctor_coupon_content" style="border-color:' . esc_html( get_post_meta( $coupon_id, 'cctor_bordercolor', true ) ) . '">';
+		$coupon_inner_content_wrap['start_wrap'] = '<div class="cctor_coupon cctor-coupon">
+			<div class="cctor_coupon_content cctor-coupon-content" style="border-color:' . esc_html( get_post_meta( $coupon_id, 'cctor_bordercolor', true ) ) . '">';
 
 	}
 
@@ -89,7 +89,7 @@ function cctor_return_print_outer_coupon_wrap( $coupon_id ) {
 
 	$outer_coupon_wrap               = array();
 	$outer_coupon_wrap['start_wrap'] = '<!--start coupon container -->
-		<div id="coupon_creator_' . esc_html( $coupon_id ) . '" class="coupon_creator_' . esc_html( $coupon_id ) . ' coupon-creator-' . esc_html( $coupon_id ) . ' type-cctor_coupon cctor_coupon_container ' . esc_html( $coupon_cat_class ) . ' ' . esc_html( $coupon_img_class ) . ' coupon-border">';
+		<div id="coupon_creator_' . esc_html( $coupon_id ) . '" class="coupon_creator_' . esc_html( $coupon_id ) . ' coupon-creator-' . esc_html( $coupon_id ) . ' type-cctor_coupon cctor_coupon_container cctor-coupon-container' . esc_html( $coupon_cat_class ) . ' ' . esc_html( $coupon_img_class ) . ' coupon-border">';
 
 	$outer_coupon_wrap['end_wrap'] = '</div> <!--end #cctor_coupon_container -->';
 

@@ -42,13 +42,13 @@ function cctor_show_link( $coupon_id ) {
 	if ( cctor_options( 'cctor_hide_print_link' ) == 0 ) {
 
 		?>
-		<div class='cctor_opencoupon'>
+		<div class='cctor_opencoupon cctor-opencoupon'>
 		<a class="print-link" <?php echo $nofollow; ?> href='<?php echo esc_url( get_permalink( $coupon_id ) ); ?>' onclick='<?php echo esc_js( $cctor_onclick ); ?>'><?php echo __( 'Click to Open in Print View', 'coupon-creator' ); ?></a>
 		</div><!--end .opencoupon --><?php
 
 	} else {
 		?>
-		<div class='cctor_opencoupon'></div><?php
+		<div class='cctor_opencoupon cctor-opencoupon'></div><?php
 	}
 }
 
@@ -58,7 +58,7 @@ function cctor_show_link( $coupon_id ) {
 */
 function cctor_show_print_click( $coupon_id ) {
 	?>
-	<div class="cctor_opencoupon"> <!-- We Need a Click to Print Button -->
+	<div class="cctor_opencoupon cctor-opencoupon"> <!-- We Need a Click to Print Button -->
 		<a class="print-link" href="javascript:window.print();" rel="nofollow"><?php echo __( 'Click to Print', 'coupon-creator' ); ?></a>
 
 	</div> <!--end .opencoupon -->

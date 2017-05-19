@@ -31,7 +31,7 @@
 
 		?>
 	</head>
-<body class="print_coupon">
+<body class="print_coupon print-coupon">
 <?php
 if ( have_posts() ) while ( have_posts() ) : the_post();
 

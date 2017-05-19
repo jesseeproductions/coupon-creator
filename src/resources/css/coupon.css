@@ -20,6 +20,7 @@
 
 /* Coupon Creator CSS
 ------------------------------------------------------------ */
+.cctor-coupon-container,
 .cctor_coupon_container {
 	margin: 10px 10px 15px;
 	max-width: 100%;
@@ -28,10 +29,12 @@
 	width: 317px;
 }
 
+.cctor-coupon-container.cctor-image,
 .cctor_coupon_container.cctor-image {
 	width: auto;
 }
 
+.cctor-coupon-container, .cctor-coupon-container *,
 .cctor_coupon_container, .cctor_coupon_container * {
 	box-sizing: border-box; /* Firefox 1 */
 	-moz-box-sizing: border-box; /* Safari 3-4 */
@@ -136,6 +139,7 @@
 	width: 100%;
 }
 
+.cctor-opencoupon,
 .cctor_opencoupon {
 	font-size: 14px;
 	height: 20px;
@@ -146,11 +150,6 @@
 
 /* Coupon CSS Adjustments
 ------------------------------------------------------------ */
-.print_coupon a,
-.cctor_coupon_container a {
-	color: #000;
-}
-
 .cctor_coupon_container a:hover {
 	opacity: .8;
 	text-decoration: none;
@@ -171,23 +170,27 @@ a .cctor_expiration {
 
 /* Coupon Align
 ------------------------------------------------------------ */
+.cctor-alignnone,
 .cctor_alignnone {
 	display: inline-block;
 	margin: 0 0 10px;
 }
 
+.cctor-alignleft,
 .cctor_alignleft {
 	display: inline;
 	float: left;
 	margin: 0 10px 10px 0;
 }
 
+.cctor-alignright,
 .cctor_alignright {
 	display: inline;
 	float: right;
 	margin: 0 0 10px 10px;
 }
 
+.cctor-aligncenter,
 .cctor_aligncenter {
 	display: block;
 	margin: 10px auto;
@@ -195,20 +198,23 @@ a .cctor_expiration {
 
 /* Print View CSS
 ------------------------------------------------------------ */
+.print-coupon .cctor-oupon-container,
 .print_coupon .cctor_coupon_container {
 	margin: 10px auto;
 	width: 420px;
 }
 
+.print-coupon .cctor-coupon-container.cctor-image,
 .print_coupon .cctor_coupon_container.cctor-image {
 	width: auto;
 }
 
+.print-coupon .cctor-coupon-content h3,
 .print_coupon .cctor_coupon_content h3 {
 	font-size: 30px;
 }
 
-.print_coupon .cctor-terms,
+.print-coupon .cctor-terms,
 .print_coupon .cctor_terms {
 	font-size: 20px;
 	line-height: 1.2;
@@ -216,6 +222,7 @@ a .cctor_expiration {
 }
 
 @media print {
+	.cctor-opencoupon,
 	.cctor_opencoupon {
 		display: none !important;
 	}
@@ -253,9 +260,12 @@ a .cctor_expiration {
 	*width: 300px;
 }
 
+
+.cctor-coupon-content h3,
 .cctor_coupon_content h3,
 .cctor-terms,
 .cctor_terms,
+.cctor-expiration,
 .cctor_expiration {
 	*width: 96%;
 }
