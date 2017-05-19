@@ -139,7 +139,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 == Changelog ==
 
 = 2.5.1 May 11th, 2017 =
-* Tweak - Change deal selector to cctor-deal to standarize all css
+* Add - German Translation for Front End Text, thanks Andreas!
+* Add - cctor_is_coupon_taxonomy for checks if on a Coupon Taxonomy such as Category, Location, or Vendor
 
 = 2.5 May 11th, 2017 =
 * Add - A new Admin UI to modernize the look and make it easier to organize related fields
