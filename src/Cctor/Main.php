@@ -356,6 +356,9 @@ class Cctor__Coupon__Main {
 		if ( is_admin() ) {
 			new Cctor__Coupon__Admin__Main();
 		}
+
+		// Filter content and determine if we are going to use wpautop
+		add_filter( 'pngx_filter_content', array( $this, 'filter_coupon_content' ) );
 	}
 
 	/**
@@ -646,6 +649,16 @@ class Cctor__Coupon__Main {
 
 		return defined( 'COUPON_CREATOR_STORE_URL' ) ? COUPON_CREATOR_STORE_URL : self::COUPON_CREATOR_STORE_URL;
 
+	}
+
+	public function filter_coupon_content( $meta ) {
+
+		//WPAutop
+		if ( 1 != cctor_options( 'cctor_wpautop', true, 1 ) ) {
+			$meta = wpautop( $meta );
+		}
+
+		return $meta;
 	}
 
 }

@@ -138,11 +138,13 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.5.1 May 11th, 2017 =
+= 2.5.1 TBD =
 * Add - German Translation for Front End Text, thanks Andreas!
 * Add - cctor_is_coupon_taxonomy for checks if on a Coupon Taxonomy such as Category, Location, or Vendor
+* Add - A daily license check to update the expiration date of existing licenses
 * Fix - Disable Visual Editor if user disables it in their settings
 * Fix - Remove whitespace from visual editor and textarea on loading
+* Deprecate - Going forward all CSS selectors will use dashes instead of underscores, both are now including in the coding, but the underscores will be removed in a future version, please plan custom css accordingly
 
 = 2.5 May 11th, 2017 =
 * Add - A new Admin UI to modernize the look and make it easier to organize related fields
