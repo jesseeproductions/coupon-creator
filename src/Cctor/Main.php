@@ -651,6 +651,13 @@ class Cctor__Coupon__Main {
 
 	}
 
+	/**
+	 * Filter Coupon Content and use wpautop if enabled in options
+	 *
+	 * @param $meta
+	 *
+	 * @return string
+	 */
 	public function filter_coupon_content( $meta ) {
 
 		//WPAutop
