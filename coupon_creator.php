@@ -62,3 +62,28 @@ if( ! function_exists( 'coupon_creator_start_plugin_tracking' ) ) {
 	}
 	coupon_creator_start_plugin_tracking();
 }
+
+/**
+ * Custom Deactivation Reasons
+ */
+add_filter( 'wisdom_form_text_' . __FILE__, 'cctor_filter_deactivation_form' );
+function cctor_filter_deactivation_form( $form ) {
+
+	$form['heading'] = __( 'Sorry to see you go', 'coupon-creator' );
+
+	$form['body'] = __( 'Before you deactivate the plugin, would you quickly give us your reason for doing so?', 'coupon-creator' );
+
+	$form['options'] = array(
+		__( 'Could not create a coupon', 'coupon-creator' ),
+		__( 'Could not display my coupons', 'coupon-creator' ),
+		__( 'Looking for affiliate coupon features', 'coupon-creator' ),
+		__( 'Could not find where to get started', 'coupon-creator' ),
+		__( 'Not the features I wanted', 'coupon-creator' ),
+		__( 'Only required temporarily', 'coupon-creator' ),
+		__( 'Lack of documentation', 'coupon-creator' ),
+		__( 'Found a better plugin', 'coupon-creator' ),
+	);
+
+	return $form;
+
+}
