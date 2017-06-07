@@ -5,8 +5,8 @@ Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.2
-Tested up to:  4.7
-Stable tag: 2.5
+Tested up to:  4.8
+Stable tag: 2.5.1
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -26,15 +26,17 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=aGoxJ3TBRhk
 
-<h4>Coupon Creator Add-ons 2.5 Features Include: (included with Pro Business and higher license levels)</h4>
+<h4>Coupon Creator Add-ons 2.5.1 Features Include: (included with Pro Business and higher license levels)</h4>
 * Reveal Code Feature
+* Vendor and Location Taxonomies
 * Lower Third Advanced Template
 * Highlight Advanced Template
 * Lower Third Advanced Template
 * Create and Display WooCommerce Coupons from the Coupon Creator Editor
 
-<h4>Coupon Creator Pro 2.5 Features Include:</h4>
+<h4>Coupon Creator Pro 2.5.1 Features Include:</h4>
 * [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
+* Order the filter bar filters and hide any filter per shortcode
 * Quick and Bulk edits for the expiration and counter fields
 * Border themes, Dotted Border, Stitched Border, Saw Tooth Border (modern browsers and IE 10+), and None Option
 * Recurring Expiration; set an expiration for the end of the month and have it automatically change to the end of the next month
@@ -138,12 +140,10 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.5.1 TBD =
+= 2.5.1 June 7th, 2017 =
 * Add - German Translation for Front End Text, thanks Andreas!
 * Add - cctor_is_coupon_taxonomy for checks if on a Coupon Taxonomy such as Category, Location, or Vendor
-* Add - A daily license check to update the expiration date of existing licenses
-* Fix - Disable Visual Editor if user disables it in their settings
-* Fix - Remove whitespace from visual editor and textarea on loading
+* Tweak - the saniziation of the custom css to another function that is available before WordPress 4.7
 * Deprecate - Going forward all CSS selectors will use dashes instead of underscores, both are now including in the coding, but the underscores will be removed in a future version, please plan custom css accordingly
 
 = 2.5 May 11th, 2017 =
