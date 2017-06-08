@@ -66,7 +66,7 @@ if( ! function_exists( 'coupon_creator_start_plugin_tracking' ) ) {
 /**
  * Custom Deactivation Reasons
  */
-add_filter( 'wisdom_form_text_' . __FILE__, 'cctor_filter_deactivation_form' );
+add_filter( 'wisdom_form_text_coupon_creator', 'cctor_filter_deactivation_form' );
 function cctor_filter_deactivation_form( $form ) {
 
 	$form['heading'] = __( 'Sorry to see you go', 'coupon-creator' );
