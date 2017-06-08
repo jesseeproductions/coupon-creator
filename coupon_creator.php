@@ -46,20 +46,14 @@ function cctor_options( $option, $falseable = null, $default = null ) {
 
 }
 
-if( ! class_exists( 'Plugin_Usage_Tracker') ) {
+if ( ! class_exists( 'Plugin_Usage_Tracker' ) ) {
 	require_once dirname( __FILE__ ) . '/src/tracking/class-plugin-usage-tracker.php';
 }
-if( ! function_exists( 'coupon_creator_start_plugin_tracking' ) ) {
+if ( ! function_exists( 'coupon_creator_start_plugin_tracking' ) ) {
 	function coupon_creator_start_plugin_tracking() {
-		$wisdom = new Plugin_Usage_Tracker(
-			__FILE__,
-			'https://couponcreatorplugin.com',
-			array('coupon_creator_options'),
-			true,
-			true,
-			1
-		);
+		$wisdom = new Plugin_Usage_Tracker( __FILE__, 'https://couponcreatorplugin.com', array( 'coupon_creator_options' ), true, true, 1 );
 	}
+
 	coupon_creator_start_plugin_tracking();
 }
 
@@ -80,7 +74,7 @@ function cctor_filter_deactivation_form( $form ) {
 		__( 'Could not find where to get started', 'coupon-creator' ),
 		__( 'Not the features I wanted', 'coupon-creator' ),
 		__( 'Only required temporarily', 'coupon-creator' ),
-		__( 'Lack of documentation', 'coupon-creator' ),
+		__( 'Lack of technical documentation', 'coupon-creator' ),
 		__( 'Found a better plugin', 'coupon-creator' ),
 	);
 
