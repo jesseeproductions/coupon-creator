@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Coupon Creator\n"
-"POT-Creation-Date: 2017-05-10 18:04-0400\n"
+"POT-Creation-Date: 2017-06-14 16:12-0400\n"
 "PO-Revision-Date: 2016-03-18 10:08-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -25,6 +25,48 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: vendor\n"
 "X-Poedit-SearchPathExcluded-5: languages\n"
 "X-Poedit-SearchPathExcluded-6: plugin-engine\n"
+
+#: coupon_creator.php:66
+msgid "Sorry to see you go"
+msgstr ""
+
+#: coupon_creator.php:68
+msgid ""
+"Before you deactivate the plugin, would you quickly give us your reason for "
+"doing so?"
+msgstr ""
+
+#: coupon_creator.php:71
+msgid "Could not create a coupon"
+msgstr ""
+
+#: coupon_creator.php:72
+msgid "Could not display my coupons"
+msgstr ""
+
+#: coupon_creator.php:73
+msgid "Looking for affiliate coupon features"
+msgstr ""
+
+#: coupon_creator.php:74
+msgid "Could not find where to get started"
+msgstr ""
+
+#: coupon_creator.php:75
+msgid "Not the features I wanted"
+msgstr ""
+
+#: coupon_creator.php:76
+msgid "Only required temporarily"
+msgstr ""
+
+#: coupon_creator.php:77
+msgid "Lack of technical documentation"
+msgstr ""
+
+#: coupon_creator.php:78
+msgid "Found a better plugin"
+msgstr ""
 
 #: src/Cctor/Admin/Columns.php:74
 msgid "Coupon Title"
@@ -50,7 +92,7 @@ msgstr ""
 msgid "Expiration Date"
 msgstr ""
 
-#: src/Cctor/Admin/Columns.php:89 src/Cctor/Main.php:429
+#: src/Cctor/Admin/Columns.php:89 src/Cctor/Main.php:432
 msgid "Coupon Category"
 msgstr ""
 
@@ -561,40 +603,40 @@ msgid ""
 "should be in the \"plugin-engine/\" directory in the Coupon Creator plugin."
 msgstr ""
 
-#: src/Cctor/Main.php:389
+#: src/Cctor/Main.php:392
 #: src/functions/template-functions/cctor-function-links.php:22
 msgid "Coupon"
 msgstr ""
 
-#: src/Cctor/Main.php:400
+#: src/Cctor/Main.php:403
 msgid "coupon"
 msgstr ""
 
-#: src/Cctor/Main.php:409
+#: src/Cctor/Main.php:412
 msgid "Coupons"
 msgstr ""
 
-#: src/Cctor/Main.php:420
+#: src/Cctor/Main.php:423
 msgid "coupons"
 msgstr ""
 
-#: src/Cctor/Main.php:438
+#: src/Cctor/Main.php:441
 msgid "coupon category"
 msgstr ""
 
-#: src/Cctor/Main.php:447
+#: src/Cctor/Main.php:450
 msgid "Coupon Categories"
 msgstr ""
 
-#: src/Cctor/Main.php:456
+#: src/Cctor/Main.php:459
 msgid "coupon categories"
 msgstr ""
 
-#: src/Cctor/Main.php:489
+#: src/Cctor/Main.php:492
 msgid "Enter Coupon Admin Title"
 msgstr ""
 
-#: src/Cctor/Main.php:564
+#: src/Cctor/Main.php:567
 msgid "coupon-category"
 msgstr ""
 

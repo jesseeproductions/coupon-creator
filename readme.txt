@@ -140,7 +140,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.5.1 June 7th, 2017 =
+= 2.5.1 June 15th, 2017 =
 * Add - German Translation for Front End Text, thanks Andreas!
 * Add - cctor_is_coupon_taxonomy for checks if on a Coupon Taxonomy such as Category, Location, or Vendor
 * Tweak - the saniziation of the custom css to another function that is available before WordPress 4.7
