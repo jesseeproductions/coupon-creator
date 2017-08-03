@@ -5,8 +5,8 @@ Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.2
-Tested up to:  4.8
-Stable tag: 2.5.2
+Tested up to:  4.8.1
+Stable tag: 2.5.2.1
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -139,6 +139,9 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+
+= 2.5.1 August 3rd, 2017 =
+* Fix - Options image upload not working in Pro, thanks Patrick for reporting this!
 
 = 2.5.1 August 1st, 2017 =
 * Fix - Options compatibility issue with PHP 7.1, thanks Patrick for reporting this!
