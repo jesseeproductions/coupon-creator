@@ -141,7 +141,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 == Changelog ==
 
 = 2.5.1 August 3rd, 2017 =
-* Fix - Options image upload not working in Pro, thanks Patrick for reporting this!
+* Fix - Options image upload not working in Pro, thanks Christopher for reporting this!
 
 = 2.5.1 August 1st, 2017 =
 * Fix - Options compatibility issue with PHP 7.1, thanks Patrick for reporting this!
