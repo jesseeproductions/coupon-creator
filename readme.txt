@@ -140,7 +140,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.5.3 November 13th, 2017 =
+= 2.5.3 November 12th, 2017 =
 * Fix - Colorpicker alpha break with WordPress 4.9
 
 = 2.5.2.1 August 3rd, 2017 =
