@@ -207,6 +207,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			$template_options = array(
 				'default'     => __( 'Default', 'coupon-creator' ),
 				'image'       => __( 'Image', 'coupon-creator' ),
+				'modern'      => __( 'Modern', 'coupon-creator' ),
 				'two-column'  => __( 'Two Columns', 'coupon-creator' ),
 				'lower-third' => __( 'Lower Third', 'coupon-creator' ),
 				'highlight'   => __( 'Highlight', 'coupon-creator' ),

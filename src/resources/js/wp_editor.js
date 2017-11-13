@@ -146,27 +146,20 @@
 			} else {
 				var current_id = $( this ).attr( 'id' );
 
-				//console.log( 'id_regexp', id_regexp );
-
 				$.each( options.mceInit, function ( key, value ) {
 					if ( $.type( value ) == 'string' )
 						options.mceInit[key] = value.replace( id_regexp, current_id );
 				} );
 				options.mode = options.mode == 'tmce' ? 'tmce' : 'html';
 
-				//console.log( 'id', current_id );
 				//if tiny mce exists for id, remove it to reinit
 				if ( typeof tinyMCEPreInit.mceInit[current_id] !== 'undefined' ) {
-					//console.log( 'defined', current_id );
-
 					//tinymce.init(tinyMCEPreInit.mceInit[current_id]);
 
 					tinyMCE.remove( tinymce.editors[current_id] );
 				}
 
 				tinyMCEPreInit.mceInit[current_id] = options.mceInit;
-
-				//console.log( 'mceInit', tinyMCEPreInit.mceInit[current_id]);
 
 				$( this ).addClass( 'wp-editor-area' ).show();
 				var self = this;
