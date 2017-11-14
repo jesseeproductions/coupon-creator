@@ -36,8 +36,19 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		$this->checkboxes = array();
 
 		add_action( 'admin_menu', array( $this, 'options_page' ) );
-		add_action( 'admin_init', array( $this, 'register_options' ), 15 );
+
 		add_action( 'init', array( 'Pngx__Admin__Fields', 'flush_permalinks' ) );
+
+		add_action( 'admin_init', array( $this, 'admin_init' ), 0 );
+
+	}
+
+	/**
+	 * Admin Init Options
+	 */
+	public function admin_init() {
+
+		add_action( 'admin_init', array( $this, 'register_options' ), 15 );
 
 		//Filter Options Field Name ID
 		add_filter( 'pngx_options_name_id', array( $this, 'filter_options_field_id' ) );
@@ -143,7 +154,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	* Options Header
 	*/
 	public static function display_options_header( $slug ) {
-
+		log_me('display_options_header');
 		if ( 'coupon-options' == $slug ) {
 
 			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
