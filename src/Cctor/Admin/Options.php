@@ -154,7 +154,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	* Options Header
 	*/
 	public static function display_options_header( $slug ) {
-		log_me('display_options_header');
+
 		if ( 'coupon-options' == $slug ) {
 
 			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
