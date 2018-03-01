@@ -1,0 +1,217 @@
+/* Coupon Creator CSS
+------------------------------------------------------------ */
+.cctor-coupon-container,
+.cctor_coupon_container {
+	margin: 10px 10px 15px;
+	max-width: 100%;
+	overflow: hidden;
+	text-align: center;
+	width: 317px;
+}
+
+.cctor-coupon-container.cctor-image,
+.cctor_coupon_container.cctor-image {
+	width: auto;
+}
+
+.cctor-coupon-container, .cctor-coupon-container *,
+.cctor_coupon_container, .cctor_coupon_container * {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+	print-color-adjust: exact;
+	-webkit-print-color-adjust: exact;
+}
+
+/* Standard CSS
+------------------------------------------------------------ */
+.cctor-wrap-link,
+.cctor_wrap_link {
+	text-decoration: none;
+}
+
+.coupon-inline-fields {
+	display: inline-block;
+	vertical-align: top;
+	width: auto;
+}
+
+.coupon-text-left {
+	text-align: left;
+}
+
+.coupon-text-center {
+	text-align: center;
+}
+
+.coupon-text-right {
+	text-align: right;
+}
+
+.coupon-overflow {
+	overflow: hidden;
+}
+
+/* Coupon Contents
+------------------------------------------------------------ */
+.cctor-coupon,
+.cctor_coupon {
+	padding: 5px;
+	width: 100%;
+}
+
+.cctor-coupon-image,
+.cctor_coupon_image {
+	height: auto;
+	max-width: 100%;
+	padding: 1%;
+}
+
+.sawtooth-border .cctor-coupon-image,
+.coupon-border .cctor-coupon-image,
+.coupon-border .cctor-coupon,
+.sawtooth-border .cctor_coupon_image,
+.coupon-border .cctor_coupon_image,
+.coupon-border .cctor_coupon {
+	border: 3px dashed black;
+}
+
+.stitched-border .cctor-coupon-image,
+.stitched-border .cctor-coupon,
+.stitched-border .cctor_coupon_image,
+.stitched-border .cctor_coupon {
+	outline: 1px dashed #000000;
+	outline-offset: -3px;
+	padding: 6px;
+}
+
+.dotted-border .cctor-coupon-image,
+.dotted-border .cctor-coupon,
+.dotted-border .cctor_coupon_image,
+.dotted-border .cctor_coupon {
+	border: 2px dotted #000000;
+	padding: 2px;
+}
+
+.sawtooth-border .cctor-coupon,
+.sawtooth-border .cctor_coupon {
+	position: relative;
+}
+
+.sawtooth-border .sawtooth-top-bottom {
+	background: linear-gradient(135deg, transparent 75%, #000000 75%) 0 0, linear-gradient(-135deg, transparent 75%, #000000 75%) 0 0, linear-gradient(-45deg, transparent 75%, #000000 75%) 100% 100%, linear-gradient(45deg, transparent 75%, #000000 75%) 100% 100%;
+	background: -webkit-linear-gradient(-135deg, transparent 75%, #000000 75%) 0 0, -webkit-linear-gradient(-45deg, transparent 75%, #000000 75%) 0 0, -webkit-linear-gradient(135deg, transparent 75%, #000000 75%) 0 100%, -webkit-linear-gradient(45deg, transparent 75%, #000000 75%) 0 100%;
+	background-repeat: repeat-x;
+	background-size: 8px 5px, 8px 5px;
+	bottom: 0;
+
+	left: 10px;
+	position: absolute;
+
+	right: 10px;
+	top: 0;
+}
+
+.sawtooth-border .sawtooth-left-right {
+	background: linear-gradient(45deg, transparent 75%, #000000 75%) 0 50%, linear-gradient(135deg, transparent 75%, #000000 75%) 0 50%, linear-gradient(-45deg, transparent 75%, #000000 75%) 100% 50%, linear-gradient(-135deg, transparent 75%, #000000 75%) 100% 50%;
+	background: -webkit-linear-gradient(45deg, transparent 75%, #000000 75%) 0 50%, -webkit-linear-gradient(-45deg, transparent 75%, #000000 75%) 0 50%, -webkit-linear-gradient(135deg, transparent 75%, #000000 75%) 100% 50%, -webkit-linear-gradient(-135deg, transparent 75%, #000000 75%) 100% 50%;
+	background-repeat: repeat-y;
+	background-size: 7px 8px, 7px 8px;
+
+	border: none;
+	padding: 0 7px;
+}
+
+.cctor-coupon-content,
+.cctor_coupon_content {
+	background: #fff;
+	border: 2px solid #0030ff;
+	position: relative;
+	width: 100%;
+}
+
+.cctor-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0px;
+	min-height: 45px;
+	padding: 2%;
+}
+
+.cctor-deal,
+.cctor_deal {
+	background: #ffa300;
+	color: #000;
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0px;
+	min-height: 45px;
+	padding: 2%;
+	width: 100%;
+}
+
+.main-coupon-content,
+.cctor-terms,
+.cctor_terms {
+	color: #000;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.2;
+	min-height: 90px;
+	overflow: hidden;
+	padding: 2% 3%;
+	width: 100%;
+}
+
+.main-coupon-content .wp-caption,
+.main-coupon-content img,
+.cctor-terms .wp-caption,
+.cctor_terms .wp-caption,
+.cctor-terms img,
+.cctor_terms img {
+	height: auto;
+	max-width: 100%;
+}
+
+.cctor-expiration,
+.cctor_expiration {
+	font-size: 10px;
+	font-weight: bold;
+	min-height: 15px;
+	width: 100%;
+}
+
+.cctor-expiration,
+.cctor_expiration {
+	padding: 0 2%;
+}
+
+.cctor-opencoupon,
+.cctor_opencoupon {
+	font-size: 14px;
+	height: 20px;
+	line-height: 20px;
+	margin-top: 2px;
+	width: 100%;
+}
+
+/* Coupon CSS Adjustments
+------------------------------------------------------------ */
+.cctor_coupon_container a:hover {
+	opacity: .8;
+	text-decoration: none;
+}
+
+.print_coupon .cctor_coupon_container a:hover {
+	opacity: 1;
+}
+
+a .cctor_expiration {
+	color: #000;
+}
+
+.main-coupon-content p,
+.cctor_terms p {
+	margin: 0;
+}

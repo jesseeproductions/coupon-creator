@@ -1,5 +1,5 @@
 /*
-	Coupon Creator Admin CSS
+	Coupon Creator CSS
 
 */
 // ==== Order of Imports is Important ====
@@ -11,4 +11,8 @@
 @import "variables/variables";
 
 //Admin CSS
-@import "admin/admin";
+@import "utilities/utilities";
+
+@import "coupons/coupons";
+
+@import "utilities/browser";

@@ -111,7 +111,7 @@ div.cctor-pro-link {
 #cctor_woocommerce label {
 	width: 160px;
 	display: inline-block;
-	@include media($mobile) {
+	@include breakpoint_max('sm') {
 		width: 100%;
 	}
 }
@@ -120,14 +120,14 @@ div.cctor-pro-link {
 #cctor_woocommerce .form-field input[type="text"] {
 	width: 270px;
 	max-width: 100%;
-	@include media($mobile) {
+	@include  breakpoint_max('sm') {
 		width: 100%;
 	}
 }
 
 #cctor_woocommerce .form-field input[type="email"]{
 	max-width: 50%;
-	@include media($mobile) {
+	@include breakpoint_max('sm') {
 		max-width: 100%;
 	}
 }

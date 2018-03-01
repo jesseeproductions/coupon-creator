@@ -9,7 +9,7 @@
 	margin-left: -10px;
 }
 
-@include media($tablet) {
+@include breakpoint_max('md') {
 	.cctor_coupon_page_coupon-options .pngx-section-help-container {
 		margin-left: 0px;
 	}
@@ -121,7 +121,7 @@
 
 	}
 
-	@include media($mobile) {
+	@include breakpoint_max('sm') {
 		.pngx-promo-box{
 			width: 100%;
 			margin: 0 0 15px;

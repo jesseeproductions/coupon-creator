@@ -1,0 +1,38 @@
+/* Print View CSS
+------------------------------------------------------------ */
+.print-coupon .cctor-oupon-container,
+.print_coupon .cctor_coupon_container {
+	margin: 10px auto;
+	width: 420px;
+}
+
+.print-coupon .cctor-coupon-container.cctor-image,
+.print_coupon .cctor_coupon_container.cctor-image {
+	width: auto;
+}
+
+.print-coupon .sawtooth-border .cctor-coupon .sawtooth-top-bottom,
+.print_coupon .sawtooth-border .cctor_coupon .sawtooth-top-bottom {
+	left: 12px;
+	right: 12px;
+}
+
+.print-coupon .cctor-coupon-content h3,
+.print_coupon .cctor_coupon_content h3 {
+	font-size: 30px;
+}
+
+.print-coupon .main-coupon-content,
+.print-coupon .cctor-terms,
+.print_coupon .cctor_terms {
+	font-size: 20px;
+	line-height: 1.2;
+	min-height: 150px;
+}
+
+@media print {
+	.cctor-opencoupon,
+	.cctor_opencoupon {
+		display: none !important;
+	}
+}

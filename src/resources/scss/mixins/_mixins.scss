@@ -1,18 +1,43 @@
-// Bourbon and Neat mixins and grid system
-@import "bourbon/app/assets/stylesheets/bourbon";
-@import "../grid-settings";
-@import "neat/app/assets/stylesheets/neat";
-//@import "font-kit";
+@mixin breakpoint($class) {
+ @if $class == xs {
+   @media (max-width: 767px) { @content; }
+ }
 
-@mixin omega-reset($nth) {
-  &:nth-child(#{$nth}) { margin-right: flex-gutter(); }
-  &:nth-child(#{$nth}+1) { clear: none }
+ @else if $class == sm {
+   @media (min-width: 768px) { @content; }
+ }
+
+ @else if $class == md {
+   @media (min-width: 992px) { @content; }
+ }
+
+ @else if $class == lg {
+   @media (min-width: 1200px) { @content; }
+ }
+
+ @else {
+   @warn "Breakpoint mixin supports: xs, sm, md, lg";
+ }
 }
 
-@mixin inline_align {
-  display: inline-block;
-  *display: inline;
-  position: relative;
-  vertical-align: top;
-  zoom: 1;
+@mixin breakpoint_max($class) {
+ @if $class == xs {
+   @media (max-width: 576px) { @content; }
+ }
+
+ @else if $class == sm {
+   @media (max-width: 640px) { @content; }
+ }
+
+ @else if $class == md {
+   @media (max-width: 768px) { @content; }
+ }
+
+ @else if $class == lg {
+   @media (max-width: 960px) { @content; }
+ }
+
+ @else {
+   @warn "Breakpoint mixin supports: xs, sm, md, lg";
+ }
 }
