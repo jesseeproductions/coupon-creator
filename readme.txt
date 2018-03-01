@@ -141,7 +141,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 == Changelog ==
 
 = 2.5.4 November 12th, 2017 =
-* Fix - Option page fatal due to another instance of the browser class having a private property, thank joejoe896 for reporting this.
+* Tweak - Enable the deal and title fields to accept <b><br><em><i><span><strong><sub><sup> tags
+* Fix - Option page fatal due to another instance of the browser class having a private property, thank joejoe896 for reporting this
 
 = 2.5.3 November 12th, 2017 =
 * Fix - Colorpicker alpha break with WordPress 4.9

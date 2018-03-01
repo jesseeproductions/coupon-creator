@@ -524,12 +524,13 @@ class Cctor__Coupon__Meta__Fields {
 		/**
 		 * Start Default Template
 		 */
-		$fields[ $prefix . 'amount' ]        = array(
+		$fields[ $prefix . 'amount' ] = array(
 			'label'     => __( 'Deal', 'coupon-creator' ),
 			'desc'      => __( 'Enter coupon deal - 30% OFF! or Buy One Get One Free, etc...', 'coupon-creator' ),
 			'id'        => $prefix . 'amount',
 			'type'      => 'text',
 			'alert'     => '',
+			'sanitize'  => 'titles',
 			'section'   => 'coupon_creator_meta_box',
 			'styles'    => array(
 				'font-color'       => $prefix . 'colorheader',
