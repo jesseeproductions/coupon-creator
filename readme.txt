@@ -29,6 +29,7 @@ https://www.youtube.com/watch?v=aGoxJ3TBRhk
 <h4>Coupon Creator Add-ons 2.5.1 Features Include: (included with Pro Business and higher license levels)</h4>
 * Reveal Code Feature
 * Vendor and Location Taxonomies
+* Modern Advanced Template
 * Lower Third Advanced Template
 * Highlight Advanced Template
 * Lower Third Advanced Template
@@ -140,7 +141,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 2.5.4 November 12th, 2017 =
+= 2.5.4 March, 2nd 2018 =
 * Tweak - Enable the deal and title fields to accept <b><br><em><i><span><strong><sub><sup> tags
 * Fix - Option page fatal due to another instance of the browser class having a private property, thank joejoe896 for reporting this
 
