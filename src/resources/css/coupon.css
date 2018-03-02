@@ -2,101 +2,6 @@
 	Coupon Creator CSS
 
 */
-/* Utility CSS
------------------------------------------------------------- */
-.cctor-clear {
-  clear: both; }
-
-.cctor-pro-coupons-visuallyhidden {
-  display: none; }
-
-.cctor-pro-overflow:after {
-  clear: both;
-  content: "";
-  display: block; }
-
-/* Coupon Align
------------------------------------------------------------- */
-.cctor-alignnone,
-.cctor_alignnone {
-  display: inline-block;
-  margin: 0 0 10px; }
-
-.cctor-alignleft,
-.cctor_alignleft {
-  display: inline;
-  float: left;
-  margin: 0 10px 10px 0; }
-
-.cctor-alignright,
-.cctor_alignright {
-  display: inline;
-  float: right;
-  margin: 0 0 10px 10px; }
-
-.cctor-aligncenter,
-.cctor_aligncenter {
-  display: block;
-  margin: 10px auto; }
-
-/* Column Classes
-* Modified from these links:
-* Link: http://wpsmith.net/2013/wp/genesis-2-0-drops-fifths-from-column-classes/
-* Link: http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css
---------------------------------------------- */
-.cctor-row {
-  min-height: 1px;
-  width: 100%; }
-
-.cctor-one-fourth,
-.cctor-one-half,
-.cctor-one-third,
-.cctor-one-fifth,
-.cctor-three-fourths,
-.cctor-three-fifths,
-.cctor-two-fifths,
-.cctor-two-fourths,
-.cctor-two-thirds {
-  float: left;
-  margin-left: 2.564102564102564%;
-  min-height: 1px; }
-
-.cctor-one-half,
-.cctor-two-fourths {
-  width: 48.717948717948715%; }
-
-.cctor-one-third {
-  width: 31.623931623931625%; }
-
-.cctor-two-thirds {
-  width: 65.81196581196582%; }
-
-.cctor-one-fourth {
-  width: 23.076923076923077%; }
-
-.cctor-three-fourths {
-  width: 74.35897435897436%; }
-
-.cctor-two-fifths {
-  width: 38.4615384615384616%; }
-
-.cctor-one-fifth {
-  width: 17.9487179487179488%; }
-
-.cctor-three-fifths {
-  width: 58.9743589743589744%; }
-
-.cctor-first {
-  clear: both;
-  margin-left: 0; }
-
-/* Float Clear
------------------------------------------------------------- */
-.cctor-clear:after {
-  clear: both;
-  content: '';
-  display: table; }
-
 /* Coupon Creator CSS
 ------------------------------------------------------------ */
 .cctor-coupon-container,
@@ -314,6 +219,101 @@ a .cctor_expiration {
   .cctor-opencoupon,
   .cctor_opencoupon {
     display: none !important; } }
+
+/* Utility CSS
+------------------------------------------------------------ */
+.cctor-clear {
+  clear: both; }
+
+.cctor-pro-coupons-visuallyhidden {
+  display: none; }
+
+.cctor-pro-overflow:after {
+  clear: both;
+  content: "";
+  display: block; }
+
+/* Coupon Align
+------------------------------------------------------------ */
+.cctor-alignnone,
+.cctor_alignnone {
+  display: inline-block;
+  margin: 0 0 10px; }
+
+.cctor-alignleft,
+.cctor_alignleft {
+  display: inline;
+  float: left;
+  margin: 0 10px 10px 0; }
+
+.cctor-alignright,
+.cctor_alignright {
+  display: inline;
+  float: right;
+  margin: 0 0 10px 10px; }
+
+.cctor-aligncenter,
+.cctor_aligncenter {
+  display: block;
+  margin: 10px auto; }
+
+/* Column Classes
+* Modified from these links:
+* Link: http://wpsmith.net/2013/wp/genesis-2-0-drops-fifths-from-column-classes/
+* Link: http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css
+--------------------------------------------- */
+.cctor-row {
+  min-height: 1px;
+  width: 100%; }
+
+.cctor-one-fourth,
+.cctor-one-half,
+.cctor-one-third,
+.cctor-one-fifth,
+.cctor-three-fourths,
+.cctor-three-fifths,
+.cctor-two-fifths,
+.cctor-two-fourths,
+.cctor-two-thirds {
+  float: left;
+  margin-left: 2.564102564102564%;
+  min-height: 1px; }
+
+.cctor-one-half,
+.cctor-two-fourths {
+  width: 48.717948717948715%; }
+
+.cctor-one-third {
+  width: 31.623931623931625%; }
+
+.cctor-two-thirds {
+  width: 65.81196581196582%; }
+
+.cctor-one-fourth {
+  width: 23.076923076923077%; }
+
+.cctor-three-fourths {
+  width: 74.35897435897436%; }
+
+.cctor-two-fifths {
+  width: 38.4615384615384616%; }
+
+.cctor-one-fifth {
+  width: 17.9487179487179488%; }
+
+.cctor-three-fifths {
+  width: 58.9743589743589744%; }
+
+.cctor-first {
+  clear: both;
+  margin-left: 0; }
+
+/* Float Clear
+------------------------------------------------------------ */
+.cctor-clear:after {
+  clear: both;
+  content: '';
+  display: table; }
 
 /* Basic IE7 Support
 ------------------------------------------------------------ */
