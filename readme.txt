@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.2
 Tested up to:  4.9
-Stable tag: 2.5.4
+Stable tag: 2.5.4.1
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -140,6 +140,9 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 2.5.4.1 March, 21st 2018 =
+* Fix - Fix the pop up video display by making it always use https, thanks John for reporting
+* Tweak - Loading of external links to allow those with html entities, such as affialite links to be properly escaped without breaking, thanks Rebecca for bring it up!
 
 = 2.5.4 March, 5th 2018 =
 * Tweak - Enable the deal and title fields to accept <b><br><em><i><span><strong><sub><sup> tags
