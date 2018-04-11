@@ -163,6 +163,18 @@ div.cctor-pro-link {
   width: 48%;
   float: right; }
 
+/**
+* Dynamic Code
+***************************************************/
+.cctor-add-ons-dynamic-code {
+  text-align: center;
+  font-size: 18px;
+  padding: 5px 0 30px;
+  color: #048C7F; }
+
+.cctor-add-ons-dynamic-code span {
+  font-size: 13px; }
+
 /* ==========================================================================
    Help CSS
    ========================================================================== */
