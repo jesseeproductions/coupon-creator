@@ -4,7 +4,7 @@ Plugin Name: Coupon Creator
 Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Requires at least: 4.2
+Requires at least: 4.5
 Tested up to:  4.9
 Stable tag: 2.5.4.1
 License: GPLv2
