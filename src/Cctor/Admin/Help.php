@@ -61,7 +61,15 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'tab'      => 'content',
 			'text'     => 'How to use the Click Reveal',
 			'video_id' => 'n-dXdLCj0SU',
-			'pro'      => 'Pro',
+			'pro'      => 'Add-ons',
+			'type'     => 'video'
+		);
+		$this->fields['video_dynamic_coupon25']        = array(
+			'section'  => '',
+			'tab'      => 'content',
+			'text'     => 'How to use the Dynamic Code',
+			'video_id' => 'O2hPg9EnkK4',
+			'pro'      => 'Add-ons',
 			'type'     => 'video'
 		);
 		$this->fields['video_expiration_display_coupon25']        = array(
@@ -69,7 +77,7 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'tab'      => 'content',
 			'text'     => 'How to use the Expiration Display',
 			'video_id' => 'DsU7pDDV_qs',
-			'pro'      => 'Pro',
+			'pro'      => 'Add-ons',
 			'type'     => 'video'
 		);
 		$this->fields['video_pro_columns_rows']       = array(
@@ -265,12 +273,12 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'text'    => 'WooCommerce Coupons',
 			'type'    => 'heading'
 		);
-		$this->fields['video_pro_woocommerce']   = array(
+		$this->fields['video_pro_woocommerce25']   = array(
 			'section'  => '',
 			'tab'      => 'cctor_woocommerce',
 			'text'     => 'How to Create a WooCommerce Coupon',
-			'video_id' => 'xH3GmKPzQKc?',
-			'pro'      => 'Pro',
+			'video_id' => 'WQUsCo5faT8',
+			'pro'      => 'Add-ons',
 			'type'     => 'video'
 		);
 		$this->fields['video_end_list_woo']      = array(

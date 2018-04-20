@@ -156,7 +156,6 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		$tabs['content']      = __( 'Content', 'coupon-creator' );
 		$tabs['style']        = __( 'Border & Background', 'coupon-creator' );
 		$tabs['expiration']   = __( 'Expiration', 'coupon-creator' );
-		$tabs['image_coupon'] = __( 'Image Coupon', 'coupon-creator' );
 		! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ? $tabs['links'] = __( 'Links', 'coupon-creator' ) : null;
 		$tabs['help'] = __( 'Help', 'coupon-creator' );
 
