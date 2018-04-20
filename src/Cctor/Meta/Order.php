@@ -86,7 +86,7 @@ class Cctor__Coupon__Meta__Order {
 	/**
 	 * Order Fields by Priority
 	 *
-	 * @since TBD
+	 * @since 2.5.5
 	 *
 	 * @todo  remove once 4.7 is the minimum version
 	 *

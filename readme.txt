@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.5
 Tested up to:  4.9
-Stable tag: 2.5.4.1
+Stable tag: 2.5.5
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -26,8 +26,8 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=aGoxJ3TBRhk
 
-<h4>Coupon Creator Add-ons 2.5.1 Features Include: (included with Pro Business and higher license levels)</h4>
-* Reveal Code Feature
+<h4>Coupon Creator Add-ons 2.5.5 Features Include: (included with Pro Business and higher license levels)</h4>
+* Reveal Code & Dynamic Code Feature
 * Vendor and Location Taxonomies
 * Modern Advanced Template
 * Lower Third Advanced Template
@@ -35,7 +35,7 @@ https://www.youtube.com/watch?v=aGoxJ3TBRhk
 * Lower Third Advanced Template
 * Create and Display WooCommerce Coupons from the Coupon Creator Editor
 
-<h4>Coupon Creator Pro 2.5.1 Features Include:</h4>
+<h4>Coupon Creator Pro 2.5.5 Features Include:</h4>
 * [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
 * Order the filter bar filters and hide any filter per shortcode
 * Quick and Bulk edits for the expiration and counter fields
@@ -140,6 +140,12 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+
+= 2.5.5 April, 23rd 2018 =
+* Add - Bumpdown script to be able to display infomation messages or warnings
+* Add - Dependency script to hide fields based on user selection
+* Add - Priority to all meta fields to be able to reorder them in the admin and front end
+
 = 2.5.4.1 March, 21st 2018 =
 * Fix - Fix the pop up video display by making it always use https, thanks John for reporting
 * Tweak - Loading of external links to allow those with html entities, such as affialite links to be properly escaped without breaking, thanks Rebecca for bring it up!
