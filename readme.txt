@@ -142,13 +142,13 @@ You can add custom css in the options and it will modify both the shortcode coup
 == Changelog ==
 
 = 2.5.5 April, 23rd 2018 =
-* Add - Bumpdown script to be able to display infomation messages or warnings
+* Add - Bumpdown script to be able to display information messages or warnings
 * Add - Dependency script to hide fields based on user selection
 * Add - Priority to all meta fields to be able to reorder them in the admin and front end
 
 = 2.5.4.1 March, 21st 2018 =
 * Fix - Fix the pop up video display by making it always use https, thanks John for reporting
-* Tweak - Loading of external links to allow those with html entities, such as affialite links to be properly escaped without breaking, thanks Rebecca for bring it up!
+* Tweak - Loading of external links to allow those with html entities, such as affiliate links to be properly escaped without breaking, thanks Rebecca for bring it up!
 
 = 2.5.4 March, 5th 2018 =
 * Tweak - Enable the deal and title fields to accept <b><br><em><i><span><strong><sub><sup> tags
