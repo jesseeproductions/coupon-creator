@@ -12,6 +12,99 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Cctor__Coupon__Assets {
 
+	public function __construct() {
+
+		add_action( 'enqueue_block_editor_assets', array( $this, 'blocks_editor_styles' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'blocks_editor_scripts' ) );
+
+		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'register_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'inline_style' ), 100 );
+	}
+	
+	/**
+	 * Enqueue block editor CSS
+	 */
+	public function blocks_editor_styles() {
+
+		// @formatter:off
+/*		wp_enqueue_style(
+			'cctor-coupon-editor-element',
+			pngx( 'cctor' )->resource_url . 'css/element.css',
+			array(
+			'wp-blocks'
+			),
+			filemtime( pngx( 'cctor' )->resource_path . 'css/element.css' )
+		);*/
+		wp_enqueue_style(
+			'cctor-coupon-editor-blocks',
+			pngx( 'cctor' )->resource_url . 'css/blocks.css',
+			array(
+			'wp-blocks'
+			),
+			filemtime( pngx( 'cctor' )->resource_path . 'css/blocks.css' )
+		);
+		// @formatter:on
+	}
+
+	/**
+	 * Enqueue block editor Scripts
+	 */
+	public function blocks_editor_scripts() {
+		// @formatter:off
+		wp_enqueue_script(
+			'cctor-coupon-editor-blocks',
+			pngx( 'cctor' )->resource_url . 'js/blocks.js',
+			array(
+				'react',
+				'react-dom',
+				'wp-components',
+				'wp-api',
+				'wp-api-request',
+				'wp-blocks',
+				'wp-i18n',
+				'wp-element',
+			),
+			filemtime( pngx( 'cctor' )->resource_path . 'js/blocks.js' )
+		);
+		$localized_data = array(
+			'data' => get_option(  pngx( 'wpemenu' )::OPTIONS_ID ),
+		);
+		wp_localize_script( 'cctor-coupon-editor-blocks', 'pngx_blocks_editor_settings', $localized_data );
+
+/*		wp_enqueue_script(
+			'cctor-coupon-editor',
+			pngx( 'cctor' )->resource_url . 'js/editor.js',
+			array(
+				'react',
+				'react-dom',
+				'wp-components',
+				'wp-api',
+				'wp-api-request',
+				'wp-blocks',
+				'wp-i18n',
+				'wp-element',
+			),
+			filemtime( pngx( 'cctor' )->resource_path . 'js/editor.js' )
+		);
+
+		wp_enqueue_script(
+			'cctor-coupon-editor-elements',
+			pngx( 'cctor' )->resource_url . 'js/elements.js',
+			array(
+				'react',
+				'react-dom',
+				'wp-components',
+				'wp-api',
+				'wp-api-request',
+				'wp-blocks',
+				'wp-i18n',
+				'wp-element',
+			),
+			filemtime( pngx( 'cctor' )->resource_path . 'js/elements.js' )
+		);*/
+		// @formatter:on
+	}
+	
 	/*
 	* Register Coupon Creator CSS
 	*/
