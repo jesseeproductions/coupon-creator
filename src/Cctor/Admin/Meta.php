@@ -29,46 +29,43 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		parent::__construct();
 
-		//Setup Coupon Fields at Init for Translation
-		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
-
-		//Setup Coupon Meta Boxes
-		add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );
-
-		//Coupon Expiration Information
-		add_action( 'edit_form_after_title', array( __CLASS__, 'coupon_messages' ), 5 );
-		add_action( 'edit_form_after_title', array( __CLASS__, 'coupon_information_box' ) );
-
-		//Add Plugin Only Fields
-		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
-
-		// Add default template
-		add_filter( 'pngx-default-template', array( __CLASS__, 'default_template' ) );
-
-		//Modify Expiration Field
-		add_filter( 'pngx_before_save_meta_fields', array( __CLASS__, 'modify_ignore_expiration' ) );
-
 	}
 
 	/**
 	 * Admin Init
 	 */
-	public static function admin_init() {
+	public function setup() {
 
-		self::instance()->set_tabs();
-		self::instance()->set_fields();
+		//Setup Menu Meta Boxes
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+
+		//Coupon Expiration Information
+		add_action( 'edit_form_after_title', array( $this, 'coupon_messages' ), 5 );
+		add_action( 'edit_form_after_title', array( $this, 'coupon_information_box' ) );
+
+		//Add Plugin Only Fields
+		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
+
+		// Add default template
+		add_filter( 'pngx-default-template', array( $this, 'default_template' ) );
+
+		//Modify Expiration Field
+		add_filter( 'pngx_before_save_meta_fields', array( $this, 'modify_ignore_expiration' ) );
+
+		$this->set_tabs();
+		$this->set_fields();
 
 	}
 
 	/**
 	 * Add Hook on Coupon CPT Editor
 	 */
-	public static function coupon_information_box() {
+	public function coupon_information_box() {
 
-		$current_screen = self::get_screen_variables();
+		$current_screen = $this->get_screen_variables();
 
 		//Display Message on Coupon Edit Screen, but not on a new coupon until saved
-		if ( 'post-new.php' != $current_screen['pagenow'] && in_array( $current_screen['type'], self::get_post_types() ) ) {
+		if ( 'post-new.php' != $current_screen['pagenow'] && in_array( $current_screen['type'], $this->get_post_types() ) ) {
 
 			/**
 			 * Display Message on Individual Coupon Editor Page
@@ -87,7 +84,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	/**
 	 * Add Messages to Coupon Message Hook
 	 */
-	public static function coupon_messages() {
+	public function coupon_messages() {
 
 		if ( class_exists( 'Cctor__Coupon__Pro__Expiration' ) ) {
 			$coupon_expiration = new Cctor__Coupon__Pro__Expiration();
@@ -103,16 +100,16 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	/*
 	* Add Meta Boxes
 	*/
-	public static function add_meta_boxes() {
+	public function add_meta_boxes() {
 
-		$current_screen = self::get_screen_variables();
+		$current_screen = $this->get_screen_variables();
 
-		if ( in_array( $current_screen['pagenow'], array( 'post.php', 'post-new.php' ) ) && in_array( $current_screen['type'], self::get_post_types() ) ) {
+		if ( in_array( $current_screen['pagenow'], array( 'post.php', 'post-new.php' ) ) && in_array( $current_screen['type'], $this->get_post_types() ) ) {
 
 			add_meta_box( 'coupon_creator_meta_box', // id
 				__( 'Coupon Fields', 'coupon-creator' ), // title
-				array( __CLASS__, 'display_fields' ), // callback
-				self::get_post_types(), // post_type
+				array( $this, 'display_fields' ), // callback
+				$this->get_post_types(), // post_type
 				'normal', // context
 				'high' // priority
 			);
@@ -120,8 +117,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			if ( 'post-new.php' != $current_screen['pagenow'] ) {
 				add_meta_box( 'coupon_creator_shortcode', // id
 					__( 'Coupon Shortcode', 'coupon-creator' ), // title
-					array( __CLASS__, 'show_coupon_shortcode' ), // callback
-					self::get_post_types(), // post_type
+					array( $this, 'show_coupon_shortcode' ), // callback
+					$this->get_post_types(), // post_type
 					'side' // context
 				);
 			}
@@ -139,7 +136,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	 *
 	 * @param $post
 	 */
-	public static function show_coupon_shortcode( $post ) {
+	public function show_coupon_shortcode( $post ) {
 		?><p class="shortcode">
 		<?php _e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon-creator' ); ?>
 		<code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
@@ -173,7 +170,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 			$tabs = apply_filters( 'cctor_filter_meta_tabs', $tabs );
 		}
 
-		self::$tabs = $tabs;
+		$this->tabs = $tabs;
 	}
 
 	/*
@@ -181,7 +178,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	*
 	*/
 	public function set_fields() {
-		self::$fields = Cctor__Coupon__Meta__Fields::get_fields();
+		$this->fields = Cctor__Coupon__Meta__Fields::get_fields();
 	}
 
 
@@ -192,7 +189,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	 *
 	 * @return bool|null
 	 */
-	public static function default_template( $template ) {
+	public function default_template( $template ) {
 
 		$default = cctor_options( 'cctor_default_template' );
 
@@ -206,7 +203,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	/**
 	 * Set Ignore Expiration Field
 	 */
-	public static function modify_ignore_expiration() {
+	public function modify_ignore_expiration() {
 
 		//Expiration Option Auto Check Ignore Input
 		if ( isset( $_POST['cctor_ignore_expiration'] ) && 1 == $_POST['cctor_expiration_option'] ) {
@@ -217,17 +214,17 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	}
 
 	/**
-	 * Static Singleton Factory Method
+	 * Singleton Factory Method
 	 *
 	 * @return Pngx__Admin__Options
 	 */
-	public static function instance() {
-		if ( ! isset( self::$instance ) ) {
+	public function instance() {
+		if ( ! isset( $this->instance ) ) {
 			$className      = __CLASS__;
-			self::$instance = new $className;
+			$this->instance = new $className;
 		}
 
-		return self::$instance;
+		return $this->instance;
 	}
 
 }

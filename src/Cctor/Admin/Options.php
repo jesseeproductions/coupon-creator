@@ -153,7 +153,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	/*
 	* Options Header
 	*/
-	public static function display_options_header( $slug ) {
+	public function display_options_header( $slug ) {
 
 		if ( 'coupon-options' == $slug ) {
 
@@ -647,7 +647,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	/*
 	* Coupon Creator Display Newsletter Sign Up
 	*/
-	public static function cctor_newsletter_signup( $slug ) {
+	public function cctor_newsletter_signup( $slug ) {
 
 		if ( 'coupon-options' == $slug ) {
 
@@ -691,7 +691,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	* Flush Permalink on Permalink Field Change
 	*
 	*/
-	public static function flush_coupon_permalinks() {
+	public function flush_coupon_permalinks() {
 
 		//setup coupon cpt when flushing permalinks
 		Cctor__Coupon__Main::instance()->register_post_types();
@@ -705,7 +705,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	 *
 	 * @return mixed
 	 */
-	public static function add_options( $options ) {
+	public function add_options( $options ) {
 
 		$options[ Cctor__Coupon__Main::PLUGIN_NAME ] = get_option( Cctor__Coupon__Main::OPTIONS_ID );
 
@@ -720,9 +720,9 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	 *
 	 * @return mixed
 	 */
-	public static function add_fields() {
+	public function add_fields() {
 
-		$fields = Cctor__Coupon__Admin__Options::instance()->get_option_fields();
+		$fields = $this->get_option_fields();
 
 		return $fields;
 
@@ -735,7 +735,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	 *
 	 * @return mixed
 	 */
-	public static function add_system_items( $systeminfo ) {
+	public function add_system_items( $systeminfo ) {
 
 		$post_type = Cctor__Coupon__Main::POSTTYPE;
 
@@ -765,18 +765,17 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	}
 
 	/**
-	 * Static Singleton Factory Method
+	 * Singleton Factory Method
 	 *
-	 * @return Pngx__Admin__Options
+	 * @return Cctor__Coupon__Admin__Options
 	 */
-	public static function instance() {
-		if ( ! isset( self::$instance ) ) {
+	public function instance() {
+		if ( ! isset( $this->instance ) ) {
 			$className      = __CLASS__;
-			self::$instance = new $className;
+			$this->instance = new $className;
 		}
 
-		return self::$instance;
+		return $this->instance;
 	}
-
-} //end Coupon_Creator_Plugin_Admin_Options Class
+}
 

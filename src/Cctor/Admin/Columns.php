@@ -19,16 +19,16 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 
 
-	function __construct() {
+	public function __construct() {
 
 		// Remove Coupon Row Actions
-		add_filter( 'post_row_actions', array( __CLASS__, 'cctor_remove_coupon_row_actions' ), 10, 2 );
+		add_filter( 'post_row_actions', array( $this, 'cctor_remove_coupon_row_actions' ), 10, 2 );
 
 		// Add Columns
-		add_filter( 'manage_edit-cctor_coupon_columns', array( __CLASS__, 'cctor_list_columns' ) );
+		add_filter( 'manage_edit-cctor_coupon_columns', array( $this, 'cctor_list_columns' ) );
 
 		//Custom Column Cases
-		add_action( 'manage_posts_custom_column', array( __CLASS__, 'cctor_column_cases' ), 10, 2 );
+		add_action( 'manage_posts_custom_column', array( $this, 'cctor_column_cases' ), 10, 2 );
 
 	}
 
@@ -39,7 +39,7 @@ class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 	* @version 1.90
 	* @param array $actions, $post
 	*/
-	public static function cctor_remove_coupon_row_actions( $actions, $post ) {
+	public function cctor_remove_coupon_row_actions( $actions, $post ) {
 		global $current_screen, $current_user;
 
 		if ( is_object( $current_screen ) && $current_screen->post_type != 'cctor_coupon' ) {
@@ -63,7 +63,7 @@ class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 	* @version 2.0
 	* @param array $columns
 	*/
-	public static function cctor_list_columns( $columns ) {
+	public function cctor_list_columns( $columns ) {
 		$cctor_columns = array();
 
 		if ( isset( $columns['cb'] ) ) {
@@ -116,7 +116,7 @@ class Cctor__Coupon__Admin__Columns extends WP_List_Table {
 	 * @param $column
 	 * @param $post_id
 	 */
-	public static function cctor_column_cases( $column, $post_id ) {
+	public function cctor_column_cases( $column, $post_id ) {
 
 		global $post;
 

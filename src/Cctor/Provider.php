@@ -124,6 +124,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		$this->container->singleton( 'cctor.admin.options', 'Cctor__Coupon__Admin__Options' );
 		$this->container->singleton( 'cctor.admin.meta', 'Cctor__Coupon__Admin__Meta' );
 		$this->container->singleton( 'cctor.admin.meta.fields', 'Cctor__Coupon__Fields' );
+		$this->container->singleton( 'cctor.admin.columns', 'Cctor__Coupon__Admin__Columns' );
 
 		//Update Version Number
 		add_action( 'admin_init', pngx_callback( 'cctor.admin.updates', 'admin_upgrade_version' ) );
@@ -137,7 +138,8 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		add_action( 'admin_init', pngx_callback( 'cctor.admin.options', 'admin_init' ), 0 );
 
 		//Meta
-		//add_action( 'admin_init', pngx_callback( 'cctor.admin.meta', 'setup' ) );
+		pngx( 'cctor.admin.columns' );
+		add_action( 'admin_init', pngx_callback( 'cctor.admin.meta', 'setup' ) );
 		add_action( 'pngx_front_field_types', pngx_callback( 'cctor.admin.meta.fields', 'display_field' ), 10, 5 );
 
 	}

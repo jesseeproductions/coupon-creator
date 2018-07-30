@@ -23,11 +23,6 @@ class Cctor__Coupon__Admin__Main {
 		//Update Version Number
 		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__Updates', 'admin_upgrade_version' ) );
 
-		Cctor__Coupon__Admin__Options::instance();
-
-		new Cctor__Coupon__Admin__Columns();
-		Cctor__Coupon__Admin__Meta::instance();
-
 		//handle older versions of Pro so they can update before 2.4
 		if ( defined( 'CCTOR_PRO_VERSION_NUM' ) && 2.4 > CCTOR_PRO_VERSION_NUM ) {
 
@@ -49,8 +44,6 @@ class Cctor__Coupon__Admin__Main {
 		//Add Options Link on Plugin Activation Page
 		add_action( 'plugin_action_links', array( __CLASS__, 'plugin_setting_link' ), 10, 2 );
 
-		//Load Admin Assets
-		add_action( 'admin_enqueue_scripts', array( 'Cctor__Coupon__Admin__Assets', 'load_assets' ) );
 
 	} //end admin_init
 
