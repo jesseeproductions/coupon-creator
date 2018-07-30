@@ -2,25 +2,25 @@
 
 
 /**
- * Class Cctor_Coupon_Post_Type_Menu
+ * Class Cctor_Coupon_Post_Type_Coupon
  */
-class Cctor__Coupon__Post_Type_Menu {
+class Cctor__Coupon__Post_Type_Coupon {
 
 	public $post_type;
 	public $text_domain;
 	public $taxonomy;
 
-	public $singular_menu_label;
-	public $plural_menu_label;
-	public $singular_menu_label_lowercase;
-	public $plural_menu_label_lowercase;
+	public $singular_coupon_label;
+	public $plural_coupon_label;
+	public $singular_coupon_label_lowercase;
+	public $plural_coupon_label_lowercase;
 	public $singular_category_label;
 	public $singular_category_label_lowercase;
 	public $plural_category_label;
 	public $plural_category_label_lowercase;
 
 	/**
-	 * Cctor__Coupon__Post_Type_Menu constructor.
+	 * Cctor__Coupon__Post_Type_Coupon constructor.
 	 *
 	 * @param $post_type
 	 * @param $taxonomy
@@ -32,15 +32,15 @@ class Cctor__Coupon__Post_Type_Menu {
 		$this->taxonomy    = $taxonomy;
 		$this->text_domain = $text_domain;
 
-		$this->singular_menu_label           = $this->get_menu_label_singular();
-		$this->singular_menu_label_lowercase = $this->get_menu_label_singular_lowercase();
-		$this->plural_menu_label             = $this->get_menu_label_plural();
-		$this->plural_menu_label_lowercase   = $this->get_menu_label_plural_lowercase();
+		$this->singular_coupon_label           = $this->get_coupon_label_singular();
+		$this->singular_coupon_label_lowercase = $this->get_coupon_label_singular_lowercase();
+		$this->plural_coupon_label             = $this->get_coupon_label_plural();
+		$this->plural_coupon_label_lowercase   = $this->get_coupon_label_plural_lowercase();
 
-		$this->singular_category_label           = $this->get_menu_category_label_singular();
-		$this->singular_category_label_lowercase = $this->get_menu_category_label_singular_lowercase();
-		$this->plural_category_label             = $this->get_menu_category_label_plural();
-		$this->plural_category_label_lowercase   = $this->get_menu_category_label_plural_lowercase();
+		$this->singular_category_label           = $this->get_coupon_category_label_singular();
+		$this->singular_category_label_lowercase = $this->get_coupon_category_label_singular_lowercase();
+		$this->plural_category_label             = $this->get_coupon_category_label_plural();
+		$this->plural_category_label_lowercase   = $this->get_coupon_category_label_plural_lowercase();
 
 	}
 

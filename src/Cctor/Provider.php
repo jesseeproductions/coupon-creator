@@ -20,7 +20,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 			$this->admin_hook();
 		}
 
-		$this->container->singleton( 'cctor.post_menu', new Cctor__Coupon__Post_Type_Menu( pngx( 'cctor' )::POSTTYPE, pngx( 'cctor' )::TAXONOMY, pngx( 'cctor' )::TEXT_DOMAIN ) );
+		$this->container->singleton( 'cctor.post_menu', new Cctor__Coupon__Post_Type_Coupon( pngx( 'cctor' )::POSTTYPE, pngx( 'cctor' )::TAXONOMY, pngx( 'cctor' )::TEXT_DOMAIN ) );
 
 		$this->container->singleton( 'cctor.meta', 'Cctor__Coupon__Meta__Fields' );
 
@@ -102,7 +102,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		add_action( 'parse_query', pngx_callback( 'cctor', 'parse_query' ), 50 );
 
 		// Filter content and determine if we are going to use wpautop
-		add_filter( 'pngx_filter_content', pngx_callback( 'cctor', 'filter_coupon_content'
+		add_filter( 'pngx_filter_content', pngx_callback( 'cctor', 'filter_coupon_content' ) );
 
 
 
@@ -137,7 +137,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		add_action( 'admin_init', pngx_callback( 'cctor.admin.options', 'admin_init' ), 0 );
 
 		//Meta
-		add_action( 'admin_init', pngx_callback( 'cctor.admin.meta', 'setup' ) );
+		//add_action( 'admin_init', pngx_callback( 'cctor.admin.meta', 'setup' ) );
 		add_action( 'pngx_front_field_types', pngx_callback( 'cctor.admin.meta.fields', 'display_field' ), 10, 5 );
 
 	}

@@ -141,6 +141,12 @@ class Cctor__Coupon__Main {
 			return;
 		}
 
+		/**
+		 * We need Common to be able to load text domains correctly.
+		 * With that in mind we initialize Common passing the plugin Main class as the context
+		 */
+		Pngx__Main::instance( $this )->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
+
 		add_action( 'plugins_loaded', array( $this, 'i18n' ), 1 );
 
 		if ( self::supportedVersion( 'wordpress' ) && self::supportedVersion( 'php' ) ) {
