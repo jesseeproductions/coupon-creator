@@ -1,13 +1,17 @@
-import { registerBlockType } from "@wordpress/blocks";
+import { registerBlockType } from '@wordpress/blocks';
 
-import menuItem from  'blocks/menu-items';
+import couponShortcode from  'blocks/shortcode';
+import couponShortcodePhp from  'blocks/shortcode-php';
 import './style.pcss';
 
-export default [
-	menuItem,
+const blocks = [
+	//couponShortcode,
+	couponShortcodePhp,
 ];
 
-this.default.forEach( block => {
-	const blockName = `pngx/${block.id}`;
+blocks.forEach( block => {
+	const blockName = `pngx/${ block.id }`;
 	registerBlockType( blockName, block );
 } );
+
+export default blocks;

@@ -67,7 +67,7 @@ class Cctor__Coupon__Assets {
 			filemtime( pngx( 'cctor' )->resource_path . 'js/blocks.js' )
 		);
 		$localized_data = array(
-			'data' => get_option(  pngx( 'wpemenu' )::OPTIONS_ID ),
+			'data' => get_option(  pngx( 'cctor' )::OPTIONS_ID ),
 		);
 		wp_localize_script( 'cctor-coupon-editor-blocks', 'pngx_blocks_editor_settings', $localized_data );
 

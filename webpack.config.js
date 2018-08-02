@@ -11,8 +11,9 @@ const cssExtractTextPlugin = new ExtractTextPlugin( {
 } );
 
 const entryPointNames = [
-	'elements',
-	'editor',
+	//'elements',
+	//'editor',
+	//'components',
 	'blocks',
 ];
 
@@ -45,8 +46,8 @@ const extractConfig = {
 
 const externals = {};
 entryPointNames.forEach( entryPointName => {
-	externals[ "@tribe/events/" + entryPointName ] = {
-		this: [ "tribe", 'events', entryPointName ]
+	externals[ "@pngx/coupon-creator/" + entryPointName ] = {
+		this: [ "pngx", 'coupons', entryPointName ]
 	};
 } );
 
@@ -77,7 +78,7 @@ const config = {
 	output: {
 		filename: "src/resources/js/[name].js",
 		path: __dirname,
-		library: [ "tribe", "events", "[name]" ],
+		library: [ "pngx", "coupons", "[name]" ],
 		libraryTarget: "this"
 	},
 	resolve: {

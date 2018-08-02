@@ -14,7 +14,7 @@ class Cctor__Coupon__I18n {
 	 * @return void
 	 */
 	public function hook() {
-		// add_action( 'admin_enqueue_scripts', array( $this, 'include_inline_script' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'include_inline_script' ) );
 	}
 
 	/**

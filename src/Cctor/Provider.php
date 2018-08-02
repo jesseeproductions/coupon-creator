@@ -36,7 +36,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		//$this->container->singleton( 'gutenberg.template.overwrite', 'Tribe__Events_Gutenberg__Template__Overwrite', array( 'hook' ) );
 
 		// Blocks
-		$this->container->singleton( 'cctor.blocks.coupon', 'Cctor__Coupon__Blocks__Menu_Items' );
+		$this->container->singleton( 'cctor.blocks.coupon', 'Cctor__Coupon__Blocks__Coupon_Shortcode' );
 
 		$this->hook();
 
