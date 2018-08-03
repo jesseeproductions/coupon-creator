@@ -94,7 +94,7 @@ class Cctor__Coupon__Main {
 		}
 
 		// Use Instance to call method to setup cpt
-		Cctor__Coupon__Main::instance()->register_post_types();
+		new Cctor__Coupon__Post_Type_Coupon( self::POSTTYPE, self::TAXONOMY, self::TEXT_DOMAIN );
 
 		/**
 		 * Fires on Activation of Coupon Creator

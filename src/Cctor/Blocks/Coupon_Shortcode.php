@@ -51,7 +51,13 @@ extends Pngx__Blocks__Abstract {
 	public function render( $attributes = array() ) {
 		$args['attributes'] = $this->attributes( $attributes );
 
-		return Cctor__Coupon__Shortcode::core_shortcode( $attributes ) . '<p>Coupon Block' . print_r( $attributes, true ) . '</p>';
+		log_me($args['attributes']);
+
+		if ( empty ( $args['attributes']['couponid'] ) ) {
+			return '<p>Coupon Block' . print_r( $attributes, true ) . '</p>';
+		}
+
+		return Cctor__Coupon__Shortcode::core_shortcode( $attributes );
 
 		// Add the rendering attributes into global context
 		//pngx( 'gutenberg.template' )->add_template_globals( $args );
