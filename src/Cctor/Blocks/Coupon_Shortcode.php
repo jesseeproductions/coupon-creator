@@ -27,6 +27,15 @@ extends Pngx__Blocks__Abstract {
 				'couponid' => array(
 					'type' => 'string',
 				),
+				'category' => array(
+					'type' => 'string',
+				),
+				'coupon_align' => array(
+					'type' => 'string',
+				),
+				'couponorderby' => array(
+					'type' => 'string',
+				),
 			),
 			'render_callback' => array( $this, 'render' ),
 		);
@@ -51,7 +60,7 @@ extends Pngx__Blocks__Abstract {
 	public function render( $attributes = array() ) {
 		$args['attributes'] = $this->attributes( $attributes );
 
-		log_me($args['attributes']);
+		//log_me($args['attributes']);
 
 		if ( empty ( $args['attributes']['couponid'] ) ) {
 			return '<p>Coupon Block' . print_r( $attributes, true ) . '</p>';

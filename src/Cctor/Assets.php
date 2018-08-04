@@ -36,6 +36,14 @@ class Cctor__Coupon__Assets {
 			filemtime( pngx( 'cctor' )->resource_path . 'css/element.css' )
 		);*/
 		wp_enqueue_style(
+			'coupon_creator_css',
+			pngx( 'cctor' )->resource_url . 'css/coupon.css',
+			array(
+			'wp-blocks'
+			),
+			filemtime( pngx( 'cctor' )->resource_path . 'css/coupon.css' )
+		);
+		wp_enqueue_style(
 			'cctor-coupon-editor-blocks',
 			pngx( 'cctor' )->resource_url . 'css/blocks.css',
 			array(
@@ -113,9 +121,9 @@ class Cctor__Coupon__Assets {
 		// @formatter:off
 		wp_register_style(
 			'coupon_creator_css',
-			Cctor__Coupon__Main::instance()->resource_url . 'css/coupon.css',
+			pngx( 'cctor' )->resource_url . 'css/coupon.css',
 			false,
-			filemtime( Cctor__Coupon__Main::instance()->resource_path . 'css/coupon.css' )
+			filemtime( pngx( 'cctor' )->resource_path . 'css/coupon.css' )
 		);
 		// @formatter:on
 
