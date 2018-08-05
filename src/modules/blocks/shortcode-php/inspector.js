@@ -31,7 +31,11 @@ export default class Inspector extends Component {
 				</PanelBody>
 
 				<PanelBody>
-					<TaxonomiesSelect />
+					<TaxonomiesSelect
+						taxonomy={'cctor_coupon_category'}
+						attr={setAttributes}
+						value={category || ''}
+					/>
 				</PanelBody>
 
 				<PanelBody>

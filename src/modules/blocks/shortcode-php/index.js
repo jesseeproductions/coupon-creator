@@ -4,8 +4,8 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import Inspector from './inspector';
 import attributes from './attributes';
+import Inspector from './inspector';
 
 const {
 	ServerSideRender,
