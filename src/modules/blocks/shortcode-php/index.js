@@ -29,6 +29,7 @@ export default {
 
 		return [
 			<Inspector
+				key="coupon-inspector"
 				{ ...{ setAttributes, ...props } }
 			/>,
 			<ServerSideRender

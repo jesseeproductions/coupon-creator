@@ -11,6 +11,10 @@ const attributes = {
 	couponorderby: {
 		type: 'string',
 	},
+	selectedPost: {
+		type: 'number',
+		default: 0,
+	},
 };
 
 export default attributes;

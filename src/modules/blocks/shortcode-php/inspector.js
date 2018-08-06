@@ -1,7 +1,8 @@
-
 const {__} = wp.i18n;
 const {Component} = wp.element;
-import TaxonomiesSelect from './taxonomy';
+//import TaxonomiesSelect from './taxonomy';
+import SelectPosts from './posts';
+
 const {
 	InspectorControls,
 } = wp.editor;
@@ -12,12 +13,14 @@ const {
 } = wp.components;
 
 export default class Inspector extends Component {
+
 	constructor() {
 		super( ...arguments );
 	}
 
 	render() {
 		const {attributes: {couponid, category, coupon_align, couponorderby}, setAttributes} = this.props;
+		let options = [{value: 0, label: __( 'Select a Post' )}];
 
 		return (
 			<InspectorControls>
@@ -32,16 +35,17 @@ export default class Inspector extends Component {
 				</PanelBody>
 
 				<PanelBody>
-					<TaxonomiesSelect
-						taxonomy={'cctor_coupon_category'}
-						attr={setAttributes}
-						value={category || ''}
-					/>
+					<SelectPosts { ...{ setAttributes, ...this.props } } />
+					{/*					<TaxonomiesSelect
+						slug="cctor_coupon_category"
+						label={ __( 'Coupon Category', 'coupon-creator' ) }
+						renderEmpty={ __( 'Add Coupon Categories in document settings', 'coupon-creator' ) }
+					/>*/}
 				</PanelBody>
 
 				<PanelBody>
 					<SelectControl
-						key="coupon-slign-select"
+						key="coupon-align-select"
 						label={__( 'Select How to Align the Coupon(s)', 'coupon-creator' )}
 						value={coupon_align || ''}
 						options={[
