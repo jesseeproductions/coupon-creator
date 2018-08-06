@@ -15,6 +15,10 @@ const attributes = {
 		type: 'number',
 		default: 0,
 	},
+	selectedTaxonomy: {
+		type: 'number',
+		default: 0,
+	},
 };
 
 export default attributes;

@@ -1,7 +1,7 @@
-const {__} = wp.i18n; // Import __() from wp.i18n
-const {registerBlockType, InspectorControls} = wp.blocks; // Import registerBlockType() from wp.blocks
+const {__} = wp.i18n;
 const {SelectControl} = wp.components;
 const {Component} = wp.element;
+const {apiFetch} = wp;
 
 export default class SelectPosts extends Component {
 
@@ -30,8 +30,8 @@ export default class SelectPosts extends Component {
 	 * Loading Posts
 	 */
 	getOptions() {
-		return (new wp.api.collections.Posts()).fetch().then( ( posts ) => {
-			if ( posts && 0 !== this.state.selectedPost ) {
+		return ( apiFetch( {path: '/wp/v2/cctor_coupon?per_page=100'} ).then( ( posts ) => {
+			if ( posts && ( 0 !== this.state.selectedPost || 'loop' !== this.state.selectedPost ) )  {
 				// If we have a selected Post, find that post and add it.
 				const post = posts.find( ( item ) => {
 					return item.id == this.state.selectedPost
@@ -39,9 +39,10 @@ export default class SelectPosts extends Component {
 				// This is the same as { post: post, posts: posts }
 				this.setState( {post, posts} );
 			} else {
+				//console.log('adding',posts);
 				this.setState( {posts} );
 			}
-		} );
+		} ) );
 	}
 
 	onChangeSelectPost( value ) {
@@ -55,14 +56,12 @@ export default class SelectPosts extends Component {
 		this.props.setAttributes( {
 			selectedPost: parseInt( value ),
 			title: post.title.rendered,
-			content: post.excerpt.rendered,
-			link: post.link,
 		} );
 	}
 
 	render() {
 		// Options to hold all loaded posts. For now, just the default.
-		let options = [{value: 0, label: __( 'Select a Post' )}];
+		let options = [{value: 0, label: __( 'Select a Post' )},{value: 'loop', label: __( 'All Coupons' )}];
 		let output = __( 'Loading Posts' );
 		if ( this.state.posts.length > 0 ) {
 			const loading = __( 'We have %d posts. Choose one.' );

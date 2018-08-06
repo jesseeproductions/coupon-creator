@@ -1,6 +1,7 @@
+
 const {__} = wp.i18n;
 const {Component} = wp.element;
-//import TaxonomiesSelect from './taxonomy';
+import SelectTaxonomy from './taxonomy';
 import SelectPosts from './posts';
 
 const {
@@ -19,7 +20,7 @@ export default class Inspector extends Component {
 	}
 
 	render() {
-		const {attributes: {couponid, category, coupon_align, couponorderby}, setAttributes} = this.props;
+		const {attributes: {couponid, coupon_align, couponorderby}, setAttributes} = this.props;
 		let options = [{value: 0, label: __( 'Select a Post' )}];
 
 		return (
@@ -36,11 +37,7 @@ export default class Inspector extends Component {
 
 				<PanelBody>
 					<SelectPosts { ...{ setAttributes, ...this.props } } />
-					{/*					<TaxonomiesSelect
-						slug="cctor_coupon_category"
-						label={ __( 'Coupon Category', 'coupon-creator' ) }
-						renderEmpty={ __( 'Add Coupon Categories in document settings', 'coupon-creator' ) }
-					/>*/}
+					<SelectTaxonomy { ...{ setAttributes, ...this.props } } />
 				</PanelBody>
 
 				<PanelBody>
