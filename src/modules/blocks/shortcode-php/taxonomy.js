@@ -1,36 +1,43 @@
-
-
 const {__} = wp.i18n;
 const {
 	SelectControl,
+	CategorySelect,
 } = wp.components;
-const {
-	apiRequest,
-} = wp.apiRequest;
+const {apiFetch} = wp;
 
-export default function TaxonomiesSelect ({ taxonomy, setAttributes, value }) {
+export default function TaxonomiesSelect( {taxonomy, setAttributes, value} ) {
 
-	console.log('taxonomies', taxonomy, value );
-	//const categories = apiRequest( { path: '/wp/v2/categories?per_page=-1' } );
-	//getCategories();
+	console.log( 'taxonomies', taxonomy, value );
+	const response = getTaxonomy();
+	let categories = {};
+
+	//try a reducer?
+	{response.map(({ name, id }, index) => (
+		console.log(name, id),
+		{value: id, label: name }
+    ))}
 
 	return (
 		<SelectControl
-			label={__( 'Select a Coupon Category to use in the Loop', 'coupon-creator' )}
-			value={value}
+			key="coupon-taxomony-select"
+			label={__( 'Coupon Category', 'coupon-creator' )}
+			value={value || ''}
 			options={[
 				{value: 'cctor_alignnone', label: __( 'None', 'coupon-creator' )},
+
 			]}
 			onChange={value => setAttributes( {value} )}
 		/>
-	);
+	)
+
 }
 
-function getCategories() {
-	apiRequest( { path: '/wp/v2/posts' } ).then( posts => {
-	    console.log( posts );
-	} );
-	//const categories = await apiRequest( { path: '/wp/v2/categories?per_page=-1' } );
-	//return ( categories );
-	//yield receiveTerms( 'categories', categories );
+async function getTaxonomy() {
+
+	const response = await apiFetch( {path: '/wp/v2/categories?per_page=100'} );
+
+	//console.log( 'getTaxonomyomies', response );
+
+	//return response.json();
+	return response;
 }

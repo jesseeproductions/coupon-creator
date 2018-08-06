@@ -23,6 +23,7 @@ export default class Inspector extends Component {
 			<InspectorControls>
 				<PanelBody>
 					<TextControl
+						key="coupon-id"
 						label={__( 'Coupon ID', 'coupon-creator' )}
 						help={__( 'Add the coupon id to display.', 'coupon-creator' )}
 						value={couponid || ''}
@@ -40,6 +41,7 @@ export default class Inspector extends Component {
 
 				<PanelBody>
 					<SelectControl
+						key="coupon-slign-select"
 						label={__( 'Select How to Align the Coupon(s)', 'coupon-creator' )}
 						value={coupon_align || ''}
 						options={[
@@ -54,6 +56,7 @@ export default class Inspector extends Component {
 
 				<PanelBody>
 					<SelectControl
+						key="coupon-order-select"
 						label={__( 'Select how to order the coupons', 'coupon-creator' )}
 						value={couponorderby || ''}
 						options={[
