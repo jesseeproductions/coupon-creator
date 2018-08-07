@@ -14,7 +14,7 @@ class Cctor__Coupon__I18n {
 	 * @return void
 	 */
 	public function hook() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'include_inline_script' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'include_inline_script' ), 11 );
 	}
 
 	/**
@@ -28,8 +28,8 @@ class Cctor__Coupon__I18n {
 		// Prepare Jed locale data.
 		$locale_data = gutenberg_get_jed_locale_data( 'coupon-creator' );
 		wp_add_inline_script(
-			'wp-edit-post',
-			'wp.i18n.setLocaleData( ' . json_encode( $locale_data ) . ' );',
+			'cctor-coupon-editor-blocks',
+			'wp.i18n.setLocaleData( ' . json_encode( $locale_data ) . ', "coupon-creator" );',
 			'before'
 		);
 	}
