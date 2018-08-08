@@ -1,6 +1,7 @@
 const attributes = {
 	couponid: {
 		type: 'string',
+		default: 0,
 	},
 	category: {
 		type: 'string',
@@ -10,10 +11,6 @@ const attributes = {
 	},
 	couponorderby: {
 		type: 'string',
-	},
-	selectedPost: {
-		type: 'number',
-		default: 0,
 	},
 	selectedTaxonomy: {
 		type: 'number',

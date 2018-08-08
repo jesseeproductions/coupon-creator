@@ -1,8 +1,7 @@
-
 const {__} = wp.i18n;
 const {Component} = wp.element;
 import SelectTaxonomy from './taxonomy';
-import SelectPosts from './posts';
+import SelectCoupons from './coupons';
 
 const {
 	InspectorControls,
@@ -21,24 +20,27 @@ export default class Inspector extends Component {
 
 	render() {
 		const {attributes: {couponid, coupon_align, couponorderby}, setAttributes} = this.props;
-		let options = [{value: 0, label: __( 'Select a Post' )}];
+
+		let taxonomy = '';
+		if ( 'loop' === couponid ) {
+			taxonomy = <PanelBody><SelectTaxonomy {...{setAttributes, ...this.props}} /></PanelBody>;
+		}
 
 		return (
 			<InspectorControls>
+
 				<PanelBody>
-					<TextControl
-						key="coupon-id"
-						label={__( 'Coupon ID', 'coupon-creator' )}
-						help={__( 'Add the coupon id to display.', 'coupon-creator' )}
-						value={couponid || ''}
-						onChange={couponid => setAttributes( {couponid} )}
+					<SelectCoupons
+						{...{
+							setAttributes,
+							fetchPath: '/wp/v2/cctor_coupon?per_page=100',
+							...this.props
+						}
+						}
 					/>
 				</PanelBody>
 
-				<PanelBody>
-					<SelectPosts { ...{ setAttributes, ...this.props } } />
-					<SelectTaxonomy { ...{ setAttributes, ...this.props } } />
-				</PanelBody>
+				{taxonomy}
 
 				<PanelBody>
 					<SelectControl
@@ -74,6 +76,6 @@ export default class Inspector extends Component {
 					/>
 				</PanelBody>
 			</InspectorControls>
-		);
+		)
 	}
 }

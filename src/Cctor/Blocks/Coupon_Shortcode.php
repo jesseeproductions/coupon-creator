@@ -40,10 +40,6 @@ extends Pngx__Blocks__Abstract {
 					'type' => 'number',
 					'default' => 0,
 				),
-				'selectedPost' => array(
-					'type' => 'number',
-					'default' => 0,
-				),
 			),
 			'render_callback' => array( $this, 'render' ),
 		);

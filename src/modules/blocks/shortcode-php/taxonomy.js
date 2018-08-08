@@ -58,6 +58,7 @@ export default class SelectTaxonomy extends Component {
 			selectedTaxonomy: parseInt( value ),
 			name: term.name,
 		} );
+		//onChange={couponid => setAttributes( {couponid} )}
 	}
 
 	render() {
