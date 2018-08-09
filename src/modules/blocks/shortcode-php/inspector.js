@@ -25,6 +25,27 @@ export default class Inspector extends Component {
 		if ( 'loop' === couponid ) {
 			taxonomy = <PanelBody><SelectTaxonomy {...{setAttributes, ...this.props}} /></PanelBody>;
 		}
+		let order = '';
+		if ( 'loop' === couponid ) {
+			order = <PanelBody>
+							<SelectControl
+								key="coupon-order-select"
+								label={__( 'Select how to order the coupons', 'coupon-creator' )}
+								value={couponorderby || ''}
+								options={[
+									{value: 'date', label: __( 'Date (default)', 'coupon-creator' )},
+									{value: 'none', label: __( 'None', 'coupon-creator' )},
+									{value: 'ID', label: __( 'ID', 'coupon-creator' )},
+									{value: 'author', label: __( 'Author', 'coupon-creator' )},
+									{value: 'title', label: __( 'Coupon Post Title', 'coupon-creator' )},
+									{value: 'name', label: __( 'Slug Name', 'coupon-creator' )},
+									{value: 'modified', label: __( 'Last Modified', 'coupon-creator' )},
+									{value: 'rand', label: __( 'Random', 'coupon-creator' )},
+								]}
+								onChange={couponorderby => setAttributes( {couponorderby} )}
+							/>
+						</PanelBody>;
+		}
 
 		return (
 			<InspectorControls>
@@ -57,24 +78,8 @@ export default class Inspector extends Component {
 					/>
 				</PanelBody>
 
-				<PanelBody>
-					<SelectControl
-						key="coupon-order-select"
-						label={__( 'Select how to order the coupons', 'coupon-creator' )}
-						value={couponorderby || ''}
-						options={[
-							{value: 'date', label: __( 'Date (default)', 'coupon-creator' )},
-							{value: 'none', label: __( 'None', 'coupon-creator' )},
-							{value: 'ID', label: __( 'ID', 'coupon-creator' )},
-							{value: 'author', label: __( 'Author', 'coupon-creator' )},
-							{value: 'title', label: __( 'Coupon Post Title', 'coupon-creator' )},
-							{value: 'name', label: __( 'Slug Name', 'coupon-creator' )},
-							{value: 'modified', label: __( 'Last Modified', 'coupon-creator' )},
-							{value: 'rand', label: __( 'Random', 'coupon-creator' )},
-						]}
-						onChange={couponorderby => setAttributes( {couponorderby} )}
-					/>
-				</PanelBody>
+				{order}
+
 			</InspectorControls>
 		)
 	}

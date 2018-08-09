@@ -1226,6 +1226,22 @@ var Inspector = function (_Component) {
 					wp.element.createElement(__WEBPACK_IMPORTED_MODULE_6__taxonomy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ setAttributes: setAttributes }, this.props))
 				);
 			}
+			var order = '';
+			if ('loop' === couponid) {
+				order = wp.element.createElement(
+					PanelBody,
+					null,
+					wp.element.createElement(SelectControl, {
+						key: 'coupon-order-select',
+						label: __('Select how to order the coupons', 'coupon-creator'),
+						value: couponorderby || '',
+						options: [{ value: 'date', label: __('Date (default)', 'coupon-creator') }, { value: 'none', label: __('None', 'coupon-creator') }, { value: 'ID', label: __('ID', 'coupon-creator') }, { value: 'author', label: __('Author', 'coupon-creator') }, { value: 'title', label: __('Coupon Post Title', 'coupon-creator') }, { value: 'name', label: __('Slug Name', 'coupon-creator') }, { value: 'modified', label: __('Last Modified', 'coupon-creator') }, { value: 'rand', label: __('Random', 'coupon-creator') }],
+						onChange: function onChange(couponorderby) {
+							return setAttributes({ couponorderby: couponorderby });
+						}
+					})
+				);
+			}
 
 			return wp.element.createElement(
 				InspectorControls,
@@ -1252,19 +1268,7 @@ var Inspector = function (_Component) {
 						}
 					})
 				),
-				wp.element.createElement(
-					PanelBody,
-					null,
-					wp.element.createElement(SelectControl, {
-						key: 'coupon-order-select',
-						label: __('Select how to order the coupons', 'coupon-creator'),
-						value: couponorderby || '',
-						options: [{ value: 'date', label: __('Date (default)', 'coupon-creator') }, { value: 'none', label: __('None', 'coupon-creator') }, { value: 'ID', label: __('ID', 'coupon-creator') }, { value: 'author', label: __('Author', 'coupon-creator') }, { value: 'title', label: __('Coupon Post Title', 'coupon-creator') }, { value: 'name', label: __('Slug Name', 'coupon-creator') }, { value: 'modified', label: __('Last Modified', 'coupon-creator') }, { value: 'rand', label: __('Random', 'coupon-creator') }],
-						onChange: function onChange(couponorderby) {
-							return setAttributes({ couponorderby: couponorderby });
-						}
-					})
-				)
+				order
 			);
 		}
 	}]);
@@ -2171,21 +2175,25 @@ var SelectCoupons = function (_Component) {
 		var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (SelectCoupons.__proto__ || __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_get_prototype_of___default()(SelectCoupons)).apply(this, arguments));
 
 		_this.state = {
+			item: {},
 			items: [],
 			couponid: 0,
-			item: {},
 			loaded: false
 		};
 
 		_this.componentDidMount = function () {
 			var couponid = _this.props.attributes.couponid;
 
+
 			_this.setState({ couponid: couponid });
 			_this.getOptions();
 		};
 
 		_this.getOptions = function () {
-			return apiFetch({ path: _this.props.fetchPath }).then(function (items) {
+			var fetchPath = _this.props.fetchPath;
+
+
+			return apiFetch({ path: fetchPath }).then(function (items) {
 				if (items && (0 !== _this.state.couponid || 'loop' !== _this.state.couponid)) {
 
 					var item = items.find(function (item) {
@@ -2209,9 +2217,17 @@ var SelectCoupons = function (_Component) {
 			_this.setState({ couponid: value });
 		};
 
-		console.log('props', _this.props);
 		return _this;
 	}
+
+	/**
+  * pass in all data from props
+  * selected id
+  * default options
+  * get options special cases
+  * different titles and names for category and coupons
+  * all text
+  */
 
 	__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(SelectCoupons, [{
 		key: 'render',
@@ -2221,9 +2237,12 @@ var SelectCoupons = function (_Component) {
 			var options = [{ value: 0, label: __('Select a Coupon', 'coupon-creator') }, { value: 'loop', label: __('All Coupons', 'coupon-creator') }];
 			var output = __('Loading', 'coupon-creator');
 
-			if (this.state.items.length > 0 && this.state.loaded) {
+			if (this.state.items.length === 0 && this.state.loaded) {
 				output = __('No coupons found. Please create some first.', 'coupon-creator');
-			} else {
+			} else if (this.state.items.length > 0 && this.state.loaded) {
+				this.state.items.forEach(function (item) {
+					options.push({ value: item.id, label: item.title.rendered });
+				});
 				output = '';
 			}
 

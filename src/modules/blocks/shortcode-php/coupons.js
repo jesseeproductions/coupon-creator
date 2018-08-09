@@ -5,27 +5,38 @@ const {apiFetch} = wp;
 
 export default class SelectCoupons extends Component {
 
+	/**
+	 * pass in all data from props
+	 * selected id
+	 * default options
+	 * get options special cases
+	 * different titles and names for category and coupons
+	 * all text
+	 */
+
 	state = {
+		item: {},
 		items: [],
 		couponid: 0,
-		item: {},
 		loaded: false,
 	}
 
 	constructor() {
 		super( ...arguments );
-		console.log('props',this.props);
 	}
 
 	componentDidMount = () => {
 		const {attributes: {couponid}} = this.props;
+
 		this.setState( {couponid: couponid} );
 		this.getOptions();
 	}
 
 	getOptions = () => {
-		return (apiFetch( { path: this.props.fetchPath } ).then( ( items ) => {
-			if ( items && (0 !== this.state.couponid || 'loop' !== this.state.couponid) ) {
+		const {fetchPath} = this.props;
+
+		return (apiFetch( {path: fetchPath} ).then( ( items ) => {
+				if ( items && (0 !== this.state.couponid || 'loop' !== this.state.couponid) ) {
 
 				const item = items.find( ( item ) => {
 					return item.id == this.state.couponid
@@ -45,7 +56,6 @@ export default class SelectCoupons extends Component {
 
 		setAttributes( {couponid: value} );
 		this.setState( {couponid: value} );
-
 	}
 
 	render() {
@@ -53,9 +63,12 @@ export default class SelectCoupons extends Component {
 		let options = [{value: 0, label: __( 'Select a Coupon', 'coupon-creator' )}, {value: 'loop', label: __( 'All Coupons', 'coupon-creator' )}];
 		let output = __( 'Loading', 'coupon-creator' );
 
-		if ( this.state.items.length > 0 && this.state.loaded  ) {
+		if ( this.state.items.length === 0 && this.state.loaded ) {
 			output = __( 'No coupons found. Please create some first.', 'coupon-creator' );
-		} else {
+		} else if ( this.state.items.length > 0 && this.state.loaded ) {
+			this.state.items.forEach( ( item ) => {
+				options.push( {value: item.id, label: item.title.rendered} );
+			} );
 			output = '';
 		}
 
