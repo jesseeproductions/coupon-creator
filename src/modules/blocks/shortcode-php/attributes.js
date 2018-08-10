@@ -12,10 +12,6 @@ const attributes = {
 	couponorderby: {
 		type: 'string',
 	},
-	selectedTaxonomy: {
-		type: 'number',
-		default: 0,
-	},
 };
 
 export default attributes;

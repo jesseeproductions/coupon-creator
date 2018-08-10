@@ -1,6 +1,5 @@
 const {__} = wp.i18n;
 const {Component} = wp.element;
-import SelectTaxonomy from './taxonomy';
 import PngxRESTSelect from './select-rest';
 
 const {
@@ -13,46 +12,53 @@ const {
 } = wp.components;
 
 export default class Inspector extends Component {
-
 	constructor() {
 		super( ...arguments );
 	}
 
 	render() {
-		const {attributes: {couponid, coupon_align, couponorderby}, setAttributes} = this.props;
+		const {attributes: {couponid, category, coupon_align, couponorderby}, setAttributes} = this.props;
 
 		let taxonomy = '';
 		if ( 'loop' === couponid ) {
-			taxonomy = <PanelBody>
-							<SelectTaxonomy
-								{...{
-									setAttributes,
-									...this.props
-								}
-								}
-							/>
-						</PanelBody>;
+			taxonomy = (
+				<PanelBody>
+					<PngxRESTSelect
+						{...{setAttributes}}
+						attributesID="category"
+						currentId={category}
+						defaultOptions={[
+							{value: 0, label: __( 'Select a Term', 'coupon-creator' )},
+						]}
+						fetchPath="/wp/v2/categories?per_page=100"
+						isTaxonomy={true}
+						label={__( 'Select a Category', 'coupon-creator' )}
+						noItems={__( 'No category terms found. Please create some first.', 'coupon-creator' )}
+						slug="coupon-category-item-select"
+					/>
+				</PanelBody>
+			);
 		}
 		let order = '';
 		if ( 'loop' === couponid ) {
-			order = <PanelBody>
-							<SelectControl
-								key="coupon-order-select"
-								label={__( 'Select how to order the coupons', 'coupon-creator' )}
-								value={couponorderby || ''}
-								options={[
-									{value: 'date', label: __( 'Date (default)', 'coupon-creator' )},
-									{value: 'none', label: __( 'None', 'coupon-creator' )},
-									{value: 'ID', label: __( 'ID', 'coupon-creator' )},
-									{value: 'author', label: __( 'Author', 'coupon-creator' )},
-									{value: 'title', label: __( 'Coupon Post Title', 'coupon-creator' )},
-									{value: 'name', label: __( 'Slug Name', 'coupon-creator' )},
-									{value: 'modified', label: __( 'Last Modified', 'coupon-creator' )},
-									{value: 'rand', label: __( 'Random', 'coupon-creator' )},
-								]}
-								onChange={couponorderby => setAttributes( {couponorderby} )}
-							/>
-						</PanelBody>;
+			order = (<PanelBody>
+				<SelectControl
+					key="coupon-order-select"
+					label={__( 'Select how to order the coupons', 'coupon-creator' )}
+					value={couponorderby || ''}
+					options={[
+						{value: 'date', label: __( 'Date (default)', 'coupon-creator' )},
+						{value: 'none', label: __( 'None', 'coupon-creator' )},
+						{value: 'ID', label: __( 'ID', 'coupon-creator' )},
+						{value: 'author', label: __( 'Author', 'coupon-creator' )},
+						{value: 'title', label: __( 'Coupon Post Title', 'coupon-creator' )},
+						{value: 'name', label: __( 'Slug Name', 'coupon-creator' )},
+						{value: 'modified', label: __( 'Last Modified', 'coupon-creator' )},
+						{value: 'rand', label: __( 'Random', 'coupon-creator' )},
+					]}
+					onChange={couponorderby => setAttributes( {couponorderby} )}
+				/>
+			</PanelBody>);
 		}
 
 		return (
@@ -60,17 +66,17 @@ export default class Inspector extends Component {
 
 				<PanelBody>
 					<PngxRESTSelect
-						{...{
-							setAttributes,
-							attributesID: 'couponid',
-							ID: couponid,
-							fetchPath: '/wp/v2/cctor_coupon?per_page=100',
-							defaultOptions: [
-								{value: 0, label: __( 'Select a Coupon', 'coupon-creator' )},
-								{value: 'loop', label: __( 'All Coupons', 'coupon-creator' )}
-							]
-							}
-						}
+						{...{setAttributes}}
+						attributesID="couponid"
+						currentId={couponid}
+						defaultOptions={[
+							{value: 0, label: __( 'Select a Coupon', 'coupon-creator' )},
+							{value: 'loop', label: __( 'All Coupons', 'coupon-creator' )},
+						]}
+						fetchPath="/wp/v2/cctor_coupon?per_page=100"
+						label={__( 'Select a Coupon1', 'coupon-creator' )}
+						noItems={__( 'No coupons found. Please create some first.', 'coupon-creator' )}
+						slug="coupon-item-select"
 					/>
 				</PanelBody>
 
@@ -94,6 +100,6 @@ export default class Inspector extends Component {
 				{order}
 
 			</InspectorControls>
-		)
+		);
 	}
 }

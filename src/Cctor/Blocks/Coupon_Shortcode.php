@@ -36,10 +36,6 @@ extends Pngx__Blocks__Abstract {
 				'couponorderby' => array(
 					'type' => 'string',
 				),
-				'selectedTaxonomy' => array(
-					'type' => 'number',
-					'default' => 0,
-				),
 			),
 			'render_callback' => array( $this, 'render' ),
 		);
