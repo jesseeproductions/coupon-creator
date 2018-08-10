@@ -30,6 +30,7 @@ export default class Inspector extends Component {
 						defaultOptions={[
 							{value: 0, label: __( 'Select a Term', 'coupon-creator' )},
 						]}
+						//fetchPath="/wp/v2/cctor_coupon_category?per_page=100&hide_empty=true"
 						fetchPath="/wp/v2/cctor_coupon_category?per_page=100"
 						isTaxonomy={true}
 						label={__( 'Select a Category', 'coupon-creator' )}

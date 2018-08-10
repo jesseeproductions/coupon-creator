@@ -835,8 +835,9 @@ var Inspector = function (_Component) {
 					wp.element.createElement(__WEBPACK_IMPORTED_MODULE_6__select_rest__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ setAttributes: setAttributes }, {
 						attributesID: 'category',
 						currentId: category,
-						defaultOptions: [{ value: 0, label: __('Select a Term', 'coupon-creator') }],
-						fetchPath: '/wp/v2/cctor_coupon_category?per_page=100',
+						defaultOptions: [{ value: 0, label: __('Select a Term', 'coupon-creator') }]
+						//fetchPath="/wp/v2/cctor_coupon_category?per_page=100&hide_empty=true"
+						, fetchPath: '/wp/v2/cctor_coupon_category?per_page=100',
 						isTaxonomy: true,
 						label: __('Select a Category', 'coupon-creator'),
 						noItems: __('No category terms found. Please create some first.', 'coupon-creator'),
