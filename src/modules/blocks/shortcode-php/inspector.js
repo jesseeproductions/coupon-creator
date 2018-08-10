@@ -1,7 +1,7 @@
 const {__} = wp.i18n;
 const {Component} = wp.element;
 import SelectTaxonomy from './taxonomy';
-import SelectCoupons from './coupons';
+import PngxRESTSelect from './select-rest';
 
 const {
 	InspectorControls,
@@ -23,7 +23,15 @@ export default class Inspector extends Component {
 
 		let taxonomy = '';
 		if ( 'loop' === couponid ) {
-			taxonomy = <PanelBody><SelectTaxonomy {...{setAttributes, ...this.props}} /></PanelBody>;
+			taxonomy = <PanelBody>
+							<SelectTaxonomy
+								{...{
+									setAttributes,
+									...this.props
+								}
+								}
+							/>
+						</PanelBody>;
 		}
 		let order = '';
 		if ( 'loop' === couponid ) {
@@ -51,12 +59,17 @@ export default class Inspector extends Component {
 			<InspectorControls>
 
 				<PanelBody>
-					<SelectCoupons
+					<PngxRESTSelect
 						{...{
 							setAttributes,
+							attributesID: 'couponid',
+							ID: couponid,
 							fetchPath: '/wp/v2/cctor_coupon?per_page=100',
-							...this.props
-						}
+							defaultOptions: [
+								{value: 0, label: __( 'Select a Coupon', 'coupon-creator' )},
+								{value: 'loop', label: __( 'All Coupons', 'coupon-creator' )}
+							]
+							}
 						}
 					/>
 				</PanelBody>
