@@ -51,7 +51,7 @@ class Cctor__Coupon__Shortcode {
 			'post_status'           => 'publish',
 			'orderby'               => esc_attr( $cctor_atts['couponorderby'] )
 		);
-		log_me($cctor_args);
+
 		//Filter for all Shortcodes
 		if ( has_filter( 'cctor_shortcode_query_args' ) ) {
 			/**
@@ -77,7 +77,7 @@ class Cctor__Coupon__Shortcode {
 		}
 
 		$coupons = new WP_Query( $cctor_args );
-		log_me($coupons);
+
 		ob_start();
 
 		/**
