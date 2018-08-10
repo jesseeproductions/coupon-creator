@@ -836,7 +836,7 @@ var Inspector = function (_Component) {
 						attributesID: 'category',
 						currentId: category,
 						defaultOptions: [{ value: 0, label: __('Select a Term', 'coupon-creator') }],
-						fetchPath: '/wp/v2/categories?per_page=100',
+						fetchPath: '/wp/v2/cctor_coupon_category?per_page=100',
 						isTaxonomy: true,
 						label: __('Select a Category', 'coupon-creator'),
 						noItems: __('No category terms found. Please create some first.', 'coupon-creator'),
@@ -872,7 +872,7 @@ var Inspector = function (_Component) {
 						currentId: couponid,
 						defaultOptions: [{ value: 0, label: __('Select a Coupon', 'coupon-creator') }, { value: 'loop', label: __('All Coupons', 'coupon-creator') }],
 						fetchPath: '/wp/v2/cctor_coupon?per_page=100',
-						label: __('Select a Coupon1', 'coupon-creator'),
+						label: __('Select a Coupon', 'coupon-creator'),
 						noItems: __('No coupons found. Please create some first.', 'coupon-creator'),
 						slug: 'coupon-item-select'
 					}))
@@ -2102,7 +2102,7 @@ var PngxRESTSelect = function (_Component) {
 
 			if (_this.state.isTaxonomy) {
 				_this.state.loadedItems.forEach(function (term) {
-					options.push({ value: term.id, label: term.name });
+					options.push({ value: term.slug, label: term.name });
 				});
 			} else {
 				_this.state.loadedItems.forEach(function (item) {

@@ -42,7 +42,7 @@ export default class PngxRESTSelect extends Component {
 
 		if ( this.state.isTaxonomy ) {
 			this.state.loadedItems.forEach( ( term ) => {
-				options.push( {value: term.id, label: term.name} );
+				options.push( {value: term.slug, label: term.name} );
 			} );
 		} else {
 			this.state.loadedItems.forEach( ( item ) => {
