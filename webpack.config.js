@@ -11,7 +11,7 @@ const cssExtractTextPlugin = new ExtractTextPlugin( {
 } );
 
 const entryPointNames = [
-	//'elements',
+	'elements',
 	//'editor',
 	//'components',
 	'blocks',

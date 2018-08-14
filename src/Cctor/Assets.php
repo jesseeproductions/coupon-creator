@@ -27,14 +27,14 @@ class Cctor__Coupon__Assets {
 	public function blocks_editor_styles() {
 
 		// @formatter:off
-/*		wp_enqueue_style(
+		wp_enqueue_style(
 			'cctor-coupon-editor-element',
 			pngx( 'cctor' )->resource_url . 'css/element.css',
 			array(
 			'wp-blocks'
 			),
 			filemtime( pngx( 'cctor' )->resource_path . 'css/element.css' )
-		);*/
+		);
 		wp_enqueue_style(
 			'coupon_creator_css',
 			pngx( 'cctor' )->resource_url . 'css/coupon.css',
@@ -93,7 +93,7 @@ class Cctor__Coupon__Assets {
 				'wp-element',
 			),
 			filemtime( pngx( 'cctor' )->resource_path . 'js/editor.js' )
-		);
+		);*/
 
 		wp_enqueue_script(
 			'cctor-coupon-editor-elements',
@@ -109,7 +109,7 @@ class Cctor__Coupon__Assets {
 				'wp-element',
 			),
 			filemtime( pngx( 'cctor' )->resource_path . 'js/elements.js' )
-		);*/
+		);
 		// @formatter:on
 	}
 	

@@ -2,6 +2,7 @@ const {__} = wp.i18n;
 const {SelectControl} = wp.components;
 const {Component} = wp.element;
 const {apiFetch} = wp;
+import {Loading} from 'elements';
 
 export default class PngxRESTSelect extends Component {
 
@@ -62,7 +63,7 @@ export default class PngxRESTSelect extends Component {
 
 	render() {
 		const {currentId, label, noItems, slug} = this.props;
-		let output = __( 'Loading', 'coupon-creator' );
+		let output = <Loading key="pngx-select-loading-{slug}" className="pngx-editor__spinner--item"/>;
 		let select = '';
 
 		if ( this.state.loadedItems.length === 0 && this.state.loaded ) {

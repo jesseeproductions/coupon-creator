@@ -1,6 +1,7 @@
 <?php
-class Cctor__Coupon__Blocks__Coupon_Shortcode
-extends Pngx__Blocks__Abstract {
+
+
+class Cctor__Coupon__Blocks__Coupon_Shortcode extends Pngx__Blocks__Abstract {
 
 	/**
 	 * Which is the name/slug of this block
@@ -24,13 +25,13 @@ extends Pngx__Blocks__Abstract {
 	public function register() {
 		$block_args = array(
 			'attributes'      => array(
-				'couponid' => array(
+				'couponid'      => array(
 					'type' => 'string',
 				),
-				'category' => array(
+				'category'      => array(
 					'type' => 'string',
 				),
-				'coupon_align' => array(
+				'coupon_align'  => array(
 					'type' => 'string',
 				),
 				'couponorderby' => array(
@@ -63,14 +64,16 @@ extends Pngx__Blocks__Abstract {
 		//log_me($args['attributes']);
 
 		if ( empty ( $args['attributes']['couponid'] ) ) {
-			return '<p>Coupon Block' . print_r( $attributes, true ) . '</p>';
+			return '<p>' . __( 'Please choose a coupon to display from the block settings.', 'coupon-creator' ) . '</p>';
 		}
 
-		return Cctor__Coupon__Shortcode::core_shortcode( $attributes );
+		$coupon = Cctor__Coupon__Shortcode::core_shortcode( $attributes );
 
-		// Add the rendering attributes into global context
-		//pngx( 'gutenberg.template' )->add_template_globals( $args );
+		if ( ! $coupon ) {
+			return '<p>' . __( 'No Coupons Found, Please make another selection.', 'coupon-creator' ) . '</p>';
+		}
 
-		//return pngx( 'gutenberg.template' )->template( array( 'blocks', $this->slug() ), $args, false );
+		return $coupon;
+
 	}
 }
