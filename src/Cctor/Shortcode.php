@@ -46,7 +46,7 @@ class Cctor__Coupon__Shortcode {
 		$cctor_args = array(
 			'p'                     => esc_attr( $cctor_atts['couponid'] ),
 			'posts_per_page'        => esc_attr( $cctor_atts['totalcoupons'] ),
-			'cctor_coupon_category' => esc_attr( $cctor_atts['category'] ),
+			'cctor_coupon_category' => $cctor_atts['category'],
 			'post_type'             => 'cctor_coupon',
 			'post_status'           => 'publish',
 			'orderby'               => esc_attr( $cctor_atts['couponorderby'] )

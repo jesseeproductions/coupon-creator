@@ -29,11 +29,11 @@ class Cctor__Coupon__Assets {
 		// @formatter:off
 		wp_enqueue_style(
 			'cctor-coupon-editor-element',
-			pngx( 'cctor' )->resource_url . 'css/element.css',
+			pngx( 'cctor' )->resource_url . 'css/elements.css',
 			array(
 			'wp-blocks'
 			),
-			filemtime( pngx( 'cctor' )->resource_path . 'css/element.css' )
+			filemtime( pngx( 'cctor' )->resource_path . 'css/elements.css' )
 		);
 		wp_enqueue_style(
 			'coupon_creator_css',

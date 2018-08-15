@@ -11,7 +11,7 @@ export default class PngxRESTSelect extends Component {
 		loadedItems: [],
 		loaded: false,
 		options: [],
-		selectedId: 0,
+		isMultiple: false,
 		isTaxonomy: false,
 	}
 
@@ -20,9 +20,9 @@ export default class PngxRESTSelect extends Component {
 	}
 
 	componentDidMount = () => {
-		const {currentId, defaultOptions, isTaxonomy} = this.props;
+		const {defaultOptions, isMultiple, isTaxonomy} = this.props;
 
-		this.setState( {selectedId: currentId, defaultOptions, isTaxonomy} );
+		this.setState( {defaultOptions, isMultiple, isTaxonomy} );
 		this.getOptions();
 	}
 
@@ -58,7 +58,6 @@ export default class PngxRESTSelect extends Component {
 		const {attributesID, setAttributes} = this.props;
 
 		setAttributes( {[attributesID]: value} );
-		this.setState( {selectedId: value} );
 	}
 
 	render() {
@@ -70,10 +69,12 @@ export default class PngxRESTSelect extends Component {
 			output = {noItems};
 		} else if ( this.state.loadedItems.length > 0 && this.state.loaded ) {
 			output = '';
+			let value = this.state.isMultiple && ! Array.isArray( currentId ) ? [] : currentId;
 			select = (
 				<SelectControl
+					multiple={this.state.isMultiple}
 					key={slug}
-					value={currentId}
+					value={value}
 					label={label}
 					options={this.state.options}
 					onChange={this.onChangeSelectCoupon}

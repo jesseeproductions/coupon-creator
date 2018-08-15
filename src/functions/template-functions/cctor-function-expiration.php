@@ -44,7 +44,33 @@ function cctor_show_no_coupon_comment( $coupon_id, $coupon_expiration ) {
 	$expiration_date = $coupon_expiration->get_display_expiration();
 
 	if ( ! empty( $expiration_date ) ) {
-		?><!-- Coupon "<?php echo get_the_title( $coupon_id ); ?>" Has Expired on <?php echo esc_html( $expiration_date ); ?>--><?php
+
+		?><!--<?php echo sprintf( '%1s %2s %3s %4s', __( 'Coupon ', 'coupon-creator' ), get_the_title( $coupon_id ), __( ' expired on ', 'coupon-creator' ), esc_html( $expiration_date ) ) ?>--><?php
+
 	}
 
-}	
+}
+
+/**
+ * Add expiration date and coupon name to notice in Gutenberg
+ *
+ * @since TBD
+ *
+ * @param $coupon_id
+ * @param $coupon_expiration
+ *
+ * @return bool/string
+ */
+function cctor_show_no_coupon_notice_admin( $coupon_id, $coupon_expiration ) {
+
+	if ( ! is_object( $coupon_expiration ) ) {
+		return false;
+	}
+
+	$expiration_date = $coupon_expiration->get_display_expiration();
+
+	if ( ! empty( $expiration_date ) ) {
+		?><p><?php echo sprintf( '%1s %2s %3s %4s %5s', __( 'Coupon ', 'coupon-creator' ), get_the_title( $coupon_id ), __( ' expired on ', 'coupon-creator' ), esc_html( $expiration_date ), __( ' and is not showing to your visitors. ', 'coupon-creator' ) ) ?></p><?php
+	}
+
+}

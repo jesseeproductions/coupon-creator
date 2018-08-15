@@ -4,7 +4,7 @@ const attributes = {
 		default: 0,
 	},
 	category: {
-		type: 'string',
+		type: 'array',
 	},
 	coupon_align: {
 		type: 'string',

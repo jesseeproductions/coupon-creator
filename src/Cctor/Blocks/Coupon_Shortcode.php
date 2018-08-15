@@ -15,8 +15,7 @@ class Cctor__Coupon__Blocks__Coupon_Shortcode extends Pngx__Blocks__Abstract {
 	}
 
 	/**
-	 * Does the registration for PHP rendering for the Block, important due to been
-	 * an dynamic Block
+	 * Does the registration for PHP rendering for the Block
 	 *
 	 * @since  TBD
 	 *
@@ -29,7 +28,7 @@ class Cctor__Coupon__Blocks__Coupon_Shortcode extends Pngx__Blocks__Abstract {
 					'type' => 'string',
 				),
 				'category'      => array(
-					'type' => 'string',
+					'type' => 'array',
 				),
 				'coupon_align'  => array(
 					'type' => 'string',
@@ -69,7 +68,11 @@ class Cctor__Coupon__Blocks__Coupon_Shortcode extends Pngx__Blocks__Abstract {
 
 		$coupon = Cctor__Coupon__Shortcode::core_shortcode( $attributes );
 
-		if ( ! $coupon ) {
+		if ( ! $coupon && is_numeric( $args['attributes']['couponid'] ) ) {
+			$status = get_post_status( $args['attributes']['couponid'] );
+
+			return '<p>' . sprintf( '%1s %2s %3s', __( 'This coupon is set to', 'coupon-creator' ), $status, __( ' and will not show on the website.', 'coupon-creator' ) ) . '</p>';
+		} elseif ( ! $coupon ) {
 			return '<p>' . __( 'No Coupons Found, Please make another selection.', 'coupon-creator' ) . '</p>';
 		}
 
