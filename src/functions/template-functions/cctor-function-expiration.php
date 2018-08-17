@@ -61,7 +61,7 @@ function cctor_show_no_coupon_comment( $coupon_id, $coupon_expiration ) {
  *
  * @return bool/string
  */
-function cctor_show_no_coupon_notice_admin( $coupon_id, $coupon_expiration ) {
+function cctor_show_no_coupon_notice_admin( $coupon_id, $coupon_expiration, $coupon_align = null ) {
 
 	if ( ! is_object( $coupon_expiration ) ) {
 		return false;
@@ -70,7 +70,22 @@ function cctor_show_no_coupon_notice_admin( $coupon_id, $coupon_expiration ) {
 	$expiration_date = $coupon_expiration->get_display_expiration();
 
 	if ( ! empty( $expiration_date ) ) {
-		?><p><?php echo sprintf( '%1s %2s %3s %4s %5s', __( 'Coupon ', 'coupon-creator' ), get_the_title( $coupon_id ), __( ' expired on ', 'coupon-creator' ), esc_html( $expiration_date ), __( ' and is not showing to your visitors. ', 'coupon-creator' ) ) ?></p><?php
+		?>
+		<div id="coupon_creator_<?php echo absint( $coupon_id ); ?>" class="coupon-creator-<?php echo absint( $coupon_id ); ?> type-cctor_coupon cctor_coupon_container coupon-border <?php echo esc_html( $coupon_align ); ?>">
+			<div class="cctor_coupon cctor-coupon">
+				<div class="cctor_coupon_content cctor-coupon-content" style="border-color:#dd3333">
+					<h3 class="cctor-deal" style="background-color:#dd3333; color:#000000;">
+						<?php echo __( 'Coupon Expired', 'coupon-creator' ); ?>
+					</h3>
+					<div class="cctor-terms">
+						<p style="font-size: 14px;">
+							<?php echo sprintf( '%1s %2s %3s %4s', get_the_title( $coupon_id ), __( ' expired on ', 'coupon-creator' ), esc_html( $expiration_date ), __( ' and is not showing to your visitors. ', 'coupon-creator' ) ); ?>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
 	}
 
 }

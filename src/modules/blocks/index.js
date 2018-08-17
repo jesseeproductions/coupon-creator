@@ -1,10 +1,10 @@
 import { registerBlockType } from '@wordpress/blocks';
 
-import couponShortcodePhp from 'blocks/shortcode-php';
+import coupon from 'blocks/coupon';
 import './style.pcss';
 
 const blocks = [
-	couponShortcodePhp,
+	coupon,
 ];
 
 blocks.forEach( block => {

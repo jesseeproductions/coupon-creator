@@ -206,7 +206,7 @@ class Cctor__Coupon__Shortcode {
 				 * @param int    $coupon_id
 				 * @param object $coupon_expiration
 				 */
-				do_action( 'cctor_no_show_coupon', $coupon_id, $coupon_expiration );
+				do_action( 'cctor_no_show_coupon', $coupon_id, $coupon_expiration, $coupon_align );
 			}
 			/**
 			 * After Core Shortcode Wrap

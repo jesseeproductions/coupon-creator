@@ -1,7 +1,7 @@
 <?php
 
 
-class Cctor__Coupon__Blocks__Coupon_Shortcode extends Pngx__Blocks__Abstract {
+class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 
 	/**
 	 * Which is the name/slug of this block
@@ -11,7 +11,7 @@ class Cctor__Coupon__Blocks__Coupon_Shortcode extends Pngx__Blocks__Abstract {
 	 * @return string
 	 */
 	public function slug() {
-		return 'coupon-shortcode-php';
+		return 'coupon';
 	}
 
 	/**
@@ -60,10 +60,8 @@ class Cctor__Coupon__Blocks__Coupon_Shortcode extends Pngx__Blocks__Abstract {
 	public function render( $attributes = array() ) {
 		$args['attributes'] = $this->attributes( $attributes );
 
-		//log_me($args['attributes']);
-
 		if ( empty ( $args['attributes']['couponid'] ) ) {
-			return '<p>' . __( 'Please choose a coupon to display from the block settings.', 'coupon-creator' ) . '</p>';
+			return '<p class="pngx-message">' . __( 'Please choose a coupon to display from the block settings.', 'coupon-creator' ) . '</p>';
 		}
 
 		$coupon = Cctor__Coupon__Shortcode::core_shortcode( $attributes );
@@ -71,9 +69,9 @@ class Cctor__Coupon__Blocks__Coupon_Shortcode extends Pngx__Blocks__Abstract {
 		if ( ! $coupon && is_numeric( $args['attributes']['couponid'] ) ) {
 			$status = get_post_status( $args['attributes']['couponid'] );
 
-			return '<p>' . sprintf( '%1s %2s %3s', __( 'This coupon is set to', 'coupon-creator' ), $status, __( ' and will not show on the website.', 'coupon-creator' ) ) . '</p>';
+			return '<p class="pngx-message pngx-notice">' . sprintf( '%1s %2s %3s', __( 'This coupon is set to', 'coupon-creator' ), $status, __( ' and will not show on the website.', 'coupon-creator' ) ) . '</p>';
 		} elseif ( ! $coupon ) {
-			return '<p>' . __( 'No Coupons Found, Please make another selection.', 'coupon-creator' ) . '</p>';
+			return '<p class="pngx-message pngx-notice">' . __( 'No Coupons Found, Please make another selection.', 'coupon-creator' ) . '</p>';
 		}
 
 		return $coupon;

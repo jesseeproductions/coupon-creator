@@ -20,7 +20,7 @@ class Cctor__Coupon__Assets {
 		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'register_assets' ) );
 		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'inline_style' ), 100 );
 	}
-	
+
 	/**
 	 * Enqueue block editor CSS
 	 */
@@ -76,10 +76,13 @@ class Cctor__Coupon__Assets {
 		);
 		$localized_data = array(
 			'data' => get_option(  pngx( 'cctor' )::OPTIONS_ID ),
+			'constants' => array (
+				'hide_upgrade' => ( defined( 'CCTOR_HIDE_UPGRADE' ) && CCTOR_HIDE_UPGRADE ) ? 'true' : 'false',
+			),
 		);
 		wp_localize_script( 'cctor-coupon-editor-blocks', 'pngx_blocks_editor_settings', $localized_data );
 
-/*		wp_enqueue_script(
+		wp_enqueue_script(
 			'cctor-coupon-editor',
 			pngx( 'cctor' )->resource_url . 'js/editor.js',
 			array(
@@ -93,7 +96,7 @@ class Cctor__Coupon__Assets {
 				'wp-element',
 			),
 			filemtime( pngx( 'cctor' )->resource_path . 'js/editor.js' )
-		);*/
+		);
 
 		wp_enqueue_script(
 			'cctor-coupon-editor-elements',
@@ -112,7 +115,7 @@ class Cctor__Coupon__Assets {
 		);
 		// @formatter:on
 	}
-	
+
 	/*
 	* Register Coupon Creator CSS
 	*/

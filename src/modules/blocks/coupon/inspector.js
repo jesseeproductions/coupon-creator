@@ -10,6 +10,8 @@ const {
 	TextControl,
 	SelectControl,
 } = wp.components;
+import { getConstants } from 'editor/settings';
+import {Upgrade} from 'elements';
 
 export default class Inspector extends Component {
 	constructor() {
@@ -18,6 +20,7 @@ export default class Inspector extends Component {
 
 	render() {
 		const {attributes: {couponid, category, coupon_align, couponorderby}, setAttributes} = this.props;
+		const hideUpgrade = getConstants().hide_upgrade === 'true';
 
 		let taxonomy = '';
 		if ( 'loop' === couponid ) {
@@ -100,6 +103,8 @@ export default class Inspector extends Component {
 				</PanelBody>
 
 				{order}
+
+				{ ! hideUpgrade && <Upgrade/> }
 
 			</InspectorControls>
 		);

@@ -27,7 +27,7 @@ function cctor_shortcode_functions() {
 
 	add_action('cctor_no_show_coupon', 'cctor_show_no_coupon_comment', 10, 2 );
 
-	add_action('cctor_no_show_coupon', 'cctor_show_no_coupon_notice_admin', 10, 2 );
+	add_action('cctor_no_show_coupon', 'cctor_show_no_coupon_notice_admin', 10, 3 );
 
 	/**
 	 * Shortcode Template Hook for all Action and Filters
