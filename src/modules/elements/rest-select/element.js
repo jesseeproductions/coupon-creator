@@ -4,7 +4,7 @@ const {Component} = wp.element;
 const {apiFetch} = wp;
 import {Loading} from 'elements';
 
-export default class PngxRESTSelect extends Component {
+export default class RESTSelect extends Component {
 
 	state = {
 		defaultOptions: [],

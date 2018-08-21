@@ -1,6 +1,5 @@
 const {__} = wp.i18n;
 const {Component} = wp.element;
-import PngxRESTSelect from './select-rest';
 
 const {
 	InspectorControls,
@@ -11,7 +10,7 @@ const {
 	SelectControl,
 } = wp.components;
 import { getConstants } from 'editor/settings';
-import {Upgrade} from 'elements';
+import {Upgrade,RESTSelect} from 'elements';
 
 export default class Inspector extends Component {
 	constructor() {
@@ -26,7 +25,7 @@ export default class Inspector extends Component {
 		if ( 'loop' === couponid ) {
 			taxonomy = (
 				<PanelBody>
-					<PngxRESTSelect
+					<RESTSelect
 						{...{setAttributes}}
 						attributesID="category"
 						currentId={category}
@@ -70,7 +69,7 @@ export default class Inspector extends Component {
 			<InspectorControls>
 
 				<PanelBody>
-					<PngxRESTSelect
+					<RESTSelect
 						{...{setAttributes}}
 						attributesID="couponid"
 						currentId={couponid}
