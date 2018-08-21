@@ -3929,12 +3929,14 @@ blocks.forEach(function (block) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wordpress_i18n___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__wordpress_i18n__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__attributes__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__inspector__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__edit__ = __webpack_require__(123);
 
 // License: GPLv2+
 
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -3970,7 +3972,8 @@ var ServerSideRender = wp.components.ServerSideRender;
 				key: 'coupon-render',
 				block: 'pngx/coupon',
 				attributes: attributes
-			})
+			}),
+			wp.element.createElement(__WEBPACK_IMPORTED_MODULE_4__edit__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ setAttributes: setAttributes }, props))
 		)];
 	},
 
@@ -4236,6 +4239,87 @@ var Inspector = function (_Component) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_elements__ = __webpack_require__(41);
+
+
+
+
+
+
+/**
+ * Internal block libraries
+ */
+var __ = wp.i18n.__;
+var Component = wp.element.Component;
+
+
+
+/**
+ * Create an Inspector Controls wrapper Component
+ */
+
+var Edit = function (_Component) {
+	__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(Edit, _Component);
+
+	function Edit() {
+		__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_classCallCheck___default()(this, Edit);
+
+		return __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Edit.__proto__ || __WEBPACK_IMPORTED_MODULE_1_babel_runtime_core_js_object_get_prototype_of___default()(Edit)).apply(this, arguments));
+	}
+
+	__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_createClass___default()(Edit, [{
+		key: 'render',
+		value: function render() {
+			var _props = this.props,
+			    couponid = _props.attributes.couponid,
+			    className = _props.className,
+			    setAttributes = _props.setAttributes;
+
+
+			return wp.element.createElement(
+				'div',
+				{ className: className },
+				wp.element.createElement(__WEBPACK_IMPORTED_MODULE_6_elements__["RESTSelect"], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ setAttributes: setAttributes }, {
+					attributesID: 'couponid',
+					currentId: couponid,
+					defaultOptions: [{ value: 0, label: __('Select a Coupon', 'coupon-creator') }, { value: 'loop', label: __('All Coupons', 'coupon-creator') }],
+					fetchPath: '/wp/v2/cctor_coupon?per_page=100',
+					label: __('Select a Coupon', 'coupon-creator'),
+					noItems: __('No coupons found. Please create some first.', 'coupon-creator'),
+					slug: 'coupon-item-select'
+				}))
+			);
+		}
+	}]);
+
+	return Edit;
+}(Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (Edit);
 
 /***/ })
 /******/ ]);

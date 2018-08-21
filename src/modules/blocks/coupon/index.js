@@ -6,6 +6,7 @@
 import { __ } from '@wordpress/i18n';
 import attributes from './attributes';
 import Inspector from './inspector';
+import Edit from './edit';
 
 const {
 	ServerSideRender,
@@ -38,6 +39,7 @@ export default {
 					block="pngx/coupon"
 					attributes={ attributes }
 				/>
+				<Edit { ...{ setAttributes, ...props } } />
 			</div>,
 		];
 	},
