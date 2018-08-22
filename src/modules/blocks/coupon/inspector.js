@@ -9,8 +9,9 @@ const {
 	TextControl,
 	SelectControl,
 } = wp.components;
-import { getConstants } from 'editor/settings';
-import {Upgrade,RESTSelect} from 'elements';
+import {getConstants} from 'editor/settings';
+import {Upgrade, RESTSelect} from 'elements';
+import CouponChooser from './coupon';
 
 export default class Inspector extends Component {
 	constructor() {
@@ -30,7 +31,7 @@ export default class Inspector extends Component {
 						attributesID="category"
 						currentId={category}
 						defaultOptions={[
-							{value: 0, label: __( 'Select a Term', 'coupon-creator' )},
+							{value: 'none', label: __( 'Select a Term', 'coupon-creator' )},
 						]}
 						fetchPath="/wp/v2/cctor_coupon_category?per_page=100&hide_empty=true"
 						//fetchPath="/wp/v2/cctor_coupon_category?per_page=100"
@@ -69,19 +70,7 @@ export default class Inspector extends Component {
 			<InspectorControls>
 
 				<PanelBody>
-					<RESTSelect
-						{...{setAttributes}}
-						attributesID="couponid"
-						currentId={couponid}
-						defaultOptions={[
-							{value: 0, label: __( 'Select a Coupon', 'coupon-creator' )},
-							{value: 'loop', label: __( 'All Coupons', 'coupon-creator' )},
-						]}
-						fetchPath="/wp/v2/cctor_coupon?per_page=100"
-						label={__( 'Select a Coupon', 'coupon-creator' )}
-						noItems={__( 'No coupons found. Please create some first.', 'coupon-creator' )}
-						slug="coupon-item-select"
-					/>
+					<CouponChooser {...{setAttributes, ...this.props}} />
 				</PanelBody>
 
 				{taxonomy}
@@ -103,7 +92,7 @@ export default class Inspector extends Component {
 
 				{order}
 
-				{ ! hideUpgrade && <Upgrade/> }
+				{!hideUpgrade && <Upgrade/>}
 
 			</InspectorControls>
 		);

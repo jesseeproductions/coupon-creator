@@ -3,10 +3,10 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
+import {__} from '@wordpress/i18n';
 import attributes from './attributes';
 import Inspector from './inspector';
-import Edit from './edit';
+import CouponChooser from './coupon';
 
 const {
 	ServerSideRender,
@@ -21,25 +21,35 @@ export default {
 	description: __( 'Display a single or group of coupons.', 'coupon-creator' ),
 	icon: 'index-card',
 	category: 'widgets',
-	keywords: [ 'coupon', 'coupon creator', 'deal' ],
+	keywords: ['coupon', 'coupon creator', 'deal'],
 
 	attributes,
 
 	edit: ( props ) => {
-		const { attributes, className, setAttributes } = props;
+		const {attributes: {couponid}, attributes, className, setAttributes} = props;
+
+		let display;
+		if ( couponid === '0' ) {
+			display = (
+				<CouponChooser {...{setAttributes, ...props}} />
+			);
+		} else {
+			display = (
+				<ServerSideRender
+					key="coupon-render"
+					block="pngx/coupon"
+					attributes={attributes}
+				/>
+			);
+		}
 
 		return [
 			<Inspector
 				key="coupon-inspector"
-				{ ...{ setAttributes, ...props } }
+				{...{setAttributes, ...props}}
 			/>,
-			<div key="coupon-base" className={ `${className} pngx-clearfix` } >
-				<ServerSideRender
-					key="coupon-render"
-					block="pngx/coupon"
-					attributes={ attributes }
-				/>
-				<Edit { ...{ setAttributes, ...props } } />
+			<div key="coupon-base" className={`${className} pngx-clearfix`}>
+				{display}
 			</div>,
 		];
 	},

@@ -3,8 +3,24 @@ const {SelectControl} = wp.components;
 const {Component} = wp.element;
 const {apiFetch} = wp;
 import {Loading} from 'elements';
+import PropTypes from 'prop-types';
 
 export default class RESTSelect extends Component {
+
+	static propTypes = {
+		attributesID: PropTypes.string.isRequired,
+		currentId: PropTypes.oneOfType( [
+			PropTypes.array,
+			PropTypes.string,
+		] ),
+		defaultOptions: PropTypes.array,
+		fetchPath: PropTypes.string.isRequired,
+		isMultiple: PropTypes.bool,
+		isTaxonomy: PropTypes.bool,
+		label: PropTypes.string.isRequired,
+		noItems: PropTypes.string.isRequired,
+		slug: PropTypes.string.isRequired,
+	}
 
 	state = {
 		defaultOptions: [],
@@ -54,8 +70,14 @@ export default class RESTSelect extends Component {
 		this.setState( {options} );
 	}
 
-	onChangeSelectCoupon = ( value ) => {
+	onChangeSelect = ( value ) => {
 		const {attributesID, setAttributes} = this.props;
+
+		if ( value.includes('none') ) {
+			setAttributes( {[attributesID]: this.state.isMultiple ? [] : '' } );
+
+			return;
+		}
 
 		setAttributes( {[attributesID]: value} );
 	}
@@ -69,7 +91,7 @@ export default class RESTSelect extends Component {
 			output = {noItems};
 		} else if ( this.state.loadedItems.length > 0 && this.state.loaded ) {
 			output = '';
-			let value = this.state.isMultiple && ! Array.isArray( currentId ) ? [] : currentId;
+			let value = this.state.isMultiple && !Array.isArray( currentId ) ? [] : currentId;
 			select = (
 				<SelectControl
 					multiple={this.state.isMultiple}
@@ -77,7 +99,7 @@ export default class RESTSelect extends Component {
 					value={value}
 					label={label}
 					options={this.state.options}
-					onChange={this.onChangeSelectCoupon}
+					onChange={this.onChangeSelect}
 				/>
 			);
 		}

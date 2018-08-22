@@ -1,7 +1,7 @@
 const attributes = {
 	couponid: {
 		type: 'string',
-		default: 0,
+		default: '0',
 	},
 	category: {
 		type: 'array',

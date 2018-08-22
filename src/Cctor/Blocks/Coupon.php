@@ -60,7 +60,7 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 	public function render( $attributes = array() ) {
 		$args['attributes'] = $this->attributes( $attributes );
 
-		if ( empty ( $args['attributes']['couponid'] ) ) {
+		if ( empty( $args['attributes']['couponid'] ) ) {
 			return '<p class="pngx-message">' . __( 'Please choose a coupon to display from the block settings.', 'coupon-creator' ) . '</p>';
 		}
 
