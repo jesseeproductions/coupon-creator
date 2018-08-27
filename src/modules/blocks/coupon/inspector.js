@@ -31,7 +31,7 @@ export default class Inspector extends Component {
 						attributesID="category"
 						currentId={category}
 						defaultOptions={[
-							{value: 'none', label: __( 'Select a Term', 'coupon-creator' )},
+							{value: 'none', label: __( 'No Categories', 'coupon-creator' )},
 						]}
 						fetchPath="/wp/v2/cctor_coupon_category?per_page=100&hide_empty=true"
 						//fetchPath="/wp/v2/cctor_coupon_category?per_page=100"

@@ -56,6 +56,9 @@ export default class RESTSelect extends Component {
 
 	setOptions = () => {
 		let options = this.state.defaultOptions;
+		if ( typeof options === 'undefined' ) {
+			options  = []
+		}
 
 		if ( this.state.isTaxonomy ) {
 			this.state.loadedItems.forEach( ( term ) => {
