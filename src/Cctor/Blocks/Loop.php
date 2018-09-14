@@ -1,7 +1,7 @@
 <?php
 
 
-class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
+class Cctor__Coupon__Blocks__Loop extends Pngx__Blocks__Abstract {
 
 	/**
 	 * Which is the name/slug of this block
@@ -11,7 +11,7 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 	 * @return string
 	 */
 	public function slug() {
-		return 'coupon';
+		return 'loop';
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 			return '<p class="pngx-message">' . __( 'Please choose a coupon to display from the block settings.', 'coupon-creator' ) . '</p>';
 		}
 
-		$coupon = Cctor__Coupon__Shortcode::core_shortcode( $attributes );
+		$coupon = pngx( 'cctor.pro.shortcode')::loop_shortcode( $attributes );
 
 		if ( ! $coupon && is_numeric( $args['attributes']['couponid'] ) ) {
 			$status = get_post_status( $args['attributes']['couponid'] );

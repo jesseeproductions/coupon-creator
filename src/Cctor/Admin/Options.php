@@ -35,11 +35,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		$this->checkboxes = array();
 
-		add_action( 'admin_menu', array( $this, 'options_page' ) );
-
 		add_action( 'init', array( 'Pngx__Admin__Fields', 'flush_permalinks' ) );
-
-		add_action( 'admin_init', array( $this, 'admin_init' ), 0 );
 
 	}
 
