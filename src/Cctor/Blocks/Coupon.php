@@ -1,7 +1,7 @@
 <?php
 
 
-class Cctor__Coupon__Blocks__Loop extends Pngx__Blocks__Abstract {
+class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 
 	/**
 	 * Which is the name/slug of this block
@@ -11,7 +11,7 @@ class Cctor__Coupon__Blocks__Loop extends Pngx__Blocks__Abstract {
 	 * @return string
 	 */
 	public function slug() {
-		return 'loop';
+		return 'coupon';
 	}
 
 	/**
