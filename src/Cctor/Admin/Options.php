@@ -58,17 +58,17 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		//Add Plugin Only Fields
 		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
 
-		add_action( 'pngx_before_option_form', array( __CLASS__, 'display_options_header' ), 5 );
-		add_action( 'pngx_after_option_form', array( __CLASS__, 'cctor_newsletter_signup' ) );
+		add_action( 'pngx_before_option_form', array( $this, 'display_options_header' ), 5 );
+		add_action( 'pngx_after_option_form', array( $this, 'cctor_newsletter_signup' ) );
 
 		//add license key for support
-		add_filter( 'pngx-system-info-options', array( __CLASS__, 'add_options' ) );
+		add_filter( 'pngx-system-info-options', array( $this, 'add_options' ) );
 
 		//add option fields
-		add_filter( 'pngx-option-fields', array( __CLASS__, 'add_fields' ) );
+		add_filter( 'pngx-option-fields', array( $this, 'add_fields' ) );
 
 		//add option fields
-		add_filter( 'pngx-support-info', array( __CLASS__, 'add_system_items' ) );
+		add_filter( 'pngx-support-info', array( $this, 'add_system_items' ) );
 
 	}
 
