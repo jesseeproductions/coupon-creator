@@ -64,7 +64,7 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 			return '<p class="pngx-message">' . __( 'Please choose a coupon to display from the block settings.', 'coupon-creator' ) . '</p>';
 		}
 
-		$coupon = pngx( 'cctor.pro.shortcode')::loop_shortcode( $attributes );
+		$coupon = pngx( 'cctor.shortcode')::core_shortcode( $attributes );
 
 		if ( ! $coupon && is_numeric( $args['attributes']['couponid'] ) ) {
 			$status = get_post_status( $args['attributes']['couponid'] );

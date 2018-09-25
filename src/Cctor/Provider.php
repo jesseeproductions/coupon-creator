@@ -123,7 +123,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		$this->container->singleton( 'cctor.admin.assets', 'Cctor__Coupon__Admin__Assets' );
 		$this->container->singleton( 'cctor.admin.options', 'Cctor__Coupon__Admin__Options' );
 		$this->container->singleton( 'cctor.admin.meta', 'Cctor__Coupon__Admin__Meta' );
-		$this->container->singleton( 'cctor.admin.meta.fields', 'Cctor__Coupon__Fields' );
+		$this->container->singleton( 'cctor.admin.meta.fields', 'Cctor__Coupon__Admin__Fields' );
 		$this->container->singleton( 'cctor.admin.columns', 'Cctor__Coupon__Admin__Columns' );
 
 		//Update Version Number
