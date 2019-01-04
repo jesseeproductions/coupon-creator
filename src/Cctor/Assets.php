@@ -33,7 +33,6 @@ class Cctor__Coupon__Assets {
 			'cctor-coupon-editor-element',
 			pngx( 'cctor' )->resource_url . 'css/elements.css',
 			array(
-			'wp-blocks'
 			),
 			filemtime( pngx( 'cctor' )->resource_path . 'css/elements.css' )
 		);
@@ -41,7 +40,6 @@ class Cctor__Coupon__Assets {
 			'coupon_creator_css',
 			pngx( 'cctor' )->resource_url . 'css/coupon.css',
 			array(
-			'wp-blocks'
 			),
 			filemtime( pngx( 'cctor' )->resource_path . 'css/coupon.css' )
 		);
@@ -49,7 +47,6 @@ class Cctor__Coupon__Assets {
 			'cctor-coupon-editor-blocks',
 			pngx( 'cctor' )->resource_url . 'css/blocks.css',
 			array(
-			'wp-blocks'
 			),
 			filemtime( pngx( 'cctor' )->resource_path . 'css/blocks.css' )
 		);
@@ -70,6 +67,7 @@ class Cctor__Coupon__Assets {
 				'react',
 				'react-dom',
 				'wp-components',
+				'wp-editor',
 				'wp-api',
 				'wp-api-request',
 				'wp-blocks',
@@ -93,6 +91,7 @@ class Cctor__Coupon__Assets {
 				'react',
 				'react-dom',
 				'wp-components',
+				'wp-editor',
 				'wp-api',
 				'wp-api-request',
 				'wp-blocks',
@@ -109,6 +108,7 @@ class Cctor__Coupon__Assets {
 				'react',
 				'react-dom',
 				'wp-components',
+				'wp-editor',
 				'wp-api',
 				'wp-api-request',
 				'wp-blocks',

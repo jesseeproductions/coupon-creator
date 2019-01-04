@@ -4,11 +4,13 @@ const {Component} = wp.element;
 const {
 	InspectorControls,
 } = wp.editor;
+
 const {
 	PanelBody,
 	TextControl,
 	SelectControl,
 } = wp.components;
+
 import {getConstants} from 'editor/settings';
 import {Upgrade, RESTSelect} from 'elements';
 import CouponChooser from './coupon';

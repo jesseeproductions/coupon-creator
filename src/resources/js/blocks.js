@@ -4834,6 +4834,7 @@ var _wp$components = wp.components,
 
 
 
+
 var Inspector = function (_Component) {
 	__WEBPACK_IMPORTED_MODULE_5_babel_runtime_helpers_inherits___default()(Inspector, _Component);
 

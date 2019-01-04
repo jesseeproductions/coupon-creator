@@ -25,11 +25,22 @@ class Cctor__Coupon__I18n {
 	 * @return void
 	 */
 	public function include_inline_script( $value ) {
+
+		$domain = 'coupon-creator';
+		$translations = get_translations_for_domain( $domain );
+		$locale = array(
+			'' => (object) array(),
+			'prevent-empty' => 'prevent-empty',
+		);
+
+		foreach ( $translations->entries as $msgid => $entry ) {
+			$locale[ $msgid ] = $entry->translations;
+		}
+
 		// Prepare Jed locale data.
-		$locale_data = gutenberg_get_jed_locale_data( 'coupon-creator' );
 		wp_add_inline_script(
 			'cctor-coupon-editor-blocks',
-			'wp.i18n.setLocaleData( ' . json_encode( $locale_data ) . ', "coupon-creator" );',
+			'wp.i18n.setLocaleData( ' . json_encode( $locale ) . ', "coupon-creator" );',
 			'before'
 		);
 	}
