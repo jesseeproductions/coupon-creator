@@ -27,7 +27,7 @@ export default class Inspector extends Component {
 		let taxonomy = '';
 		if ( 'loop' === couponid ) {
 			taxonomy = (
-				<PanelBody>
+				<PanelRow>
 					<RESTSelect
 						{...{setAttributes}}
 						attributesID="category"
@@ -43,12 +43,13 @@ export default class Inspector extends Component {
 						noItems={__( 'No category terms found. Please create some first.', 'coupon-creator' )}
 						slug="coupon-category-item-select"
 					/>
-				</PanelBody>
+				</PanelRow>
 			);
 		}
 		let order = '';
 		if ( 'loop' === couponid ) {
-			order = (<PanelBody>
+			order = (
+			<PanelRow>
 				<SelectControl
 					key="coupon-order-select"
 					label={__( 'Select how to order the coupons', 'coupon-creator' )}
@@ -65,19 +66,19 @@ export default class Inspector extends Component {
 					]}
 					onChange={couponorderby => setAttributes( {couponorderby} )}
 				/>
-			</PanelBody>);
+			</PanelRow>);
 		}
 
 		return (
 			<InspectorControls>
 
-				<PanelBody>
+				<PanelRow>
 					<CouponChooser {...{setAttributes, ...this.props}} />
-				</PanelBody>
+				</PanelRow>
 
 				{taxonomy}
 
-				<PanelBody>
+				<PanelRow>
 					<SelectControl
 						key="coupon-align-select"
 						label={__( 'Select How to Align the Coupon(s)', 'coupon-creator' )}
@@ -90,7 +91,7 @@ export default class Inspector extends Component {
 						]}
 						onChange={coupon_align => setAttributes( {coupon_align} )}
 					/>
-				</PanelBody>
+				</PanelRow>
 
 				{order}
 
