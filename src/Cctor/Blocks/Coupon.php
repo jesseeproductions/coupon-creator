@@ -29,6 +29,9 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 				),
 				'category'      => array(
 					'type' => 'array',
+					'items'   => [
+						'type' => 'string',
+					],
 				),
 				'coupon_align'  => array(
 					'type' => 'string',
