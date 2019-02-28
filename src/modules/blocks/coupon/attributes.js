@@ -5,6 +5,9 @@ const attributes = {
 	},
 	category: {
 		type: 'array',
+		items: {
+			type: 'string',
+		}
 	},
 	coupon_align: {
 		type: 'string',

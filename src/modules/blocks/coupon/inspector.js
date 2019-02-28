@@ -6,8 +6,7 @@ const {
 } = wp.editor;
 
 const {
-	PanelBody,
-	TextControl,
+	PanelRow,
 	SelectControl,
 } = wp.components;
 

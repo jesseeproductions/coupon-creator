@@ -4784,7 +4784,10 @@ var attributes = {
 		default: '0'
 	},
 	category: {
-		type: 'array'
+		type: 'array',
+		items: {
+			type: 'string'
+		}
 	},
 	coupon_align: {
 		type: 'string'
@@ -4826,8 +4829,7 @@ var __ = wp.i18n.__;
 var Component = wp.element.Component;
 var InspectorControls = wp.editor.InspectorControls;
 var _wp$components = wp.components,
-    PanelBody = _wp$components.PanelBody,
-    TextControl = _wp$components.TextControl,
+    PanelRow = _wp$components.PanelRow,
     SelectControl = _wp$components.SelectControl;
 
 
@@ -4860,7 +4862,7 @@ var Inspector = function (_Component) {
 			var taxonomy = '';
 			if ('loop' === couponid) {
 				taxonomy = wp.element.createElement(
-					PanelBody,
+					PanelRow,
 					null,
 					wp.element.createElement(__WEBPACK_IMPORTED_MODULE_7_elements__["RESTSelect"], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ setAttributes: setAttributes }, {
 						attributesID: 'category',
@@ -4879,7 +4881,7 @@ var Inspector = function (_Component) {
 			var order = '';
 			if ('loop' === couponid) {
 				order = wp.element.createElement(
-					PanelBody,
+					PanelRow,
 					null,
 					wp.element.createElement(SelectControl, {
 						key: 'coupon-order-select',
@@ -4897,13 +4899,13 @@ var Inspector = function (_Component) {
 				InspectorControls,
 				null,
 				wp.element.createElement(
-					PanelBody,
+					PanelRow,
 					null,
 					wp.element.createElement(__WEBPACK_IMPORTED_MODULE_8__coupon__["a" /* default */], __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ setAttributes: setAttributes }, this.props))
 				),
 				taxonomy,
 				wp.element.createElement(
-					PanelBody,
+					PanelRow,
 					null,
 					wp.element.createElement(SelectControl, {
 						key: 'coupon-align-select',
