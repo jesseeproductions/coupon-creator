@@ -21,7 +21,7 @@ class Cctor__Coupon__Main {
 	const MIN_PHP_VERSION          = '5.2';
 	const MIN_WP_VERSION           = '4.0';
 	const VERSION_KEY              = 'cctor_coupon_version';
-	const VERSION_NUM              = '2.5.5';
+	const VERSION_NUM              = '2.5.6';
 	const MIN_PNGX_VERSION         = '2.5.5';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
