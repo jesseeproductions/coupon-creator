@@ -32,9 +32,6 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		$this->container->singleton( 'cctor.images', 'Cctor__Coupon__Images' );
 		$this->container->singleton( 'cctor.print', 'Cctor__Coupon__Print' );
 
-		//$this->container->singleton( 'cctor.template', 'Cctor__Coupon__Templates', array( 'init' ) );
-		//$this->container->singleton( 'gutenberg.template.overwrite', 'Tribe__Events_Gutenberg__Template__Overwrite', array( 'hook' ) );
-
 		// Blocks
 		$this->container->singleton( 'cctor.blocks.coupon', 'Cctor__Coupon__Blocks__Coupon' );
 
@@ -45,7 +42,6 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		 */
 		pngx( 'cctor.i18n' );
 		pngx( 'cctor.assets' );
-		//pngx( 'cctor.template' );
 
 	}
 
@@ -103,8 +99,6 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 
 		// Filter content and determine if we are going to use wpautop
 		add_filter( 'pngx_filter_content', pngx_callback( 'cctor', 'filter_coupon_content' ) );
-
-
 
 	}
 
