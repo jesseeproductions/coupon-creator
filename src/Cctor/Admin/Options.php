@@ -156,7 +156,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
 
 			echo '<div class="icon32" id="icon-options-general"></div>
-			<h2><img src="' . Cctor__Coupon__Main::instance()->resource_url . 'images/coupon_creator.png"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
+			<h2><img src="' . Cctor__Coupon__Main::instance()->resource_url . 'images/cctor-icon.svg"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
 
 			<div class="javascript-conflict pngx-error"><p>' . sprintf( __( 'There maybe a javascript conflict preventing some features from working.  <a href="%s" target="_blank" >Please check this guide to narrow down the cause.</a>', 'coupon-creator' ), esc_url( $js_troubleshoot_url ) ) . '</p></div>
 

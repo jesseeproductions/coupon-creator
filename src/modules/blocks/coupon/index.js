@@ -7,6 +7,7 @@ import {__} from '@wordpress/i18n';
 import attributes from './attributes';
 import Inspector from './inspector';
 import CouponChooser from './coupon';
+import icon from "./icon";
 
 const {
 	ServerSideRender,
@@ -19,7 +20,7 @@ export default {
 	id: 'coupon',
 	title: __( 'Coupon Creator', 'coupon-creator' ),
 	description: __( 'Display a single or group of coupons.', 'coupon-creator' ),
-	icon: 'index-card',
+	icon,
 	category: 'widgets',
 	keywords: ['coupon', 'coupon creator', 'deal'],
 

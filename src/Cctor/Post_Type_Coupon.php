@@ -221,7 +221,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 				$this->text_domain,
 				array(
 					'supports'  => array( 'title', 'coupon_creator_meta_box' ),
-					'menu_icon' => pngx( 'cctor' )->resource_url . 'images/coupon_creator.png',
+					'menu_icon' => pngx( 'cctor' )->resource_url . 'images/cctor-icon.svg',
 				)
 			);
 

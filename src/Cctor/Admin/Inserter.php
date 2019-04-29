@@ -38,7 +38,7 @@ class Cctor__Coupon__Admin__Inserter {
 			add_action( 'admin_footer', array( __CLASS__, 'add_coupon_inline_popup' ) );
 
 			//path to coupon icon
-			$img = Cctor__Coupon__Main::instance()->resource_url . 'images/coupon_creator.png';
+			$img = Cctor__Coupon__Main::instance()->resource_url . 'images/cctor-icon.svg';
 			//the id of the container I want to show in the popup
 			$container_id = 'coupon_container';
 			//our popup's title
