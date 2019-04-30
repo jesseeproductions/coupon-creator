@@ -225,6 +225,7 @@ a .cctor_expiration {
 .cctor-clear {
   clear: both; }
 
+.cctor-screen-reader-text,
 .cctor-pro-coupons-visuallyhidden {
   display: none; }
 
