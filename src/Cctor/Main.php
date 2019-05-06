@@ -141,24 +141,58 @@ class Cctor__Coupon__Main {
 			return;
 		}
 
+		if ( ! self::supportedVersion( 'wordpress' ) ||  ! self::supportedVersion( 'php' ) ) {
+
+			add_action( 'admin_head', array( $this, 'notSupportedError' ) );
+
+			return;
+
+		}
+
+		// Start Up Common
+		Pngx__Main::instance();
+		add_action( 'pngx_common_loaded', array( $this, 'bootstrap' ), 0 );
+
+	}
+
+	/**
+	 * Load Text Domain on tribe_common_loaded as it requires common
+	 *
+	 * @since 4.10
+	 *
+	 */
+	public function bootstrap() {
+
 		/**
 		 * We need Common to be able to load text domains correctly.
 		 * With that in mind we initialize Common passing the plugin Main class as the context
 		 */
-		Pngx__Main::instance( $this )->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
+		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
 
-		add_action( 'plugins_loaded', array( $this, 'i18n' ), 1 );
+		pngx_register_provider( 'Cctor__Coupon__Provider' );
+		$this->loadLibraries();
 
-		if ( self::supportedVersion( 'wordpress' ) && self::supportedVersion( 'php' ) ) {
+		//$this->hooks();
 
-			// Register the Service Provider
-			pngx_register_provider( 'Cctor__Coupon__Provider' );
-			$this->loadLibraries();
-		} else {
-			// Either PHP or WordPress version is inadequate so we simply return an error.
-			add_action( 'admin_head', array( $this, 'notSupportedError' ) );
-		}
+		$this->register_active_plugin();
 
+		/*$this->bind_implementations();
+		$this->user_event_confirmation_list_shortcode();
+		$this->activation_page();*/
+
+
+		/**
+		 * Fires once Coupon Creator has completed basic setup.
+		 */
+		do_action( 'coupon_creator_plugin_loaded' );
+
+	}
+
+	/**
+	 * Registers this plugin as being active for other tribe plugins and extensions
+	 */
+	protected function register_active_plugin() {
+		$this->registered = new Cctor__Coupon__Plugin_Register();
 	}
 
 	/**
@@ -221,16 +255,6 @@ class Cctor__Coupon__Main {
 		}
 
 		$autoloader->register_autoloader();
-
-	}
-
-	/**
-	 * Load the text domain.
-	 *
-	 */
-	public function i18n() {
-
-		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
 
 	}
 
@@ -427,5 +451,18 @@ class Cctor__Coupon__Main {
 
 		return $meta;
 	}
+
+	/**
+	 * Load the text domain.
+	 *
+	 * @deprecated 2.6
+	 *
+	 */
+	public function i18n() {
+
+		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
+
+	}
+
 
 }

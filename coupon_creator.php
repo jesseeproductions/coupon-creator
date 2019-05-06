@@ -13,6 +13,9 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
 }
 
+define( 'COUPON_CREATOR_DIR', dirname( __FILE__ ) );
+define( 'COUPON_CREATOR_MAIN_PLUGIN_FILE', __FILE__ );
+
 // the main plugin class
 require_once dirname( __FILE__ ) . '/src/Cctor/Main.php';
 Cctor__Coupon__Main::instance();
