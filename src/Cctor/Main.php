@@ -21,8 +21,8 @@ class Cctor__Coupon__Main {
 	const MIN_PHP_VERSION          = '5.2';
 	const MIN_WP_VERSION           = '4.0';
 	const VERSION_KEY              = 'cctor_coupon_version';
-	const VERSION_NUM              = '2.5.6';
-	const MIN_PNGX_VERSION         = '2.5.5';
+	const VERSION_NUM              = '2.6';
+	const MIN_PNGX_VERSION         = '2.6';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
@@ -84,9 +84,9 @@ class Cctor__Coupon__Main {
 		Cctor__Coupon__Main::instance()->init_autoloading();
 
 		// Safety check: if Plugin Engine is not at a certain minimum version, bail out
-		/*		if ( version_compare( Pngx__Main::VERSION, self::MIN_PNGX_VERSION, '<' ) ) {
-					return;
-				}*/
+		if ( version_compare( Pngx__Main::VERSION, self::MIN_PNGX_VERSION, '<' ) ) {
+				return;
+		}
 
 		// Setup Capabilities for CPT
 		if ( ! get_option( self::POSTTYPE . '_capabilities_register' ) ) {
