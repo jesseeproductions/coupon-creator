@@ -16,6 +16,7 @@ class Cctor__Coupon__Assets {
 
 		add_action( 'enqueue_block_editor_assets', array( $this, 'blocks_editor_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'blocks_editor_scripts' ) );
+		add_action( 'enqueue_block_editor_assets', array( 'Cctor__Coupon__Assets', 'inline_style' ), 100 );
 
 		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'register_assets' ) );
 		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'inline_style' ), 100 );

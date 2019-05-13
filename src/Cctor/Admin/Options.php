@@ -434,7 +434,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'std'     => '',
 			'type'    => 'text',
 			'section' => 'permalinks',
-			'class'   => 'permalink' //format text to lowercase before sanitizing
+			'class'   => 'permalink'
 		);
 		$fields['cctor_coupon_category_base']    = array(
 			'type'    => '',
@@ -744,6 +744,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'Coupon Update Ignore Field'      => 'coupon_update_ignore_expiration',
 			'Coupon Update Image Border Meta' => 'coupon_update_image_border_meta',
 			'Coupon Update Expiration Type'   => 'coupon_update_expiration_type',
+			'Permalinks Flushed'              => 'pngx_permalink_flush',
 		);
 
 		$coupon_system_info = array();

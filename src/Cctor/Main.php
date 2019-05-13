@@ -65,8 +65,6 @@ class Cctor__Coupon__Main {
 		$this->vendor_path   = $this->plugin_path . 'vendor/';
 		$this->vendor_url    = $this->plugin_url . 'vendor/';
 
-		$this->maybe_set_common_lib_info();
-
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 0 );
 	}
 
@@ -81,6 +79,7 @@ class Cctor__Coupon__Main {
 		}
 
 		// Setup Auto Loader to Prevent Fatal on Activate
+		Cctor__Coupon__Main::instance()->maybe_set_common_lib_info();
 		Cctor__Coupon__Main::instance()->init_autoloading();
 
 		// Safety check: if Plugin Engine is not at a certain minimum version, bail out
@@ -133,13 +132,6 @@ class Cctor__Coupon__Main {
 
 	public function plugins_loaded() {
 
-		// include the autoloader class
-		$this->init_autoloading();
-
-		// Safety check: if Plugin Engine is not at a certain minimum version, bail out
-		if ( version_compare( Pngx__Main::VERSION, self::MIN_PNGX_VERSION, '<' ) ) {
-			return;
-		}
 
 		if ( ! self::supportedVersion( 'wordpress' ) ||  ! self::supportedVersion( 'php' ) ) {
 
@@ -148,6 +140,11 @@ class Cctor__Coupon__Main {
 			return;
 
 		}
+
+		$this->maybe_set_common_lib_info();
+
+		// include the autoloader class for Cctor classes
+		$this->init_autoloading();
 
 		// Start Up Common
 		Pngx__Main::instance();
@@ -170,16 +167,10 @@ class Cctor__Coupon__Main {
 		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
 
 		pngx_register_provider( 'Cctor__Coupon__Provider' );
+
 		$this->loadLibraries();
 
-		//$this->hooks();
-
 		$this->register_active_plugin();
-
-		/*$this->bind_implementations();
-		$this->user_event_confirmation_list_shortcode();
-		$this->activation_page();*/
-
 
 		/**
 		 * Fires once Coupon Creator has completed basic setup.
@@ -237,51 +228,72 @@ class Cctor__Coupon__Main {
 	 * Auto Loader from Plugin Engine
 	 */
 	protected function init_autoloading() {
-		$prefixes = array(
-			'Cctor__Coupon__' => $this->plugin_path . 'src/Cctor',
-		);
+		$autoloader = $this->get_autoloader_instance();
+		$this->register_plugin_autoload_paths();
 
-		if ( ! class_exists( 'Pngx__Autoloader' ) ) {
-			require_once $GLOBALS['plugin-engine-info']['dir'] . '/Autoloader.php';
-			$prefixes['Pngx__'] = $GLOBALS['plugin-engine-info']['dir'];
-		}
-		$autoloader = Pngx__Autoloader::instance();
-
-		$autoloader->register_prefixes( $prefixes );
 		// deprecated classes are registered in a class to path fashion
-		foreach ( array_merge( glob( $this->plugin_path . 'plugin-engine/src/deprecated/*.php' ), glob( $this->plugin_path . 'src/deprecated/*.php' ) ) as $file ) {
+		foreach ( glob( $this->plugin_path . 'src/deprecated/*.php' ) as $file ) {
 			$class_name = str_replace( '.php', '', basename( $file ) );
 			$autoloader->register_class( $class_name, $file );
 		}
-
 		$autoloader->register_autoloader();
+	}
 
+	/**
+	 * Returns the autoloader singleton instance to use in a context-aware manner.
+	 *
+	 * @since 2.6
+	 *
+	 * @return \Pngx__Autoloader Teh singleton common Autoloader instance.
+	 */
+	public function get_autoloader_instance() {
+		if ( ! class_exists( 'Pngx__Autoloader' ) ) {
+			require_once $GLOBALS['plugin-engine-info']['dir'] . '/Autoloader.php';
+			Pngx__Autoloader::instance()->register_prefixes( [
+				'Pngx__' => $GLOBALS['plugin-engine-info']['dir'],
+			] );
+		}
+
+		return Pngx__Autoloader::instance();
+	}
+
+	/**
+	 * Registers the plugin autoload paths in the Common Autoloader instance.
+	 *
+	 * @since 2.6
+	 */
+	public function register_plugin_autoload_paths() {
+		$prefixes = array(
+			'Cctor__Coupon__' => $this->plugin_path . 'src/Cctor',
+		);
+		$this->get_autoloader_instance()->register_prefixes( $prefixes );
 	}
 
 	/**
 	 * Maybe set plugin engine info
 	 */
 	public function maybe_set_common_lib_info() {
-		$common_version = file_get_contents( $this->plugin_path . 'plugin-engine/src/Pngx/Main.php' );
+		$pngx_version = file_get_contents( $this->plugin_path . 'plugin-engine/src/Pngx/Main.php' );
 
 		// if there isn't a plugin-engine version, bail
-		if ( ! preg_match( "/const\s+VERSION\s*=\s*'([^']+)'/m", $common_version, $matches ) ) {
+		if ( ! preg_match( "/const\s+VERSION\s*=\s*'([^']+)'/m", $pngx_version, $matches ) ) {
 			add_action( 'admin_head', array( $this, 'missing_common_libs' ) );
 
 			return;
 		}
-		$common_version = $matches[1];
+		$pngx_version = $matches[1];
 		if ( empty( $GLOBALS['plugin-engine-info'] ) ) {
 			$GLOBALS['plugin-engine-info'] = array(
 				'dir'     => "{$this->plugin_path}plugin-engine/src/Pngx",
-				'version' => $common_version,
+				'version' => $pngx_version,
 			);
-		} elseif ( 1 == version_compare( $GLOBALS['plugin-engine-info']['version'], $common_version, '<' ) ) {
+		} elseif ( 1 == version_compare( $GLOBALS['plugin-engine-info']['version'], $pngx_version, '<' ) ) {
 			$GLOBALS['plugin-engine-info'] = array(
 				'dir'     => "{$this->plugin_path}plugin-engine/src/Pngx",
-				'version' => $common_version,
+				'version' => $pngx_version,
 			);
 		}
+
 	}
 
 	/**
