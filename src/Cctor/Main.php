@@ -150,6 +150,17 @@ class Cctor__Coupon__Main {
 		Pngx__Main::instance();
 		add_action( 'pngx_common_loaded', array( $this, 'bootstrap' ), 0 );
 
+		//Disable Older Versions of Pro to prevent fatal errors
+		if ( function_exists( 'Coupon_Pro_Load' ) ) {
+			remove_action( 'plugins_loaded', 'Coupon_Pro_Load', 1 );
+			add_action( 'admin_notices', array( $this, 'pre_dependency_msg_pro' ), 50 );
+		}
+
+		//Disable Older Versions of Addons to prevent fatal errors
+		if ( function_exists( 'Coupon_Add_ons_Load' ) ) {
+			remove_action( 'plugins_loaded', 'Coupon_Add_ons_Load', 2 );
+			add_action( 'admin_notices', array( $this, 'pre_dependency_msg_addons' ), 50 );
+		}
 	}
 
 	/**
@@ -242,9 +253,9 @@ class Cctor__Coupon__Main {
 	/**
 	 * Returns the autoloader singleton instance to use in a context-aware manner.
 	 *
-	 * @since 2.6
-	 *
 	 * @return \Pngx__Autoloader Teh singleton common Autoloader instance.
+	 *@since 2.6
+	 *
 	 */
 	public function get_autoloader_instance() {
 		if ( ! class_exists( 'Pngx__Autoloader' ) ) {
@@ -465,6 +476,70 @@ class Cctor__Coupon__Main {
 	}
 
 	/**
+	 * Add an Admin Message for Pro when disabled by new versions of Coupon Creator
+	 *
+	 * @since 2.6
+	 *
+	 */
+	public function pre_dependency_msg_pro() {
+
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+
+		$title = esc_html__( 'Coupon Creator Pro', 'coupon-creator' );
+		$link_text = esc_html__( 'the latest version', 'coupon-creator' );
+
+		echo '<div class="error"><p>';
+
+		printf(
+			esc_html__( 'Your version of Coupon Creator Pro is incompatible with Coupon Creator 2.6 and later. To continue using Coupon Creator Pro, please install and activate %1$s%2$s%3$s or downgrade to Coupon Creator 2.5.6 or earlier.', 'coupon-creator' ),
+			'<a href="http://cctor.link/sMsY2" title="' . $title . '" target="_blank">',
+			$link_text,
+			'</a>'
+		);
+
+		echo '</p></div>';
+
+	}
+
+	/**
+	 * Add an Admin Message for Addons when disabled by new versions of Coupon Creator
+	 *
+	 * @since 2.6
+	 *
+	 */
+	public function pre_dependency_msg_addons() {
+
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			return;
+		}
+
+		$url = add_query_arg( array(
+			'tab'       => 'plugin-information',
+			'plugin'    => 'coupon-creator',
+			'TB_iframe' => 'true',
+		), admin_url( 'plugin-install.php' ) );
+
+		$title = esc_html__( 'Coupon Creator', 'coupon-creator' );
+		$link_text = esc_html__( 'the latest version', 'coupon-creator' );
+
+		$pro_title = esc_html__( 'Coupon Creator Pro', 'coupon-creator' );
+
+		echo '<div class="error"><p>';
+
+		printf(
+			esc_html__( 'Your version of Coupon Creator Add-ons is incompatible with Coupon Creator 2.6 and later. To continue using Coupon Creator Add-ons, please install and activate %1$s%2$s%3$s or downgrade to Coupon Creator 2.5.6 or earlier.', 'coupon-creator-add-ons' ),
+			'<a href="http://cctor.link/sMsY2" title="' . $title . '" target="_blank">',
+			$link_text,
+			'</a>'
+		);
+
+		echo '</p></div>';
+
+	}
+
+	/**
 	 * Load the text domain.
 	 *
 	 * @deprecated 2.6
@@ -475,6 +550,5 @@ class Cctor__Coupon__Main {
 		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
 
 	}
-
 
 }
