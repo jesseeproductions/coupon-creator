@@ -11,7 +11,7 @@ if ( class_exists( 'Cctor__Coupon__Meta__Fields' ) ) {
 class Cctor__Coupon__Meta__Fields {
 
 	// fields id prefix
-	public static $fields_prefix = 'cctor_';
+	public $fields_prefix = 'cctor_';
 
 
 	/**
@@ -19,15 +19,15 @@ class Cctor__Coupon__Meta__Fields {
 	 */
 	public function __construct() {
 
-		add_filter( 'cctor_filter_meta_template_fields', array( __CLASS__, 'get_template_fields' ), 5, 1 );
+		add_filter( 'cctor_filter_meta_template_fields', array( $this, 'get_template_fields' ), 5, 1 );
 
-		add_filter( 'pngx_meta_fields', array( __CLASS__, 'get_fields' ), 5 );
+		add_filter( 'pngx_meta_fields', array( $this, 'get_fields' ), 5 );
 
-		add_filter( 'pngx_meta_template_fields', array( __CLASS__, 'get_template_fields_for_filter' ), 5 );
+		add_filter( 'pngx_meta_template_fields', array( $this, 'get_template_fields_for_filter' ), 5 );
 	}
 
 
-	public static function get_template_fields_for_filter( $fields = array() ) {
+	public function get_template_fields_for_filter( $fields = array() ) {
 
 		/**
 		 * Filter the meta fields from Coupon Creator for custom templates
@@ -45,53 +45,18 @@ class Cctor__Coupon__Meta__Fields {
 	 *
 	 * @return string
 	 */
-	public static function get_fields_prefix() {
-		return self::$fields_prefix;
-	}
-
-	/**
-	 * Register fields for Gutenberg
-	 *
-	 * @since  TBD
-	 *
-	 * @return void
-	 */
-	public function register() {
-/*		$args = (object) array();
-
-		$args->text = array(
-			'auth_callback'     => array( $this, 'auth_callback' ),
-			'sanitize_callback' => 'sanitize_text_field',
-			'type'              => 'string',
-			'single'            => true,
-			'show_in_rest'      => true,
-		);
-		register_meta( 'post', 'wpe_menu_items', array(
-			'description'       => __( 'Menu Items', 'the-events-calendar' ),
-			'auth_callback'     => array( $this, 'auth_callback' ),
-			'sanitize_callback' => array( $this, 'sanitize_numeric_array' ),
-			'type'              => 'number',
-			'single'            => false,
-			'show_in_rest'      => true,
-		) );
-
-		$fields = self::get_fields();
-		foreach ( $fields as $field ) {
-
-			register_meta( 'post', $field['id'], $args->text );
-
-		}*/
-
+	public function get_fields_prefix() {
+		return $this->fields_prefix;
 	}
 
 	/*
 	* Get Fields
 	*
 	*/
-	public static function get_fields() {
+	public function get_fields() {
 
 		// fields prefix
-		$prefix = self::get_fields_prefix();
+		$prefix = $this->get_fields_prefix();
 
 		// Content
 		$fields[ $prefix . 'content_help' ] = array(
@@ -543,10 +508,10 @@ class Cctor__Coupon__Meta__Fields {
 	* Get Template Fields
 	*
 	*/
-	public static function get_template_fields( $fields ) {
+	public function get_template_fields( $fields ) {
 
 		//fields prefix
-		$prefix = self::get_fields_prefix();
+		$prefix = $this->get_fields_prefix();
 
 
 		/**
