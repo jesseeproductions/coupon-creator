@@ -18,10 +18,10 @@ class Cctor__Coupon__Admin__Main {
 	public function __construct() {
 
 		//Setup Admin
-		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
 
 		//Update Version Number
-		add_action( 'admin_init', array( 'Cctor__Coupon__Admin__Updates', 'admin_upgrade_version' ) );
+		add_action( 'admin_init', pngx_callback( 'cctor.admin.upgrades' , 'admin_upgrade_version' ) );
 
 		//handle older versions of Pro so they can update before 2.4
 		if ( defined( 'CCTOR_PRO_VERSION_NUM' ) && 2.4 > CCTOR_PRO_VERSION_NUM ) {
@@ -35,14 +35,14 @@ class Cctor__Coupon__Admin__Main {
 	/**
 	 * Admin Init
 	 */
-	public static function admin_init() {
+	public function admin_init() {
 
 		if ( ! class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
 			new Cctor__Coupon__Admin__Inserter();
 		}
 
 		//Add Options Link on Plugin Activation Page
-		add_action( 'plugin_action_links', array( __CLASS__, 'plugin_setting_link' ), 10, 2 );
+		add_action( 'plugin_action_links', array( $this, 'plugin_setting_link' ), 10, 2 );
 
 
 	} //end admin_init
@@ -52,7 +52,7 @@ class Cctor__Coupon__Admin__Main {
 	* Add Options Link in Plugin entry of Plugins Menu
 	*
 	*/
-	public static function plugin_setting_link( $links, $file ) {
+	public function plugin_setting_link( $links, $file ) {
 		static $this_plugin;
 
 		if ( ! $this_plugin ) {

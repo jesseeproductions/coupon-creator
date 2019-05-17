@@ -105,12 +105,12 @@ class Cctor__Coupon__Expiration {
 			$this->date_format = get_post_meta( $this->coupon_id, 'cctor_date_format', true );
 			$this->start_date  = get_post_meta( $this->coupon_id, 'cctor_start_date', true );
 			$this->expiration  = get_post_meta( $this->coupon_id, 'cctor_expiration', true );
-			self::set_coupon_expiration_dates();
-			$this->show_coupon = self::is_coupon_current();
+			$this->set_coupon_expiration_dates();
+			$this->show_coupon = $this->is_coupon_current();
 		}
 
 		if ( is_admin() ) {
-			self::set_coupon_status_msg();
+			$this->set_coupon_status_msg();
 		}
 	}
 
@@ -154,7 +154,7 @@ class Cctor__Coupon__Expiration {
 	 *
 	 */
 	public function get_coupon_status() {
-		if ( self::check_expiration() ) {
+		if ( $this->check_expiration() ) {
 			echo '<div class="pngx-meta-bg pngx-message"><div>' . __( 'This Coupon is Showing.', 'coupon-creator' ) . '</div></div>';
 		} else {
 			echo '<div class="pngx-meta-bg pngx-error"><div>' . __( 'This Coupon is not Showing.', 'coupon-creator' ) . '</div></div>';
@@ -178,7 +178,7 @@ class Cctor__Coupon__Expiration {
 	 * Display the coupon status message
 	 */
 	public function the_coupon_status_msg() {
-		echo self::get_coupon_status_msg();
+		echo $this->get_coupon_status_msg();
 	}
 
 	/***************************************************************************/
@@ -236,7 +236,7 @@ class Cctor__Coupon__Expiration {
 	 * Display the formatted expiration date
 	 */
 	public function the_display_expiration() {
-		echo self::get_display_expiration();
+		echo $this->get_display_expiration();
 	}
 
 	/**
@@ -312,7 +312,7 @@ class Cctor__Coupon__Expiration {
 	 */
 	public function get_admin_list_coupon_showing() {
 
-		if ( self::check_expiration() ) {
+		if ( $this->check_expiration() ) {
 			return "<p style='color: #048c7f; padding-left:5px;'>" . __( 'Showing', 'coupon-creator' ) . "</p>";
 		} else {
 			return "<p style='color: #dd3d36; padding-left:5px;'>" . __( 'Not Showing', 'coupon-creator' ) . "</p>";

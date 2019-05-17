@@ -15,12 +15,11 @@ class Cctor__Coupon__Meta__Order {
 	/**
 	 * Static Singleton Factory Method
 	 *
-	 * @return Cctor__Coupon__Meta__Order
+	 * @return self
 	 */
-	public static function get_instance() {
-		if ( ! isset( self::$instance ) ) {
-			$className      = __CLASS__;
-			self::$instance = new $className;
+	public static function instance() {
+		if ( ! self::$instance ) {
+			self::$instance = new self;
 		}
 
 		return self::$instance;

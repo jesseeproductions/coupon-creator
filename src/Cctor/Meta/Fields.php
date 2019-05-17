@@ -36,7 +36,7 @@ class Cctor__Coupon__Meta__Fields {
 		 * @param array $fields an array of fields to display in meta tabs.
 		 *
 		 */
-		return Cctor__Coupon__Meta__Order::get_instance()->get_ordered_template_fields( $fields );
+		return pngx( 'cctor.meta.order' )->get_ordered_template_fields( $fields );
 
 	}
 
@@ -129,7 +129,7 @@ class Cctor__Coupon__Meta__Fields {
 		 * @param array $fields an array of fields to display in meta tabs.
 		 *
 		 */
-		$fields = Cctor__Coupon__Meta__Order::get_instance()->get_ordered_template_fields( $fields );
+		$fields = pngx( 'cctor.meta.order' )->get_ordered_template_fields( $fields );
 
 		$fields[ $prefix . 'end_content_template' ] = array(
 			'id'        => $prefix . 'end_content_template',
@@ -228,7 +228,7 @@ class Cctor__Coupon__Meta__Fields {
 				'std'     => '',
 				'choices' => array(
 					'0' => __( 'Use 4 style sections in Pro to create a unique coupon or a standard brand to attract customers' ),
-					'2' => __( 'Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br> <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="' . esc_url( Cctor__Coupon__Main::instance()->resource_url ) . 'images/cctor-border-examples.gif"/>' ),
+					'2' => __( 'Choose between 5 different border styles in Pro, including Saw Tooth, Stitched, Dotted, Coupon, and None.<br> <img class="cctor-pro-img" alt="Coupon Creator Pro Border Examples" src="' . esc_url( pngx( 'cctor' )->resource_url ) . 'images/cctor-border-examples.gif"/>' ),
 				),
 				'priority' => 12.02,
 			);
@@ -498,7 +498,7 @@ class Cctor__Coupon__Meta__Fields {
 		 *
 		 * @param array $fields an array of fields to display in meta tabs.
 		 */
-		 $fields = Cctor__Coupon__Meta__Order::get_instance()->get_ordered_meta_fields( $fields );
+		 $fields = pngx( 'cctor.meta.order' )->get_ordered_meta_fields( $fields );
 
 
 		return $fields;

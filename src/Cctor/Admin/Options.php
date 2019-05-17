@@ -5,12 +5,9 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 }
 
 
-/*
-* Admin Options Class
-*
-*/
-
-
+/**
+ * Class Cctor__Coupon__Admin__Options
+ */
 class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 	/*
@@ -54,9 +51,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		if ( ! get_option( $this->options_id ) ) {
 			add_action( 'admin_init', array( &$this, 'set_defaults' ), 10 );
 		}
-
-		//Add Plugin Only Fields
-		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
 
 		add_action( 'pngx_before_option_form', array( $this, 'display_options_header' ), 5 );
 		add_action( 'pngx_after_option_form', array( $this, 'cctor_newsletter_signup' ) );
@@ -156,7 +150,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
 
 			echo '<div class="icon32" id="icon-options-general"></div>
-			<h2><img class="cctor-options-icon" src="' . Cctor__Coupon__Main::instance()->resource_url . 'images/cctor-icon.svg"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
+			<h2><img class="cctor-options-icon" src="' . pngx( 'cctor' )->resource_url . 'images/cctor-icon.svg"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
 
 			<div class="javascript-conflict pngx-error"><p>' . sprintf( __( 'There maybe a javascript conflict preventing some features from working.  <a href="%s" target="_blank" >Please check this guide to narrow down the cause.</a>', 'coupon-creator' ), esc_url( $js_troubleshoot_url ) ) . '</p></div>
 
@@ -690,7 +684,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	public function flush_coupon_permalinks() {
 
 		//setup coupon cpt when flushing permalinks
-		Cctor__Coupon__Main::instance()->register_post_types();
+		pngx( 'cctor' )->register_post_types();
 
 	}
 
@@ -761,18 +755,5 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 	}
 
-	/**
-	 * Singleton Factory Method
-	 *
-	 * @return Cctor__Coupon__Admin__Options
-	 */
-	public function instance() {
-		if ( ! isset( $this->instance ) ) {
-			$className      = __CLASS__;
-			$this->instance = new $className;
-		}
-
-		return $this->instance;
-	}
 }
 

@@ -20,7 +20,7 @@ class Cctor__Coupon__Admin__Pro_License_Pre_24 {
 
 		//License Class
 		$license_handler = new Pngx__Admin__EDD_License(
-			Cctor__Coupon__Main::instance()->get_shop_url(),
+			pngx( 'cctor' )->get_shop_url(),
 			Cctor__Coupon__Main::OPTIONS_ID,
 			'cctor_pro_license'
 		);

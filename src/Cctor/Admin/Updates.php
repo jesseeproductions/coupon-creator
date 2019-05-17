@@ -16,7 +16,7 @@ class Cctor__Coupon__Admin__Updates {
 	* Update Version Number Check
 	*
 	*/
-	public static function admin_upgrade_version() {
+	public function admin_upgrade_version() {
 
 		//Update Version Number
 		if ( get_option( Cctor__Coupon__Main::VERSION_KEY ) != Cctor__Coupon__Main::VERSION_NUM ) {
@@ -24,11 +24,11 @@ class Cctor__Coupon__Admin__Updates {
 			// Then update the version value
 			update_option( 'coupon_update_version', date( 'l jS \of F Y h:i:s A' ) );
 
-			self::update_templates();
+			$this->update_templates();
 
-			self::update_expiration_option();
+			$this->update_expiration_option();
 
-			self::update_image_fields();
+			$this->update_image_fields();
 
 			update_option( Cctor__Coupon__Main::VERSION_KEY, Cctor__Coupon__Main::VERSION_NUM );
 
@@ -41,7 +41,7 @@ class Cctor__Coupon__Admin__Updates {
 	* Update to new template system on 2.5
 	*
 	*/
-	public static function update_templates() {
+	public function update_templates() {
 
 		update_option( 'coupon_update_templates', date( 'l jS \of F Y h:i:s A' ) );
 
@@ -79,7 +79,7 @@ class Cctor__Coupon__Admin__Updates {
 	/**
 	 * Update Coupons with new Expiration Options in 2.3
 	 */
-	public static function update_expiration_option() {
+	public function update_expiration_option() {
 
 		//Run this script once
 		if ( get_option( 'coupon_update_expiration_type' ) ) {
@@ -134,7 +134,7 @@ class Cctor__Coupon__Admin__Updates {
 	* This if for Image Coupons made prior to 2.1
 	*
 	*/
-	public static function update_image_fields() {
+	public function update_image_fields() {
 
 		update_option( 'coupon_update_image_border_meta', date( 'l jS \of F Y h:i:s A' ) );
 

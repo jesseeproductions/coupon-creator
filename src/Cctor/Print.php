@@ -21,7 +21,7 @@ class Cctor__Coupon__Print {
 
 		global $post;
 		if ( ! is_search() && is_object( $post ) && 'cctor_coupon' == $post->post_type ) {
-			$print_template = Cctor__Coupon__Main::instance()->plugin_path . 'src/functions/templates/print-coupon.php';
+			$print_template = pngx( 'cctor' )->plugin_path . 'src/functions/templates/print-coupon.php';
 		}
 
 		return $print_template;

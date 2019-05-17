@@ -26,6 +26,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 
 		$this->container->singleton( 'cctor.i18n', 'Cctor__Coupon__I18n', array( 'hook' ) );
 		$this->container->singleton( 'cctor.assets', 'Cctor__Coupon__Assets' );
+		$this->container->singleton( 'cctor.meta.order', 'Cctor__Coupon__Meta__Order' );
 
 		$this->container->singleton( 'cctor.search', 'Cctor__Coupon__Search' );
 		$this->container->singleton( 'cctor.shortcode', 'Cctor__Coupon__Shortcode' );
@@ -60,7 +61,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 
 		add_action( 'init', pngx_callback( 'cctor.post_menu', 'register' ), 5 );
 
-		add_action( 'init', array( 'Pngx__Cron_20', 'filter_cron_schedules' ) );
+		add_action( 'init',  pngx_callback( 'Pngx__Cron_20', 'filter_cron_schedules' ) );
 		add_action( 'pre_get_posts', pngx_callback( 'cctor.search', 'remove_coupon_from_search' ) );
 
 		// Add Editor and Rest API Support for Coupon Creator
@@ -69,9 +70,6 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 			add_filter( 'pngx_register_cctor_coupon_type_args', pngx_callback( 'cctor.editor', 'add_rest_support' ) );
 
 			add_filter( 'pngx_register_cctro_coupon_type_args', pngx_callback( 'cctor.editor', 'add_template_blocks' ) );
-
-			// Setup the Meta registration
-			add_action( 'init', pngx_callback( 'cctor.meta', 'register' ), 25 );
 
 			// Setup the registration of Blocks
 			add_action( 'init', pngx_callback( 'cctor.editor', 'register_blocks' ), 20 );
@@ -116,6 +114,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		$this->container->singleton( 'cctor.admin.updates', 'Cctor__Coupon__Admin__Updates' );
 		$this->container->singleton( 'cctor.admin.assets', 'Cctor__Coupon__Admin__Assets' );
 		$this->container->singleton( 'cctor.admin.options', 'Cctor__Coupon__Admin__Options' );
+		$this->container->singleton( 'cctor.admin.upgrades', 'Cctor__Coupon__Admin__Updates' );
 		$this->container->singleton( 'cctor.admin.meta', 'Cctor__Coupon__Admin__Meta' );
 		$this->container->singleton( 'cctor.admin.meta.fields', 'Cctor__Coupon__Admin__Fields' );
 		$this->container->singleton( 'cctor.admin.columns', 'Cctor__Coupon__Admin__Columns' );
@@ -137,7 +136,9 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		//Meta
 		pngx( 'cctor.admin.columns' );
 		add_action( 'admin_init', pngx_callback( 'cctor.admin.meta', 'setup' ) );
-		add_action( 'pngx_front_field_types', pngx_callback( 'cctor.admin.meta.fields', 'display_field' ), 10, 5 );
+
+		//Core Admin Fields
+		add_filter( 'pngx_field_types', pngx_callback( 'cctor.admin.meta.fields', 'display_field' ), 5, 5 );
 
 	}
 

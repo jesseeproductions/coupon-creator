@@ -22,7 +22,7 @@ class Cctor__Coupon__Admin__Field__Pro_Heading {
 				echo '</td></tr><tr valign="top"><td colspan="2">';
 			}
 
-			echo '<div class="pro-heading"><img style="width: 180px; height: auto;" alt="Get Coupon Creator Pro!" src="' . esc_url( Cctor__Coupon__Main::instance()->resource_url ) . 'images/cctor-logo.png"/></div>';
+			echo '<div class="pro-heading"><img style="width: 180px; height: auto;" alt="Get Coupon Creator Pro!" src="' . esc_url( pngx( 'cctor' )->resource_url ) . 'images/cctor-logo.png"/></div>';
 		}
 
 	}

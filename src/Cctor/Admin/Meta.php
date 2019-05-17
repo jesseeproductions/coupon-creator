@@ -5,12 +5,9 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 }
 
 
-/*
-* Admin Custom Meta Class
-*
-*/
-
-
+/**
+ * Class Cctor__Coupon__Admin__Meta
+ */
 class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 	//fields id prefix
@@ -42,9 +39,6 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		//Coupon Expiration Information
 		add_action( 'edit_form_after_title', array( $this, 'coupon_messages' ), 5 );
 		add_action( 'edit_form_after_title', array( $this, 'coupon_information_box' ) );
-
-		//Add Plugin Only Fields
-		add_filter( 'pngx_field_types', array( 'Cctor__Coupon__Admin__Fields', 'display_field' ), 5, 5 );
 
 		// Add default template
 		add_filter( 'pngx-default-template', array( $this, 'default_template' ) );
@@ -138,8 +132,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	 */
 	public function show_coupon_shortcode( $post ) {
 		?><p class="shortcode">
-		<?php _e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon-creator' ); ?>
-		<code>[coupon couponid="<?php echo $post->ID; ?>" name="<?php echo $post->post_title; ?>"]</code>
+		<?php esc_html_e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon-creator' ); ?>
+		<code>[coupon couponid="<?php echo absint( $post->ID ); ?>" name="<?php echo esc_html( $post->post_title ); ?>"]</code>
 		</p><?php
 
 	}
@@ -178,7 +172,7 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	*
 	*/
 	public function set_fields() {
-		$this->fields = Cctor__Coupon__Meta__Fields::get_fields();
+		$this->fields = pngx( 'cctor.meta' )->get_fields();
 	}
 
 
@@ -211,20 +205,6 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		} elseif ( isset( $_POST['cctor_ignore_expiration'] ) && 'on' == $_POST['cctor_ignore_expiration'] && 1 != $_POST['cctor_expiration_option'] ) {
 			unset( $_POST['cctor_ignore_expiration'] );
 		}
-	}
-
-	/**
-	 * Singleton Factory Method
-	 *
-	 * @return Pngx__Admin__Options
-	 */
-	public function instance() {
-		if ( ! isset( $this->instance ) ) {
-			$className      = __CLASS__;
-			$this->instance = new $className;
-		}
-
-		return $this->instance;
 	}
 
 }

@@ -40,16 +40,14 @@ class Cctor__Coupon__Main {
 	public           $plugin_name;
 
 	/**
-	 * Static Singleton Factory Method
+	 * Get (and instantiate, if necessary) the instance of the class
 	 *
-	 * @return Cctor__Coupon__Main
+	 * @return self
 	 */
 	public static function instance() {
-		if ( ! isset( self::$instance ) ) {
-			$className      = __CLASS__;
-			self::$instance = new $className;
+		if ( ! self::$instance ) {
+			self::$instance = new self;
 		}
-
 		return self::$instance;
 	}
 
@@ -79,8 +77,8 @@ class Cctor__Coupon__Main {
 		}
 
 		// Setup Auto Loader to Prevent Fatal on Activate
-		Cctor__Coupon__Main::instance()->maybe_set_common_lib_info();
-		Cctor__Coupon__Main::instance()->init_autoloading();
+		self::instance()->maybe_set_common_lib_info();
+		self::instance()->init_autoloading();
 
 		// Safety check: if Plugin Engine is not at a certain minimum version, bail out
 		if ( version_compare( Pngx__Main::VERSION, self::MIN_PNGX_VERSION, '<' ) ) {
@@ -133,7 +131,7 @@ class Cctor__Coupon__Main {
 	public function plugins_loaded() {
 
 
-		if ( ! self::supportedVersion( 'wordpress' ) ||  ! self::supportedVersion( 'php' ) ) {
+		if ( ! $this->supportedVersion( 'wordpress' ) ||  ! $this->supportedVersion( 'php' ) ) {
 
 			add_action( 'admin_head', array( $this, 'notSupportedError' ) );
 
@@ -227,10 +225,10 @@ class Cctor__Coupon__Main {
 	 * Display a WordPress or PHP incompatibility error
 	 */
 	public function notSupportedError() {
-		if ( ! self::supportedVersion( 'wordpress' ) ) {
+		if ( ! $this->supportedVersion( 'wordpress' ) ) {
 			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
 		}
-		if ( ! self::supportedVersion( 'php' ) ) {
+		if ( ! $this->supportedVersion( 'php' ) ) {
 			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::MIN_PHP_VERSION, phpversion() ) . '</p></div>';
 		}
 	}

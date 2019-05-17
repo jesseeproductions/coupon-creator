@@ -20,7 +20,7 @@ class Cctor__Coupon__Admin__Inserter {
 	public function __construct() {
 
 		//Add Button for Coupons in Editor
-		add_action( 'media_buttons_context', array( __CLASS__, 'add_cc_coupon_button' ) );
+		add_action( 'media_buttons_context', array( $this, 'add_cc_coupon_button' ) );
 
 	}
 
@@ -28,17 +28,17 @@ class Cctor__Coupon__Admin__Inserter {
 	* Add Coupon Inserter Button Above WordPress Editor
 	*
 	*/
-	public static function add_cc_coupon_button( $context ) {
+	public function add_cc_coupon_button( $context ) {
 
 		$screen = get_current_screen();
 
 		if ( 'cctor_coupon' != $screen->id && 'cctor_coupon_page_coupon-options' != $screen->id ) {
 
 			//add Content for inline popup for Coupon Inserter
-			add_action( 'admin_footer', array( __CLASS__, 'add_coupon_inline_popup' ) );
+			add_action( 'admin_footer', array( $this, 'add_coupon_inline_popup' ) );
 
 			//path to coupon icon
-			$img = Cctor__Coupon__Main::instance()->resource_url . 'images/cctor-icon.svg';
+			$img = pngx( 'cctor' )->resource_url . 'images/cctor-icon.svg';
 			//the id of the container I want to show in the popup
 			$container_id = 'coupon_container';
 			//our popup's title
@@ -114,7 +114,7 @@ class Cctor__Coupon__Admin__Inserter {
 	* Coupon Inserter Popup Coding and Script
 	* @version 1.00
 	*/
-	public static function add_coupon_inline_popup() { ?>
+	public function add_coupon_inline_popup() { ?>
 		<!--Script to insert Coupon ShortCode Into Editor -->
 		<script>
 			//Insert Shortcode into Editor

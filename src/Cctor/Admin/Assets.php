@@ -35,9 +35,9 @@ class Cctor__Coupon__Admin__Assets {
 		// @formatter:off
 		wp_enqueue_style(
 			'coupon-admin-style',
-			Cctor__Coupon__Main::instance()->resource_url . 'css/admin-style.css',
+			pngx( 'cctor' )->resource_url . 'css/admin-style.css',
 			array( 'pngx-admin' ),
-			filemtime( Cctor__Coupon__Main::instance()->resource_path . 'css/admin-style.css' )
+			filemtime( pngx( 'cctor' )->resource_path . 'css/admin-style.css' )
 		);
 		// @formatter:on
 
@@ -82,7 +82,7 @@ class Cctor__Coupon__Admin__Assets {
 		// @formatter:off
 		wp_enqueue_script(
 			'cctor_admin_js',
-			Cctor__Coupon__Main::instance()->resource_url . 'js/coupon-admin.js',
+			pngx( 'cctor' )->resource_url . 'js/coupon-admin.js',
 			array(
 				'jquery',
 				'media-upload',
@@ -90,7 +90,7 @@ class Cctor__Coupon__Admin__Assets {
 				'farbtastic',
 				'pngx-admin'
 			),
-			filemtime( Cctor__Coupon__Main::instance()->resource_path . 'js/coupon-admin.js' ),
+			filemtime( pngx( 'cctor' )->resource_path . 'js/coupon-admin.js' ),
 			true
 		);
 		// @formatter:on
