@@ -26,7 +26,7 @@ class Cctor__Coupon__Meta__Order {
 	}
 
 	/**
-	 * Get the Ordered MEta Fields
+	 * Get the Ordered Meta Fields
 	 *
 	 * @param array $fields
 	 *
@@ -60,7 +60,7 @@ class Cctor__Coupon__Meta__Order {
 	 *
 	 * @return mixed|void
 	 */
-	public function get_ordered_template_fields( $fields = array() ) {
+	public function get_ordered_template_fields( $fields = [] ) {
 
 		/**
 		 * Filter the meta fields from Coupon Creator for custom templates
@@ -69,7 +69,6 @@ class Cctor__Coupon__Meta__Order {
 		 * @param array $fields an array of fields to display in meta tabs.
 		 *
 		 */
-
 		$fields = apply_filters( 'cctor_filter_meta_template_fields', $fields );
 
 		if ( get_bloginfo( 'version' ) >= 4.7 ) {

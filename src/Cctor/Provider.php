@@ -22,7 +22,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 
 		$this->container->singleton( 'cctor.post_menu', new Cctor__Coupon__Post_Type_Coupon( pngx( 'cctor' )::POSTTYPE, pngx( 'cctor' )::TAXONOMY, pngx( 'cctor' )::TEXT_DOMAIN ) );
 
-		$this->container->singleton( 'cctor.meta', 'Cctor__Coupon__Meta__Fields' );
+		$this->container->singleton( 'cctor.meta', new Cctor__Coupon__Meta__Fields() );
 
 		$this->container->singleton( 'cctor.i18n', 'Cctor__Coupon__I18n', array( 'hook' ) );
 		$this->container->singleton( 'cctor.assets', 'Cctor__Coupon__Assets' );
