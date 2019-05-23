@@ -68,9 +68,9 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 		}
 
 		if (  class_exists( 'Cctor__Coupon__Pro__Core_Shortcode') ) {
-			$coupon = pngx( 'cctor.pro.core.shortcode' )::core_shortcode( $attributes );
+			$coupon = pngx( 'cctor.pro.core.shortcode' )->core_shortcode( $attributes );
 		} else {
-			$coupon = pngx( 'cctor.shortcode' )::core_shortcode( $attributes );
+			$coupon = pngx( 'cctor.shortcode' )->core_shortcode( $attributes );
 		}
 
 		if ( ! $coupon && is_numeric( $args['attributes']['couponid'] ) ) {

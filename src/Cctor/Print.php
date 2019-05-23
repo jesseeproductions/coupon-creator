@@ -17,7 +17,7 @@ class Cctor__Coupon__Print {
 	* Use Single Coupon Template from Plugin when creating the print version
 	*
 	*/
-	public static function get_coupon_post_type_template( $print_template ) {
+	public function get_coupon_post_type_template( $print_template ) {
 
 		global $post;
 		if ( ! is_search() && is_object( $post ) && 'cctor_coupon' == $post->post_type ) {
@@ -31,7 +31,7 @@ class Cctor__Coupon__Print {
 	* Hook Custom CSS into Print Template
 	*
 	*/
-	public static function print_css() {
+	public function print_css() {
 
 		$cctor_option_css = "";
 		/*

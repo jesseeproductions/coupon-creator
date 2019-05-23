@@ -21,13 +21,13 @@ class Cctor__Coupon__Main {
 	const MIN_PHP_VERSION          = '5.2';
 	const MIN_WP_VERSION           = '4.0';
 	const VERSION_KEY              = 'cctor_coupon_version';
-	const VERSION_NUM              = '2.6';
+	const VERSION_NUM              = '3.0';
 	const MIN_PNGX_VERSION         = '2.6';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
 
-	public static $cctorUrl = 'https://couponcreatorplugin.com/';
+	public $cctorUrl = 'https://couponcreatorplugin.com/';
 
 	protected static $instance;
 	public           $plugin_dir;
@@ -377,7 +377,7 @@ class Cctor__Coupon__Main {
 	* Remove wpautop in Terms Field
 	* based of coding from http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
 	*/
-	public static function remove_autop_for_coupons( $content ) {
+	public function remove_autop_for_coupons( $content ) {
 
 		'cctor_coupon' === get_post_type() && remove_filter( 'the_content', 'wpautop' );
 
@@ -417,7 +417,7 @@ class Cctor__Coupon__Main {
 	 *
 	 * @param WP_Query $query
 	 **/
-	public static function parse_query( $query ) {
+	public function parse_query( $query ) {
 
 		// @formatter:off
 		$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );

@@ -15,7 +15,7 @@ class Cctor__Coupon__Images {
 	/**
 	 * Register Image Sizes
 	 */
-	public static function add_image_sizes() {
+	public function add_image_sizes() {
 
 		$cctor_img_size           = array();
 		$cctor_img_size['single'] = 300;

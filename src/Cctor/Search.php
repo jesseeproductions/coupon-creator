@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Cctor__Coupon__Search {
 
-	public static function remove_coupon_from_search( $query ) {
+	public function remove_coupon_from_search( $query ) {
 
 		$search = cctor_options( 'coupon-search' );
 

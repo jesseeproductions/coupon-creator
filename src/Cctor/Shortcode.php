@@ -16,7 +16,7 @@ class Cctor__Coupon__Shortcode {
 	/*
 	* Coupon Creator Shortcode
 	*/
-	public static function core_shortcode( $atts ) {
+	public function core_shortcode( $atts ) {
 
 		//Load Stylesheet for Coupon Creator when Shortcode Called
 		if ( ! wp_style_is( 'coupon_creator_css' ) ) {

@@ -16,10 +16,10 @@ class Cctor__Coupon__Assets {
 
 		add_action( 'enqueue_block_editor_assets', array( $this, 'blocks_editor_styles' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'blocks_editor_scripts' ) );
-		add_action( 'enqueue_block_editor_assets', array( 'Cctor__Coupon__Assets', 'inline_style' ), 100 );
+		add_action( 'enqueue_block_editor_assets',  array( $this, 'inline_style' ), 100 );
 
-		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'register_assets' ) );
-		add_action( 'wp_enqueue_scripts', array( 'Cctor__Coupon__Assets', 'inline_style' ), 100 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_assets' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'inline_style' ), 100 );
 	}
 
 	/**
@@ -124,7 +124,7 @@ class Cctor__Coupon__Assets {
 	/*
 	* Register Coupon Creator CSS
 	*/
-	public static function register_assets() {
+	public function register_assets() {
 
 		// @formatter:off
 		wp_register_style(
@@ -140,7 +140,7 @@ class Cctor__Coupon__Assets {
 	/*
 	* Add Inline Style From Coupon Options
 	*/
-	public static function inline_style() {
+	public function inline_style() {
 
 		$cctor_option_css = "";
 

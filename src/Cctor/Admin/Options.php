@@ -79,7 +79,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			array( $this, 'display_fields' ) // function
 		);
 
-		add_action( 'admin_print_scripts-' . $admin_page, array( 'Cctor__Coupon__Admin__Assets', 'load_assets' ) );
+		add_action( 'admin_print_scripts-' . $admin_page, pngx_callback( pngx( 'cctor.admin.assets' ), 'load_assets' ) );
 
 	}
 

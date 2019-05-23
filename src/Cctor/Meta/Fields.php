@@ -656,6 +656,10 @@ class Cctor__Coupon__Meta__Fields {
 			'display'  => array(
 				'type'  => 'image_coupon',
 				'class' => 'cctor_coupon_image',
+				'image_size' => array(
+					'size_shortcode' => 'single_coupon',
+					'size_print'     => 'print_coupon',
+				),
 			),
 			'priority' => 35.01,
 		);

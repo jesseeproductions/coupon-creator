@@ -577,7 +577,7 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 	 *
 	 * @return string
 	 */
-	public static function get_cctor_support_core_contact() {
+	public function get_cctor_support_core_contact() {
 
 		if ( class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
 			$support_html = '

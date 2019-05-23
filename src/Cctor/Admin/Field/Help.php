@@ -27,7 +27,7 @@ class Cctor__Coupon__Admin__Field__Help {
 		if ( 'cctor_all_help' == $field['id'] ) {
 			$help_class = new Cctor__Coupon__Admin__Help();
 			$help_class->display_help( 'all', false, 'coupon' );
-			echo Cctor__Coupon__Admin__Help::get_cctor_support_core_contact();
+			echo $help_class->get_cctor_support_core_contact();
 
 			//Return as this is only showing all the help documents
 			return;
