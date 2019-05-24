@@ -4,9 +4,10 @@ Plugin Name: Coupon Creator
 Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Requires at least: 4.5
-Tested up to:  5.1
+Requires at least: 4.9
+Tested up to:  5.2.1
 Stable tag: 3.0
+Requires PHP: 5.6
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -144,6 +145,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Upgrade - The architecture of the plugin to modern standards with a service provider system and less reliance on static methods
 * Add - Dependency checking system to prevent incompatible versions of plugins from running and causing errors
 * Add - Coupon Block to display single coupons or a loop of coupons with options to align, order
+* Tweak - Increase minimum PHP version to 5.6 and WordPress 4.9
 
 = 2.5.6 March 11th, 2019 =
 * Add - A filter on coupon content to use to modify the allowed tags
