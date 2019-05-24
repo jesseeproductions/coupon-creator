@@ -241,7 +241,7 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'1' => __( 'Ignore Expiration', 'coupon-creator' ),
 			'2' => __( 'Expiration Date', 'coupon-creator' )
 		);
-		if ( class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
+		if ( class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
 			$expiration_options = array(
 				'1' => __( 'Ignore Expiration', 'coupon-creator' ),
 				'2' => __( 'Expiration Date', 'coupon-creator' ),

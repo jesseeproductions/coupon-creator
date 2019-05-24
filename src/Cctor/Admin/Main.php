@@ -37,7 +37,7 @@ class Cctor__Coupon__Admin__Main {
 	 */
 	public function admin_init() {
 
-		if ( ! class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
+		if ( ! class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
 			new Cctor__Coupon__Admin__Inserter();
 		}
 

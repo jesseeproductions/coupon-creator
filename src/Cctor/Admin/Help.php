@@ -579,7 +579,7 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 	 */
 	public function get_cctor_support_core_contact() {
 
-		if ( class_exists( 'Coupon_Creator_Pro_Plugin' ) ) {
+		if ( class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
 			$support_html = '
 				<h4 class="pngx-fields-heading">How to Contact Support</h4>
 					<ul>
