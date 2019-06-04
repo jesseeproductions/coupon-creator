@@ -1,10 +1,15 @@
 <?php
 
-namespace Tribe\Community\Test\Acceptance;
+namespace Pngx\Coupons\Test\Acceptance;
 
 use AcceptanceTester;
 
 class BaseAcceptanceCest {
+
+	/**
+	 * @var string
+	 */
+	protected $option_name = 'coupon_creator_options';
 
 	/**
 	 * @var \tad\WPBrowser\Module\WPLoader\FactoryStore
@@ -15,6 +20,9 @@ class BaseAcceptanceCest {
 
 		$this->factory = $I->factory();
 
+		$I->loginAsAdmin();
+		$I->amOnPluginsPage();
+		$I->activatePlugin( [ 'coupon-creator' ] );
 
 	}
 
