@@ -20,10 +20,6 @@ class BaseAcceptanceCest {
 
 		$this->factory = $I->factory();
 
-		$I->loginAsAdmin();
-		$I->amOnPluginsPage();
-		$I->activatePlugin( [ 'coupon-creator' ] );
-
 	}
 
 }

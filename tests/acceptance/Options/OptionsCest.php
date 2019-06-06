@@ -11,7 +11,7 @@ class OptionsCest extends BaseAcceptanceCest {
 	 * @test
 	 * since TBD
 	 */
-/*	public function should_have_option_fields_and_updated_message( AcceptanceTester $I ) {
+	public function should_have_option_fields_and_updated_message( AcceptanceTester $I ) {
 
 		$I->loginAsAdmin();
 
@@ -22,13 +22,13 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->click( '.submit .button-primary' );
 		$I->seeInSource( '<div class="updated fade"><p>Coupon Creator Options updated.</p></div>' );
 
-	}*/
+	}
 
 	/**
 	 * @test
 	 * since TBD
 	 */
-/*	public function should_have_default_options_in_new_coupon( AcceptanceTester $I ) {
+	public function should_have_default_options_in_new_coupon( AcceptanceTester $I ) {
 
 		$I->loginAsAdmin();
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
@@ -73,7 +73,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 		$I->click( '#ui-id-5' );
 		$I->seeElement( '.pngx-tab-heading-help' );
-	}*/
+	}
 
 	/**
 	 * @test
@@ -86,35 +86,57 @@ class OptionsCest extends BaseAcceptanceCest {
 			'post_name'  => $name,
 		] );
 		$I->amOnPage( '/cctor_coupon/' . $name . '/' );
-		$I->makeScreenshot();
-		$I->canSeeInPageSource('<meta name="robots" content="noindex,nofollow"/>');
+		$I->canSeeInPageSource( 'noindex,nofollow' );
 		$I->haveOptionInDatabase( $this->option_name, [ 'cctor_nofollow_print_template' => false ] );
 		$I->reloadPage();
-		$I->dontSeeInPageSource('<meta name="robots" content="noindex,nofollow"/>');
+		$I->dontSeeInPageSource( 'noindex,nofollow' );
 	}
 
 	/**
 	 * @test
 	 * since TBD
 	 */
-/*	public function should_change_coupon_permalink( AcceptanceTester $I ) {
+	public function should_change_coupon_permalink( AcceptanceTester $I ) {
 		$I->haveOptionInDatabase( $this->option_name, [ 'cctor_coupon_base' => 'coupon' ] );
 		$name      = 'coupon-links-02';
 		$coupon_id = $I->haveCouponInDatabase( [
 			'post_title' => 'Coupon Links 02',
 			'post_name'  => $name,
 		] );
-		$I->wait(5);
+
+		$I->loginAsAdmin();
+		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
+		// maximize window to see tabs
+		$I->maximizeWindow();
+		$I->waitForElementVisible( '#ui-id-2', 10 );
+
+		// this runs twice as it does not flush the first time in the acceptance test
+		// it does flush the first time in manually tests
+		$I->click( '#ui-id-2' );
+		$I->fillField( '#cctor_coupon_base', 'coupon' );
+		$I->click( '.submit .button-primary' );
+		$I->seeInSource( '<div class="updated fade"><p>Coupon Creator Options updated.</p></div>' );
+		$I->wait(3);
+		$I->reloadPage();
+		$I->click( '#ui-id-2' );
+		$I->fillField( '#cctor_coupon_base', 'coupon-test' );
+		$I->click( '.submit .button-primary' );
+		$I->seeInSource( '<div class="updated fade"><p>Coupon Creator Options updated.</p></div>' );
+		$I->wait(3);
+		$I->reloadPage();
+
+		$deal = get_post_meta( $coupon_id, 'cctor_amount', true );
 		$I->amOnPage( '/coupon/' . $name . '/' );
 		$I->makeScreenshot();
-		$I->canSeeInPageSource('<meta name="robots" content="noindex,nofollow"/>');
-	}*/
+		$I->see( $deal );
+
+	}
 
 	/**
 	 * @test
 	 * since TBD
 	 */
-/*	public function should_change_nofollow_in_shortcode_view( AcceptanceTester $I ) {
+	public function should_change_nofollow_in_shortcode_view( AcceptanceTester $I ) {
 		$name      = 'coupon-links-03';
 		$coupon_id = $I->haveCouponInDatabase( [
 			'post_title' => 'Coupon Links 03',
@@ -133,13 +155,13 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->reloadPage();
 		$I->dontSeeInPageSource( 'class="print-link" rel="nofollow"' );
 
-	}*/
+	}
 
 	/**
 	 * @test
 	 * since TBD
 	 */
-/*	public function should_change_disable_print_view( AcceptanceTester $I ) {
+	public function should_change_disable_print_view( AcceptanceTester $I ) {
 		$name      = 'coupon-links-04';
 		$coupon_id = $I->haveCouponInDatabase( [
 			'post_title' => 'Coupon Links 04',
@@ -158,5 +180,5 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->reloadPage();
 		$I->dontSeeElement( '.print-link' );
 
-	}*/
+	}
 }
