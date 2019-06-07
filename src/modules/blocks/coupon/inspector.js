@@ -71,13 +71,13 @@ export default class Inspector extends Component {
 		return (
 			<InspectorControls>
 
-				<PanelRow>
+				<PanelRow className="coupon-chooser">
 					<CouponChooser {...{setAttributes, ...this.props}} />
 				</PanelRow>
 
 				{taxonomy}
 
-				<PanelRow>
+				<PanelRow className="coupon-align-select" >
 					<SelectControl
 						key="coupon-align-select"
 						label={__( 'Select How to Align the Coupon(s)', 'coupon-creator' )}
