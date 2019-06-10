@@ -150,8 +150,8 @@ class BlocksCest extends BaseAcceptanceCest {
 	 * since TBD
 	 */
 	public function should_add_coupon_block_with_single_coupon_and_align_center( AcceptanceTester $I ) {
-		$name      = 'coupon-links-02';
-		$title     = 'Coupon Links 02';
+		$name      = 'coupon-links-03';
+		$title     = 'Coupon Links 03';
 		$coupon_id = $I->haveCouponInDatabase( [
 			'post_title' => $title,
 			'post_name'  => $name,
@@ -189,6 +189,58 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->waitForElementVisible( '.cctor-deal', 10 );
 		$I->seeElement( '.cctor_coupon_container.cctor_aligncenter' );
 		$I->see( $terms );
+
+	}
+
+	/**
+	 * @test
+	 * since TBD
+	 */
+	public function should_have_custom_styles_in_block_editor( AcceptanceTester $I ) {
+		$name      = 'coupon-links-04';
+		$title     = 'Coupon Links 04';
+		$coupon_id = $I->haveCouponInDatabase( [
+			'post_title' => $title,
+			'post_name'  => $name,
+		] );
+
+		$I->loginAsAdmin();
+		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
+		$I->maximizeWindow();
+		$I->waitForElementVisible( '#ui-id-3', 10 );
+		$I->click( '#ui-id-3' );
+		$I->fillField( '#cctor_custom_css', '.cctor_coupon_container .cctor-deal {background-color: pink !important;}' );
+		$I->click( '.submit .button-primary' );
+		$I->seeInSource( '<div class="updated fade"><p>Coupon Creator Options updated.</p></div>' );
+		$I->wait( 3 );
+
+		$I->maximizeWindow();
+		$I->amOnAdminPage( '/post-new.php?post_type=page' );
+		$I->maximizeWindow();
+		$I->waitForElementVisible( '.block-editor', 10 );
+		$I->maximizeWindow();
+
+		//disable tooltips that are set by cookies
+		$I->executeJS( 'wp.data.dispatch("core/nux").disableTips();' );
+		$I->fillField( '.editor-post-title__input', 'Coupons' );
+		$I->click( '.editor-inserter__toggle' );
+		$I->seeElement( '.editor-inserter__search' );
+		$I->fillField( '.editor-inserter__search', 'coupon' );
+		$I->seeElement( '.editor-block-list-item-pngx-coupon' );
+		$I->click( '.editor-block-list-item-pngx-coupon' );
+		$I->seeInPageSource( 'Display a single or group of coupons.' );
+		$I->selectOption( '.coupon-chooser .components-select-control__input', 'All Coupons' );
+		$I->wait( 5 );
+		$I->seeElement( '.type-cctor_coupon' );
+		$I->canSeeInPageSource( 'background-color: pink !important;' );
+		$I->click( '.editor-post-publish-panel__toggle' );
+		$I->wait( 2 );
+		$I->click( '.editor-post-publish-button' );
+		$I->wait( 2 );
+		$I->click( '.components-notice__action.is-link' );
+		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->seeElement( '.type-cctor_coupon' );
+		$I->canSeeInPageSource( 'background-color: pink !important;' );
 
 	}
 

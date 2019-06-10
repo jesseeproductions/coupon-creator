@@ -30,7 +30,7 @@ export default class SelectTaxonomy extends Component {
 	 */
 	getOptions() {
 		return ( apiFetch( { path: '/wp/v2/categories?per_page=100' } ).then( ( terms ) => {
-			//console.log('fetch',terms);
+
 			if ( terms && 0 !== this.state.selectedTaxonomy ) {
 				// If we have a selected Term, find that term and add it.
 				const term = terms.find( ( item ) => {
@@ -39,7 +39,7 @@ export default class SelectTaxonomy extends Component {
 				// This is the same as { term: term, terms: terms }
 				this.setState( { term, terms } );
 			} else {
-				//console.log('adding',terms);
+
 				this.setState( { terms } );
 			}
 		} ) );

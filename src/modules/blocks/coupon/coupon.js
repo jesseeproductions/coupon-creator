@@ -15,7 +15,7 @@ export default class CouponChooser extends Component {
 		const {attributes: {couponid}, className, setAttributes} = this.props;
 
 		return (
-			<div className="pngx-message">
+			<div className="pngx-message cctor-core-choose-coupon">
 				<RESTSelect
 					{...{setAttributes}}
 					attributesID="couponid"

@@ -91,7 +91,9 @@ export default class RESTSelect extends Component {
 		let select = '';
 
 		if ( this.state.loadedItems.length === 0 && this.state.loaded ) {
-			output = {noItems};
+			// set not items message to prevent Objects are not valid as a React child errors
+			let noItemsMsg = noItems;
+			output = noItemsMsg;
 		} else if ( this.state.loadedItems.length > 0 && this.state.loaded ) {
 			output = '';
 			let value = this.state.isMultiple && !Array.isArray( currentId ) ? [] : currentId;
