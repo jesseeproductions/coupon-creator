@@ -18,6 +18,7 @@ modules:
       adminPassword: %WP_ADMIN_PASSWORD%
       adminPath: '/wp-admin'
       browser: chrome
+      restart: true
       host: %CHROMEDRIVER_HOST%
       port: %CHROMEDRIVER_PORT%
       wait: 4

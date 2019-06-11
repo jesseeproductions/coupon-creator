@@ -26,7 +26,7 @@ export default class Inspector extends Component {
 		let taxonomy = '';
 		if ( 'loop' === couponid ) {
 			taxonomy = (
-				<PanelRow>
+				<PanelRow className="coupon-category-select">
 					<RESTSelect
 						{...{setAttributes}}
 						attributesID="category"
@@ -48,7 +48,7 @@ export default class Inspector extends Component {
 		let order = '';
 		if ( 'loop' === couponid ) {
 			order = (
-			<PanelRow>
+			<PanelRow  className="coupon-order-select">
 				<SelectControl
 					key="coupon-order-select"
 					label={__( 'Select how to order the coupons', 'coupon-creator' )}
@@ -71,7 +71,7 @@ export default class Inspector extends Component {
 		return (
 			<InspectorControls>
 
-				<PanelRow className="coupon-chooser">
+				<PanelRow className="coupon-select">
 					<CouponChooser {...{setAttributes, ...this.props}} />
 				</PanelRow>
 

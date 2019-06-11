@@ -20,6 +20,8 @@ class BaseAcceptanceCest {
 
 		$this->factory = $I->factory();
 
+		$I->loginAsAdmin();
+
 	}
 
 }

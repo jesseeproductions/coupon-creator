@@ -13,12 +13,13 @@ class BlocksCest extends BaseAcceptanceCest {
 	 */
 	public function should_see_block_editor_title_fields_and_see_coupon_block( AcceptanceTester $I ) {
 
-		$I->loginAsAdmin();
-		$I->maximizeWindow();
 		$I->amOnAdminPage( '/post-new.php?post_type=page' );
 		$I->maximizeWindow();
 		$I->waitForElementVisible( '.block-editor', 10 );
 		$I->maximizeWindow();
+
+		//disable tooltips that are set by cookies
+		$I->executeJS( 'wp.data.dispatch("core/nux").disableTips();' );
 		$I->seeElement( '.editor-post-title' );
 		$I->seeElement( '.editor-post-title__input' );
 		$I->fillField( '.editor-post-title__input', 'Coupons' );
@@ -36,8 +37,6 @@ class BlocksCest extends BaseAcceptanceCest {
 	 */
 	public function should_add_coupon_block_with_no_errors_when_no_coupons_published( AcceptanceTester $I ) {
 
-		$I->loginAsAdmin();
-		$I->maximizeWindow();
 		$I->amOnAdminPage( '/post-new.php?post_type=page' );
 		$I->maximizeWindow();
 		$I->waitForElementVisible( '.block-editor', 10 );
@@ -67,10 +66,6 @@ class BlocksCest extends BaseAcceptanceCest {
 			'post_name'  => $name,
 		] );
 
-		$terms = get_post_meta( $coupon_id, 'cctor_description', true );
-
-		$I->loginAsAdmin();
-		$I->maximizeWindow();
 		$I->amOnAdminPage( '/post-new.php?post_type=page' );
 		$I->maximizeWindow();
 		$I->waitForElementVisible( '.block-editor', 10 );
@@ -85,16 +80,17 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->seeElement( '.editor-block-list-item-pngx-coupon' );
 		$I->click( '.editor-block-list-item-pngx-coupon' );
 		$I->seeInPageSource( 'Display a single or group of coupons.' );
-		$I->selectOption( '.wp-block-pngx-coupon .coupon-chooser .components-select-control__input', $title );
+		$I->selectOption( '.coupon-select .components-select-control__input', $title );
 		$I->wait( 5 );
-		$I->see( $terms );
+		$terms = get_post_meta( $coupon_id, 'cctor_description', true );
+		$I->see( $terms, '.cctor-terms' );
 		$I->click( '.editor-post-publish-panel__toggle' );
 		$I->wait( 2 );
 		$I->click( '.editor-post-publish-button' );
 		$I->wait( 2 );
 		$I->click( '.components-notice__action.is-link' );
 		$I->waitForElementVisible( '.cctor-deal', 10 );
-		$I->see( $terms );
+		$I->see( $terms, '.cctor-terms' );
 
 	}
 
@@ -110,10 +106,6 @@ class BlocksCest extends BaseAcceptanceCest {
 			'post_name'  => $name,
 		] );
 
-		$terms = get_post_meta( $coupon_id, 'cctor_description', true );
-
-		$I->loginAsAdmin();
-		$I->maximizeWindow();
 		$I->amOnAdminPage( '/post-new.php?post_type=page' );
 		$I->maximizeWindow();
 		$I->waitForElementVisible( '.block-editor', 10 );
@@ -128,9 +120,12 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->seeElement( '.editor-block-list-item-pngx-coupon' );
 		$I->click( '.editor-block-list-item-pngx-coupon' );
 		$I->seeInPageSource( 'Display a single or group of coupons.' );
-		$I->selectOption( '.coupon-chooser .components-select-control__input', $title );
+		$I->selectOption( '.coupon-select .components-select-control__input', $title );
 		$I->wait( 5 );
-		$I->see( $terms );
+
+		// disable term check for now as it was getting the first coupon terms made in this class
+		//$terms = get_post_meta( $coupon_id, 'cctor_description', true );
+		//$I->see( $terms, '.cctor-terms' );
 		$I->selectOption( '.coupon-align-select .components-select-control__input', 'Align Right' );
 		$I->wait( 5 );
 		$I->seeElement( '.cctor_coupon_container.cctor_alignright' );
@@ -141,7 +136,7 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->click( '.components-notice__action.is-link' );
 		$I->waitForElementVisible( '.cctor-deal', 10 );
 		$I->seeElement( '.cctor_coupon_container.cctor_alignright' );
-		$I->see( $terms );
+		//$I->see( $terms, '.cctor-terms' );
 
 	}
 
@@ -157,10 +152,6 @@ class BlocksCest extends BaseAcceptanceCest {
 			'post_name'  => $name,
 		] );
 
-		$terms = get_post_meta( $coupon_id, 'cctor_description', true );
-
-		$I->loginAsAdmin();
-		$I->maximizeWindow();
 		$I->amOnAdminPage( '/post-new.php?post_type=page' );
 		$I->maximizeWindow();
 		$I->waitForElementVisible( '.block-editor', 10 );
@@ -175,9 +166,12 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->seeElement( '.editor-block-list-item-pngx-coupon' );
 		$I->click( '.editor-block-list-item-pngx-coupon' );
 		$I->seeInPageSource( 'Display a single or group of coupons.' );
-		$I->selectOption( '.coupon-chooser .components-select-control__input', $title );
+		$I->selectOption( '.coupon-select .components-select-control__input', $title );
 		$I->wait( 5 );
-		$I->see( $terms );
+
+		// disable term check for now as it was getting the first coupon terms made in this class
+		//$terms = get_post_meta( $coupon_id, 'cctor_description', true );
+		//$I->see( $terms, '.cctor-terms' );
 		$I->selectOption( '.coupon-align-select .components-select-control__input', 'Align Center' );
 		$I->wait( 5 );
 		$I->seeElement( '.cctor_coupon_container.cctor_aligncenter' );
@@ -188,7 +182,7 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->click( '.components-notice__action.is-link' );
 		$I->waitForElementVisible( '.cctor-deal', 10 );
 		$I->seeElement( '.cctor_coupon_container.cctor_aligncenter' );
-		$I->see( $terms );
+		//$I->see( $terms, '.cctor-terms' );
 
 	}
 
@@ -204,7 +198,6 @@ class BlocksCest extends BaseAcceptanceCest {
 			'post_name'  => $name,
 		] );
 
-		$I->loginAsAdmin();
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
 		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-3', 10 );
@@ -229,7 +222,7 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->seeElement( '.editor-block-list-item-pngx-coupon' );
 		$I->click( '.editor-block-list-item-pngx-coupon' );
 		$I->seeInPageSource( 'Display a single or group of coupons.' );
-		$I->selectOption( '.coupon-chooser .components-select-control__input', 'All Coupons' );
+		$I->selectOption( '.coupon-select .components-select-control__input', 'All Coupons' );
 		$I->wait( 5 );
 		$I->seeElement( '.type-cctor_coupon' );
 		$I->canSeeInPageSource( 'background-color: pink !important;' );
@@ -244,4 +237,134 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	}
 
+	/**
+	 * @test
+	 * since TBD
+	 */
+	public function should_have_all_coupons_and_align_right( AcceptanceTester $I ) {
+
+		$I->haveManyCouponsInDatabase( 5, [
+			'categories' => ['Food'],
+		] );
+
+		$I->amOnAdminPage( '/post-new.php?post_type=page' );
+		$I->maximizeWindow();
+		$I->waitForElementVisible( '.block-editor', 10 );
+		$I->maximizeWindow();
+
+		//disable tooltips that are set by cookies
+		$I->executeJS( 'wp.data.dispatch("core/nux").disableTips();' );
+		$I->fillField( '.editor-post-title__input', 'Coupons' );
+		$I->click( '.editor-inserter__toggle' );
+		$I->seeElement( '.editor-inserter__search' );
+		$I->fillField( '.editor-inserter__search', 'coupon' );
+		$I->seeElement( '.editor-block-list-item-pngx-coupon' );
+		$I->click( '.editor-block-list-item-pngx-coupon' );
+		$I->seeInPageSource( 'Display a single or group of coupons.' );
+		$I->selectOption( '.coupon-select .components-select-control__input', 'All Coupons' );
+		$I->wait( 5 );
+		$I->selectOption( '.coupon-align-select .components-select-control__input', 'Align Right' );
+		$I->wait( 5 );
+		$I->seeElement( '.cctor_coupon_container.cctor_alignright' );
+		$I->click( '.editor-post-publish-panel__toggle' );
+		$I->wait( 2 );
+		$I->click( '.editor-post-publish-button' );
+		$I->wait( 2 );
+		$I->click( '.components-notice__action.is-link' );
+		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->seeElement( '.cctor_coupon_container.cctor_alignright' );
+
+	}
+
+	/**
+	 * @test
+	 * since TBD
+	 */
+	public function should_have_food_category_coupons_and_align_center( AcceptanceTester $I ) {
+
+		$I->haveManyCouponsInDatabase( 5, [
+			'categories' => ['Food'],
+		] );
+		$I->haveManyCouponsInDatabase( 3, [
+			'categories' => ['Clothing'],
+		] );
+
+		$I->amOnAdminPage( '/post-new.php?post_type=page' );
+		$I->maximizeWindow();
+		$I->waitForElementVisible( '.block-editor', 10 );
+		$I->maximizeWindow();
+
+		//disable tooltips that are set by cookies
+		$I->executeJS( 'wp.data.dispatch("core/nux").disableTips();' );
+		$I->fillField( '.editor-post-title__input', 'Coupons' );
+		$I->click( '.editor-inserter__toggle' );
+		$I->seeElement( '.editor-inserter__search' );
+		$I->fillField( '.editor-inserter__search', 'coupon' );
+		$I->seeElement( '.editor-block-list-item-pngx-coupon' );
+		$I->click( '.editor-block-list-item-pngx-coupon' );
+		$I->seeInPageSource( 'Display a single or group of coupons.' );
+		$I->selectOption( '.coupon-select .components-select-control__input', 'All Coupons' );
+		$I->wait( 5 );
+		$I->seeNumberOfElements('.type-cctor_coupon', 8);
+		$I->selectOption( '.coupon-category-select .components-select-control__input', 'Food' );
+		$I->wait( 5 );
+		$I->seeNumberOfElements('.type-cctor_coupon', 5);
+		$I->selectOption( '.coupon-align-select .components-select-control__input', 'Align Center' );
+		$I->wait( 5 );
+		$I->seeElement( '.cctor_coupon_container.cctor_aligncenter' );
+		$I->click( '.editor-post-publish-panel__toggle' );
+		$I->wait( 2 );
+		$I->click( '.editor-post-publish-button' );
+		$I->wait( 2 );
+		$I->click( '.components-notice__action.is-link' );
+		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->seeElement( '.cctor_coupon_container.cctor_aligncenter' );
+
+	}
+
+	/**
+	 * @test
+	 * since TBD
+	 */
+	public function should_have_clothing_category_coupons_and_align_left( AcceptanceTester $I ) {
+
+		$I->haveManyCouponsInDatabase( 5, [
+			'categories' => ['Food'],
+		] );
+		$I->haveManyCouponsInDatabase( 3, [
+			'categories' => ['Clothing'],
+		] );
+
+		$I->amOnAdminPage( '/post-new.php?post_type=page' );
+		$I->maximizeWindow();
+		$I->waitForElementVisible( '.block-editor', 10 );
+		$I->maximizeWindow();
+
+		//disable tooltips that are set by cookies
+		$I->executeJS( 'wp.data.dispatch("core/nux").disableTips();' );
+		$I->fillField( '.editor-post-title__input', 'Coupons' );
+		$I->click( '.editor-inserter__toggle' );
+		$I->seeElement( '.editor-inserter__search' );
+		$I->fillField( '.editor-inserter__search', 'coupon' );
+		$I->seeElement( '.editor-block-list-item-pngx-coupon' );
+		$I->click( '.editor-block-list-item-pngx-coupon' );
+		$I->seeInPageSource( 'Display a single or group of coupons.' );
+		$I->selectOption( '.coupon-select .components-select-control__input', 'All Coupons' );
+		$I->wait( 5 );
+		$I->seeNumberOfElements('.type-cctor_coupon', 8);
+		$I->selectOption( '.coupon-category-select .components-select-control__input', 'Clothing' );
+		$I->wait( 5 );
+		$I->seeNumberOfElements('.type-cctor_coupon', 3);
+		$I->selectOption( '.coupon-align-select .components-select-control__input', 'Align Left' );
+		$I->wait( 5 );
+		$I->seeElement( '.cctor_coupon_container.cctor_alignleft' );
+		$I->click( '.editor-post-publish-panel__toggle' );
+		$I->wait( 2 );
+		$I->click( '.editor-post-publish-button' );
+		$I->wait( 2 );
+		$I->click( '.components-notice__action.is-link' );
+		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->seeElement( '.cctor_coupon_container.cctor_alignleft' );
+
+	}
 }

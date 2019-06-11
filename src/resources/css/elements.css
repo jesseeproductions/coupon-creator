@@ -1,1 +1,11 @@
-.pngx-editor__spinner-container{display:-ms-flexbox;display:flex;width:100%;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;padding:20px}
+.pngx-editor__spinner-container {
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	-ms-flex-pack: center;
+	    justify-content: center;
+	-ms-flex-align: center;
+	    align-items: center;
+	padding: 20px;
+}
+/*# sourceMappingURL=elements.css.map*/
