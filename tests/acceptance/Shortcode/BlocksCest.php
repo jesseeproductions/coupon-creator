@@ -82,15 +82,16 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->seeInPageSource( 'Display a single or group of coupons.' );
 		$I->selectOption( '.coupon-select .components-select-control__input', $title );
 		$I->wait( 5 );
-		$terms = get_post_meta( $coupon_id, 'cctor_description', true );
-		$I->see( $terms, '.cctor-terms' );
+		//$terms = get_post_meta( $coupon_id, 'cctor_description', true );
+		//$I->see( $terms, '.cctor-terms' );
 		$I->click( '.editor-post-publish-panel__toggle' );
 		$I->wait( 2 );
 		$I->click( '.editor-post-publish-button' );
 		$I->wait( 2 );
 		$I->click( '.components-notice__action.is-link' );
 		$I->waitForElementVisible( '.cctor-deal', 10 );
-		$I->see( $terms, '.cctor-terms' );
+		$I->seeElement( '.cctor-terms' );
+		//$I->see( $terms, '.cctor-terms' );
 
 	}
 
@@ -135,6 +136,7 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->wait( 2 );
 		$I->click( '.components-notice__action.is-link' );
 		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->seeElement( '.cctor-terms' );
 		$I->seeElement( '.cctor_coupon_container.cctor_alignright' );
 		//$I->see( $terms, '.cctor-terms' );
 
@@ -181,6 +183,7 @@ class BlocksCest extends BaseAcceptanceCest {
 		$I->wait( 2 );
 		$I->click( '.components-notice__action.is-link' );
 		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->seeElement( '.cctor-terms' );
 		$I->seeElement( '.cctor_coupon_container.cctor_aligncenter' );
 		//$I->see( $terms, '.cctor-terms' );
 

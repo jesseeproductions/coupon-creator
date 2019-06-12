@@ -132,8 +132,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	 */
 	public function show_coupon_shortcode( $post ) {
 		?><p class="shortcode">
-		<?php esc_html_e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:<br><br>', 'coupon-creator' ); ?>
-		<code>[coupon couponid="<?php echo absint( $post->ID ); ?>" name="<?php echo esc_html( $post->post_title ); ?>"]</code>
+		<?php esc_html_e( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:', 'coupon-creator' ); ?>
+		<br><br><code>[coupon couponid="<?php echo absint( $post->ID ); ?>" name="<?php echo esc_html( $post->post_title ); ?>"]</code>
 		</p><?php
 
 	}

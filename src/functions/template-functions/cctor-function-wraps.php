@@ -104,7 +104,7 @@ function cctor_return_print_inner_coupon_wrap( $coupon_id ) {
 
 	$coupon_inner_content_wrap               = array();
 	$coupon_inner_content_wrap['start_wrap'] = '<div class="cctor_coupon">
-	<div class="cctor_coupon_content" style="border-color:' . esc_html( get_post_meta( $coupon_id, 'cctor_bordercolor', true ) ) . '">';
+	<div class="cctor_coupon_content cctor-coupon-content" style="border-color:' . esc_html( get_post_meta( $coupon_id, 'cctor_bordercolor', true ) ) . '">';
 
 	$coupon_inner_content_wrap['end_wrap'] = '</div> <!--end .cctor_coupon_content -->
 							</div> <!--end .cctor_coupon -->';
