@@ -29,8 +29,8 @@ class Cctor__Coupon__Admin__Field__Image_Coupon {
 		$imagesrc = '';
 
 		if ( is_numeric( $value ) ) {
-			$imagesrc     = wp_get_attachment_image_src( absint( $value ), 'medium' );
-			$imagesrc     = $imagesrc[0];
+			$imagesrc = wp_get_attachment_image_src( absint( $value ), 'medium' );
+			$imagesrc = isset( $imagesrc[0] ) ? wp_normalize_path( $imagesrc[0] ) : '';
 			$imagedisplay = '<div style="display:none" id="' . esc_attr( $field['id'] ) . '" class="pngx-default-image pngx-image-wrap">' . esc_html( $imagemsg ) . '</div> <img src="' . $imagesrc . '" id="' . esc_attr( $field['id'] ) . '" class="pngx-image pngx-image-wrap-img" />';
 		} else {
 			$imagedisplay = '<div style="display:block" id="' . esc_attr( $field['id'] ) . '" class="pngx-default-image pngx-image-wrap">' . esc_html( $imagemsg ) . '</div> <img style="display:none" src="' . $imagesrc . '" id="' . esc_attr( $field['id'] ) . '" class="pngx-image pngx-image-wrap-img" />';

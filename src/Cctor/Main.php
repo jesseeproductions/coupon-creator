@@ -63,6 +63,9 @@ class Cctor__Coupon__Main {
 		$this->vendor_path   = $this->plugin_path . 'vendor/';
 		$this->vendor_url    = $this->plugin_url . 'vendor/';
 
+		// Set common lib information, needs to happen file load
+		$this->maybe_set_common_lib_info();
+
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 0 );
 	}
 
@@ -77,7 +80,6 @@ class Cctor__Coupon__Main {
 		}
 
 		// Setup Auto Loader to Prevent Fatal on Activate
-		self::instance()->maybe_set_common_lib_info();
 		self::instance()->init_autoloading();
 
 		// Safety check: if Plugin Engine is not at a certain minimum version, bail out
