@@ -153,4 +153,137 @@ class CouponsCest extends BaseAcceptanceCest {
 
 	}
 
+	/**
+	 * @test
+	 * since TBD
+	 */
+	public function should_create_coupon_with_expiration_in_a_month_and_day_first_format( AcceptanceTester $I ) {
+		$deal                 = 'Automated Deal 03';
+		$terms                = 'Automated Terms 03';
+		$category             = 'Food';
+		$expiration           = date( 'm/d/Y', strtotime( '+1 months' ) );
+		$expiration_formatted = date( 'd/m/Y', strtotime( '+1 months' ) );
+
+		$I->loginAsAdmin();
+
+		// start check of defaults on add new coupon
+		$I->amOnAdminPage( '/post-new.php?post_type=cctor_coupon' );
+		$I->wait( 2 );
+
+		// maximize window to see tabs
+		$I->maximizeWindow();
+		$I->dontSeeInPageSource( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:' );
+		$I->selectOption( '#cctor_coupon_type', 'Default' );
+		$I->waitForJqueryAjax();
+		$I->fillField( '#title', $deal );
+		$I->fillField( '#cctor_amount', $deal );
+		$I->fillField( '#cctor_description', $terms );
+		$I->makeScreenshot();
+
+		$I->click( '#ui-id-3' );
+		$I->selectOption( '#cctor_expiration_option', 'Expiration Date' );
+		$I->waitForJqueryAjax();
+		$I->selectOption( '#cctor_date_format', 'Day First - DD/MM/YYYY' );
+		$I->scrollTo( '#cctor_date_format' );
+		//$I->executeJS( '$("#cctor_date_format").val( ' . $expiration . ');' );
+		$I->fillField( '#cctor_expiration', $expiration );
+		$I->makeScreenshot();
+
+		$I->scrollTo( '#cctor_coupon_categorydiv' );
+		$I->click( '#cctor_coupon_category-add-toggle' );
+		$I->fillField( '#newcctor_coupon_category', $category );
+		$I->click( '#cctor_coupon_category-add-submit' );
+		$I->wait( 3 );
+
+		$I->scrollTo( '#submitdiv' );
+		$I->click( '#publish' );
+		$I->waitForElementVisible( '#message', 10 );
+		$I->see( 'Coupon published.', '#message' );
+		$I->see( 'This Coupon is Showing.' );
+		$I->see( 'This Coupon Expires On ' . $expiration_formatted );
+		$I->SeeInPageSource( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:' );
+		$I->wait( 3 );
+
+		$I->click( 'View Coupon' );
+		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->see( $deal, '.cctor-deal' );
+		$I->see( $terms, '.cctor-terms' );
+		$I->see( $expiration_formatted, '.cctor_expiration' );
+		$I->makeScreenshot();
+
+		$I->havePageInDatabase( [
+			'post_title'   => 'Coupons',
+			'post_name'    => 'coupons',
+			'post_content' => '[coupon couponid="loop" category="' . $category . '" coupon_align="cctor_aligncenter" name="' . $deal . '"]',
+		] );
+
+		$I->amOnPage( '/coupons/' );
+		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->see( $deal, '.cctor-deal' );
+		$I->see( $terms, '.cctor-terms' );
+		$I->see( $expiration_formatted, '.cctor_expiration' );
+		$I->makeScreenshot();
+	}
+
+	/**
+	 * @test
+	 * since TBD
+	 */
+	public function should_create_coupon_that_is_expired_and_does_not_show( AcceptanceTester $I ) {
+		$deal       = 'Automated Deal 04';
+		$terms      = 'Automated Terms 04';
+		$category   = 'Expired';
+		$expiration = date( 'm/d/Y', strtotime( '-1 months' ) );
+
+		$I->loginAsAdmin();
+
+		// start check of defaults on add new coupon
+		$I->amOnAdminPage( '/post-new.php?post_type=cctor_coupon' );
+		$I->wait( 2 );
+
+		// maximize window to see tabs
+		$I->maximizeWindow();
+		$I->dontSeeInPageSource( 'Place this coupon in your posts, pages, custom post types, or widgets by using the shortcode below:' );
+		$I->selectOption( '#cctor_coupon_type', 'Default' );
+		$I->waitForJqueryAjax();
+		$I->fillField( '#title', $deal );
+		$I->fillField( '#cctor_amount', $deal );
+		$I->fillField( '#cctor_description', $terms );
+		$I->makeScreenshot();
+
+		$I->click( '#ui-id-3' );
+		$I->selectOption( '#cctor_expiration_option', 'Expiration Date' );
+		$I->waitForJqueryAjax();
+		$I->scrollTo( '#cctor_date_format' );
+		$I->fillField( '#cctor_expiration', $expiration );
+		$I->makeScreenshot();
+
+		$I->scrollTo( '#cctor_coupon_categorydiv' );
+		$I->click( '#cctor_coupon_category-add-toggle' );
+		$I->fillField( '#newcctor_coupon_category', $category );
+		$I->click( '#cctor_coupon_category-add-submit' );
+		$I->wait( 3 );
+
+		$I->scrollTo( '#submitdiv' );
+		$I->click( '#publish' );
+		$I->waitForElementVisible( '#message', 10 );
+		$I->see( 'Coupon published.', '#message' );
+		$I->see( 'This Coupon is not Showing.' );
+		$I->see( 'This Coupon Expired On ' . $expiration );
+		$I->wait( 3 );
+
+		$I->click( 'View Coupon' );
+		$I->SeeInPageSource( 'Coupon ' . $deal . ' expired on ' . $expiration );
+		$I->makeScreenshot();
+
+		$I->havePageInDatabase( [
+			'post_title'   => 'Coupons',
+			'post_name'    => 'coupons',
+			'post_content' => '[coupon couponid="loop" category="' . $category . '" coupon_align="cctor_aligncenter" name="' . $deal . '"]',
+		] );
+
+		$I->amOnPage( '/coupons/' );
+		$I->SeeInPageSource( 'Coupon ' . $deal . ' expired on ' . $expiration );
+		$I->makeScreenshot();
+	}
 }

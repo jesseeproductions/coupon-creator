@@ -45,7 +45,7 @@ function cctor_show_no_coupon_comment( $coupon_id, $coupon_expiration ) {
 
 	if ( ! empty( $expiration_date ) ) {
 
-		?><!--<?php echo sprintf( '%1s %2s %3s %4s', __( 'Coupon ', 'coupon-creator' ), get_the_title( $coupon_id ), __( ' expired on ', 'coupon-creator' ), esc_html( $expiration_date ) ) ?>--><?php
+		?><!--<?php echo sprintf( '%1s %2s %3s %4s', __( 'Coupon', 'coupon-creator' ), get_the_title( $coupon_id ), __( 'expired on', 'coupon-creator' ), esc_html( $expiration_date ) ) ?>--><?php
 
 	}
 
@@ -64,6 +64,10 @@ function cctor_show_no_coupon_comment( $coupon_id, $coupon_expiration ) {
 function cctor_show_no_coupon_notice_admin( $coupon_id, $coupon_expiration, $coupon_align = null ) {
 
 	if ( ! is_object( $coupon_expiration ) ) {
+		return false;
+	}
+
+	if ( ! is_admin() ) {
 		return false;
 	}
 

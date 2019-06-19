@@ -18,8 +18,20 @@ class Cctor__Coupon__Main {
 	const PLUGIN_NAME              = 'Coupon Creator';
 	const CAPABILITIESPLURAL       = 'cctor_coupons';
 	const TEXT_DOMAIN              = 'coupon-creator';
-	const MIN_PHP_VERSION          = '5.6';
-	const MIN_WP_VERSION           = '4.9';
+
+	/**
+	* Min Version of WordPress
+	*
+	* @since 4.10
+	*/
+	protected $min_wordpress = '4.9';
+	/**
+	* Min Version of PHP
+	*
+	* @since 4.10
+	*/
+	protected $min_php = '5.6';
+
 	const VERSION_KEY              = 'cctor_coupon_version';
 	const VERSION_NUM              = '3.0';
 	const MIN_PNGX_VERSION         = '3.0';
@@ -29,7 +41,22 @@ class Cctor__Coupon__Main {
 
 	public $cctorUrl = 'https://couponcreatorplugin.com/';
 
+	/**
+	 * @var bool Prevent autoload initialization
+	 */
+	private $should_prevent_autoload_init = false;
+ 	/**
+	 * @var string tribe-common VERSION regex
+	 */
+	private $pngx_version_regex = "/const\s+VERSION\s*=\s*'([^']+)'/m";
+
+	/**
+	 * Static Singleton Holder
+	 *
+	 * @var self
+	 */
 	protected static $instance;
+
 	public           $plugin_dir;
 	public           $plugin_path;
 	public           $plugin_url;
@@ -38,6 +65,16 @@ class Cctor__Coupon__Main {
 	public           $vendor_path;
 	public           $vendor_url;
 	public           $plugin_name;
+
+	/**
+	 * @deprecated 3.0
+	 */
+	const MIN_WP_VERSION           = '4.9';
+
+	/**
+	 * @deprecated 3.0
+	 */
+	const MIN_PHP_VERSION          = '5.6';
 
 	/**
 	 * Get (and instantiate, if necessary) the instance of the class
@@ -66,6 +103,7 @@ class Cctor__Coupon__Main {
 		// Set common lib information, needs to happen file load
 		$this->maybe_set_common_lib_info();
 
+		add_action( 'plugins_loaded', array( $this, 'maybe_bail_if_invalid_wp_or_php' ), -1 );
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 0 );
 	}
 
@@ -132,22 +170,23 @@ class Cctor__Coupon__Main {
 
 	public function plugins_loaded() {
 
+		if ( $this->should_prevent_autoload_init ) {
 
-		if ( ! $this->supportedVersion( 'wordpress' ) ||  ! $this->supportedVersion( 'php' ) ) {
-
-			add_action( 'admin_head', array( $this, 'notSupportedError' ) );
+			/**
+			 * Fires if Coupon Creat cannot load due to compatibility or other problems.
+			 */
+			do_action( 'coupon_creator_plugin_failed_to_load' );
 
 			return;
 
 		}
-
-		$this->maybe_set_common_lib_info();
 
 		// include the autoloader class for Cctor classes
 		$this->init_autoloading();
 
 		// Start Up Common
 		Pngx__Main::instance();
+
 		add_action( 'pngx_common_loaded', array( $this, 'bootstrap' ), 0 );
 
 		//Disable Older Versions of Pro to prevent fatal errors
@@ -195,44 +234,6 @@ class Cctor__Coupon__Main {
 	 */
 	protected function register_active_plugin() {
 		$this->registered = new Cctor__Coupon__Plugin_Register();
-	}
-
-	/**
-	 * Test PHP and WordPress versions for compatibility
-	 *
-	 * @param string $system - system to be tested such as 'php' or 'wordpress'
-	 *
-	 * @return boolean - is the existing version of the system supported?
-	 */
-	public function supportedVersion( $system ) {
-		if ( $supported = wp_cache_get( $system, 'tribe_version_test' ) ) {
-			return $supported;
-		} else {
-			switch ( strtolower( $system ) ) {
-				case 'wordpress' :
-					$supported = version_compare( get_bloginfo( 'version' ), self::MIN_WP_VERSION, '>=' );
-					break;
-				case 'php' :
-					$supported = version_compare( phpversion(), self::MIN_PHP_VERSION, '>=' );
-					break;
-			}
-			$supported = apply_filters( 'cctor_supported_version', $supported, $system );
-			wp_cache_set( $system, $supported, 'cctor_version_test' );
-
-			return $supported;
-		}
-	}
-
-	/**
-	 * Display a WordPress or PHP incompatibility error
-	 */
-	public function notSupportedError() {
-		if ( ! $this->supportedVersion( 'wordpress' ) ) {
-			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
-		}
-		if ( ! $this->supportedVersion( 'php' ) ) {
-			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::MIN_PHP_VERSION, phpversion() ) . '</p></div>';
-		}
 	}
 
 	/**
@@ -287,7 +288,7 @@ class Cctor__Coupon__Main {
 		$pngx_version = file_get_contents( $this->plugin_path . 'plugin-engine/src/Pngx/Main.php' );
 
 		// if there isn't a plugin-engine version, bail
-		if ( ! preg_match( "/const\s+VERSION\s*=\s*'([^']+)'/m", $pngx_version, $matches ) ) {
+		if ( ! preg_match( $this->pngx_version_regex, $pngx_version, $matches ) ) {
 			add_action( 'admin_head', array( $this, 'missing_common_libs' ) );
 
 			return;
@@ -308,6 +309,21 @@ class Cctor__Coupon__Main {
 	}
 
 	/**
+	 * Prevents bootstrapping and autoloading if the version of WP or PHP are too old
+	 *
+	 * @since 4.10.6.2
+	 */
+	public function maybe_bail_if_invalid_wp_or_php() {
+		if ( self::supported_version( 'wordpress' ) && self::supported_version( 'php' ) ) {
+			return;
+		}
+		add_action( 'admin_notices', array( $this, 'not_supported_error' ) );
+		add_action( 'network_admin_notices', array( $this, 'not_supported_error' ) );
+
+		$this->should_prevent_autoload_init = true;
+	}
+
+	/**
 	 * Display a missing plugin-engine library error
 	 */
 	public function missing_common_libs() {
@@ -315,11 +331,62 @@ class Cctor__Coupon__Main {
 		<div class="error">
 			<p>
 				<?php
-				echo esc_html__( 'It appears as if the plugin-engine libraries cannot be found! The directory should be in the "plugin-engine/" directory in the Coupon Creator plugin.', 'coupon-creator' );
+				echo esc_html__( 'It appears as if the Plugin Engine libraries cannot be found! The directory should be in the "plugin-engine/" directory in the Coupon Creator plugin.', 'coupon-creator' );
 				?>
 			</p>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Test whether the current version of PHP or WordPress is supported.
+	 *
+	 * @since 3.0
+	 *
+	 * @param string $system Which system to test the version of such as 'php' or 'wordpress'.
+	 *
+	 * @return boolean Whether the current version of PHP or WordPress is supported.
+	 */
+	public function supported_version( $system ) {
+		if ( $supported = wp_cache_get( $system, 'pngx_version_test' ) ) {
+			return $supported;
+		}
+		switch ( strtolower( $system ) ) {
+			case 'wordpress' :
+				$supported = version_compare( get_bloginfo( 'version' ), $this->min_wordpress, '>=' );
+				break;
+			case 'php' :
+				$supported = version_compare( phpversion(), $this->min_php, '>=' );
+				break;
+		}
+		/**
+		 * Filter whether the current version of PHP or WordPress is supported.
+		 *
+		 * @param boolean $supported Whether the current version of PHP or WordPress is supported.
+		 * @param string  $system    Which system to test the version of such as 'php' or 'wordpress'.
+		 *
+		 * @since 3.0
+		 *
+		 */
+		$supported = apply_filters( 'coupon_creator_supported_system_version', $supported, $system );
+
+		wp_cache_set( $system, $supported, 'pngx_version_test' );
+
+		return $supported;
+	}
+
+	/**
+	 * Display a WordPress or PHP incompatibility error.
+	 *
+	 * @since 3.0
+	 */
+	public function not_supported_error() {
+		if ( ! self::supported_version( 'wordpress' ) ) {
+			echo '<div class="error"><p>' . esc_html( sprintf( __( 'Sorry, Coupon Creator requires WordPress %s or higher. Please upgrade your WordPress install.', 'coupon-creator' ), $this->min_wordpress ) ) . '</p></div>';
+		}
+		if ( ! self::supported_version( 'php' ) ) {
+			echo '<div class="error"><p>' . esc_html( sprintf( __( 'Sorry, Coupon Creator requires PHP %s or higher. Talk to your Web host about moving you to a newer version of PHP.', 'coupon-creator' ), $this->min_php ) ) . '</p></div>';
+		}
 	}
 
 	/**
@@ -536,13 +603,58 @@ class Cctor__Coupon__Main {
 	/**
 	 * Load the text domain.
 	 *
-	 * @deprecated 2.6
+	 * @deprecated 3.0
 	 *
 	 */
 	public function i18n() {
 
 		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
 
+	}
+
+	/**
+	 * Test PHP and WordPress versions for compatibility
+	 *
+	 * @deprecated 3.0
+	 *
+	 * @param string $system - system to be tested such as 'php' or 'wordpress'
+	 *
+	 * @return boolean - is the existing version of the system supported?
+	 */
+	public function supportedVersion( $system ) {
+
+		if ( $supported = wp_cache_get( $system, 'cctor_version_test' ) ) {
+			return $supported;
+		}
+
+		switch ( strtolower( $system ) ) {
+			case 'wordpress' :
+				$supported = version_compare( get_bloginfo( 'version' ), self::MIN_WP_VERSION, '>=' );
+				break;
+			case 'php' :
+				$supported = version_compare( phpversion(), self::MIN_PHP_VERSION, '>=' );
+				break;
+		}
+		$supported = apply_filters( 'cctor_supported_version', $supported, $system );
+		wp_cache_set( $system, $supported, 'cctor_version_test' );
+
+		return $supported;
+
+	}
+
+	/**
+	 * Display a WordPress or PHP incompatibility error
+	 *
+	 * @deprecated 3.0
+	 *
+	 */
+	public function notSupportedError() {
+		if ( ! $this->supportedVersion( 'wordpress' ) ) {
+			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
+		}
+		if ( ! $this->supportedVersion( 'php' ) ) {
+			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::MIN_PHP_VERSION, phpversion() ) . '</p></div>';
+		}
 	}
 
 }
