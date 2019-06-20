@@ -286,4 +286,71 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->SeeInPageSource( 'Coupon ' . $deal . ' expired on ' . $expiration );
 		$I->makeScreenshot();
 	}
+
+	/**
+	 * @test
+	 * since TBD
+	 */
+	public function should_and_no_link_in_terms_with_changed_deal_font_and_background_color( AcceptanceTester $I ) {
+		$deal     = 'Automated Deal 05';
+		$terms    = 'Automated Terms 05 <a href="https://couponcreatorplugin.com">Coupon Creator</a>';
+		$category = 'Software';
+		$deal_color = '#ffffff';
+		$deal_bg = '#eeee23';
+
+		$I->loginAsAdmin();
+
+		// start check of defaults on add new coupon
+		$I->amOnAdminPage( '/post-new.php?post_type=cctor_coupon' );
+		$I->wait( 2 );
+
+		// maximize window to see tabs
+		$I->maximizeWindow();
+		$I->selectOption( '#cctor_coupon_type', 'Default' );
+		$I->waitForJqueryAjax();
+		$I->fillField( '#title', $deal );
+		$I->fillField( '#cctor_amount', $deal );
+		$I->fillField( '#cctor_description', $terms );
+		$I->executeJS( '$(".wp-picker-input-wrap").show();' );
+		$I->fillField( '#cctor_colorheader', $deal_color );
+		$I->fillField( '#cctor_colordiscount', $deal_bg );
+		$I->makeScreenshot();
+
+		$I->click( '#ui-id-3' );
+		$I->selectOption( '#cctor_expiration_option', 'Ignore Expiration' );
+
+		$I->scrollTo( '#cctor_coupon_categorydiv' );
+		$I->click( '#cctor_coupon_category-add-toggle' );
+		$I->fillField( '#newcctor_coupon_category', $category );
+		$I->click( '#cctor_coupon_category-add-submit' );
+		$I->wait( 3 );
+
+		$I->scrollTo( '#submitdiv' );
+		$I->click( '#publish' );
+		$I->waitForElementVisible( '#message', 10 );
+
+		$I->click( 'View Coupon' );
+		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->see( $deal, '.cctor-deal' );
+		$I->dontSee( $terms, '.cctor-terms' );
+		$I->seeInPageSource( '<h3 class="cctor-deal" style="background-color:#eeee23; color:#ffffff;">Automated Deal 05</h3>' );
+		$I->seeInPageSource( '<div class="cctor-terms">Automated Terms 05 Coupon Creator</div>' );
+		$I->dontSeeInPageSource( '<a href="https://couponcreatorplugin.com">Coupon Creator</a>' );
+		$I->makeScreenshot();
+
+		$I->havePageInDatabase( [
+			'post_title'   => 'Coupons',
+			'post_name'    => 'coupons',
+			'post_content' => '[coupon couponid="loop" category="' . $category . '" coupon_align="cctor_aligncenter" name="' . $deal . '"]',
+		] );
+
+		$I->amOnPage( '/coupons/' );
+		$I->waitForElementVisible( '.cctor-deal', 10 );
+		$I->see( $deal, '.cctor-deal' );
+		$I->dontSee( $terms, '.cctor-terms' );
+		$I->seeInPageSource( '<h3 class="cctor-deal" style="background-color:#eeee23; color:#ffffff;">Automated Deal 05</h3>' );
+		$I->seeInPageSource( '<div class="cctor-terms">Automated Terms 05 Coupon Creator</div>' );
+		$I->dontSeeInPageSource( '<a href="https://couponcreatorplugin.com">Coupon Creator</a>' );
+		$I->makeScreenshot();
+	}
 }

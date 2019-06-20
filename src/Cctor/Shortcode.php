@@ -88,136 +88,147 @@ class Cctor__Coupon__Shortcode {
 		 */
 		do_action( 'cctor_before_coupon_wrap' );
 
-		// The Coupon Loop
-		while ( $coupons->have_posts() ) {
+		if ( $coupons->have_posts() ) {
+			// The Coupon Loop
+			while ( $coupons->have_posts() ) {
 
-			$coupons->the_post();
+				$coupons->the_post();
 
-			$coupon_id = $coupons->post->ID;
+				$coupon_id = $coupons->post->ID;
 
 
-			if ( class_exists( 'Cctor__Coupon__Pro__Expiration' ) ) {
-				$coupon_expiration = new Cctor__Coupon__Pro__Expiration( $coupon_id );
-			} else {
-				$coupon_expiration = new Cctor__Coupon__Expiration( $coupon_id );
-			}
-			/**
-			 * Before Core Coupon Shortcode Individual Coupon
-			 *
-			 * @param int $coupon_id
-			 *
-			 */
-			do_action( 'cctor_before_coupon', $coupon_id );
-			//Check to show the Coupon
-			if ( $coupon_expiration->check_expiration() ) {
-				/**
-				 * Filter Individual Coupon Outer Wrap
-				 *
-				 * @param int         $coupon_id    .
-				 * @param string|null $coupon_align .
-				 * @param string      $cctor_atts   ['bordertheme'] .
-				 *
-				 */
-				$outer_coupon_wrap = apply_filters( 'cctor_outer_content_wrap', $coupon_id, $coupon_align, $cctor_atts['bordertheme'] );
-
-				echo $outer_coupon_wrap['start_wrap'];
-
-				/**
-				 * Before Core Shortcode Individual Coupon Wrap
-				 *
-				 * @param int $coupon_id
-				 *
-				 */
-				do_action( 'cctor_before_coupon_inner_wrap', $coupon_id );
-
-				//Return If Not Passed Expiration Date
-				/**
-				 * Filter Individual Image Coupon URL
-				 *
-				 * @param int $coupon_id
-				 * @param     string (image size)
-				 *
-				 */
-				$couponimage = apply_filters( 'cctor_image_url', $coupon_id, 'single_coupon' );
-
-				if ( $couponimage ) {
-					/**
-					 * Display Coupon Image Hook
-					 *
-					 * @param int    $coupon_id
-					 * @param string $couponimage
-					 * @param array  $cctor_atts ['bordertheme']
-					 */
-					do_action( 'cctor_img_coupon', $coupon_id, $couponimage, $cctor_atts['bordertheme'] );
-
+				if ( class_exists( 'Cctor__Coupon__Pro__Expiration' ) ) {
+					$coupon_expiration = new Cctor__Coupon__Pro__Expiration( $coupon_id );
 				} else {
+					$coupon_expiration = new Cctor__Coupon__Expiration( $coupon_id );
+				}
+				/**
+				 * Before Core Coupon Shortcode Individual Coupon
+				 *
+				 * @param int $coupon_id
+				 *
+				 */
+				do_action( 'cctor_before_coupon', $coupon_id );
+				//Check to show the Coupon
+				if ( $coupon_expiration->check_expiration() ) {
 					/**
-					 * Filter Individual Coupon Inner Wrap
+					 * Filter Individual Coupon Outer Wrap
 					 *
 					 * @param int         $coupon_id    .
 					 * @param string|null $coupon_align .
 					 * @param string      $cctor_atts   ['bordertheme'] .
 					 *
 					 */
-					$inner_coupon_wrap = apply_filters( 'cctor_inner_content_wrap', $coupon_id, $cctor_atts['bordertheme'] );
+					$outer_coupon_wrap = apply_filters( 'cctor_outer_content_wrap', $coupon_id, $coupon_align, $cctor_atts['bordertheme'] );
 
-					echo $inner_coupon_wrap['start_wrap'];
+					echo $outer_coupon_wrap['start_wrap'];
+
 					/**
-					 * Coupon Deal Hook
+					 * Before Core Shortcode Individual Coupon Wrap
 					 *
 					 * @param int $coupon_id
 					 *
 					 */
-					do_action( 'cctor_coupon_deal', $coupon_id );
+					do_action( 'cctor_before_coupon_inner_wrap', $coupon_id );
+
+					//Return If Not Passed Expiration Date
 					/**
-					 * Coupon Terms Hook
+					 * Filter Individual Image Coupon URL
+					 *
+					 * @param int $coupon_id
+					 * @param string (image size)
+					 *
+					 */
+					$couponimage = apply_filters( 'cctor_image_url', $coupon_id, 'single_coupon' );
+
+					if ( $couponimage ) {
+						/**
+						 * Display Coupon Image Hook
+						 *
+						 * @param int    $coupon_id
+						 * @param string $couponimage
+						 * @param array  $cctor_atts ['bordertheme']
+						 */
+						do_action( 'cctor_img_coupon', $coupon_id, $couponimage, $cctor_atts['bordertheme'] );
+
+					} else {
+						/**
+						 * Filter Individual Coupon Inner Wrap
+						 *
+						 * @param int         $coupon_id    .
+						 * @param string|null $coupon_align .
+						 * @param string      $cctor_atts   ['bordertheme'] .
+						 *
+						 */
+						$inner_coupon_wrap = apply_filters( 'cctor_inner_content_wrap', $coupon_id, $cctor_atts['bordertheme'] );
+
+						echo $inner_coupon_wrap['start_wrap'];
+						/**
+						 * Coupon Deal Hook
+						 *
+						 * @param int $coupon_id
+						 *
+						 */
+						do_action( 'cctor_coupon_deal', $coupon_id );
+						/**
+						 * Coupon Terms Hook
+						 *
+						 * @param int $coupon_id
+						 *
+						 */
+						do_action( 'cctor_coupon_terms', $coupon_id );
+
+						/**
+						 * Coupon Expiration Display Hook
+						 *
+						 * @param int    $coupon_id
+						 * @param object $coupon_expiration
+						 */
+						do_action( 'cctor_coupon_expiration', $coupon_id, $coupon_expiration );
+
+						echo $inner_coupon_wrap['end_wrap'];
+
+					}
+					/**
+					 * Individual Coupon Link
 					 *
 					 * @param int $coupon_id
 					 *
 					 */
-					do_action( 'cctor_coupon_terms', $coupon_id );
+					do_action( 'cctor_coupon_link', $coupon_id );
 
+					echo $outer_coupon_wrap['end_wrap'];
+
+				} else {
 					/**
-					 * Coupon Expiration Display Hook
+					 * coupon Expired Hook
+					 * Only Shows for expired coupon
 					 *
 					 * @param int    $coupon_id
 					 * @param object $coupon_expiration
 					 */
-					do_action( 'cctor_coupon_expiration', $coupon_id, $coupon_expiration );
-
-					echo $inner_coupon_wrap['end_wrap'];
-
+					do_action( 'cctor_no_show_coupon', $coupon_id, $coupon_expiration, $coupon_align );
 				}
 				/**
-				 * Individual Coupon Link
+				 * After Core Shortcode Wrap
 				 *
 				 * @param int $coupon_id
 				 *
 				 */
-				do_action( 'cctor_coupon_link', $coupon_id );
+				do_action( 'cctor_after_coupon', $coupon_id );
 
-				echo $outer_coupon_wrap['end_wrap'];
+			} //End While
 
-			} else {
-				/**
-				 * coupon Expired Hook
-				 * Only Shows for expired coupon
-				 *
-				 * @param int    $coupon_id
-				 * @param object $coupon_expiration
-				 */
-				do_action( 'cctor_no_show_coupon', $coupon_id, $coupon_expiration, $coupon_align );
-			}
-			/**
-			 * After Core Shortcode Wrap
-			 *
-			 * @param int $coupon_id
-			 *
-			 */
-			do_action( 'cctor_after_coupon', $coupon_id );
+		} else {
 
-		} //End While
-
+			?>
+			<!--<?php echo
+					sprintf( '%1s %2s',
+					__( 'Coupon shortcode is not showing with the following attributes:', 'coupon-creator' ),
+					str_replace('=', ':', http_build_query($cctor_atts, null, ',') )
+			) ?>-->
+			<?php
+		}
 		/**
 		 * End Core Shortcode
 		 *
