@@ -89,6 +89,7 @@ class Cctor__Coupon__Shortcode {
 		do_action( 'cctor_before_coupon_wrap' );
 
 		if ( $coupons->have_posts() ) {
+
 			// The Coupon Loop
 			while ( $coupons->have_posts() ) {
 
