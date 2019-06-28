@@ -30,7 +30,6 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->fillField( '#title', $deal );
 		$I->fillField( '#cctor_amount', $deal );
 		$I->fillField( '#cctor_description', $terms );
-		$I->makeScreenshot();
 
 		$I->click( '#ui-id-2' );
 		$I->executeJS( '$(".wp-picker-input-wrap").show();' );
@@ -59,7 +58,7 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->see( $deal, '.cctor-deal' );
 		$I->see( $terms, '.cctor-terms' );
 		$I->seeInPageSource( '<div class="cctor_coupon_content cctor-coupon-content" style="border-color:#000000">' );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'black-inside-border-print' );
 
 		$I->havePageInDatabase( [
 			'post_title'   => 'Coupons',
@@ -72,7 +71,7 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->see( $deal, '.cctor-deal' );
 		$I->see( $terms, '.cctor-terms' );
 		$I->seeInPageSource( '<div class="cctor_coupon_content cctor-coupon-content" style="border-color:#000000">' );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'black-inside-border-shortcode' );
 	}
 
 	/**
@@ -104,7 +103,7 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->executeJS( '$("#cctor_image.pngx-image").show();' );
 		$I->executeJS( '$("#cctor_image.pngx-image").attr( "src", "' . esc_url( $couponimage ) . '" );' );
 		$I->executeJS( '$("input#cctor_image").val(' . $coupon_img_id . ');' );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'image-coupon-admin' );
 
 		$I->click( '#ui-id-3' );
 		$I->selectOption( '#cctor_expiration_option', 'Ignore Expiration' );
@@ -129,7 +128,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 		$I->click( 'View Coupon' );
 		$I->waitForElementVisible( '.type-cctor_coupon', 10 );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'image-coupon-print' );
 
 		$I->havePageInDatabase( [
 			'post_title'   => 'Coupons',
@@ -139,7 +138,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 		$I->amOnPage( '/coupons-category-' . strtolower( $category ) . '/' );
 		$I->waitForElementVisible( '.type-cctor_coupon', 10 );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'image-coupon-shortcode-' . $category );
 
 		$I->havePageInDatabase( [
 			'post_title'   => 'Coupon Category',
@@ -149,7 +148,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 		$I->amOnPage( '/coupons-category-' . strtolower( $category_2 ) . '/' );
 		$I->waitForElementVisible( '.type-cctor_coupon', 10 );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'image-coupon-shortcode-' . $category_2 );
 
 	}
 
@@ -178,7 +177,6 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->fillField( '#title', $deal );
 		$I->fillField( '#cctor_amount', $deal );
 		$I->fillField( '#cctor_description', $terms );
-		$I->makeScreenshot();
 
 		$I->click( '#ui-id-3' );
 		$I->selectOption( '#cctor_expiration_option', 'Expiration Date' );
@@ -187,7 +185,6 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->scrollTo( '#cctor_date_format' );
 		//$I->executeJS( '$("#cctor_date_format").val( ' . $expiration . ');' );
 		$I->fillField( '#cctor_expiration', $expiration );
-		$I->makeScreenshot();
 
 		$I->scrollTo( '#cctor_coupon_categorydiv' );
 		$I->click( '#cctor_coupon_category-add-toggle' );
@@ -209,7 +206,7 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->see( $deal, '.cctor-deal' );
 		$I->see( $terms, '.cctor-terms' );
 		$I->see( $expiration_formatted, '.cctor_expiration' );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'expiration-day-first-print' );
 
 		$I->havePageInDatabase( [
 			'post_title'   => 'Coupons',
@@ -222,7 +219,7 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->see( $deal, '.cctor-deal' );
 		$I->see( $terms, '.cctor-terms' );
 		$I->see( $expiration_formatted, '.cctor_expiration' );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'expiration-day-first-shortcode' );
 	}
 
 	/**
@@ -249,14 +246,12 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->fillField( '#title', $deal );
 		$I->fillField( '#cctor_amount', $deal );
 		$I->fillField( '#cctor_description', $terms );
-		$I->makeScreenshot();
 
 		$I->click( '#ui-id-3' );
 		$I->selectOption( '#cctor_expiration_option', 'Expiration Date' );
 		$I->waitForJqueryAjax();
 		$I->scrollTo( '#cctor_date_format' );
 		$I->fillField( '#cctor_expiration', $expiration );
-		$I->makeScreenshot();
 
 		$I->scrollTo( '#cctor_coupon_categorydiv' );
 		$I->click( '#cctor_coupon_category-add-toggle' );
@@ -274,7 +269,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 		$I->click( 'View Coupon' );
 		$I->SeeInPageSource( 'Coupon ' . $deal . ' expired on ' . $expiration );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'expired-coupon-print' );
 
 		$I->havePageInDatabase( [
 			'post_title'   => 'Coupons',
@@ -284,7 +279,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 		$I->amOnPage( '/coupons/' );
 		$I->SeeInPageSource( 'Coupon ' . $deal . ' expired on ' . $expiration );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'expired-coupon-shortcode' );
 	}
 
 	/**
@@ -314,7 +309,6 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->executeJS( '$(".wp-picker-input-wrap").show();' );
 		$I->fillField( '#cctor_colorheader', $deal_color );
 		$I->fillField( '#cctor_colordiscount', $deal_bg );
-		$I->makeScreenshot();
 
 		$I->click( '#ui-id-3' );
 		$I->selectOption( '#cctor_expiration_option', 'Ignore Expiration' );
@@ -336,7 +330,7 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->seeInPageSource( '<h3 class="cctor-deal" style="background-color:#eeee23; color:#ffffff;">Automated Deal 05</h3>' );
 		$I->seeInPageSource( '<div class="cctor-terms">Automated Terms 05 Coupon Creator</div>' );
 		$I->dontSeeInPageSource( '<a href="https://couponcreatorplugin.com">Coupon Creator</a>' );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'custom-deal-color-print' );
 
 		$I->havePageInDatabase( [
 			'post_title'   => 'Coupons',
@@ -351,6 +345,6 @@ class CouponsCest extends BaseAcceptanceCest {
 		$I->seeInPageSource( '<h3 class="cctor-deal" style="background-color:#eeee23; color:#ffffff;">Automated Deal 05</h3>' );
 		$I->seeInPageSource( '<div class="cctor-terms">Automated Terms 05 Coupon Creator</div>' );
 		$I->dontSeeInPageSource( '<a href="https://couponcreatorplugin.com">Coupon Creator</a>' );
-		$I->makeScreenshot();
+		$I->makeScreenshot( 'custom-deal-color-shortcode' );
 	}
 }

@@ -21,7 +21,6 @@ class CouponCest extends BaseAcceptanceCest {
 		$I->amOnPage( '/coupons/' );
 		$I->wait( 5 );
 		$I->dontSeeInPageSource( 'Coupon shortcode is not showing with the following attributes: totalcoupons:-1,couponid:loop,coupon_align:cctor_alignnone,couponorderby:date,category:,bordertheme:,filterid:' );
-		$I->makeScreenshot();
 	}
 
 	/**
@@ -38,7 +37,6 @@ class CouponCest extends BaseAcceptanceCest {
 		$I->amOnPage( '/coupons/' );
 		$I->wait( 5 );
 		$I->dontSeeInPageSource( 'Coupon shortcode is not showing with the following attributes: totalcoupons:-1,couponid:4,coupon_align:cctor_alignnone,couponorderby:date,category:,bordertheme:,filterid:' );
-		$I->makeScreenshot();
 	}
 	
 }

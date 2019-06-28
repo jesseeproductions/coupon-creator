@@ -17,6 +17,7 @@ phpunit.xml
 # Tests - local output files
 tests/_output
 tests/_support/_generated
+/.env.local
 
 # compiled build files
 src/resources/**/app
