@@ -51,7 +51,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 	 *
 	 * In place of delegating the hooking responsibility to the single classes they are all hooked here.
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 */
 	protected function hook() {
@@ -105,7 +105,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 	 *
 	 * In place of delegating the hooking responsibility to the single classes they are all hooked here.
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 */
 	protected function admin_hook() {

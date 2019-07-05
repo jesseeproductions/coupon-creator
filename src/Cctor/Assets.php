@@ -25,7 +25,7 @@ class Cctor__Coupon__Assets {
 	/**
 	 * Enqueue block editor CSS
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 */
 	public function blocks_editor_styles() {
 
@@ -57,7 +57,7 @@ class Cctor__Coupon__Assets {
 	/**
 	 * Enqueue block editor Scripts
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 */
 	public function blocks_editor_scripts() {
 		// @formatter:off

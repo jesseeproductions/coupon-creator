@@ -11,7 +11,7 @@ class Acceptance extends \Codeception\Module {
 	 * Wait for Ajax to complete
 	 * http://phptest.club/t/how-to-wait-for-page-totaly-load/235/8
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * @param AcceptanceTester $I
 	 * @param int $timeout
@@ -29,7 +29,7 @@ class Acceptance extends \Codeception\Module {
 	 * Wait for Page to Load
 	 * http://phptest.club/t/how-to-wait-for-page-totaly-load/235/8
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * @param AcceptanceTester $I
 	 * @param int $timeout

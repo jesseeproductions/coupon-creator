@@ -47,7 +47,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Register Post Type and Taxonomy on Init
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 */
 	public function register() {
@@ -73,7 +73,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Allow users to specify their own singular label for Coupons
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * @return string
 	 */
@@ -84,7 +84,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Get Coupon Label Singular lowercase
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * Returns the singular version of the Coupon Label
 	 *
@@ -97,7 +97,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Allow users to specify their own plural label for Coupons
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * @return string
 	 */
@@ -108,7 +108,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Get Coupon Label Plural lowercase
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * Returns the plural version of the Coupon Label
 	 *
@@ -121,7 +121,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Allow users to specify their own singular label for Coupon Category
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * @return string
 	 */
@@ -141,7 +141,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Allow users to specify their own plural label for Coupon Categories
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * @return string
 	 */
@@ -152,7 +152,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Allow users to specify their own plural label for coupon categories
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 * @return string
 	 */
@@ -197,7 +197,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	/**
 	 * Register the post types.
 	 *
-	 * @since TBD
+	 * @since 3.0
 	 *
 	 */
 	public function register_post_types() {

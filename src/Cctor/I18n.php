@@ -2,7 +2,7 @@
 /**
  * Include translations to Gutenberg Ext
  *
- * @since TBD
+ * @since 3.0
  */
 class Cctor__Coupon__I18n {
 

@@ -46,7 +46,7 @@ class Cctor__Coupon__Main {
 	 */
 	private $should_prevent_autoload_init = false;
  	/**
-	 * @var string tribe-common VERSION regex
+	 * @var string plugin-engine VERSION regex
 	 */
 	private $pngx_version_regex = "/const\s+VERSION\s*=\s*'([^']+)'/m";
 
@@ -100,8 +100,8 @@ class Cctor__Coupon__Main {
 		$this->vendor_path   = $this->plugin_path . 'vendor/';
 		$this->vendor_url    = $this->plugin_url . 'vendor/';
 
-		// Set common lib information, needs to happen file load
-		$this->maybe_set_common_lib_info();
+		// Set plugin engine lib information, needs to happen file load
+		$this->maybe_set_pngx_lib_info();
 
 		add_action( 'plugins_loaded', array( $this, 'maybe_bail_if_invalid_wp_or_php' ), -1 );
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 0 );
@@ -184,10 +184,10 @@ class Cctor__Coupon__Main {
 		// include the autoloader class for Cctor classes
 		$this->init_autoloading();
 
-		// Start Up Common
+		// Start Up Plugin Engine
 		Pngx__Main::instance();
 
-		add_action( 'pngx_common_loaded', array( $this, 'bootstrap' ), 0 );
+		add_action( 'pngx_engine_loaded', array( $this, 'bootstrap' ), 0 );
 
 		//Disable Older Versions of Pro to prevent fatal errors
 		if ( function_exists( 'Coupon_Pro_Load' ) ) {
@@ -203,16 +203,16 @@ class Cctor__Coupon__Main {
 	}
 
 	/**
-	 * Load Text Domain on tribe_common_loaded as it requires common
+	 * Bootstrap Plugin
 	 *
-	 * @since 4.10
+	 * @since 3.0
 	 *
 	 */
 	public function bootstrap() {
 
 		/**
-		 * We need Common to be able to load text domains correctly.
-		 * With that in mind we initialize Common passing the plugin Main class as the context
+		 * We need Plugin Engine to be able to load text domains correctly.
+		 * With that in mind we initialize Plugin Engine passing the plugin Main class as the context
 		 */
 		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
 
@@ -230,7 +230,7 @@ class Cctor__Coupon__Main {
 	}
 
 	/**
-	 * Registers this plugin as being active for other tribe plugins and extensions
+	 * Registers this plugin as being active for other pngx plugins and extensions
 	 */
 	protected function register_active_plugin() {
 		$this->registered = new Cctor__Coupon__Plugin_Register();
@@ -254,8 +254,8 @@ class Cctor__Coupon__Main {
 	/**
 	 * Returns the autoloader singleton instance to use in a context-aware manner.
 	 *
-	 * @return \Pngx__Autoloader Teh singleton common Autoloader instance.
-	 *@since 2.6
+	 * @return \Pngx__Autoloader The singleton plugin engine Autoloader instance.
+	 *@since 3.0
 	 *
 	 */
 	public function get_autoloader_instance() {
@@ -270,9 +270,9 @@ class Cctor__Coupon__Main {
 	}
 
 	/**
-	 * Registers the plugin autoload paths in the Common Autoloader instance.
+	 * Registers the plugin autoload paths in the Plugin Engine Autoloader instance.
 	 *
-	 * @since 2.6
+	 * @since 3.0
 	 */
 	public function register_plugin_autoload_paths() {
 		$prefixes = array(
@@ -284,7 +284,7 @@ class Cctor__Coupon__Main {
 	/**
 	 * Maybe set plugin engine info
 	 */
-	public function maybe_set_common_lib_info() {
+	public function maybe_set_pngx_lib_info() {
 		$pngx_version = file_get_contents( $this->plugin_path . 'plugin-engine/src/Pngx/Main.php' );
 
 		// if there isn't a plugin-engine version, bail
@@ -539,7 +539,7 @@ class Cctor__Coupon__Main {
 	/**
 	 * Add an Admin Message for Pro when disabled by new versions of Coupon Creator
 	 *
-	 * @since 2.6
+	 * @since 3.0
 	 *
 	 */
 	public function pre_dependency_msg_pro() {
@@ -567,7 +567,7 @@ class Cctor__Coupon__Main {
 	/**
 	 * Add an Admin Message for Addons when disabled by new versions of Coupon Creator
 	 *
-	 * @since 2.6
+	 * @since 3.0
 	 *
 	 */
 	public function pre_dependency_msg_addons() {
@@ -607,6 +607,7 @@ class Cctor__Coupon__Main {
 	 *
 	 */
 	public function i18n() {
+		_deprecated_function( __METHOD__, '3.0' );
 
 		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
 
@@ -622,6 +623,7 @@ class Cctor__Coupon__Main {
 	 * @return boolean - is the existing version of the system supported?
 	 */
 	public function supportedVersion( $system ) {
+		_deprecated_function( __METHOD__, '3.0' );
 
 		if ( $supported = wp_cache_get( $system, 'cctor_version_test' ) ) {
 			return $supported;
@@ -649,12 +651,47 @@ class Cctor__Coupon__Main {
 	 *
 	 */
 	public function notSupportedError() {
+		_deprecated_function( __METHOD__, '3.0' );
+
 		if ( ! $this->supportedVersion( 'wordpress' ) ) {
 			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
 		}
 		if ( ! $this->supportedVersion( 'php' ) ) {
 			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::MIN_PHP_VERSION, phpversion() ) . '</p></div>';
 		}
+	}
+
+
+	/**
+	 * Maybe set plugin engine info
+	 *
+	 * @deprecated 3.0
+	 *
+	 */
+	public function maybe_set_common_lib_info() {
+		_deprecated_function( __METHOD__, '3.0' );
+
+		$pngx_version = file_get_contents( $this->plugin_path . 'plugin-engine/src/Pngx/Main.php' );
+
+		// if there isn't a plugin-engine version, bail
+		if ( ! preg_match( $this->pngx_version_regex, $pngx_version, $matches ) ) {
+			add_action( 'admin_head', array( $this, 'missing_common_libs' ) );
+
+			return;
+		}
+		$pngx_version = $matches[1];
+		if ( empty( $GLOBALS['plugin-engine-info'] ) ) {
+			$GLOBALS['plugin-engine-info'] = array(
+				'dir'     => "{$this->plugin_path}plugin-engine/src/Pngx",
+				'version' => $pngx_version,
+			);
+		} elseif ( 1 == version_compare( $GLOBALS['plugin-engine-info']['version'], $pngx_version, '<' ) ) {
+			$GLOBALS['plugin-engine-info'] = array(
+				'dir'     => "{$this->plugin_path}plugin-engine/src/Pngx",
+				'version' => $pngx_version,
+			);
+		}
+
 	}
 
 }

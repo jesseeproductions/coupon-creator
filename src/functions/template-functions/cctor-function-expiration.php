@@ -54,7 +54,7 @@ function cctor_show_no_coupon_comment( $coupon_id, $coupon_expiration ) {
 /**
  * Add expiration date and coupon name to notice in Gutenberg
  *
- * @since TBD
+ * @since 3.0
  *
  * @param $coupon_id
  * @param $coupon_expiration
