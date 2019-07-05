@@ -18,11 +18,11 @@ modules:
       adminPassword: %WP_ADMIN_PASSWORD%
       adminPath: '/wp-admin'
       browser: chrome
-      restart: true
       host: %CHROMEDRIVER_HOST%
       port: %CHROMEDRIVER_PORT%
-      wait: 4
-      window_size: false
+      wait: 5
+      window_size: maximize
+      restart: true
     capabilities:
       # Used in more recent releases of Selenium.
       "goog:chromeOptions":
