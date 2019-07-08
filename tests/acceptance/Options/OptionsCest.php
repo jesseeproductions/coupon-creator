@@ -12,11 +12,12 @@ class OptionsCest extends BaseAcceptanceCest {
 	 * since TBD
 	 */
 	public function should_have_option_fields_and_updated_message( AcceptanceTester $I ) {
-
+		$version = pngx( 'cctor' )::VERSION_NUM;
 		$I->loginAsAdmin();
 
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
 		$I->waitForElementVisible( '#ui-id-1', 10 );
+		$I->see( 'Coupon Creator: ' . $version );
 		$I->seeElement( '#cctor_default_template' );
 		$I->seeElement( '#cctor_expiration_option' );
 		$I->click( '.submit .button-primary' );
@@ -32,8 +33,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 		$I->loginAsAdmin();
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		// maximize window to see tabs
-		$I->maximizeWindow();
+
 		$I->waitForElementVisible( '#ui-id-1', 10 );
 		$I->selectOption( '#cctor_expiration_option', 'Expiration Date' );
 		$I->selectOption( '#cctor_default_date_format', 'Day First - DD/MM/YYYY' );
@@ -52,7 +52,6 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->wait( 2 );
 
 		// maximize window to see tabs
-		$I->maximizeWindow();
 		$I->executeJS( '$(".wp-picker-input-wrap").show();' );
 
 		$I->seeInField( '#cctor_colordiscount', '#2a5491' );
@@ -106,8 +105,6 @@ class OptionsCest extends BaseAcceptanceCest {
 
 		$I->loginAsAdmin();
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		// maximize window to see tabs
-		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-2', 10 );
 
 		// this runs twice as it does not flush the first time in the acceptance test
@@ -199,7 +196,6 @@ class OptionsCest extends BaseAcceptanceCest {
 
 		$I->loginAsAdmin();
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-3', 10 );
 		$I->click( '#ui-id-3' );
 		$I->fillField( '#cctor_custom_css', '.cctor_coupon_container .cctor-deal {background-color: pink !important;}' );
@@ -238,7 +234,6 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->seeInSource( '<div class="cctor-terms">WPAutoP Filter Test</div>' );
 
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-3', 10 );
 		$I->click( '#ui-id-3' );
 		$I->uncheckOption( '#cctor_wpautop' );
@@ -271,7 +266,6 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->seeInSource( '<!--Default Styling -->' );
 
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-3', 10 );
 		$I->click( '#ui-id-3' );
 		$I->checkOption( '#cctor_print_base_css' );
@@ -305,7 +299,6 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->dontSeeInPageSource( get_the_permalink( $coupon_id ) );
 
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-3', 10 );
 		$I->click( '#ui-id-3' );
 		$I->checkOption( '#coupon-search' );
@@ -327,7 +320,6 @@ class OptionsCest extends BaseAcceptanceCest {
 
 		$I->loginAsAdmin();
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-5', 10 );
 		$I->click( '#ui-id-4' );
 		$I->seeElement( '#pro_feature_templating' );
@@ -350,7 +342,6 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
 
 		$I->waitForElementVisible( '#ui-id-1', 10 );
-		$I->maximizeWindow();
 		$I->click( '#ui-id-6' );
 		$I->seeElement( '.pngx-system-info-copy-btn' );
 		$I->seeElement( '.pngx-support-stats' );
@@ -370,7 +361,6 @@ class OptionsCest extends BaseAcceptanceCest {
 
 		// set initial values
 		$I->waitForElementVisible( '#ui-id-1', 10 );
-		$I->maximizeWindow();
 		$I->selectOption( '#cctor_expiration_option', 'Expiration Date' );
 		$I->executeJS( '$(".wp-picker-input-wrap").show();' );
 		$I->fillField( '#cctor_border_color', '#b02f30' );
@@ -387,7 +377,6 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->wait( 5 );
 		$I->see( 'Dashboard' );
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-1', 10 );
 		$I->seeOptionIsSelected( '#cctor_expiration_option', 'Expiration Date' );
 		$I->executeJS( '$(".wp-picker-input-wrap").show();' );
@@ -409,7 +398,6 @@ class OptionsCest extends BaseAcceptanceCest {
 		$I->wait( 5 );
 		$I->see( 'Dashboard' );
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );
-		$I->maximizeWindow();
 		$I->waitForElementVisible( '#ui-id-1', 10 );
 		$I->seeOptionIsSelected( '#cctor_expiration_option', 'Ignore Expiration' );
 		$I->executeJS( '$(".wp-picker-input-wrap").show();' );
