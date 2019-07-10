@@ -101,6 +101,14 @@ class PngxDB extends \Codeception\Module {
 			$tax_input['cctor_coupon_category'] = (array) $overrides['categories'];
 			unset( $overrides['categories'] );
 		}
+		if ( isset( $overrides['coupon-location'] ) ) {
+			$tax_input['coupon-location'] = (array) $overrides['coupon-location'];
+			unset( $overrides['coupon-location'] );
+		}
+		if ( isset( $overrides['coupon-vendor'] ) ) {
+			$tax_input['coupon-vendor'] = (array) $overrides['coupon-vendor'];
+			unset( $overrides['coupon-vendor'] );
+		}
 
 		if ( ! empty( $tax_input ) ) {
 			if ( isset( $overrides['tax_input'] ) ) {
