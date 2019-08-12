@@ -57,14 +57,15 @@ class Cctor__Coupon__Main {
 	 */
 	protected static $instance;
 
-	public           $plugin_dir;
-	public           $plugin_path;
-	public           $plugin_url;
-	public           $resource_path;
-	public           $resource_url;
-	public           $vendor_path;
-	public           $vendor_url;
-	public           $plugin_name;
+	public $plugins_path;
+	public $plugin_path;
+	public $plugin_dir;
+	public $plugin_url;
+	public $resource_path;
+	public $resource_url;
+	public $vendor_path;
+	public $vendor_url;
+	public $plugin_name;
 
 	/**
 	 * @deprecated 3.0
@@ -92,6 +93,7 @@ class Cctor__Coupon__Main {
 	 * Initializes plugin variables and sets up WordPress hooks/actions.
 	 */
 	protected function __construct() {
+		$this->plugins_path  = trailingslashit( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) );
 		$this->plugin_path   = trailingslashit( dirname( dirname( dirname( __FILE__ ) ) ) );
 		$this->plugin_dir    = trailingslashit( basename( $this->plugin_path ) );
 		$this->plugin_url    = plugins_url( $this->plugin_dir );
@@ -193,12 +195,43 @@ class Cctor__Coupon__Main {
 		if ( function_exists( 'Coupon_Pro_Load' ) ) {
 			remove_action( 'plugins_loaded', 'Coupon_Pro_Load', 1 );
 			add_action( 'admin_notices', array( $this, 'pre_dependency_msg_pro' ), 50 );
+
+			if ( ! function_exists( 'pngx_register_coupon_creator_pro' ) ) {
+				// @formatter:off
+				//setup license and update system for Pro on older versions
+				new Cctor__Coupon__Admin__License_Setup(
+					'Coupon Creator Pro',
+					'cctor_pro_license',
+					'cctor_coupon_pro_version',
+					'2.5.6',
+					Cctor__Coupon__Main::instance()->plugins_path . 'coupon-creator-pro/coupon-creator-pro.php',
+					'coupon-creator-pro/coupon-creator-pro.php',
+					'cctor_pro_license_status'
+				);
+			// @formatter:on
+			}
 		}
+
 
 		//Disable Older Versions of Addons to prevent fatal errors
 		if ( function_exists( 'Coupon_Add_ons_Load' ) ) {
 			remove_action( 'plugins_loaded', 'Coupon_Add_ons_Load', 2 );
 			add_action( 'admin_notices', array( $this, 'pre_dependency_msg_addons' ), 50 );
+
+			if ( ! function_exists( 'pngx_register_coupon_creator_addons' ) ) {
+				// @formatter:off
+				//setup license and update system for Add-ons
+				new Cctor__Coupon__Admin__License_Setup(
+					'Coupon Creator Add-ons',
+					'cctor_addons_license',
+					'cctor_coupon_addons_version',
+					'2.5.5',
+					Cctor__Coupon__Main::instance()->plugins_path . 'coupon-creator-add-ons/coupon-creator-add-ons.php',
+					'coupon-creator-add-ons/coupon-creator-add-ons.php',
+					'cctor_addon_license_status'
+				);
+				// @formatter:on
+			}
 		}
 	}
 
@@ -254,8 +287,9 @@ class Cctor__Coupon__Main {
 	/**
 	 * Returns the autoloader singleton instance to use in a context-aware manner.
 	 *
+	 * @since 3.0
+	 *
 	 * @return \Pngx__Autoloader The singleton plugin engine Autoloader instance.
-	 *@since 3.0
 	 *
 	 */
 	public function get_autoloader_instance() {
@@ -341,11 +375,11 @@ class Cctor__Coupon__Main {
 	/**
 	 * Test whether the current version of PHP or WordPress is supported.
 	 *
-	 * @since 3.0
-	 *
 	 * @param string $system Which system to test the version of such as 'php' or 'wordpress'.
 	 *
 	 * @return boolean Whether the current version of PHP or WordPress is supported.
+	 *@since 3.0
+	 *
 	 */
 	public function supported_version( $system ) {
 		if ( $supported = wp_cache_get( $system, 'pngx_version_test' ) ) {
@@ -554,7 +588,7 @@ class Cctor__Coupon__Main {
 		echo '<div class="error"><p>';
 
 		printf(
-			esc_html__( 'Your version of Coupon Creator Pro is incompatible with Coupon Creator 2.6 and later. To continue using Coupon Creator Pro, please install and activate %1$s%2$s%3$s or downgrade to Coupon Creator 2.5.6 or earlier.', 'coupon-creator' ),
+			esc_html__( 'Your version of Coupon Creator Pro is incompatible with Coupon Creator 3.0 and later. To continue using Coupon Creator Pro, please install and activate %1$s%2$s%3$s or downgrade to Coupon Creator 2.5.6 or earlier.', 'coupon-creator' ),
 			'<a href="http://cctor.link/sMsY2" title="' . $title . '" target="_blank">',
 			$link_text,
 			'</a>'
@@ -590,7 +624,7 @@ class Cctor__Coupon__Main {
 		echo '<div class="error"><p>';
 
 		printf(
-			esc_html__( 'Your version of Coupon Creator Add-ons is incompatible with Coupon Creator 2.6 and later. To continue using Coupon Creator Add-ons, please install and activate %1$s%2$s%3$s or downgrade to Coupon Creator 2.5.6 or earlier.', 'coupon-creator-add-ons' ),
+			esc_html__( 'Your version of Coupon Creator Add-ons is incompatible with Coupon Creator 3.0 and later. To continue using Coupon Creator Add-ons, please install and activate %1$s%2$s%3$s or downgrade to Coupon Creator 2.5.6 or earlier.', 'coupon-creator-add-ons' ),
 			'<a href="http://cctor.link/sMsY2" title="' . $title . '" target="_blank">',
 			$link_text,
 			'</a>'
