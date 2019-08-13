@@ -27,7 +27,8 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=aGoxJ3TBRhk
 
-<h4>Coupon Creator Add-ons 2.5.5 Features Include: (included with Pro Business and higher license levels)</h4>
+<h4>Coupon Creator Add-ons 3.0 Features Include: (included with Pro Business and higher license levels)</h4>
+* Block Editor Support for couponloop with Vendor and Location Taxonomies
 * Reveal Code & Dynamic Code Feature
 * Vendor and Location Taxonomies
 * Modern Advanced Template
@@ -36,7 +37,8 @@ https://www.youtube.com/watch?v=aGoxJ3TBRhk
 * Lower Third Advanced Template
 * Create and Display WooCommerce Coupons from the Coupon Creator Editor
 
-<h4>Coupon Creator Pro 2.5.5 Features Include:</h4>
+<h4>Coupon Creator Pro 3.0 Features Include:</h4>
+* Block Editor support for couponloop shortcode and all of its attributes
 * [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
 * Order the filter bar filters and hide any filter per shortcode
 * Quick and Bulk edits for the expiration and counter fields
@@ -56,6 +58,7 @@ https://www.youtube.com/watch?v=aGoxJ3TBRhk
 * Override “Print the Coupon” text and link per coupon
 * Disable the Print View per coupon
 * Add your Google Analytics Code to the Print Template from the Coupon Options
+
 <h4>How to Create a Coupon</h4>
 Create a coupon by going to the coupon custom post type and filling in all the settings in the custom meta box.
 
@@ -141,8 +144,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
-= 3.0 TBD =
-* Upgrade - The architecture of the plugin to modern standards with a service provider system and less reliance on static methods
+= 3.0 August 14th, 2019 =
+* Upgrade - The architecture of the plugin to modern standards with a service provider system and reliance on static methods
 * Add - Dependency checking system to prevent incompatible versions of plugins from running and causing errors
 * Add - Coupon Block to display single coupons or a loop of coupons with options to align, order
 * Tweak - Increase minimum PHP version to 5.6 and WordPress 4.9
@@ -368,8 +371,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Initial Release and 1st Version and 1st Plugin!
 
 == Upgrade Notice ==
-= 2.5 =
-Coupon Creator 2.5 includes numerous improvements and introduces Coupon Creator Add-ons. It is recommended to update both Coupon Creator and Coupon Creator Pro to 2.5 for them to work correctly.
+= 3.0 =
+Coupon Creator 3.0 adds Block Editor support, refactors the code base, and increases the minimum PHP version to 5.6 and WordPress 4.9. If you have Pro or Add-ons please update those to 3.0 for them to continue to work.
 
 == Frequently Asked Questions ==
 <h4>What if I have support questions?</h4>

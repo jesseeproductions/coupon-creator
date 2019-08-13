@@ -12,7 +12,7 @@ class OptionsCest extends BaseAcceptanceCest {
 	 * since TBD
 	 */
 	public function should_have_option_fields_and_updated_message( AcceptanceTester $I ) {
-		$version = pngx( 'cctor' )::VERSION_NUM;
+		$version = pngx( 'cctor' )->VERSION_NUM;
 		$I->loginAsAdmin();
 
 		$I->amOnAdminPage( '/edit.php?post_type=cctor_coupon&page=coupon-options' );

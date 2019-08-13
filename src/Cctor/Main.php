@@ -19,6 +19,12 @@ class Cctor__Coupon__Main {
 	const CAPABILITIESPLURAL       = 'cctor_coupons';
 	const TEXT_DOMAIN              = 'coupon-creator';
 
+	public $TAXONOMY                 = 'cctor_coupon_category';
+	public $POSTTYPE                 = 'cctor_coupon';
+	public $PLUGIN_NAME              = 'Coupon Creator';
+	public $CAPABILITIESPLURAL       = 'cctor_coupons';
+	public $TEXT_DOMAIN              = 'coupon-creator';
+
 	/**
 	* Min Version of WordPress
 	*
@@ -38,6 +44,13 @@ class Cctor__Coupon__Main {
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
+
+	public $VERSION_KEY              = 'cctor_coupon_version';
+	public $VERSION_NUM              = '3.0';
+	public $MIN_PNGX_VERSION         = '3.0';
+	public $WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
+	public $COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
+	public $OPTIONS_ID               = 'coupon_creator_options';
 
 	public $cctorUrl = 'https://couponcreatorplugin.com/';
 

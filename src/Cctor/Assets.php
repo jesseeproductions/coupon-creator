@@ -78,7 +78,7 @@ class Cctor__Coupon__Assets {
 			filemtime( pngx( 'cctor' )->resource_path . 'js/blocks.js' )
 		);
 		$localized_data = array(
-			'data' => get_option(  pngx( 'cctor' )::OPTIONS_ID ),
+			'data' => get_option(  pngx( 'cctor' )->OPTIONS_ID ),
 			'constants' => array (
 				'hide_upgrade' => ( defined( 'CCTOR_HIDE_UPGRADE' ) && CCTOR_HIDE_UPGRADE ) ? 'true' : 'false',
 			),
