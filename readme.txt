@@ -19,6 +19,8 @@ Create coupons to display on your site by using a shortcode.
 >
 > If you are looking for direct support please check out [Coupon Creator Pro](http://cctor.link/JIGHR)
 
+<strong>Coupon Creator now includes a Coupon Block to display single coupons or a loop of coupons with options to align and order them.</strong>
+
 Create your own coupon with the Coupon Creator for WordPress or upload an image of a coupon instead.
 
 [Check out a demo gallery of Coupon Creator Features!](http://cctor.link/IjIV1)
