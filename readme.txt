@@ -5,8 +5,8 @@ Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.9
-Tested up to:  5.3.2
-Stable tag: 3.0.1
+Tested up to:  5.5
+Stable tag: 3.1
 Requires PHP: 5.6
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
@@ -146,6 +146,11 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 3.1.0 August 11th, 2020 =
+
+* Feature - Add duplicate coupon to the admin coupon listing to be able to duplicate any coupon with all their fields and taxonomies.
+* Fix - Update loading of wp-color-picker-alpha to prevent coupon editor from breaking in WordPress 5.5.
+
 = 3.0.1 January 28th, 2020 =
 * Tweak - Update lucatume/di52 to 2.0.12 to prevent conflicts with The Events Calendar 5.0
 

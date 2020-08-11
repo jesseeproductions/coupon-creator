@@ -1,5 +1,6 @@
 <?php
 
+use Cctor\Coupon\Admin\Duplicate\Coupons;
 
 class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 
@@ -118,6 +119,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		$this->container->singleton( 'cctor.admin.meta', 'Cctor__Coupon__Admin__Meta' );
 		$this->container->singleton( 'cctor.admin.meta.fields', 'Cctor__Coupon__Admin__Fields' );
 		$this->container->singleton( 'cctor.admin.columns', 'Cctor__Coupon__Admin__Columns' );
+		$this->container->singleton( Coupons::Class, Coupons::Class, [ 'hooks' ] );
 
 		//start up admin
 		pngx( 'cctor.admin' );
@@ -139,6 +141,8 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 
 		//Core Admin Fields
 		add_filter( 'pngx_field_types', pngx_callback( 'cctor.admin.meta.fields', 'display_field' ), 5, 5 );
+
+		pngx( Coupons::Class );
 
 	}
 
