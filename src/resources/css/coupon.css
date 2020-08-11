@@ -227,7 +227,12 @@ a .cctor_expiration {
 
 .cctor-screen-reader-text,
 .cctor-pro-coupons-visuallyhidden {
-  display: none; }
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden; }
 
 .cctor-pro-overflow:after {
   clear: both;
