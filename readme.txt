@@ -146,7 +146,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
-= 3.1.0 August 11th, 2020 =
+= 3.1 August 11th, 2020 =
 
 * Feature - Add duplicate coupon to the admin coupon listing to be able to duplicate any coupon with all their fields and taxonomies.
 * Fix - Update loading of wp-color-picker-alpha to prevent coupon editor from breaking in WordPress 5.5.
@@ -236,10 +236,8 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Add - flush or permalinks on version upgrade to precent 404 errors
 * Add - option to prevent coupon creator from modifying the standard search query to remove coupons due to change in custom post type setup
 
-
 = 2.1.2 December 7th, 2015 =
 * Fix - bug on option page tabs due to changes in 4.4
-
 
 = 2.1.1 September 13th, 2015 =
 * Update - Text Domain
