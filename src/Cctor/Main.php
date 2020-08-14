@@ -39,14 +39,14 @@ class Cctor__Coupon__Main {
 	protected $min_php = '5.6';
 
 	const VERSION_KEY              = 'cctor_coupon_version';
-	const VERSION_NUM              = '3.0.1';
+	const VERSION_NUM              = '3.1';
 	const MIN_PNGX_VERSION         = '3.0.1';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
 
 	public $VERSION_KEY              = 'cctor_coupon_version';
-	public $VERSION_NUM              = '3.0.1';
+	public $VERSION_NUM              = '3.1';
 	public $MIN_PNGX_VERSION         = '3.0.1';
 	public $WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	public $COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
@@ -157,8 +157,10 @@ class Cctor__Coupon__Main {
 		 */
 		do_action( 'cctor_activate' );
 
-		flush_rewrite_rules();
-
+		// set option to flush permalinks on next load
+		if ( ! is_network_admin()  ) {
+			update_option( 'pngx_permalink_change', true );
+		}
 	}
 
 	/*

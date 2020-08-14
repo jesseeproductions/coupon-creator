@@ -2,7 +2,7 @@
 /*
 Plugin Name: Coupon Creator
 Description: This plugin creates a custom post type for coupons with a shortcode to display it on website and a single view template for printing.
-Version: 3.0.1
+Version: 3.1
 Author: Brian Jessee
 Author URI: http://couponcreatorplugin.com
 Text Domain: coupon-creator
@@ -15,6 +15,9 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 
 define( 'COUPON_CREATOR_DIR', dirname( __FILE__ ) );
 define( 'COUPON_CREATOR_MAIN_PLUGIN_FILE', __FILE__ );
+
+// Load the Composer autoload file.
+require_once dirname( COUPON_CREATOR_MAIN_PLUGIN_FILE ) . '/vendor/autoload.php';
 
 // the main plugin class
 require_once dirname( __FILE__ ) . '/src/Cctor/Main.php';
