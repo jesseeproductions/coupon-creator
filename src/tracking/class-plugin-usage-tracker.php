@@ -1003,7 +1003,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 				}
 			</style>
 			<script>
-				jQuery(document).ready(function($){
+				jQuery(function($) {
 					$("#put-goodbye-link-<?php echo esc_attr( $this->plugin_name ); ?>").on("click",function(){
 						// We'll send the user to this deactivation link when they've completed or dismissed the form
 						var url = document.getElementById("put-goodbye-link-<?php echo esc_attr( $this->plugin_name ); ?>");
