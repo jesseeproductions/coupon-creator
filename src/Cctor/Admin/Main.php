@@ -41,10 +41,6 @@ class Cctor__Coupon__Admin__Main {
 			new Cctor__Coupon__Admin__Inserter();
 		}
 
-		//Add Options Link on Plugin Activation Page
-		add_action( 'plugin_action_links', array( $this, 'plugin_setting_link' ), 10, 2 );
-
-
 	} //end admin_init
 
 
