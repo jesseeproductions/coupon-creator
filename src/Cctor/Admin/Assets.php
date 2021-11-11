@@ -52,7 +52,7 @@ class Cctor__Coupon__Admin__Assets {
 		$jquery_version = isset( $wp_scripts->registered['jquery-ui-core']->ver ) ? $wp_scripts->registered['jquery-ui-core']->ver : '1.12.3';
 		$css_file       = '//ajax.googleapis.com/ajax/libs/jqueryui/' . $jquery_version . '/themes/smoothness/jquery-ui.min.css';
 
-		if ( ! pngx( 'admin.assets' )->detect_external_asset( 'https:' . $css_file ) ) {
+		if ( ! pngx( 'pngx.admin.assets' )->detect_external_asset( 'https:' . $css_file ) ) {
 			$css_file = Pngx__Main::instance()->resource_url . 'css/jquery-ui.min.css';
 		}
 
