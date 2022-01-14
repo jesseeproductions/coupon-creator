@@ -5,8 +5,8 @@ Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.9
-Tested up to:  5.5
-Stable tag: 3.1.1
+Tested up to:  5.7
+Stable tag: 3.2
 Requires PHP: 5.6
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
@@ -146,6 +146,15 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 3.2.1 January 14th, 2021 =
+
+* Fix - Change duplicate feature's meta field copy to improve security.
+* Fix - Fatal error that can happen in the admin on newer versions of WordPress.
+
+= 3.2 March 8th, 2021 =
+
+* Fix - Updates to support jQuery change in WordPress 5.7.
+
 = 3.1.1 August 25th, 2020 =
 
 * Fix - Update security check when saving coupon meta fields.
