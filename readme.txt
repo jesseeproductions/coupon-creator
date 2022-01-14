@@ -146,6 +146,11 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+= 3.2.1 January 14th, 2021 =
+
+* Fix - Change duplicate feature's meta field copy to improve security.
+* Fix - Fatal error that can happen in the admin on newer versions of WordPress.
+
 = 3.2 March 8th, 2021 =
 
 * Fix - Updates to support jQuery change in WordPress 5.7.
