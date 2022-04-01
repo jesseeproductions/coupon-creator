@@ -204,15 +204,13 @@ class Cctor__Coupon__Post_Type_Coupon {
 
 		// Register Coupon Post Type and customize labels
 		//  @formatter:off
-			$labels = Pngx__Register_Post_Type::generate_post_type_labels(
+			$labels = pngx( Pngx__Register_Post_Type::class )->generate_post_type_labels(
 				$this->singular_coupon_label,
 				$this->plural_coupon_label,
 				$this->singular_coupon_label_lowercase,
 				$this->plural_coupon_label_lowercase,
 				$this->text_domain
 			);
-
-			//$pngx_cpt = new Pngx__Register_Post_Type();
 
 			pngx( Pngx__Register_Post_Type::class )->register_post_types(
 				$this->post_type,
@@ -260,9 +258,9 @@ class Cctor__Coupon__Post_Type_Coupon {
 	 */
 	public function register_taxonomies() {
 
-		// Register Coupon Taxonomu
+		// Register Coupon Taxonomy
 		// @formatter:off
-			$labels = Pngx__Register_Taxonomy::generate_taxonomy_labels(
+			$labels = pngx( Pngx__Register_Taxonomy::class )->generate_taxonomy_labels(
 				$this->singular_category_label,
 				$this->singular_category_label_lowercase,
 				$this->plural_category_label,
@@ -270,7 +268,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 				$this->text_domain
 			);
 
-			Pngx__Register_Taxonomy::register_taxonomy(
+			pngx( Pngx__Register_Taxonomy::class )->register_taxonomy(
 				$this->taxonomy,
 				$this->post_type,
 				$labels,
