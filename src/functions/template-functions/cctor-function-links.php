@@ -14,7 +14,7 @@ function cctor_show_img_coupon( $coupon_id, $couponimage ) {
 	$nofollow      = cctor_options( 'cctor_nofollow_print_link', true, 1 ) == 1 ? 'rel="nofollow"' : '';
 	$cctor_onclick = ! defined( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB' ) || ! CCTOR_PREVENT_OPEN_IN_NEW_TAB ? "window.open(this.href);return false;" : '';
 
-	if ( cctor_options( 'cctor_hide_print_link' ) == 0 ) {
+	if ( ! cctor_options( 'cctor_hide_print_link' ) ) {
 
 		//Set Image Link
 		?>
@@ -39,7 +39,7 @@ function cctor_show_link( $coupon_id ) {
 	$cctor_onclick = ! defined( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB' ) || ! CCTOR_PREVENT_OPEN_IN_NEW_TAB ? "window.open(this.href);return false;" : '';
 
 	//Build Click to Print Link For Coupon - First Check if Option to Hide is Checked
-	if ( cctor_options( 'cctor_hide_print_link' ) == 0 ) {
+	if ( ! cctor_options( 'cctor_hide_print_link' ) ) {
 
 		?>
 		<div class='cctor_opencoupon cctor-opencoupon'>
