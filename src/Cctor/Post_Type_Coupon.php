@@ -212,7 +212,9 @@ class Cctor__Coupon__Post_Type_Coupon {
 				$this->text_domain
 			);
 
-			Pngx__Register_Post_Type::register_post_types(
+			//$pngx_cpt = new Pngx__Register_Post_Type();
+
+			pngx( Pngx__Register_Post_Type::class )->register_post_types(
 				$this->post_type,
 				$this->post_type,
 				$this->singular_coupon_label,

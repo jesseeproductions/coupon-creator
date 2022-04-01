@@ -20,7 +20,7 @@ class Cctor__Coupon__Admin__Inserter {
 	public function __construct() {
 
 		//Add Button for Coupons in Editor
-		add_action( 'media_buttons_context', array( $this, 'add_cc_coupon_button' ) );
+		add_action( 'media_buttons', array( $this, 'add_cc_coupon_button' ) );
 
 	}
 
@@ -32,9 +32,14 @@ class Cctor__Coupon__Admin__Inserter {
 
 		$screen = get_current_screen();
 
-		if ( 'cctor_coupon' != $screen->id && 'cctor_coupon_page_coupon-options' != $screen->id ) {
+		if (
+			'cctor_coupon' === $screen->id
+			|| 'cctor_coupon_page_coupon-options' == $screen->id
+		) {
+			return;
+		}
 
-			//add Content for inline popup for Coupon Inserter
+			// Add Content for inline popup for Coupon Inserter.
 			add_action( 'admin_footer', array( $this, 'add_coupon_inline_popup' ) );
 
 			//path to coupon icon
@@ -45,7 +50,7 @@ class Cctor__Coupon__Admin__Inserter {
 			$title = '<h3>' . __( 'Insert Coupon Creator Shortcode', 'coupon-creator' ) . '</h3>';
 
 			// display ui button for 3.5 and greater
-			$context .= "<style>.cctor_insert_icon{
+			$button = "<style>.cctor_insert_icon{
 								background:url('{$img}') no-repeat top left;
 								display: inline-block;
 								height: 16px;
@@ -102,11 +107,11 @@ class Cctor__Coupon__Admin__Inserter {
 									margin: 0 0 10px;
 								}
 							}
-						 </style>
-							<a class='thickbox button cctor_insert_link' id='add_cctor_shortcode'  title='{$title}' href='#TB_inline?width=783&height=400&inlineId={$container_id}'><span class='cctor_insert_icon'></span>Add Coupon</a>";
-		}
+					 </style>";
 
-		return $context;
+		$button .= "<a class='thickbox button cctor_insert_link' id='add_cctor_shortcode'  title='{$title}' href='#TB_inline?width=783&height=400&inlineId={$container_id}'><span class='cctor_insert_icon'></span>Add Coupon</a>";
+
+		echo $button;
 
 	} //End Insert Icon Creation
 
