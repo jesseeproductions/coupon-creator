@@ -15,7 +15,7 @@ class Cctor__Coupon__Admin__Fields {
 	/*
 	* Display Individual Fields
 	*/
-	public static function display_field( $field = array(), $options = array(), $options_id = null, $meta = null, $wp_version ) {
+	public static function display_field( $field = array(), $options = array(), $options_id = null, $meta = null, $wp_version = null ) {
 
 		//Create Different Name for Option Fields and Not Meta Fields
 		if ( $options ) {

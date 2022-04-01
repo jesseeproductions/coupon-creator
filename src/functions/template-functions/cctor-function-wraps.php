@@ -58,7 +58,7 @@ function cctor_return_inner_coupon_wrap( $coupon_id ) {
 	$cctor_onclick = ! defined( 'CCTOR_PREVENT_OPEN_IN_NEW_TAB' ) || ! CCTOR_PREVENT_OPEN_IN_NEW_TAB ? "window.open(this.href);return false;" : '';
 
 	//Build Click to Print Link For Coupon - First Check if Option to Hide is Checked
-	if ( cctor_options( 'cctor_hide_print_link' ) == 0 ) {
+	if ( ! cctor_options( 'cctor_hide_print_link' ) ) {
 
 		$coupon_inner_content_wrap['start_wrap'] = '<a class="cctor_wrap_link" href="' . esc_html( get_permalink( $coupon_id ) ) . '"  onclick="' . esc_js( $cctor_onclick ) . '" ' . $nofollow . '>
 			<div class="cctor_coupon cctor-coupon">

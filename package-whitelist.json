@@ -33,6 +33,7 @@
   "plugin-engine/vendor/colorbox/jquery.*.js",
   "plugin-engine/vendor/wp-color-picker-alpha/wp-color-picker-alpha.min*.js",
   "plugin-engine/vendor/wp-color-picker-alpha/wp-color-picker-alpha.min*.js",
+  "plugin-engine/vendor/lucatume/di52/aliases.php",
   "plugin-engine/vendor/lucatume/di52/src/**",
   "plugin-engine/vendor/xrstf/composer-php52/lib/**",
   "license.txt",
