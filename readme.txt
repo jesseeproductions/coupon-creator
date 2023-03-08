@@ -6,7 +6,7 @@ Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.9
 Tested up to: 6.1.1
-Stable tag: 3.3.3
+Stable tag: 3.3.0
 Requires PHP: 7.2
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
@@ -147,9 +147,9 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 3.3.3 March 9th, 2023 =
+= 3.3.0 March 9th, 2023 =
 
-* Fix - Issue with print view link not being added due to an issue with PHP 8.0
+* Fix - Misc fixes with latest version of WordPress.
 
 = 3.2.2 April 4th, 2022 =
 
