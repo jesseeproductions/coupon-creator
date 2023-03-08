@@ -28,9 +28,9 @@
 * Pro Marketing
 ***************************************************/
 .cctor-pro-img {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   height: auto;
   margin: 1% 0 2.5% 7%;
   max-width: 90%;
@@ -38,12 +38,12 @@
 }
 
 .cctor-pro-img:before, .cctor-pro-img:after {
-  border-radius: 100px/10px;
   -moz-border-radius: 100px/10px;
+  border-radius: 100px/10px;
   bottom: 0;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   content: "";
   left: 10px;
   position: absolute;
@@ -55,11 +55,11 @@
 .cctor-pro-img:after {
   left: auto;
   right: 10px;
-  transform: skew(8deg) rotate(3deg);
   -moz-transform: skew(8deg) rotate(3deg);
   -ms-transform: skew(8deg) rotate(3deg);
   -o-transform: skew(8deg) rotate(3deg);
   -webkit-transform: skew(8deg) rotate(3deg);
+  transform: skew(8deg) rotate(3deg);
 }
 
 /**
@@ -112,8 +112,8 @@ div.cctor-pro-link a:hover {
 }
 
 #cctor_woocommerce label {
-  width: 160px;
   display: inline-block;
+  width: 160px;
 }
 @media (max-width: 640px) {
   #cctor_woocommerce label {
@@ -123,8 +123,8 @@ div.cctor-pro-link a:hover {
 
 #cctor_woocommerce .form-field input[type=number],
 #cctor_woocommerce .form-field input[type=text] {
-  width: 270px;
   max-width: 100%;
+  width: 270px;
 }
 @media (max-width: 640px) {
   #cctor_woocommerce .form-field input[type=number],
@@ -148,8 +148,8 @@ div.cctor-pro-link a:hover {
 }
 
 #cctor_woocommerce .select2-container.cctor_woo_field {
-  width: 50%;
   display: inline-block !important;
+  width: 50%;
 }
 
 /**
@@ -157,9 +157,9 @@ div.cctor-pro-link a:hover {
 ***************************************************/
 .cctor-column-row-insert,
 #wp-cctor_description-wrap {
-  width: 600px;
   max-width: 100%;
   overflow: hidden;
+  width: 600px;
 }
 
 .cctor-column-row-insert {
@@ -167,18 +167,18 @@ div.cctor-pro-link a:hover {
 }
 
 .cctor-column-row-insert .cctor-content-column-row {
-  width: 46%;
   float: left;
+  width: 46%;
 }
 
 .cctor_button {
-  border-radius: 6px;
-  border: solid 1px #9dd3df;
   background: #2a5a8a;
-  padding: 3px 1%;
-  text-decoration: none;
+  border: solid 1px #9dd3df;
+  border-radius: 6px;
   color: #fff;
+  padding: 3px 1%;
   text-align: center;
+  text-decoration: none;
 }
 
 .ui-widget-content a.cctor_button {
@@ -187,24 +187,24 @@ div.cctor-pro-link a:hover {
 
 .cctor_button:hover,
 .ui-widget-content a.cctor_button:hover {
-  color: #000;
-  border: solid 1px #2a5a8a;
   background: #9dd3df;
+  border: solid 1px #2a5a8a;
+  color: #000;
 }
 
 .cctor-column-row-insert select {
-  width: 48%;
   float: right;
+  width: 48%;
 }
 
 /**
 * Dynamic Code
 ***************************************************/
 .cctor-add-ons-dynamic-code {
-  text-align: center;
+  color: #048C7F;
   font-size: 18px;
   padding: 5px 0 30px;
-  color: #048C7F;
+  text-align: center;
 }
 
 .cctor-add-ons-dynamic-code span {
