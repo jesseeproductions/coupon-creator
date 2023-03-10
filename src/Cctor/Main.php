@@ -4,7 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
-
 /**
  * Coupon Creator Class
  *
@@ -30,24 +29,24 @@ class Cctor__Coupon__Main {
 	*
 	* @since 4.10
 	*/
-	protected $min_wordpress = '4.9';
+	protected $min_wordpress = '5.6';
 	/**
 	* Min Version of PHP
 	*
 	* @since 4.10
 	*/
-	protected $min_php = '5.6';
+	protected $min_php = '7.4';
 
 	const VERSION_KEY              = 'cctor_coupon_version';
-	const VERSION_NUM              = '3.2.2';
-	const MIN_PNGX_VERSION         = '3.2.2';
+	const VERSION_NUM              = '3.4.0';
+	const MIN_PNGX_VERSION         = '4.0.0';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
 
 	public $VERSION_KEY              = 'cctor_coupon_version';
-	public $VERSION_NUM              = '3.2.2';
-	public $MIN_PNGX_VERSION         = '3.2.2';
+	public $VERSION_NUM              = '3.4.0';
+	public $MIN_PNGX_VERSION         = '4.0.0';
 	public $WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	public $COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
 	public $OPTIONS_ID               = 'coupon_creator_options';
@@ -81,16 +80,6 @@ class Cctor__Coupon__Main {
 	public $plugin_name;
 
 	/**
-	 * @deprecated 3.0
-	 */
-	const MIN_WP_VERSION           = '4.9';
-
-	/**
-	 * @deprecated 3.0
-	 */
-	const MIN_PHP_VERSION          = '5.6';
-
-	/**
 	 * Get (and instantiate, if necessary) the instance of the class
 	 *
 	 * @return self
@@ -122,12 +111,10 @@ class Cctor__Coupon__Main {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 0 );
 	}
 
-
 	/*
 	* Activate
 	*/
 	public static function activate() {
-
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
@@ -142,7 +129,7 @@ class Cctor__Coupon__Main {
 
 		// Setup Capabilities for CPT
 		if ( ! get_option( self::POSTTYPE . '_capabilities_register' ) ) {
-			new Pngx__Add_Capabilities( self::POSTTYPE );
+			pngx( Pngx__Add_Capabilities::class )->add_capabilities( self::POSTTYPE );
 		}
 
 		// Use Instance to call method to setup cpt
@@ -167,7 +154,6 @@ class Cctor__Coupon__Main {
 	* Deactivate
 	*/
 	public static function deactivate() {
-
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
@@ -186,7 +172,6 @@ class Cctor__Coupon__Main {
 	}
 
 	public function plugins_loaded() {
-
 		if ( $this->should_prevent_autoload_init ) {
 
 			/**
@@ -257,7 +242,6 @@ class Cctor__Coupon__Main {
 	 *
 	 */
 	public function bootstrap() {
-
 		/**
 		 * We need Plugin Engine to be able to load text domains correctly.
 		 * With that in mind we initialize Plugin Engine passing the plugin Main class as the context
@@ -274,7 +258,6 @@ class Cctor__Coupon__Main {
 		 * Fires once Coupon Creator has completed basic setup.
 		 */
 		do_action( 'coupon_creator_plugin_loaded' );
-
 	}
 
 	/**
@@ -478,23 +461,14 @@ class Cctor__Coupon__Main {
 		return $common;
 	}
 
-	/**
-	 * Run on applied action init
-	 */
-	public function init() {
-
-	}
-
 	/*
 	* Remove wpautop in Terms Field
 	* based of coding from http://www.wpcustoms.net/snippets/remove-wpautop-custom-post-types/
 	*/
 	public function remove_autop_for_coupons( $content ) {
-
 		'cctor_coupon' === get_post_type() && remove_filter( 'the_content', 'wpautop' );
 
 		return $content;
-
 	}
 
 	/**
@@ -530,7 +504,6 @@ class Cctor__Coupon__Main {
 	 * @param WP_Query $query
 	 **/
 	public function parse_query( $query ) {
-
 		// @formatter:off
 		$types = ( ! empty( $query->query_vars['post_type'] ) ? (array) $query->query_vars['post_type'] : array() );
 
@@ -563,9 +536,7 @@ class Cctor__Coupon__Main {
 	 * @return string
 	 */
 	public function get_shop_url() {
-
 		return defined( 'COUPON_CREATOR_STORE_URL' ) ? COUPON_CREATOR_STORE_URL : self::COUPON_CREATOR_STORE_URL;
-
 	}
 
 	/**
@@ -576,7 +547,6 @@ class Cctor__Coupon__Main {
 	 * @return string
 	 */
 	public function filter_coupon_content( $meta ) {
-
 		//WPAutop
 		if ( 1 != cctor_options( 'cctor_wpautop', true, 1 ) ) {
 			$meta = wpautop( $meta );
@@ -592,7 +562,6 @@ class Cctor__Coupon__Main {
 	 *
 	 */
 	public function pre_dependency_msg_pro() {
-
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
@@ -620,7 +589,6 @@ class Cctor__Coupon__Main {
 	 *
 	 */
 	public function pre_dependency_msg_addons() {
-
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
@@ -648,99 +616,4 @@ class Cctor__Coupon__Main {
 		echo '</p></div>';
 
 	}
-
-	/**
-	 * Load the text domain.
-	 *
-	 * @deprecated 3.0
-	 *
-	 */
-	public function i18n() {
-		_deprecated_function( __METHOD__, '3.0' );
-
-		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN, $this->plugin_dir . 'languages/' );
-
-	}
-
-	/**
-	 * Test PHP and WordPress versions for compatibility
-	 *
-	 * @deprecated 3.0
-	 *
-	 * @param string $system - system to be tested such as 'php' or 'wordpress'
-	 *
-	 * @return boolean - is the existing version of the system supported?
-	 */
-	public function supportedVersion( $system ) {
-		_deprecated_function( __METHOD__, '3.0' );
-
-		if ( $supported = wp_cache_get( $system, 'cctor_version_test' ) ) {
-			return $supported;
-		}
-
-		switch ( strtolower( $system ) ) {
-			case 'wordpress' :
-				$supported = version_compare( get_bloginfo( 'version' ), self::MIN_WP_VERSION, '>=' );
-				break;
-			case 'php' :
-				$supported = version_compare( phpversion(), self::MIN_PHP_VERSION, '>=' );
-				break;
-		}
-		$supported = apply_filters( 'cctor_supported_version', $supported, $system );
-		wp_cache_set( $system, $supported, 'cctor_version_test' );
-
-		return $supported;
-
-	}
-
-	/**
-	 * Display a WordPress or PHP incompatibility error
-	 *
-	 * @deprecated 3.0
-	 *
-	 */
-	public function notSupportedError() {
-		_deprecated_function( __METHOD__, '3.0' );
-
-		if ( ! $this->supportedVersion( 'wordpress' ) ) {
-			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires WordPress version: %s or higher. You currently have WordPress version: %s', 'coupon-creator' ), self::MIN_WP_VERSION, get_bloginfo( 'version' ) ) . '</p></div>';
-		}
-		if ( ! $this->supportedVersion( 'php' ) ) {
-			echo '<div class="error"><p>' . sprintf( esc_html__( 'Coupon Creator Requires PHP version: %s or higher. You currently have PHP version: %s', 'coupon-creator' ), self::MIN_PHP_VERSION, phpversion() ) . '</p></div>';
-		}
-	}
-
-
-	/**
-	 * Maybe set plugin engine info
-	 *
-	 * @deprecated 3.0
-	 *
-	 */
-	public function maybe_set_common_lib_info() {
-		_deprecated_function( __METHOD__, '3.0' );
-
-		$pngx_version = file_get_contents( $this->plugin_path . 'plugin-engine/src/Pngx/Main.php' );
-
-		// if there isn't a plugin-engine version, bail
-		if ( ! preg_match( $this->pngx_version_regex, $pngx_version, $matches ) ) {
-			add_action( 'admin_head', array( $this, 'missing_common_libs' ) );
-
-			return;
-		}
-		$pngx_version = $matches[1];
-		if ( empty( $GLOBALS['plugin-engine-info'] ) ) {
-			$GLOBALS['plugin-engine-info'] = array(
-				'dir'     => "{$this->plugin_path}plugin-engine/src/Pngx",
-				'version' => $pngx_version,
-			);
-		} elseif ( 1 == version_compare( $GLOBALS['plugin-engine-info']['version'], $pngx_version, '<' ) ) {
-			$GLOBALS['plugin-engine-info'] = array(
-				'dir'     => "{$this->plugin_path}plugin-engine/src/Pngx",
-				'version' => $pngx_version,
-			);
-		}
-
-	}
-
 }

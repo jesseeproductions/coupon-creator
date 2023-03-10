@@ -4,7 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
-
 /**
  * Plugin Version Update and Data Updater
  *
@@ -17,7 +16,6 @@ class Cctor__Coupon__Admin__Updates {
 	*
 	*/
 	public function admin_upgrade_version() {
-
 		//Update Version Number
 		if ( get_option( Cctor__Coupon__Main::VERSION_KEY ) != Cctor__Coupon__Main::VERSION_NUM ) {
 
@@ -33,7 +31,6 @@ class Cctor__Coupon__Admin__Updates {
 			update_option( Cctor__Coupon__Main::VERSION_KEY, Cctor__Coupon__Main::VERSION_NUM );
 
 			update_option( 'pngx_permalink_change', true );
-
 		}
 	}
 
@@ -42,7 +39,6 @@ class Cctor__Coupon__Admin__Updates {
 	*
 	*/
 	public function update_templates() {
-
 		update_option( 'coupon_update_templates', date( 'l jS \of F Y h:i:s A' ) );
 
 		$args = array(
@@ -73,14 +69,12 @@ class Cctor__Coupon__Admin__Updates {
 		}
 
 		wp_reset_postdata();
-
 	}
 
 	/**
 	 * Update Coupons with new Expiration Options in 2.3
 	 */
 	public function update_expiration_option() {
-
 		//Run this script once
 		if ( get_option( 'coupon_update_expiration_type' ) ) {
 			return;
@@ -126,7 +120,6 @@ class Cctor__Coupon__Admin__Updates {
 		wp_reset_postdata();
 
 		update_option( 'coupon_update_expiration_type', date( 'l jS \of F Y h:i:s A' ) );
-
 	}
 
 	/*
@@ -135,7 +128,6 @@ class Cctor__Coupon__Admin__Updates {
 	*
 	*/
 	public function update_image_fields() {
-
 		update_option( 'coupon_update_image_border_meta', date( 'l jS \of F Y h:i:s A' ) );
 
 		$args = array(
@@ -158,7 +150,5 @@ class Cctor__Coupon__Admin__Updates {
 		}
 
 		wp_reset_postdata();
-
 	}
-
 }
