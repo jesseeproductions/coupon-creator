@@ -1,0 +1,63 @@
+/*
+ * Plugin Engine Loader CSS
+ * -------------------------------------------------------------
+ */
+.cctor-pro-coupon-default-wrapper {
+	position: relative;
+
+	.pngx-loader {
+		align-items: start;
+		background: rgba(255, 255, 255, 0.8);
+		bottom: 0;
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		left: 0;
+		padding: 0;
+		padding-top: calc(64px * 3);
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		z-index: 10;
+	}
+
+	.pngx-loader__dot {
+		width: 15px;
+
+		&:not(:first-of-type) {
+			margin-left: 8px;
+		}
+
+		circle {
+			fill: currentColor;
+		}
+	}
+
+	.pngx-loader__dot circle {
+		animation-direction: normal;
+		animation-duration: 2.24s;
+		animation-iteration-count: infinite;
+		animation-name: pngx-loader-bounce;
+		fill: $darkred;
+		opacity: 0.3;
+	}
+
+	.pngx-loader__dot--first circle {
+		animation-delay: 0.45s;
+	}
+
+	.pngx-loader__dot--second circle {
+		animation-delay: 1.05s;
+	}
+
+	.pngx-loader__dot--third circle {
+		animation-delay: 1.35s;
+	}
+
+	@keyframes pngx-loader-bounce {
+		50% {
+			opacity: 1;
+		}
+	}
+}
