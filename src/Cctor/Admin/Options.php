@@ -435,6 +435,11 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'section' => '',
 			'class'   => ''
 		);
+		$fields['cctor_print_page_path']    = array(
+			'type'    => '',
+			'section' => '',
+			'class'   => ''
+		);
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
 			$fields['pro_feature_permalink_heading'] = array(
 				'section' => 'permalinks',
