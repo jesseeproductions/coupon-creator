@@ -9,7 +9,7 @@ class Cctor__Coupon__I18n {
 	/**
 	 * Hook into the required places to make it work
 	 *
-	 * @since  TBD
+	 * @since  3.2.0
 	 *
 	 * @return void
 	 */
@@ -20,7 +20,7 @@ class Cctor__Coupon__I18n {
 	/**
 	 * Include the Inline Script with locale
 	 *
-	 * @since  TBD
+	 * @since  3.2.0
 	 *
 	 * @return void
 	 */

@@ -14,7 +14,7 @@ defined( 'CCTOR_UNINSTALL_PLUGIN' ) || exit;
 global $wpdb, $wp_version;
 
 // Include the Plugin Engine Uninstall.
-require_once pngx( Pngx__Main::class )->plugin_path . 'src/Pngx/Install/uninstall.php';
+require_once dirname(__FILE__, 4 ) . '/plugin-engine/src/Pngx/Install/uninstall.php';
 
 /*
  * Remove only if CCTOR_REMOVE_ALL_DATA is set in the wp-config.php.

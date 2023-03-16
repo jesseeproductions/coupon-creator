@@ -1,14 +1,8 @@
 <?php
-// Don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
-
 /**
  * Coupon Creator Class
  *
  * This is the initial class with mostly generic methods to start a plugin
- *
  */
 class Cctor__Coupon__Main {
 
@@ -168,9 +162,13 @@ class Cctor__Coupon__Main {
 		do_action( 'cctor_deactivate' );
 
 		flush_rewrite_rules();
-
 	}
 
+	/**
+	 * Load Plugin.
+	 *
+	 * @since 3.0.0
+	 */
 	public function plugins_loaded() {
 		if ( $this->should_prevent_autoload_init ) {
 
@@ -239,7 +237,6 @@ class Cctor__Coupon__Main {
 	 * Bootstrap Plugin
 	 *
 	 * @since 3.0
-	 *
 	 */
 	public function bootstrap() {
 		/**
@@ -343,7 +340,7 @@ class Cctor__Coupon__Main {
 	/**
 	 * Prevents bootstrapping and autoloading if the version of WP or PHP are too old
 	 *
-	 * @since 4.10.6.2
+	 * @since 3.0.0
 	 */
 	public function maybe_bail_if_invalid_wp_or_php() {
 		if ( self::supported_version( 'wordpress' ) && self::supported_version( 'php' ) ) {
@@ -373,11 +370,11 @@ class Cctor__Coupon__Main {
 	/**
 	 * Test whether the current version of PHP or WordPress is supported.
 	 *
+	 * @since 3.0
+	 *
 	 * @param string $system Which system to test the version of such as 'php' or 'wordpress'.
 	 *
 	 * @return boolean Whether the current version of PHP or WordPress is supported.
-	 *@since 3.0
-	 *
 	 */
 	public function supported_version( $system ) {
 		if ( $supported = wp_cache_get( $system, 'pngx_version_test' ) ) {
@@ -394,11 +391,11 @@ class Cctor__Coupon__Main {
 		/**
 		 * Filter whether the current version of PHP or WordPress is supported.
 		 *
-		 * @param boolean $supported Whether the current version of PHP or WordPress is supported.
-		 * @param string  $system    Which system to test the version of such as 'php' or 'wordpress'.
-		 *
 		 * @since 3.0
 		 *
+		 *@param string  $system    Which system to test the version of such as 'php' or 'wordpress'.
+		 *
+		 * @param boolean $supported Whether the current version of PHP or WordPress is supported.
 		 */
 		$supported = apply_filters( 'coupon_creator_supported_system_version', $supported, $system );
 
@@ -614,6 +611,5 @@ class Cctor__Coupon__Main {
 		);
 
 		echo '</p></div>';
-
 	}
 }

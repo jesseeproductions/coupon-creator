@@ -28,7 +28,7 @@ class Coupons {
 	/**
 	 * Setup hooks for class.
 	 *
-	 * @since TBD
+	 * @since 3.2.0
 	 */
 	public function hooks() {
 
@@ -81,9 +81,9 @@ class Coupons {
 			return $actions;
 		}
 
-		$actions['duplicate'] = '<a 
-				href="' . wp_nonce_url( 'admin.php?action=pngx_duplicate_coupon&post=' . $post->ID, basename( __FILE__ ), 'pngx_duplicate_nonce' ) . '" 
-				title="' . esc_html__( 'Duplicate Coupon', 'coupon-creator' ) . '" 
+		$actions['duplicate'] = '<a
+				href="' . wp_nonce_url( 'admin.php?action=pngx_duplicate_coupon&post=' . $post->ID, basename( __FILE__ ), 'pngx_duplicate_nonce' ) . '"
+				title="' . esc_html__( 'Duplicate Coupon', 'coupon-creator' ) . '"
 			>' .
                 esc_html__( 'Duplicate', 'coupon-creator' ) .
 			'</a>';

@@ -6,7 +6,7 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 	/**
 	 * Which is the name/slug of this block
 	 *
-	 * @since  TBD
+	 * @since  3.2.0
 	 *
 	 * @return string
 	 */
@@ -17,7 +17,7 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 	/**
 	 * Does the registration for PHP rendering for the Block
 	 *
-	 * @since  TBD
+	 * @since  3.2.0
 	 *
 	 * @return void
 	 */
@@ -54,7 +54,7 @@ class Cctor__Coupon__Blocks__Coupon extends Pngx__Blocks__Abstract {
 	/**
 	 * Since we are dealing with a Dynamic type of Block we need a PHP method to render it
 	 *
-	 * @since  TBD
+	 * @since  3.2.0
 	 *
 	 * @param  array $attributes
 	 *

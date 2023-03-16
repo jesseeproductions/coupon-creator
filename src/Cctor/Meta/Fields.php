@@ -494,7 +494,7 @@ class Cctor__Coupon__Meta__Fields {
 		/**
 		 * Get All Meta Fields Ordered by Priority
 		 *
-		 * @sicne TBD
+		 * @sicne 3.2.0
 		 *
 		 * @param array $fields an array of fields to display in meta tabs.
 		 */

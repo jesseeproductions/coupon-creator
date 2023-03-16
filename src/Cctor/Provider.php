@@ -7,7 +7,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 	/**
 	 * Binds and sets up implementations.
 	 *
-	 * @since  TBD
+	 * @since  3.2.0
 	 *
 	 */
 	public function register() {

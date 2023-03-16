@@ -22,9 +22,18 @@ require_once dirname( COUPON_CREATOR_MAIN_PLUGIN_FILE ) . '/vendor/autoload.php'
 // the main plugin class
 require_once dirname( __FILE__ ) . '/src/Cctor/Main.php';
 Cctor__Coupon__Main::instance();
-register_activation_hook( __FILE__, array( 'Cctor__Coupon__Main', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Cctor__Coupon__Main', 'deactivate' ) );
+register_activation_hook( __FILE__, [ 'Cctor__Coupon__Main', 'activate' ] );
+register_deactivation_hook( __FILE__, [ 'Cctor__Coupon__Main', 'deactivate' ] );
 
+/**
+ * Register uninstall script.
+ *
+ * @since 3.4.0
+ */
+register_uninstall_hook( __FILE__, 'cctor_uninstall_script' );
+function cctor_uninstall_script() {
+	require_once dirname( __FILE__ ) . '/src/Cctor/Main.php';
+}
 
 /**
  * Get Options from Array
@@ -49,7 +58,6 @@ function cctor_options( $option, $falseable = null, $default = null ) {
 	} else {
 		return false;
 	}
-
 }
 
 if ( ! class_exists( 'Plugin_Usage_Tracker' ) ) {
@@ -68,7 +76,6 @@ if ( ! function_exists( 'coupon_creator_start_plugin_tracking' ) ) {
  */
 add_filter( 'wisdom_form_text_coupon_creator', 'cctor_filter_deactivation_form' );
 function cctor_filter_deactivation_form( $form ) {
-
 	$form['heading'] = __( 'Sorry to see you go', 'coupon-creator' );
 
 	$form['body'] = __( 'Before you deactivate the plugin, would you quickly give us your reason for doing so?', 'coupon-creator' );
@@ -85,5 +92,4 @@ function cctor_filter_deactivation_form( $form ) {
 	);
 
 	return $form;
-
 }
