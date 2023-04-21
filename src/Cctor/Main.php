@@ -19,6 +19,15 @@ class Cctor__Coupon__Main {
 	public $TEXT_DOMAIN              = 'coupon-creator';
 
 	/**
+	 * Stores the base slug for the plugin.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @var string
+	 */
+	const SLUG = 'coupon-creator';
+
+	/**
 	* Min Version of WordPress
 	*
 	* @since 4.10
