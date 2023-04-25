@@ -43,11 +43,7 @@ class Cctor__Coupon__Meta__Order {
 		 */
 		$fields = apply_filters( 'cctor_filter_meta_fields', $fields );
 
-		if ( get_bloginfo( 'version' ) >= 4.7 ) {
-			$fields = wp_list_sort( $fields, 'priority', 'ASC', true );
-		} else {
-			usort( $fields, array( $this, 'orderby_priority' ) );
-		}
+		$fields = wp_list_sort( $fields, 'priority', 'ASC', true );
 
 		return $fields;
 
@@ -71,36 +67,9 @@ class Cctor__Coupon__Meta__Order {
 		 */
 		$fields = apply_filters( 'cctor_filter_meta_template_fields', $fields );
 
-		if ( get_bloginfo( 'version' ) >= 4.7 ) {
-			$fields = wp_list_sort( $fields, 'priority', 'ASC', true );
-		} else {
-			usort( $fields, array( $this, 'orderby_priority' ) );
-		}
+		$fields = wp_list_sort( $fields, 'priority', 'ASC', true );
 
 		return $fields;
 
 	}
-
-	/**
-	 * Order Fields by Priority
-	 *
-	 * @since 2.5.5
-	 *
-	 * @todo  remove once 4.7 is the minimum version
-	 *
-	 * @param $a
-	 * @param $b
-	 *
-	 * @return mixed
-	 */
-	public function orderby_priority( $a, $b ) {
-
-		if ( $a['priority'] == $b['priority'] ) {
-			return 0;
-		}
-
-		return ( $a['priority'] < $b['priority'] ) ? - 1 : 1;
-
-	}
-
 }
