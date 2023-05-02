@@ -1,34 +1,28 @@
 <?php
-// Don't load directly
-if ( ! defined( 'ABSPATH' ) ) {
-	die( '-1' );
-}
 if ( class_exists( 'Cctor__Coupon__Meta__Fields' ) ) {
 	return;
 }
 
-
 class Cctor__Coupon__Meta__Fields {
 
-	// fields id prefix
+	/**
+	 * Fields prefix.
+	 *
+	 * @var string
+	 */
 	public $fields_prefix = 'cctor_';
-
 
 	/**
 	 * Cctor__Coupon__Meta__Fields constructor
 	 */
 	public function __construct() {
-
 		add_filter( 'cctor_filter_meta_template_fields', array( $this, 'get_template_fields' ), 5, 1 );
-
 		add_filter( 'pngx_meta_fields', array( $this, 'get_fields' ), 5 );
-
 		add_filter( 'pngx_meta_template_fields', array( $this, 'get_template_fields_for_filter' ), 5 );
 	}
 
 
 	public function get_template_fields_for_filter( $fields = array() ) {
-
 		/**
 		 * Filter the meta fields from Coupon Creator for custom templates
 		 *
@@ -37,7 +31,6 @@ class Cctor__Coupon__Meta__Fields {
 		 *
 		 */
 		return pngx( 'cctor.meta.order' )->get_ordered_template_fields( $fields );
-
 	}
 
 	/**
@@ -49,11 +42,12 @@ class Cctor__Coupon__Meta__Fields {
 		return $this->fields_prefix;
 	}
 
-	/*
-	* Get Fields
-	*
-	*/
-	public function get_fields() {
+	/**
+	 * Get Fields
+	 *
+	 * @param array<string|mixed> $fields The fields.
+	 */
+	public function get_fields( array $fields = [] ) {
 
 		// fields prefix
 		$prefix = $this->get_fields_prefix();
@@ -499,7 +493,6 @@ class Cctor__Coupon__Meta__Fields {
 		 * @param array $fields an array of fields to display in meta tabs.
 		 */
 		 $fields = pngx( 'cctor.meta.order' )->get_ordered_meta_fields( $fields );
-
 
 		return $fields;
 	}

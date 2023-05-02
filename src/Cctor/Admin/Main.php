@@ -44,10 +44,14 @@ class Cctor__Coupon__Admin__Main {
 	} //end admin_init
 
 
-	/*
-	* Add Options Link in Plugin entry of Plugins Menu
-	*
-	*/
+	/**
+	 * Add Options Link in Plugin entry of Plugins Menu.
+	 *
+	 * @param array<string|mixed> $links An array of links to display in the plugin entry.
+	 * @param string $file The file name of the plugin.
+	 *
+	 * @return array<string|mixed> $links An array of links to display in the plugin entry.
+	 */
 	public function plugin_setting_link( $links, $file ) {
 		static $this_plugin;
 

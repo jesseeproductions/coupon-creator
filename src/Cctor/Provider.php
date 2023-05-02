@@ -124,7 +124,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		add_action( 'admin_enqueue_scripts', pngx_callback( 'cctor.admin.assets', 'load_assets' ) );
 
 		//Options
-		add_action( 'plugin_action_links', pngx_callback( 'cctor.admin', 'plugin_setting_link' ), 10, 2 );
+		add_filter( 'plugin_action_links', pngx_callback( 'cctor.admin', 'plugin_setting_link' ), 10, 2 );
 		add_action( 'admin_menu', pngx_callback( 'cctor.admin.options', 'options_page' ) );
 		add_action( 'admin_init', pngx_callback( 'cctor.admin.options', 'admin_init' ), 0 );
 

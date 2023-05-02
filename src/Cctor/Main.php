@@ -453,7 +453,6 @@ class Cctor__Coupon__Main {
 		//Shortcode and Print Build
 		require_once $this->plugin_path . 'src/functions/template-build/cctor-shortcode-build.php';
 		require_once $this->plugin_path . 'src/functions/template-build/cctor-print-build.php';
-
 	}
 
 	/**

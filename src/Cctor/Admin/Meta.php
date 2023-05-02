@@ -56,7 +56,6 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		$this->set_tabs();
 		$this->set_fields();
-
 	}
 
 	/**

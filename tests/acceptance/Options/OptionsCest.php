@@ -9,7 +9,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_have_option_fields_and_updated_message( AcceptanceTester $I ) {
 		$version = pngx( 'cctor' )->VERSION_NUM;
@@ -27,7 +27,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_have_default_options_in_new_coupon( AcceptanceTester $I ) {
 
@@ -76,7 +76,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_change_nofollow_and_noindex_in_print_view( AcceptanceTester $I ) {
 		$name      = 'coupon-links-01';
@@ -93,7 +93,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_change_coupon_permalink( AcceptanceTester $I ) {
 		$I->haveOptionInDatabase( $this->option_name, [ 'cctor_coupon_base' => 'coupon' ] );
@@ -130,7 +130,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_change_nofollow_in_shortcode_view( AcceptanceTester $I ) {
 		$name      = 'coupon-links-03';
@@ -155,7 +155,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_change_disable_print_view( AcceptanceTester $I ) {
 		$name      = 'coupon-links-04';
@@ -179,7 +179,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_have_custom_styles( AcceptanceTester $I ) {
 		$name      = 'coupon-links-05';
@@ -213,7 +213,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_disable_wpautop_filter( AcceptanceTester $I ) {
 		$name      = 'coupon-links-06';
@@ -249,7 +249,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_disable_print_view_base_css( AcceptanceTester $I ) {
 		$name      = 'coupon-links-07';
@@ -281,7 +281,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_add_coupons_back_to_search( AcceptanceTester $I ) {
 		$name      = 'coupon-links-08';
@@ -314,7 +314,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_see_help_links( AcceptanceTester $I ) {
 
@@ -334,7 +334,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_see_system_info_and_copy_button( AcceptanceTester $I ) {
 
@@ -351,7 +351,7 @@ class OptionsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_reset__options( AcceptanceTester $I ) {
 

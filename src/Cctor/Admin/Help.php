@@ -1,16 +1,9 @@
 <?php
-//If Direct Access Kill the Script
-if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
-	die( 'Access denied.' );
-}
-
 
 /*
 * Admin Help Class
 *
 */
-
-
 class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 
 	//Help Fields array()

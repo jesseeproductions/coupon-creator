@@ -9,7 +9,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_create_default_coupon_ignore_expiration_have_black_inside_border_and_have_one_category( AcceptanceTester $I ) {
 		$deal     = 'Automated Deal 01';
@@ -76,7 +76,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_create_image_coupon_ignore_expiration_and_have_two_categories( AcceptanceTester $I ) {
 		$deal          = 'Automated Deal 02';
@@ -154,7 +154,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_create_coupon_with_expiration_in_a_month_and_day_first_format( AcceptanceTester $I ) {
 		$deal                 = 'Automated Deal 03';
@@ -224,7 +224,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_create_coupon_that_is_expired_and_does_not_show( AcceptanceTester $I ) {
 		$deal       = 'Automated Deal 04';
@@ -284,7 +284,7 @@ class CouponsCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_and_no_link_in_terms_with_changed_deal_font_and_background_color( AcceptanceTester $I ) {
 		$deal     = 'Automated Deal 05';

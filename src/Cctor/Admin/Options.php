@@ -29,18 +29,14 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	* Construct
 	*/
 	public function __construct() {
-
-		$this->checkboxes = array();
-
+		$this->checkboxes = [];
 		add_action( 'init', array( 'Pngx__Admin__Fields', 'flush_permalinks' ) );
-
 	}
 
 	/**
 	 * Admin Init Options
 	 */
 	public function admin_init() {
-
 		add_action( 'admin_init', array( $this, 'register_options' ), 15 );
 
 		//Filter Options Field Name ID
@@ -63,14 +59,12 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		//add option fields
 		add_filter( 'pngx-support-info', array( $this, 'add_system_items' ) );
-
 	}
 
 	/*
 	* Admin Options Page
 	*/
 	public function options_page() {
-
 		$admin_page = add_submenu_page( 'edit.php?post_type=cctor_coupon', // parent_slug
 			__( 'Coupon Creator Options', 'coupon-creator' ), // page_title
 			__( 'Options', 'coupon-creator' ), // menu_title
@@ -87,7 +81,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	* Register Options
 	*/
 	public function register_options() {
-
 		//Set options and sections here so they can be translated
 		$this->fields = $this->get_option_fields();
 		$this->set_sections();
@@ -109,7 +102,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	* Option Tabs
 	*/
 	public function set_sections() {
-
 		//Section Tab Headings
 		$this->sections['defaults']   = __( 'Defaults', 'coupon-creator' );
 		$this->sections['permalinks'] = __( 'Link Attributes / Permalinks', 'coupon-creator' );
@@ -144,24 +136,22 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	* Options Header
 	*/
 	public function display_options_header( $slug ) {
-
-		if ( 'coupon-options' == $slug ) {
-
-			$js_troubleshoot_url = 'http://cctor.link/R7KRa';
-
-			echo '<div class="icon32" id="icon-options-general"></div>
-			<h2><img class="cctor-options-icon" src="' . pngx( 'cctor' )->resource_url . 'images/cctor-icon.svg"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
-
-			<div class="javascript-conflict pngx-error"><p>' . sprintf( __( 'There maybe a javascript conflict preventing some features from working.  <a href="%s" target="_blank" >Please check this guide to narrow down the cause.</a>', 'coupon-creator' ), esc_url( $js_troubleshoot_url ) ) . '</p></div>
-
-			<h4>Coupon Creator: ' . get_option( Cctor__Coupon__Main::VERSION_KEY ) . '</h4>';
-
-			if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true ) {
-				echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.', 'coupon-creator' ) . '</p></div>';
-			}
-
+		if ( $slug !== $this->options_slug ) {
+			return;
 		}
 
+		$js_troubleshoot_url = 'http://cctor.link/R7KRa';
+
+		echo '<div class="icon32" id="icon-options-general"></div>
+		<h2><img class="cctor-options-icon" src="' . pngx( 'cctor' )->resource_url . 'images/cctor-icon.svg"/>  ' . __( 'Coupon Creator Options', 'coupon-creator' ) . '</h2>
+
+		<div class="javascript-conflict pngx-error"><p>' . sprintf( __( 'There maybe a javascript conflict preventing some features from working.  <a href="%s" target="_blank" >Please check this guide to narrow down the cause.</a>', 'coupon-creator' ), esc_url( $js_troubleshoot_url ) ) . '</p></div>
+
+		<h4>Coupon Creator: ' . get_option( Cctor__Coupon__Main::VERSION_KEY ) . '</h4>';
+
+		if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true ) {
+			echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.', 'coupon-creator' ) . '</p></div>';
+		}
 	}
 
 
