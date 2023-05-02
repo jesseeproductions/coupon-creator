@@ -132,7 +132,8 @@ class Cctor__Coupon__Main {
 
 		// Setup Capabilities for CPT
 		if ( ! get_option( self::POSTTYPE . '_capabilities_register' ) ) {
-			pngx( Pngx__Add_Capabilities::class )->add_capabilities( self::POSTTYPE );
+			$capabilities = new Pngx__Add_Capabilities();
+			$capabilities->add_capabilities( self::POSTTYPE );
 		}
 
 		// Use Instance to call method to setup cpt
