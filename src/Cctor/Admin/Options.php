@@ -59,6 +59,8 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 		//add option fields
 		add_filter( 'pngx-support-info', array( $this, 'add_system_items' ) );
+
+		add_filter( 'admin_body_class', array( $this, 'add_body_class' ) );
 	}
 
 	/*
@@ -750,5 +752,29 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 
 	}
 
+	/**
+	 * Add Plugin Engine Body Class
+	 *
+	 * @param string $classes A string of body classes.
+	 *
+	 * @return string A string of body classes.
+	 */
+	public function add_body_class( $classes ) {
+		$screen = get_current_screen();
+		if ( ! isset( $screen->id ) ) {
+			return $classes;
+		}
+
+		if (
+			'settings_page_plugin-engine-options' !== $screen->id &&
+			'cctor_coupon_page_coupon-options' !== $screen->id
+		) {
+			return $classes;
+		}
+
+		$classes .= ' pngx-admin-body';
+
+		return $classes;
+	}
 }
 
