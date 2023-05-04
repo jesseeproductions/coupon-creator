@@ -218,23 +218,6 @@ div.cctor-pro-link a:hover {
 /* ==========================================================================
    Help CSS
    ========================================================================== */
-.coupon.pngx-section-help-container {
-  background-color: #2a5a8a;
-  border: 1px solid #2a5a8a;
-}
-.coupon.pngx-section-help-container .pngx-section-help-container-toggle {
-  background-color: #2a5a8a;
-  border: 1px solid #2a5a8a;
-}
-.coupon.pngx-section-help-container .pngx-section-help-container:hover,
-.coupon.pngx-section-help-container .pngx-section-help-container-toggle:hover {
-  background: #9dd3df none repeat scroll 0 0;
-  border: 1px solid #2a5a8a;
-  color: #000;
-}
-.coupon.pngx-section-help-container .pngx-section-help-slideout {
-  border: 1px solid #2a5a8a;
-}
 .coupon.pngx-section-help-container .ui-widget-content a.pngx-support,
 .coupon.pngx-section-help-container .pngx-support {
   color: #2a5a8a;
@@ -269,7 +252,7 @@ div.cctor-pro-link a:hover {
 }
 
 .postbox h4.pngx-fields-heading {
-  color: #048c7f;
+  margin: 0 0 10px;
 }
 
 /* ==========================================================================
@@ -296,13 +279,17 @@ div.cctor-pro-link a:hover {
 ***************************************************/
 .cctor_coupon_page_coupon-options .pngx-section-help-container {
   margin-left: -10px;
+  margin-right: -10px;
+  margin-top: -15px;
 }
-
 @media (max-width: 768px) {
   .cctor_coupon_page_coupon-options .pngx-section-help-container {
     margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
   }
 }
+
 /**
 * License Fields
 ***************************************************/
@@ -377,7 +364,7 @@ div.cctor-pro-link a:hover {
   flex-wrap: wrap;
 }
 .pngx-promo-boxes .pngx-promo-box {
-  background: #fff;
+  background: #FAFAFA;
   box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
   overflow: hidden;
   padding: 15px 2.25%;
@@ -385,8 +372,6 @@ div.cctor-pro-link a:hover {
   width: 45%;
 }
 .pngx-promo-boxes .pngx-promo-box h2 {
-  color: #048c7f;
-  font-size: 15px;
   font-weight: bold;
 }
 .pngx-promo-boxes .pngx-promo-box h2:after {
