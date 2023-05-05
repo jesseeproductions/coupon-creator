@@ -173,10 +173,11 @@ div.cctor-pro-link a:hover {
 
 .cctor_button {
   background: #2a5a8a;
-  border: solid 1px #9dd3df;
-  border-radius: 6px;
+  border: solid 1px #2a5a8a;
+  border-radius: 0.5rem;
   color: #fff;
-  padding: 3px 1%;
+  line-height: 1.25rem;
+  padding: 0.625rem 1%;
   text-align: center;
   text-decoration: none;
 }
@@ -188,11 +189,15 @@ div.cctor-pro-link a:hover {
 .cctor_button:hover,
 .ui-widget-content a.cctor_button:hover {
   background: #9dd3df;
-  border: solid 1px #2a5a8a;
+  border: solid 1px #9dd3df;
   color: #000;
 }
 
 .cctor-column-row-insert select {
+  border-color: var(--pngx-grey-5);
+  border-radius: 0.5rem;
+  line-height: 1.5rem;
+  padding: 8px 32px 8px 12px;
   float: right;
   width: 48%;
 }
@@ -293,18 +298,30 @@ div.cctor-pro-link a:hover {
 /**
 * License Fields
 ***************************************************/
+.pngx-license-button-act,
+.pngx-license-button-det {
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.625rem 1.25rem;
+}
+
 .pngx-license-button-act {
   background: #2a5a8a;
   border: 1px solid #2a5a8a;
+}
+.pngx-license-button-act:hover {
+  background: rgba(42, 90, 138, 0.8);
+  border-color: rgba(42, 90, 138, 0.8);
 }
 
 .pngx-license-button-det {
   background: #048c7f;
   border: 1px solid #048c7f;
 }
-
 .pngx-license-button-det:hover {
-  background: #2a5a8a;
+  background: rgba(4, 140, 127, 0.8);
+  border-color: rgba(4, 140, 127, 0.8);
 }
 
 /**
@@ -334,15 +351,15 @@ div.cctor-pro-link a:hover {
 
 #mc-embedded-subscribe {
   background: #950402;
-  border: 1px solid #dd3d36;
+  border: 1px solid #950402;
   box-shadow: none;
   color: #fff;
   float: left;
   font-weight: 700;
 }
-
 #mc-embedded-subscribe:hover {
   background: #dd3d36;
+  border-color: #dd3d36;
 }
 
 /**
@@ -350,8 +367,6 @@ div.cctor-pro-link a:hover {
 ***************************************************/
 .create-shortcode {
   display: inline-block;
-  margin: 10px 0;
-  padding: 3px 5px;
 }
 
 /**

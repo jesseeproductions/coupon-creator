@@ -28,18 +28,32 @@
 /**
 * License Fields
 ***************************************************/
+.pngx-license-button-act,
+.pngx-license-button-det {
+	border-radius: 0.5rem;
+	font-size: .875rem;
+	line-height: 1.25rem;
+	padding: 0.625rem 1.25rem;
+}
+
 .pngx-license-button-act {
 	background: $blue;
 	border: 1px solid $blue;
+
+	&:hover {
+		background: rgba($blue,0.8);
+		border-color: rgba($blue,0.8);
+	}
 }
 
 .pngx-license-button-det {
 	background: $green;
 	border: 1px solid $green;
-}
 
-.pngx-license-button-det:hover {
-	background: $blue;
+	&:hover {
+		background: rgba($green,0.8);
+		border-color: rgba($green,0.8);
+	}
 }
 
 /**
@@ -70,15 +84,16 @@
 
 #mc-embedded-subscribe {
 	background: $darkred;
-	border: 1px solid $alert;
+	border: 1px solid $darkred;
 	box-shadow: none;
-	color: #fff;
+	color: $white;
 	float: left;
 	font-weight: 700;
-}
 
-#mc-embedded-subscribe:hover {
-	background: $alert;
+	&:hover {
+		background: $alert;
+		border-color: $alert;
+	}
 }
 
 /**
@@ -87,8 +102,6 @@
 
 .create-shortcode {
 	display: inline-block;
-	margin: 10px 0;
-	padding: 3px 5px;
 }
 
 /**
