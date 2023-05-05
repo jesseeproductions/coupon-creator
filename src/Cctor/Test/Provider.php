@@ -12,6 +12,7 @@ namespace Cctor\Coupon\Test;
 use tad_DI52_ServiceProvider;
 use Pngx\Traits\With_Nonce_Routes;
 use WP_Post;
+use Pngx__Admin__Fields;
 
 /**
  * Class Provider
@@ -33,6 +34,7 @@ class Provider extends tad_DI52_ServiceProvider {
 		$this->container->singleton( static::class, $this );
 		$this->container->singleton( Meta::class, Meta::class );
 		$this->container->singleton( Options::class, Options::class );
+		$this->container->singleton( Pngx__Admin__Fields::class, Pngx__Admin__Fields::class );
 
 		$this->add_actions();
 		$this->add_filters();
