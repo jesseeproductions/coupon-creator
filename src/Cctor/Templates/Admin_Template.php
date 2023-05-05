@@ -4,7 +4,7 @@
  *
  * @since 0.1.0
  *
- * @package Pngx\Volt_Vectors\Templates
+ * @package Cctor\Coupon\Templates
  */
 
 namespace Cctor\Coupon\Templates;
@@ -18,7 +18,7 @@ use Pngx__Main;
  *
  * @since 0.1.0
  *
- * @package Pngx\Volt_Vectors\Templates
+ * @package Cctor\Coupon\Templates
  */
 class Admin_Template extends Template {
 
@@ -31,7 +31,7 @@ class Admin_Template extends Template {
 	 */
 	public function __construct() {
 		$this->set_template_origin( Coupon_Main::instance() );
-		$this->set_template_folder( 'Coupon_Creator/admin-views' );
+		$this->set_template_folder( 'src/admin-views' );
 
 		// We specifically don't want to look up template files here.
 		$this->set_template_folder_lookup( false );
