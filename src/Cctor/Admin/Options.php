@@ -4,6 +4,7 @@ if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
 	die( 'Access denied.' );
 }
 
+use Cctor\Coupon\Templates\Admin_Template;
 
 /**
  * Class Cctor__Coupon__Admin__Options
@@ -25,10 +26,24 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	*/
 	protected $field_prefix = 'cctor_';
 
-	/*
-	* Construct
-	*/
-	public function __construct() {
+	/**
+	 * An instance of the admin template handler.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @var Admin_Template
+	 */
+	protected $admin_template;
+
+	/**
+	 * Cctor__Coupon__Admin__Options constructor.
+	 *
+	 * @since 3.4.0 - Add Admin Template.
+	 *
+	 * @param Admin_Template $admin_template An instance of the admin template handler.
+	 */
+	public function __construct( Admin_Template $admin_template ) {
+		$this->admin_template = $admin_template;
 		$this->checkboxes = [];
 		add_action( 'init', array( 'Pngx__Admin__Fields', 'flush_permalinks' ) );
 	}
@@ -154,6 +169,8 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == true ) {
 			echo '<div class="updated fade"><p>' . __( 'Coupon Creator Options updated.', 'coupon-creator' ) . '</p></div>';
 		}
+
+		$this->admin_template->template( '/components/loader', [ 'loader_classes' => [ 'pngx-loader__dots' ] ] );
 	}
 
 
