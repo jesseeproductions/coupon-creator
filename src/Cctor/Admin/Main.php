@@ -4,7 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
-
 /**
  * Coupon Admin Class
  *
@@ -16,7 +15,6 @@ class Cctor__Coupon__Admin__Main {
 	* Admin Construct
 	*/
 	public function __construct() {
-
 		//Setup Admin
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 
@@ -25,24 +23,21 @@ class Cctor__Coupon__Admin__Main {
 
 		//handle older versions of Pro so they can update before 2.4
 		if ( defined( 'CCTOR_PRO_VERSION_NUM' ) && 2.4 > CCTOR_PRO_VERSION_NUM ) {
-
 			new Cctor__Coupon__Admin__Pro_License_Pre_24();
-
 		}
 
+		// Load class to add template.
+		pngx( Pngx__Admin__Fields::class );
 	}
 
 	/**
 	 * Admin Init
 	 */
 	public function admin_init() {
-
 		if ( ! class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
 			new Cctor__Coupon__Admin__Inserter();
 		}
-
-	} //end admin_init
-
+	}
 
 	/**
 	 * Add Options Link in Plugin entry of Plugins Menu.
@@ -78,5 +73,4 @@ class Cctor__Coupon__Admin__Main {
 
 		return $links;
 	}
-
 }

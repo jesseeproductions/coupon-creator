@@ -6,6 +6,7 @@
  */
 
 use Cctor\Coupon\Test\Provider as Test_Provider;
+use Cctor\Coupon\Hooks;
 
 class Cctor__Coupon__Main {
 
@@ -260,6 +261,7 @@ class Cctor__Coupon__Main {
 
 		pngx_register_provider( 'Cctor__Coupon__Provider' );
 		pngx_register_provider( Test_Provider::class );
+		pngx_register_provider( Hooks::class );
 
 		$this->loadLibraries();
 
