@@ -4,6 +4,9 @@
  *
  * This is the initial class with mostly generic methods to start a plugin
  */
+
+use Cctor\Coupon\Test\Provider as Test_Provider;
+
 class Cctor__Coupon__Main {
 
 	const TAXONOMY                 = 'cctor_coupon_category';
@@ -256,6 +259,7 @@ class Cctor__Coupon__Main {
 		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
 
 		pngx_register_provider( 'Cctor__Coupon__Provider' );
+		pngx_register_provider( Test_Provider::class );
 
 		$this->loadLibraries();
 
