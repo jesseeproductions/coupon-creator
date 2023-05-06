@@ -245,10 +245,7 @@ div.cctor-pro-link a:hover {
 /* ==========================================================================
    Meta Box CSS
    ========================================================================== */
-#coupon_creator_pro_meta_box h2,
-#cctor_coupon_categorydiv h2,
-#coupon_creator_shortcode h2,
-#coupon_creator_meta_box h2 {
+#coupon_creator_pro_meta_box h2 {
   color: #2a5a8a;
   font: italic 20px/30px Georgia, Times, serif;
   margin: 0;
@@ -365,6 +362,10 @@ div.cctor-pro-link a:hover {
 /**
 * Pro CSS
 ***************************************************/
+.cctor_add_shortcode {
+  margin-top: 10px;
+}
+
 .create-shortcode {
   display: inline-block;
 }
