@@ -131,7 +131,7 @@ $wrap_classes = [
 	</div>
 
 	<div class="pngx-engine-grid-full-width">
-		<div class="pngx-engine-options-api-key__wrap">
+		<div class="pngx-engine-options-profile-panel__wrap">
 			<?php
 			$args = [
 				'label'        => _x( 'Defaults', 'The title of the default settings accordion for an API profile.', 'cctor-test' ),

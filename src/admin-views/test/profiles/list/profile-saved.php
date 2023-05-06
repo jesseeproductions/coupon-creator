@@ -93,9 +93,9 @@ $wrap_classes = [
 		<?php
 		$wrap_classes = [
 			'pngx-profiles-grid-item',
-			"pngx-engine-options-{$api_id}-details__actions",
+			"pngx-engine-options-profile-action__buttons-wrap",
+			"pngx-engine-options-profile-{$api_id}-action__buttons-wrap",
 			'pngx-engine-options-details__container',
-			"pngx-engine-options-{$api_id}-details__profile-save-delete",
 		];
 
 		pngx_classes( $wrap_classes );
@@ -117,7 +117,7 @@ $wrap_classes = [
 	</div>
 
 	<div class="pngx-engine-grid-full-width">
-		<div class="pngx-engine-options-api-key__wrap">
+		<div class="pngx-engine-options-profile-panel__wrap">
 			<?php
 			$args = [
 				'label'        => _x( 'Defaults', 'The title of the default settings accordion for an API profile.', 'cctor-test' ),

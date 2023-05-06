@@ -24,7 +24,7 @@
 	<div class="pngx-profiles-grid-item pngx-engine-options-test-details-profiles__last-access-wrap">
 		<?php echo esc_html_x( 'Last Access', 'Last Access header label for the settings listing of Test Profile.', 'cctor-test' ) ?>
 	</div>
-	<div class="pngx-profiles-grid-item pngx-engine-options-details-action__delete-wrap pngx-test-details-action__delete-wrap">
+	<div class="pngx-profiles-grid-item pngx-engine-options-profile-action__buttons-wrap pngx-test-details-action__delete-wrap">
 		<?php echo esc_html_x( 'Actions', 'Actions header label for the settings listing of Test Profile.', 'cctor-test' ) ?>
 	</div>
 </div>
