@@ -9,6 +9,8 @@
 
 namespace Cctor\Coupon\Test;
 
+use Pngx__Admin__Meta;
+
 /**
  * Class Meta
  *
@@ -16,7 +18,7 @@ namespace Cctor\Coupon\Test;
  *
  * @package Cctor\Coupon\Admin;
  */
-class Meta {
+class Meta extends Pngx__Admin__Meta {
 
 	/**
 	 * Add Tabs.
