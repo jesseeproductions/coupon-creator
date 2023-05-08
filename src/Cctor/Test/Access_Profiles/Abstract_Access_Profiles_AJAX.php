@@ -157,8 +157,6 @@ abstract class Abstract_Access_Profiles_AJAX extends Abstract_Access_Profiles {
 		);
 		$this->template_modifications->print_settings_message_template( $message );
 
-		// Update default profile dropdown.
-		$this->template_modifications->get_default_profile_dropdown('cctor_default_profile' );
 
 		wp_die();
 	}
@@ -198,9 +196,6 @@ abstract class Abstract_Access_Profiles_AJAX extends Abstract_Access_Profiles {
 			);
 
 			$this->template_modifications->print_settings_message_template( $message );
-
-			// Update default profile dropdown.
-			$this->template_modifications->get_default_profile_dropdown('cctor_default_profile' );
 
 			wp_die();
 		}

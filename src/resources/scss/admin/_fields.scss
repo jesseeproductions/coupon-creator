@@ -166,27 +166,32 @@ div.cctor-pro-link {
 }
 
 .cctor_button {
-	background: #2a5a8a;
-	border: solid 1px #9dd3df;
-	border-radius: 6px;
-	color: #fff;
-	padding: 3px 1%;
+	background: $blue;
+	border: solid 1px $blue;
+	border-radius: 0.5rem;
+	color: $white;
+	line-height: 1.25rem;
+	padding: 0.625rem 1%;
 	text-align: center;
 	text-decoration: none;
 }
 
 .ui-widget-content a.cctor_button {
-	color: #fff;
+	color: $white;
 }
 
 .cctor_button:hover,
 .ui-widget-content a.cctor_button:hover {
 	background: #9dd3df;
-	border: solid 1px #2a5a8a;
+	border: solid 1px #9dd3df;
 	color: #000;
 }
 
 .cctor-column-row-insert select {
+	border-color: var(--pngx-grey-5);
+	border-radius: 0.5rem;
+	line-height: 1.5rem;
+	padding: 8px 32px 8px 12px;
 	float: right;
 	width: 48%;
 }

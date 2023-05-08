@@ -2,6 +2,117 @@
 	Coupon Creator Admin CSS
 
 */
+/*
+ * Utilities CSS
+ * -------------------------------------------------------------
+ */
+/*
+ * Pngx Color Variables.
+ * -------------------------------------------------------------
+ */
+:root {
+  /* -----------------------------------------------------------------------------
+   * Colors - Utilties
+   * ----------------------------------------------------------------------------- */
+  --pngx-white: #fff;
+  --pngx-grey-1: #FAFAFA;
+  --pngx-grey-2: #F5F5F5;
+  --pngx-grey-3: #EEEEEE;
+  --pngx-grey-4: #E0E0E0;
+  --pngx-grey-5: #BDBDBD;
+  --pngx-grey-6: #9E9E9E;
+  --pngx-grey-7: #757575;
+  --pngx-grey-8: #616161;
+  --pngx-grey-9: #424242;
+  --pngx-grey-10: #212121;
+  --pngx-black: #000;
+  --pngx-error: #dd3d36;
+  --pngx-success: #3ca900;
+  --pngx-dark-red: #950402;
+  --pngx-blue: #2A5A8A;
+  /* -----------------------------------------------------------------------------
+   * Colors - Typography
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-text-primary: #1f0808;
+  --pngx-color-text-primary-light: rgba(30, 5, 5, 0.62);
+  --pngx-color-text-secondary: #605c5c;
+  --pngx-color-text-disabled: #c2c2c2;
+  /* -----------------------------------------------------------------------------
+   * Colors - Backgrounds
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-background: #ffffff;
+  --pngx-color-background-secondary: #e4eeec;
+  --pngx-color-background-grey: rgb(249 250 251);
+  /* -----------------------------------------------------------------------------
+   * Colors - UI Base
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-accent-primary: #2271b1;
+  --pngx-color-accent-primary-hover: rgba(34, 113, 177, 0.81);
+  /* -----------------------------------------------------------------------------
+   * Colors - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-shadow-primary: rgba(0, 0, 0, 0.8);
+  /* -----------------------------------------------------------------------------
+   * Colors - Borders
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-border-default: #d5d5d5;
+  --pngx-color-border-primary: #1b700c;
+  /* -----------------------------------------------------------------------------
+   * Colors - Buttons
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-button-primary: var(--pngx-color-accent-primary);
+  --pngx-color-button-primary-hover: var(--pngx-color-accent-primary-hover);
+  /* -----------------------------------------------------------------------------
+   * Colors - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-ring-offset-shadow: 0 0 #0000;
+  --pngx-ring-shadow: 0 0 #0000;
+  --pngx-shadow: 0 0 #0000;
+  /* -----------------------------------------------------------------------------
+   * Opacity - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-defualt-opacity: 1;
+  --pngx-disable-opacity: .4;
+}
+
+:root {
+  /* -----------------------------------------------------------------------------
+   * Spacers
+   * ----------------------------------------------------------------------------- */
+  --pngx-spacer-0: 4px;
+  --pngx-spacer-1: 8px;
+  --pngx-spacer-2: 12px;
+  --pngx-spacer-3: 16px;
+  --pngx-spacer-4: 20px;
+  --pngx-spacer-5: 24px;
+  --pngx-spacer-6: 28px;
+  --pngx-spacer-7: 32px;
+  --pngx-spacer-8: 40px;
+  --pngx-spacer-9: 48px;
+  --pngx-spacer-10: 56px;
+  --pngx-spacer-11: 64px;
+  --pngx-spacer-12: 80px;
+  --pngx-spacer-13: 96px;
+  --pngx-spacer-14: 160px;
+}
+
+/**
+ * Removes the unit (e.g. px, em, rem) from a value, returning the number only.
+ * @param {Number} $num - Number to strip unit from.
+ * @returns {Number} The same number, sans unit.
+ */
+/**
+ * Convert a pixel value to rem.
+ * @param {Number} $px - The pixel value to convert.
+ * @param {Number} $base - The base font size to use.
+ * @return {Number} - The rem value.
+ */
+/** Converts a pixel value to matching rem value. *Any* value passed, regardless of unit, is assumed to be a pixel value. By default, the base pixel value used to calculate the rem value is taken from the `$global-font-size` variable.
+ * @access private
+ * @param {Number} $value - Pixel value to convert.
+ * @param {Number} $base [null] - Base for pixel conversion.
+ * @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
+ */
 /* ==========================================================================
    Fields CSS
    ========================================================================== */
@@ -173,10 +284,11 @@ div.cctor-pro-link a:hover {
 
 .cctor_button {
   background: #2a5a8a;
-  border: solid 1px #9dd3df;
-  border-radius: 6px;
+  border: solid 1px #2a5a8a;
+  border-radius: 0.5rem;
   color: #fff;
-  padding: 3px 1%;
+  line-height: 1.25rem;
+  padding: 0.625rem 1%;
   text-align: center;
   text-decoration: none;
 }
@@ -188,11 +300,15 @@ div.cctor-pro-link a:hover {
 .cctor_button:hover,
 .ui-widget-content a.cctor_button:hover {
   background: #9dd3df;
-  border: solid 1px #2a5a8a;
+  border: solid 1px #9dd3df;
   color: #000;
 }
 
 .cctor-column-row-insert select {
+  border-color: var(--pngx-grey-5);
+  border-radius: 0.5rem;
+  line-height: 1.5rem;
+  padding: 8px 32px 8px 12px;
   float: right;
   width: 48%;
 }
@@ -218,23 +334,6 @@ div.cctor-pro-link a:hover {
 /* ==========================================================================
    Help CSS
    ========================================================================== */
-.coupon.pngx-section-help-container {
-  background-color: #2a5a8a;
-  border: 1px solid #2a5a8a;
-}
-.coupon.pngx-section-help-container .pngx-section-help-container-toggle {
-  background-color: #2a5a8a;
-  border: 1px solid #2a5a8a;
-}
-.coupon.pngx-section-help-container .pngx-section-help-container:hover,
-.coupon.pngx-section-help-container .pngx-section-help-container-toggle:hover {
-  background: #9dd3df none repeat scroll 0 0;
-  border: 1px solid #2a5a8a;
-  color: #000;
-}
-.coupon.pngx-section-help-container .pngx-section-help-slideout {
-  border: 1px solid #2a5a8a;
-}
 .coupon.pngx-section-help-container .ui-widget-content a.pngx-support,
 .coupon.pngx-section-help-container .pngx-support {
   color: #2a5a8a;
@@ -257,10 +356,7 @@ div.cctor-pro-link a:hover {
 /* ==========================================================================
    Meta Box CSS
    ========================================================================== */
-#coupon_creator_pro_meta_box h2,
-#cctor_coupon_categorydiv h2,
-#coupon_creator_shortcode h2,
-#coupon_creator_meta_box h2 {
+#coupon_creator_pro_meta_box h2 {
   color: #2a5a8a;
   font: italic 20px/30px Georgia, Times, serif;
   margin: 0;
@@ -269,7 +365,7 @@ div.cctor-pro-link a:hover {
 }
 
 .postbox h4.pngx-fields-heading {
-  color: #048c7f;
+  margin: 0 0 10px;
 }
 
 /* ==========================================================================
@@ -296,28 +392,44 @@ div.cctor-pro-link a:hover {
 ***************************************************/
 .cctor_coupon_page_coupon-options .pngx-section-help-container {
   margin-left: -10px;
+  margin-right: -10px;
+  margin-top: -15px;
 }
-
 @media (max-width: 768px) {
   .cctor_coupon_page_coupon-options .pngx-section-help-container {
     margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
   }
 }
+
 /**
 * License Fields
 ***************************************************/
+.pngx-license-button-act,
+.pngx-license-button-det {
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.625rem 1.25rem;
+}
+
 .pngx-license-button-act {
   background: #2a5a8a;
   border: 1px solid #2a5a8a;
+}
+.pngx-license-button-act:hover {
+  background: rgba(42, 90, 138, 0.8);
+  border-color: rgba(42, 90, 138, 0.8);
 }
 
 .pngx-license-button-det {
   background: #048c7f;
   border: 1px solid #048c7f;
 }
-
 .pngx-license-button-det:hover {
-  background: #2a5a8a;
+  background: rgba(4, 140, 127, 0.8);
+  border-color: rgba(4, 140, 127, 0.8);
 }
 
 /**
@@ -347,24 +459,26 @@ div.cctor-pro-link a:hover {
 
 #mc-embedded-subscribe {
   background: #950402;
-  border: 1px solid #dd3d36;
+  border: 1px solid #950402;
   box-shadow: none;
   color: #fff;
   float: left;
   font-weight: 700;
 }
-
 #mc-embedded-subscribe:hover {
   background: #dd3d36;
+  border-color: #dd3d36;
 }
 
 /**
 * Pro CSS
 ***************************************************/
+.cctor_add_shortcode {
+  margin-top: 10px;
+}
+
 .create-shortcode {
   display: inline-block;
-  margin: 10px 0;
-  padding: 3px 5px;
 }
 
 /**
@@ -377,7 +491,7 @@ div.cctor-pro-link a:hover {
   flex-wrap: wrap;
 }
 .pngx-promo-boxes .pngx-promo-box {
-  background: #fff;
+  background: #FAFAFA;
   box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
   overflow: hidden;
   padding: 15px 2.25%;
@@ -385,8 +499,6 @@ div.cctor-pro-link a:hover {
   width: 45%;
 }
 .pngx-promo-boxes .pngx-promo-box h2 {
-  color: #048c7f;
-  font-size: 15px;
   font-weight: bold;
 }
 .pngx-promo-boxes .pngx-promo-box h2:after {

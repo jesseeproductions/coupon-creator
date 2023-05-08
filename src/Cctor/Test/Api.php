@@ -158,6 +158,22 @@ class Api extends Abstract_Access_Profiles_AJAX {
 			]
 		];
 
+		$panel_fields['overlap_2'] = [
+			'id'            => 'overlap_2',
+			'label'         => _x( 'Overlap 2', "Label for Test.", 'coupon-test' ),
+			'tooltip'       => $overlap_tooltip,
+			'template'      => 'number',
+			'template_args' => [
+				'attrs'         => [],
+				'placeholder'   => _x( 'Set.', "The placeholder for the Test overlap.", 'coupon-test' ),
+				'screen_reader' => _x( 'Set the overlap.', "The screen reader text of the label for the Test overlap.", 'coupon-test' ),
+				'value'         => $profile_data['defaults']['overlap_2'] ?? 200,
+				'min'           => 0,
+				'max'           => 9999999,
+				'step'          => 1,
+			]
+		];
+
 		return $panel_fields;
 	}
 }
