@@ -2,6 +2,117 @@
 	Coupon Creator CSS
 
 */
+/*
+ * Utilities CSS
+ * -------------------------------------------------------------
+ */
+/*
+ * Pngx Color Variables.
+ * -------------------------------------------------------------
+ */
+:root {
+  /* -----------------------------------------------------------------------------
+   * Colors - Utilties
+   * ----------------------------------------------------------------------------- */
+  --pngx-white: #fff;
+  --pngx-grey-1: #FAFAFA;
+  --pngx-grey-2: #F5F5F5;
+  --pngx-grey-3: #EEEEEE;
+  --pngx-grey-4: #E0E0E0;
+  --pngx-grey-5: #BDBDBD;
+  --pngx-grey-6: #9E9E9E;
+  --pngx-grey-7: #757575;
+  --pngx-grey-8: #616161;
+  --pngx-grey-9: #424242;
+  --pngx-grey-10: #212121;
+  --pngx-black: #000;
+  --pngx-error: #dd3d36;
+  --pngx-success: #3ca900;
+  --pngx-dark-red: #950402;
+  --pngx-blue: #2A5A8A;
+  /* -----------------------------------------------------------------------------
+   * Colors - Typography
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-text-primary: #1f0808;
+  --pngx-color-text-primary-light: rgba(30, 5, 5, 0.62);
+  --pngx-color-text-secondary: #605c5c;
+  --pngx-color-text-disabled: #c2c2c2;
+  /* -----------------------------------------------------------------------------
+   * Colors - Backgrounds
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-background: #ffffff;
+  --pngx-color-background-secondary: #e4eeec;
+  --pngx-color-background-grey: rgb(249 250 251);
+  /* -----------------------------------------------------------------------------
+   * Colors - UI Base
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-accent-primary: #2271b1;
+  --pngx-color-accent-primary-hover: rgba(34, 113, 177, 0.81);
+  /* -----------------------------------------------------------------------------
+   * Colors - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-shadow-primary: rgba(0, 0, 0, 0.8);
+  /* -----------------------------------------------------------------------------
+   * Colors - Borders
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-border-default: #d5d5d5;
+  --pngx-color-border-primary: #1b700c;
+  /* -----------------------------------------------------------------------------
+   * Colors - Buttons
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-button-primary: var(--pngx-color-accent-primary);
+  --pngx-color-button-primary-hover: var(--pngx-color-accent-primary-hover);
+  /* -----------------------------------------------------------------------------
+   * Colors - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-ring-offset-shadow: 0 0 #0000;
+  --pngx-ring-shadow: 0 0 #0000;
+  --pngx-shadow: 0 0 #0000;
+  /* -----------------------------------------------------------------------------
+   * Opacity - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-defualt-opacity: 1;
+  --pngx-disable-opacity: .4;
+}
+
+:root {
+  /* -----------------------------------------------------------------------------
+   * Spacers
+   * ----------------------------------------------------------------------------- */
+  --pngx-spacer-0: 4px;
+  --pngx-spacer-1: 8px;
+  --pngx-spacer-2: 12px;
+  --pngx-spacer-3: 16px;
+  --pngx-spacer-4: 20px;
+  --pngx-spacer-5: 24px;
+  --pngx-spacer-6: 28px;
+  --pngx-spacer-7: 32px;
+  --pngx-spacer-8: 40px;
+  --pngx-spacer-9: 48px;
+  --pngx-spacer-10: 56px;
+  --pngx-spacer-11: 64px;
+  --pngx-spacer-12: 80px;
+  --pngx-spacer-13: 96px;
+  --pngx-spacer-14: 160px;
+}
+
+/**
+ * Removes the unit (e.g. px, em, rem) from a value, returning the number only.
+ * @param {Number} $num - Number to strip unit from.
+ * @returns {Number} The same number, sans unit.
+ */
+/**
+ * Convert a pixel value to rem.
+ * @param {Number} $px - The pixel value to convert.
+ * @param {Number} $base - The base font size to use.
+ * @return {Number} - The rem value.
+ */
+/** Converts a pixel value to matching rem value. *Any* value passed, regardless of unit, is assumed to be a pixel value. By default, the base pixel value used to calculate the rem value is taken from the `$global-font-size` variable.
+ * @access private
+ * @param {Number} $value - Pixel value to convert.
+ * @param {Number} $base [null] - Base for pixel conversion.
+ * @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
+ */
 /* Coupon Creator CSS
 ------------------------------------------------------------ */
 .cctor-coupon-container,

@@ -1,0 +1,27 @@
+/* Coupon Align
+------------------------------------------------------------ */
+.cctor-alignnone,
+.cctor_alignnone {
+	display: inline-block;
+	margin: 0 0 10px;
+}
+
+.cctor-alignleft,
+.cctor_alignleft {
+	display: inline;
+	float: left;
+	margin: 0 10px 10px 0;
+}
+
+.cctor-alignright,
+.cctor_alignright {
+	display: inline;
+	float: right;
+	margin: 0 0 10px 10px;
+}
+
+.cctor-aligncenter,
+.cctor_aligncenter {
+	display: block;
+	margin: 10px auto;
+}

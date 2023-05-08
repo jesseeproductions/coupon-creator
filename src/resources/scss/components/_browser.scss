@@ -1,0 +1,13 @@
+/* Basic IE7 Support
+------------------------------------------------------------ */
+.cctor_coupon {
+	*width: 300px;
+}
+
+.cctor_coupon_content h3,
+.main-coupon-content,
+.cctor-terms,
+.cctor_terms,
+.cctor_expiration {
+	*width: 96%;
+}
