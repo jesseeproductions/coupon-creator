@@ -174,10 +174,10 @@ div.cctor-pro-link a:hover {
 .cctor_button {
   background: #2a5a8a;
   border: solid 1px #2a5a8a;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   color: #fff;
-  line-height: 1.25rem;
-  padding: 0.625rem 1%;
+  line-height: 20px;
+  padding: 10px 1%;
   text-align: center;
   text-decoration: none;
 }
@@ -195,8 +195,8 @@ div.cctor-pro-link a:hover {
 
 .cctor-column-row-insert select {
   border-color: var(--pngx-grey-5);
-  border-radius: 0.5rem;
-  line-height: 1.5rem;
+  border-radius: 8px;
+  line-height: 24px;
   padding: 8px 32px 8px 12px;
   float: right;
   width: 48%;
@@ -297,10 +297,10 @@ div.cctor-pro-link a:hover {
 ***************************************************/
 .pngx-license-button-act,
 .pngx-license-button-det {
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 10px 20px;
 }
 
 .pngx-license-button-act {
