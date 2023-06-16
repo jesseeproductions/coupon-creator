@@ -38,6 +38,8 @@ class Meta_Fields {
 	 */
 	public function get_fields( array $fields = [] ) {
 		$post_id    = get_the_ID();
+		$local_time  = current_datetime();
+
 		$post_types = [
 			[
 				"text"     => "Posts",
@@ -151,6 +153,7 @@ class Meta_Fields {
 
 		$fields[ $this->fields_prefix . 'switchinput' ] = [
 			'label'    => __( 'Switch Label', 'test' ),
+			'switch_description'  => __( 'Turns off and On Something', 'test' ),
 			'tooltip'  => __( 'Tooltip', 'test' ),
 			'id'       => $this->fields_prefix . 'switchinput',
 			'version'  => 'v2',
@@ -162,14 +165,53 @@ class Meta_Fields {
 
 		$fields[ $this->fields_prefix . 'icon' ] = [
 			'label'    => __( 'Icon', 'test_actions' ),
+			'description'          => _x( 'Icon Helper Text', '', 'test_actions' ),
 			'id'       => $this->fields_prefix . 'icon',
 			'version'  => 'v2',
 			'type'     => 'image',
-			'imagemsg' => 'Icon',
+			'image_msg' => 'Icon',
+			'attrs' => [
+				'data-toggle-upload_title' => _x( 'Upload Icon', 'Label of the PDF source for embeddings Media Manager upload button.', 'test_actions' ),
+				'data-toggle-button_text'  => _x( 'Use Icon', 'Label of the PDF source for embeddings Media Manager use button.', 'test_actions' ),
+				'data-upload-type'  => 'image',
+			],
 			'section'  => 'coupon_creator_meta_box',
 			'tab'      => 'test',
 			'priority' => 0.01,
 		];
+
+		$fields[ $this->fields_prefix . 'pdf' ] = [
+			'label'          => _x( 'PDF', '', 'test_actions' ),
+			'description'          => _x( 'PDF Helper Text', '', 'test_actions' ),
+			'id'             => $this->fields_prefix . 'pdf',
+			'version'        => 'v2',
+			'type'           => 'file',
+			'attrs' => [
+				'data-toggle-upload_title' => _x( 'Upload PDF', '', 'test_actions' ),
+				'data-toggle-button_text'  => _x( 'Use PDF', '', 'test_actions' ),
+				'data-upload-type'  => 'application/pdf',
+			],
+			'section'  => 'coupon_creator_meta_box',
+			'tab'      => 'test',
+			'priority' => 0.01,
+		];
+
+/*		$fields[ $this->fields_prefix . 'date' ] = [
+			'label'    => __( 'Date', 'test_actions' ),
+			'id'       => $this->fields_prefix . 'date',
+			'version'  => 'v2',
+			'tooltip'  => _x( 'Choose Date', '', 'test_actions' ),
+			'value'    => '',
+			'attrs'    => [
+				'data-date-format' => 'Y-m-d H:i:S',
+				'data-alt-format' => 'F j, Y H:i',
+				'data-default-date' => $local_time->format( 'Y-m-d H:i:s' ),
+			],
+			'type'     => 'date',
+			'section'  => 'coupon_creator_meta_box',
+			'tab'      => 'test',
+			'priority' => 25.00,
+		];*/
 
 		return $fields;
 	}
