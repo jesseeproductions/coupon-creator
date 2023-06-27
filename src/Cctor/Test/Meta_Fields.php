@@ -196,7 +196,7 @@ class Meta_Fields {
 			'priority' => 0.01,
 		];
 
-/*		$fields[ $this->fields_prefix . 'date' ] = [
+		$fields[ $this->fields_prefix . 'date' ] = [
 			'label'    => __( 'Date', 'test_actions' ),
 			'id'       => $this->fields_prefix . 'date',
 			'version'  => 'v2',
@@ -211,7 +211,7 @@ class Meta_Fields {
 			'section'  => 'coupon_creator_meta_box',
 			'tab'      => 'test',
 			'priority' => 25.00,
-		];*/
+		];
 
 		return $fields;
 	}
