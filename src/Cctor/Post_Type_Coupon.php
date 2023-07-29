@@ -221,7 +221,6 @@ class Cctor__Coupon__Post_Type_Coupon {
 				$this->text_domain,
 				array(
 					'supports'  => array( 'title', 'coupon_creator_meta_box' ),
-					//'menu_icon' => 'data:image/svg+xml;base64,' . base64_encode('<svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path fill="black" d="M1591 1448q56 89 21.5 152.5t-140.5 63.5h-1152q-106 0-140.5-63.5t21.5-152.5l503-793v-399h-64q-26 0-45-19t-19-45 19-45 45-19h512q26 0 45 19t19 45-19 45-45 19h-64v399zm-779-725l-272 429h712l-272-429-20-31v-436h-128v436z"/></svg>')
 					'menu_icon' => 'data:image/svg+xml;base64,' . base64_encode('
 					<svg
 					    version="1.1"
@@ -233,7 +232,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 					    width="20px"
 					    height="20px"
 					>
-					<g  fill="black">
+					<g  fill="white">
 						<path d="M0,0v25h25V0H0z M3.5,9.8h2v5.3h-2V9.8z M7.5,21.5h-4v-4h2v2h2V21.5z M7.5,5.5h-2v2h-2v-4h4V5.5z M15.1,21.5H9.8v-2h5.3
 							V21.5z M13,9.8c0-0.2-0.2-0.3-0.4-0.3c-0.3,0-0.4,0.1-0.5,0.3C12,10,12,10.2,12,10.6v3.9c0,0.3,0,0.6,0.1,0.8
 							c0.1,0.2,0.3,0.3,0.5,0.3c0.3,0,0.4-0.1,0.5-0.3c0.1-0.2,0.1-0.4,0.1-0.8v-0.9H15v0.7c0,0.8-0.2,1.4-0.5,1.8
