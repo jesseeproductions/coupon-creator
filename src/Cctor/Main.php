@@ -48,14 +48,14 @@ class Cctor__Coupon__Main {
 	const VERSION_NUM              = '3.4.0';
 	const MIN_PNGX_VERSION         = '4.0.0';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
-	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
+	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
 
 	public $VERSION_KEY              = 'cctor_coupon_version';
 	public $VERSION_NUM              = '3.4.0';
 	public $MIN_PNGX_VERSION         = '4.0.0';
 	public $WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
-	public $COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-sl-api/';
+	public $COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-api/';
 	public $OPTIONS_ID               = 'coupon_creator_options';
 
 	public $cctorUrl = 'https://couponcreatorplugin.com/';
