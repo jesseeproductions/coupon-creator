@@ -4,10 +4,10 @@ Plugin Name: Coupon Creator
 Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Requires at least: 4.9
-Tested up to: 6.1.1
-Stable tag: 3.3.0
-Requires PHP: 7.2
+Requires at least: 5.8
+Tested up to: 6.4.3
+Stable tag: 3.4.0
+Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
 
@@ -146,6 +146,11 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+
+= 3.4.0 February 15th 2024 =
+
+* Tweak - Add support for Add-ons Multiprint
+* Tweak - PHP 8.1 updates and misc code clean up.
 
 = 3.3.0 March 9th, 2023 =
 

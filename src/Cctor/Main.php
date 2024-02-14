@@ -5,7 +5,6 @@
  * This is the initial class with mostly generic methods to start a plugin
  */
 
-use Cctor\Coupon\Test\Provider as Test_Provider;
 use Cctor\Coupon\Hooks;
 
 class Cctor__Coupon__Main {
@@ -36,7 +35,7 @@ class Cctor__Coupon__Main {
 	*
 	* @since 4.10
 	*/
-	protected $min_wordpress = '5.6';
+	protected $min_wordpress = '5.8';
 	/**
 	* Min Version of PHP
 	*
@@ -260,7 +259,6 @@ class Cctor__Coupon__Main {
 		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
 
 		pngx_register_provider( 'Cctor__Coupon__Provider' );
-		pngx_register_provider( Test_Provider::class );
 		pngx_register_provider( Hooks::class );
 
 		$this->loadLibraries();

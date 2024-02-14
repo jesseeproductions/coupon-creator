@@ -67,13 +67,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		add_action( 'pngx_after_option_form', array( $this, 'cctor_newsletter_signup' ) );
 
 		//add license key for support
-		add_filter( 'pngx-system-info-options', array( $this, 'add_options' ) );
+		add_filter( 'pngx-system-info-options-coupon', array( $this, 'add_options' ) );
 
 		//add option fields
-		add_filter( 'pngx-option-fields', array( $this, 'add_fields' ) );
+		add_filter( 'pngx-option-fields-coupon', array( $this, 'add_fields' ) );
 
 		//add option fields
-		add_filter( 'pngx-support-info', array( $this, 'add_system_items' ) );
+		add_filter( 'pngx-support-info-coupon', array( $this, 'add_system_items' ) );
 
 		add_filter( 'admin_body_class', array( $this, 'add_body_class' ) );
 	}
@@ -173,17 +173,14 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		$this->admin_template->template( '/components/loader', [ 'loader_classes' => [ 'pngx-loader__dots' ] ] );
 	}
 
-
 	/*
 	* Filter Options Field ID for Display of Fields
 	*/
 	public function filter_options_field_id( $id ) {
-
 		$id = $this->options_id;
 
 		return $id;
 	}
-
 
 	/*
 	* Option Fields
@@ -392,7 +389,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			);
 		}
 
-
 		//LinkAttributes - Permalinks
 		$fields['permalinks_help']               = array(
 			'section' => 'permalinks',
@@ -475,11 +471,12 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			);
 		}
 
-		//display
+		//Display
 		$fields['display_help'] = array(
 			'section' => 'display',
 			'type'    => 'help'
 		);
+
 		//Custom CSS
 		$fields['cctor_custom_css'] = array(
 			'title'   => __( 'Custom Coupon Styles', 'coupon-creator' ),
@@ -547,7 +544,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			);
 		}
 
-
 		//Pro Template Tab UpSell
 		if ( ! defined( 'CCTOR_HIDE_UPGRADE' ) || ! CCTOR_HIDE_UPGRADE ) {
 			$fields['pro_feature_templating_heading'] = array(
@@ -577,7 +573,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			);
 		}
 
-
 		//Help
 		$fields['cctor_all_help'] = array(
 			'section' => 'help',
@@ -594,11 +589,11 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'type'    => 'heading'
 		);
 
-		$fields['systeminfo'] = array(
-			'section' => 'systeminfo',
-			'type'    => 'systeminfo'
-		);
-
+		$fields['systeminfo'] = [
+			'section'   => 'systeminfo',
+			'type'      => 'systeminfo',
+			'plugin_id' => '-coupon',
+		];
 
 		$fields['reset_heading'] = array(
 			'section' => 'reset',
@@ -631,7 +626,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 			'desc'    => ''
 		);
 
-
 		//Filter Option Fields
 		if ( has_filter( 'cctor_option_filter' ) ) {
 			/**
@@ -645,7 +639,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		}
 
 		return $fields;
-
 	}
 
 	/*
@@ -690,16 +683,13 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		}
 	}
 
-
 	/*
 	* Flush Permalink on Permalink Field Change
 	*
 	*/
 	public function flush_coupon_permalinks() {
-
 		//setup coupon cpt when flushing permalinks
 		pngx( 'cctor' )->register_post_types();
-
 	}
 
 	/**
@@ -714,7 +704,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		$options[ Cctor__Coupon__Main::PLUGIN_NAME ] = get_option( Cctor__Coupon__Main::OPTIONS_ID );
 
 		return $options;
-
 	}
 
 	/**
@@ -729,7 +718,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		$fields = $this->get_option_fields();
 
 		return $fields;
-
 	}
 
 	/**
@@ -740,22 +728,23 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 	 * @return mixed
 	 */
 	public function add_system_items( $systeminfo ) {
-
 		$post_type = Cctor__Coupon__Main::POSTTYPE;
+		$systeminfo['Coupon Creator License Keys'] = Pngx__Admin__Support::getInstance()->get_key( '-coupon' );
+		$systeminfo['Coupon Creator Options']      = Pngx__Admin__Support::getInstance()->get_plugin_settings( '-coupon' );
 
-		$systeminfo['Coupon Creator License Keys'] = Pngx__Admin__Support::getInstance()->get_key();
-		$systeminfo['Coupon Creator Options']      = Pngx__Admin__Support::getInstance()->get_plugin_settings();
-
-		$options = array(
+		$options = [
 			'Coupon Post Type Capabilities'   => $post_type . '_capabilities_register',
 			'Coupon Updated Version'          => 'coupon_update_version',
 			'Coupon Update Ignore Field'      => 'coupon_update_ignore_expiration',
 			'Coupon Update Image Border Meta' => 'coupon_update_image_border_meta',
 			'Coupon Update Expiration Type'   => 'coupon_update_expiration_type',
+			'Schema Version'                  => 'cctor_addons_schema_version',
+			'DB Version'                      => 'cctor_addons_db_version',
+			'Missing Custom Tables'           => 'cctor_addons_database_missing_tables',
 			'Permalinks Flushed'              => 'pngx_permalink_flush',
-		);
+		];
 
-		$coupon_system_info = array();
+		$coupon_system_info = [];
 
 		foreach ( $options as $k => $v ) {
 			if ( $option_val = get_option( $v ) ) {
@@ -766,7 +755,6 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		$systeminfo = array_merge( $systeminfo, $coupon_system_info );
 
 		return $systeminfo;
-
 	}
 
 	/**
@@ -794,4 +782,3 @@ class Cctor__Coupon__Admin__Options Extends Pngx__Admin__Options {
 		return $classes;
 	}
 }
-
