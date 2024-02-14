@@ -50,7 +50,7 @@ jobs:
       - name: Checkout tut
         uses: actions/checkout@v2
         with:
-          repository: the-events-calendar/tut
+          repository: coupon-creator/tut
           ref: main
           path: tut
           fetch-depth: 1
@@ -62,7 +62,7 @@ jobs:
         working-directory: .
         run: |
           REPO_ORG=$GITHUB_ACTOR
-          REPO_NAME=$( echo $GITHUB_REPOSITORY | sed "s/the-events-calendar\///")
+          REPO_NAME=$( echo $GITHUB_REPOSITORY | sed "s/coupon-creator\///")
           MAIN_FILE=$(jq ".plugins[] | select( .name | test(\"$REPO_NAME\") ) | .main" tut/tut.json | sed 's/"//g' )
           VERSION_LINE=$(jq ".plugins[] | select( .name | test(\"$REPO_NAME\") ) | .version" tut/tut.json | sed 's/"//g' )
           ZIP_NAME=$(jq "._zipname" package.json | sed 's/"//g' )
@@ -76,7 +76,7 @@ jobs:
           echo "::set-output name=value::${FILENAME}"
           echo $FILENAME
       - name: Check if zip already exists
-        uses: the-events-calendar/action-s3-utility@main
+        uses: coupon-creator/action-s3-utility@main
         id: s3_zip
         continue-on-error: true
         env:
@@ -145,7 +145,7 @@ jobs:
         working-directory: ../
         run: |
           REPO_ORG=$GITHUB_ACTOR
-          REPO_NAME=$( echo $GITHUB_REPOSITORY | sed "s/the-events-calendar\///")
+          REPO_NAME=$( echo $GITHUB_REPOSITORY | sed "s/coupon-creator\///")
           mkdir zip
           if [ "${JOB_FINAL}" == "1" ]; then
             $TUT_BIN package --plugin=$REPO_NAME --branch="${{ steps.settings.outputs.branch }}" --ignore-view-versions --output="./zip" --final -v
@@ -153,7 +153,7 @@ jobs:
             $TUT_BIN package --plugin=$REPO_NAME --branch="${{ steps.settings.outputs.branch }}" --ignore-view-versions --output="./zip" -v
           fi
           mv zip ${GITHUB_WORKSPACE}/zip
-      - uses: the-events-calendar/action-s3-utility@main
+      - uses: coupon-creator/action-s3-utility@main
         if: steps.generate_zip.outputs.value == 1
         with:
           args: --acl public-read --follow-symlinks

@@ -5,19 +5,6 @@ jobs:
     strategy:
       matrix:
         suite:
-          - acceptance
-          - aggregatorv1
-          - blocks_editor_integration
-          - integration
-          - muintegration
-          - restv1
-          - views_integration
-          - views_rest
-          - views_settings
-          - views_ui
-          - views_v2_customizer_integration
-          - views_widgets
-          - views_wpunit
           - wpunit
     runs-on: ubuntu-latest
     steps:
@@ -47,7 +34,7 @@ jobs:
         uses: actions/checkout@v2
         if: steps.skip.outputs.value != 1
         with:
-          repository: the-events-calendar/tric
+          repository: coupon-creator/tric
           ref: main
           path: tric
           fetch-depth: 1
@@ -106,12 +93,12 @@ jobs:
         if: steps.skip.outputs.value != 1
         run: |
           docker network prune -f
-          ${TRIC_BIN} use the-events-calendar/common
+          ${TRIC_BIN} use coupon-creator/plugin-engine
           ${TRIC_BIN} composer install --no-dev
-      - name: Set up The Events Calendar
+      - name: Set up The Coupon Creator
         if: steps.skip.outputs.value != 1
         run: |
-          ${TRIC_BIN} use the-events-calendar
+          ${TRIC_BIN} use coupon-creator
           ${TRIC_BIN} composer install
       - name: Run suite tests
         if: steps.skip.outputs.value != 1
