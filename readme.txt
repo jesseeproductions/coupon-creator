@@ -29,7 +29,8 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=aGoxJ3TBRhk
 
-<h4>Coupon Creator Add-ons 3.0 Features Include: (included with Pro Business and higher license levels)</h4>
+<h4>Coupon Creator Add-ons 3.4 Features Include: (included with Pro Business and higher license levels)</h4>
+* Multiprint to select multiple coupons to print all at once
 * Block Editor Support for couponloop with Vendor and Location Taxonomies
 * Reveal Code & Dynamic Code Feature
 * Vendor and Location Taxonomies
@@ -39,7 +40,7 @@ https://www.youtube.com/watch?v=aGoxJ3TBRhk
 * Lower Third Advanced Template
 * Create and Display WooCommerce Coupons from the Coupon Creator Editor
 
-<h4>Coupon Creator Pro 3.0 Features Include:</h4>
+<h4>Coupon Creator Pro 3.4 Features Include:</h4>
 * Block Editor support for couponloop shortcode and all of its attributes
 * [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
 * Order the filter bar filters and hide any filter per shortcode
@@ -60,6 +61,7 @@ https://www.youtube.com/watch?v=aGoxJ3TBRhk
 * Override “Print the Coupon” text and link per coupon
 * Disable the Print View per coupon
 * Add your Google Analytics Code to the Print Template from the Coupon Options
+* Print Only Text and Images, they show only once a single coupon is printed.
 
 <h4>How to Create a Coupon</h4>
 Create a coupon by going to the coupon custom post type and filling in all the settings in the custom meta box.
@@ -147,7 +149,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 3.4.0 February 15th 2024 =
+= 3.4.0 February 19th 2024 =
 
 * Tweak - Add support for Add-ons Multiprint
 * Tweak - PHP 8.1 updates and misc code clean up.
