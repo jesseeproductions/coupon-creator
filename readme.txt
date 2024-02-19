@@ -149,7 +149,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
-= 3.4.0 February 19th 2024 =
+= 3.4.0 February 21st 2024 =
 
 * Tweak - Add support for Add-ons Multiprint
 * Tweak - PHP 8.1 updates and misc code clean up.
