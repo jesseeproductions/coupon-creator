@@ -9,7 +9,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_see_block_editor_title_fields_and_see_coupon_block( AcceptanceTester $I ) {
 
@@ -33,7 +33,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_add_coupon_block_with_no_errors_when_no_coupons_published( AcceptanceTester $I ) {
 
@@ -56,7 +56,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_add_coupon_block_and_display_single_coupon( AcceptanceTester $I ) {
 		$name      = 'coupon-links-01';
@@ -97,7 +97,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_add_coupon_block_with_single_coupon_and_align_right( AcceptanceTester $I ) {
 		$name      = 'coupon-links-02';
@@ -144,7 +144,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_add_coupon_block_with_single_coupon_and_align_center( AcceptanceTester $I ) {
 		$name      = 'coupon-links-03';
@@ -191,7 +191,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_have_custom_styles_in_block_editor( AcceptanceTester $I ) {
 		$name      = 'coupon-links-04';
@@ -242,7 +242,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_have_all_coupons_and_align_right( AcceptanceTester $I ) {
 
@@ -281,7 +281,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_have_food_category_coupons_and_align_center( AcceptanceTester $I ) {
 
@@ -327,7 +327,7 @@ class BlocksCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_have_clothing_category_coupons_and_align_left( AcceptanceTester $I ) {
 

@@ -9,7 +9,7 @@ class CouponCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_add_html_comment_when_no_coupons_in_loop( AcceptanceTester $I ) {
 		$I->havePageInDatabase( [
@@ -25,7 +25,7 @@ class CouponCest extends BaseAcceptanceCest {
 
 	/**
 	 * @test
-	 * since TBD
+	 * since 3.2.0
 	 */
 	public function should_add_html_comment_when_no_coupon_by_id( AcceptanceTester $I ) {
 		$I->havePageInDatabase( [
@@ -38,5 +38,5 @@ class CouponCest extends BaseAcceptanceCest {
 		$I->wait( 5 );
 		$I->dontSeeInPageSource( 'Coupon shortcode is not showing with the following attributes: totalcoupons:-1,couponid:4,coupon_align:cctor_alignnone,couponorderby:date,category:,bordertheme:,filterid:' );
 	}
-	
+
 }

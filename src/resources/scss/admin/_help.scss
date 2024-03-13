@@ -2,24 +2,7 @@
    Help CSS
    ========================================================================== */
 .coupon.pngx-section-help-container {
-	background-color: $blue;
-	border: 1px solid $blue;
 
-	.pngx-section-help-container-toggle {
-		background-color: $blue;
-		border: 1px solid $blue;
-	}
-
-	.pngx-section-help-container:hover,
-	.pngx-section-help-container-toggle:hover {
-		background: $color__light_blue none repeat scroll 0 0;
-		border: 1px solid $blue;
-		color: $black;
-	}
-
-	.pngx-section-help-slideout {
-		border: 1px solid $blue;
-	}
 	.ui-widget-content a.pngx-support,
 	.pngx-support {
 		color: $blue;

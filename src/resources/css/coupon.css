@@ -2,6 +2,117 @@
 	Coupon Creator CSS
 
 */
+/*
+ * Utilities CSS
+ * -------------------------------------------------------------
+ */
+/*
+ * Pngx Color Variables.
+ * -------------------------------------------------------------
+ */
+:root {
+  /* -----------------------------------------------------------------------------
+   * Colors - Utilties
+   * ----------------------------------------------------------------------------- */
+  --pngx-white: #fff;
+  --pngx-grey-1: #FAFAFA;
+  --pngx-grey-2: #F5F5F5;
+  --pngx-grey-3: #EEEEEE;
+  --pngx-grey-4: #E0E0E0;
+  --pngx-grey-5: #BDBDBD;
+  --pngx-grey-6: #9E9E9E;
+  --pngx-grey-7: #757575;
+  --pngx-grey-8: #616161;
+  --pngx-grey-9: #424242;
+  --pngx-grey-10: #212121;
+  --pngx-black: #000;
+  --pngx-error: #dd3d36;
+  --pngx-success: #3ca900;
+  --pngx-dark-red: #950402;
+  --pngx-blue: #2A5A8A;
+  /* -----------------------------------------------------------------------------
+   * Colors - Typography
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-text-primary: #1f0808;
+  --pngx-color-text-primary-light: rgba(30, 5, 5, 0.62);
+  --pngx-color-text-secondary: #605c5c;
+  --pngx-color-text-disabled: #c2c2c2;
+  /* -----------------------------------------------------------------------------
+   * Colors - Backgrounds
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-background: #ffffff;
+  --pngx-color-background-secondary: #e4eeec;
+  --pngx-color-background-grey: rgb(249 250 251);
+  /* -----------------------------------------------------------------------------
+   * Colors - UI Base
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-accent-primary: #2271b1;
+  --pngx-color-accent-primary-hover: rgba(34, 113, 177, 0.81);
+  /* -----------------------------------------------------------------------------
+   * Colors - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-shadow-primary: rgba(0, 0, 0, 0.8);
+  /* -----------------------------------------------------------------------------
+   * Colors - Borders
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-border-default: #d5d5d5;
+  --pngx-color-border-primary: #1b700c;
+  /* -----------------------------------------------------------------------------
+   * Colors - Buttons
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-button-primary: var(--pngx-color-accent-primary);
+  --pngx-color-button-primary-hover: var(--pngx-color-accent-primary-hover);
+  /* -----------------------------------------------------------------------------
+   * Colors - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-ring-offset-shadow: 0 0 #0000;
+  --pngx-ring-shadow: 0 0 #0000;
+  --pngx-shadow: 0 0 #0000;
+  /* -----------------------------------------------------------------------------
+   * Opacity - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-defualt-opacity: 1;
+  --pngx-disable-opacity: .4;
+}
+
+:root {
+  /* -----------------------------------------------------------------------------
+   * Spacers
+   * ----------------------------------------------------------------------------- */
+  --pngx-spacer-0: 4px;
+  --pngx-spacer-1: 8px;
+  --pngx-spacer-2: 12px;
+  --pngx-spacer-3: 16px;
+  --pngx-spacer-4: 20px;
+  --pngx-spacer-5: 24px;
+  --pngx-spacer-6: 28px;
+  --pngx-spacer-7: 32px;
+  --pngx-spacer-8: 40px;
+  --pngx-spacer-9: 48px;
+  --pngx-spacer-10: 56px;
+  --pngx-spacer-11: 64px;
+  --pngx-spacer-12: 80px;
+  --pngx-spacer-13: 96px;
+  --pngx-spacer-14: 160px;
+}
+
+/**
+ * Removes the unit (e.g. px, em, rem) from a value, returning the number only.
+ * @param {Number} $num - Number to strip unit from.
+ * @returns {Number} The same number, sans unit.
+ */
+/**
+ * Convert a pixel value to rem.
+ * @param {Number} $px - The pixel value to convert.
+ * @param {Number} $base - The base font size to use.
+ * @return {Number} - The rem value.
+ */
+/** Converts a pixel value to matching rem value. *Any* value passed, regardless of unit, is assumed to be a pixel value. By default, the base pixel value used to calculate the rem value is taken from the `$global-font-size` variable.
+ * @access private
+ * @param {Number} $value - Pixel value to convert.
+ * @param {Number} $base [null] - Base for pixel conversion.
+ * @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
+ */
 /* Coupon Creator CSS
 ------------------------------------------------------------ */
 .cctor-coupon-container,
@@ -10,11 +121,13 @@
   max-width: 100%;
   overflow: hidden;
   text-align: center;
-  width: 317px; }
+  width: 317px;
+}
 
 .cctor-coupon-container.cctor-image,
 .cctor_coupon_container.cctor-image {
-  width: auto; }
+  width: auto;
+}
 
 .cctor-coupon-container, .cctor-coupon-container *,
 .cctor_coupon_container, .cctor_coupon_container * {
@@ -23,43 +136,52 @@
   -webkit-box-sizing: border-box;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-  -webkit-print-color-adjust: exact; }
+  -webkit-print-color-adjust: exact;
+}
 
 /* Standard CSS
 ------------------------------------------------------------ */
 .cctor-wrap-link,
 .cctor_wrap_link {
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 .coupon-inline-fields {
   display: inline-block;
   vertical-align: top;
-  width: auto; }
+  width: auto;
+}
 
 .coupon-text-left {
-  text-align: left; }
+  text-align: left;
+}
 
 .coupon-text-center {
-  text-align: center; }
+  text-align: center;
+}
 
 .coupon-text-right {
-  text-align: right; }
+  text-align: right;
+}
 
 .coupon-overflow {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 /* Coupon Contents
 ------------------------------------------------------------ */
 .cctor-coupon,
 .cctor_coupon {
   padding: 5px;
-  width: 100%; }
+  width: 100%;
+}
 
 .cctor-coupon-image,
 .cctor_coupon_image {
   height: auto;
   max-width: 100%;
-  padding: 1%; }
+  padding: 1%;
+}
 
 .sawtooth-border .cctor-coupon-image,
 .coupon-border .cctor-coupon-image,
@@ -67,7 +189,8 @@
 .sawtooth-border .cctor_coupon_image,
 .coupon-border .cctor_coupon_image,
 .coupon-border .cctor_coupon {
-  border: 3px dashed black; }
+  border: 3px dashed black;
+}
 
 .stitched-border .cctor-coupon-image,
 .stitched-border .cctor-coupon,
@@ -75,18 +198,21 @@
 .stitched-border .cctor_coupon {
   outline: 1px dashed #000000;
   outline-offset: -3px;
-  padding: 6px; }
+  padding: 6px;
+}
 
 .dotted-border .cctor-coupon-image,
 .dotted-border .cctor-coupon,
 .dotted-border .cctor_coupon_image,
 .dotted-border .cctor_coupon {
   border: 2px dotted #000000;
-  padding: 2px; }
+  padding: 2px;
+}
 
 .sawtooth-border .cctor-coupon,
 .sawtooth-border .cctor_coupon {
-  position: relative; }
+  position: relative;
+}
 
 .sawtooth-border .sawtooth-top-bottom {
   background: linear-gradient(135deg, transparent 75%, #000000 75%) 0 0, linear-gradient(-135deg, transparent 75%, #000000 75%) 0 0, linear-gradient(-45deg, transparent 75%, #000000 75%) 100% 100%, linear-gradient(45deg, transparent 75%, #000000 75%) 100% 100%;
@@ -97,7 +223,8 @@
   left: 10px;
   position: absolute;
   right: 10px;
-  top: 0; }
+  top: 0;
+}
 
 .sawtooth-border .sawtooth-left-right {
   background: linear-gradient(45deg, transparent 75%, #000000 75%) 0 50%, linear-gradient(135deg, transparent 75%, #000000 75%) 0 50%, linear-gradient(-45deg, transparent 75%, #000000 75%) 100% 50%, linear-gradient(-135deg, transparent 75%, #000000 75%) 100% 50%;
@@ -105,21 +232,24 @@
   background-repeat: repeat-y;
   background-size: 7px 8px, 7px 8px;
   border: none;
-  padding: 0 7px; }
+  padding: 0 7px;
+}
 
 .cctor-coupon-content,
 .cctor_coupon_content {
   background: #fff;
   border: 2px solid #0030ff;
   position: relative;
-  width: 100%; }
+  width: 100%;
+}
 
 .cctor-title {
   font-size: 24px;
   font-weight: bold;
   margin: 0px;
   min-height: 45px;
-  padding: 2%; }
+  padding: 2%;
+}
 
 .cctor-deal,
 .cctor_deal {
@@ -130,7 +260,8 @@
   margin: 0px;
   min-height: 45px;
   padding: 2%;
-  width: 100%; }
+  width: 100%;
+}
 
 .main-coupon-content,
 .cctor-terms,
@@ -142,7 +273,8 @@
   min-height: 90px;
   overflow: hidden;
   padding: 2% 3%;
-  width: 100%; }
+  width: 100%;
+}
 
 .main-coupon-content .wp-caption,
 .main-coupon-content img,
@@ -151,18 +283,21 @@
 .cctor-terms img,
 .cctor_terms img {
   height: auto;
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 .cctor-expiration,
 .cctor_expiration {
   font-size: 10px;
   font-weight: bold;
   min-height: 15px;
-  width: 100%; }
+  width: 100%;
+}
 
 .cctor-expiration,
 .cctor_expiration {
-  padding: 0 2%; }
+  padding: 0 2%;
+}
 
 .cctor-opencoupon,
 .cctor_opencoupon {
@@ -170,60 +305,77 @@
   height: 20px;
   line-height: 20px;
   margin-top: 2px;
-  width: 100%; }
+  width: 100%;
+}
 
 /* Coupon CSS Adjustments
 ------------------------------------------------------------ */
 .cctor_coupon_container a:hover {
-  opacity: .8;
-  text-decoration: none; }
+  opacity: 0.8;
+  text-decoration: none;
+}
 
 .print_coupon .cctor_coupon_container a:hover {
-  opacity: 1; }
+  opacity: 1;
+}
 
 a .cctor_expiration {
-  color: #000; }
+  color: #000;
+}
 
 .main-coupon-content p,
 .cctor_terms p {
-  margin: 0; }
+  margin: 0;
+}
 
 /* Print View CSS
 ------------------------------------------------------------ */
 .print-coupon .cctor-oupon-container,
 .print_coupon .cctor_coupon_container {
   margin: 10px auto;
-  width: 420px; }
+  width: 420px;
+}
 
 .print-coupon .cctor-coupon-container.cctor-image,
 .print_coupon .cctor_coupon_container.cctor-image {
-  width: auto; }
+  width: auto;
+}
 
 .print-coupon .sawtooth-border .cctor-coupon .sawtooth-top-bottom,
 .print_coupon .sawtooth-border .cctor_coupon .sawtooth-top-bottom {
   left: 12px;
-  right: 12px; }
+  right: 12px;
+}
 
 .print-coupon .cctor-coupon-content h3,
 .print_coupon .cctor_coupon_content h3 {
-  font-size: 30px; }
+  font-size: 30px;
+}
 
 .print-coupon .main-coupon-content,
 .print-coupon .cctor-terms,
 .print_coupon .cctor_terms {
   font-size: 20px;
   line-height: 1.2;
-  min-height: 150px; }
+  min-height: 150px;
+}
 
 @media print {
   .cctor-opencoupon,
   .cctor_opencoupon {
-    display: none !important; } }
-
+    display: none !important;
+  }
+}
 /* Utility CSS
 ------------------------------------------------------------ */
 .cctor-clear {
-  clear: both; }
+  clear: both;
+}
+
+.pngx-a11y-hidden {
+  display: none !important;
+  visibility: hidden;
+}
 
 .cctor-screen-reader-text,
 .cctor-pro-coupons-visuallyhidden {
@@ -232,36 +384,46 @@ a .cctor_expiration {
   height: 1px;
   width: 1px;
   border: 0;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .cctor-pro-overflow:after {
   clear: both;
   content: "";
-  display: block; }
+  display: block;
+}
 
 /* Coupon Align
 ------------------------------------------------------------ */
+.cctor-print-only .alignnone,
 .cctor-alignnone,
 .cctor_alignnone {
   display: inline-block;
-  margin: 0 0 10px; }
+  margin: 0 0 10px;
+}
 
+.cctor-print-only .cctor-alignleft,
 .cctor-alignleft,
 .cctor_alignleft {
   display: inline;
   float: left;
-  margin: 0 10px 10px 0; }
+  margin: 0 10px 10px 0;
+}
 
+.cctor-print-only .alignright,
 .cctor-alignright,
 .cctor_alignright {
   display: inline;
   float: right;
-  margin: 0 0 10px 10px; }
+  margin: 0 0 10px 10px;
+}
 
+.cctor-print-only .aligncenter,
 .cctor-aligncenter,
 .cctor_aligncenter {
   display: block;
-  margin: 10px auto; }
+  margin: 10px auto;
+}
 
 /* Column Classes
 * Modified from these links:
@@ -270,7 +432,8 @@ a .cctor_expiration {
 --------------------------------------------- */
 .cctor-row {
   min-height: 1px;
-  width: 100%; }
+  width: 100%;
+}
 
 .cctor-one-fourth,
 .cctor-one-half,
@@ -282,53 +445,121 @@ a .cctor_expiration {
 .cctor-two-fourths,
 .cctor-two-thirds {
   float: left;
-  margin-left: 2.564102564102564%;
-  min-height: 1px; }
+  margin-left: 2.5641025641%;
+  min-height: 1px;
+}
 
 .cctor-one-half,
 .cctor-two-fourths {
-  width: 48.717948717948715%; }
+  width: 48.7179487179%;
+}
 
 .cctor-one-third {
-  width: 31.623931623931625%; }
+  width: 31.6239316239%;
+}
 
 .cctor-two-thirds {
-  width: 65.81196581196582%; }
+  width: 65.811965812%;
+}
 
 .cctor-one-fourth {
-  width: 23.076923076923077%; }
+  width: 23.0769230769%;
+}
 
 .cctor-three-fourths {
-  width: 74.35897435897436%; }
+  width: 74.358974359%;
+}
 
 .cctor-two-fifths {
-  width: 38.4615384615384616%; }
+  width: 38.4615384615%;
+}
 
 .cctor-one-fifth {
-  width: 17.9487179487179488%; }
+  width: 17.9487179487%;
+}
 
 .cctor-three-fifths {
-  width: 58.9743589743589744%; }
+  width: 58.9743589744%;
+}
 
 .cctor-first {
   clear: both;
-  margin-left: 0; }
+  margin-left: 0;
+}
 
 /* Float Clear
 ------------------------------------------------------------ */
 .cctor-clear:after {
   clear: both;
-  content: '';
-  display: table; }
+  content: "";
+  display: table;
+}
 
 /* Basic IE7 Support
 ------------------------------------------------------------ */
 .cctor_coupon {
-  *width: 300px; }
+  *width: 300px;
+}
 
 .cctor_coupon_content h3,
 .main-coupon-content,
 .cctor-terms,
 .cctor_terms,
 .cctor_expiration {
-  *width: 96%; }
+  *width: 96%;
+}
+
+/*
+ * Plugin Engine Loader CSS
+ * -------------------------------------------------------------
+ */
+.cctor-pro-coupon-default-wrapper {
+  position: relative;
+}
+.cctor-pro-coupon-default-wrapper .pngx-loader {
+  align-items: start;
+  background: rgba(255, 255, 255, 0.8);
+  bottom: 0;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  padding: 0;
+  padding-top: 192px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+.cctor-pro-coupon-default-wrapper .pngx-loader__dot {
+  width: 15px;
+}
+.cctor-pro-coupon-default-wrapper .pngx-loader__dot:not(:first-of-type) {
+  margin-left: 8px;
+}
+.cctor-pro-coupon-default-wrapper .pngx-loader__dot circle {
+  fill: currentColor;
+}
+.cctor-pro-coupon-default-wrapper .pngx-loader__dot circle {
+  animation-direction: normal;
+  animation-duration: 2.24s;
+  animation-iteration-count: infinite;
+  animation-name: pngx-loader-bounce;
+  fill: #950402;
+  opacity: 0.3;
+}
+.cctor-pro-coupon-default-wrapper .pngx-loader__dot--first circle {
+  animation-delay: 0.45s;
+}
+.cctor-pro-coupon-default-wrapper .pngx-loader__dot--second circle {
+  animation-delay: 1.05s;
+}
+.cctor-pro-coupon-default-wrapper .pngx-loader__dot--third circle {
+  animation-delay: 1.35s;
+}
+@keyframes pngx-loader-bounce {
+  50% {
+    opacity: 1;
+  }
+}

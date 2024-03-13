@@ -11,7 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Cctor__Coupon__Admin__Fields {
 
-
 	/*
 	* Display Individual Fields
 	*/

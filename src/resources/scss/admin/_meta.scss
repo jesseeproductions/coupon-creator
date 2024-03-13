@@ -1,10 +1,7 @@
 /* ==========================================================================
    Meta Box CSS
    ========================================================================== */
-#coupon_creator_pro_meta_box h2,
-#cctor_coupon_categorydiv h2,
-#coupon_creator_shortcode h2,
-#coupon_creator_meta_box h2 {
+#coupon_creator_pro_meta_box h2 {
 	color: $blue;
 	font: italic 20px/30px Georgia, Times, serif;
 	margin: 0;
@@ -13,7 +10,7 @@
 }
 
 .postbox h4.pngx-fields-heading {
-	color: $green;
+	margin: 0 0 10px;
 }
 
 /* ==========================================================================

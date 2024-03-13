@@ -4,7 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( '-1' );
 }
 
-
 /**
  * Coupon Admin Class
  *
@@ -16,7 +15,6 @@ class Cctor__Coupon__Admin__Main {
 	* Admin Construct
 	*/
 	public function __construct() {
-
 		//Setup Admin
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 
@@ -25,33 +23,30 @@ class Cctor__Coupon__Admin__Main {
 
 		//handle older versions of Pro so they can update before 2.4
 		if ( defined( 'CCTOR_PRO_VERSION_NUM' ) && 2.4 > CCTOR_PRO_VERSION_NUM ) {
-
 			new Cctor__Coupon__Admin__Pro_License_Pre_24();
-
 		}
 
+		// Load class to add template.
+		pngx( Pngx__Admin__Fields::class );
 	}
 
 	/**
 	 * Admin Init
 	 */
 	public function admin_init() {
-
 		if ( ! class_exists( 'Cctor__Coupon__Pro__Main' ) ) {
 			new Cctor__Coupon__Admin__Inserter();
 		}
+	}
 
-		//Add Options Link on Plugin Activation Page
-		add_action( 'plugin_action_links', array( $this, 'plugin_setting_link' ), 10, 2 );
-
-
-	} //end admin_init
-
-
-	/*
-	* Add Options Link in Plugin entry of Plugins Menu
-	*
-	*/
+	/**
+	 * Add Options Link in Plugin entry of Plugins Menu.
+	 *
+	 * @param array<string|mixed> $links An array of links to display in the plugin entry.
+	 * @param string $file The file name of the plugin.
+	 *
+	 * @return array<string|mixed> $links An array of links to display in the plugin entry.
+	 */
 	public function plugin_setting_link( $links, $file ) {
 		static $this_plugin;
 
@@ -78,5 +73,4 @@ class Cctor__Coupon__Admin__Main {
 
 		return $links;
 	}
-
 }

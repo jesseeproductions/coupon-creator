@@ -1,9 +1,5 @@
 <?php
-//If Direct Access Kill the Script
-if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
-	die( 'Access denied.' );
-}
-
+use Cctor\Coupon\Templates\Admin_Template;
 
 /**
  * Class Cctor__Coupon__Admin__Meta
@@ -19,13 +15,25 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	//user capability
 	protected $user_capability = 'edit_cctor_coupon';
 
-	/*
-	* Construct
-	*/
-	public function __construct() {
+	/**
+	 * An instance of the admin template handler.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @var Admin_Template
+	 */
+	protected $admin_template;
 
+	/**
+	 * Meta constructor.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @param Admin_Template $template An instance of the backend template handler.
+	 */
+	public function __construct( Admin_Template $admin_template ) {
+		$this->admin_template = $admin_template;
 		parent::__construct();
-
 	}
 
 	/**
@@ -48,7 +56,6 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 		$this->set_tabs();
 		$this->set_fields();
-
 	}
 
 	/**
@@ -184,7 +191,6 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	 * @return bool|null
 	 */
 	public function default_template( $template ) {
-
 		$default = cctor_options( 'cctor_default_template' );
 
 		if ( $default ) {

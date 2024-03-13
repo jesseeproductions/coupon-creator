@@ -2,6 +2,117 @@
 	Coupon Creator Admin CSS
 
 */
+/*
+ * Utilities CSS
+ * -------------------------------------------------------------
+ */
+/*
+ * Pngx Color Variables.
+ * -------------------------------------------------------------
+ */
+:root {
+  /* -----------------------------------------------------------------------------
+   * Colors - Utilties
+   * ----------------------------------------------------------------------------- */
+  --pngx-white: #fff;
+  --pngx-grey-1: #FAFAFA;
+  --pngx-grey-2: #F5F5F5;
+  --pngx-grey-3: #EEEEEE;
+  --pngx-grey-4: #E0E0E0;
+  --pngx-grey-5: #BDBDBD;
+  --pngx-grey-6: #9E9E9E;
+  --pngx-grey-7: #757575;
+  --pngx-grey-8: #616161;
+  --pngx-grey-9: #424242;
+  --pngx-grey-10: #212121;
+  --pngx-black: #000;
+  --pngx-error: #dd3d36;
+  --pngx-success: #3ca900;
+  --pngx-dark-red: #950402;
+  --pngx-blue: #2A5A8A;
+  /* -----------------------------------------------------------------------------
+   * Colors - Typography
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-text-primary: #1f0808;
+  --pngx-color-text-primary-light: rgba(30, 5, 5, 0.62);
+  --pngx-color-text-secondary: #605c5c;
+  --pngx-color-text-disabled: #c2c2c2;
+  /* -----------------------------------------------------------------------------
+   * Colors - Backgrounds
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-background: #ffffff;
+  --pngx-color-background-secondary: #e4eeec;
+  --pngx-color-background-grey: rgb(249 250 251);
+  /* -----------------------------------------------------------------------------
+   * Colors - UI Base
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-accent-primary: #2271b1;
+  --pngx-color-accent-primary-hover: rgba(34, 113, 177, 0.81);
+  /* -----------------------------------------------------------------------------
+   * Colors - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-shadow-primary: rgba(0, 0, 0, 0.8);
+  /* -----------------------------------------------------------------------------
+   * Colors - Borders
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-border-default: #d5d5d5;
+  --pngx-color-border-primary: #1b700c;
+  /* -----------------------------------------------------------------------------
+   * Colors - Buttons
+   * ----------------------------------------------------------------------------- */
+  --pngx-color-button-primary: var(--pngx-color-accent-primary);
+  --pngx-color-button-primary-hover: var(--pngx-color-accent-primary-hover);
+  /* -----------------------------------------------------------------------------
+   * Colors - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-ring-offset-shadow: 0 0 #0000;
+  --pngx-ring-shadow: 0 0 #0000;
+  --pngx-shadow: 0 0 #0000;
+  /* -----------------------------------------------------------------------------
+   * Opacity - Shadows
+   * ----------------------------------------------------------------------------- */
+  --pngx-defualt-opacity: 1;
+  --pngx-disable-opacity: .4;
+}
+
+:root {
+  /* -----------------------------------------------------------------------------
+   * Spacers
+   * ----------------------------------------------------------------------------- */
+  --pngx-spacer-0: 4px;
+  --pngx-spacer-1: 8px;
+  --pngx-spacer-2: 12px;
+  --pngx-spacer-3: 16px;
+  --pngx-spacer-4: 20px;
+  --pngx-spacer-5: 24px;
+  --pngx-spacer-6: 28px;
+  --pngx-spacer-7: 32px;
+  --pngx-spacer-8: 40px;
+  --pngx-spacer-9: 48px;
+  --pngx-spacer-10: 56px;
+  --pngx-spacer-11: 64px;
+  --pngx-spacer-12: 80px;
+  --pngx-spacer-13: 96px;
+  --pngx-spacer-14: 160px;
+}
+
+/**
+ * Removes the unit (e.g. px, em, rem) from a value, returning the number only.
+ * @param {Number} $num - Number to strip unit from.
+ * @returns {Number} The same number, sans unit.
+ */
+/**
+ * Convert a pixel value to rem.
+ * @param {Number} $px - The pixel value to convert.
+ * @param {Number} $base - The base font size to use.
+ * @return {Number} - The rem value.
+ */
+/** Converts a pixel value to matching rem value. *Any* value passed, regardless of unit, is assumed to be a pixel value. By default, the base pixel value used to calculate the rem value is taken from the `$global-font-size` variable.
+ * @access private
+ * @param {Number} $value - Pixel value to convert.
+ * @param {Number} $base [null] - Base for pixel conversion.
+ * @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
+ */
 /* ==========================================================================
    Fields CSS
    ========================================================================== */
@@ -9,224 +120,260 @@
 * All Fields
 ***************************************************/
 .promote-sup {
-  color: #950402; }
+  color: #950402;
+}
 
 .pngx-meta-fields-wrap.lower-third-fields .pngx-meta-field .pngx-meta-field-styles {
-  display: none; }
+  display: none;
+}
 
 /**
 * Image Coupon
 ***************************************************/
 #cctor_image.pngx-default-image,
 #cctor_image.pngx-image {
-  border: 3px dashed #000000; }
+  border: 3px dashed #000000;
+}
 
 /**
 * Pro Marketing
 ***************************************************/
 .cctor-pro-img {
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   height: auto;
   margin: 1% 0 2.5% 7%;
   max-width: 90%;
-  position: relative; }
+  position: relative;
+}
 
 .cctor-pro-img:before, .cctor-pro-img:after {
-  border-radius: 100px / 10px;
-  -moz-border-radius: 100px / 10px;
+  -moz-border-radius: 100px/10px;
+  border-radius: 100px/10px;
   bottom: 0;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   content: "";
   left: 10px;
   position: absolute;
   right: 10px;
   top: 0;
-  z-index: -1; }
+  z-index: -1;
+}
 
 .cctor-pro-img:after {
   left: auto;
   right: 10px;
-  transform: skew(8deg) rotate(3deg);
   -moz-transform: skew(8deg) rotate(3deg);
   -ms-transform: skew(8deg) rotate(3deg);
   -o-transform: skew(8deg) rotate(3deg);
-  -webkit-transform: skew(8deg) rotate(3deg); }
+  -webkit-transform: skew(8deg) rotate(3deg);
+  transform: skew(8deg) rotate(3deg);
+}
 
 /**
 * Pro Links
 ***************************************************/
 div.cctor-pro-link {
-  margin: 0; }
-  div.cctor-pro-link a {
-    color: #950402;
-    text-decoration: underline; }
-    div.cctor-pro-link a:hover {
-      color: #000;
-      text-decoration: none; }
+  margin: 0;
+}
+div.cctor-pro-link a {
+  color: #950402;
+  text-decoration: underline;
+}
+div.cctor-pro-link a:hover {
+  color: #000;
+  text-decoration: none;
+}
 
 .pngx-wrapper div.cctor-pro-link {
-  margin: -20px 0 0; }
+  margin: -20px 0 0;
+}
 
 /**
 * WooCommerce
 ***************************************************/
 .field-wrap-woocoupon .cctor-meta-label,
 .field-wrap-woocoupon .cctor-meta-field {
-  width: 100%; }
+  width: 100%;
+}
 
 .ajax_chosen_select_products_and_variations.cctor_woo_field {
-  width: 50%; }
+  width: 50%;
+}
 
 .cctor-woo-send-buttons {
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+}
 
 #cctor_woocommerce hr,
 #cctor_woocommerce h2,
 .postbox #cctor_woocommerce h4.pngx-fields-heading {
-  color: #a46497; }
+  color: #a46497;
+}
 
 #cctor_woo_options textarea {
-  width: 100%; }
+  width: 100%;
+}
 
 #cctor_woo_submit {
-  margin-top: 30px; }
+  margin-top: 30px;
+}
 
 #cctor_woocommerce label {
+  display: inline-block;
   width: 160px;
-  display: inline-block; }
-  @media (max-width: 640px) {
-    #cctor_woocommerce label {
-      width: 100%; } }
+}
+@media (max-width: 640px) {
+  #cctor_woocommerce label {
+    width: 100%;
+  }
+}
 
-#cctor_woocommerce .form-field input[type="number"],
-#cctor_woocommerce .form-field input[type="text"] {
-  width: 270px;
-  max-width: 100%; }
-  @media (max-width: 640px) {
-    #cctor_woocommerce .form-field input[type="number"],
-    #cctor_woocommerce .form-field input[type="text"] {
-      width: 100%; } }
-
-#cctor_woocommerce .form-field input[type="email"] {
-  max-width: 50%; }
-  @media (max-width: 640px) {
-    #cctor_woocommerce .form-field input[type="email"] {
-      max-width: 100%; } }
-
-#cctor_woocommerce .form-field .chosen-container-multi input[type="text"] {
+#cctor_woocommerce .form-field input[type=number],
+#cctor_woocommerce .form-field input[type=text] {
   max-width: 100%;
-  min-width: 100px; }
+  width: 270px;
+}
+@media (max-width: 640px) {
+  #cctor_woocommerce .form-field input[type=number],
+  #cctor_woocommerce .form-field input[type=text] {
+    width: 100%;
+  }
+}
+
+#cctor_woocommerce .form-field input[type=email] {
+  max-width: 50%;
+}
+@media (max-width: 640px) {
+  #cctor_woocommerce .form-field input[type=email] {
+    max-width: 100%;
+  }
+}
+
+#cctor_woocommerce .form-field .chosen-container-multi input[type=text] {
+  max-width: 100%;
+  min-width: 100px;
+}
 
 #cctor_woocommerce .select2-container.cctor_woo_field {
+  display: inline-block !important;
   width: 50%;
-  display: inline-block !important; }
+}
 
 /**
 * Wysiwyg
 ***************************************************/
 .cctor-column-row-insert,
 #wp-cctor_description-wrap {
-  width: 600px;
   max-width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  width: 600px;
+}
 
 .cctor-column-row-insert {
-  margin: 15px 0; }
+  margin: 15px 0;
+}
 
 .cctor-column-row-insert .cctor-content-column-row {
+  float: left;
   width: 46%;
-  float: left; }
+}
 
 .cctor_button {
-  border-radius: 6px;
-  border: solid 1px #9dd3df;
   background: #2a5a8a;
-  padding: 3px 1%;
-  text-decoration: none;
+  border: solid 1px #2a5a8a;
+  border-radius: 0.5rem;
   color: #fff;
-  text-align: center; }
+  line-height: 1.25rem;
+  padding: 0.625rem 1%;
+  text-align: center;
+  text-decoration: none;
+}
 
 .ui-widget-content a.cctor_button {
-  color: #fff; }
+  color: #fff;
+}
 
 .cctor_button:hover,
 .ui-widget-content a.cctor_button:hover {
+  background: #9dd3df;
+  border: solid 1px #9dd3df;
   color: #000;
-  border: solid 1px #2a5a8a;
-  background: #9dd3df; }
+}
 
 .cctor-column-row-insert select {
+  border-color: var(--pngx-grey-5);
+  border-radius: 0.5rem;
+  line-height: 1.5rem;
+  padding: 8px 32px 8px 12px;
+  float: right;
   width: 48%;
-  float: right; }
+}
 
 /**
 * Dynamic Code
 ***************************************************/
 .cctor-add-ons-dynamic-code {
-  text-align: center;
+  color: #048C7F;
   font-size: 18px;
   padding: 5px 0 30px;
-  color: #048C7F; }
+  text-align: center;
+}
 
 .cctor-add-ons-dynamic-code span {
-  font-size: 13px; }
+  font-size: 13px;
+}
+
+.cctor-dynamic_csv {
+  margin: 0 auto 40px;
+}
 
 /* ==========================================================================
    Help CSS
    ========================================================================== */
-.coupon.pngx-section-help-container {
-  background-color: #2a5a8a;
-  border: 1px solid #2a5a8a; }
-  .coupon.pngx-section-help-container .pngx-section-help-container-toggle {
-    background-color: #2a5a8a;
-    border: 1px solid #2a5a8a; }
-  .coupon.pngx-section-help-container .pngx-section-help-container:hover,
-  .coupon.pngx-section-help-container .pngx-section-help-container-toggle:hover {
-    background: #9dd3df none repeat scroll 0 0;
-    border: 1px solid #2a5a8a;
-    color: #000; }
-  .coupon.pngx-section-help-container .pngx-section-help-slideout {
-    border: 1px solid #2a5a8a; }
-  .coupon.pngx-section-help-container .ui-widget-content a.pngx-support,
-  .coupon.pngx-section-help-container .pngx-support {
-    color: #2a5a8a; }
-  .coupon.pngx-section-help-container .ui-widget-content a.pngx-support:hover,
-  .coupon.pngx-section-help-container .pngx-support:hover {
-    color: #9dd3df; }
-  .coupon.pngx-section-help-container .pngx-help-images {
-    box-shadow: 0 1px 2px 0 #048c7f; }
+.coupon.pngx-section-help-container .ui-widget-content a.pngx-support,
+.coupon.pngx-section-help-container .pngx-support {
+  color: #2a5a8a;
+}
+.coupon.pngx-section-help-container .ui-widget-content a.pngx-support:hover,
+.coupon.pngx-section-help-container .pngx-support:hover {
+  color: #9dd3df;
+}
+.coupon.pngx-section-help-container .pngx-help-images {
+  box-shadow: 0 1px 2px 0 #048c7f;
+}
 
 /* ==========================================================================
   jQuery UI CSS
    ========================================================================== */
 .post-type-cctor_coupon .ui-widget-overlay {
-  position: fixed; }
+  position: fixed;
+}
 
 /* ==========================================================================
    Meta Box CSS
    ========================================================================== */
-#coupon_creator_pro_meta_box h2,
-#cctor_coupon_categorydiv h2,
-#coupon_creator_shortcode h2,
-#coupon_creator_meta_box h2 {
+#coupon_creator_pro_meta_box h2 {
   color: #2a5a8a;
   font: italic 20px/30px Georgia, Times, serif;
   margin: 0;
   padding: 0 0 5px 10px;
-  text-shadow: 0 1px 0 #fff; }
+  text-shadow: 0 1px 0 #fff;
+}
 
 .postbox h4.pngx-fields-heading {
-  color: #048c7f; }
+  margin: 0 0 10px;
+}
 
 /* ==========================================================================
    Meta Box
    ========================================================================== */
 .postbox-container .pngx-meta-field.field-checkbox > label, .postbox-container .pngx-meta-field.field-color > label, .postbox-container .pngx-meta-field.field-date > label, .postbox-container .pngx-meta-field.field-image > label, .postbox-container .pngx-meta-field.field-number > label, .postbox-container .pngx-meta-field.field-select > label, .postbox-container .pngx-meta-field.field-text > label, .postbox-container .pngx-meta-field.field-textarea > label, .postbox-container .pngx-meta-field.field-url > label, .postbox-container .pngx-meta-field.field-variety > label, .postbox-container .pngx-meta-field.field-wysiwyg > label {
-  color: #2a5a8a; }
+  color: #2a5a8a;
+}
 
 /* ==========================================================================
    Options CSS
@@ -237,71 +384,102 @@ div.cctor-pro-link {
 .cctor-options-icon {
   width: 24px;
   height: 24px;
-  margin: 0 0 -4px; }
+  margin: 0 0 -4px;
+}
 
 /**
 * Help
 ***************************************************/
 .cctor_coupon_page_coupon-options .pngx-section-help-container {
-  margin-left: -10px; }
-
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: -15px;
+}
 @media (max-width: 768px) {
   .cctor_coupon_page_coupon-options .pngx-section-help-container {
-    margin-left: 0px; } }
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+  }
+}
 
 /**
 * License Fields
 ***************************************************/
+.pngx-license-button-act,
+.pngx-license-button-det {
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.625rem 1.25rem;
+}
+
 .pngx-license-button-act {
   background: #2a5a8a;
-  border: 1px solid #2a5a8a; }
+  border: 1px solid #2a5a8a;
+}
+.pngx-license-button-act:hover {
+  background: rgba(42, 90, 138, 0.8);
+  border-color: rgba(42, 90, 138, 0.8);
+}
 
 .pngx-license-button-det {
   background: #048c7f;
-  border: 1px solid #048c7f; }
-
+  border: 1px solid #048c7f;
+}
 .pngx-license-button-det:hover {
-  background: #2a5a8a; }
+  background: rgba(4, 140, 127, 0.8);
+  border-color: rgba(4, 140, 127, 0.8);
+}
 
 /**
 * Panel CSS
 ***************************************************/
 #pro.pngx-tabs-panel h2:first-child {
-  display: none !important; }
+  display: none !important;
+}
 
 #pro.pngx-tabs-panel ul {
-  list-style-type: disc; }
+  list-style-type: disc;
+}
 
 #pro.pngx-tabs-panel li {
   font-size: 14px;
   margin-left: 20px;
-  padding-left: 5px; }
+  padding-left: 5px;
+}
 
 /**
 * MailChimp
 ***************************************************/
 .mc-field-group {
   float: left;
-  width: 192px; }
+  width: 192px;
+}
 
 #mc-embedded-subscribe {
   background: #950402;
-  border: 1px solid #dd3d36;
+  border: 1px solid #950402;
   box-shadow: none;
   color: #fff;
   float: left;
-  font-weight: 700; }
-
+  font-weight: 700;
+}
 #mc-embedded-subscribe:hover {
-  background: #dd3d36; }
+  background: #dd3d36;
+  border-color: #dd3d36;
+}
 
 /**
 * Pro CSS
 ***************************************************/
+.cctor_add_shortcode {
+  margin-top: 10px;
+}
+
 .create-shortcode {
   display: inline-block;
-  margin: 10px 0;
-  padding: 3px 5px; }
+}
 
 /**
 * Promo Boxes
@@ -310,58 +488,68 @@ div.cctor-pro-link {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+}
+.pngx-promo-boxes .pngx-promo-box {
+  background: #FAFAFA;
+  box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
+  overflow: hidden;
+  padding: 15px 2.25%;
+  margin: 0 0 15px;
+  width: 45%;
+}
+.pngx-promo-boxes .pngx-promo-box h2 {
+  font-weight: bold;
+}
+.pngx-promo-boxes .pngx-promo-box h2:after {
+  background: rgb(0, 0, 0);
+  background: -moz-linear-gradient(left, rgb(0, 0, 0) 1%, rgb(155, 155, 155) 28%, rgb(255, 255, 255) 85%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(1%, rgb(0, 0, 0)), color-stop(28%, rgb(155, 155, 155)), color-stop(85%, rgb(255, 255, 255)));
+  background: -webkit-linear-gradient(left, rgb(0, 0, 0) 1%, rgb(155, 155, 155) 28%, rgb(255, 255, 255) 85%);
+  background: -o-linear-gradient(left, rgb(0, 0, 0) 1%, rgb(155, 155, 155) 28%, rgb(255, 255, 255) 85%);
+  background: -ms-linear-gradient(left, rgb(0, 0, 0) 1%, rgb(155, 155, 155) 28%, rgb(255, 255, 255) 85%);
+  background: linear-gradient(to right, rgb(0, 0, 0) 1%, rgb(155, 155, 155) 28%, rgb(255, 255, 255) 85%);
+  content: "";
+  display: block;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#ffffff", GradientType=1);
+  height: 1px;
+  margin-top: 10px;
+}
+@media (max-width: 640px) {
   .pngx-promo-boxes .pngx-promo-box {
-    background: #fff;
-    box-shadow: 0 0 1px 0 rgba(50, 50, 50, 0.5);
-    overflow: hidden;
-    padding: 15px 2.25%;
+    width: 100%;
     margin: 0 0 15px;
-    width: 45%; }
-    .pngx-promo-boxes .pngx-promo-box h2 {
-      color: #048c7f;
-      font-size: 15px;
-      font-weight: bold; }
-      .pngx-promo-boxes .pngx-promo-box h2:after {
-        background: black;
-        background: -moz-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
-        background: -webkit-gradient(linear, left top, right top, color-stop(1%, black), color-stop(28%, #9b9b9b), color-stop(85%, white));
-        background: -webkit-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
-        background: -o-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
-        background: -ms-linear-gradient(left, black 1%, #9b9b9b 28%, white 85%);
-        background: linear-gradient(to right, black 1%, #9b9b9b 28%, white 85%);
-        content: "";
-        display: block;
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#ffffff', GradientType=1);
-        height: 1px;
-        margin-top: 10px; }
-  @media (max-width: 640px) {
-    .pngx-promo-boxes .pngx-promo-box {
-      width: 100%;
-      margin: 0 0 15px; } }
+  }
+}
 
 /* ==========================================================================
   Quick and Bulk Edit CSS
    ========================================================================== */
 .inline-edit-row fieldset label.coupon-quick-edit {
-  margin: 1em 0; }
+  margin: 1em 0;
+}
 
 .inline-edit-row fieldset label.coupon-quick-edit span.title {
-  width: 12em; }
+  width: 12em;
+}
 
 .inline-edit-row fieldset label.coupon-quick-edit.cctor_save_change_views label {
   display: inline;
-  margin: 0; }
+  margin: 0;
+}
 
 #wpbody-content #bulk-edit.bulk-edit-row .inline-edit-col-left.coupon-bulk-col {
-  width: 30%; }
+  width: 30%;
+}
 
 #wpbody-content #bulk-edit.bulk-edit-row fieldset.inline-edit-col-left.coupon-bulk-col .inline-edit-group label {
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 #wpbody-content #bulk-edit.bulk-edit-row fieldset.inline-edit-col-left.coupon-bulk-col .inline-edit-group label select {
   max-width: 185px;
-  width: 100%; }
+  width: 100%;
+}
 
 /* ==========================================================================
    Tabs CSS

@@ -7,7 +7,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 	/**
 	 * Binds and sets up implementations.
 	 *
-	 * @since  TBD
+	 * @since  3.2.0
 	 *
 	 */
 	public function register() {
@@ -44,7 +44,6 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		 */
 		pngx( 'cctor.i18n' );
 		pngx( 'cctor.assets' );
-
 	}
 
 	/**
@@ -56,12 +55,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 	 *
 	 */
 	protected function hook() {
-
-		//new
-		add_action( 'init', pngx_callback( 'cctor', 'init' ) );
-
 		add_action( 'init', pngx_callback( 'cctor.post_menu', 'register' ), 5 );
-
 		add_action( 'init',  pngx_callback( 'Pngx__Cron_20', 'filter_cron_schedules' ) );
 		add_action( 'pre_get_posts', pngx_callback( 'cctor.search', 'remove_coupon_from_search' ) );
 
@@ -98,7 +92,6 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 
 		// Filter content and determine if we are going to use wpautop
 		add_filter( 'pngx_filter_content', pngx_callback( 'cctor', 'filter_coupon_content' ) );
-
 	}
 
 	/**
@@ -131,7 +124,7 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		add_action( 'admin_enqueue_scripts', pngx_callback( 'cctor.admin.assets', 'load_assets' ) );
 
 		//Options
-		add_action( 'plugin_action_links', pngx_callback( 'cctor.admin', 'plugin_setting_link' ), 10, 2 );
+		add_filter( 'plugin_action_links', pngx_callback( 'cctor.admin', 'plugin_setting_link' ), 10, 2 );
 		add_action( 'admin_menu', pngx_callback( 'cctor.admin.options', 'options_page' ) );
 		add_action( 'admin_init', pngx_callback( 'cctor.admin.options', 'admin_init' ), 0 );
 
@@ -143,7 +136,5 @@ class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
 		add_filter( 'pngx_field_types', pngx_callback( 'cctor.admin.meta.fields', 'display_field' ), 5, 5 );
 
 		pngx( Coupons::Class );
-
 	}
-
 }

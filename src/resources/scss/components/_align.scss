@@ -1,11 +1,13 @@
 /* Coupon Align
 ------------------------------------------------------------ */
+.cctor-print-only .alignnone,
 .cctor-alignnone,
 .cctor_alignnone {
 	display: inline-block;
 	margin: 0 0 10px;
 }
 
+.cctor-print-only .cctor-alignleft,
 .cctor-alignleft,
 .cctor_alignleft {
 	display: inline;
@@ -13,6 +15,7 @@
 	margin: 0 10px 10px 0;
 }
 
+.cctor-print-only .alignright,
 .cctor-alignright,
 .cctor_alignright {
 	display: inline;
@@ -20,6 +23,7 @@
 	margin: 0 0 10px 10px;
 }
 
+.cctor-print-only .aligncenter,
 .cctor-aligncenter,
 .cctor_aligncenter {
 	display: block;

@@ -4,6 +4,11 @@
 	clear: both;
 }
 
+.pngx-a11y-hidden {
+	display: none !important;
+	visibility: hidden;
+}
+
 .cctor-screen-reader-text,
 .cctor-pro-coupons-visuallyhidden {
 	position: absolute !important;

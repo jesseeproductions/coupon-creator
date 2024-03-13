@@ -4,14 +4,15 @@
 */
 // ==== Order of Imports is Important ====
 
-// Mixins - Broubon, Neat grid
-@import "mixins/mixins";
+@import "utilities/all";
 
 // Typography and Colors
 @import "variables/variables";
 
 @import "coupons/coupons";
 
-@import "utilities/utilities";
+@import "components/utilities";
 
-@import "utilities/browser";
+@import "components/browser";
+
+@import "frontend/loader.scss";

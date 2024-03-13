@@ -1,16 +1,9 @@
 <?php
-//If Direct Access Kill the Script
-if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
-	die( 'Access denied.' );
-}
-
 
 /*
 * Admin Help Class
 *
 */
-
-
 class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 
 	//Help Fields array()
@@ -104,6 +97,22 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'pro'      => 'Pro',
 			'type'     => 'video'
 		);
+		$this->fields['video_print_only']       = array(
+			'section'  => '',
+			'tab'      => 'content',
+			'text'     => 'Print Only Field',
+			'video_id' => 'uAFMy4DwCYE',
+			'pro'      => 'Pro',
+			'type'     => 'video'
+		);
+		$this->fields['video_multiprint_addons']       = array(
+			'section'  => '',
+			'tab'      => 'content',
+			'text'     => 'Multiprint Feature',
+			'video_id' => 'KKa2-1O3yks',
+			'pro'      => 'Add-ons',
+			'type'     => 'video'
+		);
 		$this->fields['link_pro_hide_deal']           = array(
 			'section' => '',
 			'tab'     => 'content',
@@ -132,6 +141,14 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'text'    => 'What is the size of the image coupon?',
 			'link'    => 'http://cctor.link/cYn4L',
 			'type'    => 'links'
+		);
+		$this->fields['video_pro_print_only']             = array(
+			'section' => '',
+			'tab'     => 'content',
+			'text'    => 'How to use the Print Only Field?',
+			'video_id' => 'uAFMy4DwCYE',
+			'pro'      => 'Pro',
+			'type'     => 'video'
 		);
 		$this->fields['video_end_list_content']       = array(
 			'section' => '',
@@ -392,6 +409,14 @@ class Cctor__Coupon__Admin__Help extends Pngx__Admin__Help {
 			'text'    => 'How can I prevent coupons from appearing in a site search?',
 			'link'    => 'http://cctor.link/xyCL8',
 			'type'    => 'links'
+		);
+		$this->fields['video_pro_multiprint']    = array(
+			'section'  => 'display',
+			'tab'      => '',
+			'text'     => 'How to use the Multi-Print Feature',
+			'video_id' => 'KKa2-1O3yks',
+			'pro'      => 'Add-ons',
+			'type'     => 'video'
 		);
 		$this->fields['video_end_list_display']      = array(
 			'section' => 'display',
