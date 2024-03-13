@@ -45,7 +45,7 @@
     "jquery": ">=3.4.0",
     "lodash": ">=4.17.13",
     "moment": "2.19.3",
-    "moment-timezone": "0.5.13",
+    "moment-timezone": "0.5.35",
     "prop-types": "^15.6.1",
     "querystringify": ">=2.0.0",
     "react": "^18.2.0",
