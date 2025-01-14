@@ -256,7 +256,10 @@ class Cctor__Coupon__Main {
 		 * We need Plugin Engine to be able to load text domains correctly.
 		 * With that in mind we initialize Plugin Engine passing the plugin Main class as the context
 		 */
-		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
+		add_action('init', function()
+		{
+			Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
+		});
 
 		pngx_register_provider( 'Cctor__Coupon__Provider' );
 		pngx_register_provider( Hooks::class );
