@@ -44,14 +44,14 @@ class Cctor__Coupon__Main {
 	protected $min_php = '7.4';
 
 	const VERSION_KEY              = 'cctor_coupon_version';
-	const VERSION_NUM              = '3.4.1';
+	const VERSION_NUM              = '3.4.2';
 	const MIN_PNGX_VERSION         = '4.0.0';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
 
 	public $VERSION_KEY              = 'cctor_coupon_version';
-	public $VERSION_NUM              = '3.4.1';
+	public $VERSION_NUM              = '3.4.2';
 	public $MIN_PNGX_VERSION         = '4.0.0';
 	public $WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	public $COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-api/';
@@ -256,7 +256,10 @@ class Cctor__Coupon__Main {
 		 * We need Plugin Engine to be able to load text domains correctly.
 		 * With that in mind we initialize Plugin Engine passing the plugin Main class as the context
 		 */
-		Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
+		add_action('init', function()
+		{
+			Pngx__Main::instance()->load_text_domain( self::TEXT_DOMAIN , $this->plugin_dir . 'lang/' );
+		});
 
 		pngx_register_provider( 'Cctor__Coupon__Provider' );
 		pngx_register_provider( Hooks::class );
