@@ -14,6 +14,24 @@ use Pngx\Duplicate\Post_Types;
 class Coupons {
 
 	/**
+	 * The duplicater instance.
+	 *
+	 * @since 3.1
+	 *
+	 * @var Post_Types
+	 */
+	protected $duplicater;
+
+	/**
+	 * The post type to duplicate.
+	 *
+	 * @since 3.1
+	 *
+	 * @var string
+	 */
+	protected $post_type;
+
+	/**
 	 * Meetings constructor.
 	 *
 	 * @since 3.1

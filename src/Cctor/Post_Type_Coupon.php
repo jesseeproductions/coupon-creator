@@ -32,6 +32,15 @@ class Cctor__Coupon__Post_Type_Coupon {
 		$this->taxonomy    = $taxonomy;
 		$this->text_domain = $text_domain;
 
+	}
+
+	/**
+	 * Initialize labels with translations.
+	 * Called on init action to ensure text domain is loaded.
+	 *
+	 * @since 3.4.2.1
+	 */
+	protected function init_labels() {
 		$this->singular_coupon_label           = $this->get_coupon_label_singular();
 		$this->singular_coupon_label_lowercase = $this->get_coupon_label_singular_lowercase();
 		$this->plural_coupon_label             = $this->get_coupon_label_plural();
@@ -41,7 +50,6 @@ class Cctor__Coupon__Post_Type_Coupon {
 		$this->singular_category_label_lowercase = $this->get_coupon_category_label_singular_lowercase();
 		$this->plural_category_label             = $this->get_coupon_category_label_plural();
 		$this->plural_category_label_lowercase   = $this->get_coupon_category_label_plural_lowercase();
-
 	}
 
 	/**
@@ -51,6 +59,7 @@ class Cctor__Coupon__Post_Type_Coupon {
 	 *
 	 */
 	public function register() {
+		$this->init_labels();
 		$this->register_post_types();
 		$this->register_taxonomies();
 	}

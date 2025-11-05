@@ -44,14 +44,14 @@ class Cctor__Coupon__Main {
 	protected $min_php = '7.4';
 
 	const VERSION_KEY              = 'cctor_coupon_version';
-	const VERSION_NUM              = '3.4.2.1';
+	const VERSION_NUM              = '3.4.3';
 	const MIN_PNGX_VERSION         = '4.0.0';
 	const WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	const COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-api/';
 	const OPTIONS_ID               = 'coupon_creator_options';
 
 	public $VERSION_KEY              = 'cctor_coupon_version';
-	public $VERSION_NUM              = '3.4.2.1';
+	public $VERSION_NUM              = '3.4.3';
 	public $MIN_PNGX_VERSION         = '4.0.0';
 	public $WP_PLUGIN_URL            = 'https://wordpress.org/plugins/coupon-creator/';
 	public $COUPON_CREATOR_STORE_URL = 'https://couponcreatorplugin.com/edd-api/';
@@ -84,6 +84,15 @@ class Cctor__Coupon__Main {
 	public $vendor_path;
 	public $vendor_url;
 	public $plugin_name;
+
+	/**
+	 * Plugin register instance.
+	 *
+	 * @since 3.4.2.1
+	 *
+	 * @var Cctor__Coupon__Plugin_Register
+	 */
+	protected $registered;
 
 	/**
 	 * Get (and instantiate, if necessary) the instance of the class

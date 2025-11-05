@@ -4,9 +4,9 @@ Plugin Name: Coupon Creator
 Plugin URI: http://couponcreatorplugin.com
 Tags: custom post type, coupon, shortcode
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Requires at least: 6.4
-Tested up to: 6.7.1
-Stable tag: 3.4.2.1
+Requires at least: 6.5
+Tested up to: 6.8.3
+Stable tag: 3.4.3
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
@@ -149,6 +149,10 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
+= 3.4.3 November 6th 2025 =
+
+* Fix - WordPress and PHP 8.3 compatibility.
+
 = 3.4.2.1 January 14th 2025 =
 
 * Fix - Fix "Warning: filemtime(): stat failed for" errors for two assets not included in the zip.
@@ -177,16 +181,13 @@ You can add custom css in the options and it will modify both the shortcode coup
 * Fix - Deprecated notices with media buttons.
 
 = 3.2.1 January 14th, 2022 =
-
 * Fix - Change duplicate feature's meta field copy to improve security.
 * Fix - Fatal error that can happen in the admin on newer versions of WordPress.
 
 = 3.2 March 8th, 2021 =
-
 * Fix - Updates to support jQuery change in WordPress 5.7.
 
 = 3.1.1 August 25th, 2020 =
-
 * Fix - Update security check when saving coupon meta fields.
 
 = 3.1 August 11th, 2020 =
