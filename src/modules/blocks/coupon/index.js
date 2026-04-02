@@ -9,9 +9,8 @@ import Inspector from './inspector';
 import CouponChooser from './coupon';
 import icon from "./icon";
 
-const {
-	ServerSideRender,
-} = wp.components;
+const ServerSideRender = wp.serverSideRender;
+const {Fragment} = wp.element;
 
 /**
  * Module Code
@@ -44,15 +43,15 @@ export default {
 			);
 		}
 
-		return [
+		return <Fragment>
 			<Inspector
 				key="coupon-inspector"
 				{...{setAttributes, ...props}}
-			/>,
+			/>
 			<div key="coupon-base" className={`${className} pngx-clearfix`}>
 				{display}
-			</div>,
-		];
+			</div>
+		</Fragment>;
 	},
 
 	save() {

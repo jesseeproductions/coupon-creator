@@ -1,6 +1,6 @@
 const {__} = wp.i18n;
 const {SelectControl} = wp.components;
-const {Component} = wp.element;
+const {Component, Fragment} = wp.element;
 const {apiFetch} = wp;
 import {Loading} from 'elements';
 import PropTypes from 'prop-types';
@@ -50,15 +50,13 @@ export default class RESTSelect extends Component {
 				this.setState( {loadedItems, loaded: true} );
 				this.setOptions();
 			}
-
+		} ).catch( () => {
+			this.setState( {loaded: true} );
 		} ));
 	}
 
 	setOptions = () => {
-		let options = this.state.defaultOptions;
-		if ( typeof options === 'undefined' ) {
-			options  = []
-		}
+		let options = [...(this.state.defaultOptions || [])];
 
 		if ( this.state.isTaxonomy ) {
 			this.state.loadedItems.forEach( ( term ) => {
@@ -87,7 +85,7 @@ export default class RESTSelect extends Component {
 
 	render() {
 		const {currentId, label, noItems, slug} = this.props;
-		let output = <Loading key="pngx-select-loading-{slug}" className="pngx-editor__spinner--item"/>;
+		let output = <Loading key={`pngx-select-loading-${slug}`} className="pngx-editor__spinner--item"/>;
 		let select = '';
 
 		if ( this.state.loadedItems.length === 0 && this.state.loaded ) {
@@ -109,9 +107,9 @@ export default class RESTSelect extends Component {
 			);
 		}
 
-		return [
-			(select),
-			output,
-		];
+		return <Fragment>
+			{select}
+			{output}
+		</Fragment>;
 	}
 }

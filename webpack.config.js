@@ -54,6 +54,7 @@ entryPointNames.forEach( entryPointName => {
 
 const wpDependencies = [
 	'blocks',
+	'block-editor',
 	'components',
 	'date',
 	'editor',
@@ -61,6 +62,7 @@ const wpDependencies = [
 	'i18n',
 	'utils',
 	'data',
+	'server-side-render',
 ];
 
 wpDependencies.forEach( wpDependency => {
