@@ -67,6 +67,7 @@ class Cctor__Coupon__Assets {
 			array(
 				'react',
 				'react-dom',
+				'wp-block-editor',
 				'wp-components',
 				'wp-editor',
 				'wp-api',
@@ -74,6 +75,7 @@ class Cctor__Coupon__Assets {
 				'wp-blocks',
 				'wp-i18n',
 				'wp-element',
+				'wp-server-side-render',
 			),
 			filemtime( pngx( 'cctor' )->resource_path . 'js/blocks.js' )
 		);
