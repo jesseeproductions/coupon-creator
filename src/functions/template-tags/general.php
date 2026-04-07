@@ -3,9 +3,8 @@
  * Coupon Creator Functions
  */
 
-//If Direct Access Kill the Script
-if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
-	die( 'Access denied.' );
+if ( ! defined( 'ABSPATH' ) ) {
+	die( '-1' );
 }
 
 if ( ! class_exists( 'Cctor__Coupon__Main' ) ) {

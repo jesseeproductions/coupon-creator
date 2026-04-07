@@ -8,9 +8,8 @@ Author URI: http://couponcreatorplugin.com
 Text Domain: coupon-creator
 License: GPLv2 or later
 */
-//If Direct Access Kill the Script
-if ( $_SERVER['SCRIPT_FILENAME'] == __FILE__ ) {
-	die( 'Access denied.' );
+if ( ! defined( 'ABSPATH' ) ) {
+	die( '-1' );
 }
 
 define( 'COUPON_CREATOR_DIR', dirname( __FILE__ ) );
