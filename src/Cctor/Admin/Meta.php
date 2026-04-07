@@ -202,13 +202,19 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 
 	/**
 	 * Set Ignore Expiration Field
+	 *
+	 * Modifies $_POST directly because the Plugin Engine meta save loop (Pngx__Admin__Meta)
+	 * reads field values from $_POST. This is the expected integration pattern for the
+	 * pngx_before_save_meta_fields action.
 	 */
 	public function modify_ignore_expiration() {
 
+		$expiration_option = isset( $_POST['cctor_expiration_option'] ) ? absint( $_POST['cctor_expiration_option'] ) : 0;
+
 		//Expiration Option Auto Check Ignore Input
-		if ( isset( $_POST['cctor_ignore_expiration'] ) && 1 == $_POST['cctor_expiration_option'] ) {
+		if ( isset( $_POST['cctor_ignore_expiration'] ) && 1 === $expiration_option ) {
 			$_POST['cctor_ignore_expiration'] = 'on';
-		} elseif ( isset( $_POST['cctor_ignore_expiration'] ) && 'on' == $_POST['cctor_ignore_expiration'] && 1 != $_POST['cctor_expiration_option'] ) {
+		} elseif ( isset( $_POST['cctor_ignore_expiration'] ) && 'on' === $_POST['cctor_ignore_expiration'] && 1 !== $expiration_option ) {
 			unset( $_POST['cctor_ignore_expiration'] );
 		}
 	}

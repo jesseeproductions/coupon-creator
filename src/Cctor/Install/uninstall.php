@@ -25,14 +25,14 @@ if ( defined( 'CCTOR_REMOVE_ALL_DATA' ) && true === CCTOR_REMOVE_ALL_DATA ) {
 	pngx( Pngx__Add_Capabilities::class )->remove_capabilities( \Cctor__Coupon__Main::POSTTYPE );
 
 	// Delete options.
-	$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE 'cctor\_%';" );
-	$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE 'coupon_creator\_%';" );
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", 'cctor\_%' ) );
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s", 'coupon\_creator\_%' ) );
 
 	// Delete usermeta.
-	$wpdb->query( "DELETE FROM $wpdb->usermeta WHERE meta_key LIKE 'cctor\_%';" );
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->usermeta} WHERE meta_key LIKE %s", 'cctor\_%' ) );
 
 	// Delete posts + data.
-	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type IN ( \Cctor__Coupon__Main::POSTTYPE );" );
+	$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->posts} WHERE post_type = %s", \Cctor__Coupon__Main::POSTTYPE ) );
 	$wpdb->query( "DELETE meta FROM {$wpdb->postmeta} meta LEFT JOIN {$wpdb->posts} posts ON posts.ID = meta.post_id WHERE posts.ID IS NULL;" );
 
 	// Delete term taxonomies.
