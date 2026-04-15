@@ -733,6 +733,14 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 		public function optin_notice() {
 			// Check for plugin args
 			if( isset( $_GET['plugin'] ) && isset( $_GET['plugin_action'] ) ) {
+				// Verify nonce and capability before processing opt-in action.
+				if (
+					! isset( $_GET['_wpnonce'] ) ||
+					! wp_verify_nonce( $_GET['_wpnonce'], 'cctor_tracking_optin' ) ||
+					! current_user_can( 'manage_options' )
+				) {
+					return;
+				}
 				$plugin = sanitize_text_field( $_GET['plugin'] );
 				$action = sanitize_text_field( $_GET['plugin_action'] );
 				if( $action == 'yes' ) {
@@ -793,11 +801,11 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 					// Option 2 enables a second notice that fires after the user opts in to tracking
 					$yes_args['marketing'] = 'yes';
 				}
-				$url_yes = add_query_arg( $yes_args );
-				$url_no = add_query_arg( array(
+				$url_yes = wp_nonce_url( add_query_arg( $yes_args ), 'cctor_tracking_optin' );
+				$url_no = wp_nonce_url( add_query_arg( array(
 					'plugin' 		=> $this->plugin_name,
 					'plugin_action'	=> 'no'
-				) );
+				) ), 'cctor_tracking_optin' );
 
 				// Decide on notice text
 				if( $this->marketing != 1 ) {
@@ -1009,7 +1017,7 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 						var url = document.getElementById("put-goodbye-link-<?php echo esc_attr( $this->plugin_name ); ?>");
 						$('body').toggleClass('put-form-active');
 						$("#put-goodbye-form-<?php echo esc_attr( $this->plugin_name ); ?>").fadeIn();
-						$("#put-goodbye-form-<?php echo esc_attr( $this->plugin_name ); ?>").html( '<?php echo $html; ?>' + '<div class="put-goodbye-form-footer"><p><a id="put-submit-form" class="button primary" href="#"><?php _e( 'Submit and Deactivate', 'singularity' ); ?></a>&nbsp;<a class="secondary button" href="'+url+'"><?php _e( 'Just Deactivate', 'singularity' ); ?></a></p></div>');
+						$("#put-goodbye-form-<?php echo esc_attr( $this->plugin_name ); ?>").html( <?php echo wp_json_encode( $html ); ?> + '<div class="put-goodbye-form-footer"><p><a id="put-submit-form" class="button primary" href="#"><?php _e( 'Submit and Deactivate', 'singularity' ); ?></a>&nbsp;<a class="secondary button" href="'+url+'"><?php _e( 'Just Deactivate', 'singularity' ); ?></a></p></div>');
 						$('#put-submit-form').on('click', function(e){
 							// As soon as we click, the body of the form should disappear
 							$("#put-goodbye-form-<?php echo esc_attr( $this->plugin_name ); ?> .put-goodbye-form-body").fadeOut();
@@ -1054,9 +1062,9 @@ if( ! class_exists( 'Plugin_Usage_Tracker') ) {
 		 */
 		public function goodbye_form_callback() {
 			check_ajax_referer( 'wisdom_goodbye_form', 'security' );
-			if( isset( $_POST['values'] ) ) {
-				$values = json_encode( wp_unslash( $_POST['values'] ) );
-				update_option( 'wisdom_deactivation_reason_' . $this->plugin_name, $values );
+			if( isset( $_POST['values'] ) && is_array( $_POST['values'] ) ) {
+				$values = array_map( 'sanitize_text_field', wp_unslash( $_POST['values'] ) );
+				update_option( 'wisdom_deactivation_reason_' . $this->plugin_name, wp_json_encode( $values ) );
 			}
 			if( isset( $_POST['details'] ) ) {
 				$details = sanitize_text_field( $_POST['details'] );

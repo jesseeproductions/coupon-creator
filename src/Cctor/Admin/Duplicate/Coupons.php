@@ -72,10 +72,16 @@ class Coupons {
 			wp_die( esc_html__( 'No coupon to duplicate has been supplied!', 'coupon-creator' ) );
 		}
 
+		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : absint( $_POST['post'] );
+
 		if (
 			! isset( $_GET['pngx_duplicate_nonce'] ) ||
-			! wp_verify_nonce( $_GET['pngx_duplicate_nonce'], basename( __FILE__ ) )
+			! wp_verify_nonce( $_GET['pngx_duplicate_nonce'], 'cctor_duplicate_coupon_' . $post_id )
 		) {
+			return;
+		}
+
+		if ( ! current_user_can( 'edit_cctor_coupons' ) ) {
 			return;
 		}
 
@@ -100,7 +106,7 @@ class Coupons {
 		}
 
 		$actions['duplicate'] = '<a
-				href="' . wp_nonce_url( 'admin.php?action=pngx_duplicate_coupon&post=' . $post->ID, basename( __FILE__ ), 'pngx_duplicate_nonce' ) . '"
+				href="' . wp_nonce_url( 'admin.php?action=pngx_duplicate_coupon&post=' . $post->ID, 'cctor_duplicate_coupon_' . $post->ID, 'pngx_duplicate_nonce' ) . '"
 				title="' . esc_html__( 'Duplicate Coupon', 'coupon-creator' ) . '"
 			>' .
                 esc_html__( 'Duplicate', 'coupon-creator' ) .
