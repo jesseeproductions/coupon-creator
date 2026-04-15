@@ -1,7 +1,7 @@
 <?php
 namespace Cctor;
 
-use Tribe\Events\Test\Testcases\Events_TestCase;
+use Codeception\TestCase\WPTestCase;
 use Cctor__Coupon__Main as Coupons;
 use Pngx__Main as Plugin_Engine;
 
@@ -12,7 +12,7 @@ use Pngx__Main as Plugin_Engine;
  *
  * @package Cctor__Coupon__Main
  */
-class PluginEngineTest extends Events_TestCase {
+class PluginEngineTest extends WPTestCase {
 	/**
 	 * @test
 	 */
