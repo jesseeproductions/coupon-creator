@@ -149,6 +149,12 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 == Changelog ==
 
+= 3.5.0 =
+
+* Security - Improved input sanitization and output escaping across the plugin.
+* Tweak - Improved block editor compatibility and build tooling.
+* Tweak - Updated internal dependencies.
+
 = 3.4.3 November 6th 2025 =
 
 * Fix - WordPress and PHP 8.3 compatibility.
