@@ -29,18 +29,18 @@ Watch this quick video to see the Coupon Creator in Action:
 
 https://www.youtube.com/watch?v=aGoxJ3TBRhk
 
-<h4>Coupon Creator Add-ons 3.4 Features Include: (included with Pro Business and higher license levels)</h4>
+<h4>Coupon Creator Add-ons 3.5 Features Include: (included with Pro Business and higher license levels)</h4>
+* Email Delivery — send coupons directly to visitors via email with templates for all 6 coupon types
+* Email Gate — require an email address to view a coupon, building your list while distributing deals
+* Email logging with GDPR-compliant anonymization, configurable retention, and deliverability health checks (SPF, blacklist, SMTP)
 * Multiprint to select multiple coupons to print all at once
 * Block Editor Support for couponloop with Vendor and Location Taxonomies
 * Reveal Code & Dynamic Code Feature
 * Vendor and Location Taxonomies
-* Modern Advanced Template
-* Lower Third Advanced Template
-* Highlight Advanced Template
-* Lower Third Advanced Template
+* Modern, Highlight, Lower Third, and Two-Column Advanced Templates
 * Create and Display WooCommerce Coupons from the Coupon Creator Editor
 
-<h4>Coupon Creator Pro 3.4 Features Include:</h4>
+<h4>Coupon Creator Pro 3.5 Features Include:</h4>
 * Block Editor support for couponloop shortcode and all of its attributes
 * [couponloop] shortcode, filter bar, and template system, to give you control over customizations without losing changes on updates
 * Order the filter bar filters and hide any filter per shortcode

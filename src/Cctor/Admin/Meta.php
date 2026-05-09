@@ -51,8 +51,8 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 		// Add default template
 		add_filter( 'pngx-default-template', array( $this, 'default_template' ) );
 
-		//Modify Expiration Field
-		add_filter( 'pngx_before_save_meta_fields', array( $this, 'modify_ignore_expiration' ) );
+		// Sync derived ignore_expiration value after the engine's meta save loop runs.
+		add_action( 'save_post_cctor_coupon', array( $this, 'sync_ignore_expiration' ), 11 );
 
 		$this->set_tabs();
 		$this->set_fields();
@@ -201,21 +201,30 @@ class Cctor__Coupon__Admin__Meta extends Pngx__Admin__Meta {
 	}
 
 	/**
-	 * Set Ignore Expiration Field
+	 * Sync the derived cctor_ignore_expiration meta from cctor_expiration_option.
 	 *
-	 * Modifies $_POST directly because the Plugin Engine meta save loop (Pngx__Admin__Meta)
-	 * reads field values from $_POST. This is the expected integration pattern for the
-	 * pngx_before_save_meta_fields action.
+	 * ignore_expiration is not a user-editable checkbox; its state is determined by the
+	 * selected expiration_option. Runs at priority 11 so the engine's meta save (priority
+	 * 10) has already written whatever the form posted; we then enforce the derived value.
+	 *
+	 * @param int $post_id Coupon post ID.
 	 */
-	public function modify_ignore_expiration() {
+	public function sync_ignore_expiration( $post_id ) {
+		if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
+			return;
+		}
 
-		$expiration_option = isset( $_POST['cctor_expiration_option'] ) ? absint( $_POST['cctor_expiration_option'] ) : 0;
+		// Only act when the meta form was actually submitted.
+		if ( ! isset( $_POST['cctor_expiration_option'] ) ) {
+			return;
+		}
 
-		//Expiration Option Auto Check Ignore Input
-		if ( isset( $_POST['cctor_ignore_expiration'] ) && 1 === $expiration_option ) {
-			$_POST['cctor_ignore_expiration'] = 'on';
-		} elseif ( isset( $_POST['cctor_ignore_expiration'] ) && 'on' === $_POST['cctor_ignore_expiration'] && 1 !== $expiration_option ) {
-			unset( $_POST['cctor_ignore_expiration'] );
+		$expiration_option = absint( $_POST['cctor_expiration_option'] );
+
+		if ( 1 === $expiration_option ) {
+			update_post_meta( $post_id, 'cctor_ignore_expiration', 'on' );
+		} else {
+			delete_post_meta( $post_id, 'cctor_ignore_expiration' );
 		}
 	}
 
