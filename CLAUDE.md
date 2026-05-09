@@ -19,7 +19,7 @@ Coupon Creator — WordPress plugin that creates a custom post type for coupons 
 - Main Class: `Cctor__Coupon__Main`
 - Post Type: `cctor_coupon`
 - Taxonomy: `cctor_coupon_category`
-- Version: 3.4.3
+- Version: 3.5.0
 - Text Domain: `coupon-creator`
 
 ## Key Constants
@@ -109,7 +109,18 @@ slic run tests/wpunit       # WordPress integration
 - Factories for test data: `$this->factory()->post->create()`
 - Namespace tests: `Cctor\Coupon\Tests\{Unit,WPUnit,Functional}`
 
+## Working Principles
+
+Behavioral foundation. These shape *how* to approach work, before any code-style rule applies.
+
+1. **Don't assume.** If scope, format, or behavior is ambiguous, ask before coding. Surface tradeoffs instead of picking silently.
+2. **Minimum code that solves the problem.** No speculative abstractions. Refactor on the third duplication, not the first.
+3. **Touch only what you must.** Every changed line should trace to the request. Clean up orphans your own change creates; leave pre-existing code alone.
+4. **Define success criteria, then verify.** State what "done" looks like before implementing (a failing test, a checklist, an observable behavior). Loop until each criterion is met.
+
 ## Verification
+
+Define success criteria before implementing. Then verify against them:
 - Run `slic run tests/unit` after pure PHP changes
 - Run `slic run tests/wpunit` after WordPress integration changes
 - Run `slic run tests` before marking any task complete
