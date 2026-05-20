@@ -2,7 +2,7 @@
 Contributors: brianjessee
 Plugin Name: Coupon Creator
 Plugin URI: http://couponcreatorplugin.com
-Tags: custom post type, coupon, shortcode
+Tags: coupon, shortcode, email marketing, lead generation, list building
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 6.5
 Tested up to: 7.0.0
@@ -151,6 +151,7 @@ You can add custom css in the options and it will modify both the shortcode coup
 
 = 3.5.0 May 20th 2026 =
 
+* Tweak - Compatible with Coupon Creator Add-ons 3.5: Email Delivery, Email Gate, and deliverability tools for building your email list from your coupons.
 * Security - Improved input sanitization and output escaping across the plugin.
 * Tweak - Improved block editor compatibility and build tooling.
 * Tweak - Updated internal dependencies.
