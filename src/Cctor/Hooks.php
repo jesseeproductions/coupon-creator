@@ -11,7 +11,7 @@ namespace Cctor\Coupon;
 
 use Cctor\Coupon\Templates\Admin_Template;
 use Pngx__Admin__Fields;
-use tad_DI52_ServiceProvider;
+use Pngx\Vendor\lucatume\DI52\ServiceProvider;
 use Pngx\Template;
 
 /**
@@ -21,7 +21,7 @@ use Pngx\Template;
  *
  * @package Cctor\Coupon;
  */
-class Hooks extends tad_DI52_ServiceProvider {
+class Hooks extends ServiceProvider {
 
 	/**
 	 * Binds and sets up implementations.

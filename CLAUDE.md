@@ -19,7 +19,7 @@ Coupon Creator — WordPress plugin that creates a custom post type for coupons 
 - Main Class: `Cctor__Coupon__Main`
 - Post Type: `cctor_coupon`
 - Taxonomy: `cctor_coupon_category`
-- Version: 3.5.0
+- Version: 3.5.1
 - Text Domain: `coupon-creator`
 
 ## Key Constants

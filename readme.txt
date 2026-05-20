@@ -6,7 +6,7 @@ Tags: coupon, shortcode, email marketing, lead generation, list building
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=W6FGHL2BUNY2W&lc=US&item_name=Coupon%20Creator&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 6.5
 Tested up to: 7.0.0
-Stable tag: 3.5.0
+Stable tag: 3.5.1
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.opensource.org/licenses/GPL-2.0
@@ -148,6 +148,11 @@ You can add custom css in the options and it will modify both the shortcode coup
 6. Coupon Options
 
 == Changelog ==
+
+= 3.5.1 May 20th 2026 =
+
+* Tweak - Prefix the bundled di52 container library (lucatume/di52) under the Pngx\Vendor\ namespace via Strauss to prevent global class collisions with The Events Calendar, Event Tickets, and other plugins that ship their own scoped di52.
+* Tweak - Upgrade lucatume/di52 from v2 to v3 (modern PSR-4 namespace).
 
 = 3.5.0 May 20th 2026 =
 

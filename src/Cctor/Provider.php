@@ -2,7 +2,7 @@
 
 use Cctor\Coupon\Admin\Duplicate\Coupons;
 
-class Cctor__Coupon__Provider extends tad_DI52_ServiceProvider {
+class Cctor__Coupon__Provider extends \Pngx\Vendor\lucatume\DI52\ServiceProvider {
 
 	/**
 	 * Binds and sets up implementations.
