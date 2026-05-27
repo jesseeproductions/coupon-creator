@@ -8,7 +8,7 @@ Coupon Creator — WordPress plugin that creates a custom post type for coupons 
 ## Stack
 - PHP: 7.4+
 - WordPress: 5.8+
-- DI Container: `lucatume/di52`
+- DI Container: `lucatume/di52` (Strauss-prefixed as `Pngx\Vendor\lucatume\DI52\`)
 - Test Framework: Codeception (via `lucatume/wp-browser`)
 - Test Runner: SLIC (Docker-based)
 
@@ -79,9 +79,8 @@ Filter callbacks should not have type hints (other plugins may change types).
 ## Dependencies
 - Requires plugin-engine v4.0.0+ (embedded)
 - Pro and Add-ons plugins extend this core
-- Uses `lucatume/di52` for dependency injection
+- Uses `lucatume/di52` for dependency injection (Strauss-prefixed as `Pngx\Vendor\lucatume\DI52\`)
 - Uses `firebase/php-jwt` for JWT handling
-- Uses `monolog/monolog` for logging
 
 ## Related Plugins
 - `plugin-engine` — embedded shared framework (`plugin-engine/`)
