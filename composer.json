@@ -36,7 +36,7 @@
     }
   },
   "require": {
-    "lucatume/di52": "^3.3",
+    "lucatume/di52": "^4.0",
     "firebase/php-jwt": "~6.3.0",
     "faction23/a11y-dialog": "~5.0.0"
   },
